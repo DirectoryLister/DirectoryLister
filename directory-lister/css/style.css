@@ -1,0 +1,131 @@
+/**************
+*  CK-LISTER  *
+**************/
+body {
+	color: #333;
+	background: #FFF;
+	font-family: sans-serif, serif, helvetica;
+	font-size: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+#dir-lister {
+	font-size: .9em;
+	margin: 20px auto;
+	width: 760px;
+}
+
+/*********
+*  ROWS  *
+*********/
+#dir-lister #header {
+	border-bottom: 2px solid #000;
+	float: left;
+	font-weight: bold;
+	padding: 0;
+	width: 100%;
+}
+
+#dir-lister img {
+	border: none;
+	float: left;
+	margin: 3px;
+	width: 16px;
+}
+
+#dir-lister .file-name {
+	float: left;
+	font-weight: bold;
+	margin: 3px;
+	width: 470px;
+}
+
+#dir-lister #header .file-name {
+	margin: 1px 3px;
+	width: 492px;
+}
+
+#dir-lister .file-size {
+	float: left;
+	margin: 3px;
+	width: 100px;
+	text-align: right;
+}
+
+#dir-lister #header .file-size {
+	margin: 1px 3px;
+}
+
+#dir-lister .file-time {
+	float: right;
+	margin: 3px;
+	text-align: right;
+	width: 135px;
+}
+
+#dir-lister #header .file-time {
+	margin: 1px 3px;
+}
+
+/**********
+*  LINKS  *
+**********/
+#dir-lister .dark-bg a,#dir-lister .light-bg a {
+	border-bottom: 1px solid #3269AA;
+	color: #000;
+	cursor: pointer;
+	display: block;
+	float: left;
+	margin: 0;
+	padding: 0;
+	text-decoration: none;
+	width: 100%;
+}
+
+#dir-lister .dark-bg a {
+	background-color: #EFEFEF;
+}
+
+#dir-lister .light-bg a {
+	background-color: #DEDEDE;
+}
+
+#dir-lister .dark-bg a:hover, #dir-lister .light-bg a:hover {
+	background-color: #3269AA;
+	color: #FFF;
+}
+
+/***********
+*  FOOTER  *
+***********/
+#lister-footer {
+	color: #999;
+	float: left;
+	font-size: .8em;
+	height: 20px;
+	margin: 0;
+	padding: 0;
+	width: 100%;
+}
+
+#lister-footer .footer-left {
+	float: left;
+	margin: 1px 3px;
+	width: 78%;
+}
+
+#lister-footer .footer-right {
+	float: right;
+	margin: 1px 3px;
+	text-align: right;
+	width: 20%;
+}
+
+#lister-footer a {
+	color: #999;
+}
+
+#lister-footer a:hover {
+	color: #3269AA;
+}

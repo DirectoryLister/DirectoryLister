@@ -1,0 +1,158 @@
+/*****************************************************************************\
+ *******************|                                     |*******************
+ *******************|  DO NOT ADD TO OR MODIFY THIS FILE  |*******************
+ *******************|             I'M SERIOUS,            |*******************
+ *******************|   PLEASE GO MEDDLE SOMEPLACE ELSE   |*******************
+ *******************|                                     |*******************
+\*****************************************************************************/
+
+/* -------------------------------------------------------------------------- */
+/* -----| RESET.CSS (http://developer.yahoo.com/yui/reset/) |---------------- */
+/* -------------------------------------------------------------------------- */
+
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,
+form,fieldset,input,textarea,p,blockquote,th,td {
+    margin:0;
+    padding:0;
+}
+table {
+    border-collapse:collapse;
+    border-spacing:0;
+}
+fieldset,img { 
+    border:0;
+}
+address,caption,cite,code,dfn,em,strong,th,var {
+    font-style:normal;
+    font-weight:normal;
+}
+ol,ul {
+    list-style:none;
+}
+caption,th {
+    text-align:left;
+}
+h1,h2,h3,h4,h5,h6 {
+    font-size:100%;
+    font-weight:normal;
+}
+q:before,q:after {
+    content:'';
+}
+abbr,acronym { border:0;
+}
+
+
+/* -------------------------------------------------------------------------- */
+/* -----| BASE.CSS (http://developer.yahoo.com/yui/base/) |------------------ */
+/* -------------------------------------------------------------------------- */
+
+h1 {
+    /*18px via YUI Fonts CSS foundation*/
+    font-size:138.5%;  
+}
+h2 {
+    /*16px via YUI Fonts CSS foundation*/
+    font-size:123.1%; 
+}
+h3 {
+    /*14px via YUI Fonts CSS foundation*/
+    font-size:108%;  
+}
+h1,h2,h3 {
+    /* top & bottom margin based on font size */
+    margin:1em 0;
+}
+h1,h2,h3,h4,h5,h6,strong {
+    /*bringing boldness back to headers and the strong element*/
+    font-weight:bold; 
+}
+abbr,acronym {
+    /*indicating to users that more info is available */
+    border-bottom:1px dotted #000;
+    cursor:help;
+} 
+em {
+    /*bringing italics back to the em element*/
+    font-style:italic;
+}
+blockquote,ul,ol,dl {
+    /*giving blockquotes and lists room to breath*/
+    margin:1em;
+}
+ol,ul,dl {
+    /*bringing lists on to the page with breathing room */
+    margin-left:2em;
+}
+ol li {
+    /*giving OL's LIs generated numbers*/
+    list-style: decimal outside;    
+}
+ul li {
+    /*giving UL's LIs generated disc markers*/
+    list-style: disc outside;
+}
+dl dd {
+    /*giving UL's LIs generated numbers*/
+    margin-left:1em;
+}
+th,td {
+    /*borders and padding to make the table readable*/
+    border:none;
+    padding:0;
+}
+th {
+    /*distinguishing table headers from data cells*/
+    font-weight:bold;
+    text-align:center;
+}
+caption {
+    /*coordinated marking to match cell's padding*/
+    margin-bottom:.5em;
+    /*centered so it doesn't blend in to other content*/
+    text-align:center;
+}
+p,fieldset,table {
+    /*so things don't run into each other*/
+    margin-bottom:1em;
+}
+
+
+/* -------------------------------------------------------------------------- */
+/* -----| GENERAL |---------------------------------------------------------- */
+/* -------------------------------------------------------------------------- */
+
+/* NULL */
+
+
+/* -------------------------------------------------------------------------- */
+/* -----| MISCELANEOUS |----------------------------------------------------- */
+/* -------------------------------------------------------------------------- */
+
+.hidden {
+    display: none;
+}
+
+.left {
+    float: left;
+    width: auto;
+}
+
+.right {
+    float: right;
+    width: auto;
+}
+
+/* --- CLEAR FIX --- */
+
+.clearfix:after {
+    content: ".";
+    display:block;
+    height:0;
+    clear:both;
+    visibility:hidden;}
+.clearfix {display:inline-block;}
+/* Hides from IE-mac \*/
+* html .clearfix { height:1%;}
+.clearfix {display:block;}
+/* End hide from IE-mac */

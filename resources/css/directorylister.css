@@ -1,0 +1,83 @@
+/* -------------------------------------------------------------------------- */
+/* -----| DIRECTORYLISTER |-------------------------------------------------- */
+/* -------------------------------------------------------------------------- */
+
+html {
+    font-size: 100%;
+}
+
+body {
+	color: #333;
+	background: #FFF url(../images/bg.png) repeat top left;
+	font-family: sans-serif, serif, helvetica;
+	font-size: .8em;
+}
+
+#contentWraper {
+    background-color: #555;
+    margin: 20px auto 0;
+    padding: 0 5px 5px;
+    width: 760px;
+}
+
+#header {
+    color: #FFF;
+    font-weight: bold;
+    padding: 3px 0 2px;
+}
+
+.fileName {
+    float: left;
+    margin: 3px;
+    overflow: none;
+    width: 490px;
+}
+
+.fileSize {
+    float: left;
+    margin: 3px;
+    text-align: right;
+    width: 100px;
+}
+
+.fileModTime {
+    float: right;
+    margin: 3px;
+    text-align: right;
+    width: 130px;
+}
+
+#directoryListing {
+    margin: 0;
+}
+
+#directoryListing li {
+    background-color: #FFF;
+    border-top: 1px solid #555;
+    display: block;
+    list-style: none;
+}
+
+#directoryListing li a {
+    background: #FFF url(../images/icons/blank.png) no-repeat 3px center;
+    color: #333;
+    display: block;
+    padding-left: 20px;
+    text-decoration: none;
+}
+
+#directoryListing li a:hover {
+    background-color: #DC4C00;
+    color: #FFF;
+}
+
+
+/* -------------------------------------------------------------------------- */
+/* -----| FOOTER |----------------------------------------------------------- */
+/* -------------------------------------------------------------------------- */
+
+#footer {
+    font-size: .9em;
+    margin: 2px auto 20px;
+    width: 760px;
+}

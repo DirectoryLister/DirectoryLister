@@ -26,6 +26,10 @@ body {
     padding: 3px 0 2px;
 }
 
+#header .fileName {
+    width: 510px;
+}
+
 .fileName {
     float: left;
     margin: 3px;
@@ -53,22 +57,52 @@ body {
 
 #directoryListing li {
     background-color: #FFF;
-    border-top: 1px solid #555;
     display: block;
     list-style: none;
 }
 
+/*#directoryListing li.even a {
+    background-color: #FFF;
+}
+
+#directoryListing li.odd a {
+    background-color: #FFF;
+}*/
+
 #directoryListing li a {
-    background: #FFF url(../images/icons/blank.png) no-repeat 3px center;
+    background: transparent url(../images/icons/blank.png) no-repeat 3px center;
+    border-top: 1px solid #555;
     color: #333;
     display: block;
     padding-left: 20px;
     text-decoration: none;
 }
 
+#directoryListing li a:focus {
+    background-color: #DEDEDE;
+    outline: none;
+}
+
 #directoryListing li a:hover {
     background-color: #DC4C00;
     color: #FFF;
+    outline: none;
+}
+
+#directoryListing li a.back {
+    background-image: url(../images/icons/back.png);
+}
+
+#directoryListing li a.directory {
+    background-image: url(../images/icons/folder.png);
+}
+
+#directoryListing li a.code {
+    background-image: url(../images/icons/code.png);
+}
+
+#directoryListing li a.text {
+    background-image: url(../images/icons/text.png);
 }
 
 
@@ -78,6 +112,11 @@ body {
 
 #footer {
     font-size: .9em;
-    margin: 2px auto 20px;
+    margin: 0 auto 20px;
     width: 760px;
+}
+
+#footer .left,
+#footer .right {
+    margin: 3px;
 }

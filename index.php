@@ -19,27 +19,25 @@
         <span class="fileSize">Size</span>
         <span class="fileModTime">Last Modified</span>
     </div>
-
+    
     <ul id="directoryListing">
-    <?php foreach($lister->listDirectory() as $name => $fileInfo): ?>
-        <li>
-            <a href="?dir=<?php echo $fileInfo['file_path']; ?>" class="clearfix">
+    <?php $x = 1; foreach($lister->listDirectory() as $name => $fileInfo): ?>
+        <li class="<?php echo $x %2 == 0 ? 'even' : 'odd'; ?>">
+            <a href="<?php if($fileInfo['file_type'] == 'directory' || 'back') { echo '?dir=' . $fileInfo['file_path']; } else { echo $fileInfo['file_path']; } ?>" class="clearfix <?php echo $fileInfo['file_type']; ?>">
                 <span class="fileName"><?php echo $name; ?></span>
-                <span class="fileSize"><?php echo $fileInfo['file_size']; ?>KB</span>
+                <span class="fileSize"><?php echo $fileInfo['file_size']; ?></span>
                 <span class="fileModTime"><?php echo $fileInfo['mod_time']; ?></span>
             </a>
         </li>
-    <?php endforeach; ?>
-</ul>
+    <?php $x++; endforeach; ?>
+    </ul>
 
 </div>
 
 <div id="footer" class="clearfix">
-    <div class="path left"><a href="home">Home</a> &raquo; dir &raquo; another_dir</div>
-    <div id="credit right"></div>
+    <div class="left"><a href="home">Home</a> &raquo; dir &raquo; another_dir</div>
+    <div id="right"></div>
 </div>
-
-<hr/>
 
 <pre>
     <?php print_r($lister->listDirectory()); ?>

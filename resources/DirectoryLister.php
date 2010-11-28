@@ -6,6 +6,7 @@
 class DirectoryLister {
     
     // Set some default variables
+    protected $_settings    = NULL;
     protected $_directory   = NULL;
     protected $_hiddenFiles = NULL;
     
@@ -32,6 +33,9 @@ class DirectoryLister {
             define('__DIR__', substr(__FILE__, 0, $iPos) . '/');
         }
         
+        // Get file settings
+        $this->_settings = parse_ini_file(__DIR__ . '/settings.ini', true);
+                
         // Get hidden files and add them to 
         // $this->_hiddenFiles = $this->_readHiddenFiles();
     }
@@ -61,7 +65,7 @@ class DirectoryLister {
         if ($handle = opendir($directory)) {
             
             while (false !== ($file = readdir($handle))) {
-                if ($file != "." && $file != "..") {
+                if ($file != ".") {
                     
                     // Get files relative and absolute path
                     $relativePath = $directory . '/' . $file;
@@ -72,12 +76,48 @@ class DirectoryLister {
                     
                     $realPath = realpath($relativePath);
                     
-                    // Add file info to the array
-                    $directoryArray[pathinfo($realPath, PATHINFO_BASENAME)] = array(
-                        'file_path' => $relativePath,
-                        'file_size' => round(filesize($realPath) / 1024),
-                        'mod_time'  => date("Y-m-d H:i:s", filemtime($realPath))
-                    );
+                    // Get file type
+                    if (is_dir($realPath)) {
+                        $fileType = 'directory';
+                    } else {
+                        
+                        // Get file extension
+                        $fileExt = pathinfo($realPath, PATHINFO_EXTENSION);
+                    
+                        if (isset($this->_settings['file_types'][$fileExt])) {
+                            $fileType = $this->_settings['file_types'][$fileExt];
+                        } else {
+                            $fileType = 'unknown';
+                        }
+                    }
+                    
+                    if ($file == '..') {
+                        
+                        // Get parent directory path
+                        $pathArray = explode('/', $relativePath);
+                        unset($pathArray[count($pathArray)-1]);
+                        unset($pathArray[count($pathArray)-1]);
+                        $directoryPath = implode('/', $pathArray);
+                        
+                        // Add file info to the array
+                        $directoryArray['..'] = array(
+                            'file_path' => $directoryPath,
+                            'file_size' => '-',
+                            'mod_time'  => date("Y-m-d H:i:s", filemtime($realPath)),
+                            'file_type' => 'back'
+                        );
+                        
+                    } else {
+                        
+                        // Add file info to the array
+                        $directoryArray[pathinfo($realPath, PATHINFO_BASENAME)] = array(
+                            'file_path' => $relativePath,
+                            'file_size' => $fileType == 'directory' ? '-' : round(filesize($realPath) / 1024) . 'KB',
+                            'mod_time'  => date("Y-m-d H:i:s", filemtime($realPath)),
+                            'file_type' => $fileType
+                        );
+                        
+                    }
                 }
             }
             

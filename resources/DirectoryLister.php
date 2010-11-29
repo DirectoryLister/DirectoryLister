@@ -1,7 +1,30 @@
 <?php
 
-/**
- * DirectoryLister is a simple file file listing script.
+ /**
+ * UDirectoryLister is a simple file file listing script. (http://www.directorylister.com)
+ * @author Chris Kankiewicz (http://www.chriskankiewicz.com)
+ * @copyright 2010 Chris Kankiewicz
+ * @version 2.0.0-dev
+ * 
+ * Copyright (c) 2010 Chris Kankiewicz
+ * 
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ * 
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ * 
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
  */
 class DirectoryLister {
     
@@ -130,9 +153,35 @@ class DirectoryLister {
             closedir($handle);
             
         }
+
+        // Create empty array
+        $sortedArray = array();
         
-        // Return the file array
-        return $directoryArray;
+        // Create new array of just the keys and sort it
+        $keys = array_keys($directoryArray); 
+        natcasesort($keys);
+        
+        // Loop through the sorted values and move over the data
+        foreach ($keys as $key) {
+            if ($directoryArray[$key]['sort'] == 0) {
+                $sortedArray[$key] = $directoryArray[$key];
+            }
+        }
+        
+        foreach ($keys as $key) {
+            if ($directoryArray[$key]['sort'] == 1) {
+                $sortedArray[$key] = $directoryArray[$key];
+            }
+        }
+
+        foreach ($keys as $key) {
+            if ($directoryArray[$key]['sort'] == 2) {
+                $sortedArray[$key] = $directoryArray[$key];
+            }
+        }
+        
+        // Return the array
+        return $sortedArray;
         
     }
     

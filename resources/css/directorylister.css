@@ -9,7 +9,7 @@ html {
 body {
 	color: #333;
 	background: #FFF url(../images/bg.png) repeat top left;
-	font-family: sans-serif, serif, helvetica;
+	font-family: arial, sans-serif, serif, helvetica;
 	font-size: .8em;
 }
 
@@ -27,28 +27,24 @@ body {
 }
 
 #header .fileName {
-    width: 510px;
-}
-
-.fileName {
-    float: left;
+    display: inline-block;
     margin: 3px;
     overflow: none;
-    width: 490px;
+    width: 501px;
 }
 
-.fileSize {
-    float: left;
+#header .fileSize {
+    display: inline-block;
     margin: 3px;
     text-align: right;
     width: 100px;
 }
 
-.fileModTime {
+#header .fileModTime {
+    display: inline-block;
     float: right;
     margin: 3px;
     text-align: right;
-    width: 130px;
 }
 
 #directoryListing {
@@ -70,11 +66,9 @@ body {
 }*/
 
 #directoryListing li a {
-    background: transparent url(../images/icons/blank.png) no-repeat 3px center;
     border-top: 1px solid #555;
     color: #333;
     display: block;
-    padding-left: 20px;
     text-decoration: none;
 }
 
@@ -89,20 +83,41 @@ body {
     outline: none;
 }
 
-#directoryListing li a.back {
-    background-image: url(../images/icons/back.png);
+#directoryListing .fileIcon {
+    display: inline-block;
+    float: left;
+    margin: 3px;
+    margin-right: -19px;
+    width: 16px;
 }
 
-#directoryListing li a.directory {
-    background-image: url(../images/icons/folder.png);
+#directoryListing .fileName {
+    display: inline-block;
+    float: left;
+    margin: 3px;
+    margin-left: 22px;
+    overflow: hidden;
+    white-space: nowrap;
+    width: 485px;
 }
 
-#directoryListing li a.code {
-    background-image: url(../images/icons/code.png);
+#directoryListing .fileSize {
+    display: inline-block;
+    float: left;
+    margin: 3px;
+    overflow: hidden;
+    text-align: right;
+    white-space: nowrap;
+    width: 100px;
 }
 
-#directoryListing li a.text {
-    background-image: url(../images/icons/text.png);
+#directoryListing .fileModTime {
+    display: inline-block;
+    float: right;
+    margin: 3px;
+    overflow: hidden;
+    text-align: right;
+    white-space: nowrap;
 }
 
 

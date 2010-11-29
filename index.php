@@ -23,7 +23,8 @@
     <ul id="directoryListing">
     <?php $x = 1; foreach($lister->listDirectory() as $name => $fileInfo): ?>
         <li class="<?php echo $x %2 == 0 ? 'even' : 'odd'; ?>">
-            <a href="<?php if($fileInfo['file_type'] == 'directory' || 'back') { echo '?dir=' . $fileInfo['file_path']; } else { echo $fileInfo['file_path']; } ?>" class="clearfix <?php echo $fileInfo['file_type']; ?>">
+            <a href="<?php if(is_dir($fileInfo['file_path'])) { echo '?dir=' . $fileInfo['file_path']; } else { echo $fileInfo['file_path']; } ?>" class="clearfix">
+                <img src="resources/images/icons/<?php echo $fileInfo['file_icon']; ?>" class="fileIcon">
                 <span class="fileName"><?php echo $name; ?></span>
                 <span class="fileSize"><?php echo $fileInfo['file_size']; ?></span>
                 <span class="fileModTime"><?php echo $fileInfo['mod_time']; ?></span>
@@ -36,7 +37,7 @@
 
 <div id="footer" class="clearfix">
     <div class="left"><a href="home">Home</a> &raquo; dir &raquo; another_dir</div>
-    <div id="right"></div>
+    <div class="right">Powered by, <a href="http://www.directorylister.com">Directory Lister</a></div>
 </div>
 
 <pre>

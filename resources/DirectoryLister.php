@@ -78,16 +78,16 @@ class DirectoryLister {
                     
                     // Get file type
                     if (is_dir($realPath)) {
-                        $fileType = 'directory';
+                        $fileIcon = 'folder.png';
                     } else {
                         
                         // Get file extension
                         $fileExt = pathinfo($realPath, PATHINFO_EXTENSION);
                     
                         if (isset($this->_settings['file_types'][$fileExt])) {
-                            $fileType = $this->_settings['file_types'][$fileExt];
+                            $fileIcon = $this->_settings['file_types'][$fileExt];
                         } else {
-                            $fileType = 'unknown';
+                            $fileIcon = 'blank.png';
                         }
                     }
                     
@@ -104,7 +104,7 @@ class DirectoryLister {
                             'file_path' => $directoryPath,
                             'file_size' => '-',
                             'mod_time'  => date("Y-m-d H:i:s", filemtime($realPath)),
-                            'file_type' => 'back'
+                            'file_icon' => 'back.png'
                         );
                         
                     } else {
@@ -112,9 +112,9 @@ class DirectoryLister {
                         // Add file info to the array
                         $directoryArray[pathinfo($realPath, PATHINFO_BASENAME)] = array(
                             'file_path' => $relativePath,
-                            'file_size' => $fileType == 'directory' ? '-' : round(filesize($realPath) / 1024) . 'KB',
+                            'file_size' => is_dir($realPath) ? '-' : round(filesize($realPath) / 1024) . 'KB',
                             'mod_time'  => date("Y-m-d H:i:s", filemtime($realPath)),
-                            'file_type' => $fileType
+                            'file_icon' => $fileIcon
                         );
                         
                     }

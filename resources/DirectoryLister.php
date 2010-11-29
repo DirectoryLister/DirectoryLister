@@ -79,6 +79,7 @@ class DirectoryLister {
                     // Get file type
                     if (is_dir($realPath)) {
                         $fileIcon = 'folder.png';
+                        $sort = 1;
                     } else {
                         
                         // Get file extension
@@ -89,6 +90,8 @@ class DirectoryLister {
                         } else {
                             $fileIcon = 'blank.png';
                         }
+                        
+                        $sort = 2;
                     }
                     
                     if ($file == '..') {
@@ -104,7 +107,8 @@ class DirectoryLister {
                             'file_path' => $directoryPath,
                             'file_size' => '-',
                             'mod_time'  => date("Y-m-d H:i:s", filemtime($realPath)),
-                            'file_icon' => 'back.png'
+                            'icon'      => 'back.png',
+                            'sort'      => 0
                         );
                         
                     } else {
@@ -114,7 +118,8 @@ class DirectoryLister {
                             'file_path' => $relativePath,
                             'file_size' => is_dir($realPath) ? '-' : round(filesize($realPath) / 1024) . 'KB',
                             'mod_time'  => date("Y-m-d H:i:s", filemtime($realPath)),
-                            'file_icon' => $fileIcon
+                            'icon'      => $fileIcon,
+                            'sort'      => $sort
                         );
                         
                     }

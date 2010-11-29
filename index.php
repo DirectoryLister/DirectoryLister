@@ -8,6 +8,7 @@
     <link rel="stylesheet" type="text/css" href="resources/css/rebase.css" />
     <link rel="stylesheet" type="text/css" href="resources/css/directorylister.css" />
     <link rel="stylesheet" type="text/css" href="resources/css/colorbox.css" />
+</head>
 <body>
 
 <?php include('resources/DirectoryLister.php'); $lister = new DirectoryLister(); ?>
@@ -24,8 +25,7 @@
     <?php $x = 1; foreach($lister->listDirectory() as $name => $fileInfo): ?>
         <li class="<?php echo $x %2 == 0 ? 'even' : 'odd'; ?>">
             <a href="<?php if(is_dir($fileInfo['file_path'])) { echo '?dir=' . $fileInfo['file_path']; } else { echo $fileInfo['file_path']; } ?>" class="clearfix">
-                <img src="resources/images/icons/<?php echo $fileInfo['file_icon']; ?>" class="fileIcon">
-                <span class="fileName"><?php echo $name; ?></span>
+                <span class="fileName" style="background: transparent url(resources/images/icons/<?php echo $fileInfo['icon']; ?>) no-repeat left center;"><?php echo $name; ?></span>
                 <span class="fileSize"><?php echo $fileInfo['file_size']; ?></span>
                 <span class="fileModTime"><?php echo $fileInfo['mod_time']; ?></span>
             </a>

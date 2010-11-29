@@ -10,7 +10,7 @@ body {
 	color: #333;
 	background: #FFF url(../images/bg.png) repeat top left;
 	font-family: arial, sans-serif, serif, helvetica;
-	font-size: .8em;
+	font-size: .85em;
 }
 
 #contentWraper {
@@ -28,13 +28,15 @@ body {
 
 #header .fileName {
     display: inline-block;
+    float: left;
     margin: 3px;
     overflow: none;
-    width: 501px;
+    width: 496px;
 }
 
 #header .fileSize {
     display: inline-block;
+    float: left;
     margin: 3px;
     text-align: right;
     width: 100px;
@@ -85,7 +87,6 @@ body {
 
 #directoryListing .fileIcon {
     display: inline-block;
-    float: left;
     margin: 3px;
     margin-right: -19px;
     width: 16px;
@@ -95,10 +96,10 @@ body {
     display: inline-block;
     float: left;
     margin: 3px;
-    margin-left: 22px;
+    padding-left: 19px;
     overflow: hidden;
     white-space: nowrap;
-    width: 485px;
+    width: 480px;
 }
 
 #directoryListing .fileSize {

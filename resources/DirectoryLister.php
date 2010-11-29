@@ -1,7 +1,7 @@
 <?php
 
  /**
- * UDirectoryLister is a simple file file listing script. (http://www.directorylister.com)
+ * DirectoryLister is a simple file file listing script. (http://www.directorylister.com)
  * @author Chris Kankiewicz (http://www.chriskankiewicz.com)
  * @copyright 2010 Chris Kankiewicz
  * @version 2.0.0-dev

@@ -5,7 +5,7 @@
     <title>Directory listing of &lt;DIRECTORY&gt;</title>
     <link rel="shortcut icon" href="resources/images/icons/folder.png" />
     
-    <link rel="stylesheet" type="text/css" href="resources/css/rebase.css" />
+    <link rel="stylesheet" type="text/css" href="resources/css/rebase-min.css" />
     <link rel="stylesheet" type="text/css" href="resources/css/directorylister.css" />
     <link rel="stylesheet" type="text/css" href="resources/css/colorbox.css" />
 </head>

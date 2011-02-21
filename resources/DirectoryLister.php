@@ -1,32 +1,22 @@
 <?php
 
- /**
- * DirectoryLister is a simple file file listing script. (http://www.directorylister.com)
+/**
+ * A simple PHP based directory lister that lists a directory and all
+ * it's sub-directories and allows you to navigate there within.
+ *
+ * This software is dual liscensed under the following licenses:
+ *     MIT License http://www.directorylister.com/COPYING-MIT.txt
+ *     GPL Version 3 http://www.directorylister.com/COPYING-GPL.txt
+ *
+ * More info available at http://www.directorylister.com
+ *
  * @author Chris Kankiewicz (http://www.chriskankiewicz.com)
- * @copyright 2010 Chris Kankiewicz
- * @version 2.0.0-dev
- * 
- * Copyright (c) 2010 Chris Kankiewicz
- * 
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- * 
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- * 
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
+ * @copyright 2011 Chris Kankiewicz
  */
 class DirectoryLister {
+    
+    // Define application version
+    const VERSION = '2.0.0-dev';
     
     // Set some default variables
     protected $_settings    = NULL;
@@ -64,10 +54,12 @@ class DirectoryLister {
     }
     
     /**
-     * DirectoryLister destruct function. Runs on object destruction.
+     * Special init method for simple one-line interface.
+     * @access public
      */
-    function __destruct() {
-        // NULL
+    public static function init() {
+        $reflection = new ReflectionClass(__CLASS__);
+        return $reflection->newInstanceArgs(func_get_args());
     }
     
     /**
@@ -104,7 +96,6 @@ class DirectoryLister {
                         $fileIcon = 'folder.png';
                         $sort = 1;
                     } else {
-                        
                         // Get file extension
                         $fileExt = pathinfo($realPath, PATHINFO_EXTENSION);
                     
@@ -118,7 +109,6 @@ class DirectoryLister {
                     }
                     
                     if ($file == '..') {
-                        
                         // Get parent directory path
                         $pathArray = explode('/', $relativePath);
                         unset($pathArray[count($pathArray)-1]);
@@ -133,9 +123,7 @@ class DirectoryLister {
                             'icon'      => 'back.png',
                             'sort'      => 0
                         );
-                        
                     } else {
-                        
                         // Add file info to the array
                         $directoryArray[pathinfo($realPath, PATHINFO_BASENAME)] = array(
                             'file_path' => $relativePath,
@@ -144,7 +132,6 @@ class DirectoryLister {
                             'icon'      => $fileIcon,
                             'sort'      => $sort
                         );
-                        
                     }
                 }
             }
@@ -154,35 +141,11 @@ class DirectoryLister {
             
         }
 
-        // Create empty array
-        $sortedArray = array();
-        
-        // Create new array of just the keys and sort it
-        $keys = array_keys($directoryArray); 
-        natcasesort($keys);
-        
-        // Loop through the sorted values and move over the data
-        foreach ($keys as $key) {
-            if ($directoryArray[$key]['sort'] == 0) {
-                $sortedArray[$key] = $directoryArray[$key];
-            }
-        }
-        
-        foreach ($keys as $key) {
-            if ($directoryArray[$key]['sort'] == 1) {
-                $sortedArray[$key] = $directoryArray[$key];
-            }
-        }
+        // Sort the array
+        $sortedArray = $this->_sortArray($directoryArray);
 
-        foreach ($keys as $key) {
-            if ($directoryArray[$key]['sort'] == 2) {
-                $sortedArray[$key] = $directoryArray[$key];
-            }
-        }
-        
         // Return the array
         return $sortedArray;
-        
     }
     
     /**
@@ -191,7 +154,37 @@ class DirectoryLister {
     protected function _readDirectory($directory, $sort = 'natcase') {
         
     }
-    
+                            
+    protected function _sortArray($array) {
+        // Create empty array
+        $sortedArray = array();
+        
+        // Create new array of just the keys and sort it
+        $keys = array_keys($array); 
+        natcasesort($keys);
+        
+        // Loop through the sorted values and move over the data
+        foreach ($keys as $key) {
+            if ($array[$key]['sort'] == 0) {
+                $sortedArray[$key] = $array[$key];
+            }
+        }
+        
+        foreach ($keys as $key) {
+            if ($array[$key]['sort'] == 1) {
+                $sortedArray[$key] = $array[$key];
+            }
+        }
+
+        foreach ($keys as $key) {
+            if ($array[$key]['sort'] == 2) {
+                $sortedArray[$key] = $array[$key];
+            }
+        }
+        
+        // Return the array
+        return $sortedArray;
+    }
 }
 
 ?>

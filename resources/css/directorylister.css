@@ -3,12 +3,12 @@
 /* -------------------------------------------------------------------------- */
 
 html {
+    background: #FFF url(../images/bg.png) repeat top left;
     font-size: 100%;
 }
 
 body {
 	color: #333;
-	background: #FFF url(../images/bg.png) repeat top left;
 	font-family: arial, sans-serif, serif, helvetica;
 	font-size: .85em;
 }
@@ -30,7 +30,7 @@ body {
     display: inline-block;
     float: left;
     margin: 3px;
-    overflow: none;
+    overflow: hidden;
     width: 496px;
 }
 

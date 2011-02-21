@@ -1,0 +1,6 @@
+- Hide index.php from the root folder
+- Make a way to define hidden folders
+    - Add 'resources' to the hidden folders
+- Fix the 'back one directory' link when only one folder is in the path
+- Integrate Colorbox to come up whenever a "readable" file is selected
+- Modify Colorbox to have a "download this file" link

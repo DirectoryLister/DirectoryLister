@@ -55,6 +55,7 @@ class DirectoryLister {
     
     /**
      * Special init method for simple one-line interface.
+     * 
      * @access public
      */
     public static function init() {
@@ -64,6 +65,7 @@ class DirectoryLister {
     
     /**
      * Creates the directory listing and returns the formatted XHTML
+     * 
      * @param string $path Relative path of directory to list
      */
     public function listDirectory($directory = NULL) {
@@ -150,11 +152,18 @@ class DirectoryLister {
     
     /**
      * Loop through directory and return array with pertinent information
+     * 
+     * @access private
      */
     protected function _readDirectory($directory, $sort = 'natcase') {
         
     }
-                            
+
+    /**
+     * Description...
+     * 
+     * @access private
+     */
     protected function _sortArray($array) {
         // Create empty array
         $sortedArray = array();

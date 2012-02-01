@@ -1,0 +1,177 @@
+/* -------------------------------------------------------------------------- */
+/* -----| GENERAL |---------------------------------------------------------- */
+/* -------------------------------------------------------------------------- */
+
+body {
+    padding-top: 15px;
+}
+
+
+/* -------------------------------------------------------------------------- */
+/* -----| BREADCRUMBS |------------------------------------------------------ */
+/* -------------------------------------------------------------------------- */
+
+.breadcrumb-fixed {
+    background-color: #FBFBFB;
+    background-image: -moz-linear-gradient(center top , #FFFFFF, #F5F5F5);
+    background-repeat: repeat-x;
+    border: 1px solid #DDDDDD;
+    box-shadow: 0 1px 0 #FFFFFF inset, 0 1px 5px rgba(0, 0, 0, 0.1);
+    left: 0;
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: 1000;
+}
+
+.breadcrumb-fixed .breadcrumb {
+    background: transparent;
+    border: none;
+    border-left: 1px solid transparent;
+    border-right: 1px solid transparent;
+    margin: 0 auto;
+    width: 912px;
+}
+
+
+/* -------------------------------------------------------------------------- */
+/* -----| DIRECTORY LISTER |------------------------------------------------- */
+/* -------------------------------------------------------------------------- */
+
+/* ----- HEADER ----- */
+
+#header {
+    color: #333;
+    font-weight: bold;
+}
+
+#header .fileName {
+    display: inline-block;
+    float: left;
+    margin: 8px;
+    overflow: hidden;
+    width: 645px;
+}
+
+#header .fileSize {
+    display: inline-block;
+    float: left;
+    margin: 8px;
+    text-align: right;
+    width: 100px;
+}
+
+#header .fileModTime {
+    display: inline-block;
+    float: right;
+    margin: 8px;
+    text-align: right;
+}
+
+/* ----- FILE LIST ----- */
+
+#directoryListing {
+    margin: 0;
+}
+
+#directoryListing li {
+    background-color: #FFF;
+    display: block;
+    list-style: none;
+}
+
+#directoryListing li.even a {
+    background-color: #FFF;
+}
+
+#directoryListing li.odd a {
+    background-color: #F9F9F9;
+}
+
+#directoryListing li a {
+    border-top: 1px solid #DDD;
+    color: #333;
+    display: block;
+    text-decoration: none;
+}
+
+#directoryListing li a:focus {
+    background-color: #DEDEDE;
+    outline: none;
+}
+
+#directoryListing li a:hover {
+    background-color: #555;
+    color: #FFF;
+    outline: none;
+}
+
+#directoryListing .fileIcon {
+    display: inline-block;
+    margin: 8px;
+    margin-right: -19px;
+    width: 16px;
+}
+
+#directoryListing .fileName {
+    display: inline-block;
+    float: left;
+    margin: 8px;
+    padding-left: 19px;
+    overflow: hidden;
+    white-space: nowrap;
+    width: 625px;
+}
+
+#directoryListing .fileSize {
+    display: inline-block;
+    float: left;
+    margin: 8px;
+    overflow: hidden;
+    text-align: right;
+    white-space: nowrap;
+    width: 100px;
+}
+
+#directoryListing .fileModTime {
+    display: inline-block;
+    float: right;
+    margin: 8px;
+    overflow: hidden;
+    text-align: right;
+    white-space: nowrap;
+    width: 125px;
+}
+
+
+/* -------------------------------------------------------------------------- */
+/* -----| FOOTER |----------------------------------------------------------- */
+/* -------------------------------------------------------------------------- */
+
+footer p {
+    text-align: right;
+}
+
+
+/* -------------------------------------------------------------------------- */
+/* -----| MISCELLANEOUS |---------------------------------------------------- */
+/* -------------------------------------------------------------------------- */
+
+/* --- CLEAR FIX --- */
+
+.clearfix:after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
+}
+
+* html .clearfix {
+    zoom: 1; /* IE6 */
+}
+
+*:first-child+html .clearfix {
+    zoom: 1; /* IE7 */
+}

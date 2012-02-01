@@ -1,17 +1,17 @@
 <?php
 
 /**
- * A simple PHP based directory lister that lists a directory and all
- * it's sub-directories and allows you to navigate there within.
+ * A simple PHP based directory lister that lists the contents
+ * of a directory and all it's sub-directories and allows easy
+ * navigation of the files within.
  *
- * This software is dual liscensed under the following licenses:
- *     MIT License http://www.directorylister.com/COPYING-MIT.txt
- *     GPL Version 3 http://www.directorylister.com/COPYING-GPL.txt
+ * This software distributed under the MIT License
+ * http://www.opensource.org/licenses/mit-license.php
  *
  * More info available at http://www.directorylister.com
  *
  * @author Chris Kankiewicz (http://www.chriskankiewicz.com)
- * @copyright 2011 Chris Kankiewicz
+ * @copyright 2012 Chris Kankiewicz
  */
 class DirectoryLister {
     
@@ -19,9 +19,11 @@ class DirectoryLister {
     const VERSION = '2.0.0-dev';
     
     // Set some default variables
-    protected $_settings    = NULL;
     protected $_directory   = NULL;
-    protected $_hiddenFiles = NULL;
+    protected $_appDir      = NULL;
+    protected $_appURL      = NULL;
+    protected $_settings    = NULL;
+    
     
     /**
      * DirectoryLister construct function. Runs on object creation.
@@ -42,16 +44,45 @@ class DirectoryLister {
 
         // Set class directory constant
         if(!defined('__DIR__')) {
-            $iPos = strrpos(__FILE__, '/');
-            define('__DIR__', substr(__FILE__, 0, $iPos) . '/');
+            define('__DIR__', dirname(__FILE__));
         }
         
+        // Set application directory
+        $this->_appDir = __DIR__;
+        
+        // Get the server protocol
+        if ($_SERVER['HTTPS']) {
+            $protocol = 'https://';
+        } else {
+            $protocol = 'http://';
+        }
+        
+        // Get the server hostname
+        $host = $_SERVER['HTTP_HOST'];
+        
+        // Get the URL path
+        $pathParts = pathinfo($_SERVER['PHP_SELF']);
+        $path      = $pathParts['dirname'];
+        
+        // Ensure the path ends with a forward slash
+        if (substr($path, -1) != '/') {
+            $path = $path . '/';
+        }
+        
+        // Build the application URL
+        $this->_appURL = $protocol . $host . $path;
+        
         // Get file settings
-        $this->_settings = parse_ini_file(__DIR__ . '/settings.ini', true);
-                
-        // Get hidden files and add them to 
-        // $this->_hiddenFiles = $this->_readHiddenFiles();
+        $configFile = $this->_appDir . '/settings.php';
+        
+        if (file_exists($configFile)) {
+            include($configFile);
+        } else {
+            die('ERROR: Unable to locate config');
+        }
+        
     }
+    
     
     /**
      * Special init method for simple one-line interface.
@@ -62,6 +93,7 @@ class DirectoryLister {
         $reflection = new ReflectionClass(__CLASS__);
         return $reflection->newInstanceArgs(func_get_args());
     }
+    
     
     /**
      * Creates the directory listing and returns the formatted XHTML
@@ -75,6 +107,43 @@ class DirectoryLister {
             $directory = $this->_directory;
         }
         
+        // Get the directory array
+        $directoryArray = $this->_readDirectory($directory);
+
+        // Return the array
+        return $directoryArray;
+    }
+    
+
+    /**
+     * Description...
+     * 
+     * @access public
+     */
+    public function listBreadcrumbs($directory = NULL) {
+        
+        // Set directory varriable if left blank
+        if ($directory === NULL) {
+            $directory = $this->_directory;
+        }
+        
+        // Explode the path into an array
+        $dirArray = explode($directory);
+        
+        print_r($dirArray); die();
+        
+        // Return the breadcrumb array
+        // return $breadcrumbsArray;
+    }
+    
+    
+    /**
+     * Loop through directory and return array with pertinent information
+     * 
+     * @access private
+     */
+    protected function _readDirectory($directory, $sort = 'natcase') {
+        
         // Instantiate image array
         $directoryArray = array();
         
@@ -84,16 +153,17 @@ class DirectoryLister {
             while (false !== ($file = readdir($handle))) {
                 if ($file != ".") {
                     
-                    // Get files relative and absolute path
+                    // Get files relative path
                     $relativePath = $directory . '/' . $file;
                     
                     if (substr($relativePath, 0, 2) == './') {
                         $relativePath = substr($relativePath, 2);
                     }
                     
+                    // Get files absolute path
                     $realPath = realpath($relativePath);
                     
-                    // Get file type
+                    // Determine file type by extension
                     if (is_dir($realPath)) {
                         $fileIcon = 'folder.png';
                         $sort = 1;
@@ -117,9 +187,13 @@ class DirectoryLister {
                         unset($pathArray[count($pathArray)-1]);
                         $directoryPath = implode('/', $pathArray);
                         
+                        if (!empty($directoryPath)) {
+                            $directoryPath = '?dir=' . $directoryPath;
+                        }
+                        
                         // Add file info to the array
                         $directoryArray['..'] = array(
-                            'file_path' => $directoryPath,
+                            'file_path' => $this->_appURL . $directoryPath,
                             'file_size' => '-',
                             'mod_time'  => date("Y-m-d H:i:s", filemtime($realPath)),
                             'icon'      => 'back.png',
@@ -140,24 +214,16 @@ class DirectoryLister {
             
             // Close open file handle
             closedir($handle);
-            
         }
 
         // Sort the array
         $sortedArray = $this->_sortArray($directoryArray);
-
+        
         // Return the array
         return $sortedArray;
+
     }
-    
-    /**
-     * Loop through directory and return array with pertinent information
-     * 
-     * @access private
-     */
-    protected function _readDirectory($directory, $sort = 'natcase') {
-        
-    }
+
 
     /**
      * Description...
@@ -194,6 +260,7 @@ class DirectoryLister {
         // Return the array
         return $sortedArray;
     }
+    
 }
 
 ?>

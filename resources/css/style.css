@@ -1,0 +1,32 @@
+body {
+    padding-top: 15px;
+}
+
+footer p {
+    text-align: right;
+}
+
+/*.breadcrumb-fixed-top {
+    position: fixed;
+    top: 0;
+}*/
+
+.breadcrumb-fixed {
+    background-color: #FBFBFB;
+    background-image: -moz-linear-gradient(center top , #FFFFFF, #F5F5F5);
+    background-repeat: repeat-x;
+    border: 1px solid #DDDDDD;
+    box-shadow: 0 1px 0 #FFFFFF inset, 0 1px 5px rgba(0, 0, 0, 0.1);
+    left: 0;
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: 1000;
+}
+
+.breadcrumb-fixed .breadcrumb {
+    background: transparent;
+    border: none;
+    margin: 0 auto;
+    width: 912px;
+}

@@ -27,6 +27,8 @@ footer p {
 .breadcrumb-fixed .breadcrumb {
     background: transparent;
     border: none;
+    border-left: 1px solid transparent;
+    border-right: 1px solid transparent;
     margin: 0 auto;
     width: 912px;
 }

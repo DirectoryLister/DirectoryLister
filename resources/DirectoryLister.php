@@ -159,12 +159,43 @@ class DirectoryLister {
         }
         
         // Explode the path into an array
-        $dirArray = explode($directory);
+        $dirArray = explode('/', $directory);
+
+        // Statically set the Home breadcrumb        
+        $breadcrumbsArray[] = array(
+            'link' => $this->_appURL,
+            'text' => 'Home'
+        );
         
-        print_r($dirArray); die();
+        // Generate breadcrumbs
+        foreach ($dirArray as $key => $dir) {
+            
+            if ($dir != '.') {
+                
+                $link = $this->_appURL . '?dir=';
+                
+                for ($i = 0; $i <= $key; $i++) {
+                    $link = $link . $dirArray[$i] . '/';
+                }
+                
+                // Remove trailing slash
+                if(substr($link, -1) == '/') {
+                    $link = substr($link, 0, -1);
+                }
+                
+                $breadcrumbsArray[] = array(
+                    'link' => $link,
+                    'text' => $dir
+                );
+                
+            }
+            
+        }
+
+        // print_r($breadcrumbsArray); die();
         
         // Return the breadcrumb array
-        // return $breadcrumbsArray;
+        return $breadcrumbsArray;
     }
     
     

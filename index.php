@@ -23,17 +23,14 @@
     
     <div class="breadcrumb-wrapper">
         <ul class="breadcrumb">
-            <?php //foreach($lister->listBreadcrumbs() as $breadcrumb): ?>
+            <?php $divider = FALSE; foreach($lister->listBreadcrumbs() as $breadcrumb): ?>
             <li>
-                <a href="#">Home</a> <span class="divider">/</span>
+                <?php if ($divider): ?>
+                    <span class="divider">/</span>
+                <?php endif; ?>
+                <a href="<?php echo $breadcrumb['link']; ?>"><?php echo $breadcrumb['text']; ?></a>
             </li>
-            <li>
-                <a href="#">Library</a> <span class="divider">/</span>
-            </li>
-            <li class="active">
-                <a href="#">Data</a>
-            </li>
-            <?php //endforeach; ?>
+            <?php $divider = TRUE; endforeach; ?>
         </ul>
     </div>
     
@@ -69,13 +66,7 @@
     <footer>
         <p>Powered by, <a href="http://www.directorylister.com">Directory Lister</a></p>
     </footer>
-    
-    <br/>
-    
-    <pre>
-        <?php print_r($lister->listDirectory()); ?>
-    </pre>
-
+ 
 </div>
 
 

@@ -39,11 +39,12 @@ class DirectoryLister {
         
         // Prevent access to parent folders
         if (substr_count($this->_directory,'.',0,1) !== 0
+        || substr_count($this->_directory,'..') !== 0
         || substr_count($this->_directory,'<') !== 0
         || substr_count($this->_directory,'>') !== 0
         || substr_count($this->_directory,'/',0,1) !== 0) {
             $this->_directory = '.';
-        }else{
+        } else {
             // Should stop all URL wrappers (Thanks to Hexatex)
             $this->_directory = './' . $this->_directory;
         }
@@ -192,33 +193,45 @@ class DirectoryLister {
                     }
                     
                     if ($file == '..') {
-                        // Get parent directory path
-                        $pathArray = explode('/', $relativePath);
-                        unset($pathArray[count($pathArray)-1]);
-                        unset($pathArray[count($pathArray)-1]);
-                        $directoryPath = implode('/', $pathArray);
                         
-                        if (!empty($directoryPath)) {
-                            $directoryPath = '?dir=' . $directoryPath;
+                        if ($this->_directory != '.') {
+                            // Get parent directory path
+                            $pathArray = explode('/', $relativePath);
+                            unset($pathArray[count($pathArray)-1]);
+                            unset($pathArray[count($pathArray)-1]);
+                            $directoryPath = implode('/', $pathArray);
+                            
+                            if (!empty($directoryPath)) {
+                                $directoryPath = '?dir=' . $directoryPath;
+                            }
+                            
+                            // Add file info to the array
+                            $directoryArray['..'] = array(
+                                'file_path' => $this->_appURL . $directoryPath,
+                                'file_size' => '-',
+                                'mod_time'  => date("Y-m-d H:i:s", filemtime($realPath)),
+                                'icon'      => 'back.png',
+                                'sort'      => 0
+                            );
                         }
                         
-                        // Add file info to the array
-                        $directoryArray['..'] = array(
-                            'file_path' => $this->_appURL . $directoryPath,
-                            'file_size' => '-',
-                            'mod_time'  => date("Y-m-d H:i:s", filemtime($realPath)),
-                            'icon'      => 'back.png',
-                            'sort'      => 0
-                        );
-                    } else {
-                        // Add file info to the array
-                        $directoryArray[pathinfo($realPath, PATHINFO_BASENAME)] = array(
-                            'file_path' => $relativePath,
-                            'file_size' => is_dir($realPath) ? '-' : round(filesize($realPath) / 1024) . 'KB',
-                            'mod_time'  => date("Y-m-d H:i:s", filemtime($realPath)),
-                            'icon'      => $fileIcon,
-                            'sort'      => $sort
-                        );
+                    } elseif (!in_array($file, $this->_settings['hidden_files'])) {
+                        
+                        // Add all non-hidden files
+                        if ($this->_directory == '.' && $file == 'index.php'
+                        || $this->_settings['hide_dot_files'] && substr($file, 0, 1) == '.') {
+                            // This isn't the file you're looking for. Move along...
+                        } else {
+                            // Add file info to the array
+                            $directoryArray[pathinfo($realPath, PATHINFO_BASENAME)] = array(
+                                'file_path' => $relativePath,
+                                'file_size' => is_dir($realPath) ? '-' : round(filesize($realPath) / 1024) . 'KB',
+                                'mod_time'  => date("Y-m-d H:i:s", filemtime($realPath)),
+                                'icon'      => $fileIcon,
+                                'sort'      => $sort
+                            );
+                        }
+                        
                     }
                 }
             }

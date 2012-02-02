@@ -37,6 +37,17 @@ class DirectoryLister {
             $this->_directory = '.';
         }
         
+        // Prevent access to parent folders
+        if (substr_count($this->_directory,'.',0,1) !== 0
+        || substr_count($this->_directory,'<') !== 0
+        || substr_count($this->_directory,'>') !== 0
+        || substr_count($this->_directory,'/',0,1) !== 0) {
+            $this->_directory = '.';
+        }else{
+            // Should stop all URL wrappers (Thanks to Hexatex)
+            $this->_directory = './' . $this->_directory;
+        }
+        
         // Remove trailing slash if present
         if(substr($this->_directory, -1, 1) == '/') {
             $this->_directory = substr($this->_directory, 0, -1);

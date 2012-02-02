@@ -21,8 +21,6 @@
 
 <div class="container">
     
-        
-    
     <div class="breadcrumb-wrapper">
         <ul class="breadcrumb">
             <?php //foreach($lister->listBreadcrumbs() as $breadcrumb): ?>
@@ -38,6 +36,15 @@
             <?php //endforeach; ?>
         </ul>
     </div>
+    
+    <?php if($lister->getSystemMessages()): ?>
+        <?php foreach ($lister->getSystemMessages() as $message): ?>
+            <div class="alert alert-<?php echo $message['type']; ?>">
+                <?php echo $message['text']; ?>
+                <a class="close" data-dismiss="alert" href="#">&times;</a>
+            </div>
+        <?php endforeach; ?>
+    <?php endif; ?> 
     
     <div id="header" class="clearfix">
         <span class="fileName">File</span>

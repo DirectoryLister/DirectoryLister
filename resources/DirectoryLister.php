@@ -19,10 +19,11 @@ class DirectoryLister {
     const VERSION = '2.0.0-dev';
     
     // Set some default variables
-    protected $_directory   = NULL;
-    protected $_appDir      = NULL;
-    protected $_appURL      = NULL;
-    protected $_settings    = NULL;
+    protected $_directory     = NULL;
+    protected $_appDir        = NULL;
+    protected $_appURL        = NULL;
+    protected $_settings      = NULL;
+    protected $_systemMessage = NULL;
     
     
     /**
@@ -30,30 +31,6 @@ class DirectoryLister {
      */
     function __construct() {
         
-        // Set the directory to list
-        if (@$_GET['dir']) {
-            $this->_directory = $_GET['dir'];
-        } else {
-            $this->_directory = '.';
-        }
-        
-        // Prevent access to parent folders
-        if (substr_count($this->_directory,'.',0,1) !== 0
-        || substr_count($this->_directory,'..') !== 0
-        || substr_count($this->_directory,'<') !== 0
-        || substr_count($this->_directory,'>') !== 0
-        || substr_count($this->_directory,'/',0,1) !== 0) {
-            $this->_directory = '.';
-        } else {
-            // Should stop all URL wrappers (Thanks to Hexatex)
-            $this->_directory = './' . $this->_directory;
-        }
-        
-        // Remove trailing slash if present
-        if(substr($this->_directory, -1, 1) == '/') {
-            $this->_directory = substr($this->_directory, 0, -1);
-        }
-
         // Set class directory constant
         if(!defined('__DIR__')) {
             define('__DIR__', dirname(__FILE__));
@@ -84,26 +61,68 @@ class DirectoryLister {
         // Build the application URL
         $this->_appURL = $protocol . $host . $path;
         
-        // Get file settings
+        // Load the configuration file
         $configFile = $this->_appDir . '/settings.php';
         
         if (file_exists($configFile)) {
             include($configFile);
         } else {
-            die('ERROR: Unable to locate config');
+            $this->setSystemMessage('error', '<b>ERROR:</b> Unable to locate application config file');
+        }
+         
+        // Get the directory path for listing
+        if (!empty($_GET['dir'])) {
+            $dir = $_GET['dir'];
+        } else {
+            $dir = '.';
+        }
+                
+        // Remove trailing slash if present
+        if(substr($dir, -1, 1) == '/') {
+            $dir = substr($dir, 0, -1);
+        }
+                    
+        // Prevent access to hidden files
+        if (in_array(strtolower($dir), $this->_settings['hidden_files'])) {
+            // Set the error message
+            $this->setSystemMessage('error', '<b>ERROR:</b> Access denied');
+            
+            // Set the directory to web root
+            $dir = '.';
         }
         
-    }
-    
-    
-    /**
-     * Special init method for simple one-line interface.
-     * 
-     * @access public
-     */
-    public static function init() {
-        $reflection = new ReflectionClass(__CLASS__);
-        return $reflection->newInstanceArgs(func_get_args());
+        // Prevent access to dotfiles if specified
+        if ($this->_settings['hide_dot_files']) {
+            if (strlen($dir) > 1 && substr($dir, 0, 1) == '.') {
+                // Set the error message
+                $this->setSystemMessage('error', '<b>ERROR:</b> Access denied');
+                
+                // Set the directory to web root
+                $dir = '.';
+            }
+        }
+                
+        // Check if file path exists
+        if (!file_exists($dir)) {
+            // Set the error message
+            $this->setSystemMessage('error', '<b>ERROR:</b> File path does not exist');
+                
+            // Set the directory to web root
+            $dir = '.';
+        }
+
+        // Prevent access to parent folders
+        if (strstr($dir, '<') || strstr($dir, '>') || strstr($dir, '..') || substr($dir, 0, 1) == '/') {
+            // Set the error message
+            $this->setSystemMessage('error', '<b>ERROR:</b> An invalid path string was deceted');
+                
+            // Set the directory to web root
+            $this->_directory = '.';
+        } else {
+            // Should stop all URL wrappers (Thanks to Hexatex)
+            $this->_directory = $dir;
+        }
+        
     }
     
     
@@ -150,7 +169,23 @@ class DirectoryLister {
     
     
     /**
-     * Loop through directory and return array with pertinent information
+     * Get an array of error messages or false when empty.
+     * 
+     * @return array Array of error messages
+     * @access public
+     */
+    public function getSystemMessages() {
+        if (isset($this->_systemMessage) && is_array($this->_systemMessage)) {
+            return $this->_systemMessage;
+        } else {
+            return false;
+        }
+    }
+    
+    
+    /**
+     * Loop through directory and return array with file info, including
+     * file path, size, modification time, icon and sort order.
      * 
      * @access private
      */
@@ -283,6 +318,30 @@ class DirectoryLister {
         
         // Return the array
         return $sortedArray;
+    }
+    
+    
+    /**
+     * Add a message to the system message array
+     * 
+     * @param string $type The type of message (ie - error, success, notice, etc.)
+     * @param string $message The message to be displayed to the user
+     * @access public
+     */
+    public function setSystemMessage($type, $text) {
+
+        // Create empty message array if it doesn't already exist
+        if (isset($this->_systemMessage) && !is_array($this->_systemMessage)) {
+            $this->_systemMessage = array();
+        } 
+
+        // Set the error message
+        $this->_systemMessage[] = array(
+            'type'  => $type,
+            'text'  => $text
+        );
+        
+        return true;
     }
     
 }

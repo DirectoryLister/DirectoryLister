@@ -6,22 +6,15 @@
 
 $config = array();
 
+
 /**
  * Basic settings
  */
 
 $config['hide_dot_files']     = TRUE;
 $config['list_folders_first'] = TRUE;
-$config['list_sort_order']    = 'alphabetical';
+$config['list_sort_order']    = 'natcasesort';
 
-
-/**
- * Cache settings
- */
-
-// $config['cache_enable'] = FALSE;
-// $config['cache_expire'] = 0;
- 
 
 /**
  * Hidden files
@@ -32,6 +25,15 @@ $config['hidden_files'] = array();
 $config['hidden_files'][] = '.htaccess';
 $config['hidden_files'][] = '.htpasswd';
 $config['hidden_files'][] = 'resources';
+
+
+/**
+ * Cache settings
+ */
+
+// $config['cache_enable'] = FALSE;
+// $config['cache_expire'] = 0;
+ 
 
 /**
  * Icon settings

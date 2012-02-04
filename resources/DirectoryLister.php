@@ -22,7 +22,7 @@ class DirectoryLister {
     protected $_directory     = NULL;
     protected $_appDir        = NULL;
     protected $_appURL        = NULL;
-    protected $_settings      = NULL;
+    protected $_config      = NULL;
     protected $_systemMessage = NULL;
     
     
@@ -62,13 +62,16 @@ class DirectoryLister {
         $this->_appURL = $protocol . $host . $path;
         
         // Load the configuration file
-        $configFile = $this->_appDir . '/settings.php';
+        $configFile = $this->_appDir . '/config.php';
         
         if (file_exists($configFile)) {
             include($configFile);
         } else {
             $this->setSystemMessage('error', '<b>ERROR:</b> Unable to locate application config file');
         }
+        
+        // Set the config array to a global variable
+        $this->_config = $config;
          
         // Get the directory path for listing
         if (!empty($_GET['dir'])) {
@@ -83,7 +86,7 @@ class DirectoryLister {
         }
                     
         // Prevent access to hidden files
-        if (in_array(strtolower($dir), $this->_settings['hidden_files'])) {
+        if (in_array(strtolower($dir), $this->_config['hidden_files'])) {
             // Set the error message
             $this->setSystemMessage('error', '<b>ERROR:</b> Access denied');
             
@@ -92,7 +95,7 @@ class DirectoryLister {
         }
         
         // Prevent access to dotfiles if specified
-        if ($this->_settings['hide_dot_files']) {
+        if ($this->_config['hide_dot_files']) {
             if (strlen($dir) > 1 && substr($dir, 0, 1) == '.') {
                 // Set the error message
                 $this->setSystemMessage('error', '<b>ERROR:</b> Access denied');
@@ -249,8 +252,8 @@ class DirectoryLister {
                         // Get file extension
                         $fileExt = pathinfo($realPath, PATHINFO_EXTENSION);
                     
-                        if (isset($this->_settings['file_types'][$fileExt])) {
-                            $fileIcon = $this->_settings['file_types'][$fileExt];
+                        if (isset($this->_config['file_types'][$fileExt])) {
+                            $fileIcon = $this->_config['file_types'][$fileExt];
                         } else {
                             $fileIcon = 'blank.png';
                         }
@@ -281,11 +284,11 @@ class DirectoryLister {
                             );
                         }
                         
-                    } elseif (!in_array($file, $this->_settings['hidden_files'])) {
+                    } elseif (!in_array($file, $this->_config['hidden_files'])) {
                         
                         // Add all non-hidden files
                         if ($this->_directory == '.' && $file == 'index.php'
-                        || $this->_settings['hide_dot_files'] && substr($file, 0, 1) == '.') {
+                        || $this->_config['hide_dot_files'] && substr($file, 0, 1) == '.') {
                             // This isn't the file you're looking for. Move along...
                         } else {
                             // Add file info to the array

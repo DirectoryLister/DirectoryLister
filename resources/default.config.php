@@ -4,40 +4,40 @@
  * Initialize settings array
  */
 
-$this->_settings = array();
+$config = array();
 
 /**
  * Basic settings
  */
 
-$this->_settings['hide_dot_files']     = TRUE;
-$this->_settings['list_folders_first'] = TRUE;
-$this->_settings['list_sort_order']    = 'alphabetical';
+$config['hide_dot_files']     = TRUE;
+$config['list_folders_first'] = TRUE;
+$config['list_sort_order']    = 'alphabetical';
 
 
 /**
  * Cache settings
  */
 
-// $this->_settings['cache_enable'] = FALSE;
-// $this->_settings['cache_expire'] = 0;
+// $config['cache_enable'] = FALSE;
+// $config['cache_expire'] = 0;
  
 
 /**
  * Hidden files
  */
 
-$this->_settings['hidden_files'] = array();
+$config['hidden_files'] = array();
 
-$this->_settings['hidden_files'][] = '.htaccess';
-$this->_settings['hidden_files'][] = '.htpasswd';
-$this->_settings['hidden_files'][] = 'resources';
+$config['hidden_files'][] = '.htaccess';
+$config['hidden_files'][] = '.htpasswd';
+$config['hidden_files'][] = 'resources';
 
 /**
  * Icon settings
  */
 
-$this->_settings['file_types'] = array(
+$config['file_types'] = array(
 
     //Applications
     'app'   => 'app.png',

@@ -31,6 +31,9 @@
                 <a href="<?php echo $breadcrumb['link']; ?>"><?php echo $breadcrumb['text']; ?></a>
             </li>
             <?php $divider = TRUE; endforeach; ?>
+            <li id="pageTopLink" style="display: hidden;">
+                <a href="#">Top</a>
+            </li>
         </ul>
     </div>
     
@@ -63,9 +66,9 @@
 
     <hr/>
 
-    <footer>
+    <div class="footer">
         <p>Powered by, <a href="http://www.directorylister.com">Directory Lister</a></p>
-    </footer>
+    </div>
  
 </div>
 

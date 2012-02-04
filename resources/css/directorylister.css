@@ -3,7 +3,7 @@
 /* -------------------------------------------------------------------------- */
 
 body {
-    padding-top: 15px;
+    padding: 15px 0;
 }
 
 
@@ -15,7 +15,7 @@ body {
     background-color: #FBFBFB;
     background-image: -moz-linear-gradient(center top , #FFFFFF, #F5F5F5);
     background-repeat: repeat-x;
-    border: 1px solid #DDDDDD;
+    border-bottom: 1px solid #DDDDDD;
     box-shadow: 0 1px 0 #FFFFFF inset, 0 1px 5px rgba(0, 0, 0, 0.1);
     left: 0;
     position: fixed;
@@ -31,6 +31,11 @@ body {
     border-right: 1px solid transparent;
     margin: 0 auto;
     width: 912px;
+}
+
+#pageTopLink {
+    float: right;
+    
 }
 
 
@@ -148,14 +153,18 @@ body {
 /* -----| FOOTER |----------------------------------------------------------- */
 /* -------------------------------------------------------------------------- */
 
-footer p {
-    text-align: right;
+.footer p {
+    text-align: center;
 }
 
 
 /* -------------------------------------------------------------------------- */
 /* -----| MISCELLANEOUS |---------------------------------------------------- */
 /* -------------------------------------------------------------------------- */
+
+.hidden {
+    display: none !important;
+}
 
 /* --- CLEAR FIX --- */
 

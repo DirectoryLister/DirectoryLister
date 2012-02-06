@@ -61,13 +61,14 @@ $config['file_types'] = array(
     
     // Code
     'c'     => 'page_white_c.png',
+    'class' => 'page_white_code.png',
     'cpp'   => 'page_white_cplusplus.png',
     'css'   => 'page_white_code.png',
     'erb'   => 'page_white_ruby.png',
     'htm'   => 'page_white_code.png',
     'html'  => 'page_white_code.png',
     'java'  => 'page_white_code_red.png',
-    'js'    => 'page_white_code.png',
+    'js'    => 'script_code.png',
     'php'   => 'page_white_php.png',
     'pl'    => 'page_white_code_red.png',
     'py'    => 'page_white_code_red.png',
@@ -90,6 +91,7 @@ $config['file_types'] = array(
     'mds'   => 'cd.png',
     'mdx'   => 'cd.png',
     'nrg'   => 'cd.png',
+    'vcd'   => 'cd.png',
     
     // Documents
     'csv'   => 'page_white_excel.png',
@@ -104,12 +106,13 @@ $config['file_types'] = array(
     'app'   => 'application_form.png',
     'bat'   => 'application_form.png',
     'com'   => 'application_form.png',
-    'deb'   => 'application_form.png',
     'exe'   => 'application_form.png',
     'jar'   => 'application_form.png',
     'msi'   => 'application_form.png',
     'vb'    => 'application_form.png',
-    'rpm'   => 'application_form.png',
+    
+    // Fonts
+    'ttf'   => 'font.png',
     
     // Game Files
     'gam'   => 'controller.png',
@@ -127,12 +130,18 @@ $config['file_types'] = array(
     'tga'   => 'picture.png',
     'tif'   => 'picture.png',
     
+    // Package Files
+    'deb'   => 'box.png',
+    'rpm'   => 'box.png',
+    
     // Scripts
     'bat'   => 'application_xp_terminal.png',
     'cmd'   => 'application_xp_terminal.png',
     'sh'    => 'application_xp_terminal.png',
     
     // Text
+    'cfg'   => 'page_white_text.png',
+    'ini'   => 'page_white_text.png',
     'log'   => 'page_white_text.png',
     'rtf'   => 'page_white_text.png',
     'txt'   => 'page_white_text.png',
@@ -155,7 +164,10 @@ $config['file_types'] = array(
     'swf'   => 'page_white_flash.png',
     
     // Other
+    'bak'   => 'drive.png',
     'msg'   => 'email.png',
+    
+    // Blank
     'blank' => 'page_white.png'
     
 );

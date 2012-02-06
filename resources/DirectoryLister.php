@@ -65,7 +65,7 @@ class DirectoryLister {
         $configFile = $this->_appDir . '/config.php';
         
         if (file_exists($configFile)) {
-            include($configFile);
+            require_once($configFile);
         } else {
             $this->setSystemMessage('error', '<b>ERROR:</b> Unable to locate application config file');
         }

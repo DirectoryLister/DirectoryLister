@@ -200,6 +200,25 @@ class DirectoryLister {
         // Return the breadcrumb array
         return $breadcrumbsArray;
     }
+
+    /**
+     * Gets path of the listed directory
+     * 
+     * @return string Pat of the listed directory
+     * @acces public
+     */
+    public function getListedPath() {
+        
+        // Build the path
+        if ($this->_directory == '.') {
+            $path = $this->_appURL;
+        } else {
+            $path = $this->_appURL . $this->_directory;
+        }
+        
+        // Return the path
+        return $path;
+    }
     
     
     /**

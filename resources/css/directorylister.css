@@ -101,8 +101,7 @@ body {
 }
 
 #directoryListing li a:hover {
-    background-color: #555;
-    color: #FFF;
+    background-color: #DEDEDE;
     outline: none;
 }
 

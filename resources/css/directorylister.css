@@ -33,11 +33,6 @@ body {
     width: 912px;
 }
 
-#pageTopLink {
-    float: right;
-    
-}
-
 
 /* -------------------------------------------------------------------------- */
 /* -----| DIRECTORY LISTER |------------------------------------------------- */
@@ -164,6 +159,16 @@ body {
 
 .hidden {
     display: none !important;
+}
+
+.floatLeft {
+    float: left;
+    width: auto;
+}
+
+.floatRight {
+    float: right;
+    width: auto;
 }
 
 /* --- CLEAR FIX --- */

@@ -8,6 +8,12 @@ $(document).ready(function() {
         checkSubnav(originalTop);
     });
     
+    $('#pageTopLink').click(function() {
+        $('html, body').animate({ scrollTop: 0 }, 'fast');
+        
+        return false;
+    });
+    
 });
 
 function checkSubnav(elTop) {

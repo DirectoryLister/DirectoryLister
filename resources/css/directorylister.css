@@ -109,7 +109,7 @@ body {
 #directoryListing .fileIcon {
     display: inline-block;
     margin: 8px;
-    margin-right: -19px;
+    margin-right: -24px;
     width: 16px;
 }
 
@@ -117,7 +117,7 @@ body {
     display: inline-block;
     float: left;
     margin: 8px;
-    padding-left: 19px;
+    padding-left: 24px;
     overflow: hidden;
     white-space: nowrap;
     width: 625px;

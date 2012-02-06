@@ -40,25 +40,18 @@ $config['hidden_files'][] = 'resources';
  */
 
 $config['file_types'] = array(
-
-    //Applications
-    'app'   => 'app.png',
-    'bat'   => 'app.png',
-    'deb'   => 'app.png',
-    'exe'   => 'app.png',
-    'msi'   => 'app.png',
-    'rpm'   => 'app.png',
     
     // Archives
-    '7z'    => 'archive.png',
-    'bz'    => 'archive.png',
-    'gz'    => 'archive.png',
-    'rar'   => 'archive.png',
-    'tar'   => 'archive.png',
-    'zip'   => 'archive.png',
+    '7z'    => 'compres.png',
+    'bz'    => 'compres.png',
+    'gz'    => 'compres.png',
+    'rar'   => 'compres.png',
+    'tar'   => 'compres.png',
+    'zip'   => 'compres.png',
     
     // Audio
     'aac'   => 'music.png',
+    'flac'  => 'music.png',
     'mid'   => 'music.png',
     'midi'  => 'music.png',
     'mp3'   => 'music.png',
@@ -67,20 +60,28 @@ $config['file_types'] = array(
     'wav'   => 'music.png',
     
     // Code
-    'c'     => 'code.png',
-    'cpp'   => 'code.png',
-    'css'   => 'code.png',
-    'erb'   => 'code.png',
-    'htm'   => 'code.png',
-    'html'  => 'code.png',
-    'java'  => 'code.png',
-    'js'    => 'code.png',
-    'php'   => 'code.png',
-    'pl'    => 'code.png',
-    'py'    => 'code.png',
-    'rb'    => 'code.png',
-    'xhtml' => 'code.png',
-    'xml'   => 'code.png',
+    'c'     => 'page_white_c.png',
+    'cpp'   => 'page_white_cplusplus.png',
+    'css'   => 'page_white_code.png',
+    'erb'   => 'page_white_ruby.png',
+    'htm'   => 'page_white_code.png',
+    'html'  => 'page_white_code.png',
+    'java'  => 'page_white_code_red.png',
+    'js'    => 'page_white_code.png',
+    'php'   => 'page_white_php.png',
+    'pl'    => 'page_white_code_red.png',
+    'py'    => 'page_white_code_red.png',
+    'rb'    => 'page_white_ruby.png',
+    'xhtml' => 'page_white_code.png',
+    'xml'   => 'page_white_code.png',
+    
+    // Databases
+    'accdb' => 'database.png',
+    'db'    => 'database.png',
+    'dbf'   => 'database.png',
+    'mdb'   => 'database.png',
+    'pdb'   => 'database.png',
+    'sql'   => 'database.png',
     
     // Disc Images
     'cue'   => 'cd.png',
@@ -91,43 +92,72 @@ $config['file_types'] = array(
     'nrg'   => 'cd.png',
     
     // Documents
-    'csv'   => 'excel.png',
-    'doc'   => 'word.png',
-    'docx'  => 'word.png',
-    'odt'   => 'text.png',
-    'pdf'   => 'pdf.png',
-    'xls'   => 'excel.png',
-    'xlsx'  => 'excel.png',
+    'csv'   => 'page_white_excel.png',
+    'doc'   => 'page_white_word.png',
+    'docx'  => 'page_white_word.png',
+    'odt'   => 'page_white_text.png',
+    'pdf'   => 'page_white_acrobat.png',
+    'xls'   => 'page_white_excel.png',
+    'xlsx'  => 'page_white_excel.png',
+    
+    // Executables
+    'app'   => 'application_form.png',
+    'bat'   => 'application_form.png',
+    'com'   => 'application_form.png',
+    'deb'   => 'application_form.png',
+    'exe'   => 'application_form.png',
+    'jar'   => 'application_form.png',
+    'msi'   => 'application_form.png',
+    'vb'    => 'application_form.png',
+    'rpm'   => 'application_form.png',
+    
+    // Game Files
+    'gam'   => 'controller.png',
+    'nes'   => 'controller.png',
+    'rom'   => 'controller.png',
+    'sav'   => 'disk.png',
     
     // Images
-    'bmp'   => 'image.png',
-    'gif'   => 'image.png',
-    'jpg'   => 'image.png',
-    'jpeg'  => 'image.png',
-    'png'   => 'image.png',
-    'tga'   => 'image.png',
+    'bmp'   => 'picture.png',
+    'gif'   => 'picture.png',
+    'jpg'   => 'picture.png',
+    'jpeg'  => 'picture.png',
+    'png'   => 'picture.png',
+    'psd'   => 'picture.png',
+    'tga'   => 'picture.png',
+    'tif'   => 'picture.png',
     
     // Scripts
-    'bat'   => 'terminal.png',
-    'cmd'   => 'terminal.png',
-    'sh'    => 'terminal.png',
+    'bat'   => 'application_xp_terminal.png',
+    'cmd'   => 'application_xp_terminal.png',
+    'sh'    => 'application_xp_terminal.png',
     
     // Text
-    'log'   => 'text.png',
-    'rtf'   => 'text.png',
-    'txt'   => 'text.png',
+    'log'   => 'page_white_text.png',
+    'rtf'   => 'page_white_text.png',
+    'txt'   => 'page_white_text.png',
+    
+    // Vector Images
+    'ai'    => 'image.png',
+    'drw'   => 'image.png',
+    'eps'   => 'image.png',
+    'ps'    => 'image.png',
+    'svg'   => 'image.png',
     
     // Video
-    'avi'   => 'video.png',
-    'mkv'   => 'video.png',
-    'mov'   => 'video.png',
-    'mp4'   => 'video.png',
-    'mpg'   => 'video.png',
-    'wmv'   => 'video.png',
-    'swf'   => 'flash.png',
+    'avi'   => 'film.png',
+    'flv'   => 'page_white_flash.png',
+    'mkv'   => 'film.png',
+    'mov'   => 'film.png',
+    'mp4'   => 'film.png',
+    'mpg'   => 'film.png',
+    'wmv'   => 'film.png',
+    'swf'   => 'page_white_flash.png',
     
     // Other
-    'msg'   => 'message.png'
-);
+    'msg'   => 'email.png',
+    'blank' => 'page_white.png'
     
+);
+
 ?>

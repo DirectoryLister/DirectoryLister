@@ -274,7 +274,7 @@ class DirectoryLister {
                         if (isset($this->_config['file_types'][$fileExt])) {
                             $fileIcon = $this->_config['file_types'][$fileExt];
                         } else {
-                            $fileIcon = 'blank.png';
+                            $fileIcon = $this->_config['file_types']['blank'];
                         }
                         
                         $sort = 2;

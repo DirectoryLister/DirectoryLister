@@ -86,12 +86,17 @@ class DirectoryLister {
         }
                     
         // Prevent access to hidden files
-        if (in_array(strtolower($dir), $this->_config['hidden_files'])) {
-            // Set the error message
-            $this->setSystemMessage('error', '<b>ERROR:</b> Access denied');
-            
-            // Set the directory to web root
-            $dir = '.';
+        foreach ($this->_config['hidden_files'] as $hiddenFile) {
+            if (substr($dir, 0, strlen($hiddenFile)) == $hiddenFile) {
+                // Set the error message
+                $this->setSystemMessage('error', '<b>ERROR:</b> Access denied');
+                
+                // Set the directory to web root
+                $dir = '.';
+                
+                // Stop the loop
+                break;
+            }
         }
         
         // Prevent access to dotfiles if specified

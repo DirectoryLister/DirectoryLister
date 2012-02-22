@@ -308,9 +308,10 @@ class DirectoryLister {
                             );
                         }
                         
-                    } elseif (!in_array($file, $this->_config['hidden_files'])) {
+                    } elseif (!$this->_isHidden($relativePath)) {
                         
                         // Add all non-hidden files
+                        // TODO: Clean up this if statement
                         if ($this->_directory == '.' && $file == 'index.php'
                         || $this->_config['hide_dot_files'] && substr($file, 0, 1) == '.') {
                             // This isn't the file you're looking for. Move along...
@@ -378,6 +379,43 @@ class DirectoryLister {
         return $sortedArray;
     }
     
+    /**
+     * Determines if a file is supposed to be hidden
+     * 
+     * @access private
+     */
+    private function _isHidden($filePath) {
+        
+        // Define the OS specific directory separator
+        define('DS', DIRECTORY_SEPARATOR);
+        
+        // Convert the file path to an array
+        $pathArray  = explode(DS, $filePath);
+        
+        // Compare path array to all hidden file paths
+        foreach ($this->_config['hidden_files'] as $hiddenPath) {
+            
+            // Strip trailing slash if present
+            if (substr($hiddenPath, -1) == DS) {
+                $hiddenPath = substr($hiddenPath, 0, -1);
+            }
+            
+            // Convert the hidden file path to an array
+            $hiddenArray = explode(DS, $hiddenPath);
+            
+            // Calculate intersections between the path and hidden arrays
+            $intersect = array_intersect_assoc($pathArray, $hiddenArray);
+            
+            // Return true if the intersect matches the hidden array
+            if ($intersect == $hiddenArray) {
+                return true;
+            }
+            
+        }
+        
+        return false;
+        
+    }
     
     /**
      * Add a message to the system message array

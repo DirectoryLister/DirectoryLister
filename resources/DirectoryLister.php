@@ -22,7 +22,7 @@ class DirectoryLister {
     protected $_directory     = NULL;
     protected $_appDir        = NULL;
     protected $_appURL        = NULL;
-    protected $_config      = NULL;
+    protected $_config        = NULL;
     protected $_systemMessage = NULL;
     
     
@@ -343,7 +343,7 @@ class DirectoryLister {
 
 
     /**
-     * Description...
+     * Sorts an array
      * 
      * @access private
      */

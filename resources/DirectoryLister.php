@@ -202,6 +202,30 @@ class DirectoryLister {
     
     
     /**
+     * Add a message to the system message array
+     * 
+     * @param string $type The type of message (ie - error, success, notice, etc.)
+     * @param string $message The message to be displayed to the user
+     * @access public
+     */
+    public function setSystemMessage($type, $text) {
+
+        // Create empty message array if it doesn't already exist
+        if (isset($this->_systemMessage) && !is_array($this->_systemMessage)) {
+            $this->_systemMessage = array();
+        } 
+
+        // Set the error message
+        $this->_systemMessage[] = array(
+            'type'  => $type,
+            'text'  => $text
+        );
+        
+        return true;
+    }
+    
+    
+    /**
      * Get an array of error messages or false when empty.
      * 
      * @return array Array of error messages
@@ -471,30 +495,6 @@ class DirectoryLister {
         
         // Return the URL
         return $appUrl;
-    }
-    
-    
-    /**
-     * Add a message to the system message array
-     * 
-     * @param string $type The type of message (ie - error, success, notice, etc.)
-     * @param string $message The message to be displayed to the user
-     * @access public
-     */
-    public function setSystemMessage($type, $text) {
-
-        // Create empty message array if it doesn't already exist
-        if (isset($this->_systemMessage) && !is_array($this->_systemMessage)) {
-            $this->_systemMessage = array();
-        } 
-
-        // Set the error message
-        $this->_systemMessage[] = array(
-            'type'  => $type,
-            'text'  => $text
-        );
-        
-        return true;
     }
     
 }

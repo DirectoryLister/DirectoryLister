@@ -29,7 +29,7 @@ class DirectoryLister {
     /**
      * DirectoryLister construct function. Runs on object creation.
      */
-    function __construct() {
+    public function __construct() {
         
         // Set class directory constant
         if(!defined('__DIR__')) {
@@ -40,7 +40,7 @@ class DirectoryLister {
         $this->_appDir = __DIR__;
         
         // Get the server protocol
-        if ($_SERVER['HTTPS']) {
+        if (isset($_SERVER['HTTPS'])) {
             $protocol = 'https://';
         } else {
             $protocol = 'http://';
@@ -382,7 +382,7 @@ class DirectoryLister {
     private function _isHidden($filePath) {
         
         // Define the OS specific directory separator
-        define('DS', DIRECTORY_SEPARATOR);
+        if (!defined('DS')) define('DS', DIRECTORY_SEPARATOR);
         
         // Convert the file path to an array
         $pathArray  = explode(DS, $filePath);

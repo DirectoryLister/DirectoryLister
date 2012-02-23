@@ -42,12 +42,12 @@ $config['hidden_files'][] = 'resources';
 $config['file_types'] = array(
     
     // Archives
-    '7z'    => 'compres.png',
-    'bz'    => 'compres.png',
-    'gz'    => 'compres.png',
-    'rar'   => 'compres.png',
-    'tar'   => 'compres.png',
-    'zip'   => 'compres.png',
+    '7z'    => 'compress.png',
+    'bz'    => 'compress.png',
+    'gz'    => 'compress.png',
+    'rar'   => 'compress.png',
+    'tar'   => 'compress.png',
+    'zip'   => 'compress.png',
     
     // Audio
     'aac'   => 'music.png',

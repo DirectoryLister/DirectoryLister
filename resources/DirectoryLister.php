@@ -199,6 +199,7 @@ class DirectoryLister {
         return $breadcrumbsArray;
     }
 
+
     /**
      * Gets path of the listed directory
      * 
@@ -328,7 +329,7 @@ class DirectoryLister {
         }
 
         // Sort the array
-        $sortedArray = $this->_sortArray($directoryArray);
+        $sortedArray = $this->_arraySort($directoryArray, $this->_config['list_sort_order']);
         
         // Return the array
         return $sortedArray;
@@ -337,40 +338,87 @@ class DirectoryLister {
 
 
     /**
-     * Sorts an array
-     * 
-     * @access private
-     */
-    protected function _sortArray($array) {
+    * Sorts an array by the provided sort method.
+    *
+    * @param array $array Array to be sorted
+    * @param string $sort Sorting method (acceptable inputs: natsort, natcasesort, etc.)
+    * @return array
+    * @access protected
+    */
+    protected function _arraySort($array, $sortMethod) {
         // Create empty array
         $sortedArray = array();
         
         // Create new array of just the keys and sort it
-        $keys = array_keys($array); 
-        natcasesort($keys);
+        $keys = array_keys($array);
+        
+        switch ($sortMethod) {
+            case 'asort':
+                asort($keys);
+                break;
+            case 'arsort':
+                arsort($keys);
+                break;
+            case 'ksort':
+                ksort($keys);
+                break;
+            case 'krsort':
+                krsort($keys);
+                break;
+            case 'natcasesort':
+                natcasesort($keys);
+                break;
+            case 'natsort':
+                natsort($keys);
+                break;
+            case 'shuffle':
+                shuffle($keys);
+                break;
+        }
         
         // Loop through the sorted values and move over the data
-        foreach ($keys as $key) {
-            if ($array[$key]['sort'] == 0) {
-                $sortedArray[$key] = $array[$key];
-            }
-        }
         
-        foreach ($keys as $key) {
-            if ($array[$key]['sort'] == 1) {
-                $sortedArray[$key] = $array[$key];
+        if ($this->_config['list_folders_first']) {
+            
+            foreach ($keys as $key) {
+                if ($array[$key]['sort'] == 0) {
+                    $sortedArray[$key] = $array[$key];
+                }
             }
-        }
+            
+            foreach ($keys as $key) {
+                if ($array[$key]['sort'] == 1) {
+                    $sortedArray[$key] = $array[$key];
+                }
+            }
+    
+            foreach ($keys as $key) {
+                if ($array[$key]['sort'] == 2) {
+                    $sortedArray[$key] = $array[$key];
+                }
+            }
+            
+        } else {
+            
+            foreach ($keys as $key) {
+                if ($array[$key]['sort'] == 0) {
+                    $sortedArray[$key] = $array[$key];
+                }
+            }
+            
+            foreach ($keys as $key) {
+                if ($array[$key]['sort'] > 0) {
+                    $sortedArray[$key] = $array[$key];
+                }
+            }
 
-        foreach ($keys as $key) {
-            if ($array[$key]['sort'] == 2) {
-                $sortedArray[$key] = $array[$key];
-            }
         }
         
-        // Return the array
+        // Return sorted array
         return $sortedArray;
+        
     }
+    
     
     /**
      * Determines if a file is supposed to be hidden
@@ -409,6 +457,7 @@ class DirectoryLister {
         return false;
         
     }
+    
     
     /**
      * Add a message to the system message array

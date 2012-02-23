@@ -39,27 +39,8 @@ class DirectoryLister {
         // Set application directory
         $this->_appDir = __DIR__;
         
-        // Get the server protocol
-        if (isset($_SERVER['HTTPS'])) {
-            $protocol = 'https://';
-        } else {
-            $protocol = 'http://';
-        }
-        
-        // Get the server hostname
-        $host = $_SERVER['HTTP_HOST'];
-        
-        // Get the URL path
-        $pathParts = pathinfo($_SERVER['PHP_SELF']);
-        $path      = $pathParts['dirname'];
-        
-        // Ensure the path ends with a forward slash
-        if (substr($path, -1) != '/') {
-            $path = $path . '/';
-        }
-        
         // Build the application URL
-        $this->_appURL = $protocol . $host . $path;
+        $this->_appURL = $this->_getAppUrl();
         
         // Load the configuration file
         $configFile = $this->_appDir . '/config.php';
@@ -456,6 +437,40 @@ class DirectoryLister {
         
         return false;
         
+    }
+
+    /**
+     * Builds the root application URL from server variables.
+     * 
+     * @return string The application URL
+     * @access private
+     */
+    private function _getAppUrl() {
+        
+        // Get the server protocol
+        if (isset($_SERVER['HTTPS'])) {
+            $protocol = 'https://';
+        } else {
+            $protocol = 'http://';
+        }
+        
+        // Get the server hostname
+        $host = $_SERVER['HTTP_HOST'];
+        
+        // Get the URL path
+        $pathParts = pathinfo($_SERVER['PHP_SELF']);
+        $path      = $pathParts['dirname'];
+        
+        // Ensure the path ends with a forward slash
+        if (substr($path, -1) != '/') {
+            $path = $path . '/';
+        }
+        
+        // Build the application URL
+        $appUrl = $protocol . $host . $path;
+        
+        // Return the URL
+        return $appUrl;
     }
     
     

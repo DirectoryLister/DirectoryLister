@@ -5,12 +5,10 @@ Created by, [Chris Kankiewicz](http://www.ChrisKankiewicz.com)
 
 Introduction
 ------------
-Directory Lister is a simple PHP script that lists the contents of
-a web-accessable directory and allows navigating within. Simply upload
-Directory Lister to any web directory to get immediate access to all
-files and sub-direcories under that directory.  Directory Lister is 
-written in PHP and distributed under the
-[MIT License](http://www.opensource.org/licenses/mit-license.php).
+Directory Lister is a simple PHP script that lists the contents of a web-accessable directory and
+allows navigating within. Simply upload Directory Lister to any web directory to get immediate
+access to all files and sub-direcories under that directory.  Directory Lister is written in PHP and
+distributed under the [MIT License](http://www.opensource.org/licenses/mit-license.php).
 
 More info available at http://www.directorylister.com
 
@@ -25,14 +23,14 @@ Features
 
 Requirements
 ------------
-Directory Lister requires PHP 5.2+ to work properly.  For more information on
-PHP, please visit [http://php.net](http://php.net).
+Directory Lister requires PHP 5.2+ to work properly.  For more information on PHP, please visit
+[http://php.net](http://php.net).
 
 
 Installation
 ------------
-To install Directory Lister, upload `index.php` and the `resources` folder to the
-directory that you would like to be listed and view the page in your browser.
+To install Directory Lister upload `index.php` and the `resources` folder to the directory that you
+would like to be listed. Then navigate to your page in your browser to see the directory listing.
 
 
 Support

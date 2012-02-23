@@ -64,15 +64,13 @@ class DirectoryLister {
         // Load the configuration file
         $configFile = $this->_appDir . '/config.php';
         
+        // Set the config array to a global variable
         if (file_exists($configFile)) {
-            require_once($configFile);
+            $this->_config = require_once($configFile);
         } else {
             $this->setSystemMessage('error', '<b>ERROR:</b> Unable to locate application config file');
         }
         
-        // Set the config array to a global variable
-        $this->_config = $config;
-         
         // Get the directory path for listing
         if (!empty($_GET['dir'])) {
             $dir = $_GET['dir'];

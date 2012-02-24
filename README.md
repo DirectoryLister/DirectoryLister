@@ -29,8 +29,9 @@ Directory Lister requires PHP 5.2+ to work properly.  For more information on PH
 
 Installation
 ------------
-To install Directory Lister upload `index.php` and the `resources` folder to the directory that you
-would like to be listed then navigate to your page in your browser to see the directory listing.
+  * Upload `index.php` and the `resources` folder to the directory that you would like to be listed
+  * Copy `resources/default.config.php` to `resources/config.php`
+  * Nvigate to your page in your browser to see the directory listing
 
 
 Support
@@ -49,4 +50,4 @@ License
 -------
 Directory Lister is distributed under the terms of the
 [MIT License](http://www.opensource.org/licenses/mit-license.php).
-Copyright © 2012 [Chris Kankiewicz](http://www.chriskankiewicz.com)
+Copyright 2012 [Chris Kankiewicz](http://www.chriskankiewicz.com)

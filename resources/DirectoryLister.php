@@ -238,7 +238,7 @@ class DirectoryLister {
         }
 
         // Prevent access to parent folders
-        if (strpos($dir, '<') !== false || strpos($dir, '>') !== false
+        if (strpos($dir, '<') !== false || strpos($dir, '>') !== false 
         || strpos($dir, '..') !== false || strpos($dir, '/') === 0) {
             // Set the error message
             $this->setSystemMessage('error', '<b>ERROR:</b> An invalid path string was deceted');
@@ -261,7 +261,7 @@ class DirectoryLister {
      * 
      * @access private
      */
-    protected function _readDirectory($directory, $sort = 'natcase') {
+    private function _readDirectory($directory, $sort = 'natcase') {
         
         // Instantiate image array
         $directoryArray = array();
@@ -363,9 +363,9 @@ class DirectoryLister {
     * @param array $array Array to be sorted
     * @param string $sort Sorting method (acceptable inputs: natsort, natcasesort, etc.)
     * @return array
-    * @access protected
+    * @access private
     */
-    protected function _arraySort($array, $sortMethod) {
+    private function _arraySort($array, $sortMethod) {
         // Create empty array
         $sortedArray = array();
         

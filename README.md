@@ -31,7 +31,7 @@ Installation
 ------------
   * Upload `index.php` and the `resources` folder to the directory that you would like to be listed
   * Copy `resources/default.config.php` to `resources/config.php`
-  * Nvigate to your page in your browser to see the directory listing
+  * Navigate to your page in any browser to see the directory listing
 
 
 Support

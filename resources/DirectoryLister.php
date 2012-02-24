@@ -263,7 +263,7 @@ class DirectoryLister {
      */
     private function _readDirectory($directory, $sort = 'natcase') {
         
-        // Instantiate image array
+        // Initialize array
         $directoryArray = array();
         
         // TODO: Sorting

@@ -63,8 +63,6 @@
     <?php $x++; endforeach; ?>
     </ul>
 
-    <hr/>
-
     <div class="footer">
         <p>Powered by, <a href="http://www.directorylister.com">Directory Lister</a></p>
     </div>

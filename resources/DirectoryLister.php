@@ -52,58 +52,8 @@ class DirectoryLister {
             $this->setSystemMessage('error', '<b>ERROR:</b> Unable to locate application config file');
         }
         
-        // Get the directory path for listing
-        if (!empty($_GET['dir'])) {
-            $dir = $_GET['dir'];
-        } else {
-            $dir = '.';
-        }
-                
-        // Remove trailing slash if present
-        if(substr($dir, -1, 1) == '/') {
-            $dir = substr($dir, 0, -1);
-        }
-                    
-        // Prevent access to hidden files
-        if ($this->_isHidden($dir)) {
-            // Set the error message
-            $this->setSystemMessage('error', '<b>ERROR:</b> Access denied');
-            
-            // Set the directory to web root
-            $dir = '.';
-        }
-        
-        // Prevent access to dotfiles if specified
-        if ($this->_config['hide_dot_files']) {
-            if (strlen($dir) > 1 && substr($dir, 0, 1) == '.') {
-                // Set the error message
-                $this->setSystemMessage('error', '<b>ERROR:</b> Access denied');
-                
-                // Set the directory to web root
-                $dir = '.';
-            }
-        }
-                
-        // Check if file path exists
-        if (!file_exists($dir)) {
-            // Set the error message
-            $this->setSystemMessage('error', '<b>ERROR:</b> File path does not exist');
-                
-            // Set the directory to web root
-            $dir = '.';
-        }
-
-        // Prevent access to parent folders
-        if (strstr($dir, '<') || strstr($dir, '>') || strstr($dir, '..') || substr($dir, 0, 1) == '/') {
-            // Set the error message
-            $this->setSystemMessage('error', '<b>ERROR:</b> An invalid path string was deceted');
-                
-            // Set the directory to web root
-            $this->_directory = '.';
-        } else {
-            // Should stop all URL wrappers (Thanks to Hexatex)
-            $this->_directory = $dir;
-        }
+        // Set the directory global variable
+        $this->_directory = $this->_setDirecoryPath(@$_GET['dir']);
         
     }
     
@@ -237,6 +187,71 @@ class DirectoryLister {
         } else {
             return false;
         }
+    }
+    
+    /**
+     * Validates and returns the directory path
+     * 
+     * @return string Directory path to be listed
+     * @access private
+     */
+    private function _setDirecoryPath($dir) {
+        
+        // Check for an empty variable
+        if (empty($dir) || $dir == '.') {
+            return '.';
+        }
+                
+        // Remove trailing slash if present
+        if(substr($dir, -1, 1) == '/') {
+            $dir = substr($dir, 0, -1);
+        }
+        
+        // Check if file path exists
+        if (!file_exists($dir)) {
+            // Set the error message
+            $this->setSystemMessage('error', '<b>ERROR:</b> File path does not exist');
+                
+            // Return the web root
+            return '.';
+        }
+                    
+        // Prevent access to hidden files
+        if ($this->_isHidden($dir)) {
+            // Set the error message
+            $this->setSystemMessage('error', '<b>ERROR:</b> Access denied');
+            
+            // Set the directory to web root
+            return '.';
+        }
+        
+        // Prevent access to dotfiles if specified
+        // TODO: Combine checking for hidden dot files into the _isHidden() function
+        if ($this->_config['hide_dot_files']) {
+            if (strlen($dir) > 1 && substr($dir, 0, 1) == '.') {
+                // Set the error message
+                $this->setSystemMessage('error', '<b>ERROR:</b> Access denied');
+                
+                // Set the directory to web root
+                return '.';
+            }
+        }
+
+        // Prevent access to parent folders
+        if (strpos($dir, '<') !== false || strpos($dir, '>') !== false
+        || strpos($dir, '..') !== false || strpos($dir, '/') === 0) {
+            // Set the error message
+            $this->setSystemMessage('error', '<b>ERROR:</b> An invalid path string was deceted');
+                
+            // Set the directory to web root
+            return '.';
+        } else {
+            // Should stop all URL wrappers (Thanks to Hexatex)
+            $directoryPath = $dir;
+        }
+        
+        // Return
+        return $directoryPath;
     }
     
     

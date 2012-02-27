@@ -280,16 +280,16 @@ class DirectoryLister {
                     
                     // Determine file type by extension
                     if (is_dir($realPath)) {
-                        $fileIcon = 'folder.png';
+                        $iconClass = 'icon-folder';
                         $sort = 1;
                     } else {
                         // Get file extension
                         $fileExt = pathinfo($realPath, PATHINFO_EXTENSION);
                     
                         if (isset($this->_config['file_types'][$fileExt])) {
-                            $fileIcon = $this->_config['file_types'][$fileExt];
+                            $iconClass = $this->_config['file_types'][$fileExt];
                         } else {
-                            $fileIcon = $this->_config['file_types']['blank'];
+                            $iconClass = $this->_config['file_types']['blank'];
                         }
                         
                         $sort = 2;
@@ -310,11 +310,11 @@ class DirectoryLister {
                             
                             // Add file info to the array
                             $directoryArray['..'] = array(
-                                'file_path' => $this->_appURL . $directoryPath,
-                                'file_size' => '-',
-                                'mod_time'  => date('Y-m-d H:i:s', filemtime($realPath)),
-                                'icon'      => 'back.png',
-                                'sort'      => 0
+                                'file_path'  => $this->_appURL . $directoryPath,
+                                'file_size'  => '-',
+                                'mod_time'   => date('Y-m-d H:i:s', filemtime($realPath)),
+                                'icon_class' => 'icon-up-dir',
+                                'sort'       => 0
                             );
                         }
                         
@@ -323,11 +323,11 @@ class DirectoryLister {
                         // Add all non-hidden files to the array
                         if ($this->_directory != '.' || $file != 'index.php') {
                             $directoryArray[pathinfo($realPath, PATHINFO_BASENAME)] = array(
-                                'file_path' => $relativePath,
-                                'file_size' => is_dir($realPath) ? '-' : round(filesize($realPath) / 1024) . 'KB',
-                                'mod_time'  => date('Y-m-d H:i:s', filemtime($realPath)),
-                                'icon'      => $fileIcon,
-                                'sort'      => $sort
+                                'file_path'  => $relativePath,
+                                'file_size'  => is_dir($realPath) ? '-' : round(filesize($realPath) / 1024) . 'KB',
+                                'mod_time'   => date('Y-m-d H:i:s', filemtime($realPath)),
+                                'icon_class' => $iconClass,
+                                'sort'       => $sort
                             );
                         }
                         

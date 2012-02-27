@@ -5,7 +5,7 @@
 
 <head>
     <title>Directory listing of <?php echo $lister->getListedPath(); ?></title>
-    <link rel="shortcut icon" href="resources/img/icons/folder.png" />
+    <link rel="shortcut icon" href="resources/img/folder.png" />
     
     <link rel="stylesheet" type="text/css" href="resources/css/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="resources/css/directorylister.css" />
@@ -55,7 +55,10 @@
     <?php $x = 1; foreach($lister->listDirectory() as $name => $fileInfo): ?>
         <li class="<?php echo $x %2 == 0 ? 'even' : 'odd'; ?>">
             <a href="<?php if(is_dir($fileInfo['file_path'])) { echo '?dir=' . $fileInfo['file_path']; } else { echo $fileInfo['file_path']; } ?>" class="clearfix">
-                <span class="fileName" style="background: transparent url(resources/img/icons/<?php echo $fileInfo['icon']; ?>) no-repeat left center;"><?php echo $name; ?></span>
+                <span class="fileName">
+                    <i class="<?php echo $fileInfo['icon_class']; ?>">&nbsp;</i>
+                    <?php echo $name; ?>
+                </span>
                 <span class="fileSize"><?php echo $fileInfo['file_size']; ?></span>
                 <span class="fileModTime"><?php echo $fileInfo['mod_time']; ?></span>
             </a>

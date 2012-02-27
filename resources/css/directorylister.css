@@ -7,7 +7,7 @@ body {
 }
 
 #pageTopLink {
-    background: transparent url(../img/icons/arrow_up.png) no-repeat left center;
+    background: transparent url(../img/arrow_up.png) no-repeat left center;
     display: inline-block;
     padding-left: 16px;
     margin: 0;
@@ -135,7 +135,6 @@ body {
     display: inline-block;
     float: left;
     margin: 8px;
-    padding-left: 24px;
     overflow: hidden;
     white-space: nowrap;
     width: 625px;
@@ -171,6 +170,53 @@ body {
     text-align: center;
 }
 
+
+/* -------------------------------------------------------------------------- */
+/* -----| ICONS |------------------------------------------------------------ */
+/* -------------------------------------------------------------------------- */
+
+i {
+    background: transparent url(../img/icon-sprite.png) no-repeat 0 0;
+    display: inline-block;
+    float: left;
+    font-size: 1px;
+    height: 16px;
+    margin-right: 8px;
+    position: relative;
+    top: 1px;
+    width: 16px;
+}
+
+.icon-app        { background-position: 0 0; }
+.icon-terminal   { background-position: -20px 0; }
+.icon-up-dir     { background-position: -40px 0; }
+.icon-box        { background-position: -60px 0; }
+.icon-cd         { background-position: -80px 0; }
+.icon-archive    { background-position: -100px 0; }
+.icon-controller { background-position: -120px 0; }
+.icon-database   { background-position: -140px 0; }
+.icon-disk       { background-position: -160px 0; }
+.icon-drive      { background-position: -180px 0; }
+.icon-email      { background-position: 0 -20px; }
+.icon-film       { background-position: -20px -20px; }
+.icon-folder     { background-position: -40px -20px; }
+.icon-font       { background-position: -60px -20px; }
+.icon-image      { background-position: -80px -20px; }
+.icon-music      { background-position: -100px -20px; }
+.icon-blank      { background-position: -120px -20px; }
+.icon-pdf        { background-position: -140px -20px; }
+.icon-c          { background-position: -160px -20px; }
+.icon-code       { background-position: -180px -20px; }
+.icon-code-red   { background-position: 0 -40px; }
+.icon-cplusplus  { background-position: -20px -40px; }
+.icon-excel      { background-position: -40px -40px; }
+.icon-flash      { background-position: -60px -40px; }
+.icon-php        { background-position: -80px -40px; }
+.icon-ruby       { background-position: -100px -40px; }
+.icon-text       { background-position: -120px -40px; }
+.icon-word       { background-position: -140px -40px; }
+.icon-picture    { background-position: -160px -40px; }
+.icon-arrow-up   { background-position: -180px -40px; }
 
 /* -------------------------------------------------------------------------- */
 /* -----| MISCELLANEOUS |---------------------------------------------------- */

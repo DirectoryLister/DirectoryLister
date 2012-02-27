@@ -201,7 +201,12 @@ class DirectoryLister {
         if (empty($dir) || $dir == '.') {
             return '.';
         }
-                
+        
+        // Eliminate double slashes
+        while (strpos($dir, '//')) {
+            $dir = str_replace('//', '/', $dir);
+        }
+        
         // Remove trailing slash if present
         if(substr($dir, -1, 1) == '/') {
             $dir = substr($dir, 0, -1);

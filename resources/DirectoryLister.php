@@ -212,8 +212,8 @@ class DirectoryLister {
             $dir = substr($dir, 0, -1);
         }
         
-        // Check if file path exists
-        if (!file_exists($dir)) {
+        // Verify file path exists and is a directory
+        if (!file_exists($dir) || !is_dir($dir)) {
             // Set the error message
             $this->setSystemMessage('error', '<b>ERROR:</b> File path does not exist');
                 

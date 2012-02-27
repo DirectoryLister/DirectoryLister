@@ -229,18 +229,6 @@ class DirectoryLister {
             // Set the directory to web root
             return '.';
         }
-        
-        // Prevent access to dotfiles if specified
-        // TODO: Combine checking for hidden dot files into the _isHidden() function
-        if ($this->_config['hide_dot_files']) {
-            if (strlen($dir) > 1 && substr($dir, 0, 1) == '.') {
-                // Set the error message
-                $this->setSystemMessage('error', '<b>ERROR:</b> Access denied');
-                
-                // Set the directory to web root
-                return '.';
-            }
-        }
 
         // Prevent access to parent folders
         if (strpos($dir, '<') !== false || strpos($dir, '>') !== false 
@@ -271,7 +259,6 @@ class DirectoryLister {
         // Initialize array
         $directoryArray = array();
         
-        // TODO: Sorting
         if ($handle = opendir($directory)) {
             
             while (false !== ($file = readdir($handle))) {
@@ -329,13 +316,8 @@ class DirectoryLister {
                         
                     } elseif (!$this->_isHidden($relativePath)) {
                         
-                        // Add all non-hidden files
-                        // TODO: Clean up this if statement
-                        if ($this->_directory == '.' && $file == 'index.php'
-                        || $this->_config['hide_dot_files'] && substr($file, 0, 1) == '.') {
-                            // This isn't the file you're looking for. Move along...
-                        } else {
-                            // Add file info to the array
+                        // Add all non-hidden files to the array
+                        if ($this->_directory != '.' || $file != 'index.php') {
                             $directoryArray[pathinfo($realPath, PATHINFO_BASENAME)] = array(
                                 'file_path' => $relativePath,
                                 'file_size' => is_dir($realPath) ? '-' : round(filesize($realPath) / 1024) . 'KB',
@@ -457,6 +439,15 @@ class DirectoryLister {
         
         // Convert the file path to an array
         $pathArray  = explode(DS, $filePath);
+        
+        // Return true if dotfile and access to dotfiles is prohibited
+        if ($this->_config['hide_dot_files']) {
+            foreach ($pathArray as $element) {
+                if (strlen($element) > 1 && substr($element, 0, 1) == '.') {
+                    return true;
+                }
+            }
+        }
         
         // Compare path array to all hidden file paths
         foreach ($this->_config['hidden_files'] as $hiddenPath) {

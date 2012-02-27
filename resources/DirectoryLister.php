@@ -252,6 +252,7 @@ class DirectoryLister {
      * Loop through directory and return array with file info, including
      * file path, size, modification time, icon and sort order.
      * 
+     * @return array An array of the directory contents
      * @access private
      */
     private function _readDirectory($directory, $sort = 'natcase') {
@@ -259,10 +260,13 @@ class DirectoryLister {
         // Initialize array
         $directoryArray = array();
         
+        // Open directory handle
         if ($handle = opendir($directory)) {
             
+            // Read files/folders from the directory
             while (false !== ($file = readdir($handle))) {
-                if ($file != ".") {
+                
+                if ($file != '.') {
                     
                     // Get files relative path
                     $relativePath = $directory . '/' . $file;
@@ -308,7 +312,7 @@ class DirectoryLister {
                             $directoryArray['..'] = array(
                                 'file_path' => $this->_appURL . $directoryPath,
                                 'file_size' => '-',
-                                'mod_time'  => date("Y-m-d H:i:s", filemtime($realPath)),
+                                'mod_time'  => date('Y-m-d H:i:s', filemtime($realPath)),
                                 'icon'      => 'back.png',
                                 'sort'      => 0
                             );
@@ -321,7 +325,7 @@ class DirectoryLister {
                             $directoryArray[pathinfo($realPath, PATHINFO_BASENAME)] = array(
                                 'file_path' => $relativePath,
                                 'file_size' => is_dir($realPath) ? '-' : round(filesize($realPath) / 1024) . 'KB',
-                                'mod_time'  => date("Y-m-d H:i:s", filemtime($realPath)),
+                                'mod_time'  => date('Y-m-d H:i:s', filemtime($realPath)),
                                 'icon'      => $fileIcon,
                                 'sort'      => $sort
                             );
@@ -329,6 +333,7 @@ class DirectoryLister {
                         
                     }
                 }
+
             }
             
             // Close open file handle

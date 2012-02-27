@@ -176,7 +176,7 @@ body {
 /* -------------------------------------------------------------------------- */
 
 i {
-    background: transparent url(../img/icon-sprite.png) no-repeat 0 0;
+    background: transparent url(images/icon-sprite.png) no-repeat 0 0;
     display: inline-block;
     float: left;
     font-size: 1px;

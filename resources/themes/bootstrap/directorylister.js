@@ -18,10 +18,10 @@ $(document).ready(function() {
 
 function checkSubnav(elTop) {
     if($(window).scrollTop() >= elTop) {
-        $('.breadcrumb-wrapper').addClass('breadcrumb-fixed');
+        $('body').addClass('breadcrumb-fixed');
         $('#pageTopLink').show();
     } else {
-        $('.breadcrumb-wrapper').removeClass('breadcrumb-fixed');
+        $('body').removeClass('breadcrumb-fixed');
         $('#pageTopLink').hide();
     }
 }

@@ -320,7 +320,7 @@ class DirectoryLister {
                     $sort = 1;
                 } else {
                     // Get file extension
-                    $fileExt = pathinfo($realPath, PATHINFO_EXTENSION);
+                    $fileExt = strtolower(pathinfo($realPath, PATHINFO_EXTENSION));
                 
                     if (isset($this->_config['file_types'][$fileExt])) {
                         $iconClass = $this->_config['file_types'][$fileExt];

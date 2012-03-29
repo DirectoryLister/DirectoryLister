@@ -18,8 +18,8 @@ class DirectoryLister {
     // Define application version
     const VERSION = '2.0.0-dev';
     
-    // Set some default variables
-    protected $_themeName     = 'bootstrap';
+    // Reserve some variables
+    protected $_themeName     = NULL;
     protected $_directory     = NULL;
     protected $_appDir        = NULL;
     protected $_appURL        = NULL;

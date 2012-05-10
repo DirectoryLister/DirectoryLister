@@ -16,7 +16,7 @@
 class DirectoryLister {
     
     // Define application version
-    const VERSION = '2.0.0';
+    const VERSION = '2.0.1-dev';
     
     // Reserve some variables
     protected $_themeName     = NULL;

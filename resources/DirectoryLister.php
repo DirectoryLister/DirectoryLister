@@ -521,7 +521,7 @@ class DirectoryLister {
     private function _getAppUrl() {
         
         // Get the server protocol
-        if (isset($_SERVER['HTTPS'])) {
+        if (!empty($_SERVER['HTTPS'])) {
             $protocol = 'https://';
         } else {
             $protocol = 'http://';

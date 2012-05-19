@@ -16,7 +16,7 @@
 class DirectoryLister {
     
     // Define application version
-    const VERSION = '2.0.1';
+    const VERSION = '2.0.2';
     
     // Reserve some variables
     protected $_themeName     = NULL;
@@ -358,7 +358,7 @@ class DirectoryLister {
                     
                     // Add all non-hidden files to the array
                     if ($this->_directory != '.' || $file != 'index.php') {
-                        $directoryArray[pathinfo($realPath, PATHINFO_BASENAME)] = array(
+                        $directoryArray[pathinfo($relativePath, PATHINFO_BASENAME)] = array(
                             'file_path'  => $relativePath,
                             'file_size'  => is_dir($realPath) ? '-' : round(filesize($realPath) / 1024) . 'KB',
                             'mod_time'   => date('Y-m-d H:i:s', filemtime($realPath)),

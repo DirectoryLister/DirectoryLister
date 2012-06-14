@@ -108,16 +108,21 @@ class DirectoryLister {
             
             if ($dir != '.') {
                 
-                $link = $this->_appURL . '?dir=';
+                $basePath = $this->_appURL . '?dir=';
+                $dirPath  = NULL;
                 
+                // Build the directory path
                 for ($i = 0; $i <= $key; $i++) {
-                    $link = $link . $dirArray[$i] . '/';
+                    $dirPath = $dirPath . $dirArray[$i] . '/';
                 }
                 
                 // Remove trailing slash
-                if(substr($link, -1) == '/') {
-                    $link = substr($link, 0, -1);
+                if(substr($dirPath, -1) == '/') {
+                    $dirPath = substr($dirPath, 0, -1);
                 }
+                
+                // Combine the base path and dir path
+                $link = $basePath . urlencode($dirPath);
                 
                 $breadcrumbsArray[] = array(
                     'link' => $link,
@@ -341,7 +346,7 @@ class DirectoryLister {
                         $directoryPath = implode('/', $pathArray);
                         
                         if (!empty($directoryPath)) {
-                            $directoryPath = '?dir=' . $directoryPath;
+                            $directoryPath = '?dir=' . urlencode($directoryPath);
                         }
                         
                         // Add file info to the array
@@ -358,8 +363,17 @@ class DirectoryLister {
                     
                     // Add all non-hidden files to the array
                     if ($this->_directory != '.' || $file != 'index.php') {
+                        
+                        // Build the file path
+                        if (is_dir($relativePath)) {
+                            $filePath = '?dir=' . urlencode($relativePath);
+                        } else {
+                            $filePath = urlencode($relativePath);
+                        }
+                        
+                        // Add the info to the main array
                         $directoryArray[pathinfo($relativePath, PATHINFO_BASENAME)] = array(
-                            'file_path'  => $relativePath,
+                            'file_path'  => $filePath,
                             'file_size'  => is_dir($realPath) ? '-' : round(filesize($realPath) / 1024) . 'KB',
                             'mod_time'   => date('Y-m-d H:i:s', filemtime($realPath)),
                             'icon_class' => $iconClass,

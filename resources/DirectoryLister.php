@@ -16,7 +16,7 @@
 class DirectoryLister {
     
     // Define application version
-    const VERSION = '2.0.2';
+    const VERSION = '2.0.3-dev';
     
     // Reserve some variables
     protected $_themeName     = NULL;
@@ -108,7 +108,6 @@ class DirectoryLister {
             
             if ($dir != '.') {
                 
-                $basePath = $this->_appURL . '?dir=';
                 $dirPath  = NULL;
                 
                 // Build the directory path
@@ -122,7 +121,7 @@ class DirectoryLister {
                 }
                 
                 // Combine the base path and dir path
-                $link = $basePath . urlencode($dirPath);
+                $link = $this->_appURL . '?dir=' . urlencode($dirPath);
                 
                 $breadcrumbsArray[] = array(
                     'link' => $link,
@@ -368,7 +367,7 @@ class DirectoryLister {
                         if (is_dir($relativePath)) {
                             $filePath = '?dir=' . urlencode($relativePath);
                         } else {
-                            $filePath = urlencode($relativePath);
+                            $filePath = $relativePath;
                         }
                         
                         // Add the info to the main array

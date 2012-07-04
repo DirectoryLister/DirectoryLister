@@ -54,12 +54,12 @@ return array(
         'xml'   => 'icon-code',
         
         // Databases
-        'accdb' => 'icon-databse',
-        'db'    => 'icon-databse',
-        'dbf'   => 'icon-databse',
-        'mdb'   => 'icon-databse',
-        'pdb'   => 'icon-databse',
-        'sql'   => 'icon-databse',
+        'accdb' => 'icon-database',
+        'db'    => 'icon-database',
+        'dbf'   => 'icon-database',
+        'mdb'   => 'icon-database',
+        'pdb'   => 'icon-database',
+        'sql'   => 'icon-database',
         
         // Disc Images
         'cue'   => 'icon-cd',

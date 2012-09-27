@@ -3,6 +3,8 @@
 /* -------------------------------------------------------------------------- */
 
 body {
+    font-size: 13px;
+    line-height: 18px;
     padding: 15px 0;
 }
 
@@ -15,6 +17,10 @@ body.breadcrumb-fixed {
     display: inline-block;
     padding-left: 16px;
     margin: 0;
+}
+
+li {
+    line-height: 18px;
 }
 
 

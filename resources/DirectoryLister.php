@@ -547,6 +547,11 @@ class DirectoryLister {
         $pathParts = pathinfo($_SERVER['PHP_SELF']);
         $path      = $pathParts['dirname'];
         
+        // Remove backslash from path (Windows fix)
+        if (substr($path, -1) == '\\') {
+            $path = substr($path, 0, -1);
+        }
+        
         // Ensure the path ends with a forward slash
         if (substr($path, -1) != '/') {
             $path = $path . '/';

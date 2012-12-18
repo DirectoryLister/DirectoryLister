@@ -565,11 +565,11 @@ class DirectoryLister {
     }
     
     /**
-     * Compares two paths and returns the relative path from one to the other
-     * 
+      * Compares two paths and returns the relative path from one to the other
+     *
      * @param string $fromPath Starting path
      * @param string $toPath Ending path
-     * @return string $relativePath
+     * @return string $relativePath Relative path from $fromPath to $toPath
      * @access private
      */
     private function _getRelativePath($fromPath, $toPath) {
@@ -578,12 +578,12 @@ class DirectoryLister {
         if (!defined('DS')) define('DS', DIRECTORY_SEPARATOR);
         
         // Remove double slashes from path strings
-        $fromPath   = str_replace(DS . DS, DS, $fromPath);
-        $toPath     = str_replace(DS . DS, DS, $toPath);
+        $fromPath = str_replace(DS . DS, DS, $fromPath);
+        $toPath = str_replace(DS . DS, DS, $toPath);
         
         // Explode working dir and cache dir into arrays
-        $fromPathArray  = explode(DS, $fromPath);
-        $toPathArray    = explode(DS, $toPath);
+        $fromPathArray = explode(DS, $fromPath);
+        $toPathArray = explode(DS, $toPath);
         
         // Remove last fromPath array element if it's empty
         $x = count($fromPathArray) - 1;
@@ -603,23 +603,30 @@ class DirectoryLister {
         $arrayMax = max(count($fromPathArray), count($toPathArray));
         
         // Set some default variables
-        $diffArray  = array();
-        $samePath   = true;
-        $key        = 1;
+        $diffArray = array();
+        $samePath = true;
+        $key = 1;
         
         // Generate array of the path differences
         while ($key <= $arrayMax) {
-            if (@$toPathArray[$key] !== @$fromPathArray[$key] || $samePath !== true) {
+            
+            // Get to path variable
+            $toPath = isset($toPathArray[$key]) ? $toPathArray[$key] : NULL;
+            
+            // Get from path variable
+            $fromPath = isset($fromPathArray[$key]) ? $fromPathArray[$key] : NULL;
+            
+            if ($toPath !== $fromPath || $samePath !== true) {
                 
                 // Prepend '..' for every level up that must be traversed
                 if (isset($fromPathArray[$key])) {
                     array_unshift($diffArray, '..');
                 }
                 
-                // Append directory name for every directory that must be traversed  
+                // Append directory name for every directory that must be traversed
                 if (isset($toPathArray[$key])) {
                     $diffArray[] = $toPathArray[$key];
-                } 
+                }
                 
                 // Directory paths have diverged
                 $samePath = false;

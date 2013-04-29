@@ -127,6 +127,7 @@ return array(
         'log'   => 'icon-text',
         'rtf'   => 'icon-text',
         'txt'   => 'icon-text',
+        'md'    => 'icon-text',
 
         // Vector Images
         'ai'    => 'icon-image',

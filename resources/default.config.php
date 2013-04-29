@@ -1,23 +1,28 @@
 <?php
 
 return array(
-    
+
     // Basic settings
     'hide_dot_files'     => TRUE,
     'list_folders_first' => TRUE,
     'list_sort_order'    => 'natcasesort',
     'theme_name'         => 'bootstrap',
-    
+
     // Hidden files
     'hidden_files' => array(
         '.htaccess',
         '.htpasswd',
         'resources',
      ),
-    
+
+    // Custom sort order
+    'reverse_sort' => array(
+        // 'path/to/folder'
+    ),
+
     // Icon settings
     'file_types' => array(
-        
+
         // Archives
         '7z'    => 'icon-archive',
         'bz'    => 'icon-archive',
@@ -25,7 +30,7 @@ return array(
         'rar'   => 'icon-archive',
         'tar'   => 'icon-archive',
         'zip'   => 'icon-archive',
-        
+
         // Audio
         'aac'   => 'icon-music',
         'flac'  => 'icon-music',
@@ -35,7 +40,7 @@ return array(
         'ogg'   => 'icon-music',
         'wma'   => 'icon-music',
         'wav'   => 'icon-music',
-        
+
         // Code
         'c'     => 'icon-c',
         'class' => 'icon-code',
@@ -52,7 +57,7 @@ return array(
         'rb'    => 'icon-ruby',
         'xhtml' => 'icon-code',
         'xml'   => 'icon-code',
-        
+
         // Databases
         'accdb' => 'icon-database',
         'db'    => 'icon-database',
@@ -60,7 +65,7 @@ return array(
         'mdb'   => 'icon-database',
         'pdb'   => 'icon-database',
         'sql'   => 'icon-database',
-        
+
         // Disc Images
         'cue'   => 'icon-cd',
         'iso'   => 'icon-cd',
@@ -69,7 +74,7 @@ return array(
         'mdx'   => 'icon-cd',
         'nrg'   => 'icon-cd',
         'vcd'   => 'icon-cd',
-        
+
         // Documents
         'csv'   => 'icon-excel',
         'doc'   => 'icon-word',
@@ -78,7 +83,7 @@ return array(
         'pdf'   => 'icon-pdf',
         'xls'   => 'icon-excel',
         'xlsx'  => 'icon-excel',
-        
+
         // Executables
         'app'   => 'icon-app',
         'bat'   => 'icon-app',
@@ -87,16 +92,16 @@ return array(
         'jar'   => 'icon-app',
         'msi'   => 'icon-app',
         'vb'    => 'icon-app',
-        
+
         // Fonts
         'ttf'   => 'icon-font',
-        
+
         // Game Files
         'gam'   => 'icon-controller',
         'nes'   => 'icon-controller',
         'rom'   => 'icon-controller',
         'sav'   => 'icon-disk',
-        
+
         // Images
         'bmp'   => 'icon-picture',
         'gif'   => 'icon-picture',
@@ -106,30 +111,30 @@ return array(
         'psd'   => 'icon-picture',
         'tga'   => 'icon-picture',
         'tif'   => 'icon-picture',
-        
+
         // Package Files
         'deb'   => 'icon-box',
         'rpm'   => 'icon-box',
-        
+
         // Scripts
         'bat'   => 'icon-terminal',
         'cmd'   => 'icon-terminal',
         'sh'    => 'icon-terminal',
-        
+
         // Text
         'cfg'   => 'icon-text',
         'ini'   => 'icon-text',
         'log'   => 'icon-text',
         'rtf'   => 'icon-text',
         'txt'   => 'icon-text',
-        
+
         // Vector Images
         'ai'    => 'icon-image',
         'drw'   => 'icon-image',
         'eps'   => 'icon-image',
         'ps'    => 'icon-image',
         'svg'   => 'icon-image',
-        
+
         // Video
         'avi'   => 'icon-film',
         'flv'   => 'icon-flash',
@@ -139,14 +144,14 @@ return array(
         'mpg'   => 'icon-film',
         'wmv'   => 'icon-film',
         'swf'   => 'icon-flash',
-        
+
         // Other
         'bak'   => 'icon-drive',
         'msg'   => 'icon-email',
-        
+
         // Blank
         'blank' => 'icon-blank'
-        
+
     )
 
 );

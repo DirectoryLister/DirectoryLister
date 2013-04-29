@@ -16,9 +16,7 @@
 class DirectoryLister {
 
     // Define application version
-    const VERSION = '2.0.4';
-
-
+    const VERSION = '2.0.5-dev';
 
     // Reserve some variables
     protected $_themeName     = NULL;
@@ -87,6 +85,7 @@ class DirectoryLister {
     /**
      * Description...
      *
+     * @param string $directory Path to be breadcrumbified
      * @access public
      */
     public function listBreadcrumbs($directory = NULL) {
@@ -133,8 +132,6 @@ class DirectoryLister {
             }
 
         }
-
-        // print_r($breadcrumbsArray); die();
 
         // Return the breadcrumb array
         return $breadcrumbsArray;
@@ -387,9 +384,9 @@ class DirectoryLister {
 
         }
 
-
         // Sort the array
-        $sortedArray = $this->_arraySort($directoryArray, $this->_config['list_sort_order']);
+        $reverseSort = in_array($this->_directory, $this->_config['reverse_sort']);
+        $sortedArray = $this->_arraySort($directoryArray, $this->_config['list_sort_order'], $reverseSort);
 
         // Return the array
         return $sortedArray;
@@ -402,12 +399,14 @@ class DirectoryLister {
     *
     * @param array $array Array to be sorted
     * @param string $sort Sorting method (acceptable inputs: natsort, natcasesort, etc.)
+    * @param boolen $reverse Reverse the sorted array order (default = false)
     * @return array
     * @access private
     */
-    private function _arraySort($array, $sortMethod) {
-        // Create empty array
+    private function _arraySort($array, $sortMethod, $reverse = false) {
+        // Create empty arrays
         $sortedArray = array();
+        $finalArray  = array();
 
         // Create new array of just the keys and sort it
         $keys = array_keys($array);
@@ -437,45 +436,60 @@ class DirectoryLister {
         }
 
         // Loop through the sorted values and move over the data
-
         if ($this->_config['list_folders_first']) {
 
             foreach ($keys as $key) {
                 if ($array[$key]['sort'] == 0) {
-                    $sortedArray[$key] = $array[$key];
+                    $sortedArray['0'][$key] = $array[$key];
                 }
             }
 
             foreach ($keys as $key) {
                 if ($array[$key]['sort'] == 1) {
-                    $sortedArray[$key] = $array[$key];
+                    $sortedArray[1][$key] = $array[$key];
                 }
             }
 
             foreach ($keys as $key) {
                 if ($array[$key]['sort'] == 2) {
-                    $sortedArray[$key] = $array[$key];
+                    $sortedArray[2][$key] = $array[$key];
                 }
+            }
+
+            if ($reverse) {
+                $sortedArray[1] = array_reverse($sortedArray[1]);
+                $sortedArray[2] = array_reverse($sortedArray[2]);
             }
 
         } else {
 
             foreach ($keys as $key) {
                 if ($array[$key]['sort'] == 0) {
-                    $sortedArray[$key] = $array[$key];
+                    $sortedArray[0][$key] = $array[$key];
                 }
             }
 
             foreach ($keys as $key) {
                 if ($array[$key]['sort'] > 0) {
-                    $sortedArray[$key] = $array[$key];
+                    $sortedArray[1][$key] = $array[$key];
                 }
+            }
+
+            if ($reverse) {
+                $sortedArray[1] = array_reverse($sortedArray[1]);
             }
 
         }
 
+        // Merge the arrays
+        foreach ($sortedArray as $array) {
+            if (!empty($array)) {
+                $finalArray = array_merge($finalArray, $array);
+            }
+        }
+
         // Return sorted array
-        return $sortedArray;
+        return $finalArray;
 
     }
 
@@ -483,6 +497,7 @@ class DirectoryLister {
     /**
      * Determines if a file is supposed to be hidden
      *
+     * @param string $filePath Path to be checked if hidden
      * @access private
      */
     private function _isHidden($filePath) {
@@ -527,6 +542,7 @@ class DirectoryLister {
 
     }
 
+
     /**
      * Builds the root application URL from server variables.
      *
@@ -565,6 +581,7 @@ class DirectoryLister {
         // Return the URL
         return $appUrl;
     }
+
 
     /**
       * Compares two paths and returns the relative path from one to the other

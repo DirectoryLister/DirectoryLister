@@ -16,15 +16,15 @@
 class DirectoryLister {
 
     // Define application version
-    const VERSION = '2.0.5-dev';
+    const VERSION = '2.1.0-dev';
 
     // Reserve some variables
-    protected $_themeName     = NULL;
-    protected $_directory     = NULL;
-    protected $_appDir        = NULL;
-    protected $_appURL        = NULL;
-    protected $_config        = NULL;
-    protected $_systemMessage = NULL;
+    protected $_themeName     = null;
+    protected $_directory     = null;
+    protected $_appDir        = null;
+    protected $_appURL        = null;
+    protected $_config        = null;
+    protected $_systemMessage = null;
 
 
     /**
@@ -67,10 +67,10 @@ class DirectoryLister {
      *
      * @param string $path Relative path of directory to list
      */
-    public function listDirectory($directory = NULL) {
+    public function listDirectory($directory = null) {
 
         // Set directory varriable if left blank
-        if ($directory === NULL) {
+        if ($directory === null) {
             $directory = $this->_directory;
         }
 
@@ -88,10 +88,10 @@ class DirectoryLister {
      * @param string $directory Path to be breadcrumbified
      * @access public
      */
-    public function listBreadcrumbs($directory = NULL) {
+    public function listBreadcrumbs($directory = null) {
 
         // Set directory varriable if left blank
-        if ($directory === NULL) {
+        if ($directory === null) {
             $directory = $this->_directory;
         }
 
@@ -109,7 +109,7 @@ class DirectoryLister {
 
             if ($dir != '.') {
 
-                $dirPath  = NULL;
+                $dirPath  = null;
 
                 // Build the directory path
                 for ($i = 0; $i <= $key; $i++) {
@@ -630,10 +630,10 @@ class DirectoryLister {
         while ($key <= $arrayMax) {
 
             // Get to path variable
-            $toPath = isset($toPathArray[$key]) ? $toPathArray[$key] : NULL;
+            $toPath = isset($toPathArray[$key]) ? $toPathArray[$key] : null;
 
             // Get from path variable
-            $fromPath = isset($fromPathArray[$key]) ? $fromPathArray[$key] : NULL;
+            $fromPath = isset($fromPathArray[$key]) ? $fromPathArray[$key] : null;
 
             if ($toPath !== $fromPath || $samePath !== true) {
 

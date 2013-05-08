@@ -33,7 +33,7 @@ $(document).ready(function() {
                 console.log(obj);
 
                 // Set modal title value
-                $('#hashModal .modal-header h3').text(name + ' Hashes');
+                $('#hashModal .modal-header h3').text(name);
 
                 // Set modal pop-up hash values
                 $('#hashTable .md5 .hash').text(obj.md5);

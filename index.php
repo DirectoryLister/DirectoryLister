@@ -11,6 +11,13 @@
         die($lister->getFileHash($_GET['hash']));
     }
 
+    // Initialize the directory array
+    if (isset($_GET['dir'])) {
+        $dirArray = $lister->listDirectory($_GET['dir']);
+    } else {
+        $dirArray = $lister->listDirectory('.');
+    }
+
     // Define theme path
     if (!defined('THEMEPATH')) {
         define('THEMEPATH', $lister->getThemePath());

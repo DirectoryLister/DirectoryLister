@@ -53,7 +53,7 @@
     </div>
 
     <ul id="directoryListing">
-    <?php $x = 1; foreach($lister->listDirectory() as $name => $fileInfo): ?>
+    <?php $x = 1; foreach($dirArray as $name => $fileInfo): ?>
         <li class="<?php echo $x %2 == 0 ? 'even' : 'odd'; ?>">
             <a href="<?php echo $fileInfo['file_path']; ?>" class="clearfix">
                 <span class="fileName">

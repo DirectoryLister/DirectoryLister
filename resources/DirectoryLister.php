@@ -56,13 +56,6 @@ class DirectoryLister {
         // Set the theme name
         $this->_themeName = $this->_config['theme_name'];
 
-        // Set the directory global variable
-        if (isset($_GET['dir'])) {
-            $this->_directory = $this->_setDirecoryPath($_GET['dir']);
-        } else {
-            $this->_directory = $this->_setDirecoryPath(null);
-        }
-
     }
 
 
@@ -71,7 +64,10 @@ class DirectoryLister {
      *
      * @param string $path Relative path of directory to list
      */
-    public function listDirectory($directory = null) {
+    public function listDirectory($directory) {
+
+        // Set directory
+        $this->setDirectoryPath($directory);
 
         // Set directory varriable if left blank
         if ($directory === null) {
@@ -195,30 +191,6 @@ class DirectoryLister {
 
 
     /**
-     * Add a message to the system message array
-     *
-     * @param string $type The type of message (ie - error, success, notice, etc.)
-     * @param string $message The message to be displayed to the user
-     * @access public
-     */
-    public function setSystemMessage($type, $text) {
-
-        // Create empty message array if it doesn't already exist
-        if (isset($this->_systemMessage) && !is_array($this->_systemMessage)) {
-            $this->_systemMessage = array();
-        }
-
-        // Set the error message
-        $this->_systemMessage[] = array(
-            'type'  => $type,
-            'text'  => $text
-        );
-
-        return true;
-    }
-
-
-    /**
      * Get an array of error messages or false when empty.
      *
      * @return array Array of error messages
@@ -272,6 +244,44 @@ class DirectoryLister {
         // Return the data
         return $data;
 
+    }
+
+
+    /**
+     * Set directory path variable
+     *
+     * @param string $path Path to directory
+     * @access public
+     */
+    public function setDirectoryPath($path = null) {
+
+        // Set the directory global variable
+        $this->_directory = $this->_setDirecoryPath($path);
+
+    }
+
+
+    /**
+     * Add a message to the system message array
+     *
+     * @param string $type The type of message (ie - error, success, notice, etc.)
+     * @param string $message The message to be displayed to the user
+     * @access public
+     */
+    public function setSystemMessage($type, $text) {
+
+        // Create empty message array if it doesn't already exist
+        if (isset($this->_systemMessage) && !is_array($this->_systemMessage)) {
+            $this->_systemMessage = array();
+        }
+
+        // Set the error message
+        $this->_systemMessage[] = array(
+            'type'  => $type,
+            'text'  => $text
+        );
+
+        return true;
     }
 
 

@@ -13,6 +13,7 @@ return array(
         '.htaccess',
         '.htpasswd',
         'resources',
+        'analytics.inc'
      ),
 
     // Custom sort order

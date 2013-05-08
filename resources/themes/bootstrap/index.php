@@ -8,7 +8,7 @@
     <link rel="stylesheet" type="text/css" href="<?php echo THEMEPATH; ?>/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="<?php echo THEMEPATH; ?>/style.css" />
 
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script type="text/javascript" src="<?php echo THEMEPATH; ?>/bootstrap.min.js"></script>
     <script type="text/javascript" src="<?php echo THEMEPATH; ?>/directorylister.js"></script>
 

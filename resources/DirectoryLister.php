@@ -245,6 +245,22 @@ class DirectoryLister {
         // Placeholder array
         $hashArray = array();
 
+        // Verify file path exists and is a directory
+        if (!file_exists($filePath)) {
+            return json_encode($hashArray);
+        }
+
+        // Prevent access to hidden files
+        if ($this->_isHidden($filePath)) {
+            return json_encode($hashArray);
+        }
+
+        // Prevent access to parent folders
+        if (strpos($filePath, '<') !== false || strpos($filePath, '>') !== false
+        || strpos($filePath, '..') !== false || strpos($filePath, '/') === 0) {
+            return json_encode($hashArray);
+        }
+
         // Generate file hashes
         $hashArray['md5']    = hash_file('md5', $filePath);
         $hashArray['sha1']   = hash_file('sha1', $filePath);

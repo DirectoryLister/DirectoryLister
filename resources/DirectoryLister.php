@@ -57,7 +57,11 @@ class DirectoryLister {
         $this->_themeName = $this->_config['theme_name'];
 
         // Set the directory global variable
-        $this->_directory = $this->_setDirecoryPath(@$_GET['dir']);
+        if (isset($_GET['dir'])) {
+            $this->_directory = $this->_setDirecoryPath($_GET['dir']);
+        } else {
+            $this->_directory = $this->_setDirecoryPath(null);
+        }
 
     }
 

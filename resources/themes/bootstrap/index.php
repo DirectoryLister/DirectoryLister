@@ -60,9 +60,9 @@
                     <i class="<?php echo $fileInfo['icon_class']; ?>">&nbsp;</i>
                     <?php echo $name; ?>
                 </span>
-                <span class="fileHash">
+                <span class="fileButtons">
                     <?php if (is_file($fileInfo['file_path'])): ?>
-                        <button class="hashButton btn btn-mini">#</button>
+                        <button class="checksumButton btn btn-mini">#</button>
                     <?php endif; ?>
                 </span>
                 <span class="fileSize"><?php echo $fileInfo['file_size']; ?></span>
@@ -78,7 +78,7 @@
 
 </div>
 
-<div id="hashModal" class="modal hide fade">
+<div id="checksumModal" class="modal hide fade">
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
         <h3>{{modal_header}}</h3>
@@ -86,7 +86,7 @@
 
     <div class="modal-body">
 
-        <table id="hashTable" class="table table-bordered">
+        <table id="checksumTable" class="table table-bordered">
             <tbody>
                 <tr class="md5">
                     <td class="title">MD5</td>

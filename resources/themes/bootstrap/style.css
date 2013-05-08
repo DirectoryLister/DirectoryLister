@@ -187,7 +187,7 @@ li {
     width: 600px;
 }
 
-#directoryListing .fileHash {
+#directoryListing .fileButtons {
     display: inline-block;
     float: left;
     margin: 6px;
@@ -217,11 +217,11 @@ li {
     width: 125px;
 }
 
-#directoryListing .hashButton {
+#directoryListing .checksumButton {
     display: none;
 }
 
-#directoryListing a:hover .hashButton {
+#directoryListing a:hover .checksumButton {
     display: inline-block;
 }
 

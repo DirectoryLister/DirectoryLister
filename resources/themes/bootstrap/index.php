@@ -55,10 +55,15 @@
     <ul id="directoryListing">
     <?php $x = 1; foreach($dirArray as $name => $fileInfo): ?>
         <li class="<?php echo $x %2 == 0 ? 'even' : 'odd'; ?>">
-            <a href="<?php echo $fileInfo['file_path']; ?>" class="clearfix">
+            <a href="<?php echo $fileInfo['file_path']; ?>" class="clearfix" data-name="<?php echo $name; ?>">
                 <span class="fileName">
                     <i class="<?php echo $fileInfo['icon_class']; ?>">&nbsp;</i>
                     <?php echo $name; ?>
+                </span>
+                <span class="fileHash">
+                    <?php if (is_file($fileInfo['file_path'])): ?>
+                        <button class="hashButton btn btn-mini">#</button>
+                    <?php endif; ?>
                 </span>
                 <span class="fileSize"><?php echo $fileInfo['file_size']; ?></span>
                 <span class="fileModTime"><?php echo $fileInfo['mod_time']; ?></span>
@@ -73,6 +78,33 @@
 
 </div>
 
+<div id="hashModal" class="modal hide fade">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h3>{{modal_header}}</h3>
+    </div>
+
+    <div class="modal-body">
+
+        <table id="hashTable" class="table table-bordered">
+            <tbody>
+                <tr class="md5">
+                    <td class="title">MD5</td>
+                    <td class="hash">{{md5_sum}}</td>
+                </tr>
+                <tr class="sha1">
+                    <td class="title">SHA1</td>
+                    <td class="hash">{{sha1_sum}}</td>
+                </tr>
+                <tr class="sha256">
+                    <td class="title">SHA256</td>
+                    <td class="hash">{{sha256_sum}}</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+</div>
 
 </body>
 </html>

@@ -140,17 +140,17 @@ li {
     margin-top: -1px;
 }
 
-#directoryListing li.even a {
+#directoryListing li.even > a {
     background-color: #FFF;
     position: relative;
     z-index: 0;
 }
 
-#directoryListing li.odd a {
+#directoryListing li.odd > a {
     background-color: #F9F9F9;
 }
 
-#directoryListing li a {
+#directoryListing li > a {
     border-top: 1px solid #DDD;
     border-bottom: 1px solid #DDD;
     color: #333;
@@ -158,12 +158,12 @@ li {
     text-decoration: none;
 }
 
-#directoryListing li a:focus {
+#directoryListing li > a:focus {
     background-color: #DEDEDE;
     outline: none;
 }
 
-#directoryListing li a:hover {
+#directoryListing li > a:hover {
     border-color: #D3D3EE;
     background-color: #F3F3FF;
     outline: none;
@@ -184,7 +184,17 @@ li {
     margin: 8px;
     overflow: hidden;
     white-space: nowrap;
-    width: 625px;
+    width: 600px;
+}
+
+#directoryListing .fileHash {
+    display: inline-block;
+    float: left;
+    margin: 6px;
+    overflow: hidden;
+    text-align: center;
+    white-space: nowrap;
+    width: 25px;
 }
 
 #directoryListing .fileSize {
@@ -207,6 +217,13 @@ li {
     width: 125px;
 }
 
+#directoryListing .hashButton {
+    display: none;
+}
+
+#directoryListing a:hover .hashButton {
+    display: inline-block;
+}
 
 /* -------------------------------------------------------------------------- */
 /* -----| FOOTER |----------------------------------------------------------- */
@@ -216,6 +233,30 @@ li {
     margin: 10px 0;
     text-align: center;
 }
+
+
+
+
+
+/* -------------------------------------------------------------------------- */
+/* -----| HASH MODAL |--------------------------------------------------------*/
+/* -------------------------------------------------------------------------- */
+
+#hashTable {
+    margin: 0;
+}
+
+#hashTable .title {
+    font-weight: bold;
+    text-align: right;
+}
+
+#hashTable .hash {
+    font-family: monospace;
+    font-size: .85em;
+}
+
+
 
 
 /* -------------------------------------------------------------------------- */

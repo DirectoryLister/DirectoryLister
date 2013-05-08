@@ -239,19 +239,19 @@ li {
 
 
 /* -------------------------------------------------------------------------- */
-/* -----| HASH MODAL |--------------------------------------------------------*/
+/* -----| CHECKSUM MODAL |----------------------------------------------------*/
 /* -------------------------------------------------------------------------- */
 
-#hashTable {
+#checksumTable {
     margin: 0;
 }
 
-#hashTable .title {
+#checksumTable .title {
     font-weight: bold;
     text-align: right;
 }
 
-#hashTable .hash {
+#checksumTable .hash {
     font-family: monospace;
     font-size: .85em;
 }

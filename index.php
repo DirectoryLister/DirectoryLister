@@ -8,7 +8,14 @@
 
     // Return file hash
     if (isset($_GET['hash'])) {
-        die($lister->getFileHash($_GET['hash']));
+
+        // Get file hash array and JSON encode it
+        $hashes = $lister->getFileHash($_GET['hash']);
+        $data   = json_encode($hashes);
+
+        // Return the data
+        die($data);
+
     }
 
     // Initialize the directory array

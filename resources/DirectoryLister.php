@@ -232,6 +232,33 @@ class DirectoryLister {
         }
     }
 
+
+    /**
+     * Returns a JSON encoded array of file hash values
+     *
+     * @param  string $path Path to file
+     * @return string JSON encoded array of file hashes
+     * @access public
+     */
+    public function getFileHash($filePath) {
+
+        // Placeholder array
+        $hashArray = array();
+
+        // Generate file hashes
+        $hashArray['md5']    = hash_file('md5', $filePath);
+        $hashArray['sha1']   = hash_file('sha1', $filePath);
+        $hashArray['sha256'] = hash_file('sha256', $filePath);
+
+        // JSON encode hash array
+        $data = json_encode($hashArray);
+
+        // Return the data
+        return $data;
+
+    }
+
+
     /**
      * Validates and returns the directory path
      *

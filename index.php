@@ -6,6 +6,11 @@
     // Initialize the DirectoryLister object
     $lister = new DirectoryLister();
 
+    // Return file hash
+    if (isset($_GET['hash'])) {
+        die($lister->getFileHash($_GET['hash']));
+    }
+
     // Define theme path
     if (!defined('THEMEPATH')) {
         define('THEMEPATH', $lister->getThemePath());

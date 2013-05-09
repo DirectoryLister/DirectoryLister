@@ -63,6 +63,8 @@ class DirectoryLister {
      * Creates the directory listing and returns the formatted XHTML
      *
      * @param string $path Relative path of directory to list
+     * @return array Array of directory being listed
+     * @access public
      */
     public function listDirectory($directory) {
 
@@ -83,9 +85,10 @@ class DirectoryLister {
 
 
     /**
-     * Description...
+     * Parses and returns an array of breadcrumbs
      *
      * @param string $directory Path to be breadcrumbified
+     * @return array Array of breadcrumbs
      * @access public
      */
     public function listBreadcrumbs($directory = null) {
@@ -139,10 +142,10 @@ class DirectoryLister {
 
 
     /**
-     * Gets path of the listed directory
+     * Get path of the listed directory
      *
-     * @return string Pat of the listed directory
-     * @acces public
+     * @return string Path of the listed directory
+     * @access public
      */
     public function getListedPath() {
 
@@ -161,6 +164,7 @@ class DirectoryLister {
     /**
      * Returns the theme name.
      *
+     * @return string Theme name
      * @access public
      */
     public function getThemeName() {
@@ -168,10 +172,12 @@ class DirectoryLister {
         return $this->_config['theme_name'];
     }
 
+
     /**
-     * Returns the path to the chosen theme directory.
+     * Returns the path to the chosen theme directory
      *
      * @param bool $absolute Wether or not the path returned is absolute (default = false).
+     * @return string Path to theme
      * @access public
      */
     public function getThemePath($absolute = false) {
@@ -191,9 +197,9 @@ class DirectoryLister {
 
 
     /**
-     * Get an array of error messages or false when empty.
+     * Get an array of error messages or false when empty
      *
-     * @return array Array of error messages
+     * @return array|bool Array of error messages or false
      * @access public
      */
     public function getSystemMessages() {
@@ -209,7 +215,7 @@ class DirectoryLister {
      * Returns array of file hash values
      *
      * @param  string $path Path to file
-     * @return string Array of file hashes
+     * @return array Array of file hashes
      * @access public
      */
     public function getFileHash($filePath) {
@@ -248,12 +254,15 @@ class DirectoryLister {
      * Set directory path variable
      *
      * @param string $path Path to directory
+     * @return string Sanitizd path to directory
      * @access public
      */
     public function setDirectoryPath($path = null) {
 
         // Set the directory global variable
         $this->_directory = $this->_setDirecoryPath($path);
+
+        return $this->_directory;
 
     }
 
@@ -263,6 +272,7 @@ class DirectoryLister {
      *
      * @param string $type The type of message (ie - error, success, notice, etc.)
      * @param string $message The message to be displayed to the user
+     * @return bool true on success
      * @access public
      */
     public function setSystemMessage($type, $text) {
@@ -285,10 +295,11 @@ class DirectoryLister {
     /**
      * Validates and returns the directory path
      *
+     * @param string @dir Directory path
      * @return string Directory path to be listed
-     * @access private
+     * @access protected
      */
-    private function _setDirecoryPath($dir) {
+    protected function _setDirecoryPath($dir) {
 
         // Check for an empty variable
         if (empty($dir) || $dir == '.') {
@@ -345,10 +356,12 @@ class DirectoryLister {
      * Loop through directory and return array with file info, including
      * file path, size, modification time, icon and sort order.
      *
-     * @return array An array of the directory contents
-     * @access private
+     * @param string $directory Directory path
+     * @param @sort Sort method (default = natcase)
+     * @return array Array of the directory contents
+     * @access protected
      */
-    private function _readDirectory($directory, $sort = 'natcase') {
+    protected function _readDirectory($directory, $sort = 'natcase') {
 
         // Initialize array
         $directoryArray = array();
@@ -449,15 +462,15 @@ class DirectoryLister {
 
 
     /**
-    * Sorts an array by the provided sort method.
-    *
-    * @param array $array Array to be sorted
-    * @param string $sort Sorting method (acceptable inputs: natsort, natcasesort, etc.)
-    * @param boolen $reverse Reverse the sorted array order (default = false)
-    * @return array
-    * @access private
-    */
-    private function _arraySort($array, $sortMethod, $reverse = false) {
+     * Sorts an array by the provided sort method.
+     *
+     * @param array $array Array to be sorted
+     * @param string $sortMethod Sorting method (acceptable inputs: natsort, natcasesort, etc.)
+     * @param boolen $reverse Reverse the sorted array order if true (default = false)
+     * @return array
+     * @access protected
+     */
+    protected function _arraySort($array, $sortMethod, $reverse = false) {
         // Create empty arrays
         $sortedArray = array();
         $finalArray  = array();
@@ -549,12 +562,13 @@ class DirectoryLister {
 
 
     /**
-     * Determines if a file is supposed to be hidden
+     * Determines if a file is specified as hidden
      *
-     * @param string $filePath Path to be checked if hidden
-     * @access private
+     * @param string $filePath Path to file to be checked if hidden
+     * @return boolean Returns true if file is in hidden array, false if not
+     * @access protected
      */
-    private function _isHidden($filePath) {
+    protected function _isHidden($filePath) {
 
         // Define the OS specific directory separator
         if (!defined('DS')) define('DS', DIRECTORY_SEPARATOR);
@@ -601,9 +615,9 @@ class DirectoryLister {
      * Builds the root application URL from server variables.
      *
      * @return string The application URL
-     * @access private
+     * @access protected
      */
-    private function _getAppUrl() {
+    protected function _getAppUrl() {
 
         // Get the server protocol
         if (!empty($_SERVER['HTTPS'])) {
@@ -643,9 +657,9 @@ class DirectoryLister {
      * @param string $fromPath Starting path
      * @param string $toPath Ending path
      * @return string $relativePath Relative path from $fromPath to $toPath
-     * @access private
+     * @access protected
      */
-    private function _getRelativePath($fromPath, $toPath) {
+    protected function _getRelativePath($fromPath, $toPath) {
 
         // Define the OS specific directory separator
         if (!defined('DS')) define('DS', DIRECTORY_SEPARATOR);
@@ -718,5 +732,3 @@ class DirectoryLister {
     }
 
 }
-
-?>

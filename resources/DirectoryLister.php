@@ -221,7 +221,7 @@ class DirectoryLister {
     public function getFileHash($filePath) {
 
         // Generate the real system path
-        $filePath = dirname($this->_appDir) . DIRECTORY_SEPARATOR . $filePath
+        $filePath = dirname($this->_appDir) . DIRECTORY_SEPARATOR . $filePath;
 
         // Placeholder array
         $hashArray = array();

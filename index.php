@@ -1,5 +1,11 @@
 <?php
 
+    // Prevent date/time functions from throwing E_WARNING on PHP 5.3 by setting a default timezone
+    if (function_exists('date_default_timezone_set') && function_exists('date_default_timezone_get'))
+    {
+        date_default_timezone_set(@date_default_timezone_get());
+    }
+
     // Include the DirectoryLister class
     require_once('resources/DirectoryLister.php');
 

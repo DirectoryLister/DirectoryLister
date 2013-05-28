@@ -23,7 +23,7 @@ $(document).ready(function() {
         var path = $(this).closest('a').attr('href');
 
         $.ajax({
-            url:     '/?hash=' + path,
+            url:     '?hash=' + path,
             type:    'get',
             success: function(data) {
 

@@ -3,8 +3,8 @@
 return array(
 
     // Basic settings
-    'hide_dot_files'     => TRUE,
-    'list_folders_first' => TRUE,
+    'hide_dot_files'     => true,
+    'list_folders_first' => true,
     'list_sort_order'    => 'natcasesort',
     'theme_name'         => 'bootstrap',
 

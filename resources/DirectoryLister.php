@@ -386,7 +386,7 @@ class DirectoryLister {
 
                 // Determine file type by extension
                 if (is_dir($realPath)) {
-                    $iconClass = 'icon-folder';
+                    $iconClass = 'icon-folder-close';
                     $sort = 1;
                 } else {
                     // Get file extension
@@ -419,7 +419,7 @@ class DirectoryLister {
                             'file_path'  => $this->_appURL . $directoryPath,
                             'file_size'  => '-',
                             'mod_time'   => date('Y-m-d H:i:s', filemtime($realPath)),
-                            'icon_class' => 'icon-up-dir',
+                            'icon_class' => 'icon-level-up',
                             'sort'       => 0
                         );
                     }

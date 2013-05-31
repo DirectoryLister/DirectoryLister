@@ -5,6 +5,7 @@ Created by, [Chris Kankiewicz](http://www.ChrisKankiewicz.com)
 
 Introduction
 ------------
+
 Directory Lister is a simple PHP script that lists the contents of any web-accessable directory and
 allows navigating there within. Simply upload Directory Lister to any directory and get immediate
 access to all files and sub-direcories under that directory. Directory Lister is written in PHP and
@@ -15,6 +16,7 @@ More info available at <http://www.directorylister.com>
 
 Features
 --------
+
   * Extremely simple installation
   * Creates on-the-fly listing of any web-accessable directory
   * Custimizable sort order of files/folders
@@ -23,30 +25,47 @@ Features
 
 Requirements
 ------------
-Directory Lister requires PHP 5.2+ to work properly.  For more information on PHP, please visit
+
+Directory Lister requires PHP 5.3+ to work properly.  For more information on PHP, please visit
 <http://www.php.net>.
 
 
 Installation
 ------------
-  1. Upload `index.php` and the `resources` folder to the directory that you would like to be listed
-  2. Copy `resources/default.config.php` to `resources/config.php`
-  3. Navigate to your page in any browser to see the directory listing
+
+  1. Copy `resources/default.config.php` to `resources/config.php`
+  2. Upload `index.php` and the `resources` folder to the folder you want listed
+  3. Upload additional files to the same directory as index.php
 
 
-Support
--------
-If you have any questions or comments, please email me at: <Chris@ChrisKankiewicz.com>
+Troubleshooting
+---------------
 
-Directory Lister updates and news can be found by following us on 
-[Twitter](https://twitter.com/#!/directorylister).
+Ensure you have the latest version of Directory Lister installed.
 
-To report a bug, visit the issue tracker on Github at:
-<https://github.com/DirectoryLister/DirectoryLister/issues>
+Verify that you have PHP 5.3 or later installed. You can verify your PHP version by running:
+
+    php --version
+
+
+
+
+Contact Info
+------------
+
+Contact us via our mailling list at [Directory-Lister@GoogleGroups.com](mailto:Directory-Lister@GoogleGroups.com)
+or [join our Google Group](https://groups.google.com/forum/?fromgroups#!forum/directory-lister) online.
+
+Follow Directory Lister on Twitter at [@DirectoryLister](https://twitter.com/directorylister) or
+follow the developer at [@PHLAK](https://twitter.com/PHLAK)
+
+Find a problem or bug with Directory Lister?
+[Open an issue](https://github.com/DirectoryLister/DirectoryLister/issues) on GitHub.
 
 
 License
 -------
+
 Directory Lister is distributed under the terms of the
 [MIT License](http://www.opensource.org/licenses/mit-license.php).
-Copyright 2012 [Chris Kankiewicz](http://www.chriskankiewicz.com)
+Copyright 2013 [Chris Kankiewicz](http://www.chriskankiewicz.com)

@@ -1,26 +1,28 @@
 $(document).ready(function() {
 
-    var originalTop = $('.breadcrumb-wrapper').offset().top;
+    // Get breadcrumbs original position
+    var originalTop = $('.breadcrumb').offset().top;
 
-    checkSubnav(originalTop);
+    // Run pinBreadcrumbs() on page load
+    pinBreadcrumbs(originalTop);
 
+    // Run pinBreadcrumbs() on scroll
     $(window).scroll(function() {
-        checkSubnav(originalTop);
+        pinBreadcrumbs(originalTop);
     });
 
-    // Scroll page link on click action
-    $('#pageTopLink').click(function() {
+    // Scroll page on click action
+    $('#page-top').click(function() {
         $('html, body').animate({ scrollTop: 0 }, 'fast');
-
         return false;
     });
 
     // Hash button on click action
-    $('.checksumButton').click(function(event) {
+    $('.file-info-button').click(function(event) {
 
         // Get the file name and path
-        var name = $(this).closest('a').attr('data-name');
-        var path = $(this).closest('a').attr('href');
+        var name = $(this).closest('li').attr('data-name');
+        var path = $(this).closest('li').attr('data-href');
 
         $.ajax({
             url:     '/?hash=' + path,
@@ -33,18 +35,18 @@ $(document).ready(function() {
                 console.log(obj);
 
                 // Set modal title value
-                $('#checksumModal .modal-header h3').text(name);
+                $('#file-info-modal .modal-header h3').text(name);
 
                 // Set modal pop-up hash values
-                $('#checksumTable .md5 .hash').text(obj.md5);
-                $('#checksumTable .sha1 .hash').text(obj.sha1);
-                $('#checksumTable .sha256 .hash').text(obj.sha256);
+                $('#file-info .md5-hash').text(obj.md5);
+                $('#file-info .sha1-hash').text(obj.sha1);
+                $('#file-info .sha256-hash').text(obj.sha256);
 
             }
         });
 
         // Show the modal
-        $('#checksumModal').modal('show');
+        $('#file-info-modal').modal('show');
 
         // Prevent default link action
         event.preventDefault();
@@ -53,12 +55,12 @@ $(document).ready(function() {
 
 });
 
-function checkSubnav(elTop) {
+function pinBreadcrumbs(elTop) {
     if($(window).scrollTop() >= elTop) {
         $('body').addClass('breadcrumb-fixed');
-        $('#pageTopLink').show();
+        $('#page-top').show();
     } else {
         $('body').removeClass('breadcrumb-fixed');
-        $('#pageTopLink').hide();
+        $('#page-top').hide();
     }
 }

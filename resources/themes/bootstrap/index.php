@@ -1,110 +1,136 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
 
-<head>
-    <title>Directory listing of <?php echo $lister->getListedPath(); ?></title>
-    <link rel="shortcut icon" href="<?php echo THEMEPATH; ?>/images/folder.png" />
+<html>
 
-    <link rel="stylesheet" type="text/css" href="<?php echo THEMEPATH; ?>/bootstrap.min.css" />
-    <link rel="stylesheet" type="text/css" href="<?php echo THEMEPATH; ?>/style.css" />
+    <head>
 
-    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script type="text/javascript" src="<?php echo THEMEPATH; ?>/bootstrap.min.js"></script>
-    <script type="text/javascript" src="<?php echo THEMEPATH; ?>/directorylister.js"></script>
+        <title>Directory listing of <?php echo $lister->getListedPath(); ?></title>
+        <link rel="shortcut icon" href="<?php echo THEMEPATH; ?>/img/folder.png">
 
-    <?php file_exists('analytics.inc') ? include('analytics.inc') : false; ?>
+        <!-- STYLES -->
+        <link rel="stylesheet" type="text/css" href="<?php echo THEMEPATH; ?>/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="<?php echo THEMEPATH; ?>/css/bootstrap-responsive.min.css">
+        <link rel="stylesheet" type="text/css" href="<?php echo THEMEPATH; ?>/css/font-awesome.min.css">
+        <link rel="stylesheet" type="text/css" href="<?php echo THEMEPATH; ?>/css/style.css">
 
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-</head>
+        <!-- SCRIPTS -->
+        <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <script type="text/javascript" src="<?php echo THEMEPATH; ?>/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="<?php echo THEMEPATH; ?>/js/directorylister.js"></script>
 
-<body>
+        <!-- FONTS -->
+        <link rel="stylesheet" type="text/css"  href="http://fonts.googleapis.com/css?family=Cutive+Mono">
 
-<div class="container">
+        <!-- META -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <div class="breadcrumb-wrapper">
-        <ul class="breadcrumb">
-            <?php $divider = FALSE; foreach($lister->listBreadcrumbs() as $breadcrumb): ?>
-            <li>
-                <?php if ($divider): ?>
-                    <span class="divider">/</span>
-                <?php endif; ?>
-                <a href="<?php echo $breadcrumb['link']; ?>"><?php echo $breadcrumb['text']; ?></a>
-            </li>
-            <?php $divider = TRUE; endforeach; ?>
-            <li class="floatRight" style="display: hidden;">
-                <a href="#" id="pageTopLink">Top</a>
-            </li>
-        </ul>
-    </div>
+        <?php file_exists('analytics.inc') ? include('analytics.inc') : false; ?>
 
-    <?php if($lister->getSystemMessages()): ?>
-        <?php foreach ($lister->getSystemMessages() as $message): ?>
-            <div class="alert alert-<?php echo $message['type']; ?>">
-                <?php echo $message['text']; ?>
-                <a class="close" data-dismiss="alert" href="#">&times;</a>
+    </head>
+
+    <body>
+
+        <div class="container">
+
+            <?php $breadcrumbs = $lister->listBreadcrumbs(); ?>
+
+            <div class="breadcrumb-wrapper">
+                <ul class="breadcrumb">
+                    <?php foreach($breadcrumbs as $breadcrumb): ?>
+                        <?php if ($breadcrumb != end($breadcrumbs)): ?>
+                            <li>
+                                <a href="<?php echo $breadcrumb['link']; ?>"><?php echo $breadcrumb['text']; ?></a>
+                                <span class="divider">/</span>
+                            </li>
+                        <?php else: ?>
+                            <li class="active"><?php echo $breadcrumb['text']; ?></li>
+                        <?php endif; ?>
+                    <?php endforeach; ?>
+                    <li id="page-top" class="pull-right" style="display: hidden;">
+                        <a href="javascript:void(0)"><i class="icon-circle-arrow-up"></i></a>
+                    </li>
+                </ul>
             </div>
-        <?php endforeach; ?>
-    <?php endif; ?>
 
-    <div id="header" class="clearfix">
-        <span class="fileName">File</span>
-        <span class="fileSize">Size</span>
-        <span class="fileModTime">Last Modified</span>
-    </div>
+            <?php if($lister->getSystemMessages()): ?>
+                <?php foreach ($lister->getSystemMessages() as $message): ?>
+                    <div class="alert alert-<?php echo $message['type']; ?>">
+                        <?php echo $message['text']; ?>
+                        <a class="close" data-dismiss="alert" href="#">&times;</a>
+                    </div>
+                <?php endforeach; ?>
+            <?php endif; ?>
 
-    <ul id="directoryListing">
-    <?php $x = 1; foreach($dirArray as $name => $fileInfo): ?>
-        <li class="<?php echo $x %2 == 0 ? 'even' : 'odd'; ?>">
-            <a href="<?php echo $fileInfo['file_path']; ?>" class="clearfix" data-name="<?php echo $name; ?>">
-                <span class="fileName">
-                    <i class="<?php echo $fileInfo['icon_class']; ?>">&nbsp;</i>
-                    <?php echo $name; ?>
-                </span>
-                <span class="fileButtons">
-                    <?php if (is_file($fileInfo['file_path'])): ?>
-                        <button class="checksumButton btn btn-mini">#</button>
-                    <?php endif; ?>
-                </span>
-                <span class="fileSize"><?php echo $fileInfo['file_size']; ?></span>
-                <span class="fileModTime"><?php echo $fileInfo['mod_time']; ?></span>
-            </a>
-        </li>
-    <?php $x++; endforeach; ?>
-    </ul>
+            <ul class="directory-listing nav nav-pills nav-stacked">
 
-    <div class="footer">
-        <p>Powered by, <a href="http://www.directorylister.com">Directory Lister</a></p>
-    </div>
+                <li class="nav-header">
+                    <span class="file-name">File</span>
+                    <span class="file-size">Size</span>
+                    <span class="file-modified">Last Modified</span>
+                    <span class="file-info">
+                </li>
 
-</div>
+                <?php foreach($dirArray as $name => $fileInfo): ?>
+                    <li class="clearfix" data-name="<?php echo $name; ?>" data-href="<?php echo $fileInfo['file_path']; ?>">
+                        <a href="<?php echo $fileInfo['file_path']; ?>" class="clearfix" data-name="<?php echo $name; ?>">
 
-<div id="checksumModal" class="modal hide fade">
-    <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h3>{{modal_header}}</h3>
-    </div>
+                            <span class="file-name">
+                                <span class="icon-wrapper">
+                                    <i class="<?php echo $fileInfo['icon_class']; ?>"></i>
+                                </span>
+                                <?php echo $name; ?>
+                            </span>
 
-    <div class="modal-body">
+                            <span class="file-size">
+                                <?php echo $fileInfo['file_size']; ?>
+                            </span>
 
-        <table id="checksumTable" class="table table-bordered">
-            <tbody>
-                <tr class="md5">
-                    <td class="title">MD5</td>
-                    <td class="hash">{{md5_sum}}</td>
-                </tr>
-                <tr class="sha1">
-                    <td class="title">SHA1</td>
-                    <td class="hash">{{sha1_sum}}</td>
-                </tr>
-                <tr class="sha256">
-                    <td class="title">SHA256</td>
-                    <td class="hash">{{sha256_sum}}</td>
-                </tr>
-            </tbody>
-        </table>
+                            <span class="file-modified">
+                                <?php echo $fileInfo['mod_time']; ?>
+                            </span>
 
-    </div>
-</div>
+                        </a>
 
-</body>
+                        <?php if (is_file($fileInfo['file_path'])): ?>
+                            <a href="javascript:void(0)" class="file-info-button">
+                                <i class="icon-info-sign"></i>
+                            </a>
+                        <?php endif; ?>
+                    </li>
+                <?php endforeach; ?>
+
+            </ul>
+
+            <hr>
+
+            <div class="footer">
+                <p>Powered by, <a href="http://www.directorylister.com">Directory Lister</a></p>
+            </div>
+
+        </div>
+
+        <div id="file-info-modal" class="modal hide fade">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h3>{{modal_header}}</h3>
+            </div>
+
+            <div class="modal-body">
+
+                <dl id="file-info" >
+                    <dt>MD5</dt>
+                        <dd class="md5-hash">{{md5_sum}}</dd>
+
+                    <dt>SHA1</dt>
+                        <dd class="sha1-hash">{{sha1_sum}}</dd>
+
+                    <dt>sha256</dt>
+                        <dd class="sha256-hash">{{sha256_sum}}</dd>
+                </dl>
+
+            </div>
+        </div>
+
+    </body>
+
 </html>

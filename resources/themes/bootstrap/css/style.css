@@ -1,0 +1,183 @@
+/* ---------------------------------------------------------------------------------------------- */
+/* -----| GENERAL |------------------------------------------------------------------------------ */
+/* ---------------------------------------------------------------------------------------------- */
+
+body {
+    margin: 20px 0;
+    min-width: 520px;
+}
+
+body.breadcrumb-fixed {
+    padding-top: 56px;
+}
+
+#page-top a {
+    color: #AAA;
+    display: inline-block;
+    margin: 0;
+}
+
+#page-top a:hover {
+    color: #999;
+    text-decoration: none;
+}
+
+
+/* -------------------------------------------------------------------------- */
+/* -----| BREADCRUMBS |------------------------------------------------------ */
+/* -------------------------------------------------------------------------- */
+
+.breadcrumb-wrapper {
+    background-color: #F5F5F5;
+    border-radius: 4px;
+    margin-bottom: 20px;
+}
+
+.breadcrumb {
+    margin: 0;
+    position: relative;
+}
+
+.breadcrumb-fixed .breadcrumb-wrapper {
+    border-radius: 0;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+    left: 0;
+    margin: 0;
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: 1000;
+}
+
+.breadcrumb-fixed .breadcrumb {
+    width: 910px;
+    margin: 0 auto;
+}
+
+
+/* ---------------------------------------------------------------------------------------------- */
+/* -----| DIRECTORY LISTER |--------------------------------------------------------------------- */
+/* ---------------------------------------------------------------------------------------------- */
+
+.directory-listing {
+    font-family: 'Cutive Mono', monospace, serif;
+}
+
+.directory-listing li {
+    position: relative;
+}
+
+.directory-listing li span {
+    display: inline-block;
+}
+
+.file-name {
+    width: 65%;
+}
+
+.file-name .icon-wrapper {
+    display: inline-block;
+    text-align: center;
+    width: 16px;
+}
+
+.file-name i {
+    color: #555;
+}
+
+.file-size {
+    text-align: right !important;
+    width: 12%;
+}
+
+.file-modified {
+    float: right;
+    text-align: right !important;
+    width: 20%;
+}
+
+.file-info-button {
+    display: inline-block;
+    cursor: pointer;
+    margin-left: 100%;
+    padding: 8px !important;
+    position: absolute;
+    top: 0;
+}
+
+.file-info-button i {
+    color: #999;
+}
+
+
+/* ---------------------------------------------------------------------------------------------- */
+/* -----| FOOTER |------------------------------------------------------------------------------- */
+/* ---------------------------------------------------------------------------------------------- */
+
+.footer p {
+    margin: 10px 0;
+    text-align: center;
+}
+
+/* ---------------------------------------------------------------------------------------------- */
+/* -----| CHECKSUM MODAL |----------------------------------------------------------------------- */
+/* ---------------------------------------------------------------------------------------------- */
+
+#file-info {
+    margin: 0;
+}
+
+#file-info dt {
+    font-weight: bold;
+}
+
+#file-info dd {
+    font-family: 'Cutive Mono', monospace, serif;
+    margin: 5px 5px 5px 15px;
+}
+
+
+/* ---------------------------------------------------------------------------------------------- */
+/* -----| RESPONSIVE |--------------------------------------------------------------------------- */
+/* ---------------------------------------------------------------------------------------------- */
+
+@media (min-width: 768px) and (max-width: 979px) {
+
+    .breadcrumb-fixed .breadcrumb {
+        width: 694px;
+    }
+
+    .file-name {
+        width: 55%;
+    }
+
+    .file-size {
+        width: 15%;
+    }
+
+    .file-modified {
+        width: 25%;
+    }
+
+}
+
+@media (max-width: 767px) {
+
+    .breadcrumb-fixed .breadcrumb {
+        margin: 0 12px;
+        width: auto;
+    }
+
+    .file-name {
+        width: 40%;
+    }
+
+    .file-size {
+        width: 20%;
+    }
+
+    .file-modified {
+        width: 35%;
+    }
+
+}

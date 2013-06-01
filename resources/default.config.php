@@ -25,12 +25,12 @@ return array(
     'file_types' => array(
 
         // Archives
-        '7z'    => 'icon-archive',
-        'bz'    => 'icon-archive',
-        'gz'    => 'icon-archive',
-        'rar'   => 'icon-archive',
-        'tar'   => 'icon-archive',
-        'zip'   => 'icon-archive',
+        '7z'    => 'icon-briefcase',
+        'bz'    => 'icon-briefcase',
+        'gz'    => 'icon-briefcase',
+        'rar'   => 'icon-briefcase',
+        'tar'   => 'icon-briefcase',
+        'zip'   => 'icon-briefcase',
 
         // Audio
         'aac'   => 'icon-music',
@@ -43,65 +43,59 @@ return array(
         'wav'   => 'icon-music',
 
         // Code
-        'c'     => 'icon-c',
+        'c'     => 'icon-code',
         'class' => 'icon-code',
-        'cpp'   => 'icon-cplusplus',
+        'cpp'   => 'icon-code',
         'css'   => 'icon-code',
-        'erb'   => 'icon-ruby',
+        'erb'   => 'icon-code',
         'htm'   => 'icon-code',
         'html'  => 'icon-code',
-        'java'  => 'icon-code-red',
+        'java'  => 'icon-code',
         'js'    => 'icon-code',
-        'php'   => 'icon-php',
-        'pl'    => 'icon-code-red',
-        'py'    => 'icon-code-red',
-        'rb'    => 'icon-ruby',
+        'php'   => 'icon-code',
+        'pl'    => 'icon-code',
+        'py'    => 'icon-code',
+        'rb'    => 'icon-code',
         'xhtml' => 'icon-code',
         'xml'   => 'icon-code',
 
         // Databases
-        'accdb' => 'icon-database',
-        'db'    => 'icon-database',
-        'dbf'   => 'icon-database',
-        'mdb'   => 'icon-database',
-        'pdb'   => 'icon-database',
-        'sql'   => 'icon-database',
-
-        // Disc Images
-        'cue'   => 'icon-cd',
-        'iso'   => 'icon-cd',
-        'mdf'   => 'icon-cd',
-        'mds'   => 'icon-cd',
-        'mdx'   => 'icon-cd',
-        'nrg'   => 'icon-cd',
-        'vcd'   => 'icon-cd',
+        'accdb' => 'icon-hdd',
+        'db'    => 'icon-hdd',
+        'dbf'   => 'icon-hdd',
+        'mdb'   => 'icon-hdd',
+        'pdb'   => 'icon-hdd',
+        'sql'   => 'icon-hdd',
 
         // Documents
-        'csv'   => 'icon-excel',
-        'doc'   => 'icon-word',
-        'docx'  => 'icon-word',
-        'odt'   => 'icon-text',
-        'pdf'   => 'icon-pdf',
-        'xls'   => 'icon-excel',
-        'xlsx'  => 'icon-excel',
+        'csv'   => 'icon-file-alt',
+        'doc'   => 'icon-file-alt',
+        'docx'  => 'icon-file-alt',
+        'odt'   => 'icon-file-alt',
+        'pdf'   => 'icon-file-alt',
+        'xls'   => 'icon-file-alt',
+        'xlsx'  => 'icon-file-alt',
 
         // Executables
-        'app'   => 'icon-app',
-        'bat'   => 'icon-app',
-        'com'   => 'icon-app',
-        'exe'   => 'icon-app',
-        'jar'   => 'icon-app',
-        'msi'   => 'icon-app',
-        'vb'    => 'icon-app',
+        'app'   => 'icon-list-alt',
+        'bat'   => 'icon-list-alt',
+        'com'   => 'icon-list-alt',
+        'exe'   => 'icon-list-alt',
+        'jar'   => 'icon-list-alt',
+        'msi'   => 'icon-list-alt',
+        'vb'    => 'icon-list-alt',
 
         // Fonts
+        'eot'   => 'icon-font',
+        'otf'   => 'icon-font',
         'ttf'   => 'icon-font',
+        'woff'  => 'icon-font',
 
         // Game Files
-        'gam'   => 'icon-controller',
-        'nes'   => 'icon-controller',
-        'rom'   => 'icon-controller',
-        'sav'   => 'icon-disk',
+        'gam'   => 'icon-gamepad',
+        'nes'   => 'icon-gamepad',
+        'rom'   => 'icon-gamepad',
+        'sav'   => 'icon-save',
 
         // Images
         'bmp'   => 'icon-picture',
@@ -114,8 +108,8 @@ return array(
         'tif'   => 'icon-picture',
 
         // Package Files
-        'deb'   => 'icon-box',
-        'rpm'   => 'icon-box',
+        'deb'   => 'icon-inbox',
+        'rpm'   => 'icon-inbox',
 
         // Scripts
         'bat'   => 'icon-terminal',
@@ -123,36 +117,36 @@ return array(
         'sh'    => 'icon-terminal',
 
         // Text
-        'cfg'   => 'icon-text',
-        'ini'   => 'icon-text',
-        'log'   => 'icon-text',
-        'rtf'   => 'icon-text',
-        'txt'   => 'icon-text',
-        'md'    => 'icon-text',
+        'cfg'   => 'icon-file-alt',
+        'ini'   => 'icon-file-alt',
+        'log'   => 'icon-file-alt',
+        'md'    => 'icon-file-alt',
+        'rtf'   => 'icon-file-alt',
+        'txt'   => 'icon-file-alt',
 
         // Vector Images
-        'ai'    => 'icon-image',
-        'drw'   => 'icon-image',
-        'eps'   => 'icon-image',
-        'ps'    => 'icon-image',
-        'svg'   => 'icon-image',
+        'ai'    => 'icon-picture',
+        'drw'   => 'icon-picture',
+        'eps'   => 'icon-picture',
+        'ps'    => 'icon-picture',
+        'svg'   => 'icon-picture',
 
         // Video
-        'avi'   => 'icon-film',
-        'flv'   => 'icon-flash',
-        'mkv'   => 'icon-film',
-        'mov'   => 'icon-film',
-        'mp4'   => 'icon-film',
-        'mpg'   => 'icon-film',
-        'wmv'   => 'icon-film',
-        'swf'   => 'icon-flash',
+        'avi'   => 'icon-facetime-video',
+        'flv'   => 'icon-facetime-video',
+        'mkv'   => 'icon-facetime-video',
+        'mov'   => 'icon-facetime-video',
+        'mp4'   => 'icon-facetime-video',
+        'mpg'   => 'icon-facetime-video',
+        'wmv'   => 'icon-facetime-video',
+        'swf'   => 'icon-facetime-video',
 
         // Other
-        'bak'   => 'icon-drive',
-        'msg'   => 'icon-email',
+        'bak'   => 'icon-floppy',
+        'msg'   => 'icon-envelope-alt',
 
         // Blank
-        'blank' => 'icon-blank'
+        'blank' => 'icon-file'
 
     )
 

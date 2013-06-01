@@ -65,8 +65,10 @@
 
                 <li class="nav-header">
                     <span class="file-name">File</span>
-                    <span class="file-size">Size</span>
-                    <span class="file-modified">Last Modified</span>
+                    <span class="pull-right">
+                        <span class="file-size">Size</span>
+                        <span class="file-modified">Last Modified</span>
+                    </span>
                     <span class="file-info">
                 </li>
 
@@ -81,12 +83,16 @@
                                 <?php echo $name; ?>
                             </span>
 
-                            <span class="file-size">
-                                <?php echo $fileInfo['file_size']; ?>
-                            </span>
+                            <span class="pull-right">
 
-                            <span class="file-modified">
-                                <?php echo $fileInfo['mod_time']; ?>
+                                <span class="file-size">
+                                    <?php echo $fileInfo['file_size']; ?>
+                                </span>
+
+                                <span class="file-modified">
+                                    <?php echo $fileInfo['mod_time']; ?>
+                                </span>
+
                             </span>
 
                         </a>

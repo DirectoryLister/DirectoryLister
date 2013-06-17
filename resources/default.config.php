@@ -14,7 +14,7 @@ return array(
         '.htpasswd',
         'resources',
         'analytics.inc'
-     ),
+    ),
 
     // Custom sort order
     'reverse_sort' => array(
@@ -68,13 +68,13 @@ return array(
         'sql'   => 'icon-hdd',
 
         // Documents
-        'csv'   => 'icon-file-alt',
-        'doc'   => 'icon-file-alt',
-        'docx'  => 'icon-file-alt',
-        'odt'   => 'icon-file-alt',
-        'pdf'   => 'icon-file-alt',
-        'xls'   => 'icon-file-alt',
-        'xlsx'  => 'icon-file-alt',
+        'csv'   => 'icon-file-text',
+        'doc'   => 'icon-file-text',
+        'docx'  => 'icon-file-text',
+        'odt'   => 'icon-file-text',
+        'pdf'   => 'icon-file-text',
+        'xls'   => 'icon-file-text',
+        'xlsx'  => 'icon-file-text',
 
         // Executables
         'app'   => 'icon-list-alt',
@@ -108,8 +108,8 @@ return array(
         'tif'   => 'icon-picture',
 
         // Package Files
-        'deb'   => 'icon-inbox',
-        'rpm'   => 'icon-inbox',
+        'deb'   => 'icon-archive',
+        'rpm'   => 'icon-archive',
 
         // Scripts
         'bat'   => 'icon-terminal',
@@ -117,12 +117,12 @@ return array(
         'sh'    => 'icon-terminal',
 
         // Text
-        'cfg'   => 'icon-file-alt',
-        'ini'   => 'icon-file-alt',
-        'log'   => 'icon-file-alt',
-        'md'    => 'icon-file-alt',
-        'rtf'   => 'icon-file-alt',
-        'txt'   => 'icon-file-alt',
+        'cfg'   => 'icon-file-text-alt',
+        'ini'   => 'icon-file-text-alt',
+        'log'   => 'icon-file-text-alt',
+        'md'    => 'icon-file-text-alt',
+        'rtf'   => 'icon-file-text-alt',
+        'txt'   => 'icon-file-text-alt',
 
         // Vector Images
         'ai'    => 'icon-picture',
@@ -132,18 +132,18 @@ return array(
         'svg'   => 'icon-picture',
 
         // Video
-        'avi'   => 'icon-facetime-video',
-        'flv'   => 'icon-facetime-video',
-        'mkv'   => 'icon-facetime-video',
-        'mov'   => 'icon-facetime-video',
-        'mp4'   => 'icon-facetime-video',
-        'mpg'   => 'icon-facetime-video',
-        'wmv'   => 'icon-facetime-video',
-        'swf'   => 'icon-facetime-video',
+        'avi'   => 'icon-youtube-play',
+        'flv'   => 'icon-youtube-play',
+        'mkv'   => 'icon-youtube-play',
+        'mov'   => 'icon-youtube-play',
+        'mp4'   => 'icon-youtube-play',
+        'mpg'   => 'icon-youtube-play',
+        'wmv'   => 'icon-youtube-play',
+        'swf'   => 'icon-youtube-play',
 
         // Other
         'bak'   => 'icon-floppy',
-        'msg'   => 'icon-envelope-alt',
+        'msg'   => 'icon-envelope',
 
         // Blank
         'blank' => 'icon-file'

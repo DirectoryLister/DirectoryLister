@@ -16,7 +16,7 @@
 class DirectoryLister {
 
     // Define application version
-    const VERSION = '2.2.3';
+    const VERSION = '2.2.4';
 
     // Reserve some variables
     protected $_themeName     = null;
@@ -69,7 +69,7 @@ class DirectoryLister {
     public function listDirectory($directory) {
 
         // Set directory
-        $this->setDirectoryPath($directory);
+        $directory = $this->setDirectoryPath($directory);
 
         // Set directory varriable if left blank
         if ($directory === null) {

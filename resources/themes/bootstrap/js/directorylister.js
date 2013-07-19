@@ -25,7 +25,7 @@ $(document).ready(function() {
         var path = $(this).closest('li').attr('data-href');
 
         $.ajax({
-            url:     '/?hash=' + path,
+            url:     '?hash=' + path,
             type:    'get',
             success: function(data) {
 

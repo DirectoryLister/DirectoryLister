@@ -8,6 +8,8 @@ return array(
     'list_folders_first' => true,
     'list_sort_order'    => 'natcasesort',
     'theme_name'         => 'bootstrap',
+    'date_format'        => 'Y-m-d H:i:s',
+    'relative_paths'     => true,
 
     // Hidden files
     'hidden_files' => array(

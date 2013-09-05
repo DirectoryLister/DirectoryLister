@@ -25,12 +25,13 @@ class DirectoryLister {
     protected $_appURL        = null;
     protected $_config        = null;
     protected $_systemMessage = null;
+    protected $_baseDir       = null;
 
 
     /**
      * DirectoryLister construct function. Runs on object creation.
      */
-    public function __construct($basedir) {
+    public function __construct() {
 
         // Set class directory constant
         if(!defined('__DIR__')) {
@@ -61,7 +62,7 @@ class DirectoryLister {
         && is_string(realpath($this->_config['base_directory']))) {
         	$this->_baseDir = realpath($this->_config['base_directory']);
         } else {
-        	$this->_baseDir = $basedir;
+        	$this->_baseDir = dirname(realpath($_SERVER['SCRIPT_FILENAME']));
         }
 
     }
@@ -157,6 +158,17 @@ class DirectoryLister {
         // Return the breadcrumb array
         return $breadcrumbsArray;
     }
+    
+    
+    /**
+     * Get the base directory
+     *
+     * @return string Path of the base directory used
+     * @access public
+     */
+    public function getBaseDirectory() {
+    	return $this->_baseDir;
+    }
 
 
     /**
@@ -234,8 +246,10 @@ class DirectoryLister {
         // Placeholder array
         $hashArray = array();
         
-        // Absolutize file path
-        $filePath = realpath($_SERVER['DOCUMENT_ROOT']) . '/' . $filePath;
+        if(!$this->_config['relative_paths']) {
+        	// Absolutize file path
+        	$filePath = realpath($_SERVER['DOCUMENT_ROOT']) . '/' . $filePath;
+        }
         
         // Generate realpath for security
         $filePath = realpath($filePath);
@@ -368,6 +382,18 @@ class DirectoryLister {
         // Initialize array
         $directoryArray = array();
 
+		if($this->_config['relative_paths']) {
+			
+			$relativePath = $this->_getRelativePath(
+					dirname(realpath($_SERVER['SCRIPT_FILENAME'])),
+					$directory
+			);
+			
+		}
+		
+		// Find web server root directory
+        $rootPath = realpath($_SERVER['DOCUMENT_ROOT']);
+		
         // Get directory contents
         $files = scandir($directory);
 
@@ -406,52 +432,52 @@ class DirectoryLister {
                         $directoryPath = implode('/', $pathArray);
                         
                         // Make path relative to base directory
-                        $relativePath = substr($directoryPath, strlen($this->_baseDir) + 1);
+                		$query = substr($directoryPath, strlen($this->_baseDir) + 1);
 
-                        if (!empty($relativePath)) {
-                            $relativePath = '?dir=' . urlencode($relativePath);
+                        if (!empty($relPath)) {
+                            $query = '?dir=' . urlencode($query);
                         }
 
                         // Add file info to the array
                         $directoryArray['..'] = array(
-                            'file_path'  => $this->_appURL . $relativePath,
+                            'file_path'  => $this->_appURL . $query,
                             'real_path'  => $directoryPath,
                             'file_size'  => '-',
-                            'mod_time'   => date('Y-m-d H:i:s', filemtime($realPath)),
+                            'mod_time'   => date($this->_config['date_format'], filemtime($realPath)),
                             'icon_class' => 'icon-level-up',
                             'sort'       => 0
                         );
                     }
 
-                } elseif (!$this->_isHidden($realPath)) {
+                } elseif (!$this->_isHidden($realPath) && is_readable($realPath)) {
 
                     // Add all non-hidden files to the array
                     if ($this->_directory != '.' || $file != 'index.php') {
-
-						// Make path relative to base directory
-                        $relativePath = substr($realPath, strlen($this->_baseDir) + 1);
-                        
-                        // Find web server root directory
-                        $rootPath = realpath($_SERVER['DOCUMENT_ROOT']);
                         
                         // Build the file path
                         if (is_dir($realPath)) {
                             $filePath = '?dir=' . urlencode(
                             	substr($realPath, strlen($this->_baseDir) + 1)
                             );
+                        } elseif($this->_config['relative_paths']) {
+                        	if(strlen($relativePath) > 0) {
+                        		$filePath = "{$relativePath}/{$file}";
+                        	} else {
+                        		$filePath = $file;
+                        	}
                         } elseif(substr($realPath, 0, strlen($rootPath) + 1) == "{$rootPath}/") {
                         	// Only list files accessable from the outside world
                             $filePath = substr($realPath, strlen($rootPath));
                         } else {
                         	continue;
                         }
-
+                        
                         // Add the info to the main array
                         $directoryArray[pathinfo($realPath, PATHINFO_BASENAME)] = array(
                             'file_path'  => $filePath,
                             'real_path'  => $realPath,
                             'file_size'  => is_dir($realPath) ? '-' : round(filesize($realPath) / 1024) . 'KB',
-                            'mod_time'   => date('Y-m-d H:i:s', filemtime($realPath)),
+                            'mod_time'   => date($this->_config['date_format'], filemtime($realPath)),
                             'icon_class' => $iconClass,
                             'sort'       => $sort
                         );

@@ -30,7 +30,7 @@ class DirectoryLister {
     /**
      * DirectoryLister construct function. Runs on object creation.
      */
-    public function __construct() {
+    public function __construct($basedir) {
 
         // Set class directory constant
         if(!defined('__DIR__')) {
@@ -55,6 +55,14 @@ class DirectoryLister {
 
         // Set the theme name
         $this->_themeName = $this->_config['theme_name'];
+        
+        // Set list base directory (absolute path)
+        if(is_string($this->_config['base_directory'])
+        && is_string(realpath($this->_config['base_directory']))) {
+        	$this->_baseDir = realpath($this->_config['base_directory']);
+        } else {
+        	$this->_baseDir = $basedir;
+        }
 
     }
 
@@ -96,6 +104,16 @@ class DirectoryLister {
         // Set directory varriable if left blank
         if ($directory === null) {
             $directory = $this->_directory;
+        }
+        
+        // Remove base
+        if(substr("{$directory}/", 0, strlen($this->_baseDir) + 1) == "{$this->_baseDir}/") {
+        	$directory = substr($directory, strlen($this->_baseDir) + 1);
+        }
+        
+        // $directory ends up being `false` if `$directory == $this->_baseDir`
+        if(!is_string($directory)) {
+        	$directory = '';
         }
 
         // Explode the path into an array
@@ -149,15 +167,8 @@ class DirectoryLister {
      */
     public function getListedPath() {
 
-        // Build the path
-        if ($this->_directory == '.') {
-            $path = $this->_appURL;
-        } else {
-            $path = $this->_appURL . $this->_directory;
-        }
-
         // Return the path
-        return $path;
+        return $this->_directory;
     }
 
 
@@ -222,9 +233,15 @@ class DirectoryLister {
 
         // Placeholder array
         $hashArray = array();
+        
+        // Absolutize file path
+        $filePath = realpath($_SERVER['DOCUMENT_ROOT']) . '/' . $filePath;
+        
+        // Generate realpath for security
+        $filePath = realpath($filePath);
 
-        // Verify file path exists and is a directory
-        if (!file_exists($filePath)) {
+        // Verify file path exists and is not a directory
+        if (!is_string($filePath) || !is_file($filePath)) {
             return json_encode($hashArray);
         }
 
@@ -232,10 +249,9 @@ class DirectoryLister {
         if ($this->_isHidden($filePath)) {
             return json_encode($hashArray);
         }
-
+        
         // Prevent access to parent folders
-        if (strpos($filePath, '<') !== false || strpos($filePath, '>') !== false
-        || strpos($filePath, '..') !== false || strpos($filePath, '/') === 0) {
+        if (substr($filePath, 0, strlen($this->_baseDir) + 1) != "{$this->_baseDir}/") {
             return json_encode($hashArray);
         }
 
@@ -260,7 +276,7 @@ class DirectoryLister {
     public function setDirectoryPath($path = null) {
 
         // Set the directory global variable
-        $this->_directory = $this->_setDirecoryPath($path);
+        $this->_directory = $this->_setDirectoryPath($path);
 
         return $this->_directory;
 
@@ -299,49 +315,35 @@ class DirectoryLister {
      * @return string Directory path to be listed
      * @access protected
      */
-    protected function _setDirecoryPath($dir) {
+    protected function _setDirectoryPath($dir) {
 
-        // Check for an empty variable
-        if (empty($dir) || $dir == '.') {
-            return '.';
-        }
-
+		// Make path relative to base directory
+		$dir = "{$this->_baseDir}/{$dir}";
+		
         // Eliminate double slashes
         while (strpos($dir, '//')) {
             $dir = str_replace('//', '/', $dir);
         }
-
+        
         // Remove trailing slash if present
         if(substr($dir, -1, 1) == '/') {
             $dir = substr($dir, 0, -1);
         }
-
-        // Verify file path exists and is a directory
-        if (!file_exists($dir) || !is_dir($dir)) {
+        
+		// Get realpath (resolves symlinks, parent directories, ...)
+		$dir = realpath($dir);
+		
+		// Prevent access to parent folders and non-existing folders
+		// Checks done:
+		//  - If $dir is not a string: Path does not exist
+		//  - If $dir is not located within $this->_baseDir: Access denied
+        if(!is_string($dir)
+        || substr("{$dir}/", 0, strlen($this->_baseDir) + 1) != "{$this->_baseDir}/") {
             // Set the error message
-            $this->setSystemMessage('error', '<b>ERROR:</b> File path does not exist');
-
-            // Return the web root
-            return '.';
-        }
-
-        // Prevent access to hidden files
-        if ($this->_isHidden($dir)) {
-            // Set the error message
-            $this->setSystemMessage('error', '<b>ERROR:</b> Access denied');
+            $this->setSystemMessage('error', '<b>ERROR:</b> An invalid path string was detected');
 
             // Set the directory to web root
-            return '.';
-        }
-
-        // Prevent access to parent folders
-        if (strpos($dir, '<') !== false || strpos($dir, '>') !== false
-        || strpos($dir, '..') !== false || strpos($dir, '/') === 0) {
-            // Set the error message
-            $this->setSystemMessage('error', '<b>ERROR:</b> An invalid path string was deceted');
-
-            // Set the directory to web root
-            return '.';
+            return $this->_baseDir;
         } else {
             // Should stop all URL wrappers (Thanks to Hexatex)
             $directoryPath = $dir;
@@ -375,14 +377,7 @@ class DirectoryLister {
             if ($file != '.') {
 
                 // Get files relative path
-                $relativePath = $directory . '/' . $file;
-
-                if (substr($relativePath, 0, 2) == './') {
-                    $relativePath = substr($relativePath, 2);
-                }
-
-                // Get files absolute path
-                $realPath = realpath($relativePath);
+                $realPath = $directory . '/' . $file;
 
                 // Determine file type by extension
                 if (is_dir($realPath)) {
@@ -403,20 +398,24 @@ class DirectoryLister {
 
                 if ($file == '..') {
 
-                    if ($this->_directory != '.') {
+                    if ($this->_directory != $this->_baseDir) {
                         // Get parent directory path
-                        $pathArray = explode('/', $relativePath);
+                        $pathArray = explode('/', $realPath);
                         unset($pathArray[count($pathArray)-1]);
                         unset($pathArray[count($pathArray)-1]);
                         $directoryPath = implode('/', $pathArray);
+                        
+                        // Make path relative to base directory
+                        $relativePath = substr($directoryPath, strlen($this->_baseDir) + 1);
 
-                        if (!empty($directoryPath)) {
-                            $directoryPath = '?dir=' . urlencode($directoryPath);
+                        if (!empty($relativePath)) {
+                            $relativePath = '?dir=' . urlencode($relativePath);
                         }
 
                         // Add file info to the array
                         $directoryArray['..'] = array(
-                            'file_path'  => $this->_appURL . $directoryPath,
+                            'file_path'  => $this->_appURL . $relativePath,
+                            'real_path'  => $directoryPath,
                             'file_size'  => '-',
                             'mod_time'   => date('Y-m-d H:i:s', filemtime($realPath)),
                             'icon_class' => 'icon-level-up',
@@ -424,21 +423,33 @@ class DirectoryLister {
                         );
                     }
 
-                } elseif (!$this->_isHidden($relativePath)) {
+                } elseif (!$this->_isHidden($realPath)) {
 
                     // Add all non-hidden files to the array
                     if ($this->_directory != '.' || $file != 'index.php') {
 
+						// Make path relative to base directory
+                        $relativePath = substr($realPath, strlen($this->_baseDir) + 1);
+                        
+                        // Find web server root directory
+                        $rootPath = realpath($_SERVER['DOCUMENT_ROOT']);
+                        
                         // Build the file path
-                        if (is_dir($relativePath)) {
-                            $filePath = '?dir=' . urlencode($relativePath);
+                        if (is_dir($realPath)) {
+                            $filePath = '?dir=' . urlencode(
+                            	substr($realPath, strlen($this->_baseDir) + 1)
+                            );
+                        } elseif(substr($realPath, 0, strlen($rootPath) + 1) == "{$rootPath}/") {
+                        	// Only list files accessable from the outside world
+                            $filePath = substr($realPath, strlen($rootPath));
                         } else {
-                            $filePath = $relativePath;
+                        	continue;
                         }
 
                         // Add the info to the main array
-                        $directoryArray[pathinfo($relativePath, PATHINFO_BASENAME)] = array(
+                        $directoryArray[pathinfo($realPath, PATHINFO_BASENAME)] = array(
                             'file_path'  => $filePath,
+                            'real_path'  => $realPath,
                             'file_size'  => is_dir($realPath) ? '-' : round(filesize($realPath) / 1024) . 'KB',
                             'mod_time'   => date('Y-m-d H:i:s', filemtime($realPath)),
                             'icon_class' => $iconClass,
@@ -573,6 +584,9 @@ class DirectoryLister {
         // Define the OS specific directory separator
         if (!defined('DS')) define('DS', DIRECTORY_SEPARATOR);
 
+		// Make $filePath relative
+		$filePath = substr($filePath, strlen($this->_baseDir) + 1);
+
         // Convert the file path to an array
         $pathArray  = explode(DS, $filePath);
 
@@ -591,6 +605,11 @@ class DirectoryLister {
             // Strip trailing slash if present
             if (substr($hiddenPath, -1) == DS) {
                 $hiddenPath = substr($hiddenPath, 0, -1);
+            }
+            
+            // Strip leading slash if present
+            if (substr($hiddenPath, 0, 1) == DS) {
+                $hiddenPath = substr($hiddenPath, 1);
             }
 
             // Convert the hidden file path to an array
@@ -645,7 +664,7 @@ class DirectoryLister {
 
         // Build the application URL
         $appUrl = $protocol . $host . $path;
-
+		
         // Return the URL
         return $appUrl;
     }

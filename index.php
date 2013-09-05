@@ -4,7 +4,7 @@
     require_once('resources/DirectoryLister.php');
 
     // Initialize the DirectoryLister object
-    $lister = new DirectoryLister();
+    $lister = new DirectoryLister(dirname(__FILE__));
 
     // Return file hash
     if (isset($_GET['hash'])) {

@@ -14,12 +14,9 @@
         <link rel="stylesheet" type="text/css" href="<?php echo THEMEPATH; ?>/css/style.css">
 
         <!-- SCRIPTS -->
-        <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <script type="text/javascript" src="<?php echo THEMEPATH; ?>/js/jquery.min.js"></script>
         <script type="text/javascript" src="<?php echo THEMEPATH; ?>/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="<?php echo THEMEPATH; ?>/js/directorylister.js"></script>
-
-        <!-- FONTS -->
-        <link rel="stylesheet" type="text/css"  href="http://fonts.googleapis.com/css?family=Cutive+Mono">
 
         <!-- META -->
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -46,7 +43,7 @@
                             <li class="active"><?php echo $breadcrumb['text']; ?></li>
                         <?php endif; ?>
                     <?php endforeach; ?>
-                    <li id="page-top" class="pull-right" style="display: hidden;">
+                    <li id="page-top" class="pull-right" style="display: none;">
                         <a href="javascript:void(0)"><i class="icon-circle-arrow-up"></i></a>
                     </li>
                 </ul>
@@ -97,10 +94,12 @@
 
                         </a>
 
-                        <?php if (is_file($fileInfo['file_path'])): ?>
-                            <a href="javascript:void(0)" class="file-info-button">
-                                <i class="icon-info-sign"></i>
-                            </a>
+                        <?php if (is_file($fileInfo['real_path'])): ?>
+                            <script type="text/javascript">
+                                document.write('<a href="#" class="file-info-button">');
+                                document.write('    <i class="icon-info-sign"></i>');
+                                document.write('</a>');
+                            </script>
                         <?php endif; ?>
                     </li>
                 <?php endforeach; ?>

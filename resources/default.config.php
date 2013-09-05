@@ -3,6 +3,7 @@
 return array(
 
     // Basic settings
+    'base_directory'     => null,
     'hide_dot_files'     => true,
     'list_folders_first' => true,
     'list_sort_order'    => 'natcasesort',

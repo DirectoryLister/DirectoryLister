@@ -74,7 +74,7 @@
 
                 <?php foreach($dirArray as $name => $fileInfo): ?>
                     <li class="clearfix" data-name="<?php echo $name; ?>" data-href="<?php echo $fileInfo['file_path']; ?>">
-                        <a href="<?php echo $fileInfo['file_path']; ?>" class="clearfix" data-name="<?php echo $name; ?>">
+                        <a href="<?php echo "getdownload.php?file=".$fileInfo['file_path']; ?>" class="clearfix" data-name="<?php echo $name; ?>">
 
                             <span class="file-name">
                                 <span class="icon-wrapper">

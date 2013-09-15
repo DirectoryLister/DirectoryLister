@@ -4,6 +4,7 @@
 
     <head>
 
+        <meta charset='utf-8'>
         <title>Directory listing of <?php echo $lister->getListedPath(); ?></title>
         <link rel="shortcut icon" href="<?php echo THEMEPATH; ?>/img/folder.png">
 

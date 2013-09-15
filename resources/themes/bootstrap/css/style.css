@@ -3,23 +3,15 @@
 /* ---------------------------------------------------------------------------------------------- */
 
 body {
-    margin: 20px 0;
-    min-width: 640px;
+    padding: 70px 0 0;
 }
 
 body.breadcrumb-fixed {
     padding-top: 56px;
 }
 
-#page-top a {
-    color: #AAA;
-    display: inline-block;
-    margin: 0;
-}
-
-#page-top a:hover {
-    color: #999;
-    text-decoration: none;
+#page-top-nav {
+    display: none;
 }
 
 
@@ -59,20 +51,18 @@ body.breadcrumb-fixed {
 /* -----| DIRECTORY LISTER |--------------------------------------------------------------------- */
 /* ---------------------------------------------------------------------------------------------- */
 
-.directory-listing {
+#directory-list-header {
+    font-family: 'Cutive Mono', monospace, serif;
+    font-weight: bold;
+    padding: 10px 15px;
+}
+
+#directory-listing {
     font-family: 'Cutive Mono', monospace, serif;
 }
 
-.directory-listing li {
+#directory-listing li {
     position: relative;
-}
-
-.directory-listing li span {
-    display: inline-block;
-}
-
-.file-name {
-    width: 600px;
 }
 
 .file-name .icon-wrapper {
@@ -85,23 +75,13 @@ body.breadcrumb-fixed {
     color: #555;
 }
 
-.file-size {
-    text-align: right !important;
-    width: 110px;
-}
-
-.file-modified {
-    text-align: right !important;
-    width: 170px;
-}
-
 .file-info-button {
     display: inline-block;
     cursor: pointer;
     margin-left: 100%;
-    padding: 8px !important;
-    position: absolute;
-    top: 0;
+    padding: 6px 10px !important;
+    position: absolute !important;
+    top: 4px;
 }
 
 .file-info-button i {
@@ -113,10 +93,11 @@ body.breadcrumb-fixed {
 /* -----| FOOTER |------------------------------------------------------------------------------- */
 /* ---------------------------------------------------------------------------------------------- */
 
-.footer p {
-    margin: 10px 0;
+.footer {
+    margin: 20px;
     text-align: center;
 }
+
 
 /* ---------------------------------------------------------------------------------------------- */
 /* -----| CHECKSUM MODAL |----------------------------------------------------------------------- */

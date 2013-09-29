@@ -2,6 +2,10 @@
 /* -----| GENERAL |------------------------------------------------------------------------------ */
 /* ---------------------------------------------------------------------------------------------- */
 
+html {
+    min-width: 480px;
+}
+
 body {
     padding: 70px 0 0;
 }
@@ -10,10 +14,9 @@ body.breadcrumb-fixed {
     padding-top: 56px;
 }
 
-#page-top-nav {
-    display: none;
+#page-navbar {
+    min-width: 480px;
 }
-
 
 /* -------------------------------------------------------------------------- */
 /* -----| BREADCRUMBS |------------------------------------------------------ */
@@ -115,50 +118,4 @@ body.breadcrumb-fixed {
     font-family: 'Cutive Mono', monospace, serif;
     font-size: .9em;
     margin: 5px 5px 5px 15px;
-}
-
-
-/* ---------------------------------------------------------------------------------------------- */
-/* -----| RESPONSIVE |--------------------------------------------------------------------------- */
-/* ---------------------------------------------------------------------------------------------- */
-
-@media (min-width: 1200px) {
-
-    .breadcrumb-fixed .breadcrumb {
-        width: 1140px;
-    }
-
-    .file-name {
-        width: 845px;
-    }
-
-}
-
-@media (min-width: 768px) and (max-width: 979px) {
-
-    .breadcrumb-fixed .breadcrumb {
-        width: 694px;
-    }
-
-    .file-name {
-        width: 400px;
-    }
-
-}
-
-@media (max-width: 767px) {
-
-    .breadcrumb-fixed .breadcrumb {
-        margin: 0 12px;
-        width: auto;
-    }
-
-    .file-name {
-        width: 55%;
-    }
-
-    .file-size {
-        width: 80px;
-    }
-
 }

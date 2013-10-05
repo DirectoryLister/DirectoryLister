@@ -550,8 +550,9 @@ class DirectoryLister {
 
         // Merge the arrays
         foreach ($sortedArray as $array) {
-            if (!empty($array)) {
-                $finalArray = array_merge($finalArray, $array);
+            if (empty($array)) continue;
+            foreach ($array as $key => $value) {
+                $finalArray[$key] = $value;
             }
         }
 

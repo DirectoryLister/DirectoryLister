@@ -117,25 +117,31 @@
 
         </div>
 
-        <div id="file-info-modal" class="modal hide fade">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h3>{{modal_header}}</h3>
-            </div>
+        <div id="file-info-modal" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
 
-            <div class="modal-body">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">{{modal_header}}</h4>
+                    </div>
 
-                <dl id="file-info" >
-                    <dt>MD5</dt>
-                        <dd class="md5-hash">{{md5_sum}}</dd>
+                    <div class="modal-body">
 
-                    <dt>SHA1</dt>
-                        <dd class="sha1-hash">{{sha1_sum}}</dd>
+                        <dl id="file-info" >
+                            <dt>MD5</dt>
+                                <dd class="md5-hash">{{md5_sum}}</dd>
 
-                    <dt>sha256</dt>
-                        <dd class="sha256-hash">{{sha256_sum}}</dd>
-                </dl>
+                            <dt>SHA1</dt>
+                                <dd class="sha1-hash">{{sha1_sum}}</dd>
 
+                            <dt>sha256</dt>
+                                <dd class="sha256-hash">{{sha256_sum}}</dd>
+                        </dl>
+
+                    </div>
+
+                </div>
             </div>
         </div>
 

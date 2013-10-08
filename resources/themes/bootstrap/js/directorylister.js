@@ -1,16 +1,5 @@
 $(document).ready(function() {
 
-    // Get breadcrumbs original position
-    var contentTop = $('#page-content').offset().top;
-
-    // Run pinBreadcrumbs() on page load
-    showHideTopLink(contentTop);
-
-    // Run pinBreadcrumbs() on scroll
-    $(window).scroll(function() {
-        showHideTopLink(contentTop);
-    });
-
     // Scroll page on click action
     $('#page-top-link').click(function() {
         $('html, body').animate({ scrollTop: 0 }, 'fast');
@@ -32,10 +21,8 @@ $(document).ready(function() {
                 // Parse the JSON data
                 var obj = jQuery.parseJSON(data);
 
-                console.log(obj);
-
                 // Set modal title value
-                $('#file-info-modal .modal-header h3').text(name);
+                $('#file-info-modal .modal-title').text(name);
 
                 // Set modal pop-up hash values
                 $('#file-info .md5-hash').text(obj.md5);
@@ -54,13 +41,3 @@ $(document).ready(function() {
     });
 
 });
-
-function showHideTopLink(elTop) {
-
-    if($('#page-navbar').offset().top + $('#page-navbar').height() >= elTop) {
-        $('#page-top-nav').show();
-    } else {
-        $('#page-top-nav').hide();
-    }
-
-}

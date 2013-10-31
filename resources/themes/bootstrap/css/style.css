@@ -22,33 +22,12 @@ body.breadcrumb-fixed {
 /* -----| BREADCRUMBS |------------------------------------------------------ */
 /* -------------------------------------------------------------------------- */
 
-.breadcrumb-wrapper {
-    background-color: #F5F5F5;
-    border-radius: 4px;
-    margin-bottom: 20px;
+#page-navbar .navbar-text {
+    max-width: 80%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
-
-.breadcrumb {
-    margin: 0;
-    position: relative;
-}
-
-.breadcrumb-fixed .breadcrumb-wrapper {
-    border-radius: 0;
-    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
-    left: 0;
-    margin: 0;
-    position: fixed;
-    right: 0;
-    top: 0;
-    z-index: 1000;
-}
-
-.breadcrumb-fixed .breadcrumb {
-    width: 910px;
-    margin: 0 auto;
-}
-
 
 /* ---------------------------------------------------------------------------------------------- */
 /* -----| DIRECTORY LISTER |--------------------------------------------------------------------- */
@@ -127,6 +106,10 @@ body.breadcrumb-fixed {
 
 
 @media (max-width: 767px) {
+
+    #page-top-nav {
+        display: block !important;
+    }
 
     .navbar-nav {
         float: left;

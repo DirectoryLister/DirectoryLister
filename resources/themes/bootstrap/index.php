@@ -99,7 +99,7 @@
 
                         <?php if (is_file($fileInfo['file_path'])): ?>
                             <a href="javascript:void(0)" class="file-info-button">
-                                <i class="fa fa-info-sign"></i>
+                                <i class="fa fa-info-circle"></i>
                             </a>
                         <?php endif; ?>
                     </li>

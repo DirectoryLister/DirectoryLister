@@ -48,7 +48,7 @@
                 </p>
 
                 <ul id="page-top-nav" class="nav navbar-nav navbar-right">
-                    <li><a href="javascript:void(0)" id="page-top-link"><i class="icon-circle-arrow-up icon-large"></i></a></li>
+                    <li><a href="javascript:void(0)" id="page-top-link"><i class="fa fa-arrow-circle-up fa-lg"></i></a></li>
                 </ul>
 
             </div>
@@ -82,9 +82,7 @@
 
                             <div class="row">
                                 <span class="file-name col-md-8 col-sm-6 col-xs-5">
-                                    <span class="icon-wrapper">
-                                        <i class="<?php echo $fileInfo['icon_class']; ?>"></i>
-                                    </span>
+                                    <i class="fa <?php echo $fileInfo['icon_class']; ?> fa-fw"></i>
                                     <?php echo $name; ?>
                                 </span>
 
@@ -101,7 +99,7 @@
 
                         <?php if (is_file($fileInfo['file_path'])): ?>
                             <a href="javascript:void(0)" class="file-info-button">
-                                <i class="icon-info-sign"></i>
+                                <i class="fa fa-info-sign"></i>
                             </a>
                         <?php endif; ?>
                     </li>

@@ -242,7 +242,6 @@ class DirectoryLister {
         // Generate file hashes
         $hashArray['md5']    = hash_file('md5', $filePath);
         $hashArray['sha1']   = hash_file('sha1', $filePath);
-        $hashArray['sha256'] = hash_file('sha256', $filePath);
 
         // Return the data
         return $hashArray;

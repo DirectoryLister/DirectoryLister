@@ -38,7 +38,6 @@ $(document).ready(function() {
                 // Set modal pop-up hash values
                 $('#file-info .md5-hash').text(obj.md5);
                 $('#file-info .sha1-hash').text(obj.sha1);
-                $('#file-info .sha256-hash').text(obj.sha256);
 
             }
         });

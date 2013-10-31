@@ -92,21 +92,20 @@ body.breadcrumb-fixed {
     margin: 0;
 }
 
-#file-info dt {
+#file-info .table-title {
     font-weight: bold;
+    text-align: right;
 }
 
-#file-info dd {
+#file-info .md5-hash,
+#file-info .sha1-hash {
     font-family: 'Cutive Mono', monospace, serif;
-    font-size: .9em;
-    margin: 5px 5px 5px 15px;
 }
 
 
 /* -------------------------------------------------------------------------- */
 /* -----| RESPONSIVE |------------------------------------------------------- */
 /* -------------------------------------------------------------------------- */
-
 
 @media (max-width: 767px) {
 

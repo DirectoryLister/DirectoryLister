@@ -126,16 +126,21 @@
 
                     <div class="modal-body">
 
-                        <dl id="file-info" >
-                            <dt>MD5</dt>
-                                <dd class="md5-hash">{{md5_sum}}</dd>
+                        <table id="file-info" class="table table-bordered">
+                            <tbody>
 
-                            <dt>SHA1</dt>
-                                <dd class="sha1-hash">{{sha1_sum}}</dd>
+                                <tr>
+                                    <td class="table-title">MD5</td>
+                                    <td class="md5-hash">{{md5_sum}}</td>
+                                </tr>
 
-                            <dt>sha256</dt>
-                                <dd class="sha256-hash">{{sha256_sum}}</dd>
-                        </dl>
+                                <tr>
+                                    <td class="table-title">SHA1</td>
+                                    <td class="sha1-hash">{{sha1_sum}}</td>
+                                </tr>
+
+                            </tbody>
+                        </table>
 
                     </div>
 

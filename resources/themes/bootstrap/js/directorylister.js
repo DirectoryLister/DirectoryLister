@@ -24,6 +24,13 @@ $(document).ready(function() {
         var name = $(this).closest('li').attr('data-name');
         var path = $(this).closest('li').attr('data-href');
 
+        // Set modal title value
+        $('#file-info-modal .modal-title').text(name);
+
+        $('#file-info .md5-hash').text('Loading...');
+        $('#file-info .sha1-hash').text('Loading...');
+        $('#file-info .filesize').text('Loading...');
+
         $.ajax({
             url:     '?hash=' + path,
             type:    'get',
@@ -32,12 +39,11 @@ $(document).ready(function() {
                 // Parse the JSON data
                 var obj = jQuery.parseJSON(data);
 
-                // Set modal title value
-                $('#file-info-modal .modal-title').text(name);
 
                 // Set modal pop-up hash values
                 $('#file-info .md5-hash').text(obj.md5);
                 $('#file-info .sha1-hash').text(obj.sha1);
+                $('#file-info .filesize').text(obj.size);
 
             }
         });

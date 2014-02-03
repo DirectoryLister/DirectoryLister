@@ -7,6 +7,7 @@ return array(
     'list_folders_first' => true,
     'list_sort_order'    => 'natcasesort',
     'theme_name'         => 'bootstrap',
+    'hash_size_limit'    => 200000000, //200 MB(ish)
 
     // Hidden files
     'hidden_files' => array(

@@ -210,6 +210,55 @@ class DirectoryLister {
         }
     }
 
+    /**
+     * Returns int or float of file size in bytes
+     *
+     * @param  string $fp Path to file
+     * @return float File size
+     * @access public
+     */
+
+public function realFileSize($filePath)
+{
+    $fp = fopen($filePath,r);
+    $pos = 0;
+    $size = 1073741824;
+    fseek($fp, 0, SEEK_SET);
+    while ($size > 128)
+    {
+        fseek($fp, $size, SEEK_CUR);
+
+        if (fgetc($fp) === false)
+        {
+            fseek($fp, -$size, SEEK_CUR);
+            $size = (int)($size / 2);
+        }
+        else
+        {
+            fseek($fp, -1, SEEK_CUR);
+            $pos += $size;
+        }
+    }
+
+    while (fgetc($fp) !== false)  $pos++;
+    fclose($fp);
+    return $pos;
+}
+
+    /**
+     * Returns string of file size in human format
+     *
+     * @param  float $bytes Size in bytes
+     * @param  int $decimals number of decimal places
+     * @return string File size
+     * @access public
+     */
+
+function human_filesize($bytes, $decimals = 2) {
+  $sz = 'BKMGTP';
+  $factor = floor((strlen($bytes) - 1) / 3);
+  return sprintf("%.{$decimals}f", $bytes / pow(1024, $factor)) . @$sz[$factor];
+}
 
     /**
      * Returns array of file hash values
@@ -238,6 +287,16 @@ class DirectoryLister {
         || strpos($filePath, '..') !== false || strpos($filePath, '/') === 0) {
             return json_encode($hashArray);
         }
+        $fSize = $this->realFileSize($filePath);
+        $hashArray['size'] = $this->human_filesize($fSize) . ' (' . $fSize . ' Bytes)' ;
+                
+        // Prevent hashing if file is too big
+        if ($fSize > $this->_config['hash_size_limit']) {
+            $hashArray['md5']    = 'File too large';
+            $hashArray['sha1']   = 'File too large';
+            return $hashArray;
+        }
+
 
         // Generate file hashes
         $hashArray['md5']    = hash_file('md5', $filePath);
@@ -337,7 +396,7 @@ class DirectoryLister {
         if (strpos($dir, '<') !== false || strpos($dir, '>') !== false
         || strpos($dir, '..') !== false || strpos($dir, '/') === 0) {
             // Set the error message
-            $this->setSystemMessage('error', '<b>ERROR:</b> An invalid path string was deceted');
+            $this->setSystemMessage('error', '<b>ERROR:</b> An invalid path string was detected');
 
             // Set the directory to web root
             return '.';
@@ -438,7 +497,7 @@ class DirectoryLister {
                         // Add the info to the main array
                         $directoryArray[pathinfo($relativePath, PATHINFO_BASENAME)] = array(
                             'file_path'  => $filePath,
-                            'file_size'  => is_dir($realPath) ? '-' : round(filesize($realPath) / 1024) . 'KB',
+                            'file_size'  => is_dir($realPath) ? '-' : $this->human_filesize($this->realFileSize($realPath)) . 'B',
                             'mod_time'   => date('Y-m-d H:i:s', filemtime($realPath)),
                             'icon_class' => $iconClass,
                             'sort'       => $sort

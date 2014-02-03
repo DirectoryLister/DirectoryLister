@@ -139,6 +139,8 @@ return array(
         'mov'   => 'fa-youtube-play',
         'mp4'   => 'fa-youtube-play',
         'mpg'   => 'fa-youtube-play',
+        'ogv'   => 'fa-youtube-play',
+        'webm'  => 'fa-youtube-play',
         'wmv'   => 'fa-youtube-play',
         'swf'   => 'fa-youtube-play',
 

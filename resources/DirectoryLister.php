@@ -210,55 +210,32 @@ class DirectoryLister {
         }
     }
 
+
     /**
-     * Returns int or float of file size in bytes
+     * Returns string of file size in human-readable format
      *
-     * @param  string $fp Path to file
-     * @return float File size
+     * @param  string $filePath Path to file
+     * @return string Human-readable file size
      * @access public
      */
+    function getFileSize($filePath) {
 
-public function realFileSize($filePath)
-{
-    $fp = fopen($filePath,r);
-    $pos = 0;
-    $size = 1073741824;
-    fseek($fp, 0, SEEK_SET);
-    while ($size > 128)
-    {
-        fseek($fp, $size, SEEK_CUR);
+        // Get file size
+        $bytes = filesize($filePath);
 
-        if (fgetc($fp) === false)
-        {
-            fseek($fp, -$size, SEEK_CUR);
-            $size = (int)($size / 2);
-        }
-        else
-        {
-            fseek($fp, -1, SEEK_CUR);
-            $pos += $size;
-        }
+        // Array of file size suffixes
+        $sizes = array('B', 'KB', 'MB', 'GB', 'TB', 'PB');
+
+        // Calculate file size suffix factor
+        $factor = floor((strlen($bytes) - 1) / 3);
+
+        // Calculate the file size
+        $fileSize = sprintf('%.2f', $bytes / pow(1024, $factor)) . $sizes[$factor];
+
+        return $fileSize;
+
     }
 
-    while (fgetc($fp) !== false)  $pos++;
-    fclose($fp);
-    return $pos;
-}
-
-    /**
-     * Returns string of file size in human format
-     *
-     * @param  float $bytes Size in bytes
-     * @param  int $decimals number of decimal places
-     * @return string File size
-     * @access public
-     */
-
-function human_filesize($bytes, $decimals = 2) {
-  $sz = 'BKMGTP';
-  $factor = floor((strlen($bytes) - 1) / 3);
-  return sprintf("%.{$decimals}f", $bytes / pow(1024, $factor)) . @$sz[$factor];
-}
 
     /**
      * Returns array of file hash values
@@ -287,20 +264,21 @@ function human_filesize($bytes, $decimals = 2) {
         || strpos($filePath, '..') !== false || strpos($filePath, '/') === 0) {
             return json_encode($hashArray);
         }
-        $fSize = $this->realFileSize($filePath);
-        $hashArray['size'] = $this->human_filesize($fSize) . ' (' . $fSize . ' Bytes)' ;
-                
+
         // Prevent hashing if file is too big
-        if ($fSize > $this->_config['hash_size_limit']) {
-            $hashArray['md5']    = 'File too large';
-            $hashArray['sha1']   = 'File too large';
-            return $hashArray;
+        if (filesize($filePath) > $this->_config['hash_size_limit']) {
+
+            // Notify user that file is too large
+            $hashArray['md5']  = '[ File size exceeds threshold ]';
+            $hashArray['sha1'] = '[ File size exceeds threshold ]';
+
+        } else {
+
+            // Generate file hashes
+            $hashArray['md5']  = hash_file('md5', $filePath);
+            $hashArray['sha1'] = hash_file('sha1', $filePath);
+
         }
-
-
-        // Generate file hashes
-        $hashArray['md5']    = hash_file('md5', $filePath);
-        $hashArray['sha1']   = hash_file('sha1', $filePath);
 
         // Return the data
         return $hashArray;
@@ -497,7 +475,7 @@ function human_filesize($bytes, $decimals = 2) {
                         // Add the info to the main array
                         $directoryArray[pathinfo($relativePath, PATHINFO_BASENAME)] = array(
                             'file_path'  => $filePath,
-                            'file_size'  => is_dir($realPath) ? '-' : $this->human_filesize($this->realFileSize($realPath)) . 'B',
+                            'file_size'  => is_dir($realPath) ? '-' : $this->getFileSize($realPath),
                             'mod_time'   => date('Y-m-d H:i:s', filemtime($realPath)),
                             'icon_class' => $iconClass,
                             'sort'       => $sort

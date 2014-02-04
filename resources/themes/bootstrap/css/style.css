@@ -14,6 +14,10 @@ body.breadcrumb-fixed {
     padding-top: 56px;
 }
 
+.container {
+    max-width: 960px;
+}
+
 
 /* -------------------------------------------------------------------------- */
 /* -----| HEADER |----------------------------------------------------------- */
@@ -50,7 +54,7 @@ body.breadcrumb-fixed {
     position: relative;
 }
 
-.file-name, .file-size {
+.file-name {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;

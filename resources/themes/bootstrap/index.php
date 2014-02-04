@@ -139,11 +139,6 @@
                                     <td class="sha1-hash">{{sha1_sum}}</td>
                                 </tr>
 
-                                <tr>
-                                    <td class="table-title">Size</td>
-                                    <td class="filesize">{{file_size}}</td>
-                                </tr>
-
                             </tbody>
                         </table>
 

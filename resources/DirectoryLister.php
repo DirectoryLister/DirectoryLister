@@ -50,7 +50,7 @@ class DirectoryLister {
         if (file_exists($configFile)) {
             $this->_config = require_once($configFile);
         } else {
-            $this->setSystemMessage('error', '<b>ERROR:</b> Unable to locate application config file');
+            $this->setSystemMessage('danger', '<b>ERROR:</b> Unable to locate application config file');
         }
 
         // Set the theme name
@@ -355,7 +355,7 @@ class DirectoryLister {
         // Verify file path exists and is a directory
         if (!file_exists($dir) || !is_dir($dir)) {
             // Set the error message
-            $this->setSystemMessage('error', '<b>ERROR:</b> File path does not exist');
+            $this->setSystemMessage('danger', '<b>ERROR:</b> File path does not exist');
 
             // Return the web root
             return '.';
@@ -364,7 +364,7 @@ class DirectoryLister {
         // Prevent access to hidden files
         if ($this->_isHidden($dir)) {
             // Set the error message
-            $this->setSystemMessage('error', '<b>ERROR:</b> Access denied');
+            $this->setSystemMessage('danger', '<b>ERROR:</b> Access denied');
 
             // Set the directory to web root
             return '.';
@@ -374,7 +374,7 @@ class DirectoryLister {
         if (strpos($dir, '<') !== false || strpos($dir, '>') !== false
         || strpos($dir, '..') !== false || strpos($dir, '/') === 0) {
             // Set the error message
-            $this->setSystemMessage('error', '<b>ERROR:</b> An invalid path string was detected');
+            $this->setSystemMessage('danger', '<b>ERROR:</b> An invalid path string was detected');
 
             // Set the directory to web root
             return '.';

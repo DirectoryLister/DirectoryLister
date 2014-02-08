@@ -607,38 +607,20 @@ class DirectoryLister {
      */
     protected function _isHidden($filePath) {
 
-        // Define the OS specific directory separator
-        if (!defined('DS')) define('DS', DIRECTORY_SEPARATOR);
-
-        // Convert the file path to an array
-        $pathArray  = explode(DS, $filePath);
-
-        // Return true if dotfile and access to dotfiles is prohibited
+        // Add dot files to hidden files array
         if ($this->_config['hide_dot_files']) {
-            foreach ($pathArray as $element) {
-                if (strlen($element) > 1 && substr($element, 0, 1) == '.') {
-                    return true;
-                }
-            }
+
+            $this->_config['hidden_files'][] = '.*';
+
         }
 
         // Compare path array to all hidden file paths
         foreach ($this->_config['hidden_files'] as $hiddenPath) {
 
-            // Strip trailing slash if present
-            if (substr($hiddenPath, -1) == DS) {
-                $hiddenPath = substr($hiddenPath, 0, -1);
-            }
+            if (fnmatch($hiddenPath, $filePath)) {
 
-            // Convert the hidden file path to an array
-            $hiddenArray = explode(DS, $hiddenPath);
-
-            // Calculate intersections between the path and hidden arrays
-            $intersect = array_intersect_assoc($pathArray, $hiddenArray);
-
-            // Return true if the intersect matches the hidden array
-            if ($intersect == $hiddenArray) {
                 return true;
+
             }
 
         }

@@ -10,9 +10,9 @@ return array(
 
     // Hidden files
     'hidden_files' => array(
-        '.htaccess',
-        '.htpasswd',
+        '.ht*',
         'resources',
+        'resources/*',
         'analytics.inc'
     ),
 

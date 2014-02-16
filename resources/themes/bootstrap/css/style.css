@@ -2,56 +2,33 @@
 /* -----| GENERAL |------------------------------------------------------------------------------ */
 /* ---------------------------------------------------------------------------------------------- */
 
+html {
+    min-width: 480px;
+}
+
 body {
-    margin: 20px 0;
-    min-width: 640px;
+    padding: 70px 0 0;
 }
 
 body.breadcrumb-fixed {
     padding-top: 56px;
 }
 
-#page-top a {
-    color: #AAA;
-    display: inline-block;
-    margin: 0;
-}
-
-#page-top a:hover {
-    color: #999;
-    text-decoration: none;
-}
-
 
 /* -------------------------------------------------------------------------- */
-/* -----| BREADCRUMBS |------------------------------------------------------ */
+/* -----| HEADER |----------------------------------------------------------- */
 /* -------------------------------------------------------------------------- */
 
-.breadcrumb-wrapper {
-    background-color: #F5F5F5;
-    border-radius: 4px;
-    margin-bottom: 20px;
+#page-navbar {
+    min-width: 480px;
 }
 
-.breadcrumb {
-    margin: 0;
-    position: relative;
-}
-
-.breadcrumb-fixed .breadcrumb-wrapper {
-    border-radius: 0;
-    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
-    left: 0;
-    margin: 0;
-    position: fixed;
-    right: 0;
-    top: 0;
-    z-index: 1000;
-}
-
-.breadcrumb-fixed .breadcrumb {
-    width: 910px;
-    margin: 0 auto;
+#page-navbar .navbar-text {
+    font-family: 'Cutive Mono', monospace, serif;
+    max-width: 80%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 
@@ -59,49 +36,37 @@ body.breadcrumb-fixed {
 /* -----| DIRECTORY LISTER |--------------------------------------------------------------------- */
 /* ---------------------------------------------------------------------------------------------- */
 
-.directory-listing {
+#directory-list-header {
+    font-family: 'Cutive Mono', monospace, serif;
+    font-weight: bold;
+    padding: 10px 15px;
+}
+
+#directory-listing {
     font-family: 'Cutive Mono', monospace, serif;
 }
 
-.directory-listing li {
+#directory-listing li {
     position: relative;
 }
 
-.directory-listing li span {
-    display: inline-block;
-}
-
-.file-name {
-    width: 600px;
-}
-
-.file-name .icon-wrapper {
-    display: inline-block;
-    text-align: center;
-    width: 16px;
+.file-name, .file-size {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .file-name i {
     color: #555;
 }
 
-.file-size {
-    text-align: right !important;
-    width: 110px;
-}
-
-.file-modified {
-    text-align: right !important;
-    width: 170px;
-}
-
 .file-info-button {
     display: inline-block;
     cursor: pointer;
     margin-left: 100%;
-    padding: 8px !important;
-    position: absolute;
-    top: 0;
+    padding: 6px 10px !important;
+    position: absolute !important;
+    top: 4px;
 }
 
 .file-info-button i {
@@ -113,10 +78,11 @@ body.breadcrumb-fixed {
 /* -----| FOOTER |------------------------------------------------------------------------------- */
 /* ---------------------------------------------------------------------------------------------- */
 
-.footer p {
-    margin: 10px 0;
+.footer {
+    margin: 20px;
     text-align: center;
 }
+
 
 /* ---------------------------------------------------------------------------------------------- */
 /* -----| CHECKSUM MODAL |----------------------------------------------------------------------- */
@@ -126,58 +92,54 @@ body.breadcrumb-fixed {
     margin: 0;
 }
 
-#file-info dt {
+#file-info .table-title {
     font-weight: bold;
+    text-align: right;
 }
 
-#file-info dd {
+#file-info .md5-hash,
+#file-info .sha1-hash {
     font-family: 'Cutive Mono', monospace, serif;
-    font-size: .9em;
-    margin: 5px 5px 5px 15px;
 }
 
 
-/* ---------------------------------------------------------------------------------------------- */
-/* -----| RESPONSIVE |--------------------------------------------------------------------------- */
-/* ---------------------------------------------------------------------------------------------- */
-
-@media (min-width: 1200px) {
-
-    .breadcrumb-fixed .breadcrumb {
-        width: 1140px;
-    }
-
-    .file-name {
-        width: 845px;
-    }
-
-}
-
-@media (min-width: 768px) and (max-width: 979px) {
-
-    .breadcrumb-fixed .breadcrumb {
-        width: 694px;
-    }
-
-    .file-name {
-        width: 400px;
-    }
-
-}
+/* -------------------------------------------------------------------------- */
+/* -----| RESPONSIVE |------------------------------------------------------- */
+/* -------------------------------------------------------------------------- */
 
 @media (max-width: 767px) {
 
-    .breadcrumb-fixed .breadcrumb {
-        margin: 0 12px;
-        width: auto;
+    #page-top-nav {
+        display: block !important;
     }
 
-    .file-name {
-        width: 55%;
+    .navbar-nav {
+        float: left;
+        margin: 0;
+        padding-bottom: 0;
+        padding-top: 0;
     }
 
-    .file-size {
-        width: 80px;
+    .navbar-nav > li {
+        float: left;
+    }
+
+    .navbar-nav > li > a {
+        padding-bottom: 15px;
+        padding-top: 15px;
+    }
+
+    .navbar-right {
+        float: right !important;
+    }
+
+    .navbar-text {
+        margin-left: 15px;
+        margin-right: 15px;
+    }
+
+    .file-info-button {
+        display: none !important;
     }
 
 }

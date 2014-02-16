@@ -16,7 +16,7 @@
 class DirectoryLister {
 
     // Define application version
-    const VERSION = '2.2.5';
+    const VERSION = '2.3.0';
 
     // Reserve some variables
     protected $_themeName     = null;
@@ -272,7 +272,6 @@ class DirectoryLister {
         // Generate file hashes
         $hashArray['md5']    = hash_file('md5', $filePath);
         $hashArray['sha1']   = hash_file('sha1', $filePath);
-        $hashArray['sha256'] = hash_file('sha256', $filePath);
 
         // Return the data
         return $hashArray;
@@ -407,7 +406,7 @@ class DirectoryLister {
 
                 // Determine file type by extension
                 if (is_dir($realPath)) {
-                    $iconClass = 'icon-folder-close';
+                    $iconClass = 'fa-folder';
                     $sort = 1;
                 } else {
                     // Get file extension
@@ -444,7 +443,7 @@ class DirectoryLister {
                             'real_path'  => $directoryPath,
                             'file_size'  => '-',
                             'mod_time'   => date($this->_config['date_format'], filemtime($realPath)),
-                            'icon_class' => 'icon-level-up',
+                            'icon_class' => 'fa-level-up',
                             'sort'       => 0
                         );
                     }
@@ -587,8 +586,9 @@ class DirectoryLister {
 
         // Merge the arrays
         foreach ($sortedArray as $array) {
-            if (!empty($array)) {
-                $finalArray = array_merge($finalArray, $array);
+            if (empty($array)) continue;
+            foreach ($array as $key => $value) {
+                $finalArray[$key] = $value;
             }
         }
 

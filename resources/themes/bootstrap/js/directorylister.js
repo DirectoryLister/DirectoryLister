@@ -1,18 +1,18 @@
 $(document).ready(function() {
 
-    // Get breadcrumbs original position
-    var originalTop = $('.breadcrumb').offset().top;
+    // Get page-content original position
+    var contentTop = $('#page-content').offset().top;
 
-    // Run pinBreadcrumbs() on page load
-    pinBreadcrumbs(originalTop);
+    // Show/hide top link on page load
+    showHideTopLink(contentTop);
 
-    // Run pinBreadcrumbs() on scroll
+    // Show/hide top link on scroll
     $(window).scroll(function() {
-        pinBreadcrumbs(originalTop);
+        showHideTopLink(contentTop);
     });
 
     // Scroll page on click action
-    $('#page-top').click(function() {
+    $('#page-top-link').click(function() {
         $('html, body').animate({ scrollTop: 0 }, 'fast');
         return false;
     });
@@ -32,15 +32,12 @@ $(document).ready(function() {
                 // Parse the JSON data
                 var obj = jQuery.parseJSON(data);
 
-                console.log(obj);
-
                 // Set modal title value
-                $('#file-info-modal .modal-header h3').text(name);
+                $('#file-info-modal .modal-title').text(name);
 
                 // Set modal pop-up hash values
                 $('#file-info .md5-hash').text(obj.md5);
                 $('#file-info .sha1-hash').text(obj.sha1);
-                $('#file-info .sha256-hash').text(obj.sha256);
 
             }
         });
@@ -55,12 +52,10 @@ $(document).ready(function() {
 
 });
 
-function pinBreadcrumbs(elTop) {
-    if($(window).scrollTop() >= elTop) {
-        $('body').addClass('breadcrumb-fixed');
-        $('#page-top').show();
+function showHideTopLink(elTop) {
+    if($('#page-navbar').offset().top + $('#page-navbar').height() >= elTop) {
+        $('#page-top-nav').show();
     } else {
-        $('body').removeClass('breadcrumb-fixed');
-        $('#page-top').hide();
+        $('#page-top-nav').hide();
     }
 }

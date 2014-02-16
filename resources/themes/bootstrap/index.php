@@ -14,12 +14,23 @@
         <link rel="stylesheet" type="text/css" href="<?php echo THEMEPATH; ?>/css/style.css">
 
         <!-- SCRIPTS -->
+<<<<<<< HEAD
         <script type="text/javascript" src="<?php echo THEMEPATH; ?>/js/jquery.min.js"></script>
         <script type="text/javascript" src="<?php echo THEMEPATH; ?>/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="<?php echo THEMEPATH; ?>/js/directorylister.js"></script>
 
+=======
+        <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+        <script type="text/javascript" src="<?php echo THEMEPATH; ?>/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="<?php echo THEMEPATH; ?>/js/directorylister.js"></script>
+
+        <!-- FONTS -->
+        <link rel="stylesheet" type="text/css"  href="//fonts.googleapis.com/css?family=Cutive+Mono">
+
+>>>>>>> 680d6a7624756bd8c4258b559a1be3673bfde44d
         <!-- META -->
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="viewport" content="width=480, initial-scale=.8">
+        <meta charset="utf-8">
 
         <?php file_exists('analytics.inc') ? include('analytics.inc') : false; ?>
 
@@ -27,27 +38,36 @@
 
     <body>
 
-        <div class="container">
+        <div id="page-navbar" class="navbar navbar-default navbar-fixed-top">
+            <div class="container">
 
-            <?php $breadcrumbs = $lister->listBreadcrumbs(); ?>
+                <?php $breadcrumbs = $lister->listBreadcrumbs(); ?>
 
-            <div class="breadcrumb-wrapper">
-                <ul class="breadcrumb">
+                <p class="navbar-text">
                     <?php foreach($breadcrumbs as $breadcrumb): ?>
                         <?php if ($breadcrumb != end($breadcrumbs)): ?>
-                            <li>
                                 <a href="<?php echo $breadcrumb['link']; ?>"><?php echo $breadcrumb['text']; ?></a>
                                 <span class="divider">/</span>
-                            </li>
                         <?php else: ?>
-                            <li class="active"><?php echo $breadcrumb['text']; ?></li>
+                            <?php echo $breadcrumb['text']; ?>
                         <?php endif; ?>
                     <?php endforeach; ?>
+<<<<<<< HEAD
                     <li id="page-top" class="pull-right" style="display: none;">
                         <a href="javascript:void(0)"><i class="icon-circle-arrow-up"></i></a>
                     </li>
+=======
+                </p>
+
+                <ul id="page-top-nav" class="nav navbar-nav navbar-right">
+                    <li><a href="javascript:void(0)" id="page-top-link"><i class="fa fa-arrow-circle-up fa-lg"></i></a></li>
+>>>>>>> 680d6a7624756bd8c4258b559a1be3673bfde44d
                 </ul>
+
             </div>
+        </div>
+
+        <div id="page-content" class="container">
 
             <?php if($lister->getSystemMessages()): ?>
                 <?php foreach ($lister->getSystemMessages() as $message): ?>
@@ -58,48 +78,51 @@
                 <?php endforeach; ?>
             <?php endif; ?>
 
-            <ul class="directory-listing nav nav-pills nav-stacked">
+            <div id="directory-list-header">
+                <div class="row">
+                    <div class="col-md-8 col-sm-6 col-xs-5">File</div>
+                    <div class="col-md-1 col-sm-2 col-xs-2 text-right">Size</div>
+                    <div class="col-md-3 col-sm-4 col-xs-5 text-right">Last Modified</div>
+                </div>
+            </div>
 
-                <li class="nav-header">
-                    <span class="file-name">File</span>
-                    <span class="pull-right">
-                        <span class="file-size">Size</span>
-                        <span class="file-modified">Last Modified</span>
-                    </span>
-                    <span class="file-info">
-                </li>
+            <ul id="directory-listing" class="nav nav-pills nav-stacked">
 
                 <?php foreach($dirArray as $name => $fileInfo): ?>
-                    <li class="clearfix" data-name="<?php echo $name; ?>" data-href="<?php echo $fileInfo['file_path']; ?>">
+                    <li data-name="<?php echo $name; ?>" data-href="<?php echo $fileInfo['file_path']; ?>">
                         <a href="<?php echo $fileInfo['file_path']; ?>" class="clearfix" data-name="<?php echo $name; ?>">
 
-                            <span class="file-name">
-                                <span class="icon-wrapper">
-                                    <i class="<?php echo $fileInfo['icon_class']; ?>"></i>
+
+                            <div class="row">
+                                <span class="file-name col-md-8 col-sm-6 col-xs-5">
+                                    <i class="fa <?php echo $fileInfo['icon_class']; ?> fa-fw"></i>
+                                    <?php echo $name; ?>
                                 </span>
-                                <?php echo $name; ?>
-                            </span>
 
-                            <span class="pull-right">
-
-                                <span class="file-size">
+                                <span class="file-size col-md-1 col-sm-2 col-xs-2 text-right">
                                     <?php echo $fileInfo['file_size']; ?>
                                 </span>
 
-                                <span class="file-modified">
+                                <span class="file-modified col-md-3 col-sm-4 col-xs-5 text-right">
                                     <?php echo $fileInfo['mod_time']; ?>
                                 </span>
-
-                            </span>
+                            </div>
 
                         </a>
 
+<<<<<<< HEAD
                         <?php if (is_file($fileInfo['real_path'])): ?>
                             <script type="text/javascript">
                                 document.write('<a href="#" class="file-info-button">');
                                 document.write('    <i class="icon-info-sign"></i>');
                                 document.write('</a>');
                             </script>
+=======
+                        <?php if (is_file($fileInfo['file_path'])): ?>
+                            <a href="javascript:void(0)" class="file-info-button">
+                                <i class="fa fa-info-circle"></i>
+                            </a>
+>>>>>>> 680d6a7624756bd8c4258b559a1be3673bfde44d
                         <?php endif; ?>
                     </li>
                 <?php endforeach; ?>
@@ -109,30 +132,41 @@
             <hr>
 
             <div class="footer">
-                <p>Powered by, <a href="http://www.directorylister.com">Directory Lister</a></p>
+                Powered by, <a href="http://www.directorylister.com">Directory Lister</a>
             </div>
 
         </div>
 
-        <div id="file-info-modal" class="modal hide fade">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h3>{{modal_header}}</h3>
-            </div>
+        <div id="file-info-modal" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
 
-            <div class="modal-body">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">{{modal_header}}</h4>
+                    </div>
 
-                <dl id="file-info" >
-                    <dt>MD5</dt>
-                        <dd class="md5-hash">{{md5_sum}}</dd>
+                    <div class="modal-body">
 
-                    <dt>SHA1</dt>
-                        <dd class="sha1-hash">{{sha1_sum}}</dd>
+                        <table id="file-info" class="table table-bordered">
+                            <tbody>
 
-                    <dt>sha256</dt>
-                        <dd class="sha256-hash">{{sha256_sum}}</dd>
-                </dl>
+                                <tr>
+                                    <td class="table-title">MD5</td>
+                                    <td class="md5-hash">{{md5_sum}}</td>
+                                </tr>
 
+                                <tr>
+                                    <td class="table-title">SHA1</td>
+                                    <td class="sha1-hash">{{sha1_sum}}</td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+
+                    </div>
+
+                </div>
             </div>
         </div>
 

@@ -14,20 +14,10 @@
         <link rel="stylesheet" type="text/css" href="<?php echo THEMEPATH; ?>/css/style.css">
 
         <!-- SCRIPTS -->
-<<<<<<< HEAD
         <script type="text/javascript" src="<?php echo THEMEPATH; ?>/js/jquery.min.js"></script>
         <script type="text/javascript" src="<?php echo THEMEPATH; ?>/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="<?php echo THEMEPATH; ?>/js/directorylister.js"></script>
 
-=======
-        <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-        <script type="text/javascript" src="<?php echo THEMEPATH; ?>/js/bootstrap.min.js"></script>
-        <script type="text/javascript" src="<?php echo THEMEPATH; ?>/js/directorylister.js"></script>
-
-        <!-- FONTS -->
-        <link rel="stylesheet" type="text/css"  href="//fonts.googleapis.com/css?family=Cutive+Mono">
-
->>>>>>> 680d6a7624756bd8c4258b559a1be3673bfde44d
         <!-- META -->
         <meta name="viewport" content="width=480, initial-scale=.8">
         <meta charset="utf-8">

@@ -458,6 +458,15 @@ class DirectoryLister {
                             $filePath = '?dir=' . urlencode(
                             	substr($realPath, strlen($this->_baseDir) + 1)
                             );
+
+                            
+                            // Search for directory index file
+                            foreach($this->_config['index_filenames'] as $filename) {
+                                if(is_file("{$realPath}/{$filename}")) {
+                                    $filePath = substr($realPath, strlen($rootPath));
+                                    break;
+                                }
+                            }
                         } elseif($this->_config['relative_paths']) {
                         	if(strlen($relativePath) > 0) {
                         		$filePath = "{$relativePath}/{$file}";

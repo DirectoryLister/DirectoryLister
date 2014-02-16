@@ -11,6 +11,12 @@ return array(
     'date_format'        => 'Y-m-d H:i:s',
     'relative_paths'     => true,
 
+    // Index files
+    'index_filenames' => array(
+       'index.html',
+       'index.php'
+    ),
+
     // Hidden files
     'hidden_files' => array(
         '.htaccess',

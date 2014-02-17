@@ -358,7 +358,7 @@ class DirectoryLister {
 		if(substr("{$dir}/", 0, strlen($this->_baseDir) + 1) != "{$this->_baseDir}/") {
 			$is_ok = false;
 		}
-		if($this->isHidden($dir)) {
+		if($this->_isHidden($dir)) {
 			$is_ok = false;
 		}
 		

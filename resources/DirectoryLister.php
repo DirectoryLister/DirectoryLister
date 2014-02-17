@@ -466,9 +466,9 @@ class DirectoryLister {
                                 	if(!$this->_config['relative_paths']) {
                                 		$filePath = substr($realPath, strlen($rootPath)) . '/';
 	                            	} elseif(strlen($relativePath) > 0) {
-					            		$filePath = "{$relativePath}/{$file}";
+					            		$filePath = "{$relativePath}/{$file}/";
 					            	} else {
-					            		$filePath = $file;
+					            		$filePath = "{$file}/";
 					            	}
                                     break;
                                 }

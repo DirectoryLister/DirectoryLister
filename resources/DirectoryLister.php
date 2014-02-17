@@ -350,8 +350,19 @@ class DirectoryLister {
 		// Checks done:
 		//  - If $dir is not a string: Path does not exist
 		//  - If $dir is not located within $this->_baseDir: Access denied
-        if(!is_string($dir)
-        || substr("{$dir}/", 0, strlen($this->_baseDir) + 1) != "{$this->_baseDir}/") {
+		//  - If $dir is located within a hidden directory: Access denied
+		$is_ok = true;
+		if(!is_string($dir)) {
+			$is_ok = false;
+		}
+		if(substr("{$dir}/", 0, strlen($this->_baseDir) + 1) != "{$this->_baseDir}/") {
+			$is_ok = false;
+		}
+		if($this->isHidden($dir)) {
+			$is_ok = false;
+		}
+		
+        if(!$is_ok) {
             // Set the error message
             $this->setSystemMessage('error', '<b>ERROR:</b> An invalid path string was detected');
 

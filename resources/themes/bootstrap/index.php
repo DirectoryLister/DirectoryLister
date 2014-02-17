@@ -42,16 +42,10 @@
                             <?php echo $breadcrumb['text']; ?>
                         <?php endif; ?>
                     <?php endforeach; ?>
-<<<<<<< HEAD
-                    <li id="page-top" class="pull-right" style="display: none;">
-                        <a href="javascript:void(0)"><i class="icon-circle-arrow-up"></i></a>
-                    </li>
-=======
                 </p>
 
                 <ul id="page-top-nav" class="nav navbar-nav navbar-right">
                     <li><a href="javascript:void(0)" id="page-top-link"><i class="fa fa-arrow-circle-up fa-lg"></i></a></li>
->>>>>>> 680d6a7624756bd8c4258b559a1be3673bfde44d
                 </ul>
 
             </div>
@@ -100,19 +94,12 @@
 
                         </a>
 
-<<<<<<< HEAD
                         <?php if (is_file($fileInfo['real_path'])): ?>
                             <script type="text/javascript">
                                 document.write('<a href="#" class="file-info-button">');
-                                document.write('    <i class="icon-info-sign"></i>');
+                                document.write('    <i class="fa fa-info-circle"></i>');
                                 document.write('</a>');
                             </script>
-=======
-                        <?php if (is_file($fileInfo['file_path'])): ?>
-                            <a href="javascript:void(0)" class="file-info-button">
-                                <i class="fa fa-info-circle"></i>
-                            </a>
->>>>>>> 680d6a7624756bd8c4258b559a1be3673bfde44d
                         <?php endif; ?>
                     </li>
                 <?php endforeach; ?>

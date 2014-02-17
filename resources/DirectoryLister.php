@@ -463,7 +463,7 @@ class DirectoryLister {
                             // Search for directory index file
                             foreach($this->_config['index_filenames'] as $filename) {
                                 if(is_file("{$realPath}/{$filename}")) {
-                                    $filePath = substr($realPath, strlen($rootPath));
+                                    $filePath = substr($realPath, strlen($rootPath)) . '/';
                                     break;
                                 }
                             }

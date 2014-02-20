@@ -28,6 +28,8 @@ body.breadcrumb-fixed {
 }
 
 #page-navbar .navbar-text {
+    display: block;
+    float: left;
     font-family: 'Cutive Mono', monospace, serif;
     max-width: 80%;
     overflow: hidden;

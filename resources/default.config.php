@@ -10,7 +10,7 @@ return array(
 
     // Hidden files
     'hidden_files' => array(
-        '.ht*',
+        '*/.ht*',
         'resources',
         'resources/*',
         'analytics.inc'

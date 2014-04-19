@@ -11,12 +11,12 @@
  * More info available at http://www.directorylister.com
  *
  * @author Chris Kankiewicz (http://www.chriskankiewicz.com)
- * @copyright 2013 Chris Kankiewicz
+ * @copyright 2014 Chris Kankiewicz
  */
 class DirectoryLister {
 
     // Define application version
-    const VERSION = '2.3.0';
+    const VERSION = '2.4.0';
 
     // Reserve some variables
     protected $_themeName     = null;

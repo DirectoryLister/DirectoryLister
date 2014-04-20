@@ -9,7 +9,6 @@
 
         <!-- STYLES -->
         <link rel="stylesheet" type="text/css" href="<?php echo THEMEPATH; ?>/css/bootstrap.min.css">
-        <link rel="stylesheet" type="text/css" href="<?php echo THEMEPATH; ?>/css/bootstrap-responsive.min.css">
         <link rel="stylesheet" type="text/css" href="<?php echo THEMEPATH; ?>/css/font-awesome.min.css">
         <link rel="stylesheet" type="text/css" href="<?php echo THEMEPATH; ?>/css/style.css">
 

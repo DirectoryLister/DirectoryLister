@@ -111,6 +111,7 @@ return array(
         'tif'   => 'fa-picture-o',
 
         // Package Files
+        'box'   => 'fa-archive',
         'deb'   => 'fa-archive',
         'rpm'   => 'fa-archive',
 

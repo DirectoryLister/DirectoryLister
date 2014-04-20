@@ -24,6 +24,7 @@ class DirectoryLister {
     protected $_appDir        = null;
     protected $_appURL        = null;
     protected $_config        = null;
+    protected $_fileTypes     = null;
     protected $_systemMessage = null;
 
 
@@ -52,6 +53,9 @@ class DirectoryLister {
         } else {
             $this->setSystemMessage('danger', '<b>ERROR:</b> Unable to locate application config file');
         }
+
+        // Set the file types array to a global variable
+        $this->_fileTypes = require_once($this->_appDir . '/fileTypes.php');
 
         // Set the theme name
         $this->_themeName = $this->_config['theme_name'];
@@ -428,10 +432,10 @@ class DirectoryLister {
                     // Get file extension
                     $fileExt = strtolower(pathinfo($realPath, PATHINFO_EXTENSION));
 
-                    if (isset($this->_config['file_types'][$fileExt])) {
-                        $iconClass = $this->_config['file_types'][$fileExt];
+                    if (isset($this->_fileTypes[$fileExt])) {
+                        $iconClass = $this->_fileTypes[$fileExt];
                     } else {
-                        $iconClass = $this->_config['file_types']['blank'];
+                        $iconClass = $this->_fileTypes['blank'];
                     }
 
                     $sort = 2;

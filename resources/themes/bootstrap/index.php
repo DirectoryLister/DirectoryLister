@@ -21,7 +21,7 @@
         <link rel="stylesheet" type="text/css"  href="//fonts.googleapis.com/css?family=Cutive+Mono">
 
         <!-- META -->
-        <meta name="viewport" content="width=480, initial-scale=.8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta charset="utf-8">
 
         <?php file_exists('analytics.inc') ? include('analytics.inc') : false; ?>

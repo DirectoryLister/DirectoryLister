@@ -107,10 +107,6 @@ body.breadcrumb-fixed {
 
 @media (max-width: 767px) {
 
-    #page-top-nav {
-        display: block !important;
-    }
-
     .navbar-nav {
         float: left;
         margin: 0;

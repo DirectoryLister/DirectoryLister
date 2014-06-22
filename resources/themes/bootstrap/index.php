@@ -46,9 +46,11 @@
                     <?php endforeach; ?>
                 </p>
 
-                <ul id="page-top-nav" class="nav navbar-nav navbar-right">
-                    <li><a href="javascript:void(0)" id="page-top-link"><i class="fa fa-arrow-circle-up fa-lg"></i></a></li>
-                </ul>
+                <div class="navbar-right">
+                    <ul id="page-top-nav" class="nav navbar-nav">
+                        <li><a href="javascript:void(0)" id="page-top-link"><i class="fa fa-arrow-circle-up fa-lg"></i></a></li>
+                    </ul>
+                </div>
 
             </div>
         </div>

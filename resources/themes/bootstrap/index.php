@@ -9,7 +9,6 @@
 
         <!-- STYLES -->
         <link rel="stylesheet" type="text/css" href="<?php echo THEMEPATH; ?>/css/bootstrap.min.css">
-        <link rel="stylesheet" type="text/css" href="<?php echo THEMEPATH; ?>/css/bootstrap-responsive.min.css">
         <link rel="stylesheet" type="text/css" href="<?php echo THEMEPATH; ?>/css/font-awesome.min.css">
         <link rel="stylesheet" type="text/css" href="<?php echo THEMEPATH; ?>/css/style.css">
 
@@ -19,7 +18,7 @@
         <script type="text/javascript" src="<?php echo THEMEPATH; ?>/js/directorylister.js"></script>
 
         <!-- META -->
-        <meta name="viewport" content="width=480, initial-scale=.8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta charset="utf-8">
 
         <?php file_exists('analytics.inc') ? include('analytics.inc') : false; ?>
@@ -44,9 +43,11 @@
                     <?php endforeach; ?>
                 </p>
 
-                <ul id="page-top-nav" class="nav navbar-nav navbar-right">
-                    <li><a href="javascript:void(0)" id="page-top-link"><i class="fa fa-arrow-circle-up fa-lg"></i></a></li>
-                </ul>
+                <div class="navbar-right">
+                    <ul id="page-top-nav" class="nav navbar-nav">
+                        <li><a href="javascript:void(0)" id="page-top-link"><i class="fa fa-arrow-circle-up fa-lg"></i></a></li>
+                    </ul>
+                </div>
 
             </div>
         </div>
@@ -64,9 +65,9 @@
 
             <div id="directory-list-header">
                 <div class="row">
-                    <div class="col-md-8 col-sm-6 col-xs-5">File</div>
-                    <div class="col-md-1 col-sm-2 col-xs-2 text-right">Size</div>
-                    <div class="col-md-3 col-sm-4 col-xs-5 text-right">Last Modified</div>
+                    <div class="col-md-7 col-sm-6 col-xs-10">File</div>
+                    <div class="col-md-2 col-sm-2 col-xs-2 text-right">Size</div>
+                    <div class="col-md-3 col-sm-4 hidden-xs text-right">Last Modified</div>
                 </div>
             </div>
 
@@ -78,16 +79,16 @@
 
 
                             <div class="row">
-                                <span class="file-name col-md-8 col-sm-6 col-xs-5">
+                                <span class="file-name col-md-7 col-sm-6 col-xs-9">
                                     <i class="fa <?php echo $fileInfo['icon_class']; ?> fa-fw"></i>
                                     <?php echo $name; ?>
                                 </span>
 
-                                <span class="file-size col-md-1 col-sm-2 col-xs-2 text-right">
+                                <span class="file-size col-md-2 col-sm-2 col-xs-3 text-right">
                                     <?php echo $fileInfo['file_size']; ?>
                                 </span>
 
-                                <span class="file-modified col-md-3 col-sm-4 col-xs-5 text-right">
+                                <span class="file-modified col-md-3 col-sm-4 hidden-xs text-right">
                                     <?php echo $fileInfo['mod_time']; ?>
                                 </span>
                             </div>

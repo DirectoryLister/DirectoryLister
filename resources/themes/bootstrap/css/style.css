@@ -2,10 +2,6 @@
 /* -----| GENERAL |------------------------------------------------------------------------------ */
 /* ---------------------------------------------------------------------------------------------- */
 
-html {
-    min-width: 480px;
-}
-
 body {
     padding: 70px 0 0;
 }
@@ -14,16 +10,18 @@ body.breadcrumb-fixed {
     padding-top: 56px;
 }
 
+.container {
+    max-width: 960px;
+}
+
 
 /* -------------------------------------------------------------------------- */
 /* -----| HEADER |----------------------------------------------------------- */
 /* -------------------------------------------------------------------------- */
 
-#page-navbar {
-    min-width: 480px;
-}
-
 #page-navbar .navbar-text {
+    display: block;
+    float: left;
     font-family: 'Cutive Mono', monospace, serif;
     max-width: 80%;
     overflow: hidden;
@@ -50,7 +48,7 @@ body.breadcrumb-fixed {
     position: relative;
 }
 
-.file-name, .file-size {
+.file-name {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -109,10 +107,6 @@ body.breadcrumb-fixed {
 
 @media (max-width: 767px) {
 
-    #page-top-nav {
-        display: block !important;
-    }
-
     .navbar-nav {
         float: left;
         margin: 0;
@@ -133,9 +127,10 @@ body.breadcrumb-fixed {
         float: right !important;
     }
 
-    .navbar-text {
+    #page-navbar .navbar-text {
         margin-left: 15px;
         margin-right: 15px;
+        max-width: 75%;
     }
 
     .file-info-button {

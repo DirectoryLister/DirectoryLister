@@ -137,7 +137,7 @@ class DirectoryLister {
         } else if($this->_config['relative_paths']) {
             $homeLink = $this->_getRelativePath($curPath, $this->_baseDir);
         } else {
-            $homeLink = substr($this->_baseDir, strlen($rootPath));
+            $homeLink = substr("{$this->_baseDir}/", strlen($rootPath));
         }
         
         // Statically set the Home breadcrumb
@@ -172,7 +172,7 @@ class DirectoryLister {
 		            if($this->_config['relative_paths']) {
 		                $link = $this->_getRelativePath($curPath, $dirPath);
 		            } else {
-			            $link = substr($dirPath, strlen($rootPath));
+			            $link = substr("{$dirPath}/", strlen($rootPath));
 			        }
 	            }
 

@@ -107,6 +107,9 @@ class DirectoryLister {
      */
     public function listBreadcrumbs($directory = null) {
 
+	    // Find web server root directory
+        $rootPath = realpath($_SERVER['DOCUMENT_ROOT']);
+        
         // Set directory varriable if left blank
         if ($directory === null) {
             $directory = $this->_directory;
@@ -121,13 +124,25 @@ class DirectoryLister {
         if(!is_string($directory)) {
         	$directory = '';
         }
+        
+        // Get absolute path of current directory
+        $curPath = dirname(realpath($_SERVER['SCRIPT_FILENAME']));
 
         // Explode the path into an array
         $dirArray = explode('/', $directory);
 
+        // Find home directory
+        if($this->_config['directory_queries']) {
+            $homeLink = "?dir=";
+        } else if($this->_config['relative_paths']) {
+            $homeLink = $this->_getRelativePath($curPath, $this->_baseDir);
+        } else {
+            $homeLink = substr($this->_baseDir, strlen($rootPath));
+        }
+        
         // Statically set the Home breadcrumb
         $breadcrumbsArray[] = array(
-            'link' => '?dir=',
+            'link' => $homeLink,
             'text' => 'Home'
         );
 
@@ -136,7 +151,7 @@ class DirectoryLister {
 
             if ($dir != '.') {
 
-                $dirPath  = null;
+                $dirPath = null;
 
                 // Build the directory path
                 for ($i = 0; $i <= $key; $i++) {
@@ -147,9 +162,19 @@ class DirectoryLister {
                 if(substr($dirPath, -1) == '/') {
                     $dirPath = substr($dirPath, 0, -1);
                 }
-
+                
                 // Combine the base path and dir path
-                $link = '?dir=' . urlencode($dirPath);
+                if($this->_config['directory_queries']) {
+	                $link = '?dir=' . urlencode($dirPath);
+	            } else {
+		            $dirPath = $this->_baseDir . '/' . $dirPath;
+		            
+		            if($this->_config['relative_paths']) {
+		                $link = $this->_getRelativePath($curPath, $dirPath);
+		            } else {
+			            $link = substr($dirPath, strlen($rootPath));
+			        }
+	            }
 
                 $breadcrumbsArray[] = array(
                     'link' => $link,
@@ -484,11 +509,21 @@ class DirectoryLister {
                         $directoryPath = implode('/', $pathArray);
                         
                         // Make path relative to base directory
-                        $query = '?dir=' . substr($directoryPath, strlen($this->_baseDir) + 1);
+                        if($this->_config['directory_queries']) {
+                            $link = '?dir=' . substr($directoryPath, strlen($this->_baseDir) + 1);
+                        } else if($this->_config['relative_paths']) {
+                            if(strlen($relativePath) > 0) {
+                        		$link = "{$relativePath}/..";
+                        	} else {
+                        		$link = '..';
+                        	}
+                        } else {
+                            $link = substr($directoryPath, strlen($rootPath)) . '/';
+                        }
 
                         // Add file info to the array
                         $directoryArray['..'] = array(
-                            'file_path'  => $query,
+                            'file_path'  => $link,
                             'real_path'  => $directoryPath,
                             'file_size'  => '-',
                             'mod_time'   => date($this->_config['date_format'], filemtime($realPath)),
@@ -504,24 +539,17 @@ class DirectoryLister {
                         
                         // Build the file path
                         if (is_dir($realPath)) {
-                            $filePath = '?dir=' . urlencode(
-                            	substr($realPath, strlen($this->_baseDir) + 1)
-                            );
-
-                            
-                            // Search for directory index file
-                            foreach($this->_config['index_filenames'] as $filename) {
-                                if(is_file("{$realPath}/{$filename}")) {
-                                	if(!$this->_config['relative_paths']) {
-                                		$filePath = substr($realPath, strlen($rootPath)) . '/';
-	                            	} elseif(strlen($relativePath) > 0) {
-					            		$filePath = "{$relativePath}/{$file}/";
-					            	} else {
-					            		$filePath = "{$file}/";
-					            	}
-                                    break;
-                                }
-                            }
+                            if($this->_config['directory_queries'] && !$haveIndexFile) {
+								$filePath = '?dir=' . urlencode(
+									substr($realPath, strlen($this->_baseDir) + 1)
+								);
+							} else if(!$this->_config['relative_paths']) {
+								$filePath = substr($realPath, strlen($rootPath)) . '/';
+							} elseif(strlen($relativePath) > 0) {
+								$filePath = "{$relativePath}/{$file}/";
+							} else {
+								$filePath = "{$file}/";
+							}
                         } elseif($this->_config['relative_paths']) {
                         	if(strlen($relativePath) > 0) {
                         		$filePath = "{$relativePath}/{$file}";

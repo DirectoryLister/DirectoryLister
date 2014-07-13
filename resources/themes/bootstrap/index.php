@@ -13,12 +13,9 @@
         <link rel="stylesheet" type="text/css" href="<?php echo THEMEPATH; ?>/css/style.css">
 
         <!-- SCRIPTS -->
-        <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+        <script type="text/javascript" src="<?php echo THEMEPATH; ?>/js/jquery.min.js"></script>
         <script type="text/javascript" src="<?php echo THEMEPATH; ?>/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="<?php echo THEMEPATH; ?>/js/directorylister.js"></script>
-
-        <!-- FONTS -->
-        <link rel="stylesheet" type="text/css"  href="//fonts.googleapis.com/css?family=Cutive+Mono">
 
         <!-- META -->
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -98,10 +95,12 @@
 
                         </a>
 
-                        <?php if (is_file($fileInfo['file_path'])): ?>
-                            <a href="javascript:void(0)" class="file-info-button">
-                                <i class="fa fa-info-circle"></i>
-                            </a>
+                        <?php if (is_file($fileInfo['real_path'])): ?>
+                            <script type="text/javascript">
+                                document.write('<a href="#" class="file-info-button">');
+                                document.write('    <i class="fa fa-info-circle"></i>');
+                                document.write('</a>');
+                            </script>
                         <?php endif; ?>
                     </li>
                 <?php endforeach; ?>

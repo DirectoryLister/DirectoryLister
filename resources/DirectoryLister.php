@@ -471,14 +471,15 @@ class DirectoryLister {
 
                         // Build the file path
                         if (is_dir($relativePath)) {
-                            $filePath = '?dir=' . urlencode($relativePath);
+                            $urlPath = '?dir=' . urlencode($relativePath);
                         } else {
-                            $filePath = $relativePath;
+                            $urlPath = urlencode($relativePath);
                         }
 
                         // Add the info to the main array
                         $directoryArray[pathinfo($relativePath, PATHINFO_BASENAME)] = array(
-                            'file_path'  => $filePath,
+                            'file_path'  => $relativePath,
+                            'url_path'   => $urlPath,
                             'file_size'  => is_dir($realPath) ? '-' : $this->getFileSize($realPath),
                             'mod_time'   => date('Y-m-d H:i:s', filemtime($realPath)),
                             'icon_class' => $iconClass,

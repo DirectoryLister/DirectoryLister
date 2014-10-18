@@ -39,7 +39,6 @@ $(document).ready(function() {
                 // Parse the JSON data
                 var obj = jQuery.parseJSON(data);
 
-
                 // Set modal pop-up hash values
                 $('#file-info .md5-hash').text(obj.md5);
                 $('#file-info .sha1-hash').text(obj.sha1);

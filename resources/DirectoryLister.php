@@ -129,7 +129,7 @@ class DirectoryLister {
                 }
 
                 // Combine the base path and dir path
-                $link = $this->_appURL . '?dir=' . urlencode($dirPath);
+                $link = $this->_appURL . '?dir=' . $this->getURLFromRelativePath($dirPath);
 
                 $breadcrumbsArray[] = array(
                     'link' => $link,
@@ -144,7 +144,19 @@ class DirectoryLister {
         return $breadcrumbsArray;
     }
 
-
+    /**
+     * Get URL from Path, allowing spaces in filenames in contrast to PHP's urlencode()
+     *
+     * @author Marcel Kleinfeller <marcel@oompf.de>
+     * 
+     * @param string $str file path to encode
+     * @return URL
+     * @access public
+     */
+    public function getURLFromRelativePath($str) {
+        return str_replace("+", "%20", urlencode($str) );
+    }
+     
     /**
      * Get path of the listed directory
      *
@@ -451,7 +463,7 @@ class DirectoryLister {
                         $directoryPath = implode('/', $pathArray);
 
                         if (!empty($directoryPath)) {
-                            $directoryPath = '?dir=' . urlencode($directoryPath);
+                            $directoryPath = '?dir=' . $this->getURLFromRelativePath($directoryPath);
                         }
 
                         // Add file info to the array
@@ -472,9 +484,9 @@ class DirectoryLister {
 
                         // Build the file path
                         if (is_dir($relativePath)) {
-                            $urlPath = '?dir=' . urlencode($relativePath);
+                            $urlPath = '?dir=' . $this->getURLFromRelativePath($relativePath);
                         } else {
-                            $urlPath = urlencode($relativePath);
+                            $urlPath = $this->getURLFromRelativePath($relativePath);
                         }
 
                         // Add the info to the main array

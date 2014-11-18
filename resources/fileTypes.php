@@ -3,12 +3,12 @@
 return array(
 
     // Archives
-    '7z'    => 'fa-briefcase',
-    'bz'    => 'fa-briefcase',
-    'gz'    => 'fa-briefcase',
-    'rar'   => 'fa-briefcase',
-    'tar'   => 'fa-briefcase',
-    'zip'   => 'fa-briefcase',
+    '7z'    => 'fa-file-archive-o',
+    'bz'    => 'fa-file-archive-o',
+    'gz'    => 'fa-file-archive-o',
+    'rar'   => 'fa-file-archive-o',
+    'tar'   => 'fa-file-archive-o',
+    'zip'   => 'fa-file-archive-o',
 
     // Audio
     'aac'   => 'fa-music',

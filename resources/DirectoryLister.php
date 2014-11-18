@@ -300,7 +300,7 @@ class DirectoryLister {
     public function setDirectoryPath($path = null) {
 
         // Set the directory global variable
-        $this->_directory = $this->_setDirecoryPath($path);
+        $this->_directory = $this->_setDirectoryPath($path);
 
         return $this->_directory;
 
@@ -339,7 +339,7 @@ class DirectoryLister {
      * @return string Directory path to be listed
      * @access protected
      */
-    protected function _setDirecoryPath($dir) {
+    protected function _setDirectoryPath($dir) {
 
         // Check for an empty variable
         if (empty($dir) || $dir == '.') {

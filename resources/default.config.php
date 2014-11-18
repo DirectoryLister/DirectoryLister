@@ -13,7 +13,9 @@ return array(
         '*/.ht*',
         'resources',
         'resources/*',
-        'analytics.inc'
+        'analytics.inc',
+        'header.php',
+        'footer.php'
     ),
 
     // File hashing threshold

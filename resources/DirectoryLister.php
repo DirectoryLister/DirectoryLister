@@ -75,7 +75,7 @@ class DirectoryLister {
         // Set directory
         $directory = $this->setDirectoryPath($directory);
 
-        // Set directory varriable if left blank
+        // Set directory variable if left blank
         if ($directory === null) {
             $directory = $this->_directory;
         }
@@ -97,7 +97,7 @@ class DirectoryLister {
      */
     public function listBreadcrumbs($directory = null) {
 
-        // Set directory varriable if left blank
+        // Set directory variable if left blank
         if ($directory === null) {
             $directory = $this->_directory;
         }
@@ -180,7 +180,7 @@ class DirectoryLister {
     /**
      * Returns the path to the chosen theme directory
      *
-     * @param bool $absolute Wether or not the path returned is absolute (default = false).
+     * @param bool $absolute Whether or not the path returned is absolute (default = false).
      * @return string Path to theme
      * @access public
      */

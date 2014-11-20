@@ -16,7 +16,7 @@
 class DirectoryLister {
 
     // Define application version
-    const VERSION = '2.4.3';
+    const VERSION = '2.4.4';
 
     // Reserve some variables
     protected $_themeName     = null;
@@ -129,7 +129,7 @@ class DirectoryLister {
                 }
 
                 // Combine the base path and dir path
-                $link = $this->_appURL . '?dir=' . urlencode($dirPath);
+                $link = $this->_appURL . '?dir=' . rawurlencode($dirPath);
 
                 $breadcrumbsArray[] = array(
                     'link' => $link,
@@ -451,7 +451,7 @@ class DirectoryLister {
                         $directoryPath = implode('/', $pathArray);
 
                         if (!empty($directoryPath)) {
-                            $directoryPath = '?dir=' . urlencode($directoryPath);
+                            $directoryPath = '?dir=' . rawurlencode($directoryPath);
                         }
 
                         // Add file info to the array
@@ -472,9 +472,9 @@ class DirectoryLister {
 
                         // Build the file path
                         if (is_dir($relativePath)) {
-                            $urlPath = '?dir=' . urlencode($relativePath);
+                            $urlPath = '?dir=' . rawurlencode($relativePath);
                         } else {
-                            $urlPath = urlencode($relativePath);
+                            $urlPath = rawurlencode($relativePath);
                         }
 
                         // Add the info to the main array

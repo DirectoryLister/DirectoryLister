@@ -470,11 +470,12 @@ class DirectoryLister {
                     // Add all non-hidden files to the array
                     if ($this->_directory != '.' || $file != 'index.php') {
 
-                        $urlPath = implode('/', array_map(rawurlencode, explode("/", $relativePath)));
-
                         // Build the file path
+                        $urlPath = implode('/', array_map(rawurlencode, explode('/', $relativePath)));
+
+                        // Prefix directories with ?dir=
                         if (is_dir($relativePath)) {
-                            $urlPath = '?dir=' . rawurlencode($relativePath);
+                            $urlPath = '?dir=' . $urlPath;
                         }
 
                         // Add the info to the main array

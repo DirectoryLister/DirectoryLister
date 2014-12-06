@@ -101,10 +101,23 @@
                         </a>
 
                         <?php if (is_file($fileInfo['file_path'])): ?>
+
                             <a href="javascript:void(0)" class="file-info-button">
                                 <i class="fa fa-info-circle"></i>
                             </a>
+
+                        <?php else: ?>
+
+                            <?php if ($lister->containsIndex($fileInfo['file_path'])): ?>
+
+                                <a href="<?php echo $fileInfo['file_path']; ?>" class="web-link-button">
+                                    <i class="fa fa-external-link"></i>
+                                </a>
+
+                            <?php endif; ?>
+
                         <?php endif; ?>
+
                     </li>
                 <?php endforeach; ?>
 

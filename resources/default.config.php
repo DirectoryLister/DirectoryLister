@@ -18,6 +18,14 @@ return array(
         'footer.php'
     ),
 
+    // Files that, if present in a directory, make the directory a direct link
+    // rather than a browse link.
+    'index_files' => array(
+        'index.htm',
+        'index.html',
+        'index.php'
+    ),
+
     // File hashing threshold
     'hash_size_limit' => 268435456, // 256 MB
 

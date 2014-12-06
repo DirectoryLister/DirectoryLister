@@ -58,7 +58,8 @@ body.breadcrumb-fixed {
     color: #555;
 }
 
-.file-info-button {
+.file-info-button,
+.web-link-button {
     display: inline-block;
     cursor: pointer;
     margin-left: 100%;
@@ -67,6 +68,7 @@ body.breadcrumb-fixed {
     top: 4px;
 }
 
+.web-link-button i,
 .file-info-button i {
     color: #999;
 }

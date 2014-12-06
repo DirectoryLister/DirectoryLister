@@ -146,6 +146,31 @@ class DirectoryLister {
 
 
     /**
+     * Determines if a directory contains an index file
+     *
+     * @param string $dirPath Path to directory to be checked for an index
+     * @return boolean Returns true if directory contains a valid index file, false if not
+     * @access public
+     */
+    public function containsIndex($dirPath) {
+
+        // Check if directory contains an index file
+        foreach ($this->_config['index_files'] as $indexFile) {
+
+            if (file_exists($dirPath . '/' . $indexFile)) {
+
+                return true;
+
+            }
+
+        }
+
+        return false;
+
+    }
+
+
+    /**
      * Get path of the listed directory
      *
      * @return string Path of the listed directory
@@ -473,9 +498,10 @@ class DirectoryLister {
                         // Build the file path
                         $urlPath = implode('/', array_map(rawurlencode, explode('/', $relativePath)));
 
-                        // Prefix directories with ?dir=
                         if (is_dir($relativePath)) {
                             $urlPath = '?dir=' . $urlPath;
+                        } else {
+                            $urlPath = $urlPath;
                         }
 
                         // Add the info to the main array

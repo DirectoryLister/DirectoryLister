@@ -57,7 +57,8 @@
 
         <div id="page-content" class="container">
 
-            <?php file_exists('header.php') ? include('header.php') : include(THEMEPATH . "/default_header.php"); ?>
+            <?php file_exists('header.php') ? include('header.php') : include($lister->getThemePath(true) . "/default_header.php"); ?>
+
             <?php if($lister->getSystemMessages()): ?>
                 <?php foreach ($lister->getSystemMessages() as $message): ?>
                     <div class="alert alert-<?php echo $message['type']; ?>">
@@ -109,7 +110,8 @@
 
             </ul>
         </div>
-        <?php file_exists('footer.php') ? include('footer.php') : include(THEMEPATH . "/default_footer.php"); ?>
+
+        <?php file_exists('footer.php') ? include('footer.php') : include($lister->getThemePath(true) . "/default_footer.php"); ?>
 
         <div id="file-info-modal" class="modal fade">
             <div class="modal-dialog">

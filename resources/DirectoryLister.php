@@ -16,7 +16,7 @@
 class DirectoryLister {
 
     // Define application version
-    const VERSION = '2.5.0';
+    const VERSION = '2.5.1';
 
     // Reserve some variables
     protected $_themeName     = null;
@@ -496,7 +496,7 @@ class DirectoryLister {
                     if ($this->_directory != '.' || $file != 'index.php') {
 
                         // Build the file path
-                        $urlPath = implode('/', array_map(rawurlencode, explode('/', $relativePath)));
+                        $urlPath = implode('/', array_map('rawurlencode', explode('/', $relativePath)));
 
                         if (is_dir($relativePath)) {
                             $urlPath = '?dir=' . $urlPath;

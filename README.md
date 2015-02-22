@@ -70,4 +70,4 @@ License
 
 Directory Lister is distributed under the terms of the
 [MIT License](http://www.opensource.org/licenses/mit-license.php).
-Copyright 2013 [Chris Kankiewicz](http://www.chriskankiewicz.com)
+Copyright 2015 [Chris Kankiewicz](http://www.chriskankiewicz.com)

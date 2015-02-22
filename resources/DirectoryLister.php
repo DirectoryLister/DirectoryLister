@@ -44,9 +44,6 @@ class DirectoryLister {
         // Build the application URL
         $this->_appURL = $this->_getAppUrl();
 
-        // Restrict file access to app directory
-        ini_set('open_basedir', getcwd());
-
         // Load the configuration file
         $configFile = $this->_appDir . '/config.php';
 

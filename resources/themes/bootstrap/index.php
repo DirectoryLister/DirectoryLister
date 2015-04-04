@@ -80,8 +80,12 @@
 
                 <?php foreach($dirArray as $name => $fileInfo): ?>
                     <li data-name="<?php echo $name; ?>" data-href="<?php echo $fileInfo['url_path']; ?>">
-                        <a href="<?php echo $fileInfo['url_path']; ?>" class="clearfix" data-name="<?php echo $name; ?>">
-
+	
+				<?php if ($lister->containsIndex($fileInfo['file_path'])): ?>
+                    <a href="<?php echo $fileInfo['file_path']; ?>" class="clearfix" data-name="<?php echo $name; ?>">
+				<?php else: ?>
+    				<a href="<?php echo $fileInfo['url_path']; ?>" class="clearfix" data-name="<?php echo $name; ?>">
+                <?php endif; ?>
 
                             <div class="row">
                                 <span class="file-name col-md-7 col-sm-6 col-xs-9">
@@ -110,7 +114,7 @@
 
                             <?php if ($lister->containsIndex($fileInfo['file_path'])): ?>
 
-                                <a href="<?php echo $fileInfo['file_path']; ?>" class="web-link-button">
+                                <a href="<?php echo $fileInfo['url_path']; ?>" class="web-link-button">
                                     <i class="fa fa-external-link"></i>
                                 </a>
 

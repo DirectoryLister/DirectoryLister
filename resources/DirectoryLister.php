@@ -16,7 +16,7 @@
 class DirectoryLister {
 
     // Define application version
-    const VERSION = '2.5.2';
+    const VERSION = '2.5.3';
 
     // Reserve some variables
     protected $_themeName     = null;
@@ -43,9 +43,6 @@ class DirectoryLister {
 
         // Build the application URL
         $this->_appURL = $this->_getAppUrl();
-
-        // Restrict file access to app directory
-        ini_set('open_basedir', getcwd());
 
         // Load the configuration file
         $configFile = $this->_appDir . '/config.php';

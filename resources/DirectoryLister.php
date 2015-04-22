@@ -203,6 +203,17 @@ class DirectoryLister {
 
 
     /**
+     * Returns open links in another window
+     *
+     * @return boolean Returns true if in config is enabled open links in another window, false if not
+     * @access public
+     */
+    public function determineOpenLinksAnotherWindow() {
+        return $this->_config['open_links_another_window'];
+    }
+
+
+    /**
      * Returns the path to the chosen theme directory
      *
      * @param bool $absolute Whether or not the path returned is absolute (default = false).

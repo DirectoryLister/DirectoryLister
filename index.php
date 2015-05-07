@@ -21,6 +21,12 @@
 
     }
 
+    // Download file if requested
+    if (isset($_GET['down'])) {
+	$lister->downloader($_GET['down']);
+	die();
+    }
+
     // Initialize the directory array
     if (isset($_GET['dir'])) {
         $dirArray = $lister->listDirectory($_GET['dir']);

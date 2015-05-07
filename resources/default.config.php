@@ -7,6 +7,7 @@ return array(
     'list_folders_first' => true,
     'list_sort_order'    => 'natcasesort',
     'theme_name'         => 'bootstrap',
+    'downloader'         => false,
 
     // Hidden files
     'hidden_files' => array(

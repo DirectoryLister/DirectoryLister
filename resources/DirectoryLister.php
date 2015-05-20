@@ -446,24 +446,33 @@ class DirectoryLister {
                     $relativePath = substr($relativePath, 2);
                 }
 
-                // Get files absolute path
-                $realPath = realpath($relativePath);
+                // Don't check parent dir if we're in the root dir
+                if ($this->_directory == '.' && $file == '..'){
 
-                // Determine file type by extension
-                if (is_dir($realPath)) {
-                    $iconClass = 'fa-folder';
-                    $sort = 1;
+                    continue;
+
                 } else {
-                    // Get file extension
-                    $fileExt = strtolower(pathinfo($realPath, PATHINFO_EXTENSION));
 
-                    if (isset($this->_fileTypes[$fileExt])) {
-                        $iconClass = $this->_fileTypes[$fileExt];
+                    // Get files absolute path
+                    $realPath = realpath($relativePath);
+
+                    // Determine file type by extension
+                    if (is_dir($realPath)) {
+                        $iconClass = 'fa-folder';
+                        $sort = 1;
                     } else {
-                        $iconClass = $this->_fileTypes['blank'];
+                        // Get file extension
+                        $fileExt = strtolower(pathinfo($realPath, PATHINFO_EXTENSION));
+
+                        if (isset($this->_fileTypes[$fileExt])) {
+                            $iconClass = $this->_fileTypes[$fileExt];
+                        } else {
+                            $iconClass = $this->_fileTypes['blank'];
+                        }
+
+                        $sort = 2;
                     }
 
-                    $sort = 2;
                 }
 
                 if ($file == '..') {

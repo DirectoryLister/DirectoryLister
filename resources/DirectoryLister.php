@@ -51,7 +51,7 @@ class DirectoryLister {
         if (file_exists($configFile)) {
             $this->_config = require_once($configFile);
         } else {
-            $this->setSystemMessage('danger', '<b>ERROR:</b> Unable to locate application config file');
+            die('ERROR: Missing application config file at ' . $configFile);
         }
 
         // Set the file types array to a global variable

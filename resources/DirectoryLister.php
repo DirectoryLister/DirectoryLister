@@ -682,7 +682,11 @@ class DirectoryLister {
 
         // Get the server protocol
         if (!empty($_SERVER['HTTPS'])) {
-            $protocol = 'https://';
+            if ($_SERVER['HTTPS']!=="off" {
+                $protocol = 'https://';
+            } else {
+                $protocol = 'http://';
+            }
         } else {
             $protocol = 'http://';
         }

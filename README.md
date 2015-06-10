@@ -11,7 +11,7 @@ allows navigating there within. Simply upload Directory Lister to any directory 
 access to all files and sub-direcories under that directory. Directory Lister is written in PHP and
 distributed under the [MIT License](http://www.opensource.org/licenses/mit-license.php).
 
-Like this project? Donate with Bitcoin: `1MT5rTgi3hQ1B852RKeHBipunaTJ4iRzmV`
+Like this project? Want to keep it free? [Make a donation](https://cash.me/$ChrisKankiewicz).
 
 More info available at <http://www.directorylister.com>
 

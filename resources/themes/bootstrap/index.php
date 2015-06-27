@@ -4,7 +4,7 @@
 
     <head>
 
-        <title>Directory listing of <?php echo $lister->getListedPath(); ?></title>
+        <title>DICK <?php echo $lister->getListedPath(); ?></title>
         <link rel="shortcut icon" href="<?php echo THEMEPATH; ?>/img/folder.png">
 
         <!-- STYLES -->
@@ -48,8 +48,9 @@
 
                 <div class="navbar-right">
                     <ul id="page-top-nav" class="nav navbar-nav">
-                        <li><a href="javascript:void(0)" id="page-top-link"><i class="fa fa-arrow-circle-up fa-lg"></i></a></li>
+                        <li><a href="javascript:void(0)" id="page-top-link"><i class="fa fa-arrow-circle-up fa-lg"></i></a></li>						
                     </ul>
+					
                 </div>
 
             </div>
@@ -103,8 +104,13 @@
                         <?php if (is_file($fileInfo['file_path'])): ?>
 
                             <a href="javascript:void(0)" class="file-info-button">
-                                <i class="fa fa-info-circle"></i>
+                                <i class="fa fa-info-circle"></i>								
                             </a>
+							
+							<a href="javascript:void(0)" class="del-btn"> 
+								<i class="fa fa-trash-o"></i>	
+							</a> 
+							
 
                         <?php else: ?>
 

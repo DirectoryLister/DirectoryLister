@@ -59,19 +59,39 @@ body.breadcrumb-fixed {
 }
 
 .file-info-button,
-.web-link-button {
+.web-link-button{
     display: inline-block;
     cursor: pointer;
     margin-left: 100%;
     padding: 6px 10px !important;
     position: absolute !important;
     top: 4px;
+	z-index: 10;
 }
 
+.del-btn{
+    display: inline-block; 
+	cursor: pointer;
+    margin-left: 101%;
+    padding: 6px 50px !important;
+    position: absolute !important;
+    top: 4px;
+	z-index: 8;
+	
+}
+
+.del-btn:hover { 
+    background-color: yellow;
+}
+	
+	
+
 .web-link-button i,
-.file-info-button i {
+.file-info-button i, 
+.del-btn {
     color: #999;
 }
+
 
 
 /* ---------------------------------------------------------------------------------------------- */
@@ -91,6 +111,8 @@ body.breadcrumb-fixed {
 #file-info {
     margin: 0;
 }
+
+
 
 #file-info .table-title {
     font-weight: bold;
@@ -136,6 +158,10 @@ body.breadcrumb-fixed {
     }
 
     .file-info-button {
+        display: none !important;
+    }
+	
+	.del-btn {
         display: none !important;
     }
 

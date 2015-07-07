@@ -652,7 +652,10 @@ class DirectoryLister {
         // Add dot files to hidden files array
         if ($this->_config['hide_dot_files']) {
 
-            $this->_config['hidden_files'][] = '.*';
+            $this->_config['hidden_files'] = array_merge(
+                $this->_config['hidden_files'],
+                array('.*', '*/.*')
+            );
 
         }
 

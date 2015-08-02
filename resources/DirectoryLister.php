@@ -66,7 +66,7 @@ class DirectoryLister {
     /**
      * Creates the directory listing and returns the formatted XHTML
      *
-     * @param string $path Relative path of directory to list
+     * @param string $directory Relative path of directory to list
      * @return array Array of directory being listed
      * @access public
      */
@@ -252,24 +252,39 @@ class DirectoryLister {
         // Get file size
         $bytes = filesize($filePath);
 
+        // This happens if the file size is over 2GB
+        if (empty($bytes) && PHP_OS == 'Linux') {
+            $bytes = exec("stat -c %s \"{$filePath}\"");
+        }
+
         // Array of file size suffixes
         $sizes = array('B', 'KB', 'MB', 'GB', 'TB', 'PB');
 
         // Calculate file size suffix factor
-        $factor = floor((strlen($bytes) - 1) / 3);
+        $factor = (int)floor((strlen($bytes) - 1) / 3);
 
         // Calculate the file size
         $fileSize = sprintf('%.2f', $bytes / pow(1024, $factor)) . $sizes[$factor];
 
         return $fileSize;
-
     }
 
+    public function getFileModTime($filePath) {
+
+        $time = filemtime($filePath);
+
+        // This happens if the file size is over 2GB
+        if (empty($time) && PHP_OS == 'Linux') {
+            $time = exec("stat -c %Y \"{$filePath}\"");
+        }
+
+        return $time;
+    }
 
     /**
      * Returns array of file hash values
      *
-     * @param  string $path Path to file
+     * @param  string $filePath Path to file
      * @return array Array of file hashes
      * @access public
      */
@@ -336,7 +351,7 @@ class DirectoryLister {
      * Add a message to the system message array
      *
      * @param string $type The type of message (ie - error, success, notice, etc.)
-     * @param string $message The message to be displayed to the user
+     * @param string $text The message to be displayed to the user
      * @return bool true on success
      * @access public
      */
@@ -422,11 +437,10 @@ class DirectoryLister {
      * file path, size, modification time, icon and sort order.
      *
      * @param string $directory Directory path
-     * @param @sort Sort method (default = natcase)
      * @return array Array of the directory contents
      * @access protected
      */
-    protected function _readDirectory($directory, $sort = 'natcase') {
+    protected function _readDirectory($directory) {
 
         // Initialize array
         $directoryArray = array();
@@ -493,7 +507,7 @@ class DirectoryLister {
                             'file_path'  => $this->_appURL . $directoryPath,
                             'url_path'   => $this->_appURL . $directoryPath,
                             'file_size'  => '-',
-                            'mod_time'   => date('Y-m-d H:i:s', filemtime($realPath)),
+                            'mod_time'   => date('Y-m-d H:i:s', $this->getFileModTime($realPath)),
                             'icon_class' => 'fa-level-up',
                             'sort'       => 0
                         );
@@ -509,8 +523,6 @@ class DirectoryLister {
 
                         if (is_dir($relativePath)) {
                             $urlPath = '?dir=' . $urlPath;
-                        } else {
-                            $urlPath = $urlPath;
                         }
 
                         // Add the info to the main array
@@ -518,7 +530,7 @@ class DirectoryLister {
                             'file_path'  => $relativePath,
                             'url_path'   => $urlPath,
                             'file_size'  => is_dir($realPath) ? '-' : $this->getFileSize($realPath),
-                            'mod_time'   => date('Y-m-d H:i:s', filemtime($realPath)),
+                            'mod_time'   => date('Y-m-d H:i:s', $this->getFileModTime($realPath)),
                             'icon_class' => $iconClass,
                             'sort'       => $sort
                         );
@@ -544,7 +556,7 @@ class DirectoryLister {
      *
      * @param array $array Array to be sorted
      * @param string $sortMethod Sorting method (acceptable inputs: natsort, natcasesort, etc.)
-     * @param boolen $reverse Reverse the sorted array order if true (default = false)
+     * @param boolean $reverse Reverse the sorted array order if true (default = false)
      * @return array
      * @access protected
      */
@@ -713,7 +725,7 @@ class DirectoryLister {
 
 
     /**
-      * Compares two paths and returns the relative path from one to the other
+     * Compares two paths and returns the relative path from one to the other
      *
      * @param string $fromPath Starting path
      * @param string $toPath Ending path

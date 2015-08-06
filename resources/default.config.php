@@ -3,11 +3,11 @@
 return array(
 
     // Basic settings
-    'hide_dot_files'     => true,
-    'list_folders_first' => true,
-    'list_sort_order'    => 'natcasesort',
-    'theme_name'         => 'bootstrap',
-    'open_links_another_window' => true,
+    'hide_dot_files'            => true,
+    'list_folders_first'        => true,
+    'list_sort_order'           => 'natcasesort',
+    'theme_name'                => 'bootstrap',
+    'external_links_new_window' => true,
 
     // Hidden files
     'hidden_files' => array(

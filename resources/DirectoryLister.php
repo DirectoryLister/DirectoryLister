@@ -208,8 +208,8 @@ class DirectoryLister {
      * @return boolean Returns true if in config is enabled open links in another window, false if not
      * @access public
      */
-    public function determineOpenLinksAnotherWindow() {
-        return $this->_config['open_links_another_window'];
+    public function externalLinksNewWindow() {
+        return $this->_config['external_links_new_window'];
     }
 
 
@@ -695,7 +695,7 @@ class DirectoryLister {
     protected function _getAppUrl() {
 
         // Get the server protocol
-        if (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS']!=="off") {
+        if (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') {
             $protocol = 'https://';
         } else {
             $protocol = 'http://';

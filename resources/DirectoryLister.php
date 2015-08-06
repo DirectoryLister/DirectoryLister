@@ -66,7 +66,7 @@ class DirectoryLister {
     /**
      * Creates the directory listing and returns the formatted XHTML
      *
-     * @param string $path Relative path of directory to list
+     * @param string $directory Relative path of directory to list
      * @return array Array of directory being listed
      * @access public
      */
@@ -280,7 +280,7 @@ class DirectoryLister {
     /**
      * Returns array of file hash values
      *
-     * @param  string $path Path to file
+     * @param  string $filePath Path to file
      * @return array Array of file hashes
      * @access public
      */
@@ -371,7 +371,7 @@ class DirectoryLister {
     /**
      * Validates and returns the directory path
      *
-     * @param string @dir Directory path
+     * @param string $dir Directory path
      * @return string Directory path to be listed
      * @access protected
      */
@@ -433,7 +433,7 @@ class DirectoryLister {
      * file path, size, modification time, icon and sort order.
      *
      * @param string $directory Directory path
-     * @param @sort Sort method (default = natcase)
+     * @param string $sort Sort method (default = natcase)
      * @return array Array of the directory contents
      * @access protected
      */

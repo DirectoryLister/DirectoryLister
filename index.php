@@ -20,6 +20,12 @@
         die($data);
 
     }
+    
+    if (isset($_GET['zip'])) {
+        $dirArray = $lister->zipDirectory($_GET['zip']);
+    } else {
+        
+    
 
     // Initialize the directory array
     if (isset($_GET['dir'])) {
@@ -41,4 +47,6 @@
         include($themeIndex);
     } else {
         die('ERROR: Failed to initialize theme');
+    }
+    
     }

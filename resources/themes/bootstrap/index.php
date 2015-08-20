@@ -47,14 +47,25 @@
                 </p>
 
                 <div class="navbar-right">
-                    <?php  if ($lister->isZipEnabled()): ?>
-                    <ul id="page-top-download-all" class="nav navbar-nav">
-                        <li><a href="?zip=<?php echo $lister->getDirectoryPath() ?>" id="download-all-link"><i class="fa fa-download fa-lg"></i></a></li>
-                    </ul>
-                    <?php endif; ?>
+
                     <ul id="page-top-nav" class="nav navbar-nav">
-                        <li><a href="javascript:void(0)" id="page-top-link"><i class="fa fa-arrow-circle-up fa-lg"></i></a></li>
+                        <li>
+                            <a href="javascript:void(0)" id="page-top-link">
+                                <i class="fa fa-arrow-circle-up fa-lg"></i>
+                            </a>
+                        </li>
                     </ul>
+
+                    <?php  if ($lister->isZipEnabled()): ?>
+                        <ul id="page-top-download-all" class="nav navbar-nav">
+                            <li>
+                                <a href="?zip=<?php echo $lister->getDirectoryPath(); ?>" id="download-all-link">
+                                    <i class="fa fa-download fa-lg"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    <?php endif; ?>
+
                 </div>
 
             </div>

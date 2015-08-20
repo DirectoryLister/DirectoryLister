@@ -61,7 +61,7 @@ class DirectoryLister {
         $this->_themeName = $this->_config['theme_name'];
 
     }
-    
+
      /**
      * If it is allowed to zip whole directories
      *
@@ -77,7 +77,7 @@ class DirectoryLister {
         }
         return $this->_config['zip_dirs'];
     }
-    
+
      /**
      * Creates zipfile of directory
      *
@@ -85,56 +85,67 @@ class DirectoryLister {
      * @access public
      */
     public function zipDirectory($directory) {
-        if ($this->_config['zip_dirs'])
-        {
+
+        if ($this->_config['zip_dirs']) {
+
             // Cleanup directory path
             $directory = $this->setDirectoryPath($directory);
-            
-            if ($directory != '.' && $this->_isHidden($directory)){
+
+            if ($directory != '.' && $this->_isHidden($directory)) {
                 echo "Access denied.";
             }
-            
-            $filename_no_ext = basename("$directory");
-            if ( $directory == '.' )
-            {
-                $filename_no_ext = "Home";  
+
+            $filename_no_ext = basename($directory);
+
+            if ($directory == '.') {
+                $filename_no_ext = 'Home';
             }
 
             // We deliver a zip file
-            header("Content-Type: archive/zip");
+            header('Content-Type: archive/zip');
+
             // Filename for the browser to save the zip file
-            header("Content-Disposition: attachment; filename=\"$filename_no_ext".".zip\"");
+            header("Content-Disposition: attachment; filename=\"$filename_no_ext.zip\"");
+
             //change directory so the zip file doesnt have a tree structure in it.
             chdir($directory);
-            
+
             // TODO: Probably we have to parse exclude list more carefully
-            $exclude_list = implode(" ", array_merge($this->_config['hidden_files'],array('index.php')));
+            $exclude_list = implode(' ', array_merge($this->_config['hidden_files'], array('index.php')));
             $exclude_list = str_replace("*", "\*", $exclude_list);
-            
-            if ($this->_config['zip_stream'])
-            {
+
+            if ($this->_config['zip_stream']) {
+
                 // zip the stuff (dir and all in there) into the streamed zip file
-                $stream = popen( "/usr/bin/zip -".$this->_config['zip_compression_level']." -r -q - * -x ".$exclude_list, "r" );
-                if( $stream )
-                {
-                   fpassthru( $stream );
-                   fclose( $stream );
+                $stream = popen('/usr/bin/zip -' . $this->_config['zip_compression_level'] . ' -r -q - * -x ' . $exclude_list, 'r');
+
+                if ($stream) {
+                   fpassthru($stream);
+                   fclose($stream);
                 }
+
             } else {
+
                 // zip the stuff (dir and all in there) into the tmp_zip file
-                exec('zip -'.$this->_config['zip_compression_level'].' -r '.$tmp_zip.' * -x '.$exclude_list);
+                exec('zip -' . $this->_config['zip_compression_level'] . ' -r ' . $tmp_zip . ' * -x ' . $exclude_list);
+
                 // get a tmp name for the .zip
-                $tmp_zip = tempnam ("tmp", "tempzip") . ".zip";
+                $tmp_zip = tempnam('tmp', 'tempzip') . '.zip';
+
                 // calc the length of the zip. it is needed for the progress bar of the browser
                 $filesize = filesize($tmp_zip);
                 header("Content-Length: $filesize");
+
                 // deliver the zip file
-                $fp = fopen("$tmp_zip","r");
+                $fp = fopen($tmp_zip, 'r');
                 echo fpassthru($fp);
+
                 // clean up the tmp zip file
                 unlink($tmp_zip);
+
             }
         }
+
     }
 
 
@@ -416,7 +427,7 @@ class DirectoryLister {
         return $this->_directory;
 
     }
-    
+
     /**
      * Get directory path variable
      *
@@ -425,7 +436,6 @@ class DirectoryLister {
      */
     public function getDirectoryPath() {
         return $this->_directory;
-
     }
 
 

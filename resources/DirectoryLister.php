@@ -356,7 +356,7 @@ class DirectoryLister {
         $factor = floor((strlen($bytes) - 1) / 3);
 
         // Calculate the file size
-        $fileSize = sprintf('%.2f', $bytes / pow(1024, $factor)) . $sizes[$factor];
+        $fileSize = sprintf('%.2f', $bytes / pow(1000, $factor)) . $sizes[$factor];
 
         return $fileSize;
 

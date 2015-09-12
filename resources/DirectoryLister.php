@@ -350,7 +350,7 @@ class DirectoryLister {
         $bytes = filesize($filePath);
 
         // Array of file size suffixes
-        $sizes = array('B', 'KB', 'MB', 'GB', 'TB', 'PB');
+        $sizes = array('B', 'KiB', 'MiB', 'GiB', 'TiB', 'PiB');
 
         // Calculate file size suffix factor
         $factor = floor((strlen($bytes) - 1) / 3);

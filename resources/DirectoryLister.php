@@ -126,11 +126,11 @@ class DirectoryLister {
 
             } else {
 
-                // zip the stuff (dir and all in there) into the tmp_zip file
-                exec('zip -' . $this->_config['zip_compression_level'] . ' -r ' . $tmp_zip . ' * -x ' . $exclude_list);
-
                 // get a tmp name for the .zip
                 $tmp_zip = tempnam('tmp', 'tempzip') . '.zip';
+
+                // zip the stuff (dir and all in there) into the tmp_zip file
+                exec('zip -' . $this->_config['zip_compression_level'] . ' -r ' . $tmp_zip . ' * -x ' . $exclude_list);
 
                 // calc the length of the zip. it is needed for the progress bar of the browser
                 $filesize = filesize($tmp_zip);

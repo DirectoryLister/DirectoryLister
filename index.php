@@ -21,24 +21,32 @@
 
     }
 
-    // Initialize the directory array
-    if (isset($_GET['dir'])) {
-        $dirArray = $lister->listDirectory($_GET['dir']);
+    if (isset($_GET['zip'])) {
+
+        $dirArray = $lister->zipDirectory($_GET['zip']);
+
     } else {
-        $dirArray = $lister->listDirectory('.');
-    }
 
-    // Define theme path
-    if (!defined('THEMEPATH')) {
-        define('THEMEPATH', $lister->getThemePath());
-    }
+        // Initialize the directory array
+        if (isset($_GET['dir'])) {
+            $dirArray = $lister->listDirectory($_GET['dir']);
+        } else {
+            $dirArray = $lister->listDirectory('.');
+        }
 
-    // Set path to theme index
-    $themeIndex = $lister->getThemePath(true) . '/index.php';
+        // Define theme path
+        if (!defined('THEMEPATH')) {
+            define('THEMEPATH', $lister->getThemePath());
+        }
 
-    // Initialize the theme
-    if (file_exists($themeIndex)) {
-        include($themeIndex);
-    } else {
-        die('ERROR: Failed to initialize theme');
+        // Set path to theme index
+        $themeIndex = $lister->getThemePath(true) . '/index.php';
+
+        // Initialize the theme
+        if (file_exists($themeIndex)) {
+            include($themeIndex);
+        } else {
+            die('ERROR: Failed to initialize theme');
+        }
+
     }

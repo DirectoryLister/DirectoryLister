@@ -47,9 +47,25 @@
                 </p>
 
                 <div class="navbar-right">
+
                     <ul id="page-top-nav" class="nav navbar-nav">
-                        <li><a href="javascript:void(0)" id="page-top-link"><i class="fa fa-arrow-circle-up fa-lg"></i></a></li>
+                        <li>
+                            <a href="javascript:void(0)" id="page-top-link">
+                                <i class="fa fa-arrow-circle-up fa-lg"></i>
+                            </a>
+                        </li>
                     </ul>
+
+                    <?php  if ($lister->isZipEnabled()): ?>
+                        <ul id="page-top-download-all" class="nav navbar-nav">
+                            <li>
+                                <a href="?zip=<?php echo $lister->getDirectoryPath(); ?>" id="download-all-link">
+                                    <i class="fa fa-download fa-lg"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    <?php endif; ?>
+
                 </div>
 
             </div>
@@ -110,7 +126,7 @@
 
                             <?php if ($lister->containsIndex($fileInfo['file_path'])): ?>
 
-                                <a href="<?php echo $fileInfo['file_path']; ?>" class="web-link-button">
+                                <a href="<?php echo $fileInfo['file_path']; ?>" class="web-link-button" <?php if($lister->externalLinksNewWindow()): ?>target="_blank"<?php endif; ?>>
                                     <i class="fa fa-external-link"></i>
                                 </a>
 

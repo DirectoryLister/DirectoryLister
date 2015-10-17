@@ -16,7 +16,7 @@
 class DirectoryLister {
 
     // Define application version
-    const VERSION = '2.5.6';
+    const VERSION = '2.6.0';
 
     // Reserve some variables
     protected $_themeName     = null;
@@ -62,11 +62,97 @@ class DirectoryLister {
 
     }
 
+     /**
+     * If it is allowed to zip whole directories
+     *
+     * @param string $directory Relative path of directory to list
+     * @return true or false
+     * @access public
+     */
+    public function isZipEnabled() {
+        foreach ($this->_config['zip_disable'] as $disabledPath) {
+            if (fnmatch($disabledPath, $this->_directory)) {
+                return false;
+            }
+        }
+        return $this->_config['zip_dirs'];
+    }
+
+     /**
+     * Creates zipfile of directory
+     *
+     * @param string $directory Relative path of directory to list
+     * @access public
+     */
+    public function zipDirectory($directory) {
+
+        if ($this->_config['zip_dirs']) {
+
+            // Cleanup directory path
+            $directory = $this->setDirectoryPath($directory);
+
+            if ($directory != '.' && $this->_isHidden($directory)) {
+                echo "Access denied.";
+            }
+
+            $filename_no_ext = basename($directory);
+
+            if ($directory == '.') {
+                $filename_no_ext = 'Home';
+            }
+
+            // We deliver a zip file
+            header('Content-Type: archive/zip');
+
+            // Filename for the browser to save the zip file
+            header("Content-Disposition: attachment; filename=\"$filename_no_ext.zip\"");
+
+            //change directory so the zip file doesnt have a tree structure in it.
+            chdir($directory);
+
+            // TODO: Probably we have to parse exclude list more carefully
+            $exclude_list = implode(' ', array_merge($this->_config['hidden_files'], array('index.php')));
+            $exclude_list = str_replace("*", "\*", $exclude_list);
+
+            if ($this->_config['zip_stream']) {
+
+                // zip the stuff (dir and all in there) into the streamed zip file
+                $stream = popen('/usr/bin/zip -' . $this->_config['zip_compression_level'] . ' -r -q - * -x ' . $exclude_list, 'r');
+
+                if ($stream) {
+                   fpassthru($stream);
+                   fclose($stream);
+                }
+
+            } else {
+
+                // get a tmp name for the .zip
+                $tmp_zip = tempnam('tmp', 'tempzip') . '.zip';
+
+                // zip the stuff (dir and all in there) into the tmp_zip file
+                exec('zip -' . $this->_config['zip_compression_level'] . ' -r ' . $tmp_zip . ' * -x ' . $exclude_list);
+
+                // calc the length of the zip. it is needed for the progress bar of the browser
+                $filesize = filesize($tmp_zip);
+                header("Content-Length: $filesize");
+
+                // deliver the zip file
+                $fp = fopen($tmp_zip, 'r');
+                echo fpassthru($fp);
+
+                // clean up the tmp zip file
+                unlink($tmp_zip);
+
+            }
+        }
+
+    }
+
 
     /**
      * Creates the directory listing and returns the formatted XHTML
      *
-     * @param string $path Relative path of directory to list
+     * @param string $directory Relative path of directory to list
      * @return array Array of directory being listed
      * @access public
      */
@@ -203,6 +289,17 @@ class DirectoryLister {
 
 
     /**
+     * Returns open links in another window
+     *
+     * @return boolean Returns true if in config is enabled open links in another window, false if not
+     * @access public
+     */
+    public function externalLinksNewWindow() {
+        return $this->_config['external_links_new_window'];
+    }
+
+
+    /**
      * Returns the path to the chosen theme directory
      *
      * @param bool $absolute Whether or not the path returned is absolute (default = false).
@@ -269,7 +366,7 @@ class DirectoryLister {
     /**
      * Returns array of file hash values
      *
-     * @param  string $path Path to file
+     * @param  string $filePath Path to file
      * @return array Array of file hashes
      * @access public
      */
@@ -331,6 +428,16 @@ class DirectoryLister {
 
     }
 
+    /**
+     * Get directory path variable
+     *
+     * @return string Sanitizd path to directory
+     * @access public
+     */
+    public function getDirectoryPath() {
+        return $this->_directory;
+    }
+
 
     /**
      * Add a message to the system message array
@@ -360,7 +467,7 @@ class DirectoryLister {
     /**
      * Validates and returns the directory path
      *
-     * @param string @dir Directory path
+     * @param string $dir Directory path
      * @return string Directory path to be listed
      * @access protected
      */
@@ -422,7 +529,7 @@ class DirectoryLister {
      * file path, size, modification time, icon and sort order.
      *
      * @param string $directory Directory path
-     * @param @sort Sort method (default = natcase)
+     * @param string $sort Sort method (default = natcase)
      * @return array Array of the directory contents
      * @access protected
      */
@@ -652,7 +759,10 @@ class DirectoryLister {
         // Add dot files to hidden files array
         if ($this->_config['hide_dot_files']) {
 
-            $this->_config['hidden_files'][] = '.*';
+            $this->_config['hidden_files'] = array_merge(
+                $this->_config['hidden_files'],
+                array('.*', '*/.*')
+            );
 
         }
 
@@ -681,7 +791,7 @@ class DirectoryLister {
     protected function _getAppUrl() {
 
         // Get the server protocol
-        if (!empty($_SERVER['HTTPS'])) {
+        if (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') {
             $protocol = 'https://';
         } else {
             $protocol = 'http://';

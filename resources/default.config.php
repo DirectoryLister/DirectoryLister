@@ -50,4 +50,15 @@ return array(
         // 'path/to/folder'
     ),
 
+    // Disable Readme function
+    'show_readme' => true,
+
+    //Disable readme show in specified directories
+    'hidden_readme_files' => array(),
+
+    //Which filename should be used?
+    'readme_files' => array( 'README', "README.html" ),
+
+    //Should the shown files be removed from list?
+    'remove_showed_readme' => true
 );

@@ -70,7 +70,23 @@
 
             </div>
         </div>
-
+        <?php
+        $a = $lister->getReadmeContent( $lister->getDirectoryPath() );
+        if ( ! empty( $a['html'] ) ) :
+	        $dirArray = $a["dirArray"];
+	        ?>
+        <div id="readme-content" class="container">
+	        <div class="row">
+		        <div class="col-md-12 text-center">
+			        <?php
+			            echo $a["html"];
+			        ?>
+		        </div>
+	        </div>
+        </div>
+        <?php
+        endif;
+        ?>
         <div id="page-content" class="container">
 
             <?php file_exists('header.php') ? include('header.php') : include($lister->getThemePath(true) . "/default_header.php"); ?>

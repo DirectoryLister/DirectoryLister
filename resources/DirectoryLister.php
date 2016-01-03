@@ -651,7 +651,7 @@ class DirectoryLister {
      *
      * @param array $array Array to be sorted
      * @param string $sortMethod Sorting method (acceptable inputs: natsort, natcasesort, etc.)
-     * @param boolen $reverse Reverse the sorted array order if true (default = false)
+     * @param boolean $reverse Reverse the sorted array order if true (default = false)
      * @return array
      * @access protected
      */
@@ -781,6 +781,71 @@ class DirectoryLister {
 
     }
 
+	/**
+	 * Determines if a readme file can be shown
+	 *
+	 * @param string $dirPath Path to dir to be checked
+	 *
+	 * @return boolean Returns false if readme in this path is in hidden array or non existing, true if not
+	 * @access protected
+	 */
+	protected function showReadme( $dirPath,$readme_file ) {
+		//Remove Trailing Slash
+		if ( substr( $dirPath, - 1 ) == '/' ) {
+			$dirPath = substr( $dirPath, 0, - 1 );
+		}
+		$dir = $this->listDirectory( $dirPath );
+		//checks if a readme file exists
+		if ( array_key_exists( $readme_file, $dir ) ) {
+			// Compare path array to all hidden file paths
+			foreach ( $this->_config['hidden_readme_files'] as $hiddenPath ) {
+				//Remove Trailing Slash
+				if ( substr( $hiddenPath, - 1 ) == '/' ) {
+					$hiddenPath = substr( $hiddenPath, 0, - 1 );
+				}
+				if ( fnmatch( $hiddenPath, $dirPath ) ) {
+					return false;
+				}
+			}
+			return  true;
+		} else {
+			return false;
+		}
+	}
+
+	/**
+	 * Determines if a readme file can be shown and fetches content
+	 *
+	 * @param string $dirPath Path to dir to be checked
+	 *
+	 * @return array Returns false if readme in this path is in hidden array or non existing, true if not
+	 * @access public
+	 */
+	public function getReadmeContent( $dirPath ) {
+		if ( $this->_config['show_readme'] ) {
+			//Remove Trailing Slash
+			if ( substr( $dirPath, - 1 ) == '/' ) {
+				$dirPath = substr( $dirPath, 0, - 1 );
+			}
+			$dir = $this->listDirectory( $dirPath );
+			$return = "";
+			foreach ( $this->_config['readme_files'] as $readme_file ) {
+				//checks if a readme file exists
+				if ( array_key_exists( $readme_file, $dir ) ) {
+					if ( $this->showReadme( $dirPath, $readme_file ) ) {
+						$return .= file_get_contents( $dir[ $readme_file ]['url_path'] );
+						if ( $this->_config['remove_showed_readme'] ) {
+							unset( $dir[ $readme_file ] );
+						}
+					}
+				}
+			}
+
+			return [ "html" => $return, "dirArray" => $dir ];
+		} else {
+			return [ "html" => "", "dirArray" => $this->listDirectory( $dirPath ) ];
+		}
+	}
 
     /**
      * Builds the root application URL from server variables.

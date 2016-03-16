@@ -95,9 +95,12 @@
             <ul id="directory-listing" class="nav nav-pills nav-stacked">
 
                 <?php foreach($dirArray as $name => $fileInfo): ?>
+                
+                    <?php $isFile = is_file($fileInfo['file_path']); ?>
+                    <?php $dirContainsIndex = $isFile ? false : $lister->containsIndex($fileInfo['file_path']); ?>
+                    
                     <li data-name="<?php echo $name; ?>" data-href="<?php echo $fileInfo['url_path']; ?>">
-                        <a href="<?php echo $fileInfo['url_path']; ?>" class="clearfix" data-name="<?php echo $name; ?>">
-
+                        <a href="<?php echo !$isFile && $dirContainsIndex ? $fileInfo['file_path'] : $fileInfo['url_path']; ?>" class="clearfix" data-name="<?php echo $name; ?>">
 
                             <div class="row">
                                 <span class="file-name col-md-7 col-sm-6 col-xs-9">
@@ -116,7 +119,7 @@
 
                         </a>
 
-                        <?php if (is_file($fileInfo['file_path'])): ?>
+                        <?php if ($isFile): ?>
 
                             <a href="javascript:void(0)" class="file-info-button">
                                 <i class="fa fa-info-circle"></i>
@@ -124,7 +127,7 @@
 
                         <?php else: ?>
 
-                            <?php if ($lister->containsIndex($fileInfo['file_path'])): ?>
+                            <?php if ($dirContainsIndex): ?>
 
                                 <a href="<?php echo $fileInfo['file_path']; ?>" class="web-link-button" <?php if($lister->externalLinksNewWindow()): ?>target="_blank"<?php endif; ?>>
                                     <i class="fa fa-external-link"></i>

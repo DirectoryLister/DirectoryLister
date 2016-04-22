@@ -8,6 +8,7 @@ return array(
     'list_sort_order'           => 'natcasesort',
     'theme_name'                => 'bootstrap',
     'external_links_new_window' => true,
+    'links_for_dirs_with_index' => false,
 
     // Hidden files
     'hidden_files' => array(

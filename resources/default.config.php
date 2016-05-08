@@ -8,7 +8,7 @@ return array(
     'list_sort_order'           => 'natcasesort',
     'theme_name'                => 'bootstrap',
     'external_links_new_window' => true,
-    'main_index_file'			=> 'cdn.php',
+    'main_index_file'           => 'index.php',
 
     // Hidden files
     'hidden_files' => array(

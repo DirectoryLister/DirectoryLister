@@ -193,7 +193,7 @@ class DirectoryLister {
 
         // Statically set the Home breadcrumb
         $breadcrumbsArray[] = array(
-            'link' => $this->_appURL,
+            'link' => $this->_appURL . $this->_config['main_index_file'],
             'text' => 'Home'
         );
 
@@ -215,7 +215,7 @@ class DirectoryLister {
                 }
 
                 // Combine the base path and dir path
-                $link = $this->_appURL . '?dir=' . rawurlencode($dirPath);
+                $link = $this->_appURL . $this->_config['main_index_file'] . '?dir=' . rawurlencode($dirPath);
 
                 $breadcrumbsArray[] = array(
                     'link' => $link,
@@ -598,7 +598,7 @@ class DirectoryLister {
                         // Add file info to the array
                         $directoryArray['..'] = array(
                             'file_path'  => $this->_appURL . $directoryPath,
-                            'url_path'   => $this->_appURL . $directoryPath,
+                            'url_path'   => $this->_appURL . $this->_config['main_index_file'] . $directoryPath,
                             'file_size'  => '-',
                             'mod_time'   => date('Y-m-d H:i:s', filemtime($realPath)),
                             'icon_class' => 'fa-level-up',
@@ -815,7 +815,7 @@ class DirectoryLister {
         }
 
         // Build the application URL
-        $appUrl = $protocol . $host . $path;
+        $appUrl = $protocol . $host . $path . $this->_config['main_index_file'];
 
         // Return the URL
         return $appUrl;

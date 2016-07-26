@@ -8,6 +8,8 @@ return array(
     'list_sort_order'           => 'natcasesort',
     'theme_name'                => 'bootstrap',
     'external_links_new_window' => true,
+    // Format of date display, see: http://php.net/manual/en/function.date.php
+    'date_display'              => 'Y-m-d H:i:s',
 
     // Hidden files
     'hidden_files' => array(

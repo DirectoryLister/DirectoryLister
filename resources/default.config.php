@@ -49,5 +49,5 @@ return array(
     'zip_disable' => array(
         // 'path/to/folder'
     ),
-
+    'show_file_content'=>false
 );

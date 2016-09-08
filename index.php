@@ -25,6 +25,22 @@
 
         $dirArray = $lister->zipDirectory($_GET['zip']);
 
+    }else if(isset($_GET['file']) && !empty($_GET['file'])){
+      $fileArray = $lister->showFile($_GET['file']);
+
+      // Define theme path
+      if (!defined('THEMEPATH')) {
+          define('THEMEPATH', $lister->getThemePath());
+      }
+
+      $themeIndex = $lister->getThemePath(true) . '/file.php';
+
+      // Initialize the theme
+      if (file_exists($themeIndex)) {
+          include($themeIndex);
+      } else {
+          die('ERROR: Failed to initialize theme');
+      }
     } else {
 
         // Initialize the directory array

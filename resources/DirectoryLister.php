@@ -173,6 +173,18 @@ class DirectoryLister {
         return $directoryArray;
     }
 
+    /**
+    * show File contents
+    * @param string $file file name
+    */
+    public function showFile($file)
+    {
+      $file = $this->setFilePath($file);
+      if($file)
+        $fileArray = $this->_readFile($file);
+
+      return $file ? $fileArray : false;
+    }
 
     /**
      * Parses and returns an array of breadcrumbs
@@ -429,6 +441,19 @@ class DirectoryLister {
     }
 
     /**
+     * Set File path variable
+     *
+     * @param string $path Path to directory
+     * @return string Sanitizd path to directory
+     * @access public
+     */
+    public function setFilePath($path)
+    {
+        $this->_file = $this->_setFilePath($path);
+        return $this->_file;
+    }
+
+    /**
      * Get directory path variable
      *
      * @return string Sanitizd path to directory
@@ -525,6 +550,57 @@ class DirectoryLister {
 
 
     /**
+     * Validates and returns the directory path
+     *
+     * @param string $file file path
+     * @return string file path
+     * @access protected
+     */
+
+    protected function _setFilePath($file)
+    {
+      while (strpos($file, '//')) {
+          $file = str_replace('//', '/', $file);
+      }
+      // Remove trailing slash if present
+      if(substr($file, -1, 1) == '/') {
+          $file = substr($file, 0, -1);
+      }
+
+      // Verify file path exists and is a directory
+
+      if (!file_exists($file) || !is_file($file)) {
+          // Set the error message
+          $this->setSystemMessage('danger', '<b>ERROR:</b> File path does not exist');
+
+          // Return the web root
+          return false;
+      }
+
+      // Prevent access to hidden files
+      if ($this->_isHidden($file)) {
+          // Set the error message
+          $this->setSystemMessage('danger', '<b>ERROR:</b> Access denied');
+
+          // Set the directory to web root
+          return false;
+      }
+
+      if (strpos($file, '<') !== false || strpos($file, '>') !== false
+      || strpos($file, '..') !== false || strpos($file, '/') === 0) {
+          // Set the error message
+          $this->setSystemMessage('danger', '<b>ERROR:</b> An invalid path string was detected');
+
+          // Set the directory to web root
+          return false;
+      } else {
+          // Should stop all URL wrappers (Thanks to Hexatex)
+          $filePath = $file;
+      }
+
+        return $filePath;
+    }
+    /**
      * Loop through directory and return array with file info, including
      * file path, size, modification time, icon and sort order.
      *
@@ -616,7 +692,9 @@ class DirectoryLister {
 
                         if (is_dir($relativePath)) {
                             $urlPath = '?dir=' . $urlPath;
-                        } else {
+                        } else if($this->_config['show_file_content'] && is_file($relativePath)) {
+                            $urlPath = '?file=' . $urlPath;
+                        }else{
                             $urlPath = $urlPath;
                         }
 
@@ -644,7 +722,26 @@ class DirectoryLister {
         return $sortedArray;
 
     }
+    /**
+    * Read file contents
+    * @param string $file file name
+    */
+    protected function _readFile($file)
+    {
+      $lang = require_once($this->_appDir.'/fileLangs.php');
+      $data = [];
+      $data['path']   = $file;
+      $data['name']   = basename($file);
+      $data['dir']    = str_ireplace($data['name'],'',$file);
 
+      $data['size']   = $this->getFileSize($file);
+      $data['ext']    = strtolower(pathinfo($file, PATHINFO_EXTENSION));
+      $data['lang']   = isset($lang[$data['ext']]) ? $lang[$data['ext']] : 'markdown';
+      $data['time']   = date('Y-m-d H:i:s', filemtime($file));
+      $data['source'] = htmlentities(file_get_contents($file));
+
+      return $data;
+    }
 
     /**
      * Sorts an array by the provided sort method.

@@ -1,5 +1,19 @@
 <!DOCTYPE html>
-
+<?php
+session_start();
+	if (isset($_GET['pv']) && isset($_POST['passwd'])) {
+	$passBoolean = $lister->checkPassword($_POST['passwd']);
+		if ($passBoolean === TRUE) {
+		$_SESSION['pw.correct'] = TRUE;
+		header("Location: index.php");
+		die();
+		} else {
+		$_SESSION['log.error'] = "Incorrect password";
+		header("Location: index.php");
+		die();
+		}
+	}
+?>
 <html>
 
     <head>

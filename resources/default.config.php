@@ -8,6 +8,9 @@ return array(
     'list_sort_order'           => 'natcasesort',
     'theme_name'                => 'bootstrap',
     'external_links_new_window' => true,
+    
+    'protected_by_password'		=> true,
+	'password'					=> "123456",
 
     // Hidden files
     'hidden_files' => array(

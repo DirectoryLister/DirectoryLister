@@ -61,7 +61,35 @@ class DirectoryLister {
         $this->_themeName = $this->_config['theme_name'];
 
     }
-
+	/**
+	* If it is has password enabled
+	* 
+	* @return true if enabled, false if not
+	* @access public
+	*/
+	public function isPasswordProtected () {
+		if ($this->_config['protected_by_password']) {
+		return true;
+		} else {
+		return false;
+		}
+	}
+	/**
+	* Check if the password is correct through sha1 checks
+	* 
+	* @return true if password is valid
+	*		  false if password no match
+	* @access public
+	*/
+	public function checkPassword($password) {
+	$passcheck = sha1($this->_config['password']);
+	$passed = sha1($password);
+		if ($passcheck === $passed) {
+		return true;
+		} else {
+		return false;
+		}
+	}
      /**
      * If it is allowed to zip whole directories
      *

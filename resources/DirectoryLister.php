@@ -798,7 +798,11 @@ class DirectoryLister {
         }
 
         // Get the server hostname
-        $host = $_SERVER['HTTP_HOST'];
+        if (isset($_SERVER['HTTP_X_FORWARDED_HOST'])) {
+	        $host = $_SERVER['HTTP_X_FORWARDED_HOST'];
+	    } else {
+	        $host = $_SERVER['HTTP_HOST'];
+	    }
 
         // Get the URL path
         $pathParts = pathinfo($_SERVER['PHP_SELF']);

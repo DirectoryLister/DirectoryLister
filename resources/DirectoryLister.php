@@ -1,5 +1,7 @@
 <?php
 
+/* Optimized code for using with different name for index file    line 818 to 824 */
+
 /**
  * A simple PHP based directory lister that lists the contents
  * of a directory and all it's sub-directories and allows easy
@@ -814,8 +816,11 @@ class DirectoryLister {
             $path = $path . '/';
         }
 
-        // Build the application URL
-        $appUrl = $protocol . $host . $path;
+        /* Line added manually for custom index file */
+        $path = substr ($path, 1);
+
+        // Build the application URL                        Constant string added for custom file
+        $appUrl = $protocol . $host . "/CustomFile.php" . $path;
 
         // Return the URL
         return $appUrl;

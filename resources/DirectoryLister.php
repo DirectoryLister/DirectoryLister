@@ -353,7 +353,6 @@ class DirectoryLister {
         // This code has been carefully crafted to deal with 32-bit deficiencies
         // Source: http://us.php.net/manual/en/function.filesize.php#113457
         if(PHP_INT_SIZE < 8) {
-            echo exec("stat -c %Y \"{$filePath}\"");
             $fp = fopen($filePath,'r');
             $pos = 0;
             $size = 1073741824;

@@ -98,7 +98,7 @@ class DirectoryLister {
             $filename_no_ext = basename($directory);
 
             if ($directory == '.') {
-                $filename_no_ext = 'Home';
+                $filename_no_ext = $this->_config['home_label'];
             }
 
             // We deliver a zip file
@@ -194,7 +194,7 @@ class DirectoryLister {
         // Statically set the Home breadcrumb
         $breadcrumbsArray[] = array(
             'link' => $this->_appURL,
-            'text' => 'Home'
+            'text' => $this->_config['home_label']
         );
 
         // Generate breadcrumbs

@@ -233,16 +233,22 @@ class DirectoryLister {
      */
     public function containsIndex($dirPath) {
 
-        // Check if directory contains an index file
-        foreach ($this->_config['index_files'] as $indexFile) {
+        // Check if links_dirs_with_index is enabled
+        if ($this->linksDirsWithIndex()) {
 
-            if (file_exists($dirPath . '/' . $indexFile)) {
+            // Check if directory contains an index file
+            foreach ($this->_config['index_files'] as $indexFile) {
 
-                return true;
+                if (file_exists($dirPath . '/' . $indexFile)) {
+
+                    return true;
+
+                }
 
             }
 
         }
+
 
         return false;
 
@@ -290,19 +296,19 @@ class DirectoryLister {
     public function externalLinksNewWindow() {
         return $this->_config['external_links_new_window'];
     }
-    
-    
+
+
     /**
      * Returns use real url for indexed directories
      *
      * @return boolean Returns true if in config is enabled links for directories with index, false if not
      * @access public
      */
-    public function linksForDirsWithIndex()
+    public function linksDirsWithIndex()
     {
-        return $this->_config['links_for_dirs_with_index'];
+        return $this->_config['links_dirs_with_index'];
     }
-    
+
 
     /**
      * Returns the path to the chosen theme directory
@@ -620,15 +626,7 @@ class DirectoryLister {
                         $urlPath = implode('/', array_map('rawurlencode', explode('/', $relativePath)));
 
                         if (is_dir($relativePath)) {
-                            $urlPath = '?dir=' . $urlPath;
-                        } else {
-                            $urlPath = $urlPath;
-                        }
-                        
-                        if ($this->linksForDirsWithIndex()) {
-                            if ($this->containsIndex($relativePath)) {
-                                $urlPath = $relativePath;
-                            }
+                            $urlPath = $this->containsIndex($relativePath) ? $relativePath : '?dir=' . $urlPath;
                         }
 
                         // Add the info to the main array

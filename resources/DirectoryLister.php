@@ -198,21 +198,14 @@ class DirectoryLister {
         );
 
         // Generate breadcrumbs
+        $dirPath  = null;
+
         foreach ($dirArray as $key => $dir) {
 
             if ($dir != '.') {
 
-                $dirPath  = null;
-
                 // Build the directory path
-                for ($i = 0; $i <= $key; $i++) {
-                    $dirPath = $dirPath . $dirArray[$i] . '/';
-                }
-
-                // Remove trailing slash
-                if(substr($dirPath, -1) == '/') {
-                    $dirPath = substr($dirPath, 0, -1);
-                }
+                $dirPath = null ? $dir : $dirPath . '/' .  $dir;
 
                 // Combine the base path and dir path
                 $link = $this->_appURL . '?dir=' . rawurlencode($dirPath);

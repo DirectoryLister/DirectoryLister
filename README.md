@@ -50,8 +50,6 @@ Verify that you have PHP 5.3 or later installed. You can verify your PHP version
     php --version
 
 
-
-
 Contact Info
 ------------
 

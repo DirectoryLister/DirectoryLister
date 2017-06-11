@@ -342,17 +342,45 @@ class DirectoryLister {
         // Get file size
         $bytes = filesize($filePath);
 
+        // If on 32bit PHP which can't correctlly parse file size larger than 2gb
+        // This code has been carefully crafted to deal with 32-bit deficiencies
+        // Source: http://us.php.net/manual/en/function.filesize.php#113457
+        if(PHP_INT_SIZE < 8) {
+            $fp = fopen($filePath,'r');
+            $pos = 0;
+            $size = 1073741824;
+            fseek($fp, 0, SEEK_SET);
+            while ($size > 1)
+            {
+                fseek($fp, $size, SEEK_CUR);
+
+                if (fgetc($fp) === false)
+                {
+                    fseek($fp, -$size, SEEK_CUR);
+                    $size = (int)($size / 2);
+                }
+                else
+                {
+                    fseek($fp, -1, SEEK_CUR);
+                    $pos += $size;
+                }
+            }
+
+            while (fgetc($fp) !== false)  $pos++;
+            fclose($fp);
+            $bytes = $pos;
+        }
+
         // Array of file size suffixes
         $sizes = array('B', 'KB', 'MB', 'GB', 'TB', 'PB');
 
         // Calculate file size suffix factor
-        $factor = floor((strlen($bytes) - 1) / 3);
+        $factor = (int)floor((strlen($bytes) - 1) / 3);
 
         // Calculate the file size
         $fileSize = sprintf('%.2f', $bytes / pow(1024, $factor)) . $sizes[$factor];
 
         return $fileSize;
-
     }
 
 

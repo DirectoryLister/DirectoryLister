@@ -11,7 +11,7 @@
  * More info available at http://www.directorylister.com
  *
  * @author Chris Kankiewicz (http://www.chriskankiewicz.com)
- * @copyright 2015 Chris Kankiewicz
+ * @copyright 2017 Chris Kankiewicz
  */
 class DirectoryLister {
 

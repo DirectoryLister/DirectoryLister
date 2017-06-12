@@ -86,8 +86,9 @@
 
             <div id="directory-list-header">
                 <div class="row">
-                    <div class="col-md-7 col-sm-6 col-xs-10">File</div>
+                    <div class="col-md-5 col-sm-6 col-xs-10">File</div>
                     <div class="col-md-2 col-sm-2 col-xs-2 text-right">Size</div>
+                    <div class="col-md-2 hidden-sm hidden-xs text-right">Downloads</div>
                     <div class="col-md-3 col-sm-4 hidden-xs text-right">Last Modified</div>
                 </div>
             </div>
@@ -96,17 +97,20 @@
 
                 <?php foreach($dirArray as $name => $fileInfo): ?>
                     <li data-name="<?php echo $name; ?>" data-href="<?php echo $fileInfo['url_path']; ?>">
-                        <a href="<?php echo $fileInfo['url_path']; ?>" class="clearfix" data-name="<?php echo $name; ?>">
-
+                        <a href="<?php if(is_dir($fileInfo['file_path'])) { echo $fileInfo['url_path']; } elseif($fileInfo['icon_class'] == 'fa-level-up') { echo  $fileInfo['file_path']; } else { echo 'filemanager.php?file='. $fileInfo['file_path']; } ?>" class="clearfix" data-name="<?php echo $name; ?>">
 
                             <div class="row">
-                                <span class="file-name col-md-7 col-sm-6 col-xs-9">
+                                <span class="file-name col-md-5 col-sm-6 col-xs-9">
                                     <i class="fa <?php echo $fileInfo['icon_class']; ?> fa-fw"></i>
                                     <?php echo $name; ?>
                                 </span>
 
                                 <span class="file-size col-md-2 col-sm-2 col-xs-3 text-right">
                                     <?php echo $fileInfo['file_size']; ?>
+                                </span>
+
+                                <span class="file-downloads col-md-2 hidden-sm hidden-xs text-right">
+                                    <?php echo $fileInfo['file_downloads']; ?></span>
                                 </span>
 
                                 <span class="file-modified col-md-3 col-sm-4 hidden-xs text-right">

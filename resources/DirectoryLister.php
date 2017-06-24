@@ -718,8 +718,8 @@ class DirectoryLister {
             }
 
             if ($reverse) {
-                $sortedArray[1] = array_reverse($sortedArray[1]);
-                $sortedArray[2] = array_reverse($sortedArray[2]);
+                if (!empty($sortedArray[1])) $sortedArray[1] = array_reverse($sortedArray[1]);
+                if (!empty($sortedArray[2])) $sortedArray[2] = array_reverse($sortedArray[2]);
             }
 
         } else {
@@ -737,7 +737,7 @@ class DirectoryLister {
             }
 
             if ($reverse) {
-                $sortedArray[1] = array_reverse($sortedArray[1]);
+                if (!empty($sortedArray[1])) $sortedArray[1] = array_reverse($sortedArray[1]);
             }
 
         }

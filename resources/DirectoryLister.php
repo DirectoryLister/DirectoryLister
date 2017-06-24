@@ -205,7 +205,7 @@ class DirectoryLister {
             if ($dir != '.') {
 
                 // Build the directory path
-                $dirPath = null ? $dir : $dirPath . '/' .  $dir;
+                $dirPath = is_null($dirPath) ? $dir : $dirPath . '/' .  $dir;
 
                 // Combine the base path and dir path
                 $link = $this->_appURL . '?dir=' . rawurlencode($dirPath);

@@ -18,6 +18,7 @@ return array(
         'resources/*',
         'analytics.inc',
         'header.php',
+        'filemanager.php',
         'footer.php'
     ),
 

@@ -23,6 +23,7 @@ Features
   * Creates on-the-fly listing of any web-accessable directory
   * Custimizable sort order of files/folders
   * Easily define hidden files to be excluded from the listing
+  * Downloads count
 
 
 Requirements

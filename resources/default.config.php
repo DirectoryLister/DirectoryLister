@@ -4,6 +4,7 @@ return array(
 
     // Basic settings
     'home_label'                => 'Home',
+	'title'						=> '',
     'hide_dot_files'            => true,
     'list_folders_first'        => true,
     'list_sort_order'           => 'natcasesort',

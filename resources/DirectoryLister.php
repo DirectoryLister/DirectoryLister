@@ -286,6 +286,16 @@ class DirectoryLister {
         return $this->_config['theme_name'];
     }
 
+	public function getTitle() {
+        // Check config for custom title in config.php
+		if ($this->_config['title']) {
+			// Return custom title
+			return $this->_config['title'];
+		} else {
+		    // Return the standard title
+			return 'Directory listing of ' . $this->getListedPath();
+		}
+    }
 
     /**
      * Returns open links in another window

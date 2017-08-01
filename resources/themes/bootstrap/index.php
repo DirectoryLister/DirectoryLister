@@ -110,7 +110,7 @@
                                 </span>
 
                                 <span class="file-modified col-md-3 col-sm-4 hidden-xs text-right">
-                                    <?php echo $fileInfo['mod_time']; ?>
+                                    <?php echo date("d/m/Y h:i A", strtotime($fileInfo['mod_time'])); ?>
                                 </span>
                             </div>
 

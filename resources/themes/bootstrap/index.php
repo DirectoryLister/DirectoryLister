@@ -146,14 +146,17 @@
                         <table id="file-info" class="table table-bordered">
                             <tbody>
 
+
                                 <tr>
                                     <td class="table-title">MD5</td>
-                                    <td class="md5-hash">{{md5_sum}}</td>
+                                    <td class="md5-hash" id="md5">{{md5_sum}}</td>
+                                    <td><a class="btn btn-default" data-toggle="tooltip" data-placement="top" title="copy" onclick="copyToClipboard('#select59');"><i class="fa fa-clipboard" aria-hidden="true"></i></a></td>
                                 </tr>
 
                                 <tr>
                                     <td class="table-title">SHA1</td>
-                                    <td class="sha1-hash">{{sha1_sum}}</td>
+                                    <td class="sha1-hash" id="sha1">{{sha1_sum}}</td>
+                                    <td><a class="btn btn-default" data-toggle="tooltip" data-placement="top" title="copy" onclick="copyToClipboard('#sha1');"><i class="fa fa-clipboard" aria-hidden="true"></i></a></td>
                                 </tr>
 
                             </tbody>

@@ -36,6 +36,8 @@ return array(
     'rb'    => 'fa-code',
     'xhtml' => 'fa-code',
     'xml'   => 'fa-code',
+    'json'   => 'fa-code',
+    'sql'   => 'fa-code',
 
     // Databases
     'accdb' => 'fa-hdd-o',

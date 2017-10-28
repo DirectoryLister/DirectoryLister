@@ -55,7 +55,7 @@ $(document).ready(function() {
         event.preventDefault();
 
     });
-
+  $('[data-toggle="tooltip"]').tooltip();
 });
 
 function showHideTopLink(elTop) {
@@ -65,3 +65,11 @@ function showHideTopLink(elTop) {
         $('#page-top-nav').hide();
     }
 }
+
+ function copyToClipboard(element) {
+   var $temp = $("<input>");
+   $("body").append($temp);
+   $temp.val($(element).text()).select();
+   document.execCommand("copy");
+   $temp.remove();
+ }

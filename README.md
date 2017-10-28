@@ -1,6 +1,14 @@
 Directory Lister - The simple PHP directory lister
 ==================================================
 Created by, [Chris Kankiewicz](http://www.ChrisKankiewicz.com)
+Modified by, [nixmomo](https://www.sugar-camp.com)
+
+Added a info File into Info Popup. The Fileextension can be set in config File.
+Default is set to .txt Files.
+Just create a new file in the same directory as the downloadfile with your extension.
+Example is in directory web. There is a index.html file and a index.html.txt file with the informations shown in Infopopup.
+Added new Bootstrap Version, a Link List in header and some smaller design changes for better UX
+Demo is available under <https://directorylister.sugar-camp.com/>
 
 
 Introduction

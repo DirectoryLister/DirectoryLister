@@ -1,5 +1,5 @@
 <?php
-
+$infotext = '.txt';
 /**
  * A simple PHP based directory lister that lists the contents
  * of a directory and all it's sub-directories and allows easy
@@ -11,12 +11,12 @@
  * More info available at http://www.directorylister.com
  *
  * @author Chris Kankiewicz (http://www.chriskankiewicz.com)
- * @copyright 2017 Chris Kankiewicz
+ * @copyright 2015 Chris Kankiewicz
  */
 class DirectoryLister {
 
     // Define application version
-    const VERSION = '2.7.0';
+    const VERSION = '2.6.1';
 
     // Reserve some variables
     protected $_themeName     = null;
@@ -32,6 +32,13 @@ class DirectoryLister {
      * DirectoryLister construct function. Runs on object creation.
      */
     public function __construct() {
+
+        //Set default timezone
+        if( ! ini_get('date.timezone') )
+        {
+            date_default_timezone_set('Europe/Berlin');
+
+        }
 
         // Set class directory constant
         if(!defined('__DIR__')) {
@@ -98,7 +105,7 @@ class DirectoryLister {
             $filename_no_ext = basename($directory);
 
             if ($directory == '.') {
-                $filename_no_ext = $this->_config['home_label'];
+                $filename_no_ext = 'Home';
             }
 
             // We deliver a zip file
@@ -194,18 +201,25 @@ class DirectoryLister {
         // Statically set the Home breadcrumb
         $breadcrumbsArray[] = array(
             'link' => $this->_appURL,
-            'text' => $this->_config['home_label']
+            'text' => 'Home'
         );
 
         // Generate breadcrumbs
-        $dirPath  = null;
-
         foreach ($dirArray as $key => $dir) {
 
             if ($dir != '.') {
 
+                $dirPath  = null;
+
                 // Build the directory path
-                $dirPath = is_null($dirPath) ? $dir : $dirPath . '/' .  $dir;
+                for ($i = 0; $i <= $key; $i++) {
+                    $dirPath = $dirPath . $dirArray[$i] . '/';
+                }
+
+                // Remove trailing slash
+                if(substr($dirPath, -1) == '/') {
+                    $dirPath = substr($dirPath, 0, -1);
+                }
 
                 // Combine the base path and dir path
                 $link = $this->_appURL . '?dir=' . rawurlencode($dirPath);
@@ -233,22 +247,16 @@ class DirectoryLister {
      */
     public function containsIndex($dirPath) {
 
-        // Check if links_dirs_with_index is enabled
-        if ($this->linksDirsWithIndex()) {
+        // Check if directory contains an index file
+        foreach ($this->_config['index_files'] as $indexFile) {
 
-            // Check if directory contains an index file
-            foreach ($this->_config['index_files'] as $indexFile) {
+            if (file_exists($dirPath . '/' . $indexFile)) {
 
-                if (file_exists($dirPath . '/' . $indexFile)) {
-
-                    return true;
-
-                }
+                return true;
 
             }
 
         }
-
 
         return false;
 
@@ -295,18 +303,6 @@ class DirectoryLister {
      */
     public function externalLinksNewWindow() {
         return $this->_config['external_links_new_window'];
-    }
-
-
-    /**
-     * Returns use real url for indexed directories
-     *
-     * @return boolean Returns true if in config is enabled links for directories with index, false if not
-     * @access public
-     */
-    public function linksDirsWithIndex()
-    {
-        return $this->_config['links_dirs_with_index'];
     }
 
 
@@ -611,7 +607,7 @@ class DirectoryLister {
                             'file_path'  => $this->_appURL . $directoryPath,
                             'url_path'   => $this->_appURL . $directoryPath,
                             'file_size'  => '-',
-                            'mod_time'   => date($this->_config['date_format'], filemtime($realPath)),
+                            'mod_time'   => date('Y-m-d H:i:s', filemtime($realPath)),
                             'icon_class' => 'fa-level-up',
                             'sort'       => 0
                         );
@@ -626,7 +622,9 @@ class DirectoryLister {
                         $urlPath = implode('/', array_map('rawurlencode', explode('/', $relativePath)));
 
                         if (is_dir($relativePath)) {
-                            $urlPath = $this->containsIndex($relativePath) ? $relativePath : '?dir=' . $urlPath;
+                            $urlPath = '?dir=' . $urlPath;
+                        } else {
+                            $urlPath = $urlPath;
                         }
 
                         // Add the info to the main array
@@ -634,7 +632,7 @@ class DirectoryLister {
                             'file_path'  => $relativePath,
                             'url_path'   => $urlPath,
                             'file_size'  => is_dir($realPath) ? '-' : $this->getFileSize($realPath),
-                            'mod_time'   => date($this->_config['date_format'], filemtime($realPath)),
+                            'mod_time'   => date('Y-m-d H:i:s', filemtime($realPath)),
                             'icon_class' => $iconClass,
                             'sort'       => $sort
                         );
@@ -807,11 +805,7 @@ class DirectoryLister {
         }
 
         // Get the server hostname
-        if (isset($_SERVER['HTTP_X_FORWARDED_HOST'])) {
-	        $host = $_SERVER['HTTP_X_FORWARDED_HOST'];
-	    } else {
-	        $host = $_SERVER['HTTP_HOST'];
-	    }
+        $host = $_SERVER['HTTP_HOST'];
 
         // Get the URL path
         $pathParts = pathinfo($_SERVER['PHP_SELF']);

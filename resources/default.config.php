@@ -1,5 +1,10 @@
 <?php
-
+     // Set the Extension from the Info File here
+     // To use it create a file in the same directory as your downloads with the same name as the file + your extension
+     // The Extension would be parsed as html so you can use html styles to style your text
+    // example: /dir1 => file1.zip create here a new file named file1.zip.txt (if you let default)
+    // The html / text from this file would be shown in info popup
+     $infotext = '.txt';
 return array(
 
     // Basic settings
@@ -18,6 +23,8 @@ return array(
         'resources/*',
         'analytics.inc',
         'header.php',
+        '.txt',
+        '*/.txt',
         'footer.php'
     ),
 

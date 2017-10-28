@@ -22,7 +22,7 @@ body.breadcrumb-fixed {
 #page-navbar .navbar-text {
     display: block;
     float: left;
-    font-family: 'Cutive Mono', monospace, serif;
+    font-family: 'Roboto', monospace, serif;
     max-width: 80%;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -35,13 +35,13 @@ body.breadcrumb-fixed {
 /* ---------------------------------------------------------------------------------------------- */
 
 #directory-list-header {
-    font-family: 'Cutive Mono', monospace, serif;
+    font-family: 'Roboto', monospace, serif;
     font-weight: bold;
     padding: 10px 15px;
 }
 
 #directory-listing {
-    font-family: 'Cutive Mono', monospace, serif;
+    font-family: 'Roboto', monospace, serif;
 }
 
 #directory-listing li {
@@ -96,7 +96,7 @@ body.breadcrumb-fixed {
     font-weight: bold;
     text-align: right;
 }
-
+#file-info .info,
 #file-info .md5-hash,
 #file-info .sha1-hash {
     font-family: 'Cutive Mono', monospace, serif;

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 
 <html>
 
@@ -8,17 +8,17 @@
         <link rel="shortcut icon" href="<?php echo THEMEPATH; ?>/img/folder.png">
 
         <!-- STYLES -->
-        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootswatch/3.3.7/yeti/bootstrap.min.css">
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
         <link rel="stylesheet" type="text/css" href="<?php echo THEMEPATH; ?>/css/style.css">
 
         <!-- SCRIPTS -->
         <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-        <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="<?php echo THEMEPATH; ?>/js/directorylister.js"></script>
 
         <!-- FONTS -->
-        <link rel="stylesheet" type="text/css"  href="//fonts.googleapis.com/css?family=Cutive+Mono">
+        <link rel="stylesheet" type="text/css"  href="//fonts.googleapis.com/css?family=Roboto+Mono">
 
         <!-- META -->
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -32,6 +32,7 @@
 
         <div id="page-navbar" class="navbar navbar-default navbar-fixed-top">
             <div class="container">
+
 
                 <?php $breadcrumbs = $lister->listBreadcrumbs(); ?>
 
@@ -47,7 +48,10 @@
                 </p>
 
                 <div class="navbar-right">
-
+            <ul class="nav navbar-nav" id="sidebar">
+                <li><a href="https://www.dl-host.info">DL-Host</a></li>
+                <li><a href="https://www.dl-host.info/kontakt/kontakt/">Kontakt</a></li>
+            </ul>
                     <ul id="page-top-nav" class="nav navbar-nav">
                         <li>
                             <a href="javascript:void(0)" id="page-top-link">
@@ -90,13 +94,14 @@
                     <div class="col-md-2 col-sm-2 col-xs-2 text-right">Size</div>
                     <div class="col-md-3 col-sm-4 hidden-xs text-right">Last Modified</div>
                 </div>
+
             </div>
 
             <ul id="directory-listing" class="nav nav-pills nav-stacked">
 
                 <?php foreach($dirArray as $name => $fileInfo): ?>
-                    <li data-name="<?php echo $name; ?>" data-href="<?php echo $fileInfo['url_path']; ?>">
-                        <a href="<?php echo $fileInfo['url_path']; ?>" class="clearfix" data-name="<?php echo $name; ?>">
+                    <li data-name="<?php echo $name; ?>" data-href="<?php echo $fileInfo['url_path']; ?>" data-info="<?php echo $fileInfo['url_path'],$infotext; ?>">
+                        <a href="<?php echo $fileInfo['url_path']; ?>" class="clearfix" data-name="<?php echo $name; ?>" data-info="<?php echo $fileInfo['url_path'],$infotext; ?>">
 
 
                             <div class="row">
@@ -138,7 +143,7 @@
 
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">{{modal_header}}</h4>
+                        <h2 class="modal-title">{{modal_header}}</h2>
                     </div>
 
                     <div class="modal-body">
@@ -155,6 +160,10 @@
                                     <td class="table-title">SHA1</td>
                                     <td class="sha1-hash">{{sha1_sum}}</td>
                                 </tr>
+				<tr>
+				    <td class="table-title">INFO</td>
+				    <td class="info">{{info}}</td
+				</tr>
 
                             </tbody>
                         </table>

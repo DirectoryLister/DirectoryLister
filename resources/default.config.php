@@ -4,7 +4,7 @@
      // The Extension would be parsed as html so you can use html styles to style your text
     // example: /dir1 => file1.zip create here a new file named file1.zip.txt (if you let default)
     // The html / text from this file would be shown in info popup
-     $infotext = '.txt';
+
 return array(
 
     // Basic settings
@@ -13,6 +13,7 @@ return array(
     'list_folders_first'        => true,
     'list_sort_order'           => 'natcasesort',
     'theme_name'                => 'bootstrap',
+    'infotext_extension'        => '.txt',
     'date_format'               => 'Y-m-d H:i:s', // See: http://php.net/manual/en/function.date.php
 
     // Hidden files

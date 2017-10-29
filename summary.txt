@@ -1,0 +1,14 @@
+<p>This is a Placeholder Text for Feature Request: <a href="https://github.com/DirectoryLister/DirectoryLister/issues/135" target="_blank">a &quot;README.md&quot; file to generate a summary #135
+</a></p>
+<div class="alert alert-dismissible alert-success">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  <strong>Well done!</strong> You successfully read <a href="https://github.com/DirectoryLister/DirectoryLister/issues/135" target="_blank" class="alert-link">Is that what you looking for?</a>.
+</div>
+<p>You can Format this summary.txt with Html and style it with Bootstrap CSS</p>
+<h2>Example classes</h2>
+<p class="text-muted">Fusce dapibus, tellus ac cursus commodo, tortor mauris nibh.</p>
+<p class="text-primary">Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+<p class="text-warning">Etiam porta sem malesuada magna mollis euismod.</p>
+<p class="text-danger">Donec ullamcorper nulla non metus auctor fringilla.</p>
+<p class="text-success">Duis mollis, est non commodo luctus, nisi erat porttitor ligula.</p>
+<p class="text-info">Maecenas sed diam eget risus varius blandit sit amet non magna.</p>

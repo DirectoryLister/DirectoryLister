@@ -1,5 +1,6 @@
 <hr>
-
+<div id="page-content" class="container"><?php $summary = file_get_contents('summary.txt'); echo $summary; ?></div>
+<hr>
 <div class="footer">
     <b>Total downloads: <?php echo $lister->getTotalDownloads(); ?> </b>
      <br><br>Powered by <a href="http://www.directorylister.com">Directory Lister</a></br></br>

@@ -1,10 +1,4 @@
  <!DOCTYPE html>
-<?php
-if (stripos($_SERVER['REQUEST_URI'],'?dir=web') !== false){$style = "/css/style.css";}
-else if(stripos($_SERVER['REQUEST_URI'],'/member/') !== false) {$style = "css/style2.css";}
-else if(stripos($_SERVER['REQUEST_URI'],'/customer/') !== false) {$style = "css/style3.css";}
-else {$style = "/css/style.css";}
-?>
 <html>
 
     <head>
@@ -15,7 +9,7 @@ else {$style = "/css/style.css";}
         <!-- STYLES -->
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootswatch/3.3.7/yeti/bootstrap.min.css">
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-        <link rel="stylesheet" type="text/css" href="<?php echo THEMEPATH,$style; ?>"> 
+        <link rel="stylesheet" type="text/css" href="<?php echo THEMEPATH; ?>/css/style.css">
 
         <!-- SCRIPTS -->
 

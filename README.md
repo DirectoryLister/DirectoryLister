@@ -10,6 +10,13 @@ Example is in directory web. There is a index.html file and a index.html.txt fil
 Added new Bootstrap Version, a Link List in header and some smaller design changes for better UX
 Demo is available under <https://directorylister.sugar-camp.com/>
 
+Merged with:
+<https://github.com/DirectoryLister/DirectoryLister/pull/160>
+<https://github.com/DirectoryLister/DirectoryLister/pull/168>
+<https://github.com/DirectoryLister/DirectoryLister/pull/167>
+<https://github.com/DirectoryLister/DirectoryLister/pull/166>
+
+
 
 Introduction
 ------------

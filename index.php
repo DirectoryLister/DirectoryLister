@@ -38,6 +38,9 @@
         if (!defined('THEMEPATH')) {
             define('THEMEPATH', $lister->getThemePath());
         }
+        if (!defined('INFOTEXT')) {
+            define('INFOTEXT', $lister->getInfotextExtension());
+        }
 
         // Set path to theme index
         $themeIndex = $lister->getThemePath(true) . '/index.php';

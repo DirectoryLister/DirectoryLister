@@ -1,21 +1,18 @@
 Directory Lister - The simple PHP directory lister
 ==================================================
-Created by, [Chris Kankiewicz](http://www.ChrisKankiewicz.com)
-Modified by, [nixmomo](https://www.sugar-camp.com)
+Created by, Chris Kankiewicz Modified by, nixmomo
 
-Added a info File into Info Popup. The Fileextension can be set in config File.
-Default is set to .txt Files.
-Just create a new file in the same directory as the downloadfile with your extension.
-Example is in directory web. There is a index.html file and a index.html.txt file with the informations shown in Infopopup.
-Added new Bootstrap Version, a Link List in header and some smaller design changes for better UX
-Demo is available under <https://directorylister.sugar-camp.com/>
+Added a info File into Info Popup. 
+The Fileextension can be set in config File. 
+Default is set to .txt Files. Just create a new file in the same directory as the downloadfile with your extension. 
+Example is in directory web. There is a index.html file and a index.html.txt file with the informations shown in Infopopup. 
+Added new Bootstrap Version, a Link List in header and some smaller design changes for better UX. 
+Demo is available under https://directorylister.sugar-camp.com/
 
-Merged with:
-<https://github.com/DirectoryLister/DirectoryLister/pull/160>
-<https://github.com/DirectoryLister/DirectoryLister/pull/168>
-<https://github.com/DirectoryLister/DirectoryLister/pull/167>
-<https://github.com/DirectoryLister/DirectoryLister/pull/166>
-
+Merged with: https://github.com/DirectoryLister/DirectoryLister/pull/160 
+https://github.com/DirectoryLister/DirectoryLister/pull/168 
+https://github.com/DirectoryLister/DirectoryLister/pull/167 
+https://github.com/DirectoryLister/DirectoryLister/pull/166
 
 
 Introduction
@@ -38,6 +35,9 @@ Features
   * Creates on-the-fly listing of any web-accessable directory
   * Custimizable sort order of files/folders
   * Easily define hidden files to be excluded from the listing
+  * Infotext in Popup per File
+  * Copy MD5 and Sha to Clipboard
+  * Bootstrap 3.3.7
 
 
 Requirements

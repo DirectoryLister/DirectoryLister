@@ -1,5 +1,5 @@
 <?php
-$infotext = '.txt';
+// $infotext = $this->_config['infotext_extension'];
 /**
  * A simple PHP based directory lister that lists the contents
  * of a directory and all it's sub-directories and allows easy
@@ -72,7 +72,7 @@ class DirectoryLister {
          
         // Set the file types array to a global variable
         $this->_fileTypes = require_once($this->_appDir . '/fileTypes.php');
-
+	$this->_infotext_extension = $this->_config['infotext_extension'];
         // Set the theme name
         $this->_themeName = $this->_config['theme_name'];
 
@@ -303,6 +303,10 @@ class DirectoryLister {
         return $this->_config['theme_name'];
     }
 
+    public function getInfotextExtension() {
+        // Return the theme name
+        return $this->_config['infotext_extension'];
+    }
 
     /**
      * Returns open links in another window

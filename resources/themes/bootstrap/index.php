@@ -1,5 +1,10 @@
  <!DOCTYPE html>
-
+<?php
+if (stripos($_SERVER['REQUEST_URI'],'?dir=web') !== false){$style = "/css/style.css";}
+else if(stripos($_SERVER['REQUEST_URI'],'/member/') !== false) {$style = "css/style2.css";}
+else if(stripos($_SERVER['REQUEST_URI'],'/customer/') !== false) {$style = "css/style3.css";}
+else {$style = "/css/style.css";}
+?>
 <html>
 
     <head>
@@ -13,6 +18,7 @@
         <link rel="stylesheet" type="text/css" href="<?php echo THEMEPATH; ?>/css/style.css">
 
         <!-- SCRIPTS -->
+
         <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
         <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="<?php echo THEMEPATH; ?>/js/directorylister.js"></script>
@@ -27,9 +33,7 @@
         <?php file_exists('analytics.inc') ? include('analytics.inc') : false; ?>
 
     </head>
-
-    <body>
-
+    <body> 
         <div id="page-navbar" class="navbar navbar-default navbar-fixed-top">
             <div class="container">
 
@@ -49,7 +53,7 @@
 
                 <div class="navbar-right">
             <ul class="nav navbar-nav" id="sidebar">
-                <li><a href="https://www.dl-host.info">DL-Host</a></li>
+                <li><a href="https://www.sugar-camp.com">Blog</a></li>
                 <li><a href="https://www.dl-host.info/kontakt/kontakt/">Kontakt</a></li>
             </ul>
                     <ul id="page-top-nav" class="nav navbar-nav">
@@ -101,7 +105,7 @@
             <ul id="directory-listing" class="nav nav-pills nav-stacked">
 
                 <?php foreach($dirArray as $name => $fileInfo): ?>
-                    <li data-name="<?php echo $name; ?>" data-href="<?php echo $fileInfo['url_path']; ?>" data-info="<?php echo $fileInfo['url_path'],$infotext; ?>">
+                    <li data-name="<?php echo $name; ?>" data-href="<?php echo $fileInfo['url_path']; ?>" data-info="<?php echo $fileInfo['url_path'],INFOTEXT; ?>">
                         <a href="<?php if(is_dir($fileInfo['file_path'])) { echo $fileInfo['url_path']; } elseif($fileInfo['icon_class'] == 'fa-level-up') { echo  $fileInfo['file_path']; } else { echo 'filemanager.php?file='. $fileInfo['file_path']; } ?>" class="clearfix" data-name="<?php echo $name; ?>" data-info="<?php echo $fileInfo['url_path'],$infotext; ?>">
 
 
@@ -137,6 +141,7 @@
                 <?php endforeach; ?>
 
             </ul>
+	
         </div>
 
         <?php file_exists('footer.php') ? include('footer.php') : include($lister->getThemePath(true) . "/default_footer.php"); ?>

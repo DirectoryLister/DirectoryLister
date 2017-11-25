@@ -84,11 +84,22 @@
                 <?php endforeach; ?>
             <?php endif; ?>
 
+            <?php 
+            $link = 'dir=.';
+            if(isset($_GET['dir'])) {
+                $link = 'dir='.$_GET['dir'];
+            }
+            $order = 'order=asc';
+            if(isset($_GET['order']) && $_GET['order'] === 'asc'){
+                $order = 'order=desc';
+            }
+            ?>
+
             <div id="directory-list-header">
                 <div class="row">
-                    <div class="col-md-7 col-sm-6 col-xs-10">File</div>
-                    <div class="col-md-2 col-sm-2 col-xs-2 text-right">Size</div>
-                    <div class="col-md-3 col-sm-4 hidden-xs text-right">Last Modified</div>
+                    <a class="col-md-7 col-sm-6 col-xs-10" href="/?<?php echo $link . '&by=name&'. $order ?>">Fichier</a>
+                    <a class="col-md-2 col-sm-2 col-xs-2 text-right" href="/?<?php echo $link . '&by=size&'. $order ?>">Taille</a>
+                    <a class="col-md-3 col-sm-4 hidden-xs text-right" href="/?<?php echo $link . '&by=lastModified&'. $order ?>">Dernière modification</a>
                 </div>
             </div>
 

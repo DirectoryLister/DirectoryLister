@@ -4,6 +4,19 @@
 
     <head>
 
+        <?php if($lister->isGoogleAnalyticsEnabled()): ?>
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=<?php echo $lister->getGoogleAnalyticsCode(); ?>"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', '<?php echo $lister->getGoogleAnalyticsCode(); ?>');
+        </script>
+        <?php endif; ?>
+
+
         <title>Directory listing of <?php echo $lister->getListedPath(); ?></title>
         <link rel="shortcut icon" href="<?php echo THEMEPATH; ?>/img/folder.png">
 

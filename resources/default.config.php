@@ -58,4 +58,8 @@ return array(
         // 'path/to/folder'
     ),
 
+    // Google Analytics Tracking
+    'ga_enabled' => true,
+    'ga_code' => 'UA-XXXXXXX-XX',
+
 );

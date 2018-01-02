@@ -286,6 +286,27 @@ class DirectoryLister {
         return $this->_config['theme_name'];
     }
 
+    /**
+     * Returns true if GA is enabled
+     *
+     * @return boolean
+     * @access public
+     */
+    public function isGoogleAnalyticsEnabled()
+    {
+        return $this->_config['ga_enabled'];
+    }
+
+    /**
+     * Returns the code of the GA instance
+     *
+     * @return string
+     * @access public
+     */
+    public function getGoogleAnalyticsCode()
+    {
+        return $this->_config['ga_code'];
+    }
 
     /**
      * Returns open links in another window

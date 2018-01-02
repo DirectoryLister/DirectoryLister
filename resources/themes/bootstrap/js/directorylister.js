@@ -55,6 +55,18 @@ $(document).ready(function() {
 
     });
 
+    if(gtag !== undefined) {
+        $('#directory-listing li > a').click(function() {
+            if ($(this).attr('href').substring(0, 4) == "?dir" || $(this).data('name').substring(0, 2) == "..") {
+                return;
+            }
+            gtag('event', 'download', {
+              event_category: 'Files',
+              event_label: $(this).data('name')
+            });
+        });
+    }
+
 });
 
 function showHideTopLink(elTop) {

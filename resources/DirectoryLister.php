@@ -800,7 +800,9 @@ class DirectoryLister {
     protected function _getAppUrl() {
 
         // Get the server protocol
-        if (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') {
+        if (isset($_SERVER['HTTP_X_FORWARDED_PROTO'])) {
+            $protocol = $_SERVER['HTTP_X_FORWARDED_PROTO'] . '://';
+        } else if (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') {
             $protocol = 'https://';
         } else {
             $protocol = 'http://';

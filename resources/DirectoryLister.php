@@ -815,7 +815,7 @@ class DirectoryLister {
 
         // Get the URL path
         $pathParts = pathinfo($_SERVER['PHP_SELF']);
-        $path      = $pathParts['dirname'];
+        $path      = isset($pathParts['dirname']) ? $pathParts['dirname'] : '';
 
         // Remove backslash from path (Windows fix)
         if (substr($path, -1) == '\\') {

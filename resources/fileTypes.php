@@ -3,12 +3,12 @@
 return array(
 
     // Archives
-    '7z'    => 'fa-file-archive-o',
-    'bz'    => 'fa-file-archive-o',
-    'gz'    => 'fa-file-archive-o',
-    'rar'   => 'fa-file-archive-o',
-    'tar'   => 'fa-file-archive-o',
-    'zip'   => 'fa-file-archive-o',
+    '7z'    => 'fa-file-archive',
+    'bz'    => 'fa-file-archive',
+    'gz'    => 'fa-file-archive',
+    'rar'   => 'fa-file-archive',
+    'tar'   => 'fa-file-archive',
+    'zip'   => 'fa-file-archive',
 
     // Audio
     'aac'   => 'fa-music',
@@ -38,17 +38,17 @@ return array(
     'xml'   => 'fa-code',
 
     // Databases
-    'accdb' => 'fa-hdd-o',
-    'db'    => 'fa-hdd-o',
-    'dbf'   => 'fa-hdd-o',
-    'mdb'   => 'fa-hdd-o',
-    'pdb'   => 'fa-hdd-o',
-    'sql'   => 'fa-hdd-o',
+    'accdb' => 'fa-hdd',
+    'db'    => 'fa-hdd',
+    'dbf'   => 'fa-hdd',
+    'mdb'   => 'fa-hdd',
+    'pdb'   => 'fa-hdd',
+    'sql'   => 'fa-hdd',
 
     // Documents
-    'csv'   => 'fa-file-text',
-    'odt'   => 'fa-file-text',
-    'pdf'   => 'fa-file-text',
+    'csv'   => 'fa-file-alt',
+    'odt'   => 'fa-file-alt',
+    'pdf'   => 'fa-file-alt',
 	
 	// Word Documents
 	'doc'   => 'fa-file-word',
@@ -110,18 +110,18 @@ return array(
     'gam'   => 'fa-gamepad',
     'nes'   => 'fa-gamepad',
     'rom'   => 'fa-gamepad',
-    'sav'   => 'fa-floppy-o',
+    'sav'   => 'fa-save',
 
     // Images
-    'bmp'   => 'fa-picture-o',
-    'gif'   => 'fa-picture-o',
-    'jpg'   => 'fa-picture-o',
-    'jpeg'  => 'fa-picture-o',
-    'png'   => 'fa-picture-o',
-    'psd'   => 'fa-picture-o',
-    'tga'   => 'fa-picture-o',
-    'tif'   => 'fa-picture-o',
-	'ico'   => 'fa-picture-o',
+    'bmp'   => 'fa-image',
+    'gif'   => 'fa-image',
+    'jpg'   => 'fa-image',
+    'jpeg'  => 'fa-image',
+    'png'   => 'fa-image',
+    'psd'   => 'fa-image',
+    'tga'   => 'fa-image',
+    'tif'   => 'fa-image',
+	'ico'   => 'fa-image',
 
     // Package Files
     'box'   => 'fa-archive',
@@ -147,27 +147,27 @@ return array(
     'txt'   => 'fa-file-alt',
 
     // Vector Images
-    'ai'    => 'fa-picture-o',
-    'drw'   => 'fa-picture-o',
-    'eps'   => 'fa-picture-o',
-    'ps'    => 'fa-picture-o',
-    'svg'   => 'fa-picture-o',
+    'ai'    => 'fa-image',
+    'drw'   => 'fa-image',
+    'eps'   => 'fa-image',
+    'ps'    => 'fa-image',
+    'svg'   => 'fa-image',
 
     // Video
-    'avi'   => 'fa-youtube-play',
-    'flv'   => 'fa-youtube-play',
-    'mkv'   => 'fa-youtube-play',
-    'mov'   => 'fa-youtube-play',
-    'mp4'   => 'fa-youtube-play',
-    'mpg'   => 'fa-youtube-play',
-	'mpeg'  => 'fa-youtube-play',
-    'ogv'   => 'fa-youtube-play',
-    'webm'  => 'fa-youtube-play',
-    'wmv'   => 'fa-youtube-play',
-    'swf'   => 'fa-youtube-play',
+    'avi'   => 'fa-file-video',
+    'flv'   => 'fa-file-video',
+    'mkv'   => 'fa-file-video',
+    'mov'   => 'fa-file-video',
+    'mp4'   => 'fa-file-video',
+    'mpg'   => 'fa-file-video',
+	'mpeg'  => 'fa-file-video',
+    'ogv'   => 'fa-file-video',
+    'webm'  => 'fa-file-video',
+    'wmv'   => 'fa-file-video',
+    'swf'   => 'fa-file-video',
 
     // Other
-    'bak'   => 'fa-floppy',
+    'bak'   => 'fa-save',
     'msg'   => 'fa-envelope',
 
     // Blank

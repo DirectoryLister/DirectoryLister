@@ -136,15 +136,15 @@ return array(
 	'ps1'   => 'fa-terminal',
 
     // Text
-    'cfg'   => 'fa-file-text',
-	'conf'  => 'fa-file-text',
-	'cnf'   => 'fa-file-text',
-	'config'=> 'fa-file-text',
-    'ini'   => 'fa-file-text',
-    'log'   => 'fa-file-text',
-    'md'    => 'fa-file-text',
-    'rtf'   => 'fa-file-text',
-    'txt'   => 'fa-file-text',
+    'cfg'   => 'fa-file-alt',
+	'conf'  => 'fa-file-alt',
+	'cnf'   => 'fa-file-alt',
+	'config'=> 'fa-file-alt',
+    'ini'   => 'fa-file-alt',
+    'log'   => 'fa-file-alt',
+    'md'    => 'fa-file-alt',
+    'rtf'   => 'fa-file-alt',
+    'txt'   => 'fa-file-alt',
 
     // Vector Images
     'ai'    => 'fa-picture-o',

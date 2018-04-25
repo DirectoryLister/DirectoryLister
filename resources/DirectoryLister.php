@@ -612,7 +612,7 @@ class DirectoryLister {
                             'url_path'   => $this->_appURL . $directoryPath,
                             'file_size'  => '-',
                             'mod_time'   => date($this->_config['date_format'], filemtime($realPath)),
-                            'icon_class' => 'fa-level-up',
+                            'icon_class' => 'fa-level-up-alt',
                             'sort'       => 0
                         );
                     }

@@ -694,6 +694,9 @@ class DirectoryLister {
             case 'shuffle':
                 shuffle($keys);
                 break;
+            case 'custom':
+                $keys = $this->_config['list_sort_order_function']($array);
+                break;
         }
 
         // Loop through the sorted values and move over the data

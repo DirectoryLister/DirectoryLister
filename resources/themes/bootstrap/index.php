@@ -122,6 +122,20 @@
                                 <i class="fa fa-info-circle"></i>
                             </a>
 
+                        <?php else: ?>
+
+                            <?php if (!$lister->linksDirsWithIndex()): ?>
+
+                                    <?php if ($lister->containsIndex($fileInfo['file_path'])): ?>
+
+                                        <a href="<?php echo $fileInfo['file_path']; ?>" class="web-link-button"<?php if ($lister->externalLinksNewWindow()): ?> target="_blank"<?php endif; ?>>
+                                            <i class="fa fa-external-link"></i>
+                                        </a>
+
+                                    <?php endif; ?>
+
+                            <?php endif; ?>
+
                         <?php endif; ?>
 
                     </li>

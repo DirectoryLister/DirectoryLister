@@ -16,7 +16,7 @@
 class DirectoryLister {
 
     // Define application version
-    const VERSION = '2.7.1';
+    const VERSION = '2.7.2';
 
     // Reserve some variables
     protected $_themeName     = null;
@@ -233,22 +233,16 @@ class DirectoryLister {
      */
     public function containsIndex($dirPath) {
 
-        // Check if links_dirs_with_index is enabled
-        if ($this->linksDirsWithIndex()) {
+        // Check if directory contains an index file
+        foreach ($this->_config['index_files'] as $indexFile) {
 
-            // Check if directory contains an index file
-            foreach ($this->_config['index_files'] as $indexFile) {
+            if (file_exists($dirPath . '/' . $indexFile)) {
 
-                if (file_exists($dirPath . '/' . $indexFile)) {
-
-                    return true;
-
-                }
+                return true;
 
             }
 
         }
-
 
         return false;
 
@@ -626,7 +620,7 @@ class DirectoryLister {
                         $urlPath = implode('/', array_map('rawurlencode', explode('/', $relativePath)));
 
                         if (is_dir($relativePath)) {
-                            $urlPath = $this->containsIndex($relativePath) ? $relativePath : '?dir=' . $urlPath;
+                            $urlPath = $this->containsIndex($relativePath) && $this->linksDirsWithIndex() ? $relativePath : '?dir=' . $urlPath;
                         }
 
                         // Add the info to the main array

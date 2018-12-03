@@ -16,7 +16,7 @@
 class DirectoryLister {
 
     // Define application version
-    const VERSION = '2.7.1';
+    const VERSION = '2.7.0';
 
     // Reserve some variables
     protected $_themeName     = null;
@@ -156,7 +156,7 @@ class DirectoryLister {
      * @return array Array of directory being listed
      * @access public
      */
-    public function listDirectory($directory) {
+    public function listDirectory($directory, $by, $order) {
 
         // Set directory
         $directory = $this->setDirectoryPath($directory);
@@ -170,6 +170,33 @@ class DirectoryLister {
         $directoryArray = $this->_readDirectory($directory);
 
         // Return the array
+        function sortBy($a, $b, $attr){
+            return strcmp (strtolower($a[$attr]), strtolower($b[$attr]));
+        }
+
+        switch ($by) {
+            case 'lastModified':
+                uasort($directoryArray, function($a, $b){
+                    return sortBy($a,$b,'mod_time');
+                });
+                break;
+            case 'size':
+                uasort($directoryArray, function($a, $b){
+                    return sortBy($a,$b,'file_size');
+                });
+                break;
+            case 'name':
+            default:
+                uasort($directoryArray, function($a, $b){
+                    return sortBy($a,$b,'name');
+                });
+                break;
+        }
+
+        if($order == 'desc'){
+            $directoryArray = array_reverse($directoryArray, true);
+        }
+    
         return $directoryArray;
     }
 
@@ -630,7 +657,9 @@ class DirectoryLister {
                         }
 
                         // Add the info to the main array
+                        $name = pathinfo($relativePath, PATHINFO_BASENAME);
                         $directoryArray[pathinfo($relativePath, PATHINFO_BASENAME)] = array(
+                            'name'       => $name,
                             'file_path'  => $relativePath,
                             'url_path'   => $urlPath,
                             'file_size'  => is_dir($realPath) ? '-' : $this->getFileSize($realPath),

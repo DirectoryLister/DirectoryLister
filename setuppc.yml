@@ -1,0 +1,24 @@
+# ansible-playbook dockerInstallieren.yml --ask-pass -b -v --ask-become-pass
+---
+- name: install docker service
+  hosts: localhost
+  tasks:
+  - name: apt update
+    apt: update_cache=yes
+  - name: remove docker
+    command: apt-get remove --assume-yes docker docker-engine docker.io
+  - name: Install packages to allow apt to use a repository over HTTPS
+    command: apt-get install --assume-yes apt-transport-https ca-certificates curl gnupg2 software-properties-common
+  - name: Add Docker’s official GPG key
+#    command: curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add -
+    apt_key:
+      url: https://download.docker.com/linux/debian/gpg
+      id: 9DC858229FC7DD38854AE2D88D81803C0EBFCD88
+  - name: Add Docker’s official repository
+    command: add-apt-repository --assume-yes "deb [arch=amd64] https://download.docker.com/linux/debian stretch stable"
+  - name: apt update
+    apt: update_cache=yes
+  - name: apt-get install docker-ce
+    apt: 
+      name: docker-ce
+      state: present

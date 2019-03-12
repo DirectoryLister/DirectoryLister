@@ -862,8 +862,32 @@ class DirectoryLister {
         // Return the URL
         return $appUrl;
     }
+	
+    /**
+     * Returns the systems directory for local reference
+     *
+     * @return string just the main folder of the application
+     * @access public
+     */
+    public function GetBasePath() {
+		
+	$pathParts = pathinfo($_SERVER['PHP_SELF']);
+        $path      = $pathParts['dirname'];
 
+        // Remove backslash from path (Windows fix)
+        if (substr($path, -1) == '\\') {
+            $path = substr($path, 0, -1);
+        }
 
+        // Ensure the path ends with a forward slash
+        if (substr($path, -1) != '/') {
+            $path = $path . '/';
+        }
+		
+	// Return just the path the system is in
+	return $path;
+    }
+	
     /**
       * Compares two paths and returns the relative path from one to the other
      *

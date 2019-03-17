@@ -86,7 +86,7 @@
 
             <div id="directory-list-header">
                 <div class="row">
-                    <div class="col-md-7 col-sm-6 col-xs-10">File</div>
+                    <div class="col-md-7 col-sm-6 col-xs-10">Folders and Files</div>
                     <div class="col-md-2 col-sm-2 col-xs-2 text-right">Size</div>
                     <div class="col-md-3 col-sm-4 hidden-xs text-right">Last Modified</div>
                 </div>

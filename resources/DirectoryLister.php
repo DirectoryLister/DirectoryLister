@@ -173,31 +173,53 @@ class DirectoryLister {
         function sortBy($a, $b, $attr){
             return strcmp (strtolower($a[$attr]), strtolower($b[$attr]));
         }
-
-        switch ($by) {
+		
+		// Just do the sorting on its own
+		function doSort($tosortArray, $by, $order){
+			
+			switch ($by) {
             case 'lastModified':
-                uasort($directoryArray, function($a, $b){
+                uasort($tosortArray, function($a, $b){
                     return sortBy($a,$b,'mod_time');
                 });
                 break;
             case 'size':
-                uasort($directoryArray, function($a, $b){
+                uasort($tosortArray, function($a, $b){
                     return sortBy($a,$b,'file_size');
                 });
                 break;
             case 'name':
             default:
-                uasort($directoryArray, function($a, $b){
+                uasort($tosortArray, function($a, $b){
                     return sortBy($a,$b,'name');
                 });
                 break;
-        }
-
-        if($order == 'desc'){
-            $directoryArray = array_reverse($directoryArray, true);
-        }
-    
-        return $directoryArray;
+			}
+			
+			if($order == 'desc'){
+				$tosortArray = array_reverse($tosortArray, true);
+			}
+			
+			return $tosortArray;
+		}
+		
+		// Test if there is a parent directory, if so remove first then sort
+		if (isset($directoryArray[".."])){
+			
+			$parent = $directoryArray[".."];
+			$parent = array('..' => $parent);
+			unset($directoryArray[".."]);
+			
+			$sortedarray = doSort($directoryArray, $by, $order);
+			
+			$sortedarray = $parent + $sortedarray;
+		}
+		else{
+			
+			$sortedarray = doSort($directoryArray, $by, $order);
+		}			
+		
+        return $sortedarray;
     }
 
 

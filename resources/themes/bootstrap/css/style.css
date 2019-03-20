@@ -4,6 +4,7 @@
 
 body {
     padding: 70px 0 0;
+    overflow-y: scroll;
 }
 
 body.breadcrumb-fixed {

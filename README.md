@@ -1,6 +1,6 @@
 Directory Lister - The simple PHP directory lister
 ==================================================
-Created by, [Chris Kankiewicz](http://www.ChrisKankiewicz.com)
+Created by, [Chris Kankiewicz](http://www.ChrisKankiewicz.com) & Tampa
 
 
 Introduction
@@ -11,10 +11,6 @@ allows navigating there within. Simply upload Directory Lister to any directory 
 access to all files and sub-direcories under that directory. Directory Lister is written in PHP and
 distributed under the [MIT License](http://www.opensource.org/licenses/mit-license.php).
 
-Like this project? Want to keep it free? [Make a donation](https://cash.me/$ChrisKankiewicz).
-
-More info available at <http://www.directorylister.com>
-
 
 Features
 --------
@@ -23,6 +19,9 @@ Features
   * Creates on-the-fly listing of any web-accessable directory
   * Custimizable sort order of files/folders
   * Easily define hidden files to be excluded from the listing
+  * Various sorting options
+  * Directory size information
+  * File hashing
 
 
 Requirements
@@ -30,6 +29,8 @@ Requirements
 
 Directory Lister requires PHP 5.3+ to work properly.  For more information on PHP, please visit
 <http://www.php.net>.
+
+A linux/unix host is needed to support all features.
 
 
 Installation
@@ -53,14 +54,7 @@ Verify that you have PHP 5.3 or later installed. You can verify your PHP version
 Contact Info
 ------------
 
-Contact us via our mailling list at [Directory-Lister@GoogleGroups.com](mailto:Directory-Lister@GoogleGroups.com)
-or [join our Google Group](https://groups.google.com/forum/?fromgroups#!forum/directory-lister) online.
-
-Follow Directory Lister on Twitter at [@DirectoryLister](https://twitter.com/directorylister) or
-follow the developer at [@PHLAK](https://twitter.com/PHLAK)
-
-Find a problem or bug with Directory Lister?
-[Open an issue](https://github.com/DirectoryLister/DirectoryLister/issues) on GitHub.
+Open up an issue if you need anything.
 
 
 License
@@ -69,3 +63,4 @@ License
 Directory Lister is distributed under the terms of the
 [MIT License](http://www.opensource.org/licenses/mit-license.php).
 Copyright 2017 [Chris Kankiewicz](http://www.chriskankiewicz.com)
+Copyright 2019 Tampa

@@ -145,7 +145,6 @@ class DirectoryLister {
 
             }
         }
-
     }
 
 
@@ -168,6 +167,53 @@ class DirectoryLister {
 
         // Get the directory array
         $directoryArray = $this->_readDirectory($directory);
+	    
+	// Function to convert the bytes into kb, mb and so on
+	function formatSizeUnits($bytes)
+	{
+		if ($bytes >= 1073741824)
+		{
+			$bytes = number_format($bytes / 1073741824, 2) . 'TB';
+		}
+		elseif ($bytes >= 1048576)
+		{
+			$bytes = number_format($bytes / 1048576, 2) . 'GB';
+		}
+		elseif ($bytes >= 1024)
+		{
+			$bytes = number_format($bytes / 1024, 2) . 'MB';
+		}
+		elseif ($bytes > 1)
+		{
+			$bytes = $bytes . 'KB';
+		}
+		elseif ($bytes == 1)
+		{
+			$bytes = $bytes . 'KB';
+		}
+		else
+		{
+			$bytes = 'null';
+		}
+		return $bytes;
+	}
+	    
+	$int = 0;
+	    
+	// Go through the array where there are folders and figure out their size
+	foreach($directoryArray as &$entries)
+	{
+		if ($entries["file_size"] == "-" && isset($entries["name"]))
+		{
+			$f = "./".$entries["file_path"];
+			$io = popen ( '/usr/bin/du -sk ' . $f, 'r' );
+			$size = fgets ( $io, 4096);
+			$size = substr ( $size, 0, strpos ( $size, "\t" ) );
+			pclose ( $io );
+			$entries["file_size"] = formatSizeUnits($size);
+		}
+		$int++;
+	}
 
         // Return the array
         function sortBy($a, $b, $attr){

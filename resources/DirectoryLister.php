@@ -206,7 +206,7 @@ class DirectoryLister {
 		if ($entries["file_size"] == "-" && isset($entries["name"]))
 		{
 			$f = "./".$entries["file_path"];
-			$io = popen ( '/usr/bin/du -sk ' . $f, 'r' );
+			$io = popen ( '/usr/bin/du -sk ' . "\"".$f."\"", 'r' );
 			$size = fgets ( $io, 4096);
 			$size = substr ( $size, 0, strpos ( $size, "\t" ) );
 			pclose ( $io );

@@ -1,0 +1,11 @@
+[12-May-2016 12:16:53 America/Chicago] PHP Warning:  PHP Startup: imagick: Unable to initialize module
+Module compiled with module API=20100525
+PHP    compiled with module API=20131226
+These options need to match
+ in Unknown on line 0
+[12-May-2016 12:16:53 America/Chicago] PHP Warning:  PHP Startup: SourceGuardian: Unable to initialize module
+Module compiled with module API=20100525
+PHP    compiled with module API=20131226
+These options need to match
+ in Unknown on line 0
+[12-May-2016 12:16:53 America/Chicago] PHP Fatal error:  Call to a member function listBreadcrumbs() on null in /home1/veso266/public_html/downloads/resources/themes/dxingslo/index.php on line 36

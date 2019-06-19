@@ -7,7 +7,7 @@ return array(
     'hide_dot_files'            => true,
     'list_folders_first'        => true,
     'list_sort_order'           => 'natcasesort',
-    'theme_name'                => 'bootstrap',
+    'theme_name'                => 'dxingslo',
     'date_format'               => 'Y-m-d H:i:s', // See: http://php.net/manual/en/function.date.php
 
     // Hidden files
@@ -18,7 +18,8 @@ return array(
         'resources/*',
         'analytics.inc',
         'header.php',
-        'footer.php'
+        'footer.php',
+		'download.php,
     ),
 
     // If set to 'true' an directory with an index file (as defined below) will

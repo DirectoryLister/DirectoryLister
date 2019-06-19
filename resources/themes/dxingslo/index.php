@@ -5,7 +5,10 @@
     <head>
 
         <title>Dxing Slovenija Arhiv</title>
-        <link rel="shortcut icon" href="<?php echo THEMEPATH; ?>/img/folder.png">
+		<!-- Default Icon -->
+        <!--<link rel="shortcut icon" href="<?php echo THEMEPATH; ?>/img/folder.png"> -->
+		<!-- My Icon (Wolfs are nice) -->
+		<link rel="shortcut icon" href="<?php echo THEMEPATH; ?>/img/wolf.png">
 
         <!-- STYLES -->
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
@@ -86,9 +89,16 @@
 
             <div id="directory-list-header">
                 <div class="row">
+				<!--
                     <div class="col-md-7 col-sm-6 col-xs-10">File</div>
                     <div class="col-md-2 col-sm-2 col-xs-2 text-right">Size</div>
                     <div class="col-md-3 col-sm-4 hidden-xs text-right">Last Modified</div>
+					-->
+					<!-- Added Download Counter ---> <!-- Meaning of col md etc: https://stackoverflow.com/questions/24175998/meaning-of-numbers-in-col-md-4-col-xs-1-col-lg-2-in-bootstrap -->
+					<div class="col-md-8 col-sm-6 col-xs-10">File</div>
+                        <div class="col-md-1 col-sm-2 col-xs-2">Size</div>
+						<!--<div class="col-md-2 col-sm-3 hidden-xs">Downloads</div>-->
+                        <div class="col-md-3 col-sm-3 hidden-xs">Last Modified</div>
                 </div>
             </div>
 
@@ -96,7 +106,8 @@
 
                 <?php foreach($dirArray as $name => $fileInfo): ?>
                     <li data-name="<?php echo $name; ?>" data-href="<?php echo $fileInfo['url_path']; ?>">
-                        <a href="<?php echo $fileInfo['url_path']; ?>" class="clearfix" data-name="<?php echo $name; ?>">
+                        <!--<a href="<?php echo $fileInfo['url_path']; ?>" class="clearfix" data-name="<?php echo $name; ?>">-->
+                        <a href="<?php if(is_dir($fileInfo['file_path'])) { echo '?dir=' . $fileInfo['file_path']; } elseif($fileInfo['icon_class'] == 'icon-up-dir') { echo  $fileInfo['file_path']; } else { echo 'download.php?file='. $fileInfo['file_path']; } ?>" class="clearfix" data-name="<?php echo $name; ?>">
 
 
                             <div class="row">
@@ -108,6 +119,10 @@
                                 <span class="file-size col-md-2 col-sm-2 col-xs-3 text-right">
                                     <?php echo $fileInfo['file_size']; ?>
                                 </span>
+								
+								<!-- Added Download Counter -->
+								<!--<span class="fileDownloads col-md-2 col-sm-2 hidden-xs"> -->
+								<!--<?php echo $fileInfo['file_downloads']; ?> -->
 
                                 <span class="file-modified col-md-3 col-sm-4 hidden-xs text-right">
                                     <?php echo $fileInfo['mod_time']; ?>
@@ -164,6 +179,11 @@
                                 <tr>
                                     <td class="table-title">SHA1</td>
                                     <td class="sha1-hash">{{sha1_sum}}</td>
+                                </tr>
+								
+								<tr>
+                                    <td class="table-title">File Downloads</td>
+                                    <td class="file-downloads">{{file_downloads}}</td>
                                 </tr>
 
                             </tbody>

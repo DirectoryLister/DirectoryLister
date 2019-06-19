@@ -4,6 +4,8 @@
 
 body {
     padding: 70px 0 0;
+	
+	/* ----| Mac OS X Cursor |---- */
 	cursor: grab;
     cursor: -moz-grab;
     cursor: -webkit-grab;
@@ -14,6 +16,7 @@ body {
 }
 
 a {
+	/* ----| Mac OS X Cursor |---- */
     cursor: grab;
     cursor: -moz-grab;
     cursor: -webkit-grab;
@@ -83,6 +86,8 @@ body.breadcrumb-fixed {
     padding: 6px 10px !important;
     position: absolute !important;
     top: 4px;
+	
+	/* ----| Mac OS X Cursor |---- */
 	cursor: grab;
     cursor: -moz-grab;
     cursor: -webkit-grab;
@@ -121,6 +126,8 @@ body.breadcrumb-fixed {
     text-align: right;
 }
 
+/* File Downloads */
+#file-info .file-downloads,
 #file-info .md5-hash,
 #file-info .sha1-hash {
     font-family: 'Cutive Mono', monospace, serif;

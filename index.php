@@ -9,17 +9,6 @@
     // Restrict access to current directory
     ini_set('open_basedir', getcwd());
 
-	//return Download size
-	if (isset($_GET['dcount'])) {
-		
-		//Get download count data and JSON encode it
-		$count = $lister->DownloadCount($_GET['dcount']);
-		$data  = json_encode($count);
-
-        // Return the data
-        die($data);
-	}
-
     // Return file hash
     if (isset($_GET['hash'])) {
 

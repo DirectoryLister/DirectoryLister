@@ -44,19 +44,7 @@ $(document).ready(function() {
                 $('#file-info .md5-hash').text(obj.md5);
                 $('#file-info .sha1-hash').text(obj.sha1);
                 $('#file-info .filesize').text(obj.size);
-
-            }
-        });
-		$.ajax({ //File Download Count
-            url:     '?dcount=' + path,
-            type:    'get',
-            success: function(data) {
-
-                // Parse the JSON data
-                var obj = jQuery.parseJSON(data);
-
-                // Set modal pop-up hash values
-                $('#file-info .file-downloads').text(obj);
+				$('#file-info .file-downloads').text(obj.downloads); //Download Count
 
             }
         });

@@ -388,7 +388,7 @@ class DirectoryLister {
 
 
     /**
-     * Returns array of file hash values
+     * Returns array of file hash values and download count
      *
      * @param  string $filePath Path to file
      * @return array Array of file hashes
@@ -398,6 +398,9 @@ class DirectoryLister {
 
         // Placeholder array
         $hashArray = array();
+
+		//Download Count
+		$FileDownloads = $this->_read_log()[$FileName];
 
         // Verify file path exists and is a directory
         if (!file_exists($filePath)) {
@@ -427,6 +430,9 @@ class DirectoryLister {
             // Generate file hashes
             $hashArray['md5']  = hash_file('md5', $filePath);
             $hashArray['sha1'] = hash_file('sha1', $filePath);
+			
+			//Download Count by FileName
+			$hashArray['downloads'] = !is_null($FileDownloads) ? $FileDownloads : 0;
 
         }
 
@@ -434,11 +440,6 @@ class DirectoryLister {
         return $hashArray;
 
     }
-	//Download Count by FileName
-	public function DownloadCount($FileName) {
-		$FileDownloads = $this->_read_log()[$FileName];
-		return !is_null($FileDownloads) ? $FileDownloads : 0;
-	}
 
 
     /**

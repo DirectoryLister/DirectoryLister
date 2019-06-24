@@ -57,6 +57,26 @@ $(document).ready(function() {
 
     });
 
+	//Light/Dark Toggle logic is here
+		//var checkbox = document.querySelector('input[name=theme]');
+		var checkbox = document.querySelector('#switch');
+        checkbox.addEventListener('change', function() {
+            if(this.checked) {
+                trans()
+                document.documentElement.setAttribute('data-theme', 'dark')
+            } else {
+                trans()
+                document.documentElement.setAttribute('data-theme', 'light')
+            }
+        })
+
+        let trans = () => {
+            document.documentElement.classList.add('transition');
+            window.setTimeout(() => {
+                document.documentElement.classList.remove('transition')
+            }, 1000)
+        }
+
 });
 
 function showHideTopLink(elTop) {

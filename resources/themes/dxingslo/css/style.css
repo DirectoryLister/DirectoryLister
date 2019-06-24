@@ -1,8 +1,85 @@
 /* ---------------------------------------------------------------------------------------------- */
+/* -----| Light Theme Variables |---------------------------------------------------------------- */
+/* ---------------------------------------------------------------------------------------------- */
+
+html {
+	--bg: "";
+	--header-bg-title: #f8f8f8;
+    --bg-title: "";
+    --color-header-footer-divider: rgb(238, 238, 238);
+    --color-header-header-divider: #e7e7e7;
+    --color-text: "";
+	
+	--a-color: #23527c;
+	--a-color-header-footer-divider: var(--a-color);
+	--bg-color-header-footer-divider: var(--a-color);
+	--hover: #eee; /* A Hover */
+	--hover-text: #23527c; /* A Hover-text */
+	
+	/* Dark/Light Switch */
+	--button-bg: grey;
+	--button-checked: #0077FF;
+	--button-ring-color: #FFFF;
+	
+	/* Modal Content */
+	--modal-bg-color: #FFFF;
+	--modal-text-color: "";
+	--modal-header-close-color: "";
+	
+	/* Directory Lister */
+	--dir-color-text: "";
+	
+	/* Navbar stuff */
+	--navbar-text: "";
+	--navbar-textD: "";
+	--navbar-text2: "";
+}
+
+/* ---------------------------------------------------------------------------------------------- */
+/* -----| Dark Theme Variables |----------------------------------------------------------------- */
+/* ---------------------------------------------------------------------------------------------- */
+
+html[data-theme='dark'] {
+    --bg: #333333;
+    --bg-title: #434343;
+	--header-bg-title: var(--bg-title);
+    --color-header-footer-divider: #3694FF;
+	--color-header-header-divider: #3694FF;
+	--a-color-header-footer-divider: var(--color-header-footer-divider);
+	--bg-color-header-footer-divider: var(--color-header-footer-divider);
+    --color-text: #B5B5B5;
+	--hover: #434343; /* A Hover */
+	--hover-text: white; /* A Hover-text */
+	
+	--a-color: var(--color-text);
+	
+	/* Dark/Light Switch */
+	--button-bg: grey;
+	--button-checked: #0077FF;
+	--button-ring-color: #FFFF;
+	
+	/* Modal Content */
+	--modal-bg-color: #1a1a1a;
+	--modal-text-color: #3694FF; /* blue (I like it) */
+	--modal-header-close-color: #3694FF !important; /* blue (I like it) */
+	
+	/* Directory Lister */
+	--dir-color-text: var(--color-text);
+	
+	/* Navbar stuff */
+	--navbar-text: rgba(255, 255, 255, .8);
+	--navbar-textD: none;
+	--navbar-text2: white;
+	
+}
+
+
+/* ---------------------------------------------------------------------------------------------- */
 /* -----| GENERAL |------------------------------------------------------------------------------ */
 /* ---------------------------------------------------------------------------------------------- */
 
 body {
+	background-color: var(--bg);
     padding: 70px 0 0;
 	
 	/* ----| Mac OS X Cursor |---- */
@@ -16,6 +93,7 @@ body {
 }
 
 a {
+	color: var(--a-color);
 	/* ----| Mac OS X Cursor |---- */
     cursor: grab;
     cursor: -moz-grab;
@@ -25,6 +103,13 @@ a {
     *cursor: url('cursors/Link.cur'), n-resize; /* IE 7 and below */
     _cursor: url('cursors/Link.cur'), n-resize; /* IE 6 */
 }
+
+.nav > li > a:focus, .nav > li > a:hover {
+    text-decoration: var(--navbar-textD);
+    background-color: var(--hover);
+	color: var(--hover-text);
+}
+
 
 body.breadcrumb-fixed {
     padding-top: 56px;
@@ -39,7 +124,13 @@ body.breadcrumb-fixed {
 /* -----| HEADER |----------------------------------------------------------- */
 /* -------------------------------------------------------------------------- */
 
+#page-navbar.navbar-default {
+	background-color: var(--header-bg-title);
+	/* border: 0; /* if you don't like borders */
+	border-color: var(--color-header-header-divider);
+}
 #page-navbar .navbar-text {
+	color: var(--color-text);
     display: block;
     float: left;
     font-family: 'Cutive Mono', monospace, serif;
@@ -49,12 +140,110 @@ body.breadcrumb-fixed {
     white-space: nowrap;
 }
 
+#page-navbar .navbar-text>a {
+	
+    color: var(--navbar-text);
+}
+
+.navbar-default .navbar-nav>li>a, .navbar-default .navbar-nav>li>a:visited {
+    color: var(--navbar-text2);
+}
+
+.navbar-default .navbar-nav>li>a:hover {
+    color: var(--navbar-text2);
+}
+
+.navbar-default .navbar-nav>li>a:active {
+    color: var(--navbar-text2);
+}
+/* -------------------------------------------------------------------------- */
+/* -----| Light/Dark Toggle Switch |----------------------------------------- */
+/* -------------------------------------------------------------------------- */
+
+/* We hide that so it doesn't take up soace */
+input[type=checkbox]{
+	height: 0;
+	width: 0;
+	visibility: hidden;
+	display:none;
+}
+
+label {
+	/* ----| Mac OS X Cursor |---- */
+	top: 10px;
+	cursor: grab;
+    cursor: -moz-grab;
+    cursor: -webkit-grab;
+    cursor: url('cursors/Link.cur'), url('img/cursors/openhand.cur'), n-resize; /* standard: note the different path for the .cur file */
+    cursor: url('cursors/Link.cur'), n-resize\9; /* IE 8 and below */
+    *cursor: url('cursors/Link.cur'), n-resize; /* IE 7 and below */
+    _cursor: url('cursors/Link.cur'), n-resize; /* IE 6 */
+	
+	text-indent: -9999px;
+	width: 52px;
+	height: 27px;
+	/* 
+	width: 200px; 
+	height: 100px;
+	*/
+	/* background: grey; */
+	color: blue;
+	background: var(--button-bg);
+	display: block;
+	/* border-radius: 100px; */
+	border-radius: 100px;
+	position: relative;
+}
+
+label:after {
+	content: '';
+	position: absolute;
+	top: 4px;
+	left: 3px;
+	/*
+	width: 90px;
+	height: 90px;
+	*/
+	width: 20px;
+	height: 20px;
+	background: #fff;
+	border-radius: 90px;
+	transition: 0.3s;
+	background-color: var(--button-ring-color);
+}
+
+input:checked + label {
+	background: var(--button-checked);
+}
+
+input:checked + label:after {
+	left: calc(100% - 5px);
+	transform: translateX(-100%);
+}
+
+label:active:after {
+	/* width: 130px; */
+	width: 40px;
+}
+
+// centering
+
+body {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+}
+
+
+
 
 /* ---------------------------------------------------------------------------------------------- */
 /* -----| DIRECTORY LISTER |--------------------------------------------------------------------- */
 /* ---------------------------------------------------------------------------------------------- */
 
 #directory-list-header {
+	color: var(--dir-color-text);
     font-family: 'Cutive Mono', monospace, serif;
     font-weight: bold;
     padding: 10px 15px;
@@ -107,9 +296,19 @@ body.breadcrumb-fixed {
 /* -----| FOOTER |------------------------------------------------------------------------------- */
 /* ---------------------------------------------------------------------------------------------- */
 
+hr {
+	border-color: var(--color-header-footer-divider); /* Chrome, Safari */
+	background-color: var(-bg-color-header-footer-divider); /* Firefox and Opera */
+	color: var(-a-color-header-footer-divider); /* IE7+ */
+}
+
 .footer {
     margin: 20px;
     text-align: center;
+	color: var(--color-text);
+}
+.footer a{
+	color: var(--a-color-header-footer-divider);
 }
 
 
@@ -131,6 +330,17 @@ body.breadcrumb-fixed {
 #file-info .md5-hash,
 #file-info .sha1-hash {
     font-family: 'Cutive Mono', monospace, serif;
+}
+
+
+/* Zheme */
+.modal-content {
+    background-color: var(--modal-bg-color);
+    color: var(--modal-text-color);
+}
+
+.modal-header .close {
+    color: var(--modal-header-close-color);
 }
 
 
@@ -171,3 +381,14 @@ body.breadcrumb-fixed {
     }
 
 }
+/* -------------------------------------------------------------------------- */
+/* ------------| Transition from Light to Dark and vice versa |-------------- */
+/* -------------------------------------------------------------------------- */
+html.transition,
+html.transition *,
+html.transition *:before,
+html.transition *:after {
+  transition: all 750ms !important;
+  transition-delay: 0 !important;
+}
+/* Tjasa je pa fajn :) */

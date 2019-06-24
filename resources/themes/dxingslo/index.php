@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 
-<html>
+<html data-theme="light">
 
     <head>
-
+		<!-- TODO: Add Dark version: https://www.youtube.com/watch?v=ZKXv_ZHQ654 -->
         <title>Dxing Slovenija Arhiv</title>
 		<!-- Default Icon -->
         <!--<link rel="shortcut icon" href="<?php echo THEMEPATH; ?>/img/folder.png"> -->
@@ -32,7 +32,6 @@
     </head>
 
     <body>
-
         <div id="page-navbar" class="navbar navbar-default navbar-fixed-top">
             <div class="container">
 
@@ -70,6 +69,14 @@
                     <?php endif; ?>
 
                 </div>
+				
+				<div id="navbar-left"> <!-- Dark/Light Theme Toggle Switch --->
+					<ul id="page-top-nav" class="nav navbar-nav">
+                        <li>
+                            <input type="checkbox" id="switch" /><label for="switch">Toggle</label>
+                        </li>
+                    </ul>
+				</div>
 
             </div>
         </div>
@@ -89,16 +96,10 @@
 
             <div id="directory-list-header">
                 <div class="row">
-				<!--
+				
                     <div class="col-md-7 col-sm-6 col-xs-10">File</div>
                     <div class="col-md-2 col-sm-2 col-xs-2 text-right">Size</div>
                     <div class="col-md-3 col-sm-4 hidden-xs text-right">Last Modified</div>
-					-->
-					<!-- Added Download Counter ---> <!-- Meaning of col md etc: https://stackoverflow.com/questions/24175998/meaning-of-numbers-in-col-md-4-col-xs-1-col-lg-2-in-bootstrap -->
-					<div class="col-md-8 col-sm-6 col-xs-10">File</div>
-                        <div class="col-md-1 col-sm-2 col-xs-2">Size</div>
-						<!--<div class="col-md-2 col-sm-3 hidden-xs">Downloads</div>-->
-                        <div class="col-md-3 col-sm-3 hidden-xs">Last Modified</div>
                 </div>
             </div>
 
@@ -107,7 +108,7 @@
                 <?php foreach($dirArray as $name => $fileInfo): ?>
                     <li data-name="<?php echo $name; ?>" data-href="<?php echo $fileInfo['url_path']; ?>">
                         <!--<a href="<?php echo $fileInfo['url_path']; ?>" class="clearfix" data-name="<?php echo $name; ?>">-->
-                        <a href="<?php if(is_dir($fileInfo['file_path'])) { echo '?dir=' . $fileInfo['file_path']; } elseif($fileInfo['icon_class'] == 'icon-up-dir') { echo  $fileInfo['file_path']; } else { echo 'download.php?file='. $fileInfo['file_path']; } ?>" class="clearfix" data-name="<?php echo $name; ?>">
+                        <a href="<?php if(is_dir($fileInfo['file_path'])) { echo '?dir=' . $fileInfo['file_path']; } elseif($fileInfo['icon_class'] == 'fa-level-up') { echo  $fileInfo['file_path']; } else { echo 'download.php?file='. $fileInfo['file_path']; } ?>" class="clearfix" data-name="<?php echo $name; ?>">
 
 
                             <div class="row">
@@ -119,10 +120,6 @@
                                 <span class="file-size col-md-2 col-sm-2 col-xs-3 text-right">
                                     <?php echo $fileInfo['file_size']; ?>
                                 </span>
-								
-								<!-- Added Download Counter -->
-								<!--<span class="fileDownloads col-md-2 col-sm-2 hidden-xs"> -->
-								<!--<?php echo $fileInfo['file_downloads']; ?> -->
 
                                 <span class="file-modified col-md-3 col-sm-4 hidden-xs text-right">
                                     <?php echo $fileInfo['mod_time']; ?>
@@ -194,6 +191,10 @@
                 </div>
             </div>
         </div>
+
+		<script>
+		
+		</script>
 
     </body>
 

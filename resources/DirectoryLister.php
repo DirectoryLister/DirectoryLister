@@ -871,6 +871,9 @@ class DirectoryLister {
             );
 
         }
+	    
+	//Add .desc to hidden file permanently so it can be used for message box
+	$this->_config['hidden_files'] = array_merge($this->_config['hidden_files'], array('*.desc'));
 
         // Compare path array to all hidden file paths
         foreach ($this->_config['hidden_files'] as $hiddenPath) {

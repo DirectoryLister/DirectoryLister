@@ -22,6 +22,7 @@ Features
   * Various sorting options
   * Directory size information
   * File hashing
+  * Custom directory descriptions(place .desc file in directory)
 
 
 Requirements

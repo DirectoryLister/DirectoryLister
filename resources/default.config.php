@@ -36,6 +36,11 @@ return array(
         'index.html',
         'index.php'
     ),
+	
+	// file extensions that are allowed to be opened/executed
+    'can_be_open_extension' => array(
+        //Here are extensions that can be opened/executed
+    ),
 
     // File hashing threshold
     'hash_size_limit' => 268435456, // 256 MB

@@ -23,7 +23,7 @@ class DirectoryLister {
     protected $_directory     = null;
     protected $_appDir        = null;
     protected $_appURL        = null;
-    protected $_config        = null;
+    public    $_config        = null; //we need to acsess this from download.php
     protected $_fileTypes     = null;
     protected $_systemMessage = null;
 
@@ -669,7 +669,6 @@ class DirectoryLister {
 
                         // Build the file path
                         $urlPath = implode('/', array_map('rawurlencode', explode('/', $relativePath)));
-
                         if (is_dir($relativePath)) {
                             $urlPath = $this->containsIndex($relativePath) ? $relativePath : '?dir=' . $urlPath;
                         }

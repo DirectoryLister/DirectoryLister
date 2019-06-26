@@ -3,6 +3,12 @@
 // Chunking the readfile solves this problem.
 // Credits to Rob Funk - http://www.php.net/manual/en/function.readfile.php#48683
 
+	// Include the DirectoryLister class
+    require_once('resources/DirectoryLister.php');
+	
+	// Initialize the DirectoryLister object
+    $lister = new DirectoryLister();
+	
 	function readfile_chunked ($fname) { 
 		$chunksize = 1*(1024*1024); // how many bytes per chunk 
 		$buffer = ''; 
@@ -16,14 +22,22 @@
 		} 
 		return fclose($handle); 
 	}
+	function getFileExt($fname) {
+		return explode('.', $fname)[1];
+	}
 	
 	$path = getcwd();	
 	// Get name of file to be downloaded	
 	$fname = $_GET['file']; 
 	//Check for various invalid files, and loop holes like ../ and ./
-	if($fname == '.' || $fname == './' || $fname == "download.php" || $fname == "index.php" || !file_exists($fname) || empty($fname) || preg_match('/\..\/|\.\/\.|resources/',$fname))
+	if($fname == '.' || $fname == './' || $fname == "download.php" || !file_exists($fname) || empty($fname) || preg_match('/\..\/|\.\/\.|resources/',$fname))
 	{
 		echo "Invalid File or File Not Specified";
+		exit(0);
+	}
+	else if (in_array(getFileExt($fname), $lister->_config['can_be_open_extension'])) //if file can be opened
+	{
+		require_once($fname); //Open/show it
 		exit(0);
 	}
 	

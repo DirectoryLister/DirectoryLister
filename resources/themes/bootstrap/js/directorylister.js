@@ -4,7 +4,7 @@ $(document).ready(function() {
 	try {
 		var currentdir = window.location.href.split("=")[1].split("&by")[0]; //if directory doesn't have = everything fails
 	}
-	catch {
+	catch(error) {
 		var currentdir = '';
 	}
 	var basedir = window.location.href.split("/")[3];
@@ -19,7 +19,7 @@ $(document).ready(function() {
 	if (xmlhttp.status==200) {
 		result = xmlhttp.responseText;
 		//Replace the header description with the one from the .desc file
-		document.getElementById('description').innerHTML="<hr>" + result + "<hr>";
+		document.getElementById('description').innerHTML= result + "<hr>";
 	}
 
     // Get page-content original position

@@ -11,11 +11,13 @@ html {
     --color-text: "";
 	--file-desc-color: "";
 	
-	--a-color: #23527c;
-	--a-color-header-footer-divider: var(--a-color);
-	--bg-color-header-footer-divider: var(--a-color);
-	--hover: #eee; /* A Hover */
-	--hover-text: #23527c; /* A Hover-text */
+	--a-color: black;
+	--color-header-footer-divider: #337ab7;
+	--color-header-header-divider: #337ab7;
+	--a-color-header-footer-divider: #337ab7;
+	--bg-color-header-footer-divider: #337ab7;
+	--hover: #337ab7; /* A Hover */
+	--hover-text: #EEE; /* A Hover-text */
 	
 	/* Dark/Light Switch */
 	--button-bg: grey;
@@ -41,16 +43,16 @@ html {
 /* ---------------------------------------------------------------------------------------------- */
 
 html[data-theme='dark'] {
-    --bg: #333333;
-    --bg-title: #434343;
+    --bg: #111111;
+    --bg-title: #101010;
 	--header-bg-title: var(--bg-title);
-    --color-header-footer-divider: #3694FF;
-	--color-header-header-divider: #3694FF;
-	--a-color-header-footer-divider: var(--color-header-footer-divider);
-	--bg-color-header-footer-divider: var(--color-header-footer-divider);
-    --color-text: #B5B5B5;
-	--hover: #434343; /* A Hover */
-	--hover-text: white; /* A Hover-text */
+    --color-header-footer-divider: #337ab7;
+	--color-header-header-divider: #337ab7;
+	--a-color-header-footer-divider: #337ab7;
+	--bg-color-header-footer-divider: #337ab7;
+    --color-text: white;
+	--hover: #337ab7; /* A Hover */
+	--hover-text: #EEE; /* A Hover-text */
 	--file-desc-color: var(--color-text);
 	
 	--a-color: var(--color-text);
@@ -69,7 +71,7 @@ html[data-theme='dark'] {
 	--dir-color-text: var(--color-text);
 	
 	/* Navbar stuff */
-	--navbar-text: rgba(255, 255, 255, .8);
+	--navbar-text: white;
 	--navbar-textD: none;
 	--navbar-text2: white;
 	
@@ -84,26 +86,11 @@ body {
 	background-color: var(--bg);
     padding: 70px 0 0;
 	
-	/* ----| Mac OS X Cursor |---- */
-	cursor: grab;
-    cursor: -moz-grab;
-    cursor: -webkit-grab;
-    cursor: url('cursors/Arrow.cur'), url('img/cursors/openhand.cur'), n-resize; /* standard: note the different path for the .cur file */
-    cursor: url('cursors/Arrow.cur'), n-resize\9; /* IE 8 and below */
-    *cursor: url('cursors/Arrow.cur'), n-resize; /* IE 7 and below */
-    _cursor: url('cursors/Arrow.cur'), n-resize; /* IE 6 */
 }
 
 a {
 	color: var(--a-color);
-	/* ----| Mac OS X Cursor |---- */
-    cursor: grab;
-    cursor: -moz-grab;
-    cursor: -webkit-grab;
-    cursor: url('cursors/Link.cur'), url('img/cursors/openhand.cur'), n-resize; /* standard: note the different path for the .cur file */
-    cursor: url('cursors/Link.cur'), n-resize\9; /* IE 8 and below */
-    *cursor: url('cursors/Link.cur'), n-resize; /* IE 7 and below */
-    _cursor: url('cursors/Link.cur'), n-resize; /* IE 6 */
+    
 }
 
 .nav > li > a:focus, .nav > li > a:hover {
@@ -135,7 +122,9 @@ body.breadcrumb-fixed {
 	color: var(--color-text);
     display: block;
     float: left;
+	margin-left: 35px;
     font-family: 'Cutive Mono', monospace, serif;
+	font-size: 16px;
     max-width: 80%;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -144,7 +133,7 @@ body.breadcrumb-fixed {
 
 #page-navbar .navbar-text>a {
 	
-    color: var(--navbar-text);
+	color: var(--navbar-text);
 }
 
 .navbar-default .navbar-nav>li>a, .navbar-default .navbar-nav>li>a:visited {
@@ -166,28 +155,22 @@ body.breadcrumb-fixed {
 /* -----| Light/Dark Toggle Switch |----------------------------------------- */
 /* -------------------------------------------------------------------------- */
 
-/* We hide that so it doesn't take up soace */
+/* We hide that so it doesn't take up space */
 input[type=checkbox]{
 	height: 0;
 	width: 0;
+	display: none;
 	visibility: hidden;
-	display:none;
 }
 
 label {
-	/* ----| Mac OS X Cursor |---- */
-	top: 10px;
-	cursor: grab;
-    cursor: -moz-grab;
-    cursor: -webkit-grab;
-    cursor: url('cursors/Link.cur'), url('img/cursors/openhand.cur'), n-resize; /* standard: note the different path for the .cur file */
-    cursor: url('cursors/Link.cur'), n-resize\9; /* IE 8 and below */
-    *cursor: url('cursors/Link.cur'), n-resize; /* IE 7 and below */
-    _cursor: url('cursors/Link.cur'), n-resize; /* IE 6 */
+
+	top: 14px;
+	left: 20px;
 	
 	text-indent: -9999px;
-	width: 52px;
-	height: 27px;
+	width: 46px;
+	height: 22px;
 	/* 
 	width: 200px; 
 	height: 100px;
@@ -204,14 +187,14 @@ label {
 label:after {
 	content: '';
 	position: absolute;
-	top: 4px;
-	left: 3px;
+	top: 2px;
+	left: 2px;
 	/*
 	width: 90px;
 	height: 90px;
 	*/
-	width: 20px;
-	height: 20px;
+	width: 18px;
+	height: 18px;
 	background: #fff;
 	border-radius: 90px;
 	transition: 0.3s;
@@ -223,7 +206,7 @@ input:checked + label {
 }
 
 input:checked + label:after {
-	left: calc(100% - 5px);
+	left: calc(100% - 3px);
 	transform: translateX(-100%);
 }
 
@@ -281,15 +264,7 @@ body {
     padding: 6px 10px !important;
     position: absolute !important;
     top: 4px;
-	
-	/* ----| Mac OS X Cursor |---- */
-	cursor: grab;
-    cursor: -moz-grab;
-    cursor: -webkit-grab;
-    cursor: url('cursors/Link.cur'), url('img/cursors/openhand.cur'), n-resize; /* standard: note the different path for the .cur file */
-    cursor: url('cursors/Link.cur'), n-resize\9; /* IE 8 and below */
-    *cursor: url('cursors/Link.cur'), n-resize; /* IE 7 and below */
-    _cursor: url('cursors/Link.cur'), n-resize; /* IE 6 */
+
 }
 
 .web-link-button i,
@@ -397,4 +372,3 @@ html.transition *:after {
   transition: all 750ms !important;
   transition-delay: 0 !important;
 }
-/* Tjasa je pa fajn :) */

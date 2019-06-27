@@ -32,6 +32,15 @@
 
 		<div id="page-navbar" class="navbar navbar-default navbar-fixed-top">
 			<div class="container">
+			
+			
+				<div id="navbar-left"> <!-- Dark/Light Theme Toggle Switch --->
+					<ul id="navbar theme toggle" class="nav navbar-nav">
+						<li>
+							<input type="checkbox" id="switch" /><label for="switch">Toggle</label>
+						</li>
+					</ul>
+				</div>
 
 				<?php $breadcrumbs = $lister->listBreadcrumbs(); ?>
 
@@ -45,14 +54,6 @@
 						<?php endif; ?>
 					<?php endforeach; ?>
 				</p>
-				
-				<div id="navbar-left"> <!-- Dark/Light Theme Toggle Switch --->
-					<ul id="page-top-nav" class="nav navbar-nav">
-						<li>
-							<input type="checkbox" id="switch" /><label for="switch">Toggle</label>
-						</li>
-					</ul>
-				</div>
 
 				<div class="navbar-right">
 

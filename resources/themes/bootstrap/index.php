@@ -119,7 +119,7 @@
 
 							<div class="row">
 								<span class="file-name col-md-7 col-sm-6 col-xs-9">
-									<i class="fa <?php echo $fileInfo['icon_class']; ?> fa-fw"></i>
+									<i id="icon" class="fa <?php echo $fileInfo['icon_class']; ?> fa-fw"></i>
 									<?php echo $name; ?>
 								</span>
 

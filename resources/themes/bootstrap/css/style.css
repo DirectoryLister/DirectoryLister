@@ -93,12 +93,17 @@ a {
     
 }
 
+
 .nav > li > a:focus, .nav > li > a:hover {
     text-decoration: var(--navbar-textD);
     background-color: var(--hover);
 	color: var(--hover-text);
 }
 
+.nav > li > a:focus #icon, .nav > li > a:hover #icon {
+	color: white;
+}
+	
 
 body.breadcrumb-fixed {
     padding-top: 56px;
@@ -215,7 +220,7 @@ label:active:after {
 	width: 40px;
 }
 
-// centering
+centering
 
 body {
 	display: flex;
@@ -253,7 +258,7 @@ body {
 }
 
 .file-name i {
-    color: #555;
+    color: var(--hover);
 }
 
 .file-info-button,
@@ -279,8 +284,8 @@ body {
 
 hr {
 	border-color: var(--color-header-footer-divider); /* Chrome, Safari */
-	background-color: var(-bg-color-header-footer-divider); /* Firefox and Opera */
-	color: var(-a-color-header-footer-divider); /* IE7+ */
+	background-color: var(--bg-color-header-footer-divider); /* Firefox and Opera */
+	color: var(--a-color-header-footer-divider); /* IE7+ */
 }
 
 .footer {

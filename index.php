@@ -29,9 +29,25 @@
 
         // Initialize the directory array
         if (isset($_GET['dir'])) {
-            $dirArray = $lister->listDirectory($_GET['dir']);
+            if(isset($_GET['by'])){
+                if(isset($_GET['order'])){
+                    $dirArray = $lister->listDirectory($_GET['dir'],$_GET['by'],$_GET['order']);
+                } else {
+                    $dirArray = $lister->listDirectory($_GET['dir'],$_GET['by'],'asc');
+                }
+            } else {
+                $dirArray = $lister->listDirectory($_GET['dir'],'name', 'asc');
+            }
         } else {
-            $dirArray = $lister->listDirectory('.');
+            if(isset($_GET['by'])){
+                if(isset($_GET['order'])){
+                    $dirArray = $lister->listDirectory('.',$_GET['by'],$_GET['order']);
+                } else {
+                    $dirArray = $lister->listDirectory('.',$_GET['by'],'asc');
+                }
+            } else {
+                $dirArray = $lister->listDirectory('.','name', 'asc');
+            }
         }
 
         // Define theme path

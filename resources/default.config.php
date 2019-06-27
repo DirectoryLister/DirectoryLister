@@ -7,7 +7,7 @@ return array(
     'hide_dot_files'            => true,
     'list_folders_first'        => true,
     'list_sort_order'           => 'natcasesort',
-    'theme_name'                => 'dxingslo',
+    'theme_name'                => 'bootstrap',
     'date_format'               => 'Y-m-d H:i:s', // See: http://php.net/manual/en/function.date.php
 
     // Hidden files

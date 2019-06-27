@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html>
+<html data-theme="light">
 
     <head>
 
@@ -65,8 +65,14 @@
                             </li>
                         </ul>
                     <?php endif; ?>
-
                 </div>
+				<div id="navbar-left"> <!-- Dark/Light Theme Toggle Switch --->
+					<ul id="page-top-nav" class="nav navbar-nav">
+                        <li>
+                            <input type="checkbox" id="switch" /><label for="switch">Toggle</label>
+                        </li>
+                    </ul>
+				</div>
 
             </div>
         </div>
@@ -107,8 +113,7 @@
 
                 <?php foreach($dirArray as $name => $fileInfo): ?>
                     <li data-name="<?php echo $name; ?>" data-href="<?php echo $fileInfo['url_path']; ?>">
-                        <a href="<?php echo $fileInfo['url_path']; ?>" class="clearfix" data-name="<?php echo $name; ?>" <?php if(strpos($name, '.') !== false && $name !== ".."){ echo("download");} ?>>
-
+						<a href="<?php if(is_dir($fileInfo['file_path'])) { echo '?dir=' . $fileInfo['file_path']; } elseif($fileInfo['icon_class'] == 'fa-level-up') { echo  $fileInfo['file_path']; } else { echo 'download.php?file='. $fileInfo['file_path']; } ?>" class="clearfix" data-name="<?php echo $name; ?>">
 
                             <div class="row">
                                 <span class="file-name col-md-7 col-sm-6 col-xs-9">
@@ -165,6 +170,10 @@
                                 <tr>
                                     <td class="table-title">SHA1</td>
                                     <td class="sha1-hash">{{sha1_sum}}</td>
+                                </tr>
+								<tr>
+                                    <td class="table-title">File Downloads</td>
+                                    <td class="file-downloads">{{file_downloads}}</td>
                                 </tr>
 
                             </tbody>

@@ -1,7 +1,12 @@
 $(document).ready(function() {
     
     //Grabbing the url bits from the location, messy, but works
-	var currentdir = window.location.href.split("=")[1].split("&by")[0];
+	try {
+		var currentdir = window.location.href.split("=")[1].split("&by")[0]; //if directory doesn't have = everything fails
+	}
+	catch {
+		var currentdir = '';
+	}
 	var basedir = window.location.href.split("/")[3];
 	var server = window.location.href.split("/")[2];
 	var file = "http://" + server + "/" + basedir + "/" + currentdir + "/" + ".desc";
@@ -47,6 +52,7 @@ $(document).ready(function() {
         $('#file-info .md5-hash').text('Loading...');
         $('#file-info .sha1-hash').text('Loading...');
         $('#file-info .filesize').text('Loading...');
+		$('#file-info .file-downloads').text('Loading...');
 
         $.ajax({
             url:     '?hash=' + path,
@@ -60,6 +66,7 @@ $(document).ready(function() {
                 $('#file-info .md5-hash').text(obj.md5);
                 $('#file-info .sha1-hash').text(obj.sha1);
                 $('#file-info .filesize').text(obj.size);
+				$('#file-info .file-downloads').text(obj.downloads); //Download Count
 
             }
         });
@@ -71,6 +78,44 @@ $(document).ready(function() {
         event.preventDefault();
 
     });
+	
+	//Light/Dark Toggle logic is here
+	var checkbox = document.querySelector('#switch');
+		
+	//Cookie
+	//Cookie for our switch is here and we will use it to set our theme
+	let cookie = readCookie('checkbox');
+	if (cookie == "true") {
+		checkbox.setAttribute('checked', '');
+		console.log("You want dark theme, you get Dark theme :)");
+	}
+	else {
+		checkbox.removeAttribute('checked');
+		console.log("Dark theme is nice and your eyes don't hurt when looking at it at night :)")
+	}
+	if(checkbox.checked) {
+            document.documentElement.setAttribute('data-theme', 'dark')
+        } else {
+            document.documentElement.setAttribute('data-theme', 'light')
+        }
+    checkbox.addEventListener('change', function() {
+        if(this.checked) {
+			writeCookie('checkbox', true, 3);
+            trans()
+            document.documentElement.setAttribute('data-theme', 'dark')
+        } else {
+			writeCookie('checkbox', false, 3);
+            trans()
+            document.documentElement.setAttribute('data-theme', 'light')
+        }
+    })
+
+        let trans = () => {
+            document.documentElement.classList.add('transition');
+            window.setTimeout(() => {
+                document.documentElement.classList.remove('transition')
+            }, 1000)
+        }
 
 });
 
@@ -80,4 +125,30 @@ function showHideTopLink(elTop) {
     } else {
         $('#page-top-nav').hide();
     }
+}
+//Cookie stuff (Thanks SO: https://stackoverflow.com/a/2257895/3368585 )
+function writeCookie(name,value,days) {
+    var date, expires;
+    if (days) {
+        date = new Date();
+        date.setTime(date.getTime()+(days*24*60*60*1000));
+        expires = "; expires=" + date.toGMTString();
+            }else{
+        expires = "";
+    }
+    document.cookie = name + "=" + value + expires + "; path=/";
+}
+function readCookie(name) {
+    var i, c, ca, nameEQ = name + "=";
+    ca = document.cookie.split(';');
+    for(i=0;i < ca.length;i++) {
+        c = ca[i];
+        while (c.charAt(0)==' ') {
+            c = c.substring(1,c.length);
+        }
+        if (c.indexOf(nameEQ) == 0) {
+            return c.substring(nameEQ.length,c.length);
+        }
+    }
+    return '';
 }

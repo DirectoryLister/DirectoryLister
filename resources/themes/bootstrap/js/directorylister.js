@@ -1,4 +1,21 @@
 $(document).ready(function() {
+    
+    //Grabbing the url bits from the location, messy, but works
+	var currentdir = window.location.href.split("=")[1].split("&by")[0];
+	var basedir = window.location.href.split("/")[3];
+	var server = window.location.href.split("/")[2];
+	var file = "http://" + server + "/" + basedir + "/" + currentdir + "/" + ".desc";
+	
+	//Read the contents of .desc file if it exists
+	var result = null;
+	var xmlhttp = new XMLHttpRequest();
+	xmlhttp.open("GET", file, false);
+	xmlhttp.send();
+	if (xmlhttp.status==200) {
+		result = xmlhttp.responseText;
+		//Replace the header description with the one from the .desc file
+		document.getElementById('description').innerHTML="<hr>" + result + "<hr>";
+	}
 
     // Get page-content original position
     var contentTop = $('#page-content').offset().top;

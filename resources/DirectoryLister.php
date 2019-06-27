@@ -16,7 +16,7 @@
 class DirectoryLister {
 
     // Define application version
-    const VERSION = '2.7.1';
+    const VERSION = '2.7.0';
 
     // Reserve some variables
     protected $_themeName     = null;
@@ -158,7 +158,6 @@ class DirectoryLister {
 
             }
         }
-
     }
 
 
@@ -169,7 +168,7 @@ class DirectoryLister {
      * @return array Array of directory being listed
      * @access public
      */
-    public function listDirectory($directory) {
+    public function listDirectory($directory, $by, $order) {
 
         // Set directory
         $directory = $this->setDirectoryPath($directory);
@@ -181,9 +180,105 @@ class DirectoryLister {
 
         // Get the directory array
         $directoryArray = $this->_readDirectory($directory);
+	    
+	// Function to convert the bytes into kb, mb and so on
+	function formatSizeUnits($bytes)
+	{
+		if ($bytes >= 1073741824)
+		{
+			$bytes = number_format($bytes / 1073741824, 2) . 'TB';
+		}
+		elseif ($bytes >= 1048576)
+		{
+			$bytes = number_format($bytes / 1048576, 2) . 'GB';
+		}
+		elseif ($bytes >= 1024)
+		{
+			$bytes = number_format($bytes / 1024, 2) . 'MB';
+		}
+		elseif ($bytes > 1)
+		{
+			$bytes = $bytes . 'KB';
+		}
+		elseif ($bytes == 1)
+		{
+			$bytes = $bytes . 'KB';
+		}
+		else
+		{
+			$bytes = 'null';
+		}
+		return $bytes;
+	}
+	    
+	$int = 0;
+	    
+	// Go through the array where there are folders and figure out their size
+	foreach($directoryArray as &$entries)
+	{
+		if ($entries["file_size"] == "-" && isset($entries["name"]))
+		{
+			$f = "./".$entries["file_path"];
+			$io = popen ( '/usr/bin/du -sk ' . "\"".$f."\"", 'r' );
+			$size = fgets ( $io, 4096);
+			$size = substr ( $size, 0, strpos ( $size, "\t" ) );
+			pclose ( $io );
+			$entries["file_size"] = formatSizeUnits($size);
+		}
+		$int++;
+	}
 
         // Return the array
-        return $directoryArray;
+        function sortBy($a, $b, $attr){
+            return strcmp (strtolower($a[$attr]), strtolower($b[$attr]));
+        }
+		
+		// Just do the sorting on its own
+		function doSort($tosortArray, $by, $order){
+			
+			switch ($by) {
+            case 'lastModified':
+                uasort($tosortArray, function($a, $b){
+                    return sortBy($a,$b,'mod_time');
+                });
+                break;
+            case 'size':
+                uasort($tosortArray, function($a, $b){
+                    return sortBy($a,$b,'file_size');
+                });
+                break;
+            case 'name':
+            default:
+                uasort($tosortArray, function($a, $b){
+                    return sortBy($a,$b,'name');
+                });
+                break;
+			}
+			
+			if($order == 'desc'){
+				$tosortArray = array_reverse($tosortArray, true);
+			}
+			
+			return $tosortArray;
+		}
+		
+		// Test if there is a parent directory, if so remove first then sort
+		if (isset($directoryArray[".."])){
+			
+			$parent = $directoryArray[".."];
+			$parent = array('..' => $parent);
+			unset($directoryArray[".."]);
+			
+			$sortedarray = doSort($directoryArray, $by, $order);
+			
+			$sortedarray = $parent + $sortedarray;
+		}
+		else{
+			
+			$sortedarray = doSort($directoryArray, $by, $order);
+		}			
+		
+        return $sortedarray;
     }
 
 
@@ -674,7 +769,9 @@ class DirectoryLister {
                         }
 
                         // Add the info to the main array
+                        $name = pathinfo($relativePath, PATHINFO_BASENAME);
                         $directoryArray[pathinfo($relativePath, PATHINFO_BASENAME)] = array(
+                            'name'       => $name,
                             'file_path'  => $relativePath,
                             'url_path'   => $urlPath,
                             'file_size'  => is_dir($realPath) ? '-' : $this->getFileSize($realPath),
@@ -843,6 +940,9 @@ class DirectoryLister {
             );
 
         }
+	    
+	//Add .desc to hidden file permanently so it can be used for message box
+	$this->_config['hidden_files'] = array_merge($this->_config['hidden_files'], array('*.desc'));
 
         // Compare path array to all hidden file paths
         foreach ($this->_config['hidden_files'] as $hiddenPath) {
@@ -902,8 +1002,32 @@ class DirectoryLister {
         // Return the URL
         return $appUrl;
     }
+	
+    /**
+     * Returns the systems directory for local reference
+     *
+     * @return string just the main folder of the application
+     * @access public
+     */
+    public function GetBasePath() {
+		
+	$pathParts = pathinfo($_SERVER['PHP_SELF']);
+        $path      = $pathParts['dirname'];
 
+        // Remove backslash from path (Windows fix)
+        if (substr($path, -1) == '\\') {
+            $path = substr($path, 0, -1);
+        }
 
+        // Ensure the path ends with a forward slash
+        if (substr($path, -1) != '/') {
+            $path = $path . '/';
+        }
+		
+	// Return just the path the system is in
+	return $path;
+    }
+	
     /**
       * Compares two paths and returns the relative path from one to the other
      *

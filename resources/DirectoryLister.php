@@ -23,7 +23,7 @@ class DirectoryLister {
     protected $_directory     = null;
     protected $_appDir        = null;
     protected $_appURL        = null;
-    protected $_config        = null;
+    public    $_config        = null; //we need to acsess this from download.php
     protected $_fileTypes     = null;
     protected $_systemMessage = null;
 
@@ -53,6 +53,19 @@ class DirectoryLister {
         } else {
             die('ERROR: Missing application config file at ' . $configFile);
         }
+		
+		// Load the log file
+        $log = $this->_appDir . '/log';
+
+		// Set the config file to a global variable
+		if (file_exists($log))
+			if (is_writable($log)) {
+				$this->_logFile = $log;
+			} else {
+				$this->setSystemMessage('error', '<b>ERROR:</b> Unable to read log file');
+		} else {
+			touch($log);
+		}
 
         // Set the file types array to a global variable
         $this->_fileTypes = require_once($this->_appDir . '/fileTypes.php');
@@ -470,7 +483,7 @@ class DirectoryLister {
 
 
     /**
-     * Returns array of file hash values
+     * Returns array of file hash values and download count
      *
      * @param  string $filePath Path to file
      * @return array Array of file hashes
@@ -481,7 +494,7 @@ class DirectoryLister {
         // Placeholder array
         $hashArray = array();
 
-        // Verify file path exists and is a directory
+		// Verify file path exists and is a directory
         if (!file_exists($filePath)) {
             return json_encode($hashArray);
         }
@@ -509,8 +522,12 @@ class DirectoryLister {
             // Generate file hashes
             $hashArray['md5']  = hash_file('md5', $filePath);
             $hashArray['sha1'] = hash_file('sha1', $filePath);
-
         }
+		
+		//Download Count
+		$FileDownloads = $this->_read_log()[$filePath];
+		//Download Count by FileName
+		$hashArray['downloads'] = !is_null($FileDownloads) ? $FileDownloads : 0;
 
         // Return the data
         return $hashArray;
@@ -569,6 +586,22 @@ class DirectoryLister {
         return true;
     }
 
+    /**
+     * Get total download count.
+     *
+     * @return download number
+     * @access public
+     */
+    public function getTotalDownloads() {
+        // Get fresh download count data
+        $dllog = $this->_read_log();
+
+        // Get total download count
+		$totaldls = 0;
+		if (is_array($dllog)) //Fix when there is no downloads yet
+			$totaldls = array_sum($dllog);
+        return $totaldls;
+    }
 
     /**
      * Validates and returns the directory path
@@ -647,6 +680,10 @@ class DirectoryLister {
         // Get directory contents
         $files = scandir($directory);
 
+		// Get fresh download count data
+		$dllog = $this->_read_log();
+
+
         // Read files/folders from the directory
         foreach ($files as $file) {
 
@@ -706,6 +743,7 @@ class DirectoryLister {
                             'file_path'  => $this->_appURL . $directoryPath,
                             'url_path'   => $this->_appURL . $directoryPath,
                             'file_size'  => '-',
+							'file_downloads' => '-',
                             'mod_time'   => date($this->_config['date_format'], filemtime($realPath)),
                             'icon_class' => 'fa-level-up',
                             'sort'       => 0
@@ -717,9 +755,15 @@ class DirectoryLister {
                     // Add all non-hidden files to the array
                     if ($this->_directory != '.' || $file != 'index.php') {
 
+						// Get download counts
+						if (@array_key_exists($relativePath,$dllog)) {				
+							$downloads = $dllog[$relativePath];
+						} else {
+							$downloads = '0';
+						}
+
                         // Build the file path
                         $urlPath = implode('/', array_map('rawurlencode', explode('/', $relativePath)));
-
                         if (is_dir($relativePath)) {
                             $urlPath = $this->containsIndex($relativePath) ? $relativePath : '?dir=' . $urlPath;
                         }
@@ -731,6 +775,7 @@ class DirectoryLister {
                             'file_path'  => $relativePath,
                             'url_path'   => $urlPath,
                             'file_size'  => is_dir($realPath) ? '-' : $this->getFileSize($realPath),
+							'file_downloads' => is_dir($realPath) ? '-' : $downloads,
                             'mod_time'   => date($this->_config['date_format'], filemtime($realPath)),
                             'icon_class' => $iconClass,
                             'sort'       => $sort
@@ -751,6 +796,30 @@ class DirectoryLister {
 
     }
 
+	// Function to read the log file, and return an array as (filename => downloads)
+	private function _read_log()	{
+		// Declare Array for holding data read from log file
+		$name = array(); // array for file name
+		$count = array(); // array for file count
+		$file = @file($this->_logFile);
+		if(empty($file))
+		{
+			return null;
+		}
+		// Read the entire contents of the log file into the arrays
+		$file = fopen($this->_logFile,"r");
+		while ($data = fscanf($file,"%[ -~]\t%d\n"))
+		{
+			list ($temp1, $temp2) = $data;
+			array_push($name,$temp1);
+			array_push($count,$temp2);
+		}
+		fclose($file);
+		// $file_list contains data read from the log file as an array (filename => count)
+		$file_list=@array_combine($name,$count);
+		ksort($file_list); // Sorting it in alphabetical order of key
+		return $file_list;
+	}
 
     /**
      * Sorts an array by the provided sort method.

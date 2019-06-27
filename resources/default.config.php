@@ -18,7 +18,8 @@ return array(
         'resources/*',
         'analytics.inc',
         'header.php',
-        'footer.php'
+        'footer.php',
+		'download.php',
     ),
 
     // If set to 'true' an directory with an index file (as defined below) will
@@ -34,6 +35,11 @@ return array(
         'index.htm',
         'index.html',
         'index.php'
+    ),
+	
+	// file extensions that are allowed to be opened/executed
+    'can_be_open_extension' => array(
+        //Here are extensions that can be opened/executed
     ),
 
     // File hashing threshold

@@ -16,16 +16,16 @@
 class DirectoryLister {
 
     // Define application version
-    const VERSION = '2.7.0';
+    const VERSION = '2.9.0';
 
     // Reserve some variables
-    protected $_themeName     = null;
-    protected $_directory     = null;
-    protected $_appDir        = null;
-    protected $_appURL        = null;
-    public    $_config        = null; //we need to acsess this from download.php
-    protected $_fileTypes     = null;
-    protected $_systemMessage = null;
+    protected	$_themeName     = null;
+    protected 	$_directory     = null;
+    protected	$_appDir        = null;
+    protected	$_appURL        = null;
+    public		$_config		= null;
+    protected	$_fileTypes     = null;
+    protected	$_systemMessage = null;
 
 
     /**

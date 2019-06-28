@@ -15,7 +15,7 @@
 		<!-- SCRIPTS -->
 		<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 		<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-		<script type="text/javascript" src="<?php echo THEMEPATH; ?>/js/directorylister.js"></script>
+		<script type="text/javascript" src="<?php echo $lister->GetBasePath(); ?>/resources/directorylister.js"></script>
 
 		<!-- FONTS -->
 		<link rel="stylesheet" type="text/css"  href="//fonts.googleapis.com/css?family=Cutive+Mono">
@@ -115,7 +115,7 @@
 
 				<?php foreach($dirArray as $name => $fileInfo): ?>
 					<li data-name="<?php echo $name; ?>" data-href="<?php echo $fileInfo['url_path']; ?>">
-						<a href="<?php if(is_dir($fileInfo['file_path'])) { echo '?dir=' . $fileInfo['file_path']; } elseif($fileInfo['icon_class'] == 'fa-level-up') { echo  $fileInfo['file_path']; } else { echo 'download.php?file='. $fileInfo['file_path']; } ?>" class="clearfix" data-name="<?php echo $name; ?>">
+						<a href="<?php if(is_dir($fileInfo['file_path'])) { echo '?dir=' . $fileInfo['file_path']; } elseif($fileInfo['icon_class'] == 'fa-level-up') { echo  $fileInfo['file_path']; } else { echo 'index.php?file='.$fileInfo['file_path']; } ?>" class="clearfix" data-name="<?php echo $name; ?>">
 
 							<div class="row">
 								<span class="file-name col-md-7 col-sm-6 col-xs-9">

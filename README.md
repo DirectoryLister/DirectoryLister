@@ -8,9 +8,9 @@ Original fork from mijorepusic
 Introduction
 ------------
 
-Directory Lister is a simple PHP script that lists the contents of any web-accessable directory and
+Directory Lister is a simple PHP script that lists the contents of any web-accessible directory and
 allows navigating there within. Simply upload Directory Lister to any directory and get immediate
-access to all files and sub-direcories under that directory. Directory Lister is written in PHP and Javascript.
+access to all files and sub-directories under that directory. Directory Lister is written in PHP and JavaScript.
 
 Distributed under the [MIT License](http://www.opensource.org/licenses/mit-license.php).
 
@@ -34,7 +34,7 @@ Requirements
 ------------
 
 Directory Lister requires PHP 5.3+ to work properly.  For more information on PHP, please visit
-<http://www.php.net>.
+<http://www.php.net>. It is recommended to use latest PHP 7.2+ if possible.
 
 A linux/unix host is needed to support all features.
 
@@ -47,7 +47,7 @@ Installation
  1. Make sure all requirements are met
  2. Clone or download the repo
  3. Place all files in the parent-most directory you wish DirectoryLister to use as home
- 4. Rename `default.config.php` to `config.php` and configure DirectoryLister as needed within
+ 4. Rename `default.config.php` to `config.php` and configure DirectoryLister as needed within, (remove `.desc` in main directory to remove welcome message)
  5. Files and folders to be shown can now be placed alongside
 
 

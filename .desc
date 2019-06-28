@@ -1,0 +1,26 @@
+<small>
+<u><a href="https://github.com/Tampa/DirectoryLister">Directory Lister</a></u> is a simple PHP script that lists the contents of any web-accessible directory and
+<br>allows navigating there within. Simply upload Directory Lister to any directory and get immediate
+<br>access to all files and sub-directories under that directory. Directory Lister is written in PHP and JavaScript.
+<br>=======================================================================================
+<br><b>Features</b>
+<br>-Extremely simple installation, no database, additional servers, just drop the files and configure -
+<br>-Creates on-the-fly listing of any web-accessible directory                                        -
+<br>-Customizable sort order of files/folders                                                          -
+<br>-Easily define hidden files to be excluded from the listing                                        -
+<br>-Download of entire directories as zip                                                             -
+<br>-Various sorting options                                                                           -
+<br>-Directory size information                                                                        -
+<br>-File hashing                                                                                      -
+<br>-Custom directory descriptions(place .desc file in directory)                                      -
+<br>-Download counter                                                                                  -
+<br>=======================================================================================
+<br><u><a href="https://github.com/Tampa/DirectoryLister">Directory Lister</a></u> is distributed under the terms of the
+<u><a href="http://www.opensource.org/licenses/mit-license.php">MIT License</a></u>
+<br>Copyright 2017 [Chris Kankiewicz](http://www.chriskankiewicz.com)
+<br>Copyright 2019 Tampa</small>
+<font color="red"><h3>
+=======================================================================
+<br>TO REMOVE THIS MESSAGE REMOVE THE .desc
+<br>=======================================================================
+</font></h3>

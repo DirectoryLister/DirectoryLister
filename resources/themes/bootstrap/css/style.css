@@ -5,10 +5,10 @@
 html {
 	--bg: "";
 	--header-bg-title: #f8f8f8;
-    --bg-title: "";
-    --color-header-footer-divider: rgb(238, 238, 238);
-    --color-header-header-divider: #e7e7e7;
-    --color-text: "";
+	--bg-title: "";
+	--color-header-footer-divider: rgb(238, 238, 238);
+	--color-header-header-divider: #e7e7e7;
+	--color-text: "";
 	--file-desc-color: "";
 	
 	--a-color: black;
@@ -43,14 +43,14 @@ html {
 /* ---------------------------------------------------------------------------------------------- */
 
 html[data-theme='dark'] {
-    --bg: #111111;
-    --bg-title: #101010;
+	--bg: #111111;
+	--bg-title: #101010;
 	--header-bg-title: var(--bg-title);
-    --color-header-footer-divider: #337ab7;
+	--color-header-footer-divider: #337ab7;
 	--color-header-header-divider: #337ab7;
 	--a-color-header-footer-divider: #337ab7;
 	--bg-color-header-footer-divider: #337ab7;
-    --color-text: white;
+	--color-text: white;
 	--hover: #337ab7; /* A Hover */
 	--hover-text: #EEE; /* A Hover-text */
 	--file-desc-color: var(--color-text);
@@ -84,19 +84,19 @@ html[data-theme='dark'] {
 
 body {
 	background-color: var(--bg);
-    padding: 70px 0 0;
+	padding: 70px 0 0;
 	
 }
 
 a {
 	color: var(--a-color);
-    
+	
 }
 
 
 .nav > li > a:focus, .nav > li > a:hover {
-    text-decoration: var(--navbar-textD);
-    background-color: var(--hover);
+	text-decoration: var(--navbar-textD);
+	background-color: var(--hover);
 	color: var(--hover-text);
 }
 
@@ -106,11 +106,11 @@ a {
 	
 
 body.breadcrumb-fixed {
-    padding-top: 56px;
+	padding-top: 56px;
 }
 
 .container {
-    max-width: 960px;
+	max-width: 960px;
 }
 
 
@@ -125,15 +125,15 @@ body.breadcrumb-fixed {
 }
 #page-navbar .navbar-text {
 	color: var(--color-text);
-    display: block;
-    float: left;
+	display: block;
+	float: left;
 	margin-left: 35px;
-    font-family: 'Cutive Mono', monospace, serif;
+	font-family: 'Cutive Mono', monospace, serif;
 	font-size: 16px;
-    max-width: 80%;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+	max-width: 80%;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 }
 
 #page-navbar .navbar-text>a {
@@ -142,15 +142,15 @@ body.breadcrumb-fixed {
 }
 
 .navbar-default .navbar-nav>li>a, .navbar-default .navbar-nav>li>a:visited {
-    color: var(--navbar-text2);
+	color: var(--navbar-text2);
 }
 
 .navbar-default .navbar-nav>li>a:hover {
-    color: var(--navbar-text2);
+	color: var(--navbar-text2);
 }
 
 .navbar-default .navbar-nav>li>a:active {
-    color: var(--navbar-text2);
+	color: var(--navbar-text2);
 }
 
 #description {
@@ -238,43 +238,43 @@ body {
 
 #directory-list-header {
 	color: var(--dir-color-text);
-    font-family: 'Cutive Mono', monospace, serif;
-    font-weight: bold;
-    padding: 10px 15px;
+	font-family: 'Cutive Mono', monospace, serif;
+	font-weight: bold;
+	padding: 10px 15px;
 }
 
 #directory-listing {
-    font-family: 'Cutive Mono', monospace, serif;
+	font-family: 'Cutive Mono', monospace, serif;
 }
 
 #directory-listing li {
-    position: relative;
+	position: relative;
 }
 
 .file-name {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 }
 
 .file-name i {
-    color: var(--hover);
+	color: var(--hover);
 }
 
 .file-info-button,
 .web-link-button {
-    display: inline-block;
-    cursor: pointer;
-    margin-left: 100%;
-    padding: 6px 10px !important;
-    position: absolute !important;
-    top: 4px;
+	display: inline-block;
+	cursor: pointer;
+	margin-left: 100%;
+	padding: 6px 10px !important;
+	position: absolute !important;
+	top: 4px;
 
 }
 
 .web-link-button i,
 .file-info-button i {
-    color: #999;
+	color: #999;
 }
 
 
@@ -289,8 +289,8 @@ hr {
 }
 
 .footer {
-    margin: 20px;
-    text-align: center;
+	margin: 20px;
+	text-align: center;
 	color: var(--color-text);
 }
 .footer a{
@@ -303,30 +303,30 @@ hr {
 /* ---------------------------------------------------------------------------------------------- */
 
 #file-info {
-    margin: 0;
+	margin: 0;
 }
 
 #file-info .table-title {
-    font-weight: bold;
-    text-align: right;
+	font-weight: bold;
+	text-align: right;
 }
 
 /* File Downloads */
 #file-info .file-downloads,
 #file-info .md5-hash,
 #file-info .sha1-hash {
-    font-family: 'Cutive Mono', monospace, serif;
+	font-family: 'Cutive Mono', monospace, serif;
 }
 
 
 /* Zheme */
 .modal-content {
-    background-color: var(--modal-bg-color);
-    color: var(--modal-text-color);
+	background-color: var(--modal-bg-color);
+	color: var(--modal-text-color);
 }
 
 .modal-header .close {
-    color: var(--modal-header-close-color);
+	color: var(--modal-header-close-color);
 }
 
 
@@ -336,35 +336,35 @@ hr {
 
 @media (max-width: 767px) {
 
-    .navbar-nav {
-        float: left;
-        margin: 0;
-        padding-bottom: 0;
-        padding-top: 0;
-    }
+	.navbar-nav {
+		float: left;
+		margin: 0;
+		padding-bottom: 0;
+		padding-top: 0;
+	}
 
-    .navbar-nav > li {
-        float: left;
-    }
+	.navbar-nav > li {
+		float: left;
+	}
 
-    .navbar-nav > li > a {
-        padding-bottom: 15px;
-        padding-top: 15px;
-    }
+	.navbar-nav > li > a {
+		padding-bottom: 15px;
+		padding-top: 15px;
+	}
 
-    .navbar-right {
-        float: right !important;
-    }
+	.navbar-right {
+		float: right !important;
+	}
 
-    #page-navbar .navbar-text {
-        margin-left: 15px;
-        margin-right: 15px;
-        max-width: 75%;
-    }
+	#page-navbar .navbar-text {
+		margin-left: 25px;
+		margin-right: 15px;
+		max-width: 75%;
+	}
 
-    .file-info-button {
-        display: none !important;
-    }
+	.file-info-button {
+		display: none !important;
+	}
 
 }
 /* -------------------------------------------------------------------------- */

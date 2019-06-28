@@ -9,6 +9,7 @@ return array(
     'rar'   => 'fa-file-archive-o',
     'tar'   => 'fa-file-archive-o',
     'zip'   => 'fa-file-archive-o',
+    'pkg'   => 'fa-file-archive-o',
 
     // Audio
     'aac'   => 'fa-music',
@@ -21,7 +22,10 @@ return array(
     'wav'   => 'fa-music',
 
     // Code
+    'asp'   => 'fa-code',
+    'aspx'  => 'fa-code',
     'c'     => 'fa-code',
+    'cs'    => 'fa-code',
     'class' => 'fa-code',
     'cpp'   => 'fa-code',
     'css'   => 'fa-code',
@@ -36,6 +40,13 @@ return array(
     'rb'    => 'fa-code',
     'xhtml' => 'fa-code',
     'xml'   => 'fa-code',
+    
+    // Presentations
+    'key'   => 'fa-caret-square-o-right ',
+    'pps'   => 'fa-caret-square-o-right ',
+    'ppt'   => 'fa-caret-square-o-right ',
+    'pptx'  => 'fa-caret-square-o-right ',
+    'odp'   => 'fa-caret-square-o-right ',
 
     // Databases
     'accdb' => 'fa-hdd-o',
@@ -62,6 +73,8 @@ return array(
     'jar'   => 'fa-list-alt',
     'msi'   => 'fa-list-alt',
     'vb'    => 'fa-list-alt',
+    'apk'   => 'fa-list-alt',
+    'cgi'   => 'fa-list-alt',
 
     // Fonts
     'eot'   => 'fa-font',
@@ -84,11 +97,15 @@ return array(
     'psd'   => 'fa-picture-o',
     'tga'   => 'fa-picture-o',
     'tif'   => 'fa-picture-o',
+    'tiff'  => 'fa-picture-o',
+    'ico'   => 'fa-picture-o',
 
     // Package Files
     'box'   => 'fa-archive',
     'deb'   => 'fa-archive',
     'rpm'   => 'fa-archive',
+    'bin'   => 'fa-archive',
+    'iso'   => 'fa-archive',
 
     // Scripts
     'bat'   => 'fa-terminal',

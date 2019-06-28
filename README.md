@@ -1,7 +1,9 @@
 Directory Lister - The simple PHP directory lister
 ==================================================
 Created by, [Chris Kankiewicz](http://www.ChrisKankiewicz.com)
+
 Contributions from Tampa, veso266 & others
+
 Original fork from mijorepusic
 
 
@@ -69,5 +71,7 @@ License
 
 Directory Lister is distributed under the terms of the
 [MIT License](http://www.opensource.org/licenses/mit-license.php).
+
 Copyright 2017 [Chris Kankiewicz](http://www.chriskankiewicz.com)
+
 Copyright 2019 Tampa

@@ -69,7 +69,7 @@
 						<ul id="page-top-download-all" class="nav navbar-nav">
 							<li>
 								<a href="?zip=<?php echo $lister->getDirectoryPath(); ?>" id="download-all-link">
-									<i class="fa fa-download fa-lg"></i>
+									<small>Download folder</small> <i class="fa fa-download fa-lg"></i>
 								</a>
 							</li>
 						</ul>

@@ -485,7 +485,7 @@ class DirectoryLister {
     protected function _setDirectoryPath($dir) {
 
         // Check for an empty variable
-        if (empty($dir) || $dir == '.') {
+        if (empty($dir) || $dir == '.' || strpos($dir, '..') !== false) {
             return '.';
         }
 

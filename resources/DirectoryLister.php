@@ -208,7 +208,11 @@ class DirectoryLister {
                 $dirPath = is_null($dirPath) ? $dir : $dirPath . '/' .  $dir;
 
                 // Combine the base path and dir path
-                $link = $this->_appURL . '?dir=' . rawurlencode($dirPath);
+                if ($this->_config['rewrite']) {
+                    $link = $this->_appURL . $dirPath; //rewritten
+                } else {
+                    $link = $this->_appURL . '?dir=' . rawurlencode($dirPath);
+                }
 
                 $breadcrumbsArray[] = array(
                     'link' => $link,
@@ -326,7 +330,12 @@ class DirectoryLister {
             $realtivePath = $this->_getRelativePath(getcwd(), $this->_appDir);
 
             // Set the theme path
-            $themePath = $realtivePath . '/themes/' . $this->_themeName;
+            if ($this->_config['rewrite']){
+                $relativeRoot = substr(getcwd(), strlen($_SERVER['DOCUMENT_ROOT']));
+                $themePath = $relativeRoot . '/' . $realtivePath . '/themes/' . $this->_themeName;
+            } else {
+                $themePath = $realtivePath . '/themes/' . $this->_themeName;
+            }
         }
 
         return $themePath;
@@ -564,6 +573,11 @@ class DirectoryLister {
                     $relativePath = substr($relativePath, 2);
                 }
 
+                if ($this->_config['rewrite']) {
+                    $relativeRoot = substr(getcwd(), strlen($_SERVER['DOCUMENT_ROOT']));
+                    $linkPath = $relativeRoot . '/' . $relativePath; //rewritten
+                }
+
                 // Don't check parent dir if we're in the root dir
                 if ($this->_directory == '.' && $file == '..'){
 
@@ -597,19 +611,25 @@ class DirectoryLister {
 
                     if ($this->_directory != '.') {
                         // Get parent directory path
-                        $pathArray = explode('/', $relativePath);
-                        unset($pathArray[count($pathArray)-1]);
-                        unset($pathArray[count($pathArray)-1]);
-                        $directoryPath = implode('/', $pathArray);
+                        if ($this->_config['rewrite']) {
+                            $directoryPath = $linkPath; //rewritten
+                        } else {
+                            $pathArray = explode('/', $relativePath);
+                            unset($pathArray[count($pathArray)-1]);
+                            unset($pathArray[count($pathArray)-1]);
+                            $directoryPath = implode('/', $pathArray);
+    
+                            if (!empty($directoryPath)) {
+                                $directoryPath = '?dir=' . rawurlencode($directoryPath);
+                            }
 
-                        if (!empty($directoryPath)) {
-                            $directoryPath = '?dir=' . rawurlencode($directoryPath);
+                            $directoryPath = $this->_appURL . $directoryPath;
                         }
 
                         // Add file info to the array
                         $directoryArray['..'] = array(
-                            'file_path'  => $this->_appURL . $directoryPath,
-                            'url_path'   => $this->_appURL . $directoryPath,
+                            'file_path'  => $directoryPath,
+                            'url_path'   => $directoryPath,
                             'file_size'  => '-',
                             'mod_time'   => date($this->_config['date_format'], filemtime($realPath)),
                             'icon_class' => 'fa-level-up',
@@ -623,14 +643,21 @@ class DirectoryLister {
                     if ($this->_directory != '.' || $file != 'index.php') {
 
                         // Build the file path
-                        $urlPath = implode('/', array_map('rawurlencode', explode('/', $relativePath)));
-
-                        if (is_dir($relativePath)) {
-                            $urlPath = $this->containsIndex($relativePath) ? $relativePath : '?dir=' . $urlPath;
+                        if ($this->_config['rewrite']) {
+                            $urlPath = $linkPath; //rewritten
+                        } else {
+                            $urlPath = implode('/', array_map('rawurlencode', explode('/', $relativePath)));
+    
+                            if (is_dir($relativePath)) {
+                                $urlPath = $this->containsIndex($relativePath) ? $relativePath : '?dir=' . $urlPath;
+                            }
                         }
 
                         // Add the info to the main array
-                        $directoryArray[pathinfo($relativePath, PATHINFO_BASENAME)] = array(
+                        //$directoryArray[pathinfo($relativePath, PATHINFO_BASENAME)] = array(
+                        preg_match('/\/([^\/]*)$/', $relativePath, $matches);
+                        $pathname = isset($matches[1]) ? $matches[1] : $relativePath;
+                        $directoryArray[$pathname] = array(
                             'file_path'  => $relativePath,
                             'url_path'   => $urlPath,
                             'file_size'  => is_dir($realPath) ? '-' : $this->getFileSize($realPath),

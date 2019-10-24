@@ -1,6 +1,6 @@
 <?php
 
-namespace PHLAK\DirectoryLister;
+namespace App;
 
 use DirectoryIterator;
 use FilterIterator;

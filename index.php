@@ -2,7 +2,7 @@
 
 use DI\Container;
 use DI\Bridge\Slim\Bridge;
-use PHLAK\DirectoryLister\Controllers;
+use App\Controllers;
 use Slim\Views\Twig;
 use Slim\Views\TwigMiddleware;
 

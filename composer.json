@@ -24,7 +24,7 @@
     },
     "autoload": {
         "psr-4": {
-            "PHLAK\\DirectoryLister\\": "app/"
+            "App\\": "app/"
         }
     },
     "config": {

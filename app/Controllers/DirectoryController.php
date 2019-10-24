@@ -1,8 +1,8 @@
 <?php
 
-namespace PHLAK\DirectoryLister\Controllers;
+namespace App\Controllers;
 
-use PHLAK\DirectoryLister\DirectoryLister;
+use App\DirectoryLister;
 use Slim\Psr7\Request;
 use Slim\Psr7\Response;
 use Slim\Views\Twig;

@@ -1,0 +1,34 @@
+{
+    "name": "phlak/directory-lister",
+    "description": "PHP directory lister",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Chris Kankiewicz",
+            "email": "Chris@ChrisKankiewicz.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.1",
+        "php-di/php-di": "^6.0",
+        "php-di/slim-bridge": "^3.0",
+        "slim/psr7": "^0.6.0",
+        "slim/slim": "^4.3",
+        "slim/twig-view": "3.0.0-beta"
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^2.3",
+        "phpunit/phpunit": "^7.0 || ^8.0",
+        "psy/psysh": "^0.9.9"
+    },
+    "autoload": {
+        "psr-4": {
+            "PHLAK\\DirectoryLister\\": "app/"
+        }
+    },
+    "config": {
+        "sort-packages": true,
+        "optimize-autoloader": true
+    }
+}

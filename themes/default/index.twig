@@ -1,3 +1,16 @@
-{% for file in files %}
-    &bull; {{ file.fileName }}<br>
-{% endfor %}
+<!DOCTYPE html>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="favicon.png">
+<link rel="stylesheet" href="styles.css">
+
+<title>Directory Lister</title>
+
+<ul>
+    {% for file in files %}
+        <li>
+            {{ file.fileName }}
+        </li>
+    {% endfor %}
+</ul>

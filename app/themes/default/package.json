@@ -1,0 +1,11 @@
+{
+  "author": "Chris Kankiewicz",
+  "license": "MIT",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "laravel-mix": "^5.0.0",
+    "tailwindcss": "^1.1.3"
+  }
+}

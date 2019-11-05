@@ -8,8 +8,6 @@ RUN composer install --working-dir /app --ignore-platform-reqs \
 # FROM node:12.10 AS js-dependencies
 # ARG FONT_AWESOME_TOKEN
 # COPY --from=php-dependencies /app /app
-# RUN npm config set "@fortawesome:registry" https://npm.fontawesome.com/
-# RUN npm config set "//npm.fontawesome.com/:_authToken" ${FONT_AWESOME_TOKEN}
 # RUN cd /app && npm install && npm run production
 
 # Build application image

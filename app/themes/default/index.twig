@@ -2,13 +2,53 @@
 
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="{{ asset('dist/app.css') }}">
 
 <title>Directory Lister</title>
 
-<ul>
-    {% for file in files %}
-        <li>
-            {{ file.getBasename }}
-        </li>
-    {% endfor %}
-</ul>
+<div id="app" class="font-mono min-h-screen">
+    <header class="block bg-blue-600 shadow sticky top-0 text-white text-sm tracking-tight">
+        <div class="container mx-auto p-4">
+            <a href="/" class="hover:underline">Home</a>
+
+            {% for crumb in breadcrumbs %}
+                / <a href="{{ crumb.path }}" class="hover:underline">{{ crumb.name }}</a>
+            {% endfor %}
+        </div>
+    </header>
+
+    <div class="container mx-auto px-4">
+        <ul class="py-8">
+            {% for file in files %}
+                <a
+                    href="{{ file.getRelativePathname }}"
+                    class="flex justify-between rounded-lg p-4 hover:bg-gray-200 hover:p-4 hover:shadow"
+                >
+                    <div class="flex-grow truncate mx-2">
+                        {% if file.isDir %}
+                            📁
+                        {% else %}
+                            📄
+                        {% endif %}
+
+                        {{ file.getBasename }}
+                    </div>
+
+                    <div class="hidden whitespace-no-wrap text-right mx-2 sm:block">
+                        {{ convertSize(file.getSize) }}
+                    </div>
+
+                    <div class="hidden whitespace-no-wrap text-right truncate ml-2 sm:block">
+                        {{ file.getMTime | date }}
+                    </div>
+                </a>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <footer class="">
+        <div class="container border-t-2 border-gray-800 text-center mx-auto px-4 py-8">
+            Powered by <a href="https://www.directorylister.com" class="underline">Directory Lister</a>
+        </div>
+    </footer>
+</div>

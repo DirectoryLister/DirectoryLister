@@ -11,11 +11,15 @@
     ],
     "require": {
         "php": ">=7.1",
+        "phlak/config": "^6.0",
         "php-di/php-di": "^6.0",
         "php-di/slim-bridge": "^3.0",
         "slim/psr7": "^0.6.0",
         "slim/slim": "^4.3",
-        "slim/twig-view": "3.0.0-beta"
+        "slim/twig-view": "3.0.0-beta",
+        "symfony/finder": "^4.3",
+        "tightenco/collect": "^6.4",
+        "vlucas/phpdotenv": "^3.6"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^2.3",
@@ -25,10 +29,22 @@
     "autoload": {
         "psr-4": {
             "App\\": "app/"
+        },
+        "files": ["app/support/helpers.php"]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
         }
     },
     "config": {
         "sort-packages": true,
         "optimize-autoloader": true
+    },
+    "repositories": {
+        "local": {
+            "type": "path",
+            "url": "../directory-lister-framework"
+        }
     }
 }

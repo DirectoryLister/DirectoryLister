@@ -1,2 +1,2 @@
 clear-cache:
-	@rm cache/* -rfv
+	@rm app/cache/* -rfv

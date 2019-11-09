@@ -11,8 +11,8 @@
         <div class="container mx-auto p-4">
             <a href="/" class="hover:underline">Home</a>
 
-            {% for crumb in breadcrumbs %}
-                / <a href="{{ crumb.path }}" class="hover:underline">{{ crumb.name }}</a>
+            {% for name, path in breadcrumbs %}
+                / <a href="{{ path }}" class="hover:underline">{{ name }}</a>
             {% endfor %}
         </div>
     </header>
@@ -24,7 +24,7 @@
                     href="{{ file.getRelativePathname }}"
                     class="flex justify-between rounded-lg p-4 hover:bg-gray-200 hover:p-4 hover:shadow"
                 >
-                    <div class="flex-grow truncate mx-2">
+                    <div class="flex-grow truncate mr-4">
                         {% if file.isDir %}
                             📁
                         {% else %}
@@ -34,11 +34,11 @@
                         {{ file.getBasename }}
                     </div>
 
-                    <div class="hidden whitespace-no-wrap text-right mx-2 sm:block">
-                        {{ convertSize(file.getSize) }}
+                    <div class="hidden whitespace-no-wrap text-right mx-4 sm:block">
+                        {{ sizeForHumans(file.getSize) }}
                     </div>
 
-                    <div class="hidden whitespace-no-wrap text-right truncate ml-2 sm:block">
+                    <div class="hidden whitespace-no-wrap text-right truncate ml-4 sm:block">
                         {{ file.getMTime | date }}
                     </div>
                 </a>

@@ -7,6 +7,7 @@ use Slim\Psr7\Request;
 use Slim\Psr7\Response;
 use Slim\Views\Twig;
 use Symfony\Component\Finder\Finder;
+use Tightenco\Collect\Support\Collection;
 
 class DirectoryController
 {
@@ -61,20 +62,14 @@ class DirectoryController
      */
     protected function breadcrumbs(string $path): array
     {
-        $breadcrumbs = [];
-        $crumbsPath = '';
+        $breadcrumbs = Collection::make(array_filter(explode('/', $path)));
 
-        foreach (array_filter(explode('/', $path)) as $crumb) {
-            $crumbsPath .= "/{$crumb}";
+        return $breadcrumbs->filter(function ($crumb) {
+            return $crumb !== '.';
+        })->reduce(function (array $carry, string $crumb) {
+            $carry[$crumb] = end($carry) . "/{$crumb}";
 
-            $breadcrumbs[] = [
-                'name' => $crumb,
-                'path' => $crumbsPath
-            ];
-        }
-
-        return array_filter($breadcrumbs, function ($crumb) {
-            return $crumb['name'] !== '.';
-        });
+            return $carry;
+        }, []);
     }
 }

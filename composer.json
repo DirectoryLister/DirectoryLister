@@ -40,11 +40,5 @@
     "config": {
         "sort-packages": true,
         "optimize-autoloader": true
-    },
-    "repositories": {
-        "local": {
-            "type": "path",
-            "url": "../directory-lister-framework"
-        }
     }
 }

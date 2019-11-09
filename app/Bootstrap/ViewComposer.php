@@ -17,12 +17,12 @@ class ViewComposer
     public function __invoke(Config $config, Twig $twig): void
     {
         $twig->getEnvironment()->getExtension(CoreExtension::class)->setDateFormat(
-            $config->get('date_format'), '%d days'
+            $config->get('date_format', 'Y-m-d H:i:s'), '%d days'
         );
 
         $twig->getEnvironment()->addFunction(
             new TwigFunction('asset', function ($path) use ($config) {
-                return "/app/themes/{$config->get('theme')}/{$path}";
+                return "/app/themes/{$config->get('theme', 'defualt')}/{$path}";
             })
         );
 

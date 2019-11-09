@@ -21,7 +21,7 @@ $container = new Container();
 $container->set(Config::class, new Config('app/config'));
 $container->set(Twig::class, function (Config $config) {
     return new Twig("app/themes/{$config->get('theme')}", [
-        'cache' => $config->get('view_cache')
+        'cache' => $config->get('view_cache', 'app/cache/views')
     ]);
 });
 

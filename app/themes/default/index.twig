@@ -19,26 +19,46 @@
 
     <div class="container mx-auto px-4">
         <ul class="py-8">
+            <div class="flex justify-between font-bold p-4">
+                <div class="flex-grow mr-2">
+                    File Name
+                </div>
+
+                <div class="hidden text-right w-1/6 mx-2 sm:block">
+                    Size
+                </div>
+
+                <div class="hidden text-right w-1/4 ml-2  sm:block">
+                    Date
+                </div>
+            </div>
+
             {% for file in files %}
                 <a
                     href="{{ file.getRelativePathname }}"
-                    class="flex justify-between rounded-lg p-4 hover:bg-gray-200 hover:p-4 hover:shadow"
+                    class="flex justify-between items-center rounded-lg p-4 hover:bg-gray-200 hover:p-4 hover:shadow"
                 >
-                    <div class="flex-grow truncate mr-4">
+                    <div class="flex-shrink text-gray-700 pr-2">
                         {% if file.isDir %}
-                            📁
+                            <i class="fas fa-fw fa-lg fa-folder"></i>
                         {% else %}
-                            📄
+                            <i class="fas fa-fw fa-lg {{ icon(file.getBasename) }}"></i>
                         {% endif %}
+                    </div>
 
+                    <div class="flex-grow truncate mr-2">
                         {{ file.getBasename }}
                     </div>
 
-                    <div class="hidden whitespace-no-wrap text-right mx-4 sm:block">
-                        {{ sizeForHumans(file.getSize) }}
+                    <div class="hidden whitespace-no-wrap text-right mx-2 w-1/6 sm:block">
+                        {% if file.isDir %}
+                            —
+                        {% else %}
+                            {{ sizeForHumans(file.getSize) }}
+                        {% endif %}
                     </div>
 
-                    <div class="hidden whitespace-no-wrap text-right truncate ml-4 sm:block">
+                    <div class="hidden whitespace-no-wrap text-right truncate ml-2 w-1/4 sm:block">
                         {{ file.getMTime | date }}
                     </div>
                 </a>

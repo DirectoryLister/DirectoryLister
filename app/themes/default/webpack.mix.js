@@ -9,9 +9,15 @@ mix.sass('src/sass/app.scss', 'dist').options({
 
 mix.js('src/js/app.js', 'dist');
 
+mix.copyDirectory(
+    'node_modules/@fortawesome/fontawesome-free/webfonts',
+    'dist/webfonts'
+);
+
 mix.purgeCss({
-    extensions: ['html', 'scss', 'twig'],
-    globs: ['*.twig'],
-    folders: ['src'],
-    whitelist: ['html', 'body', 'main']
+    extensions: ["html", "scss", "twig"],
+    globs: ["*.twig"],
+    folders: ["src"],
+    whitelist: ["html", "body", "main"],
+    whitelistPatterns: [/^fa\-/]
 });

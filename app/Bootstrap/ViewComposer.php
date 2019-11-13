@@ -27,6 +27,14 @@ class ViewComposer
         );
 
         $twig->getEnvironment()->addFunction(
+            new TwigFunction('icon', function ($file) use ($config) {
+                $extension = pathinfo($file, PATHINFO_EXTENSION);
+
+                return $config->get("icons.{$extension}", 'fa-file');
+            })
+        );
+
+        $twig->getEnvironment()->addFunction(
             new TwigFunction('sizeForHumans', function ($bytes) {
                 $sizes = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
                 $factor = floor((strlen($bytes) - 1) / 3);

@@ -1,3 +1,12 @@
+// Tailwind
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+// Icons
+$fa-font-path: "./webfonts";
+@import "~@fortawesome/fontawesome-free/scss/fontawesome.scss";
+@import "~@fortawesome/fontawesome-free/scss/solid.scss";
+
+// Fonts
+// @import url("https://fonts.googleapis.com/css?family=Lato");

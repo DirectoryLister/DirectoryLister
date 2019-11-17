@@ -9,32 +9,41 @@ use Twig\TwigFunction;
 
 class ViewComposer
 {
+    /** @var Config Application config */
+    protected $config;
+
+    /** @var Twig Twig instance */
+    protected $twig;
+
+    /**
+     * Create a new ViewComposer object.
+     *
+     * @param \PHLAK\Config\Config $config
+     */
+    public function __construct(Config $config, Twig $twig)
+    {
+        $this->config = $config;
+        $this->twig = $twig;
+    }
+
     /**
      * Set up the Twig component.
      *
      * @return void
      */
-    public function __invoke(Config $config, Twig $twig): void
+    public function __invoke(): void
     {
-        $twig->getEnvironment()->getExtension(CoreExtension::class)->setDateFormat(
-            $config->get('date_format', 'Y-m-d H:i:s'), '%d days'
+        $this->twig->getEnvironment()->getExtension(CoreExtension::class)->setDateFormat(
+            $this->config->get('date_format', 'Y-m-d H:i:s'), '%d days'
         );
 
-        $twig->getEnvironment()->addFunction(
-            new TwigFunction('asset', function ($path) use ($config) {
-                return "/app/themes/{$config->get('theme', 'defualt')}/{$path}";
+        $this->twig->getEnvironment()->addFunction(
+            new TwigFunction('asset', function ($path) {
+                return "/app/themes/{$this->config->get('theme', 'defualt')}/{$path}";
             })
         );
 
-        $twig->getEnvironment()->addFunction(
-            new TwigFunction('icon', function ($file) use ($config) {
-                $extension = pathinfo($file, PATHINFO_EXTENSION);
-
-                return $config->get("icons.{$extension}", 'fa-file');
-            })
-        );
-
-        $twig->getEnvironment()->addFunction(
+        $this->twig->getEnvironment()->addFunction(
             new TwigFunction('sizeForHumans', function ($bytes) {
                 $sizes = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
                 $factor = floor((strlen($bytes) - 1) / 3);
@@ -42,5 +51,25 @@ class ViewComposer
                 return sprintf('%.2f', $bytes / pow(1024, $factor)) . $sizes[$factor];
             })
         );
+
+        $this->registerThemeFunctions();
+    }
+
+    /**
+     * Register theme Twig functions.
+     *
+     * @return void
+     */
+    public function registerThemeFunctions(): void
+    {
+        $themeConfigPath = "app/themes/{$this->config->get('theme')}/config.php";
+
+        if (file_exists($themeConfigPath)) {
+            $themeConfig = include $themeConfigPath;
+        }
+
+        foreach ($themeConfig['functions'] ?? [] as $function) {
+            $this->twig->getEnvironment()->addFunction($function);
+        }
     }
 }

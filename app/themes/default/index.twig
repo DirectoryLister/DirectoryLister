@@ -39,11 +39,7 @@
                     class="flex justify-between items-center rounded-lg p-4 hover:bg-gray-200 hover:p-4 hover:shadow"
                 >
                     <div class="flex-shrink text-gray-700 pr-2">
-                        {% if file.isDir %}
-                            <i class="fas fa-fw fa-lg fa-folder"></i>
-                        {% else %}
-                            <i class="fas fa-fw fa-lg {{ icon(file.getBasename) }}"></i>
-                        {% endif %}
+                        {{ icon(file) | raw }}
                     </div>
 
                     <div class="flex-grow truncate mr-2">

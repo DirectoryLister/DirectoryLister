@@ -40,12 +40,10 @@ class DirectoryController
      */
     public function __invoke(Request $request, Response $response, string $path = '.')
     {
-        $files = new Finder();
-        $files->in($path)->depth(0)->followLinks();
-        $files->exclude($this->config->get('hidden_files', []));
+        $files = Finder::create()->in($path)->depth(0)->followLinks();
         $files->ignoreVCS($this->config->get('ignore_vcs_files', false));
+        $files->notPath($this->config->get('hidden_files', []));
         $files->sortByName(true)->sortByType();
-        // TODO: Filter out hidden files
 
         return $this->view->render($response, 'index.twig', [
             'breadcrumbs' => $this->breadcrumbs($path),

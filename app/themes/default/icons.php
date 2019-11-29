@@ -84,7 +84,6 @@ return [
 
     // Executables
     'app' => 'fas fa-window',
-    'bat' => 'fas fa-window',
     'com' => 'fas fa-window',
     'exe' => 'fas fa-window',
     'jar' => 'fas fa-window',

@@ -38,15 +38,15 @@ class ViewComposer
         );
 
         $this->twig->getEnvironment()->addFunction(
-            new TwigFunction('asset', function ($path) {
+            new TwigFunction('asset', function (string $path) {
                 return "/app/themes/{$this->config->get('theme', 'defualt')}/{$path}";
             })
         );
 
         $this->twig->getEnvironment()->addFunction(
-            new TwigFunction('sizeForHumans', function ($bytes) {
+            new TwigFunction('sizeForHumans', function (int $bytes) {
                 $sizes = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
-                $factor = floor((strlen($bytes) - 1) / 3);
+                $factor = (int) floor((strlen($bytes) - 1) / 3);
 
                 return sprintf('%.2f', $bytes / pow(1024, $factor)) . $sizes[$factor];
             })

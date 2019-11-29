@@ -36,7 +36,7 @@ class DirectoryController
      * @param \Slim\Psr7\Response $response
      * @param string              $path
      *
-     * @return \Slim\Psr7\Response
+     * @return \Psr\Http\Message\ResponseInterface
      */
     public function __invoke(Request $request, Response $response, string $path = '.')
     {
@@ -64,7 +64,7 @@ class DirectoryController
     {
         $breadcrumbs = Collection::make(array_filter(explode('/', $path)));
 
-        return $breadcrumbs->filter(function ($crumb) {
+        return $breadcrumbs->filter(function (string $crumb) {
             return $crumb !== '.';
         })->reduce(function (array $carry, string $crumb) {
             $carry[$crumb] = end($carry) . "/{$crumb}";

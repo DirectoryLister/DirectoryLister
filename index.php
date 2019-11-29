@@ -10,12 +10,11 @@ use Slim\Views\Twig;
 
 require __DIR__ . '/vendor/autoload.php';
 
-/** Set some restrictions */
+/** Set file access restrictions */
 ini_set('open_basedir', __DIR__);
 
 /** Initialize environment variable handler */
-$dotenv = Dotenv::create(__DIR__);
-$dotenv->load();
+Dotenv::create(__DIR__)->load();
 
 /** Create the container */
 $container = new Container();

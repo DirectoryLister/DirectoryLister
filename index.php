@@ -2,8 +2,8 @@
 
 use App\Bootstrap\ViewComposer;
 use App\Controllers;
-use DI\Container;
 use DI\Bridge\Slim\Bridge;
+use DI\Container;
 use Dotenv\Dotenv;
 use PHLAK\Config\Config;
 use Slim\Views\Twig;
@@ -22,9 +22,7 @@ $container = new Container();
 /** Register dependencies */
 $container->set(Config::class, new Config('app/config'));
 $container->set(Twig::class, function (Config $config) {
-    return new Twig("app/themes/{$config->get('theme')}", [
-        'cache' => $config->get('view_cache', 'app/cache/views')
-    ]);
+    return new Twig("app/themes/{$config->get('theme', 'default')}");
 });
 
 /** Configure the view handler */

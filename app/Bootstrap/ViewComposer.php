@@ -33,10 +33,25 @@ class ViewComposer
      */
     public function __invoke(): void
     {
+        $this->twig->getEnvironment()->setCache(
+            $this->config->get('view_cache', 'app/cache/views')
+        );
+
         $this->twig->getEnvironment()->getExtension(CoreExtension::class)->setDateFormat(
             $this->config->get('date_format', 'Y-m-d H:i:s'), '%d days'
         );
 
+        $this->registerGlobalFunctions();
+        $this->registerThemeFunctions();
+    }
+
+    /**
+     * Register global Twig functions.
+     *
+     * @return void
+     */
+    public function registerGlobalFunctions(): void
+    {
         $this->twig->getEnvironment()->addFunction(
             new TwigFunction('asset', function (string $path) {
                 return "/app/themes/{$this->config->get('theme', 'defualt')}/{$path}";
@@ -51,18 +66,16 @@ class ViewComposer
                 return sprintf('%.2f', $bytes / pow(1024, $factor)) . $sizes[$factor];
             })
         );
-
-        $this->registerThemeFunctions();
     }
 
     /**
-     * Register theme Twig functions.
+     * Register theme specific Twig functions.
      *
      * @return void
      */
     public function registerThemeFunctions(): void
     {
-        $themeConfigPath = "app/themes/{$this->config->get('theme')}/config.php";
+        $themeConfigPath = "{$this->twig->getLoader()->getPaths()[0]}/config.php";
 
         if (file_exists($themeConfigPath)) {
             $themeConfig = include $themeConfigPath;

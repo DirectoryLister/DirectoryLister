@@ -22,6 +22,7 @@ class ViewComposer
      * Create a new ViewComposer object.
      *
      * @param \PHLAK\Config\Config $config
+     * @param \Slim\Views\Twig     $twig
      */
     public function __construct(Config $config, Twig $twig)
     {
@@ -65,7 +66,7 @@ class ViewComposer
         $this->twig->getEnvironment()->addFunction(
             new TwigFunction('sizeForHumans', function (int $bytes) {
                 $sizes = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
-                $factor = (int) floor((strlen($bytes) - 1) / 3);
+                $factor = (int) floor((strlen((string) $bytes) - 1) / 3);
 
                 return sprintf('%.2f', $bytes / pow(1024, $factor)) . $sizes[$factor];
             })

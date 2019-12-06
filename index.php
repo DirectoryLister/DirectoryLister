@@ -1,5 +1,6 @@
 <?php
 
+use App\Bootstrap\FilesComposer;
 use App\Bootstrap\ViewComposer;
 use App\Controllers;
 use DI\Bridge\Slim\Bridge;
@@ -7,6 +8,7 @@ use DI\Container;
 use Dotenv\Dotenv;
 use PHLAK\Config\Config;
 use Slim\Views\Twig;
+use Symfony\Component\Finder\Finder;
 
 require __DIR__ . '/vendor/autoload.php';
 
@@ -21,11 +23,13 @@ $container = new Container();
 
 /** Register dependencies */
 $container->set(Config::class, new Config('app/config'));
+$container->set(Finder::class, new Finder());
 $container->set(Twig::class, function (Config $config) {
     return new Twig("app/themes/{$config->get('theme', 'default')}");
 });
 
-/** Configure the view handler */
+/** Configure the application components */
+$container->call(FilesComposer::class);
 $container->call(ViewComposer::class);
 
 /** Create the application */

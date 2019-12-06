@@ -15,6 +15,9 @@ class ViewComposer
     /** @var Twig Twig instance */
     protected $twig;
 
+    /** @var string Path to theme */
+    protected $themePath;
+
     /**
      * Create a new ViewComposer object.
      *
@@ -24,6 +27,7 @@ class ViewComposer
     {
         $this->config = $config;
         $this->twig = $twig;
+        $this->themePath = $twig->getLoader()->getPaths()[0];
     }
 
     /**
@@ -54,7 +58,7 @@ class ViewComposer
     {
         $this->twig->getEnvironment()->addFunction(
             new TwigFunction('asset', function (string $path) {
-                return "/app/themes/{$this->config->get('theme', 'defualt')}/{$path}";
+                return "/{$this->themePath}/{$path}";
             })
         );
 
@@ -75,7 +79,7 @@ class ViewComposer
      */
     public function registerThemeFunctions(): void
     {
-        $themeConfigPath = "{$this->twig->getLoader()->getPaths()[0]}/config.php";
+        $themeConfigPath = "{$this->themePath}/config.php";
 
         if (file_exists($themeConfigPath)) {
             $themeConfig = include $themeConfigPath;

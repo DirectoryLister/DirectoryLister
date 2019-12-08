@@ -42,6 +42,7 @@ class DirectoryController
         return $this->view->render($response, 'index.twig', [
             'breadcrumbs' => $this->breadcrumbs($path),
             'files' => $files->in($path),
+            'is_root' => $this->isRoot($path),
         ]);
     }
 
@@ -63,5 +64,17 @@ class DirectoryController
 
             return $carry;
         }, []);
+    }
+
+    /**
+     * Undocumented function.
+     *
+     * @param string $path
+     *
+     * @return bool
+     */
+    protected function isRoot(string $path): bool
+    {
+        return realpath($path) === realpath($this->config->get('app.root'));
     }
 }

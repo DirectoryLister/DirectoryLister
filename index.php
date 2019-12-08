@@ -29,6 +29,9 @@ $container->set(Twig::class, function (Config $config) {
 });
 
 /** Configure the application components */
+$container->call(function (Config $config) {
+    $config->set('app.root', __DIR__);
+});
 $container->call(FilesComposer::class);
 $container->call(ViewComposer::class);
 

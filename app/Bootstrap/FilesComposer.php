@@ -2,7 +2,9 @@
 
 namespace App\Bootstrap;
 
+use Closure;
 use PHLAK\Config\Config;
+use RuntimeException;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Finder\SplFileInfo;
 use Tightenco\Collect\Support\Collection;
@@ -44,6 +46,37 @@ class FilesComposer
         $this->finder->filter(function (SplFileInfo $file) {
             return ! $this->hiddenFiles->contains($file->getRealPath());
         });
-        $this->finder->sortByName(true)->sortByType();
+
+        $sortOrder = $this->config->get('sort_order', 'name');
+        if ($sortOrder instanceof Closure) {
+            $this->finder->sort($sortOrder);
+        } else {
+            switch ($sortOrder) {
+                case 'accessed':
+                    $this->finder->sortByAccessedTime();
+                    break;
+                case 'changed':
+                    $this->finder->sortByChangedTime();
+                    break;
+                case 'modified':
+                    $this->finder->sortByModifiedTime();
+                    break;
+                case 'name':
+                    $this->finder->sortByName();
+                    break;
+                case 'natural':
+                    $this->finder->sortByName(true);
+                    break;
+                case 'type':
+                    $this->finder->sortByType();
+                    break;
+                default:
+                    throw new RuntimeException("Invalid sort option '{$sortOrder}'");
+            }
+        }
+
+        if ($this->config->get('reverse_sort', false)) {
+            $this->finder->reverseSorting();
+        }
     }
 }

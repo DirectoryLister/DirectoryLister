@@ -2,27 +2,20 @@
 
 return [
     /**
-     * The root directory to list.
+     * Sorting order of files and folders.
      *
-     * Default value: '.'
+     * Possible values: type, natural, name, accessed, changed, modified, <callable>
+     * Default value: type
      */
-    'root' => '.',
+    'sort_order' => 'type',
 
     /**
-     * Whether or not to list folders before regular files.
+     * Reverse the sort order.
      *
      * Possible values: true, false
-     * Default value: true
+     * Default value: false
      */
-    'list_folders_first' => true,
-
-    /**
-     * Sorting order of files.
-     *
-     * Possible values: foo, bar, baz
-     * Default value: natcasesort
-     */
-    'sort_order' => 'natcasesort',
+    'reverse_sort' => false,
 
     /**
      * Name of the theme to use for styling the application.

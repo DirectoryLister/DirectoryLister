@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "39db12ed9442c12b55fbbea462803923",
+    "content-hash": "49661599538771c9eda5542b8e372ace",
     "packages": [
         {
             "name": "fig/http-message-util",
@@ -1010,25 +1010,25 @@
         },
         {
             "name": "symfony/finder",
-            "version": "v4.4.1",
+            "version": "v5.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/finder.git",
-                "reference": "ce8743441da64c41e2a667b8eb66070444ed911e"
+                "reference": "17874dd8ab9a19422028ad56172fb294287a701b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/finder/zipball/ce8743441da64c41e2a667b8eb66070444ed911e",
-                "reference": "ce8743441da64c41e2a667b8eb66070444ed911e",
+                "url": "https://api.github.com/repos/symfony/finder/zipball/17874dd8ab9a19422028ad56172fb294287a701b",
+                "reference": "17874dd8ab9a19422028ad56172fb294287a701b",
                 "shasum": ""
             },
             "require": {
-                "php": "^7.1.3"
+                "php": "^7.2.5"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "4.4-dev"
+                    "dev-master": "5.0-dev"
                 }
             },
             "autoload": {
@@ -1055,7 +1055,7 @@
             ],
             "description": "Symfony Finder Component",
             "homepage": "https://symfony.com",
-            "time": "2019-11-17T21:56:56+00:00"
+            "time": "2019-11-18T17:27:11+00:00"
         },
         {
             "name": "symfony/polyfill-ctype",

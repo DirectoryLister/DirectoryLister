@@ -19,7 +19,7 @@
         "slim/twig-view": "3.0.0-beta",
         "symfony/finder": "^4.3",
         "tightenco/collect": "^6.4",
-        "vlucas/phpdotenv": "^3.6"
+        "vlucas/phpdotenv": "^4.0"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^2.3",

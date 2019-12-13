@@ -1,0 +1,36 @@
+<a
+    href="{% if parentDir %}..{% else %}{{ file.getRelativePathname }}{% endif %}"
+    class="flex justify-between items-center rounded-lg p-4 hover:bg-gray-200 hover:p-4 hover:shadow"
+>
+    <div class="flex-shrink pr-2">
+        {% if parentDir %}
+            <i class="fas fa-level-up-alt fa-fw fa-lg"></i>
+        {% else %}
+            {{ icon(file) | raw }}
+        {% endif %}
+    </div>
+
+    <div class="flex-grow truncate mr-2">
+        {% if parentDir %}
+           ..
+        {% else %}
+            {{ file.getBasename }}
+        {% endif %}
+    </div>
+
+    <div class="hidden whitespace-no-wrap text-right mx-2 w-1/6 sm:block">
+        {% if parentDir or file.isDir %}
+                —
+        {% else %}
+            {{ sizeForHumans(file.getSize) }}
+        {% endif %}
+    </div>
+
+    <div class="hidden whitespace-no-wrap text-right truncate ml-2 w-1/4 sm:block">
+        {% if parentDir %}
+                —
+        {% else %}
+            {{ file.getMTime | date }}
+        {% endif %}
+    </div>
+</a>

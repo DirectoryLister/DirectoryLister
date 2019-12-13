@@ -6,6 +6,13 @@ use Twig\TwigFunction;
 return [
     /** Theme specific Twig functions */
     'functions' => [
+        /**
+         * Return the icon markup for a given file.
+         *
+         * @param SplFileInfo $file
+         *
+         * @return string
+         */
         new TwigFunction('icon', function (SplFileInfo $file) {
             $icons = require __DIR__ . '/icons.php';
 

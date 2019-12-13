@@ -80,10 +80,10 @@ class ViewComposer
      */
     public function registerThemeFunctions(): void
     {
-        $themeConfigPath = "{$this->themePath}/config.php";
+        $themeFunctionsFile = "{$this->themePath}/functions.php";
 
-        if (file_exists($themeConfigPath)) {
-            $themeConfig = include $themeConfigPath;
+        if (file_exists($themeFunctionsFile)) {
+            $themeConfig = include $themeFunctionsFile;
         }
 
         foreach ($themeConfig['functions'] ?? [] as $function) {

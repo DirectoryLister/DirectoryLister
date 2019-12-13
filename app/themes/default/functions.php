@@ -13,6 +13,27 @@ return [
                 : $icons[$file->getExtension()] ?? 'fas fa-file';
 
             return "<i class=\"{$icon} fa-fw fa-lg\"></i>";
-        })
+        }),
+
+        /**
+         * Retrieve an item from the theme config.
+         *
+         * @param string $key
+         * @param mixed  $default
+         *
+         * @return mixed
+         */
+        new TwigFunction('config', function (string $key, $default = null) {
+            $config = require __DIR__ . '/config.php';
+
+            foreach (explode('.', $key) as $k) {
+                if (! isset($config[$k])) {
+                    return $default;
+                }
+                $config = $config[$k];
+            }
+
+            return $config;
+        }),
     ]
 ];

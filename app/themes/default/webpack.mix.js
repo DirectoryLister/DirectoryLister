@@ -15,9 +15,9 @@ mix.copyDirectory(
 );
 
 mix.purgeCss({
-    extensions: ["html", "scss", "twig"],
-    globs: ["*.twig"],
+    extensions: ["html", "js", "php", "scss", "twig", "vue"],
+    globs: ["**/*.php", "**/*.scss", "**/*.twig"],
     folders: ["src"],
-    whitelist: ["html", "body", "main"],
+    whitelist: ["html", "body", "main", "fab", "far", "fas", "fal", "fad"],
     whitelistPatterns: [/^fa\-/]
 });

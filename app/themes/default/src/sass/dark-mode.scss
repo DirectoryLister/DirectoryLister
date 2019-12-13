@@ -1,0 +1,23 @@
+#app.dark-mode {
+    @apply bg-gray-800;
+
+    header {
+        @apply bg-purple-700;
+    }
+
+    #content {
+        @apply text-white;
+    }
+
+    #file-list a:hover {
+        @apply bg-purple-700;
+    }
+
+    footer {
+        @apply text-white;
+
+        a:hover {
+            @apply text-purple-600;
+        }
+    }
+}

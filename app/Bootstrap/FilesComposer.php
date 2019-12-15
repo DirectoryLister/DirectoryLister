@@ -11,6 +11,9 @@ use Tightenco\Collect\Support\Collection;
 
 class FilesComposer
 {
+    /** @const Application paths to be hidden */
+    protected const APP_FILES = ['app', 'vendor', 'index.php'];
+
     /** @var Config Application config */
     protected $config;
 
@@ -27,7 +30,9 @@ class FilesComposer
 
         $this->hiddenFiles = Collection::make(
             $this->config->get('hidden_files', [])
-        )->map(function (string $file) {
+        )->when($config->get('hide_app_files', true), function ($collection) {
+            return $collection->merge(self::APP_FILES);
+        })->map(function (string $file) {
             return glob($file, GLOB_BRACE | GLOB_NOSORT);
         })->flatten()->map(function (string $file) {
             return realpath($file);

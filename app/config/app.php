@@ -32,6 +32,13 @@ return [
     'date_format' => 'Y-m-d H:i:s',
 
     /**
+     * Whether or not to hide application files/directories form the listing.
+     *
+     * Default value: true
+     */
+    'hide_app_files' => true,
+
+    /**
      * Description here...
      *
      * Default value: []

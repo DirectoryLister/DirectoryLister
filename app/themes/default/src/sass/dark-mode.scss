@@ -14,10 +14,17 @@
     }
 
     footer {
-        @apply text-white;
+        .container {
+            @apply text-white;
+            @apply border-white;
+        }
 
         a:hover {
             @apply text-purple-600;
         }
+    }
+
+    #scroll-to-top {
+        @apply bg-purple-700;
     }
 }

@@ -50,4 +50,23 @@
             Powered by <a href="https://www.directorylister.com" class="underline hover:text-blue-700">Directory Lister</a>
         </div>
     </footer>
+
+    <a id="scroll-to-top"
+        onclick="window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });"
+        class="flex justify-center items-center w-12 h-12 fixed bottom-0 right-0 rounded-full shadow-lg bg-blue-600 text-white cursor-pointer p-2 mx-10 my-6 hover:bg-blue-700 hidden"
+    >
+        <i class="fas fa-arrow-up fa-lg"></i>
+    </a>
 </div>
+
+<script>
+    let link = document.getElementById('scroll-to-top');
+
+    window.addEventListener('scroll', function() {
+        if (window.scrollY > 10) {
+            link.classList.remove('hidden');
+        } else {
+            link.classList.add('hidden');
+        }
+    });
+</script>

@@ -3,13 +3,14 @@
 namespace App\Bootstrap;
 
 use Closure;
+use DI\Container;
 use PHLAK\Config\Config;
 use RuntimeException;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Finder\SplFileInfo;
 use Tightenco\Collect\Support\Collection;
 
-class FilesComposer
+class FinderComposer
 {
     /** @const Application paths to be hidden */
     protected const APP_FILES = ['app', 'vendor', 'index.php'];
@@ -17,16 +18,22 @@ class FilesComposer
     /** @var Config Application config */
     protected $config;
 
-    /** @var Finder Symfony finder component */
-    protected $finder;
+    /** @var Container The application container */
+    protected $container;
 
     /** @var Collection Collection of hidden file paths */
     protected $hiddenFiles;
 
-    public function __construct(Config $config, Finder $finder)
+    /**
+     * Create a new FilesComposer object.
+     *
+     * @param \PHLAK\Config\Config             $config
+     * @param \Symfony\Component\Finder\Finder $finder
+     */
+    public function __construct(Container $container, Config $config)
     {
+        $this->container = $container;
         $this->config = $config;
-        $this->finder = $finder;
 
         $this->hiddenFiles = Collection::make(
             $this->config->get('hidden_files', [])
@@ -46,34 +53,34 @@ class FilesComposer
      */
     public function __invoke(): void
     {
-        $this->finder->depth(0)->followLinks();
-        $this->finder->ignoreVCS($this->config->get('ignore_vcs_files', false));
-        $this->finder->filter(function (SplFileInfo $file) {
+        $finder = Finder::create()->depth(0)->followLinks();
+        $finder->ignoreVCS($this->config->get('ignore_vcs_files', false));
+        $finder->filter(function (SplFileInfo $file) {
             return ! $this->hiddenFiles->contains($file->getRealPath());
         });
 
         $sortOrder = $this->config->get('sort_order', 'name');
         if ($sortOrder instanceof Closure) {
-            $this->finder->sort($sortOrder);
+            $finder->sort($sortOrder);
         } else {
             switch ($sortOrder) {
                 case 'accessed':
-                    $this->finder->sortByAccessedTime();
+                    $finder->sortByAccessedTime();
                     break;
                 case 'changed':
-                    $this->finder->sortByChangedTime();
+                    $finder->sortByChangedTime();
                     break;
                 case 'modified':
-                    $this->finder->sortByModifiedTime();
+                    $finder->sortByModifiedTime();
                     break;
                 case 'name':
-                    $this->finder->sortByName();
+                    $finder->sortByName();
                     break;
                 case 'natural':
-                    $this->finder->sortByName(true);
+                    $finder->sortByName(true);
                     break;
                 case 'type':
-                    $this->finder->sortByType();
+                    $finder->sortByType();
                     break;
                 default:
                     throw new RuntimeException("Invalid sort option '{$sortOrder}'");
@@ -81,7 +88,9 @@ class FilesComposer
         }
 
         if ($this->config->get('reverse_sort', false)) {
-            $this->finder->reverseSorting();
+            $finder->reverseSorting();
         }
+
+        $this->container->set(Finder::class, $finder);
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use DI\Container;
 use PHLAK\Config\Config;
 use Slim\Psr7\Response;
 use Slim\Views\Twig;
@@ -13,17 +14,22 @@ class DirectoryController
     /** @var Config App configuration component */
     protected $config;
 
+    /** @var Container Application container */
+    protected $container;
+
     /** @var Twig Twig templating component */
     protected $view;
 
     /**
      * Create a new DirectoryController object.
      *
+     * @param \DI\Container        $container
      * @param \PHLAK\Config\Config $config
      * @param \Slim\Views\Twig     $view
      */
-    public function __construct(Config $config, Twig $view)
+    public function __construct(Container $container, Config $config, Twig $view)
     {
+        $this->container = $container;
         $this->config = $config;
         $this->view = $view;
     }
@@ -67,7 +73,7 @@ class DirectoryController
     }
 
     /**
-     * Undocumented function.
+     * Determine if a provided path is the root path.
      *
      * @param string $path
      *
@@ -75,6 +81,6 @@ class DirectoryController
      */
     protected function isRoot(string $path): bool
     {
-        return realpath($path) === realpath($this->config->get('app.root'));
+        return realpath($path) === realpath($this->container->get('app.root'));
     }
 }

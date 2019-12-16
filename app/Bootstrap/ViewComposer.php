@@ -58,7 +58,7 @@ class ViewComposer
      *
      * @return void
      */
-    public function registerGlobalFunctions(Twig $twig): void
+    protected function registerGlobalFunctions(Twig $twig): void
     {
         $twig->getEnvironment()->addFunction(
             new TwigFunction('asset', function (string $path) use ($twig) {
@@ -83,7 +83,7 @@ class ViewComposer
      *
      * @return void
      */
-    public function registerThemeFunctions(Twig $twig): void
+    protected function registerThemeFunctions(Twig $twig): void
     {
         $themeFunctionsFile = "{$twig->getLoader()->getPaths()[0]}/functions.php";
 

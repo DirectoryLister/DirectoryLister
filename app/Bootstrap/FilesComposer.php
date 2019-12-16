@@ -30,7 +30,7 @@ class FilesComposer
 
         $this->hiddenFiles = Collection::make(
             $this->config->get('hidden_files', [])
-        )->when($config->get('hide_app_files', true), function ($collection) {
+        )->when($config->get('hide_app_files', true), function (Collection $collection) {
             return $collection->merge(self::APP_FILES);
         })->map(function (string $file) {
             return glob($file, GLOB_BRACE | GLOB_NOSORT);

@@ -25,8 +25,8 @@ return [
         /**
          * Retrieve an item from the theme config.
          *
-         * @param string $key
-         * @param mixed  $default
+         * @param string     $key
+         * @param mixed|null $default
          *
          * @return mixed
          */

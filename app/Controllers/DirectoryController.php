@@ -31,7 +31,7 @@ class DirectoryController
     /**
      * Invoke the DirectoryController.
      *
-     * @param \Symfony\Component\Finder\Finder $finder
+     * @param \Symfony\Component\Finder\Finder $files
      * @param \Slim\Psr7\Response              $response
      * @param string                           $path
      *

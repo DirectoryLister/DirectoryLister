@@ -21,29 +21,16 @@ class FinderComposer
     /** @var Container The application container */
     protected $container;
 
-    /** @var Collection Collection of hidden file paths */
-    protected $hiddenFiles;
-
     /**
-     * Create a new FilesComposer object.
+     * Create a new FinderComposer object.
      *
-     * @param \PHLAK\Config\Config             $config
-     * @param \Symfony\Component\Finder\Finder $finder
+     * @param \DI\Container        $container
+     * @param \PHLAK\Config\Config $config
      */
     public function __construct(Container $container, Config $config)
     {
         $this->container = $container;
         $this->config = $config;
-
-        $this->hiddenFiles = Collection::make(
-            $this->config->get('hidden_files', [])
-        )->when($config->get('hide_app_files', true), function (Collection $collection) {
-            return $collection->merge(self::APP_FILES);
-        })->map(function (string $file) {
-            return glob($file, GLOB_BRACE | GLOB_NOSORT);
-        })->flatten()->map(function (string $file) {
-            return realpath($file);
-        });
     }
 
     /**
@@ -56,7 +43,7 @@ class FinderComposer
         $finder = Finder::create()->depth(0)->followLinks();
         $finder->ignoreVCS($this->config->get('ignore_vcs_files', false));
         $finder->filter(function (SplFileInfo $file) {
-            return ! $this->hiddenFiles->contains($file->getRealPath());
+            return ! $this->hiddenFiles()->contains($file->getRealPath());
         });
 
         $sortOrder = $this->config->get('sort_order', 'name');
@@ -92,5 +79,23 @@ class FinderComposer
         }
 
         $this->container->set(Finder::class, $finder);
+    }
+
+    /**
+     * Get a collection of hidden files.
+     *
+     * @return \Tightenco\Collect\Support\Collection
+     */
+    protected function hiddenFiles(): Collection
+    {
+        return Collection::make(
+            $this->config->get('hidden_files', [])
+        )->when($this->config->get('hide_app_files', true), function (Collection $collection) {
+            return $collection->merge(self::APP_FILES);
+        })->map(function (string $file) {
+            return glob($file, GLOB_BRACE | GLOB_NOSORT);
+        })->flatten()->map(function (string $file) {
+            return realpath($file);
+        });
     }
 }

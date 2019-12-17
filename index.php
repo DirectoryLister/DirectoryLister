@@ -1,8 +1,6 @@
 <?php
 
-use App\Bootstrap\ConfigComposer;
-use App\Bootstrap\FinderComposer;
-use App\Bootstrap\ViewComposer;
+use App\Bootstrap;
 use App\Controllers;
 use DI\Bridge\Slim\Bridge;
 use DI\Container;
@@ -21,9 +19,9 @@ $container = new Container();
 $container->set('app.root', __DIR__);
 
 // Configure the application componentes
-$container->call(ConfigComposer::class);
-$container->call(FinderComposer::class);
-$container->call(ViewComposer::class);
+$container->call(Bootstrap\ConfigComposer::class);
+$container->call(Bootstrap\FinderComposer::class);
+$container->call(Bootstrap\ViewComposer::class);
 
 // Create the application
 $app = Bridge::create($container);

@@ -27,6 +27,7 @@ $container->call(Bootstrap\ViewComposer::class);
 $app = Bridge::create($container);
 
 // Register routes
+$app->get('/file-info/[{path:.*}]', Controllers\FileInfoController::class);
 $app->get('/[{path:.*}]', Controllers\DirectoryController::class);
 
 // Enagage!

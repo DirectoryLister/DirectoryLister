@@ -53,4 +53,12 @@ return [
      * Default value: true
      */
     'ignore_vcs_files' => true,
+
+    /**
+     * The maximum file size (in bytes) that can be hashed. This helps to
+     * prevent timeouts for excessively large files.
+     *
+     * Defualt value: 1000000000
+     */
+    'max_hash_size' => 1000000000
 ];

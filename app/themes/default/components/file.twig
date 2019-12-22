@@ -1,36 +1,45 @@
 <a
-    href="{% if parentDir %}..{% else %}{{ file.getRelativePathname }}{% endif %}"
-    class="flex justify-between items-center rounded-lg p-4 hover:bg-gray-200 hover:p-4 hover:shadow"
+    href="{{ parentDir ? '..' : file.getRelativePathname }}"
+    class="flex flex-col items-center rounded-lg group hover:bg-gray-200 hover:shadow"
 >
-    <div class="flex-shrink pr-2">
-        {% if parentDir %}
-            <i class="fas fa-level-up-alt fa-fw fa-lg"></i>
-        {% else %}
-            {{ icon(file) | raw }}
-        {% endif %}
-    </div>
+    <div class="flex justify-between items-center p-4 w-full">
+        <div class="flex-shrink pr-2">
+            {% if parentDir %}
+                <i class="fas fa-level-up-alt fa-fw fa-lg"></i>
+            {% else %}
+                {{ icon(file) | raw }}
+            {% endif %}
+        </div>
 
-    <div class="flex-grow truncate mr-2">
-        {% if parentDir %}
-           ..
-        {% else %}
-            {{ file.getBasename }}
-        {% endif %}
-    </div>
+        <div class="flex-grow sm:mr-2">
+            <div class="flex justify-between">
+                <div class="truncate">
+                    {{ parentDir ? '..' : file.getBasename }}
+                </div>
 
-    <div class="hidden whitespace-no-wrap text-right mx-2 w-1/6 sm:block">
-        {% if parentDir or file.isDir %}
-                —
-        {% else %}
-            {{ sizeForHumans(file.getSize) }}
-        {% endif %}
-    </div>
+                {% if file.isFile %}
+                    <div class="ml-2">
+                        <button
+                            class="flex justify-center items-center rounded-full text-sm p-2 -m-1 invisible hover:bg-gray-400 hover:shadow group-hover:visible"
+                            v-on:click.prevent="showFileInfo('{{ file.getPathname }}')"
+                        >
+                            <i class="fas fa-info-circle"></i>
+                        </button>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
 
-    <div class="hidden whitespace-no-wrap text-right truncate ml-2 w-1/4 sm:block">
-        {% if parentDir %}
-                —
-        {% else %}
-            {{ file.getMTime | date }}
-        {% endif %}
+        <div class="hidden whitespace-no-wrap text-right mx-2 w-1/6 sm:block">
+            {% if parentDir or file.isDir %}
+                    —
+            {% else %}
+                {{ sizeForHumans(file.getSize) }}
+            {% endif %}
+        </div>
+
+        <div class="hidden whitespace-no-wrap text-right truncate ml-2 w-1/4 sm:block">
+            {{ parentDir ? '—' : file.getMTime | date }}
+        </div>
     </div>
 </a>

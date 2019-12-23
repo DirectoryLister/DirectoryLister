@@ -5,6 +5,7 @@ namespace App\Bootstrap;
 use DI\Container;
 use PHLAK\Config\Config;
 use Slim\Views\Twig;
+use Symfony\Component\Finder\SplFileInfo;
 use Twig\Extension\CoreExtension;
 use Twig\TwigFunction;
 
@@ -35,34 +36,33 @@ class ViewComposer
      */
     public function __invoke(): void
     {
-        $twig = new Twig("app/themes/{$this->config->get('app.theme', 'default')}");
+        $twig = new Twig('app/resources/views');
 
         $twig->getEnvironment()->setCache(
-            $this->config->get('cache.view_cache', 'app/cache/views')
+            $this->config->get('view.cache', 'app/cache/views')
         );
 
         $twig->getEnvironment()->getExtension(CoreExtension::class)->setDateFormat(
             $this->config->get('app.date_format', 'Y-m-d H:i:s'), '%d days'
         );
 
-        $this->registerGlobalFunctions($twig);
-        $this->registerThemeFunctions($twig);
+        $this->registerFunctions($twig);
 
         $this->container->set(Twig::class, $twig);
     }
 
     /**
-     * Register global Twig functions.
+     * Register Twig functions.
      *
      * @param \Slim\Views\Twig $twig
      *
      * @return void
      */
-    protected function registerGlobalFunctions(Twig $twig): void
+    protected function registerFunctions(Twig $twig): void
     {
         $twig->getEnvironment()->addFunction(
             new TwigFunction('asset', function (string $path) use ($twig) {
-                return "/{$twig->getLoader()->getPaths()[0]}/{$path}";
+                return "/app/dist/{$path}";
             })
         );
 
@@ -74,25 +74,24 @@ class ViewComposer
                 return sprintf('%.2f', $bytes / pow(1024, $factor)) . $sizes[$factor];
             })
         );
-    }
 
-    /**
-     * Register theme specific Twig functions.
-     *
-     * @param \Slim\Views\Twig $twig
-     *
-     * @return void
-     */
-    protected function registerThemeFunctions(Twig $twig): void
-    {
-        $themeFunctionsFile = "{$twig->getLoader()->getPaths()[0]}/functions.php";
+        $twig->getEnvironment()->addFunction(
+            new TwigFunction('icon', function (SplFileInfo $file) {
+                $iconConfig = $this->config->split('icons');
 
-        if (file_exists($themeFunctionsFile)) {
-            $themeConfig = include $themeFunctionsFile;
-        }
+                $icon = $file->isDir() ? 'fas fa-folder'
+                    : $iconConfig->get($file->getExtension(), 'fas fa-file');
 
-        foreach ($themeConfig['functions'] ?? [] as $function) {
-            $twig->getEnvironment()->addFunction($function);
-        }
+                return "<i class=\"{$icon} fa-fw fa-lg\"></i>";
+            })
+        );
+
+        $twig->getEnvironment()->addFunction(
+            new TwigFunction('config', function (string $key, $default = null) {
+                $viewConfig = $this->config->split('view');
+
+                return $viewConfig->get($key, $default);
+            })
+        );
     }
 }

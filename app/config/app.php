@@ -18,14 +18,7 @@ return [
     'reverse_sort' => false,
 
     /**
-     * Name of the theme to use for styling the application.
-     *
-     * Default value: default
-     */
-    'theme' => 'default',
-
-    /**
-     * Description here...
+     * Default date format.
      *
      * Default value: 'Y-m-d H:i:s'
      */

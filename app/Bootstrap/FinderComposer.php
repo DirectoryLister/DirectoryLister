@@ -13,7 +13,7 @@ use Tightenco\Collect\Support\Collection;
 class FinderComposer
 {
     /** @const Application paths to be hidden */
-    protected const APP_FILES = ['app', 'vendor', 'index.php'];
+    protected const APP_FILES = ['app', 'node_modules', 'vendor', 'index.php'];
 
     /** @var Config Application config */
     protected $config;

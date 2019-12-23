@@ -1,6 +1,9 @@
 <?php
 
-if (! function_exists('env')) {
+namespace App\Support;
+
+class Helpers
+{
     /**
      * Return the value of an environment vairable.
      *
@@ -9,7 +12,7 @@ if (! function_exists('env')) {
      *
      * @return mixed
      */
-    function env($envar, $default = null)
+    public static function env($envar, $default = null)
     {
         $value = getenv($envar);
 

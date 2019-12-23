@@ -35,14 +35,14 @@ class ViewComposer
      */
     public function __invoke(): void
     {
-        $twig = new Twig("app/themes/{$this->config->get('theme', 'default')}");
+        $twig = new Twig("app/themes/{$this->config->get('app.theme', 'default')}");
 
         $twig->getEnvironment()->setCache(
-            $this->config->get('view_cache', 'app/cache/views')
+            $this->config->get('cache.view_cache', 'app/cache/views')
         );
 
         $twig->getEnvironment()->getExtension(CoreExtension::class)->setDateFormat(
-            $this->config->get('date_format', 'Y-m-d H:i:s'), '%d days'
+            $this->config->get('app.date_format', 'Y-m-d H:i:s'), '%d days'
         );
 
         $this->registerGlobalFunctions($twig);

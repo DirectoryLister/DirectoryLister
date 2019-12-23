@@ -27,6 +27,6 @@ class ConfigComposer
      */
     public function __invoke(): void
     {
-        $this->container->set(Config::class, new Config('app/config'));
+        $this->container->set(Config::class, Config::createFromDirectory('app/config'));
     }
 }

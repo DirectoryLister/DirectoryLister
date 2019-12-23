@@ -41,12 +41,12 @@ class FinderComposer
     public function __invoke(): void
     {
         $finder = Finder::create()->depth(0)->followLinks();
-        $finder->ignoreVCS($this->config->get('ignore_vcs_files', false));
+        $finder->ignoreVCS($this->config->get('app.ignore_vcs_files', false));
         $finder->filter(function (SplFileInfo $file) {
             return ! $this->hiddenFiles()->contains($file->getRealPath());
         });
 
-        $sortOrder = $this->config->get('sort_order', 'name');
+        $sortOrder = $this->config->get('app.sort_order', 'name');
         if ($sortOrder instanceof Closure) {
             $finder->sort($sortOrder);
         } else {
@@ -74,7 +74,7 @@ class FinderComposer
             }
         }
 
-        if ($this->config->get('reverse_sort', false)) {
+        if ($this->config->get('app.reverse_sort', false)) {
             $finder->reverseSorting();
         }
 
@@ -89,8 +89,8 @@ class FinderComposer
     protected function hiddenFiles(): Collection
     {
         return Collection::make(
-            $this->config->get('hidden_files', [])
-        )->when($this->config->get('hide_app_files', true), function (Collection $collection) {
+            $this->config->get('app.hidden_files', [])
+        )->when($this->config->get('app.hide_app_files', true), function (Collection $collection) {
             return $collection->merge(self::APP_FILES);
         })->map(function (string $file) {
             return glob($file, GLOB_BRACE | GLOB_NOSORT);

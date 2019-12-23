@@ -34,7 +34,7 @@ class FileInfoController
         }
 
         $file = new SplFileInfo($path);
-        if ($file->getSize() >= $this->config->get('max_hash_size', 1000000000)) {
+        if ($file->getSize() >= $this->config->get('app.max_hash_size', 1000000000)) {
             return $response->withStatus(500, 'File size too large');
         }
 

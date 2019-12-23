@@ -12,6 +12,7 @@ return [
 
     /**
      * Path to the view cache directory.
+     * Set to 'false' to disable view caching entirely.
      *
      * Default value: 'app/cache/views'
      */

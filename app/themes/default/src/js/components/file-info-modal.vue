@@ -3,6 +3,7 @@
         class="fixed top-0 flex justify-center items-center w-screen h-screen p-4 z-50"
         style="background-color: hsla(218, 23%, 23%, .5)"
         v-bind:class="this.styles"
+        v-on:click.self="hide()"
     >
         <div class="bg-white rounded-lg shadow-lg overflow-hidden" v-show="! loading">
             <div class="flex justify-between items-center bg-blue-600 p-4">

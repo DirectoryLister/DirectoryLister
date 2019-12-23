@@ -27,4 +27,17 @@
     #scroll-to-top {
         @apply bg-purple-700;
     }
+
+    #file-info-modal {
+        background-color: hsla(218, 23%, 33%, 0.5) !important;
+
+        #file-info-dialogue {
+            @apply bg-gray-800;
+            @apply text-white;
+
+            header {
+                @apply bg-purple-700;
+            }
+        }
+    }
 }

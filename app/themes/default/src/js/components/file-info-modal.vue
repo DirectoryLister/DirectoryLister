@@ -1,12 +1,12 @@
 <template>
-    <div
+    <div id="file-info-modal"
         class="fixed top-0 flex justify-center items-center w-screen h-screen p-4 z-50"
-        style="background-color: hsla(218, 23%, 23%, .5)"
+        style="background-color: hsla(218, 23%, 23%, 0.5)"
         v-bind:class="this.styles"
         v-on:click.self="hide()"
     >
-        <div class="bg-white rounded-lg shadow-lg overflow-hidden" v-show="! loading">
-            <div class="flex justify-between items-center bg-blue-600 p-4">
+        <div id="file-info-dialogue" class="bg-white rounded-lg shadow-lg overflow-hidden" v-show="! loading">
+            <header class="flex justify-between items-center bg-blue-600 p-4">
                 <i class="fas fa-info-circle fa-lg text-white"></i>
 
                 <div class="items-center text-xl text-white font-mono mx-4">
@@ -19,9 +19,9 @@
                 >
                     <i class="fas fa-times"></i>
                 </button>
-            </div>
+            </header>
 
-            <div class="flex justify-center items-center p-4">
+            <content class="flex justify-center items-center p-4">
                 <div class="overflow-x-auto">
                     <table class="table-auto">
                         <tbody>
@@ -32,7 +32,7 @@
                         </tbody>
                     </table>
                 </div>
-            </div>
+            </content>
         </div>
 
         <i class="fas fa-spinner fa-pulse fa-5x text-white" v-show="loading"></i>

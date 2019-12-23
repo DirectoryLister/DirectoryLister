@@ -24,8 +24,8 @@ class FileInfoController
     /**
      * Invoke the FileInfoController.
      *
-     * @param \App\Http\Response $response
-     * @param string             $path
+     * @param \Slim\Psr7\Response $response
+     * @param string              $path
      */
     public function __invoke(Response $response, string $path = '.')
     {

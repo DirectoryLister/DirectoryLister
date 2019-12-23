@@ -11,6 +11,10 @@
 
     #file-list a:hover {
         @apply bg-purple-700;
+
+        button:hover {
+            @apply bg-purple-900;
+        }
     }
 
     footer {

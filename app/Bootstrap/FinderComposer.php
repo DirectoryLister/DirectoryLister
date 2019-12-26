@@ -15,6 +15,16 @@ class FinderComposer
     /** @const Application paths to be hidden */
     protected const APP_FILES = ['app', 'node_modules', 'vendor', 'index.php'];
 
+    /** @const Array of sort options mapped to their respective methods  */
+    public const SORT_METHODS = [
+        'accessed' => SortMethods\Accessed::class,
+        'changed' => SortMethods\Changed::class,
+        'modified' => SortMethods\Modified::class,
+        'name' => SortMethods\Name::class,
+        'natural' => SortMethods\Natural::class,
+        'type' => SortMethods\Type::class,
+    ];
+
     /** @var Config Application config */
     protected $config;
 
@@ -50,28 +60,12 @@ class FinderComposer
         if ($sortOrder instanceof Closure) {
             $finder->sort($sortOrder);
         } else {
-            switch ($sortOrder) {
-                case 'accessed':
-                    $finder->sortByAccessedTime();
-                    break;
-                case 'changed':
-                    $finder->sortByChangedTime();
-                    break;
-                case 'modified':
-                    $finder->sortByModifiedTime();
-                    break;
-                case 'name':
-                    $finder->sortByName();
-                    break;
-                case 'natural':
-                    $finder->sortByName(true);
-                    break;
-                case 'type':
-                    $finder->sortByType();
-                    break;
-                default:
-                    throw new RuntimeException("Invalid sort option '{$sortOrder}'");
+            if (! array_key_exists($sortOrder, self::SORT_METHODS)) {
+                throw new RuntimeException("Invalid sort option '{$sortOrder}'");
             }
+
+            $sortMethod = self::SORT_METHODS[$sortOrder];
+            call_user_func(new $sortMethod, $finder);
         }
 
         if ($this->config->get('app.reverse_sort', false)) {

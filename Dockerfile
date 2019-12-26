@@ -5,20 +5,19 @@ RUN composer install --working-dir /app --ignore-platform-reqs \
     --no-cache --no-dev --no-interaction
 
 # Install and compile JavaScript assets
-# FROM node:12.10 AS js-dependencies
-# ARG FONT_AWESOME_TOKEN
-# COPY --from=php-dependencies /app /app
-# RUN cd /app && npm install && npm run production
+FROM node:13.2 AS js-dependencies
+COPY --from=php-dependencies /app /app
+RUN cd /app && npm install && npm run production
 
 # Build application image
-FROM php:7.3-apache as application
-LABEL maintainer="Chris Kankiewicz <ckankiewicz@freedomdebtrelief.com>"
+FROM php:7.4-apache as application
+LABEL maintainer="Chris Kankiewicz <Chris@ChrisKankiewicz.com>"
 
-COPY --from=php-dependencies /app /var/www/html
+COPY --from=js-dependencies /app /var/www/html
 
 RUN a2enmod rewrite
 
-# Build (local) development image
+# Build development image
 FROM application as development
 COPY ./.docker/php/config/php.dev.ini /usr/local/etc/php/php.ini
 COPY ./.docker/apache2/config/000-default.dev.conf /etc/apache2/sites-available/000-default.conf

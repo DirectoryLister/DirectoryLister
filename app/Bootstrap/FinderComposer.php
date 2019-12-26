@@ -46,7 +46,7 @@ class FinderComposer
             return ! $this->hiddenFiles()->contains($file->getRealPath());
         });
 
-        $sortOrder = $this->config->get('app.sort_order', 'name');
+        $sortOrder = $this->config->get('app.sort_order', 'type');
         if ($sortOrder instanceof Closure) {
             $finder->sort($sortOrder);
         } else {

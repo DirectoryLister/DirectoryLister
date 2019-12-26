@@ -9,24 +9,18 @@ return [
      * Possible values: type, natural, name, accessed, changed, modified
      * Default value: type
      */
-    'sort_order' => Helpers::env('SORT_ORDER', 'type'),
+    'sort_order' => Helpers::env('SORT_ORDER'),
 
     /**
      * Reverse the sort order.
      *
      * Default value: false
      */
-    'reverse_sort' => Helpers::env('REVERSE_SORT', false),
+    'reverse_sort' => Helpers::env('REVERSE_SORT'),
 
     /**
-     * Default date format.
-     *
-     * Default value: 'Y-m-d H:i:s'
-     */
-    'date_format' => Helpers::env('DATE_FORMAT', 'Y-m-d H:i:s'),
-
-    /**
-     * Description here...
+     * Array of files that will be hidden from the listing.
+     * Supports glob patterns.
      *
      * Default value: []
      */
@@ -39,14 +33,14 @@ return [
      *
      * Default value: true
      */
-    'hide_app_files' => Helpers::env('HIDE_APP_FILES', true),
+    'hide_app_files' => Helpers::env('HIDE_APP_FILES'),
 
     /**
      * Hide version control system files (e.g. .git directories) from listing.
      *
      * Default value: true
      */
-    'hide_vcs_files' => Helpers::env('HIDE_VSC_FILES', true),
+    'hide_vcs_files' => Helpers::env('HIDE_VSC_FILES'),
 
     /**
      * The maximum file size (in bytes) that can be hashed. This helps to
@@ -54,5 +48,5 @@ return [
      *
      * Defualt value: 1000000000
      */
-    'max_hash_size' => Helpers::env('MAX_HASH_SIZE', 1000000000)
+    'max_hash_size' => Helpers::env('MAX_HASH_SIZE'),
 ];

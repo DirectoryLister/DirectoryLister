@@ -12,7 +12,7 @@
         </div>
 
         <div class="flex-grow sm:mr-2">
-            <div class="flex justify-between">
+            <div class="flex justify-between items-center">
                 <div class="truncate">
                     {{ parentDir ? '..' : file.getBasename }}
                 </div>
@@ -21,7 +21,7 @@
                     <div class="ml-2">
                         <button
                             title="File Info"
-                            class="flex justify-center items-center rounded-full text-sm p-2 -m-1 invisible hover:bg-gray-400 hover:shadow group-hover:visible"
+                            class="flex justify-center items-center rounded-full p-2 -m-1 invisible hover:bg-gray-400 hover:shadow group-hover:visible"
                             v-on:click.prevent="showFileInfo('{{ file.getPathname }}')"
                         >
                             <i class="fas fa-info-circle"></i>

@@ -87,7 +87,10 @@ class FinderComposer
         )->when($this->config->get('app.hide_app_files', true), function (Collection $collection) {
             return $collection->merge(self::APP_FILES);
         })->map(function (string $file) {
-            return glob($file, GLOB_BRACE | GLOB_NOSORT);
+            return glob(
+                $this->container->get('app.root') . '/' . $file,
+                GLOB_BRACE | GLOB_NOSORT
+            );
         })->flatten()->map(function (string $file) {
             return realpath($file);
         });

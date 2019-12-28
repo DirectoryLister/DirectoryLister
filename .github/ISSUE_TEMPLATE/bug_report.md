@@ -9,7 +9,7 @@ assignees: PHLAK
 
 **Describe the bug**
 
-A clear and concise description of what the bug is.
+A description of the observed behavior.
 
 
 **To Reproduce**
@@ -23,7 +23,7 @@ Steps to reproduce the behavior:
 
 **Expected behavior**
 
-A clear and concise description of what you expected to happen.
+A description of what you expected to happen.
 
 
 **Additional context**

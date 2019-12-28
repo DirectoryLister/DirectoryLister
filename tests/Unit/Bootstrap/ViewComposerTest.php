@@ -4,19 +4,17 @@ namespace Tests\Unit\Bootstrap;
 
 use App\Bootstrap\ViewComposer;
 use App\Bootstrap\ViewFunctions;
-use DI\Container;
 use PHLAK\Config\Config;
-use PHPUnit\Framework\TestCase;
 use Slim\Views\Twig;
+use Tests\TestCase;
 
 class ViewComposerTest extends TestCase
 {
-    public function test_it_can_compose_the_view_component()
+    public function test_it_can_compose_the_view_component(): void
     {
-        $container = new Container();
-        (new ViewComposer($container, new Config))();
+        (new ViewComposer($this->container, new Config))();
 
-        $twig = $container->get(Twig::class);
+        $twig = $this->container->get(Twig::class);
 
         $this->assertInstanceOf(Twig::class, $twig);
         $this->assertEquals('app/cache/views', $twig->getEnvironment()->getCache());

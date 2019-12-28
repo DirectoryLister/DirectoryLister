@@ -3,37 +3,13 @@
 namespace Tests\Unit\Bootstrap;
 
 use App\Bootstrap\FinderComposer;
-use DI\Container;
-use PHLAK\Config\Config;
-use PHPUnit\Framework\TestCase;
 use RuntimeException;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Finder\SplFileInfo;
+use Tests\TestCase;
 
 class FinderComposerTest extends TestCase
 {
-    /** @var Container The application container */
-    protected $container;
-
-    /** @var Config The application config */
-    protected $config;
-
-    public function setUp(): void
-    {
-        $this->container = new Container();
-        $this->container->set('app.root', realpath(__DIR__ . '/../../files'));
-
-        $this->config = new Config([
-            'app' => [
-                'sort_order' => 'type',
-                'reverse_sort' => false,
-                'hidden_files' => [],
-                'hide_app_files' => true,
-                'hide_vcs_files' => false,
-            ]
-        ]);
-    }
-
     public function test_it_can_compose_the_finder_component(): void
     {
         (new FinderComposer($this->container, $this->config))();
@@ -67,7 +43,7 @@ class FinderComposerTest extends TestCase
         ], $this->getFilesArray($finder));
     }
 
-    public function test_it_can_reverse_the_sort_order()
+    public function test_it_can_reverse_the_sort_order(): void
     {
         $this->config->set('app.reverse_sort', true);
 

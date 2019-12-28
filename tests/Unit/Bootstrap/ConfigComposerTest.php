@@ -3,18 +3,16 @@
 namespace Tests\Unit\Bootstrap;
 
 use App\Bootstrap\ConfigComposer;
-use DI\Container;
 use PHLAK\Config\Config;
-use PHPUnit\Framework\TestCase;
+use Tests\TestCase;
 
 class ConfigComposerTest extends TestCase
 {
-    public function test_it_can_compose_the_config_component()
+    public function test_it_can_compose_the_config_component(): void
     {
-        $container = new Container();
-        (new ConfigComposer($container))();
+        (new ConfigComposer($this->container))();
 
-        $config = $container->get(Config::class);
+        $config = $this->container->get(Config::class);
 
         $this->assertInstanceOf(Config::class, $config);
         $this->assertTrue($config->has('app'));

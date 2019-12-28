@@ -3,6 +3,7 @@
 namespace Tests\Controllers;
 
 use App\Controllers\DirectoryController;
+use DI\Container;
 use PHLAK\Config\Config;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ResponseInterface;
@@ -15,13 +16,14 @@ class DirectoryControllerTest extends TestCase
     public function test_it_returns_a_response()
     {
         $controller = new DirectoryController(
+            $this->createMock(Container::class),
             $this->createMock(Config::class),
             $this->createMock(Twig::class)
         );
 
         $response = $controller(
             $this->createMock(Finder::class),
-            $this->createMock(Response::class),
+            new Response(),
             'tests/files'
         );
 

@@ -3,7 +3,7 @@
 $finder = PhpCsFixer\Finder::create()->in([
     __DIR__ . DIRECTORY_SEPARATOR . 'app',
     __DIR__ . DIRECTORY_SEPARATOR . 'tests'
-]);
+])->notPath('cache');
 
 return PhpCsFixer\Config::create()->setRules([
     '@PSR1' => true,

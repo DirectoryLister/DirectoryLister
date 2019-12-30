@@ -36,6 +36,9 @@ class TestCase extends PHPUnitTestCase
                 'hide_vcs_files' => false,
                 'max_hash_size' => 1000000000,
             ],
+            'view' => [
+                'cache' => false
+            ],
         ]);
     }
 }

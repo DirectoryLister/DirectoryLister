@@ -2,23 +2,25 @@
 
 namespace App\Bootstrap\ViewFunctions;
 
+use Symfony\Component\Finder\SplFileInfo;
+
 class SizeForHumans extends ViewFunction
 {
     /** @var string The function name */
     protected $name = 'sizeForHumans';
 
     /**
-     * Convert file size from bytes to a readable size for humans.
+     * Get the human readable file size from a file object.
      *
-     * @param int $bytes File size in bytes
+     * @param SplFileInfo $file A file object
      *
      * @return string
      */
-    public function __invoke(int $bytes): string
+    public function __invoke(SplFileInfo $file): string
     {
         $sizes = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
-        $factor = (int) floor((strlen((string) $bytes) - 1) / 3);
+        $factor = (int) floor((strlen((string) $file->getSize()) - 1) / 3);
 
-        return sprintf('%.2f', $bytes / pow(1024, $factor)) . $sizes[$factor];
+        return sprintf('%.2f', $file->getSize() / pow(1024, $factor)) . $sizes[$factor];
     }
 }

@@ -35,7 +35,7 @@
             {% if parentDir or file.isDir %}
                     —
             {% else %}
-                {{ sizeForHumans(file.getSize) }}
+                {{ sizeForHumans(file) }}
             {% endif %}
         </div>
 

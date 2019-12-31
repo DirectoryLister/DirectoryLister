@@ -8,6 +8,9 @@
     <filter>
         <whitelist processUncoveredFilesFromWhitelist="true">
             <directory suffix=".php">app/</directory>
+            <exclude>
+                <directory>app/cache</directory>
+            </exclude>
         </whitelist>
     </filter>
 </phpunit>

@@ -18,10 +18,8 @@
     }
 
     footer {
-        .container {
-            @apply text-white;
-            @apply border-white;
-        }
+        @apply text-white;
+        @apply border-white;
 
         a:hover {
             @apply text-purple-600;

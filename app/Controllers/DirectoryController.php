@@ -6,6 +6,7 @@ use DI\Container;
 use PHLAK\Config\Config;
 use Slim\Psr7\Response;
 use Slim\Views\Twig;
+use Symfony\Component\Finder\Exception\DirectoryNotFoundException;
 use Symfony\Component\Finder\Finder;
 use Tightenco\Collect\Support\Collection;
 
@@ -45,9 +46,15 @@ class DirectoryController
      */
     public function __invoke(Finder $files, Response $response, string $path = '.')
     {
+        try {
+            $files = $files->in($path);
+        } catch (DirectoryNotFoundException $exception) {
+            return $this->view->render($response->withStatus(404), '404.twig');
+        }
+
         return $this->view->render($response, 'index.twig', [
             'breadcrumbs' => $this->breadcrumbs($path),
-            'files' => $files->in($path),
+            'files' => $files,
             'is_root' => $this->isRoot($path),
         ]);
     }

@@ -1,15 +1,7 @@
 {% extends "layouts/app.twig" %}
 
 {% block content %}
-    <header id="header" class="block bg-blue-600 shadow sticky top-0 text-white text-sm tracking-tight">
-        <div class="container mx-auto p-4">
-            <a href="/" class="hover:underline">Home</a>
-
-            {% for name, path in breadcrumbs %}
-                / <a href="{{ path }}" class="hover:underline">{{ name }}</a>
-            {% endfor %}
-        </div>
-    </header>
+    {% include "components/header.twig" %}
 
     <div id="content" class="container mx-auto px-4">
         <ul id="file-list" class="py-4">

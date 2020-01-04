@@ -31,4 +31,24 @@ class DirectoryControllerTest extends TestCase
         $this->assertInstanceOf(ResponseInterface::class, $response);
         $this->assertEquals(200, $response->getStatusCode());
     }
+
+    public function test_it_returns_a_404_error_when_not_found()
+    {
+        $this->container->call(ViewComposer::class);
+
+        $controller = new DirectoryController(
+            $this->container,
+            $this->config,
+            $this->container->get(Twig::class)
+        );
+
+        $response = $controller(
+            new Finder(),
+            new Response(),
+            '404'
+        );
+
+        $this->assertInstanceOf(ResponseInterface::class, $response);
+        $this->assertEquals(404, $response->getStatusCode());
+    }
 }

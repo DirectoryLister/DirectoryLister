@@ -47,7 +47,7 @@ class DirectoryController
     public function __invoke(Finder $files, Response $response, string $path = '.')
     {
         try {
-            $files = $files->in($path);
+            $files = $files->in($path)->depth(0);
         } catch (DirectoryNotFoundException $exception) {
             return $this->view->render($response->withStatus(404), '404.twig');
         }

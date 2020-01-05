@@ -50,7 +50,7 @@ class FinderComposer
      */
     public function __invoke(): void
     {
-        $finder = Finder::create()->depth(0)->followLinks();
+        $finder = Finder::create()->followLinks();
         $finder->ignoreVCS($this->config->get('app.hide_vcs_files', false));
         $finder->filter(function (SplFileInfo $file) {
             return ! $this->hiddenFiles()->contains($file->getRealPath());

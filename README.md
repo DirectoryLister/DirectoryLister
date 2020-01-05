@@ -1,7 +1,8 @@
 Directory Lister
 ================
 
-More coming soon...
+Directory Lister is the easiest way to expose the contents of any web-accessable
+folder and navigate there within.
 
 Requirements
 ------------
@@ -21,7 +22,7 @@ A list of changes can be found on the [GitHub Releases](https://github.com/PHLAK
 Troubleshooting
 ---------------
 
-For general help and support join our [Slack Workspace](https://join.slack.com/t/phlaknet/shared_invite/enQtNzk0ODkwMDA2MDg0LWI4NDAyZGRlMWEyMWNhZmJmZjgzM2Y2YTdhNmZlYzc3OGNjZWU5MDNkMTcwMWQ5OGI5ODFmMjI5OWVkZTliN2M).
+For general help and support join our [Slack Workspace](https://ln.phlak.net/join-slack).
 
 Please report bugs to the [GitHub Issue Tracker](https://github.com/PHLAK/directory-lister/issues).
 

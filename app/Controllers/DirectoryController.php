@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use DI\Container;
 use PHLAK\Config\Config;
+use Slim\Psr7\Request;
 use Slim\Psr7\Response;
 use Slim\Views\Twig;
 use Symfony\Component\Finder\Exception\DirectoryNotFoundException;
@@ -44,18 +45,29 @@ class DirectoryController
      *
      * @return \Psr\Http\Message\ResponseInterface
      */
-    public function __invoke(Finder $files, Response $response, string $path = '.')
-    {
+    public function __invoke(
+        Finder $files,
+        Request $request,
+        Response $response,
+        string $path = '.'
+    ) {
         try {
-            $files = $files->in($path)->depth(0);
+            $files = $files->in($path);
         } catch (DirectoryNotFoundException $exception) {
             return $this->view->render($response->withStatus(404), '404.twig');
+        }
+
+        if ($search = $request->getQueryParams()['search'] ?? false) {
+            $files->name(sprintf('/(?:.*)%s(?:.*)/i', $search));
+        } else {
+            $files->depth(0);
         }
 
         return $this->view->render($response, 'index.twig', [
             'breadcrumbs' => $this->breadcrumbs($path),
             'files' => $files,
             'is_root' => $this->isRoot($path),
+            'search' => $search ?? null,
         ]);
     }
 

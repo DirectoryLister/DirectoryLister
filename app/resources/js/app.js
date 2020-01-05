@@ -4,10 +4,18 @@ Vue.component('file-info-modal', require('./components/file-info-modal.vue').def
 
 const app = new Vue({
     el: "#app",
+    data: function() {
+        return {
+            search: ''
+        };
+    },
     methods: {
         showFileInfo(filePath) {
             this.$refs.fileInfoModal.show(filePath);
         }
+    },
+    beforeMount: function() {
+        this.search = this.$el.querySelector('input[name="search"]').value;
     }
 });
 

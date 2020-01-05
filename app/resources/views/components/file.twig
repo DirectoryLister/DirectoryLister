@@ -14,7 +14,7 @@
         <div class="flex-grow sm:mr-2">
             <div class="flex justify-between items-center">
                 <div class="truncate">
-                    {{ parentDir ? '..' : file.getBasename }}
+                    {{ parentDir ? '..' : file.getRelativePathname }}
                 </div>
 
                 {% if file.isFile %}

@@ -1,9 +1,28 @@
-<header id="header" class="block bg-blue-600 shadow sticky top-0 text-white text-sm tracking-tight">
-    <div class="container mx-auto p-4">
-        <a href="/" class="hover:underline">Home</a>
+<header id="header" class="bg-blue-600 shadow sticky top-0">
+    <div class="container flex flex-col justify-between items-center mx-auto p-4 md:flex-row">
+        <div class="text-white text-sm tracking-tight my-2">
+            <a href="/" class="hover:underline">Home</a>
 
-        {% for name, path in breadcrumbs %}
-            / <a href="{{ path }}" class="hover:underline">{{ name }}</a>
-        {% endfor %}
+            {% for name, path in breadcrumbs %}
+                / <a href="{{ path }}" class="hover:underline">{{ name }}</a>
+            {% endfor %}
+        </div>
+
+        <form action="." method="get" id="search" class="group relative block w-full bg-blue-700 rounded-full shadow-inner md:w-4/12 md:-my-2">
+            <input type="text" name="search" placeholder="Search this directory..." value="{{ search }}"
+                class="bg-transparent font-sans placeholder-gray-900 text-white w-full px-10 py-2"
+                v-model="search"
+            >
+
+            <div class="absolute flex items-center left-0 inset-y-0 ml-4 pointer-events-none">
+                <i class="fas fa-search fa-fw text-blue-900 text-sm"></i>
+            </div>
+
+            <div class="flex items-center absolute right-0 inset-y-0 mr-2" v-show="search">
+                <a href="."  class="flex justify-center items-center rounded-full text-blue-900 w-6 h-6 hover:bg-red-700 hover:text-white hover:shadow">
+                    <i class="fas fa-times"></i>
+                </a>
+            </div>
+        </form>
     </div>
 </header>

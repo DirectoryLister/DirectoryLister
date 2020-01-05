@@ -3,6 +3,22 @@
 
     header {
         @apply bg-purple-700;
+
+        #search {
+            @apply bg-purple-800;
+
+            i.fa-search {
+                @apply text-purple-900;
+            }
+
+            a {
+                @apply text-purple-900;
+
+                &:hover {
+                    @apply text-white;
+                }
+            }
+        }
     }
 
     #content {

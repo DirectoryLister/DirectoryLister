@@ -49,4 +49,11 @@ return [
      * Defualt value: 1000000000
      */
     'max_hash_size' => Helpers::env('MAX_HASH_SIZE'),
+
+    /**
+     * Parse and render README files inline.
+     *
+     * Default value: true
+     */
+    'render_readme' => Helpers::env('RENDER_README', true),
 ];

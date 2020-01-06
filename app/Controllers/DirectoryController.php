@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use DI\Container;
+use Parsedown;
 use PHLAK\Config\Config;
 use Slim\Psr7\Request;
 use Slim\Psr7\Response;
@@ -19,6 +20,9 @@ class DirectoryController
     /** @var Container Application container */
     protected $container;
 
+    /** @var Parsedown Parsedown component */
+    protected $parsedown;
+
     /** @var Twig Twig templating component */
     protected $view;
 
@@ -29,10 +33,15 @@ class DirectoryController
      * @param \PHLAK\Config\Config $config
      * @param \Slim\Views\Twig     $view
      */
-    public function __construct(Container $container, Config $config, Twig $view)
-    {
+    public function __construct(
+        Container $container,
+        Config $config,
+        Parsedown $parsedown,
+        Twig $view
+    ) {
         $this->container = $container;
         $this->config = $config;
+        $this->parsedown = $parsedown;
         $this->view = $view;
     }
 
@@ -65,11 +74,20 @@ class DirectoryController
             $files->depth(0);
         }
 
+        $readmeFiles = Finder::create()->in($path)->depth(0)->name('/^README\.md$/i');
+        if ($readmeFiles->hasResults() && ! $search) {
+            $readmeArray = iterator_to_array($readmeFiles);
+            $readme = $this->parsedown->parse(
+                array_shift($readmeArray)->getContents()
+            );
+        }
+
         return $this->view->render($response, 'index.twig', [
             'breadcrumbs' => $this->breadcrumbs($path),
             'files' => $files,
             'is_root' => $this->isRoot($path),
             'search' => $search ?? null,
+            'readme' => $readme ?? null,
         ]);
     }
 

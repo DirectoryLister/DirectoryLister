@@ -29,6 +29,18 @@
                 {{ include('components/file.twig') }}
             {% endfor %}
         </ul>
+
+        {% if readme %}
+            <div id="readme" class="rounded-lg overflow-hidden shadow-md my-12">
+                <div class="flex items-center bg-blue-600 px-4 py-3 text-white">
+                    <i class="fab fa-readme fa-lg pr-3"></i> README.md
+                </div>
+
+                <article class="bg-gray-100 border rounded-b-lg px-12 py-8 markdown">
+                    {{ readme | raw }}
+                </article>
+            </div>
+        {% endif %}
     </div>
 
     {% include 'components/footer.twig' %}

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Bootstrap\SortMethods;
+namespace App\SortMethods;
 
 use Symfony\Component\Finder\Finder;
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Bootstrap\ViewFunctions;
+namespace App\ViewFunctions;
 
 use PHLAK\Config\Config;
 

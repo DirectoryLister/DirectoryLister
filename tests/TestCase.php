@@ -25,7 +25,7 @@ class TestCase extends PHPUnitTestCase
     public function setUp(): void
     {
         $this->container = new Container();
-        $this->container->set('app.root', $this->testFilesPath);
+        $this->container->set('base_path', $this->testFilesPath);
 
         $this->config = new Config([
             'app' => [

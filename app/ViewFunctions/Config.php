@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Bootstrap\ViewFunctions;
+namespace App\ViewFunctions;
 
 class Config extends ViewFunction
 {

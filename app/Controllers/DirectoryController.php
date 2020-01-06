@@ -120,6 +120,6 @@ class DirectoryController
      */
     protected function isRoot(string $path): bool
     {
-        return realpath($path) === realpath($this->container->get('app.root'));
+        return realpath($path) === realpath($this->container->get('base_path'));
     }
 }

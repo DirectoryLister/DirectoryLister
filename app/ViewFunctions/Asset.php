@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Bootstrap\ViewFunctions;
+namespace App\ViewFunctions;
 
 class Asset extends ViewFunction
 {

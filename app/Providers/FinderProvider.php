@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Bootstrap;
+namespace App\Providers;
 
+use App\SortMethods;
 use Closure;
 use DI\Container;
 use PHLAK\Config\Config;
@@ -10,7 +11,7 @@ use Symfony\Component\Finder\Finder;
 use Symfony\Component\Finder\SplFileInfo;
 use Tightenco\Collect\Support\Collection;
 
-class FinderComposer
+class FinderProvider
 {
     /** @const Application paths to be hidden */
     protected const APP_FILES = ['app', 'node_modules', 'vendor', 'index.php'];
@@ -32,7 +33,7 @@ class FinderComposer
     protected $container;
 
     /**
-     * Create a new FinderComposer object.
+     * Create a new ConfigProvider object.
      *
      * @param \DI\Container        $container
      * @param \PHLAK\Config\Config $config
@@ -44,7 +45,7 @@ class FinderComposer
     }
 
     /**
-     * Setup the Finder component.
+     * Initialize and register the Finder component.
      *
      * @return void
      */
@@ -94,7 +95,7 @@ class FinderComposer
             return $collection->merge(self::APP_FILES);
         })->map(function (string $file) {
             return glob(
-                $this->container->get('app.root') . '/' . $file,
+                $this->container->get('base_path') . '/' . $file,
                 GLOB_BRACE | GLOB_NOSORT
             );
         })->flatten()->map(function (string $file) {

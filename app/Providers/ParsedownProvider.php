@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Bootstrap;
+namespace App\Providers;
 
 use DI\Container;
-use PHLAK\Config\Config;
+use Parsedown;
 
-class ConfigComposer
+class ParsedownProvider
 {
     /** @var Container The applicaiton container */
     protected $container;
 
     /**
-     * Create a new ConfigComposer object.
+     * Create a new ParsedownProvider object.
      *
      * @param \DI\Container $container
      */
@@ -21,12 +21,12 @@ class ConfigComposer
     }
 
     /**
-     * Set up the Config component.
+     * Initialize and register the Parsedown component.
      *
      * @return void
      */
     public function __invoke(): void
     {
-        $this->container->set(Config::class, Config::createFromDirectory('app/config'));
+        $this->container->set(Parsedown::class, new Parsedown);
     }
 }

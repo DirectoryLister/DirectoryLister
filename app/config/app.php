@@ -56,4 +56,13 @@ return [
      * Default value: true
      */
     'render_readme' => Helpers::env('RENDER_README', true),
+
+    /**
+     * Additional providers to be loaded during application initialization.
+     *
+     * Default value: []
+     */
+    'providers' => [
+        // ...
+    ],
 ];

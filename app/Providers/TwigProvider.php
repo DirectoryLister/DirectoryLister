@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Bootstrap;
+namespace App\Providers;
 
+use App\ViewFunctions;
 use DI\Container;
 use PHLAK\Config\Config;
 use Slim\Views\Twig;
@@ -9,7 +10,7 @@ use Twig\Extension\CoreExtension;
 use Twig\Loader\FilesystemLoader;
 use Twig\TwigFunction;
 
-class ViewComposer
+class TwigProvider
 {
     /** @const Constant description */
     protected const VIEW_FUNCTIONS = [
@@ -26,7 +27,7 @@ class ViewComposer
     protected $config;
 
     /**
-     * Create a new ViewComposer object.
+     * Create a new ViewProvider object.
      *
      * @param \DI\Container        $container
      * @param \PHLAK\Config\Config $config
@@ -38,7 +39,7 @@ class ViewComposer
     }
 
     /**
-     * Set up the Twig component.
+     * Initialize and register the Twig component.
      *
      * @return void
      */

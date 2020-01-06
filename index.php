@@ -1,8 +1,7 @@
 <?php
 
-use App\Bootstrap;
+use App\Bootstrap\AppManager;
 use App\Controllers;
-use DI\Bridge\Slim\Bridge;
 use DI\Container;
 use Dotenv\Dotenv;
 
@@ -16,15 +15,10 @@ Dotenv::createImmutable(__DIR__)->load();
 
 // Initialize the container
 $container = new Container();
-$container->set('app.root', __DIR__);
+$container->set('base_path', __DIR__);
 
-// Configure the application componentes
-$container->call(Bootstrap\ConfigComposer::class);
-$container->call(Bootstrap\FinderComposer::class);
-$container->call(Bootstrap\ViewComposer::class);
-
-// Create the application
-$app = Bridge::create($container);
+// Configure the application
+$app = $container->call(AppManager::class);
 
 // Register routes
 $app->get('/file-info/[{path:.*}]', Controllers\FileInfoController::class);

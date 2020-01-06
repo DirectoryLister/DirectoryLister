@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Bootstrap\SortMethods;
+namespace App\SortMethods;
 
 use Symfony\Component\Finder\Finder;
 
-class Accessed extends SortMethod
+class Modified extends SortMethod
 {
     /**
-     * Sort by file accessed time.
+     * Sort by file modified time.
      *
      * @param \Symfony\Component\Finder\Finder $finder
      *
@@ -15,6 +15,6 @@ class Accessed extends SortMethod
      */
     public function __invoke(Finder $finder): void
     {
-        $finder->sortByAccessedTime();
+        $finder->sortByModifiedTime();
     }
 }

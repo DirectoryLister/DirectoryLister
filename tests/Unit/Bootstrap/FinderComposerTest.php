@@ -2,7 +2,7 @@
 
 namespace Tests\Unit\Bootstrap;
 
-use App\Bootstrap\FinderComposer;
+use App\Bootstrap\FinderProvider;
 use RuntimeException;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Finder\SplFileInfo;
@@ -12,10 +12,10 @@ class FinderComposerTest extends TestCase
 {
     public function test_it_can_compose_the_finder_component(): void
     {
-        (new FinderComposer($this->container, $this->config))();
+        (new FinderProvider($this->container, $this->config))();
 
         $finder = $this->container->get(Finder::class);
-        $finder->in($this->container->get('app.root'));
+        $finder->in($this->container->get('base_path'));
 
         $this->assertInstanceOf(Finder::class, $finder);
         foreach ($finder as $file) {
@@ -29,10 +29,10 @@ class FinderComposerTest extends TestCase
             return $file1->getSize() <=> $file2->getSize();
         });
 
-        (new FinderComposer($this->container, $this->config))();
+        (new FinderProvider($this->container, $this->config))();
 
         $finder = $this->container->get(Finder::class);
-        $finder->in($this->container->get('app.root'));
+        $finder->in($this->container->get('base_path'));
 
         $this->assertEquals([
             'alpha.scss',
@@ -47,10 +47,10 @@ class FinderComposerTest extends TestCase
     {
         $this->config->set('app.reverse_sort', true);
 
-        (new FinderComposer($this->container, $this->config))();
+        (new FinderProvider($this->container, $this->config))();
 
         $finder = $this->container->get(Finder::class);
-        $finder->in($this->container->get('app.root'));
+        $finder->in($this->container->get('base_path'));
 
         $this->assertEquals([
             'echo.yaml',
@@ -67,7 +67,7 @@ class FinderComposerTest extends TestCase
 
         $this->expectException(RuntimeException::class);
 
-        (new FinderComposer($this->container, $this->config))();
+        (new FinderProvider($this->container, $this->config))();
     }
 
     protected function getFilesArray(Finder $finder): array

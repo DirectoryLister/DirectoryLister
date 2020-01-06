@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Bootstrap\SortMethods;
+namespace App\SortMethods;
 
 use Symfony\Component\Finder\Finder;
 
-class Type extends SortMethod
+class Name extends SortMethod
 {
     /**
-     * Sory by file type.
+     * Sort by file name.
      *
      * @param \Symfony\Component\Finder\Finder $finder
      *
@@ -15,6 +15,6 @@ class Type extends SortMethod
      */
     public function __invoke(Finder $finder): void
     {
-        $finder->sortByType();
+        $finder->sortByName();
     }
 }

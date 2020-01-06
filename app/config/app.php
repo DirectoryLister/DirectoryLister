@@ -24,9 +24,9 @@ return [
      *
      * Default value: []
      */
-    'hidden_files' => array_map(function (string $file) {
-        return trim($file);
-    }, explode(',', Helpers::env('HIDDEN_FILES'))),
+    'hidden_files' => [
+        // ...
+    ],
 
     /**
      * Whether or not to hide application files/directories form the listing.

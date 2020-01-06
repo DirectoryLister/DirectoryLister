@@ -53,7 +53,13 @@ class FinderComposer
         $finder = Finder::create()->followLinks();
         $finder->ignoreVCS($this->config->get('app.hide_vcs_files', false));
         $finder->filter(function (SplFileInfo $file) {
-            return ! $this->hiddenFiles()->contains($file->getRealPath());
+            foreach ($this->hiddenFiles() as $hiddenPath) {
+                if (strpos($file->getRealPath(), $hiddenPath) === 0) {
+                    return false;
+                }
+            }
+
+            return true;
         });
 
         $sortOrder = $this->config->get('app.sort_order', 'type');
@@ -93,6 +99,6 @@ class FinderComposer
             );
         })->flatten()->map(function (string $file) {
             return realpath($file);
-        });
+        })->unique();
     }
 }

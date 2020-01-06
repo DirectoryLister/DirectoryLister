@@ -57,7 +57,7 @@ class DirectoryControllerTest extends TestCase
         $this->assertEquals(200, $response->getStatusCode());
     }
 
-    public function test_it_returns_a_404_error_when_not_found()
+    public function test_it_returns_a_404_error_when_not_found(): void
     {
         $this->container->call(TwigProvider::class);
 

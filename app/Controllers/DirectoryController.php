@@ -58,7 +58,9 @@ class DirectoryController
         }
 
         if ($search = $request->getQueryParams()['search'] ?? false) {
-            $files->name(sprintf('/(?:.*)%s(?:.*)/i', $search));
+            $files->name(
+                sprintf('/(?:.*)%s(?:.*)/i', preg_quote($search, '/'))
+            );
         } else {
             $files->depth(0);
         }

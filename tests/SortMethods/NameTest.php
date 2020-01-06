@@ -1,8 +1,8 @@
 <?php
 
-namespace Tests\Unit\Bootstrap\SortMethods;
+namespace Tests\SortMethods;
 
-use App\Bootstrap\SortMethods\Name;
+use App\SortMethods\Name;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Finder\Finder;
 

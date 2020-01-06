@@ -1,26 +1,31 @@
 <?php
 
-namespace Tests\Unit\Bootstrap;
+namespace Tests\Providers;
 
-use App\Bootstrap\FinderProvider;
+use App\Providers\FinderProvider;
 use RuntimeException;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Finder\SplFileInfo;
 use Tests\TestCase;
 
-class FinderComposerTest extends TestCase
+class FinderProviderTest extends TestCase
 {
     public function test_it_can_compose_the_finder_component(): void
     {
         (new FinderProvider($this->container, $this->config))();
 
         $finder = $this->container->get(Finder::class);
-        $finder->in($this->container->get('base_path'));
+        $finder->in($this->container->get('base_path'))->depth(0);
 
         $this->assertInstanceOf(Finder::class, $finder);
-        foreach ($finder as $file) {
-            $this->assertInstanceOf(SplFileInfo::class, $file);
-        }
+        $this->assertEquals([
+            'subdir',
+            'alpha.scss',
+            'bravo.js',
+            'charlie.bash',
+            'delta.html',
+            'echo.yaml',
+        ], $this->getFilesArray($finder));
     }
 
     public function test_it_can_sort_by_a_user_provided_closure(): void
@@ -32,7 +37,7 @@ class FinderComposerTest extends TestCase
         (new FinderProvider($this->container, $this->config))();
 
         $finder = $this->container->get(Finder::class);
-        $finder->in($this->container->get('base_path'));
+        $finder->in($this->container->get('base_path'))->depth(0);
 
         $this->assertEquals([
             'alpha.scss',
@@ -40,6 +45,7 @@ class FinderComposerTest extends TestCase
             'echo.yaml',
             'charlie.bash',
             'delta.html',
+            'subdir',
         ], $this->getFilesArray($finder));
     }
 
@@ -50,7 +56,7 @@ class FinderComposerTest extends TestCase
         (new FinderProvider($this->container, $this->config))();
 
         $finder = $this->container->get(Finder::class);
-        $finder->in($this->container->get('base_path'));
+        $finder->in($this->container->get('base_path'))->depth(0);
 
         $this->assertEquals([
             'echo.yaml',
@@ -58,6 +64,7 @@ class FinderComposerTest extends TestCase
             'charlie.bash',
             'bravo.js',
             'alpha.scss',
+            'subdir',
         ], $this->getFilesArray($finder));
     }
 

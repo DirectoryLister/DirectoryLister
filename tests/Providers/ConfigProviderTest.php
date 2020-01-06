@@ -1,16 +1,16 @@
 <?php
 
-namespace Tests\Unit\Bootstrap;
+namespace Tests\Providers;
 
-use App\Bootstrap\ConfigComposer;
+use App\Providers\ConfigProvider;
 use PHLAK\Config\Config;
 use Tests\TestCase;
 
-class ConfigComposerTest extends TestCase
+class ConfigProviderTest extends TestCase
 {
     public function test_it_can_compose_the_config_component(): void
     {
-        (new ConfigComposer($this->container))();
+        (new ConfigProvider($this->container))();
 
         $config = $this->container->get(Config::class);
 

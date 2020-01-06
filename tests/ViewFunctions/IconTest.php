@@ -1,8 +1,8 @@
 <?php
 
-namespace Tests\Unit\Bootstrap\ViewFunctions;
+namespace Tests\ViewFunctions;
 
-use App\Bootstrap\ViewFunctions\Icon;
+use App\ViewFunctions\Icon;
 use PHLAK\Config\Config;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Finder\SplFileInfo;

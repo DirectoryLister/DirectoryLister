@@ -1,8 +1,8 @@
 <?php
 
-namespace Tests\Unit\Bootstrap\ViewFunctions;
+namespace Tests\ViewFunctions;
 
-use App\Bootstrap\ViewFunctions\Asset;
+use App\ViewFunctions\Asset;
 use PHLAK\Config\Config;
 use PHPUnit\Framework\TestCase;
 

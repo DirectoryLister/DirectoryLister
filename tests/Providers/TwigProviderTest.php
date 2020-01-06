@@ -1,18 +1,18 @@
 <?php
 
-namespace Tests\Unit\Bootstrap;
+namespace Tests\Providers;
 
-use App\Bootstrap\ViewComposer;
-use App\Bootstrap\ViewFunctions;
+use App\Providers\TwigProvider;
+use App\ViewFunctions;
 use PHLAK\Config\Config;
 use Slim\Views\Twig;
 use Tests\TestCase;
 
-class ViewComposerTest extends TestCase
+class TwigProviderTest extends TestCase
 {
     public function test_it_can_compose_the_view_component(): void
     {
-        (new ViewComposer($this->container, new Config))();
+        (new TwigProvider($this->container, new Config))();
 
         $twig = $this->container->get(Twig::class);
 

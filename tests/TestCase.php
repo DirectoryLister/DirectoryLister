@@ -15,7 +15,7 @@ class TestCase extends PHPUnitTestCase
     protected $config;
 
     /** @var string Path to test files directory */
-    protected $testFilesPath = __DIR__ . '/files';
+    protected $testFilesPath = __DIR__ . '/_files';
 
     /**
      * This method is called before each test.
@@ -40,5 +40,17 @@ class TestCase extends PHPUnitTestCase
                 'cache' => false
             ],
         ]);
+    }
+
+    /**
+     * Get the file path to a test file.
+     *
+     * @param string $filePath
+     *
+     * @return string
+     */
+    protected function filePath(string $filePath): string
+    {
+        return realpath($this->testFilesPath . '/' . $filePath);
     }
 }

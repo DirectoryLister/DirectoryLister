@@ -60,6 +60,8 @@ class DirectoryController
         Response $response,
         string $path = '.'
     ) {
+        $path = realpath($this->container->get('base_path') . '/' . $path);
+
         try {
             $files = $files->in($path);
         } catch (DirectoryNotFoundException $exception) {
@@ -100,7 +102,9 @@ class DirectoryController
      */
     protected function breadcrumbs(string $path): array
     {
-        $breadcrumbs = Collection::make(array_filter(explode('/', $path)));
+        $breadcrumbs = Collection::make(explode('/', $path))->diff(
+            explode('/', $this->container->get('base_path'))
+        )->filter();
 
         return $breadcrumbs->filter(function (string $crumb) {
             return $crumb !== '.';

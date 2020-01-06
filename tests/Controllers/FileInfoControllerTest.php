@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Unit\Controllers;
+namespace Tests\Controllers;
 
 use App\Controllers\FileInfoController;
 use Psr\Http\Message\ResponseInterface;
@@ -11,9 +11,9 @@ class FileInfoControllerTest extends TestCase
 {
     public function test_it_can_return_a_successful_response(): void
     {
-        $controller = new FileInfoController($this->config);
+        $controller = new FileInfoController($this->container, $this->config);
 
-        $response = $controller(new Response(), __DIR__ . '/../../files/alpha.scss');
+        $response = $controller(new Response(), 'alpha.scss');
 
         $this->assertInstanceOf(ResponseInterface::class, $response);
         $this->assertEquals(200, $response->getStatusCode());
@@ -21,7 +21,7 @@ class FileInfoControllerTest extends TestCase
 
     public function test_it_can_return_a_not_found_response(): void
     {
-        $controller = new FileInfoController($this->config);
+        $controller = new FileInfoController($this->container, $this->config);
 
         $response = $controller(new Response(), 'not_a_file.test');
 
@@ -32,9 +32,9 @@ class FileInfoControllerTest extends TestCase
     public function test_it_returns_an_error_when_file_size_is_too_large(): void
     {
         $this->config->set('app.max_hash_size', 10);
-        $controller = new FileInfoController($this->config);
+        $controller = new FileInfoController($this->container, $this->config);
 
-        $response = $controller(new Response(), __DIR__ . '/../../files/alpha.scss');
+        $response = $controller(new Response(), 'alpha.scss');
 
         $this->assertInstanceOf(ResponseInterface::class, $response);
         $this->assertEquals(500, $response->getStatusCode());

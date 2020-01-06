@@ -7,7 +7,7 @@ folder and navigate there within.
 Requirements
 ------------
 
-  - [PHP](https://php.net) >= 7.1
+  - [PHP](https://php.net) >= 7.2
 
 Installation
 ------------

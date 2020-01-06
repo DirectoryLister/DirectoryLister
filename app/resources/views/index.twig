@@ -19,7 +19,7 @@
                 </div>
             </div>
 
-            {% if  not search and not is_root %}
+            {% if not search and not is_root %}
                 {{ include('components/file.twig', {
                     parentDir: true
                 }, with_context = false) }}

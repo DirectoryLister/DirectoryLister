@@ -55,6 +55,14 @@
 
             header {
                 @apply bg-purple-700;
+
+                button {
+                    @apply text-purple-900;
+
+                    &:hover {
+                        @apply text-white;
+                    }
+                }
             }
         }
     }

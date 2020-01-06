@@ -6,6 +6,7 @@ use DI\Container;
 use PHLAK\Config\Config;
 use Slim\Views\Twig;
 use Twig\Extension\CoreExtension;
+use Twig\Loader\FilesystemLoader;
 use Twig\TwigFunction;
 
 class ViewComposer
@@ -43,7 +44,7 @@ class ViewComposer
      */
     public function __invoke(): void
     {
-        $twig = new Twig('app/resources/views');
+        $twig = new Twig(new FilesystemLoader('app/resources/views'));
 
         $twig->getEnvironment()->setCache(
             $this->config->get('view.cache', 'app/cache/views')

@@ -14,8 +14,10 @@
                 v-model="search"
             >
 
-            <div class="absolute flex items-center left-0 inset-y-0 ml-4 pointer-events-none">
-                <i class="fas fa-search fa-fw text-blue-900 text-sm"></i>
+            <div class="flex items-center absolute left-0 inset-y-0 ml-2 pointer-events-none">
+                <div class="flex justify-center items-center text-blue-900 w-6 h-6">
+                    <i class="fas fa-search fa-fw"></i>
+                </div>
             </div>
 
             <div class="flex items-center absolute right-0 inset-y-0 mr-2" v-show="search">

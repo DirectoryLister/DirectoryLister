@@ -1,8 +1,2 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<files psalm-version="3.7.2@d9cae720c1af31db9ba27c2bc1fcf9b0dd092fb0">
-  <file src="app/Bootstrap/ViewComposer.php">
-    <UndefinedInterfaceMethod occurrences="1">
-      <code>setDateFormat</code>
-    </UndefinedInterfaceMethod>
-  </file>
-</files>
+<files psalm-version="3.8.1@8e54e3aa060fc490d86d0e2abbf62750516d40fd"/>

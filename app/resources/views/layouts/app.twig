@@ -9,6 +9,6 @@
 
 <title>{% block title %}{% endblock %} &bull; Directory Lister</title>
 
-<div id="app" class="flex flex-col min-h-screen font-mono {{ config('dark_mode') ? 'dark-mode' : '' }}">
+<div id="app" class="flex flex-col min-h-screen font-mono {{ config('dark_mode') ? 'dark-mode' : 'light-mode' }}">
     {% block content %}{% endblock %}
 </div>

@@ -66,4 +66,39 @@
             }
         }
     }
+
+    #readme {
+        article {
+            @apply bg-gray-900;
+            @apply border-0;
+        }
+    }
+
+    .markdown {
+        a {
+            @apply text-purple-600;
+
+            &:hover {
+                @apply text-purple-800;
+            }
+        }
+
+        h1,
+        h2 {
+            @apply border-gray-800;
+        }
+
+        h6 {
+            @apply text-base;
+            @apply text-gray-600;
+        }
+
+        code {
+            @apply bg-gray-800;
+        }
+
+        hr {
+            @apply border-gray-800;
+        }
+    }
 }

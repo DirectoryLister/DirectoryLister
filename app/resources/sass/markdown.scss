@@ -1,5 +1,6 @@
 .markdown {
     @apply font-sans;
+    @apply break-words;
 
     a {
         @apply text-blue-600;
@@ -8,6 +9,10 @@
         &:hover {
             @apply text-blue-800;
         }
+    }
+
+    img {
+        @apply inline;
     }
 
     p,
@@ -80,11 +85,17 @@
         @apply mt-4;
     }
 
-    pre {
+    code {
         @apply bg-gray-200;
         @apply rounded-sm;
-        @apply p-4;
+        @apply p-1;
         @apply font-mono;
+        @apply overflow-y-auto;
+    }
+
+    pre > code {
+        @apply block;
+        @apply p-4;
         @apply text-sm;
         @apply whitespace-pre;
     }

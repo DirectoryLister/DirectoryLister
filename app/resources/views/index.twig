@@ -31,7 +31,7 @@
             {% endfor %}
         </ul>
 
-        {% if readme %}
+        {% if readme and not search %}
             {% include 'components/readme.twig' %}
         {% endif %}
     </div>

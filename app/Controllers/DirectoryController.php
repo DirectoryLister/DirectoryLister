@@ -62,7 +62,7 @@ class DirectoryController
         string $path = '.'
     ) {
         $path = realpath($this->container->get('base_path') . '/' . $path);
-        $search = $request->getQueryParams()['search'] ?? false;
+        $search = $request->getQueryParams()['search'] ?? null;
 
         try {
             $files = $files->in($path);
@@ -77,8 +77,8 @@ class DirectoryController
             'title' => $this->relativePath($path),
             'breadcrumbs' => $this->breadcrumbs($path),
             'is_root' => $this->isRoot($path),
-            'search' => $search ?? null,
-            'readme' => $search ? null : $this->readme($path),
+            'readme' => $this->readme($path),
+            'search' => $search,
         ]);
     }
 
@@ -131,11 +131,11 @@ class DirectoryController
     }
 
     /**
-     * Return the README file in a path.
+     * Return the README file for a given path.
      *
      * @param string $path
      *
-     * @return \Symfony\Component\Finder\SplFileInfo
+     * @return \Symfony\Component\Finder\SplFileInfo|null
      */
     protected function readme($path): SplFileInfo
     {

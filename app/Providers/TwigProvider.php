@@ -56,7 +56,7 @@ class TwigProvider
         );
 
         foreach (self::VIEW_FUNCTIONS as $function) {
-            $function = new $function($this->config);
+            $function = new $function($this->container, $this->config);
 
             $twig->getEnvironment()->addFunction(
                 new TwigFunction($function->name(), $function)

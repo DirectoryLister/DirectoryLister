@@ -2,12 +2,14 @@ let mix = require('laravel-mix');
 let tailwindcss = require('tailwindcss');
 require('laravel-mix-purgecss');
 
-mix.sass('app/resources/sass/app.scss', 'app/dist').options({
+mix.setPublicPath(path.resolve('.'));
+
+mix.sass('app/resources/sass/app.scss', 'app/dist/app.css').options({
     processCssUrls: false,
     postCss: [tailwindcss('tailwind.config.js')]
 });
 
-mix.js('app/resources/js/app.js', 'app/dist');
+mix.js('app/resources/js/app.js', 'app/dist/app.js');
 
 mix.copyDirectory(
     'node_modules/@fortawesome/fontawesome-free/webfonts',
@@ -16,8 +18,11 @@ mix.copyDirectory(
 
 mix.purgeCss({
     extensions: ["html", "js", "php", "scss", "twig", "vue"],
-    globs: ["**/*.php", "**/*.scss", "**/*.twig"],
-    folders: ["src"],
-    whitelist: ["html", "body", "main", "fab", "far", "fas", "fal", "fad"],
+    folders: ["app"],
+    whitelist: ["html", "body", "main", "fab", "fad", "fal", "far", "fas"],
     whitelistPatterns: [/^fa\-/]
 });
+
+if (mix.inProduction()) {
+    mix.version();
+}

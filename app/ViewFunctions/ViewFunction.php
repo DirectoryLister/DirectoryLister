@@ -2,12 +2,16 @@
 
 namespace App\ViewFunctions;
 
+use DI\Container;
 use PHLAK\Config\Config;
 
 abstract class ViewFunction
 {
     /** @var string The function name */
     protected $name = '';
+
+    /** @var Container The application container */
+    protected $container;
 
     /** @var Config App configuration component */
     protected $config;
@@ -17,8 +21,9 @@ abstract class ViewFunction
      *
      * @param \PHLAK\Config\Config $config
      */
-    public function __construct(Config $config)
+    public function __construct(Container $container, Config $config)
     {
+        $this->container = $container;
         $this->config = $config;
     }
 

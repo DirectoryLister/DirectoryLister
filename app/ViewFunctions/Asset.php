@@ -2,6 +2,8 @@
 
 namespace App\ViewFunctions;
 
+use Tightenco\Collect\Support\Collection;
+
 class Asset extends ViewFunction
 {
     /** @const Constant description */
@@ -19,6 +21,24 @@ class Asset extends ViewFunction
      */
     public function __invoke(string $path): string
     {
-        return self::ASSET_PATH . $path;
+        $assetPath = self::ASSET_PATH . $path;
+
+        if ($this->mixManifest()->has($assetPath)) {
+            return $this->mixManifest()->get($assetPath);
+        }
+
+        return $assetPath;
+    }
+
+    /**
+     * Return the mix manifest collection.
+     *
+     * @return \Tightenco\Collect\Support\Collection
+     */
+    protected function mixManifest(): Collection
+    {
+        return Collection::make(json_decode(file_get_contents(
+            $this->container->get('base_path') . '/mix-manifest.json'
+        ), true));
     }
 }

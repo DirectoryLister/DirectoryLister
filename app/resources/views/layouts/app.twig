@@ -7,7 +7,7 @@
 
 <link rel="stylesheet" href="{{ asset('app.css') }}">
 
-<title>Directory Lister</title>
+<title>{% block title %}{% endblock %} &bull; Directory Lister</title>
 
 <div id="app" class="flex flex-col min-h-screen font-mono {{ config('dark_mode') ? 'dark-mode' : '' }}">
     {% block content %}{% endblock %}

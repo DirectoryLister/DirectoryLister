@@ -85,12 +85,27 @@ class DirectoryController
         }
 
         return $this->view->render($response, 'index.twig', [
+            'title' => $this->relativePath($path),
             'breadcrumbs' => $this->breadcrumbs($path),
             'files' => $files,
             'is_root' => $this->isRoot($path),
             'search' => $search ?? null,
             'readme' => $readme ?? null,
         ]);
+    }
+
+    /**
+     * Return the relative path given a full path.
+     *
+     * @param string $path
+     *
+     * @return string
+     */
+    protected function relativePath(string $path): string
+    {
+        return Collection::make(explode('/', $path))->diff(
+            explode('/', $this->container->get('base_path'))
+        )->filter()->implode('/');
     }
 
     /**

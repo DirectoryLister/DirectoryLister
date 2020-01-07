@@ -139,7 +139,10 @@ class DirectoryController
      */
     protected function readme($path): SplFileInfo
     {
-        $readmes = Finder::create()->in($path)->depth(0)->name('/^README\.(?:md|txt)$/i');
+        $readmes = Finder::create()->in($path)->depth(0)->name('/^README(?:\..+)?$/i');
+        $readmes->filter(function (SplFileInfo $file) {
+            return (bool) preg_match('/text\/.+/', mime_content_type($file->getPathname()));
+        });
         $readmes->sort(function (SplFileInfo $file1, SplFileInfo $file2) {
             return $file1->getExtension() <=> $file2->getExtension();
         });

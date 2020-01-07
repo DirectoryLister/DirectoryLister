@@ -31,26 +31,12 @@
         </ul>
 
         {% if readme %}
-            <div id="readme" class="rounded-lg overflow-hidden shadow-md my-8">
-                <header class="flex items-center bg-blue-600 px-4 py-3 text-white">
-                    <i class="fab fa-readme fa-lg pr-3"></i> README.md
-                </header>
-
-                <article class="bg-gray-100 rounded-b-lg px-12 py-8 markdown">
-                    {{ readme | raw }}
-                </article>
-            </div>
+            {% include 'components/readme.twig' %}
         {% endif %}
     </div>
 
     {% include 'components/footer.twig' %}
 
-    <a id="scroll-to-top"
-        class="flex justify-center items-center w-12 h-12 fixed bottom-0 right-0 rounded-full shadow-lg bg-blue-600 text-white cursor-pointer p-2 mx-10 my-6 hover:bg-blue-700 hidden"
-        onclick="window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });" title="Scroll to Top"
-    >
-        <i class="fas fa-arrow-up fa-lg"></i>
-    </a>
-
+    {% include 'components/scroll-to-top.twig' %}
     <file-info-modal ref="fileInfoModal"></file-info-modal>
 {% endblock %}

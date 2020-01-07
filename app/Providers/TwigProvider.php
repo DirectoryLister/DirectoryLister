@@ -17,6 +17,7 @@ class TwigProvider
         ViewFunctions\Asset::class,
         ViewFunctions\Config::class,
         ViewFunctions\Icon::class,
+        ViewFunctions\Markdown::class,
         ViewFunctions\SizeForHumans::class,
     ];
 

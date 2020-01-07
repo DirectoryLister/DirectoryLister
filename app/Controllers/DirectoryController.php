@@ -10,6 +10,7 @@ use Slim\Psr7\Response;
 use Slim\Views\Twig;
 use Symfony\Component\Finder\Exception\DirectoryNotFoundException;
 use Symfony\Component\Finder\Finder;
+use Symfony\Component\Finder\SplFileInfo;
 use Tightenco\Collect\Support\Collection;
 
 class DirectoryController
@@ -61,6 +62,7 @@ class DirectoryController
         string $path = '.'
     ) {
         $path = realpath($this->container->get('base_path') . '/' . $path);
+        $search = $request->getQueryParams()['search'] ?? false;
 
         try {
             $files = $files->in($path);
@@ -68,29 +70,15 @@ class DirectoryController
             return $this->view->render($response->withStatus(404), '404.twig');
         }
 
-        if ($search = $request->getQueryParams()['search'] ?? false) {
-            $files->name(
-                sprintf('/(?:.*)%s(?:.*)/i', preg_quote($search, '/'))
-            );
-        } else {
-            $files->depth(0);
-        }
-
-        $readmeFiles = Finder::create()->in($path)->depth(0)->name('/^README\.md$/i');
-        if ($readmeFiles->hasResults() && ! $search) {
-            $readmeArray = iterator_to_array($readmeFiles);
-            $readme = $this->parsedown->parse(
-                array_shift($readmeArray)->getContents()
-            );
-        }
-
         return $this->view->render($response, 'index.twig', [
+            'files' => $search ? $files->name(
+                sprintf('/(?:.*)%s(?:.*)/i', preg_quote($search, '/'))
+            ) : $files->depth(0),
             'title' => $this->relativePath($path),
             'breadcrumbs' => $this->breadcrumbs($path),
-            'files' => $files,
             'is_root' => $this->isRoot($path),
             'search' => $search ?? null,
-            'readme' => $readme ?? null,
+            'readme' => $search ? null : $this->readme($path),
         ]);
     }
 
@@ -140,5 +128,28 @@ class DirectoryController
     protected function isRoot(string $path): bool
     {
         return realpath($path) === realpath($this->container->get('base_path'));
+    }
+
+    /**
+     * Return the README file in a path.
+     *
+     * @param string $path
+     *
+     * @return \Symfony\Component\Finder\SplFileInfo
+     */
+    protected function readme($path): SplFileInfo
+    {
+        $readmes = Finder::create()->in($path)->depth(0)->name('/^README\.(?:md|txt)$/i');
+        $readmes->sort(function (SplFileInfo $file1, SplFileInfo $file2) {
+            return $file1->getExtension() <=> $file2->getExtension();
+        });
+
+        if ($readmes->hasResults()) {
+            $readmeArray = iterator_to_array($readmes);
+
+            return array_shift($readmeArray);
+        }
+
+        return null;
     }
 }

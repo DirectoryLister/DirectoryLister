@@ -15,7 +15,6 @@ class AppManager
     /** @const Array of application providers */
     protected const PROVIDERS = [
         Providers\ConfigProvider::class,
-        Providers\ParsedownProvider::class,
         Providers\FinderProvider::class,
         Providers\TwigProvider::class,
     ];

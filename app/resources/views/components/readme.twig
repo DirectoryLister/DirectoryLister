@@ -3,7 +3,11 @@
         <i class="fab fa-readme fa-lg pr-3"></i> README.md
     </header>
 
-    <article class="bg-gray-100 rounded-b-lg px-12 py-8 markdown">
-        {{ readme | raw }}
+    <article class="bg-gray-100 rounded-b-lg px-12 py-8 {{ readme.getExtension == 'md' ? 'markdown' : 'font-mono' }}">
+        {% if readme.getExtension == 'md' %}
+            {{ markdown(readme.getContents) | raw }}
+        {% else %}
+            {{ readme.getContents | nl2br }}
+        {% endif %}
     </article>
 </div>

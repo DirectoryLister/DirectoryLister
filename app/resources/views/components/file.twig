@@ -22,7 +22,7 @@
                         <button
                             title="File Info"
                             class="flex justify-center items-center rounded-full p-2 -m-1 invisible hover:bg-gray-400 hover:shadow group-hover:visible"
-                            v-on:click.prevent="showFileInfo('{{ file.getPathname }}')"
+                            v-on:click.prevent="showFileInfo('{{ file.getRelativePathname }}')"
                         >
                             <i class="fas fa-info-circle"></i>
                         </button>

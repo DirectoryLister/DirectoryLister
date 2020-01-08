@@ -37,8 +37,14 @@ class Asset extends ViewFunction
      */
     protected function mixManifest(): Collection
     {
-        return Collection::make(json_decode(file_get_contents(
-            $this->container->get('base_path') . '/mix-manifest.json'
-        ), true));
+        $mixManifest = $this->container->get('base_path') . '/mix-manifest.json';
+
+        if (! is_file($mixManifest)) {
+            return new Collection();
+        }
+
+        return Collection::make(
+            json_decode(file_get_contents($mixManifest), true) ?? []
+        );
     }
 }

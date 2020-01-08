@@ -13,7 +13,7 @@ class FileInfoControllerTest extends TestCase
     {
         $controller = new FileInfoController($this->container, $this->config);
 
-        $response = $controller(new Response(), 'alpha.scss');
+        $response = $controller(new Response(), 'README.md');
 
         $this->assertInstanceOf(ResponseInterface::class, $response);
         $this->assertEquals(200, $response->getStatusCode());
@@ -34,7 +34,7 @@ class FileInfoControllerTest extends TestCase
         $this->config->set('app.max_hash_size', 10);
         $controller = new FileInfoController($this->container, $this->config);
 
-        $response = $controller(new Response(), 'alpha.scss');
+        $response = $controller(new Response(), 'README.md');
 
         $this->assertInstanceOf(ResponseInterface::class, $response);
         $this->assertEquals(500, $response->getStatusCode());

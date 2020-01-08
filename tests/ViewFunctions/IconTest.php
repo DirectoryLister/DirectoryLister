@@ -4,8 +4,8 @@ namespace Tests\ViewFunctions;
 
 use App\ViewFunctions\Icon;
 use PHLAK\Config\Config;
-use PHPUnit\Framework\TestCase;
 use Symfony\Component\Finder\SplFileInfo;
+use Tests\TestCase;
 
 class IconTest extends TestCase
 {
@@ -14,6 +14,8 @@ class IconTest extends TestCase
 
     public function setUp(): void
     {
+        parent::setUp();
+
         $this->config = new Config([
             'php' => false,
             'icons' => [
@@ -24,7 +26,7 @@ class IconTest extends TestCase
 
     public function test_it_can_return_icon_markup_for_a_file(): void
     {
-        $icon = new Icon($this->config);
+        $icon = new Icon($this->container, $this->config);
         $file = $this->createMock(SplFileInfo::class);
         $file->method('isDir')->willReturn(false);
         $file->method('getExtension')->willReturn('php');
@@ -34,7 +36,7 @@ class IconTest extends TestCase
 
     public function test_it_can_return_icon_markup_for_a_directory(): void
     {
-        $icon = new Icon($this->config);
+        $icon = new Icon($this->container, $this->config);
         $file = $this->createMock(SplFileInfo::class);
         $file->method('isDir')->willReturn(true);
 
@@ -43,7 +45,7 @@ class IconTest extends TestCase
 
     public function test_it_can_return_the_default_icon_markup(): void
     {
-        $icon = new Icon($this->config);
+        $icon = new Icon($this->container, $this->config);
         $file = $this->createMock(SplFileInfo::class);
         $file->method('isDir')->willReturn(false);
         $file->method('getExtension')->willReturn('default');

@@ -4,4 +4,4 @@
 .env
 .php_cs.cache
 .phpunit.result.cache
-mix-manifest.json
+/mix-manifest.json

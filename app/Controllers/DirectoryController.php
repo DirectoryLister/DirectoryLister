@@ -3,7 +3,6 @@
 namespace App\Controllers;
 
 use DI\Container;
-use Parsedown;
 use PHLAK\Config\Config;
 use Slim\Psr7\Request;
 use Slim\Psr7\Response;
@@ -21,9 +20,6 @@ class DirectoryController
     /** @var Container Application container */
     protected $container;
 
-    /** @var Parsedown Parsedown component */
-    protected $parsedown;
-
     /** @var Twig Twig templating component */
     protected $view;
 
@@ -34,15 +30,10 @@ class DirectoryController
      * @param \PHLAK\Config\Config $config
      * @param \Slim\Views\Twig     $view
      */
-    public function __construct(
-        Container $container,
-        Config $config,
-        Parsedown $parsedown,
-        Twig $view
-    ) {
+    public function __construct(Container $container, Config $config, Twig $view)
+    {
         $this->container = $container;
         $this->config = $config;
-        $this->parsedown = $parsedown;
         $this->view = $view;
     }
 
@@ -137,7 +128,7 @@ class DirectoryController
      *
      * @return \Symfony\Component\Finder\SplFileInfo|null
      */
-    protected function readme($path): SplFileInfo
+    protected function readme($path): ?SplFileInfo
     {
         $readmes = Finder::create()->in($path)->depth(0)->name('/^README(?:\..+)?$/i');
         $readmes->filter(function (SplFileInfo $file) {

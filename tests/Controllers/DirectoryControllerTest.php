@@ -4,7 +4,6 @@ namespace Tests\Controllers;
 
 use App\Controllers\DirectoryController;
 use App\Providers\TwigProvider;
-use Parsedown;
 use Psr\Http\Message\ResponseInterface;
 use Slim\Psr7\Request;
 use Slim\Psr7\Response;
@@ -21,7 +20,6 @@ class DirectoryControllerTest extends TestCase
         $controller = new DirectoryController(
             $this->container,
             $this->config,
-            new Parsedown(),
             $this->container->get(Twig::class)
         );
 
@@ -42,7 +40,6 @@ class DirectoryControllerTest extends TestCase
         $controller = new DirectoryController(
             $this->container,
             $this->config,
-            new Parsedown(),
             $this->container->get(Twig::class)
         );
 
@@ -64,7 +61,6 @@ class DirectoryControllerTest extends TestCase
         $controller = new DirectoryController(
             $this->container,
             $this->config,
-            new Parsedown(),
             $this->container->get(Twig::class)
         );
 
@@ -79,14 +75,13 @@ class DirectoryControllerTest extends TestCase
         $this->assertEquals(404, $response->getStatusCode());
     }
 
-    public function test_it_returns_a_successful_response_for_a_search()
+    public function test_it_returns_a_successful_response_for_a_search(): void
     {
         $this->container->call(TwigProvider::class);
 
         $controller = new DirectoryController(
             $this->container,
             $this->config,
-            new Parsedown(),
             $this->container->get(Twig::class)
         );
 

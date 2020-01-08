@@ -15,11 +15,10 @@ class FinderProviderTest extends TestCase
         (new FinderProvider($this->container, $this->config))();
 
         $finder = $this->container->get(Finder::class);
-        $finder->in($this->container->get('base_path'))->depth(0);
+        $finder->in($this->filePath('subdir'))->depth(0);
 
         $this->assertInstanceOf(Finder::class, $finder);
         $this->assertEquals([
-            'subdir',
             'alpha.scss',
             'bravo.js',
             'charlie.bash',
@@ -37,7 +36,7 @@ class FinderProviderTest extends TestCase
         (new FinderProvider($this->container, $this->config))();
 
         $finder = $this->container->get(Finder::class);
-        $finder->in($this->container->get('base_path'))->depth(0);
+        $finder->in($this->filePath('subdir'))->depth(0);
 
         $this->assertEquals([
             'alpha.scss',
@@ -45,7 +44,6 @@ class FinderProviderTest extends TestCase
             'echo.yaml',
             'charlie.bash',
             'delta.html',
-            'subdir',
         ], $this->getFilesArray($finder));
     }
 
@@ -56,7 +54,7 @@ class FinderProviderTest extends TestCase
         (new FinderProvider($this->container, $this->config))();
 
         $finder = $this->container->get(Finder::class);
-        $finder->in($this->container->get('base_path'))->depth(0);
+        $finder->in($this->filePath('subdir'))->depth(0);
 
         $this->assertEquals([
             'echo.yaml',
@@ -64,7 +62,24 @@ class FinderProviderTest extends TestCase
             'charlie.bash',
             'bravo.js',
             'alpha.scss',
-            'subdir',
+        ], $this->getFilesArray($finder));
+    }
+
+    public function test_it_does_not_return_hidden_files(): void
+    {
+        $this->config->set('app.hidden_files', [
+            'subdir/alpha.scss', 'subdir/charlie.bash', '**/*.yaml'
+        ]);
+
+        (new FinderProvider($this->container, $this->config))();
+
+        $finder = $this->container->get(Finder::class);
+        $finder->in($this->filePath('subdir'))->depth(0);
+
+        $this->assertInstanceOf(Finder::class, $finder);
+        $this->assertEquals([
+            'bravo.js',
+            'delta.html',
         ], $this->getFilesArray($finder));
     }
 

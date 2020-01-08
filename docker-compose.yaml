@@ -7,7 +7,7 @@ services:
       context: .
       target: development
     environment:
-      VIRTUAL_HOST: directorylister.local
+      VIRTUAL_HOST: directory-lister.local
     volumes:
       - ./:/var/www/html
     restart: unless-stopped

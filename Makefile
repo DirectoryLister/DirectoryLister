@@ -11,7 +11,7 @@ clear-cache: # Clear the application cache
 	@rm app/cache/* -rfv
 
 tunnel: # Expose the application via ngrok
-	@ngrok http -host-header=rewrite http://directorylister.local:80
+	@ngrok http -host-header=rewrite http://directory-lister.local:80
 
 help: # Show this help
 	@grep --perl-regexp '^([\w\s-]+):\s+#+\s+(.*)$$' $(MAKEFILE_LIST) \

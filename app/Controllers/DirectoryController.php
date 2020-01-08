@@ -65,8 +65,7 @@ class DirectoryController
             'files' => $search ? $files->name(
                 sprintf('/(?:.*)%s(?:.*)/i', preg_quote($search, '/'))
             ) : $files->depth(0),
-            'title' => $this->relativePath($path),
-            'breadcrumbs' => $this->breadcrumbs($path),
+            'relative_path' => $this->relativePath($path),
             'is_root' => $this->isRoot($path),
             'readme' => $this->readme($path),
             'search' => $search,
@@ -85,28 +84,6 @@ class DirectoryController
         return Collection::make(explode('/', $path))->diff(
             explode('/', $this->container->get('base_path'))
         )->filter()->implode('/');
-    }
-
-    /**
-     * Build an array of breadcrumbs for a given path.
-     *
-     * @param string $path
-     *
-     * @return array
-     */
-    protected function breadcrumbs(string $path): array
-    {
-        $breadcrumbs = Collection::make(explode('/', $path))->diff(
-            explode('/', $this->container->get('base_path'))
-        )->filter();
-
-        return $breadcrumbs->filter(function (string $crumb) {
-            return $crumb !== '.';
-        })->reduce(function (array $carry, string $crumb) {
-            $carry[$crumb] = end($carry) . "/{$crumb}";
-
-            return $carry;
-        }, []);
     }
 
     /**

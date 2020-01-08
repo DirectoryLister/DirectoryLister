@@ -3,7 +3,7 @@
         <div class="text-white text-sm tracking-tight mb-2 md:my-2">
             <a href="/" class="hover:underline">Home</a>
 
-            {% for name, path in breadcrumbs %}
+            {% for name, path in breadcrumbs(relative_path) %}
                 / <a href="{{ path }}" class="hover:underline">{{ name }}</a>
             {% endfor %}
         </div>

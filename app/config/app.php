@@ -43,19 +43,19 @@ return [
     'hide_vcs_files' => Helpers::env('HIDE_VSC_FILES'),
 
     /**
+     * Parse and render README files on the page.
+     *
+     * Default value: false
+     */
+    'display_readmes' => Helpers::env('DISPLAY_READMES'),
+
+    /**
      * The maximum file size (in bytes) that can be hashed. This helps to
      * prevent timeouts for excessively large files.
      *
      * Defualt value: 1000000000
      */
     'max_hash_size' => Helpers::env('MAX_HASH_SIZE'),
-
-    /**
-     * Parse and render README files inline.
-     *
-     * Default value: true
-     */
-    'render_readme' => Helpers::env('RENDER_README', true),
 
     /**
      * Additional providers to be loaded during application initialization.

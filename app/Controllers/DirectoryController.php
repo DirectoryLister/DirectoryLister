@@ -107,6 +107,10 @@ class DirectoryController
      */
     protected function readme($path): ?SplFileInfo
     {
+        if (! $this->config->get('display_readmes', false)) {
+            return null;
+        }
+
         $readmes = Finder::create()->in($path)->depth(0)->name('/^README(?:\..+)?$/i');
         $readmes->filter(function (SplFileInfo $file) {
             return (bool) preg_match('/text\/.+/', mime_content_type($file->getPathname()));
@@ -115,12 +119,12 @@ class DirectoryController
             return $file1->getExtension() <=> $file2->getExtension();
         });
 
-        if ($readmes->hasResults()) {
-            $readmeArray = iterator_to_array($readmes);
-
-            return array_shift($readmeArray);
+        if (! $readmes->hasResults()) {
+            return null;
         }
 
-        return null;
+        $readmeArray = iterator_to_array($readmes);
+
+        return array_shift($readmeArray);
     }
 }

@@ -34,6 +34,7 @@ class TestCase extends PHPUnitTestCase
                 'hidden_files' => [],
                 'hide_app_files' => true,
                 'hide_vcs_files' => false,
+                'display_readmes' => false,
                 'max_hash_size' => 1000000000,
             ],
             'view' => [

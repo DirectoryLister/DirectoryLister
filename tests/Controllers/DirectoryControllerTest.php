@@ -13,8 +13,16 @@ use Tests\TestCase;
 
 class DirectoryControllerTest extends TestCase
 {
-    public function test_it_returns_a_successful_response(): void
-    {
+    /** @dataProvider configOptions */
+    public function test_it_returns_a_successful_response(
+        bool $hideAppFiles,
+        bool $hideVcsFiles,
+        bool $displayReadmes
+    ): void {
+        $this->config->set('app.hide_app_files', $hideAppFiles);
+        $this->config->set('app.hide_vcs_files', $hideVcsFiles);
+        $this->config->set('app.display_readmes', $displayReadmes);
+
         $this->container->call(TwigProvider::class);
 
         $controller = new DirectoryController(
@@ -33,8 +41,16 @@ class DirectoryControllerTest extends TestCase
         $this->assertEquals(200, $response->getStatusCode());
     }
 
-    public function test_it_returns_a_successful_response_when_listing_a_subdirectory(): void
-    {
+    /** @dataProvider configOptions */
+    public function test_it_returns_a_successful_response_when_listing_a_subdirectory(
+        bool $hideAppFiles,
+        bool $hideVcsFiles,
+        bool $displayReadmes
+    ): void {
+        $this->config->set('app.hide_app_files', $hideAppFiles);
+        $this->config->set('app.hide_vcs_files', $hideVcsFiles);
+        $this->config->set('app.display_readmes', $displayReadmes);
+
         $this->container->call(TwigProvider::class);
 
         $controller = new DirectoryController(
@@ -75,7 +91,7 @@ class DirectoryControllerTest extends TestCase
         $this->assertEquals(404, $response->getStatusCode());
     }
 
-    public function test_it_returns_a_successful_response_for_a_search(): void
+    public function test_it_returns_a_successful_response_for_a_search_request(): void
     {
         $this->container->call(TwigProvider::class);
 
@@ -98,5 +114,19 @@ class DirectoryControllerTest extends TestCase
 
         $this->assertInstanceOf(ResponseInterface::class, $response);
         $this->assertEquals(200, $response->getStatusCode());
+    }
+
+    public function configOptions(): array
+    {
+        return [
+            [true, false, false],
+            [true, true, false],
+            [true, false, true],
+            [true, true, true],
+            [false, true, false],
+            [false, true, true],
+            [false, false, true],
+            [false, false, false],
+        ];
     }
 }

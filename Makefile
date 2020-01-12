@@ -7,7 +7,7 @@ compile: # Compile application (CSS and JavaScript) assets
 	@npm run dev
 
 update upgrade: # Update application dependencies
-	@composer update && npm update
+	@composer update && npm update && npm install
 
 test: #: Run coding standards/static analysis checks and tests
 	@php-cs-fixer fix --diff --dry-run && psalm --show-info=false && phpunit

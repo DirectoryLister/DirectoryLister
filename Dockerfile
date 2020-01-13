@@ -1,19 +1,19 @@
 # Install PHP dependencies
 FROM composer:1.9 AS php-dependencies
-COPY . /app
-RUN composer install --working-dir /app --ignore-platform-reqs \
+COPY . /application
+RUN composer install --working-dir /application --ignore-platform-reqs \
     --no-cache --no-dev --no-interaction
 
 # Install and compile JavaScript assets
 FROM node:13.2 AS js-dependencies
-COPY --from=php-dependencies /app /app
-RUN cd /app && npm install && npm run production
+COPY --from=php-dependencies /application /application
+RUN cd /application && npm install && npm run production
 
 # Build application image
 FROM php:7.4-apache as application
 LABEL maintainer="Chris Kankiewicz <Chris@ChrisKankiewicz.com>"
 
-COPY --from=js-dependencies /app /var/www/html
+COPY --from=js-dependencies /application /var/www/html
 
 RUN a2enmod rewrite
 

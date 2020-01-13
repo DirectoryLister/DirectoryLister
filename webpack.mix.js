@@ -2,6 +2,8 @@ let mix = require('laravel-mix');
 let tailwindcss = require('tailwindcss');
 require('laravel-mix-purgecss');
 
+mix.setPublicPath('.');
+
 mix.sass('app/resources/sass/app.scss', 'app/dist/app.css').options({
     processCssUrls: false,
     postCss: [tailwindcss('tailwind.config.js')]
@@ -21,6 +23,6 @@ mix.purgeCss({
     whitelistPatterns: [/^fa\-/]
 });
 
-// if (mix.inProduction()) {
-//     mix.version();
-// }
+if (mix.inProduction()) {
+    mix.version();
+}

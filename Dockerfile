@@ -5,7 +5,7 @@ RUN composer install --working-dir /application --ignore-platform-reqs \
     --no-cache --no-dev --no-interaction
 
 # Install and compile JavaScript assets
-FROM node:13.2 AS js-dependencies
+FROM node:13.6 AS js-dependencies
 COPY --from=php-dependencies /application /application
 RUN cd /application && npm install && npm run production
 

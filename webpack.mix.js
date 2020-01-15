@@ -4,6 +4,10 @@ require('laravel-mix-purgecss');
 
 mix.setPublicPath('.');
 
+mix.webpackConfig({
+    watchOptions: { ignored: ['node_modules', 'vendor'] }
+});
+
 mix.sass('app/resources/sass/app.scss', 'app/dist/app.css').options({
     processCssUrls: false,
     postCss: [tailwindcss('tailwind.config.js')]

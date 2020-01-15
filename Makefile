@@ -12,7 +12,7 @@ update upgrade: # Update application dependencies
 test: #: Run coding standards/static analysis checks and tests
 	@php-cs-fixer fix --diff --dry-run && psalm --show-info=false && phpunit
 
-tunnel: # Expose the application via ngrok
+tunnel: # Expose the application via secure tunnel
 	@ngrok http -host-header=rewrite http://directory-lister.local:80
 
 clear-cache: # Clear the application cache

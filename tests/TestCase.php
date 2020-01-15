@@ -24,9 +24,6 @@ class TestCase extends PHPUnitTestCase
      */
     public function setUp(): void
     {
-        $this->container = new Container();
-        $this->container->set('base_path', $this->testFilesPath);
-
         $this->config = new Config([
             'app' => [
                 'sort_order' => 'type',
@@ -41,6 +38,10 @@ class TestCase extends PHPUnitTestCase
                 'cache' => false
             ],
         ]);
+
+        $this->container = new Container();
+        $this->container->set('base_path', $this->testFilesPath);
+        $this->container->set(Config::class, $this->config);
     }
 
     /**

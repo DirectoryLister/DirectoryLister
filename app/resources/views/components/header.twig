@@ -3,9 +3,11 @@
         <div class="text-white text-sm tracking-tight mb-2 md:my-2">
             <a href="/" class="hover:underline">Home</a>
 
-            {% for name, path in breadcrumbs(relative_path) %}
-                / <a href="{{ path }}" class="hover:underline">{{ name }}</a>
-            {% endfor %}
+            {% if relative_path %}
+                {% for name, path in breadcrumbs(relative_path) %}
+                    / <a href="{{ path }}" class="hover:underline">{{ name }}</a>
+                {% endfor %}
+            {% endif %}
         </div>
 
         <form action="." method="get" id="search" class="group relative block w-full bg-blue-700 rounded-full shadow-inner md:w-4/12 md:-my-2">

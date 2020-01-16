@@ -2,6 +2,15 @@ module.exports = {
     theme: {
         extend: {
             fontFamily: {
+                mono: [
+                    'Source Code Pro',
+                    'Menlo',
+                    'Monaco',
+                    'Consolas',
+                    '"Liberation Mono"',
+                    '"Courier New"',
+                    'monospace',
+                ],
                 sans: [
                     'Work Sans',
                     '-apple-system',

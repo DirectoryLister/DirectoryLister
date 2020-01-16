@@ -27,7 +27,7 @@
                         <tbody>
                             <tr v-for="(hash, title) in this.hashes" v-bind:key="hash">
                                 <td class="border font-bold px-4 py-2">{{ title }}</td>
-                                <td class="border px-4 py-2">{{ hash }}</td>
+                                <td class="border font-mono px-4 py-2">{{ hash }}</td>
                             </tr>
                         </tbody>
                     </table>

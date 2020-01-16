@@ -9,6 +9,6 @@
 
 <title>{{ path | default('Home') }} &bull; Directory Lister</title>
 
-<div id="app" class="flex flex-col min-h-screen {{ config('dark_mode') ? 'dark-mode' : 'light-mode' }}">
+<div id="app" class="flex flex-col min-h-screen font-sans {{ config('dark_mode') ? 'dark-mode' : 'light-mode' }}">
     {% block content %}{% endblock %}
 </div>

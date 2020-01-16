@@ -31,6 +31,7 @@ class DirectoryControllerTest extends TestCase
             $this->container->get(Twig::class)
         );
 
+        chdir($this->filePath('.'));
         $response = $controller(
             new Finder(),
             $this->createMock(Request::class),
@@ -59,6 +60,7 @@ class DirectoryControllerTest extends TestCase
             $this->container->get(Twig::class)
         );
 
+        chdir($this->filePath('.'));
         $response = $controller(
             new Finder(),
             $this->createMock(Request::class),
@@ -80,6 +82,7 @@ class DirectoryControllerTest extends TestCase
             $this->container->get(Twig::class)
         );
 
+        chdir($this->filePath('.'));
         $response = $controller(
             new Finder(),
             $this->createMock(Request::class),
@@ -106,6 +109,7 @@ class DirectoryControllerTest extends TestCase
             'search' => 'charlie'
         ]);
 
+        chdir($this->filePath('.'));
         $response = $controller(
             new Finder(),
             $request,
@@ -116,6 +120,12 @@ class DirectoryControllerTest extends TestCase
         $this->assertEquals(200, $response->getStatusCode());
     }
 
+    /**
+     * Provide config options in the following order:
+     * [ app.hide_app_files, app.hide_vcs_files, app.display_readmes ].
+     *
+     * @return array
+     */
     public function configOptions(): array
     {
         return [

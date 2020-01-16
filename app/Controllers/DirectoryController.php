@@ -52,7 +52,6 @@ class DirectoryController
         Response $response,
         string $path = '.'
     ) {
-        $path = realpath($this->container->get('base_path') . '/' . $path);
         $search = $request->getQueryParams()['search'] ?? null;
 
         try {
@@ -81,7 +80,9 @@ class DirectoryController
      */
     protected function relativePath(string $path): string
     {
-        return Collection::make(explode('/', $path))->diff(
+        $realPath = realpath($this->container->get('base_path') . '/' . $path);
+
+        return Collection::make(explode('/', $realPath))->diff(
             explode('/', $this->container->get('base_path'))
         )->filter()->implode('/');
     }

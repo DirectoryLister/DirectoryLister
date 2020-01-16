@@ -11,7 +11,7 @@ require __DIR__ . '/vendor/autoload.php';
 ini_set('open_basedir', __DIR__);
 
 // Initialize environment variable handler
-Dotenv::createImmutable(__DIR__)->load();
+Dotenv::createImmutable(__DIR__)->safeLoad();
 
 // Initialize the container
 $container = new Container();

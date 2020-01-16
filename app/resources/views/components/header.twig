@@ -3,8 +3,8 @@
         <div class="text-white text-sm tracking-tight mb-2 md:my-2">
             <a href="/" class="hover:underline">Home</a>
 
-            {% if relative_path %}
-                {% for name, path in breadcrumbs(relative_path) %}
+            {% if path %}
+                {% for name, path in breadcrumbs(path) %}
                     / <a href="{{ path }}" class="hover:underline">{{ name }}</a>
                 {% endfor %}
             {% endif %}

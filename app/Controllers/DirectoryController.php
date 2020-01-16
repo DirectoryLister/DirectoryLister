@@ -64,7 +64,7 @@ class DirectoryController
             'files' => $search ? $files->name(
                 sprintf('/(?:.*)%s(?:.*)/i', preg_quote($search, '/'))
             ) : $files->depth(0),
-            'relative_path' => $this->relativePath($path),
+            'path' => $this->relativePath($path),
             'is_root' => $this->isRoot($path),
             'readme' => $this->readme($path),
             'search' => $search,

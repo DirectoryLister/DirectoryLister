@@ -1,10 +1,13 @@
-build: install compile # Install application dependencies and build assets
+ARTIFACT_FILES=app node_modules vendor LICENSE README.md index.php
+ARTIFACT_NAME="DirectoryLister-$$(git rev-parse --short HEAD)"
 
-install: # Install application dependencies
-	@composer install && npm install
+dev development: # Build application for development
+	@composer install --no-interaction
+	@npm install && npm run dev
 
-compile: # Compile application (CSS and JavaScript) assets
-	@npm run dev
+prod production: # Build application for production
+	@composer install --no-dev --no-interaction --prefer-dist --optimize-autoloader
+	@npm install --no-save && npm run production && npm prune --production
 
 update upgrade: # Update application dependencies
 	@composer update && npm update && npm install
@@ -17,3 +20,14 @@ tunnel: # Expose the application via secure tunnel
 
 clear-cache: # Clear the application cache
 	@rm app/cache/* -rfv
+
+tar: # Generate tarball
+	@tar --verbose --create --gzip --exclude-vcs --exclude-vcs-ignores \
+		--exclude app/cache/* --file artifacts/$(ARTIFACT_NAME).tar.gz \
+		$(ARTIFACT_FILES)
+
+zip: # Generate zip file
+	@zip --exclude "app/cache/**" --exclude "*.git*" \
+		--recurse-paths artifacts/$(ARTIFACT_NAME).zip $(ARTIFACT_FILES)
+
+artifacts: clear-cache production tar zip # Generate release artifacts

@@ -20,9 +20,7 @@
             </div>
 
             {% if not search and not is_root %}
-                {{ include('components/file.twig', {
-                    parentDir: true
-                }, with_context = false) }}
+                {{ include('components/file.twig', { parentDir: true }) }}
             {% endif %}
 
             {% for file in files %}

@@ -19,6 +19,7 @@ class TwigProvider
         ViewFunctions\Config::class,
         ViewFunctions\Icon::class,
         ViewFunctions\Markdown::class,
+        ViewFunctions\ParentDir::class,
         ViewFunctions\SizeForHumans::class,
     ];
 

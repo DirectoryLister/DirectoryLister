@@ -1,4 +1,4 @@
-ARTIFACT_FILES=app node_modules vendor LICENSE README.md index.php
+ARTIFACT_FILES=app node_modules vendor LICENSE mix-manifest.json README.md index.php
 ARTIFACT_NAME="DirectoryLister-$$(git rev-parse --short HEAD)"
 
 dev development: # Build application for development

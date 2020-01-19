@@ -2,9 +2,7 @@
 
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="{{ asset('app.js') }}" defer></script>
 <link rel="icon" href="/app/resources/images/favicon.{{ config('dark_mode') ? 'dark' : 'light' }}.png">
-
 <link rel="stylesheet" href="{{ asset('app.css') }}">
 
 <title>{{ path | default('Home') }} &bull; Directory Lister</title>
@@ -12,3 +10,5 @@
 <div id="app" class="flex flex-col min-h-screen font-sans {{ config('dark_mode') ? 'dark-mode' : 'light-mode' }}">
     {% block content %}{% endblock %}
 </div>
+
+<script src="{{ asset('app.js') }}" defer></script>

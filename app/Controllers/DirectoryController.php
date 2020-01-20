@@ -108,7 +108,7 @@ class DirectoryController
      */
     protected function readme($path): ?SplFileInfo
     {
-        if (! $this->config->get('app.display_readmes', false)) {
+        if (! $this->config->get('app.display_readmes', true)) {
             return null;
         }
 

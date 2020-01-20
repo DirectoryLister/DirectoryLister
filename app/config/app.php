@@ -45,7 +45,7 @@ return [
     /**
      * Parse and render README files on the page.
      *
-     * Default value: false
+     * Default value: true
      */
     'display_readmes' => Helpers::env('DISPLAY_READMES'),
 

@@ -10,12 +10,18 @@
     <projectFiles>
         <directory name="app" />
         <ignoreFiles>
-            <directory name="app/cache" />
             <directory name="vendor" />
         </ignoreFiles>
     </projectFiles>
 
     <issueHandlers>
+        <UndefinedInterfaceMethod>
+            <errorLevel type="suppress">
+                <referencedMethod name="Twig\Extension\ExtensionInterface::setdateformat" />
+                <file name="app/Providers/TwigProvider.php" />
+            </errorLevel>
+        </UndefinedInterfaceMethod>
+
         <LessSpecificReturnType errorLevel="info" />
 
         <!-- level 3 issues - slightly lazy code writing, but provably low false-negatives -->

@@ -1,8 +1,15 @@
-Directory Lister
-================
+<p align="center">
+  <img src="directory-lister.svg" alt="Directory Lister" width="80%">
+</p>
+
+---
+
+Introduction
+------------
 
 Directory Lister is the easiest way to expose the contents of any web-accessable
-folder and navigate there within.
+folder for browsing and sharing. With a zero configuration, drag-and-drop
+installation you'll be up and running in less than a minute. 
 
 Requirements
 ------------

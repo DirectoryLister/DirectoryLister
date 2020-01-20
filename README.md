@@ -1,11 +1,8 @@
 <p align="center">
-  <img src="directory-lister.svg" alt="Directory Lister" width="80%">
+  <img src="directory-lister.svg" alt="Directory Lister" width="66%">
 </p>
 
 ---
-
-Introduction
-------------
 
 Directory Lister is the easiest way to expose the contents of any web-accessable
 folder for browsing and sharing. With a zero configuration, drag-and-drop

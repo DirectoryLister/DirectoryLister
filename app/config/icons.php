@@ -2,19 +2,19 @@
 
 return [
     // Images
-    'ai' => 'fab fa-image',
+    'ai' => 'fas fa-image',
     'bmp' => 'fas fa-image',
-    'eps' => 'fab fa-image',
+    'eps' => 'fas fa-image',
     'gif' => 'fas fa-image',
     'jpg' => 'fas fa-image',
     'jpeg' => 'fas fa-image',
     'png' => 'fas fa-image',
-    'ps' => 'fab fa-image',
+    'ps' => 'fas fa-image',
     'psd' => 'fas fa-image',
-    'svg' => 'fab fa-image',
+    'svg' => 'fas fa-image',
     'tga' => 'fas fa-image',
     'tif' => 'fas fa-image',
-    'drw' => 'fab fa-image',
+    'drw' => 'fas fa-image',
 
     // Data
     'csv' => 'fas fa-file-csv',

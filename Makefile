@@ -1,4 +1,4 @@
-ARTIFACT_FILES=app node_modules vendor .env.example directory-lister.svg LICENSE mix-manifest.json README.md index.php
+ARTIFACT_FILES=$$(paste --delimiters ' ' --serial artifact.files)
 ARTIFACT_NAME="DirectoryLister-$$(git describe --tags --exact-match HEAD 2> /dev/null || git rev-parse --short HEAD)"
 
 dev development: # Build application for development

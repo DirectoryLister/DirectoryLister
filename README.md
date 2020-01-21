@@ -2,6 +2,13 @@
   <img src="directory-lister.svg" alt="Directory Lister" width="66%">
 </p>
 
+<p align="center">
+  <a href="https://github.com/DirectoryLister/DirectoryLister/blob/master/LICENSE"><img src="https://img.shields.io/github/license/DirectoryLister/DirectoryLister?style=flat-square" alt="License"></a>
+  <a href="https://travis-ci.org/DirectoryLister/DirectoryLister"><img src="https://img.shields.io/travis/DirectoryLister/DirectoryLister.svg?style=flat-square" alt="Build Status"></a>
+  <a href="https://styleci.io/repos/1375774"><img src="https://styleci.io/repos/1375774/shield?branch=master" alt="StyleCI"></a>
+  <a href="https://www.ChrisKankiewicz.com"><img src="https://img.shields.io/badge/created_by-Chris%20Kankiewicz-319795.svg?style=flat-square" alt="Author"></a>
+</p>
+
 ---
 
 Directory Lister is the easiest way to expose the contents of any web-accessable

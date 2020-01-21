@@ -12,7 +12,7 @@ prod production: # Build application for production
 update upgrade: # Update application dependencies
 	@composer update && npm update && npm install
 
-test: #: Run coding standards/static analysis checks and tests
+test: # Run coding standards/static analysis checks and tests
 	@php-cs-fixer fix --diff --dry-run && psalm --show-info=false && phpunit --coverage-text
 
 tunnel: # Expose the application via secure tunnel

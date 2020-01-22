@@ -7,14 +7,36 @@ assignees: PHLAK
 
 ---
 
+**Directory Lister Version**
+
+The version of directory lister you're using.
+
+Examples: `v2.7.1` or `v3.0.0-beta.1`
+
+
+**PHP Version**
+
+What version of PHP do you have installed?
+
+Run `php --version` from a command line to find your version.
+
+_Reminder: Directory Lister requires PHP 7.2+_
+
+
+**HTTP Server**
+
+What HTTP server are you using to serve Directory Lister?
+
+Examples: Apache, NGINX, Lighttpd, etc.
+
+
 **Describe the bug**
 
 A description of the observed behavior.
 
 
-**To Reproduce**
+**Steps To Reproduce**
 
-Steps to reproduce the behavior:
   1. Do something...
   2. Followed by something else...
   3. Then do another thing...
@@ -28,4 +50,4 @@ A description of what you expected to happen.
 
 **Additional context**
 
-Add any other context about the problem here.
+Add any other context about the problem.

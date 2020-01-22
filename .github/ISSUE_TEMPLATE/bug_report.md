@@ -23,6 +23,13 @@ Run `php --version` from a command line to find your version.
 _Reminder: Directory Lister requires PHP 7.2+_
 
 
+**PHP Extensions**
+
+What PHP extensions do you have installed?
+
+Run `php -m` from a command line and paste the output here.
+
+
 **HTTP Server**
 
 What HTTP server are you using to serve Directory Lister?
@@ -50,4 +57,4 @@ A description of what you expected to happen.
 
 **Additional context**
 
-Add any other context about the problem.
+Add any other context about the problem. Error logs would be very helpful here.

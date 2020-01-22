@@ -4,7 +4,7 @@
     {% include "components/header.twig" %}
 
     <div id="content" class="flex-grow container mx-auto px-4">
-        <ul id="file-list" class="my-4">
+        <div class="my-4">
             <div class="flex justify-between font-bold p-4">
                 <div class="flex-grow font-mono mr-2">
                     File Name
@@ -19,14 +19,20 @@
                 </div>
             </div>
 
-            {% if not search and not is_root %}
-                {{ include('components/file.twig', { parentDir: true }) }}
-            {% endif %}
+            <ul id="file-list">
+                <li>
+                    {% if not search and not is_root %}
+                        {{ include('components/file.twig', { parentDir: true }) }}
+                    {% endif %}
+                </li>
 
-            {% for file in files %}
-                {{ include('components/file.twig') }}
-            {% endfor %}
-        </ul>
+                <li>
+                    {% for file in files %}
+                        {{ include('components/file.twig') }}
+                    {% endfor %}
+                </li>
+            </ul>
+        </div>
 
         {% if readme and not search %}
             {% include 'components/readme.twig' %}

@@ -1,0 +1,45 @@
+{
+    "name": "phlak/directory-lister",
+    "description": "PHP directory lister",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Chris Kankiewicz",
+            "email": "Chris@ChrisKankiewicz.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.2",
+        "erusev/parsedown": "^1.7",
+        "phlak/config": "^6.0",
+        "php-di/php-di": "^6.0",
+        "php-di/slim-bridge": "^3.0",
+        "slim/psr7": "^1.0",
+        "slim/slim": "^4.3",
+        "slim/twig-view": "3.0.0",
+        "symfony/finder": "^5.0",
+        "tightenco/collect": "^6.4",
+        "vlucas/phpdotenv": "^4.0"
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^2.3",
+        "phpunit/phpunit": "^7.0 || ^8.0",
+        "psy/psysh": "^0.9.9",
+        "vimeo/psalm": "^3.6"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "config": {
+        "sort-packages": true,
+        "optimize-autoloader": true
+    }
+}

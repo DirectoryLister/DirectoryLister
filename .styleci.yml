@@ -1,0 +1,20 @@
+preset: laravel
+
+risky: false
+
+enabled:
+  - concat_with_spaces
+
+disabled:
+  - concat_without_spaces
+  - post_increment
+  - trailing_comma_in_multiline_array
+
+finder:
+  exclude:
+    - "vendor"
+  name:
+    - "*.php"
+  path:
+    - "app"
+    - "tests"

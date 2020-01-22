@@ -1,0 +1,17 @@
+// Tailwind
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+// Icons
+$fa-font-path: "./webfonts";
+@import "~@fortawesome/fontawesome-free/scss/fontawesome.scss";
+@import "~@fortawesome/fontawesome-free/scss/brands.scss";
+@import "~@fortawesome/fontawesome-free/scss/solid.scss";
+
+// Fonts
+@import url("https://fonts.googleapis.com/css?family=Source+Code+Pro|Work+Sans:200,400&display=swap");
+
+// Additional Styles
+@import "markdown.scss";
+@import "dark-mode.scss";

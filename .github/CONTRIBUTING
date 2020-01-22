@@ -1,0 +1,35 @@
+# Contributing
+
+Contributions are **welcome** via Pull Requests on [GitHub](https://github.com/DirectoryLister/DirectoryLister).
+
+**Before contributing** we encourage you to discuss the change on the
+[Spectrum Community](https://spectrum.chat/directory-lister) to verify
+fit with the overall direction and goals of Directory Lister.
+
+## Pull Requests Requirements
+
+- **[PSR-2 Coding Standard.](https://www.php-fig.org/psr/psr-2/)** The easiest
+  way to apply the conventions is to install and run
+  [PHP CS Fixer](https://github.com/FriendsOfPHP/PHP-CS-Fixer).
+
+- **Test all the tings!** Your patch won't be accepted if it doesn't have tests.
+
+- **Document changes in behaviour.** Make sure relevant documentation is kept
+  up to date.
+
+- **One feature per pull request.** If you want to do change more than one
+  thing, send multiple pull requests.
+
+## Checking your work
+
+### Static Analysis
+
+    $ vendor/bin/psalm
+
+### Run Tests
+
+    $ vendor/bin/phpunit
+
+---
+
+*Thank you and happy coding!*

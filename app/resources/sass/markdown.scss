@@ -1,0 +1,114 @@
+.markdown {
+    @apply break-words;
+
+    a {
+        @apply text-blue-600;
+        @apply underline;
+
+        &:hover {
+            @apply text-blue-800;
+        }
+    }
+
+    img {
+        @apply inline;
+    }
+
+    p,
+    blockquote,
+    ul,
+    ol,
+    dl,
+    table,
+    pre {
+        @apply my-4;
+    }
+
+    ul,
+    ol {
+        @apply pl-8;
+    }
+
+    ul {
+        @apply list-disc;
+    }
+
+    ol {
+        @apply list-decimal;
+    }
+
+    h1 {
+        @apply text-4xl;
+        @apply border-b;
+        @apply border-gray-400;
+    }
+
+    h2 {
+        @apply text-3xl;
+        @apply border-b;
+        @apply border-gray-400;
+    }
+
+    h3 {
+        @apply text-2xl;
+    }
+
+    h4 {
+        @apply text-xl;
+    }
+
+    h5 {
+        @apply text-base;
+    }
+
+    h6 {
+        @apply text-base;
+        @apply text-gray-600;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        @apply font-bold;
+        @apply leading-relaxed;
+        @apply mt-8;
+        @apply mb-4;
+    }
+
+    h1 + p,
+    h2 + p,
+    h3 + p {
+        @apply mt-4;
+    }
+
+    code {
+        @apply bg-gray-200;
+        @apply rounded-sm;
+        @apply p-1;
+        @apply font-mono;
+        @apply overflow-y-auto;
+    }
+
+    pre > code {
+        @apply block;
+        @apply p-4;
+        @apply text-sm;
+        @apply whitespace-pre;
+    }
+
+    hr {
+        @apply border-t-2;
+        @apply border-gray-400;
+    }
+
+    & > :first-child {
+        @apply mt-0;
+    }
+
+    & > :last-child {
+        @apply mb-0;
+    }
+}

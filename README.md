@@ -21,7 +21,7 @@ Features
   - **Simple installation** allows you to be up and running in less than a minute.
   - **Light and dark themes** to suit your professional needs or personal style.
   - **Custom sort ordering** gives you control of the ordering of your files/folders.
-  - **Directory search** helps you locate the files you need quickly and efficiently.
+  - **File search** helps you locate the files you need quickly and efficiently.
   - **File hashes** instill confidence when downloading files through verification.
   - **Readme rendering** allows exposing the contents of READMEs directly on the page.
 

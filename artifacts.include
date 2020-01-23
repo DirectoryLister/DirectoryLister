@@ -2,6 +2,7 @@ app
 node_modules
 vendor
 .env.example
+.htaccess
 directory-lister.svg
 LICENSE
 mix-manifest.json

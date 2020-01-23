@@ -6,6 +6,10 @@
 <link rel="icon" href="{{ config('dark_mode') ? asset('images/favicon.dark.png') : asset('images/favicon.light.png') }}">
 <link rel="stylesheet" href="{{ asset('app.css') }}">
 
+{% if config('google_analytics_id', false) %}
+    {% include 'components/google-analytics.twig' %}
+{% endif %}
+
 <title>{{ path == '.' ? 'Home' : path }} &bull; Directory Lister</title>
 
 <div id="app" class="flex flex-col min-h-screen font-sans {{ config('dark_mode') ? 'dark-mode' : 'light-mode' }}">

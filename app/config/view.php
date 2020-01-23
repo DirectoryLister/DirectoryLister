@@ -11,6 +11,14 @@ return [
     'dark_mode' => Helpers::env('DARK_MODE'),
 
     /**
+     * Your Google analytics tracking ID.
+     * Expected format: 'UA-123456789-0'.
+     *
+     * Default value: false
+     */
+    'google_analytics_id' => Helpers::env('GOOGLE_ANALYTICS_ID'),
+
+    /**
      * Default date format. For additional info on date formatting see:
      * https://www.php.net/manual/en/function.date.php.
      *

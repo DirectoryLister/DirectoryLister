@@ -21,6 +21,7 @@ class TwigProvider
         ViewFunctions\Markdown::class,
         ViewFunctions\ParentDir::class,
         ViewFunctions\SizeForHumans::class,
+        ViewFunctions\Url::class,
     ];
 
     /** @var Container The application container */

@@ -1,7 +1,7 @@
 <header id="header" class="bg-blue-600 shadow sticky top-0">
     <div class="container flex flex-col justify-between items-center mx-auto p-4 md:flex-row">
         <div class="font-mono text-white text-sm tracking-tight mb-2 md:my-1">
-            <a href="/" class="hover:underline">Home</a>
+            <a href="{{ url('/') }}" class="hover:underline">Home</a>
 
             {% if path %}
                 {% for name, path in breadcrumbs(path) %}

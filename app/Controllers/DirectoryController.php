@@ -10,7 +10,6 @@ use Slim\Views\Twig;
 use Symfony\Component\Finder\Exception\DirectoryNotFoundException;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Finder\SplFileInfo;
-use Tightenco\Collect\Support\Collection;
 
 class DirectoryController
 {
@@ -64,27 +63,11 @@ class DirectoryController
             'files' => $search ? $files->name(
                 sprintf('/(?:.*)%s(?:.*)/i', preg_quote($search, '/'))
             ) : $files->depth(0),
-            'path' => $this->relativePath($path),
+            'path' => $path,
             'is_root' => $this->isRoot($path),
             'readme' => $this->readme($path),
             'search' => $search,
         ]);
-    }
-
-    /**
-     * Return the relative path given a full path.
-     *
-     * @param string $path
-     *
-     * @return string
-     */
-    protected function relativePath(string $path): string
-    {
-        $realPath = realpath($this->container->get('base_path') . '/' . $path);
-
-        return Collection::make(explode('/', $realPath))->diff(
-            explode('/', $this->container->get('base_path'))
-        )->filter()->implode('/');
     }
 
     /**

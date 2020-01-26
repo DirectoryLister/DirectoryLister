@@ -4,7 +4,6 @@ namespace Tests\Support;
 
 use App\Support\Helpers;
 use PHPUnit\Framework\TestCase;
-use RuntimeException;
 
 class HelpersTest extends TestCase
 {
@@ -47,26 +46,5 @@ class HelpersTest extends TestCase
         $env = Helpers::env('QUOTES_TEST');
 
         $this->assertEquals('Test charlie; please ignore', $env);
-    }
-
-    public function test_it_can_get_a_relative_path_from_one_path_to_another(): void
-    {
-        $relativePath = Helpers::realativePath('foo/bar', 'foo/bar/baz/qux');
-
-        $this->assertEquals('baz/qux', $relativePath);
-    }
-
-    public function test_it_cat_get_a_relative_path_to_itself(): void
-    {
-        $relativePath = Helpers::realativePath('foo/bar/baz', 'foo/bar/baz');
-
-        $this->assertEquals('', $relativePath);
-    }
-
-    public function test_it_can_get_a_relative_path_between_two_unrelated_paths(): void
-    {
-        $path = $this->expectException(RuntimeException::class);
-
-        Helpers::realativePath('foo/bar', 'baz/qux');
     }
 }

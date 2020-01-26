@@ -3,12 +3,16 @@
 namespace App\Middleware;
 
 use DI\Container;
+use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 use Slim\Psr7\Response;
 
 class StripBasePathMiddleware
 {
+    /** @var Container The application container */
+    protected $container;
+
     /**
      * Create a new CanonicalizePathMiddleware object.
      *
@@ -26,12 +30,12 @@ class StripBasePathMiddleware
      * @param \Slim\Psr7\Response $response
      * @param callable            $next
      *
-     * @return void
+     * @return \Psr\Http\Message\ResponseInterface
      */
     public function __invoke(
         ServerRequestInterface $request,
         RequestHandlerInterface $handler
-    ): Response {
+    ): ResponseInterface {
         $path = $request->getUri()->getPath();
 
         $request = $request->withUri(

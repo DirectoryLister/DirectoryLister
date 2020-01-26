@@ -11,8 +11,8 @@ class AssetTest extends TestCase
     {
         $asset = new Asset($this->container, $this->config);
 
-        $this->assertEquals('/app/dist/css/app.css', $asset('css/app.css'));
-        $this->assertEquals('/app/dist/js/app.js', $asset('js/app.js'));
+        $this->assertEquals('/app/assets/css/app.css', $asset('css/app.css'));
+        $this->assertEquals('/app/assets/js/app.js', $asset('js/app.js'));
     }
 
     public function test_it_can_return_an_asset_with_a_subdirectory(): void
@@ -21,7 +21,7 @@ class AssetTest extends TestCase
 
         $asset = new Asset($this->container, $this->config);
 
-        $this->assertEquals('/some/dir/app/dist/css/app.css', $asset('css/app.css'));
-        $this->assertEquals('/some/dir/app/dist/js/app.js', $asset('js/app.js'));
+        $this->assertEquals('/some/dir/app/assets/css/app.css', $asset('css/app.css'));
+        $this->assertEquals('/some/dir/app/assets/js/app.js', $asset('js/app.js'));
     }
 }

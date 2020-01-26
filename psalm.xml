@@ -18,7 +18,7 @@
         <UndefinedInterfaceMethod>
             <errorLevel type="suppress">
                 <referencedMethod name="Twig\Extension\ExtensionInterface::setdateformat" />
-                <file name="app/Providers/TwigProvider.php" />
+                <file name="app/src/Providers/TwigProvider.php" />
             </errorLevel>
         </UndefinedInterfaceMethod>
 

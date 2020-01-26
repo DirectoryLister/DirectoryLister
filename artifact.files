@@ -4,6 +4,5 @@ vendor
 .env.example
 directory-lister.svg
 LICENSE
-mix-manifest.json
 README.md
 index.php

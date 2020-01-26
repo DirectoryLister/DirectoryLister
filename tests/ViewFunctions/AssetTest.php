@@ -11,19 +11,7 @@ class AssetTest extends TestCase
     {
         $asset = new Asset($this->container, $this->config);
 
-        $this->assertEquals('/app/dist/test.css', $asset('test.css'));
-        $this->assertEquals(
-            '/app/dist/app.css?id=417c7a9bc03852aafb27',
-            $asset('app.css')
-        );
-    }
-
-    public function test_it_can_return_an_asset_path_without_a_mix_manifest(): void
-    {
-        $this->container->set('base_path', $this->filePath('subdir'));
-        $asset = new Asset($this->container, $this->config);
-
-        $this->assertEquals('/app/dist/test.css', $asset('test.css'));
-        $this->assertEquals('/app/dist/app.css', $asset('app.css'));
+        $this->assertEquals('/app/dist/css/app.css', $asset('css/app.css'));
+        $this->assertEquals('/app/dist/js/app.js', $asset('js/app.js'));
     }
 }

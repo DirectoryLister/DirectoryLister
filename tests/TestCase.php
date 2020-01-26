@@ -24,6 +24,8 @@ class TestCase extends PHPUnitTestCase
      */
     public function setUp(): void
     {
+        $_SERVER['SCRIPT_NAME'] = '/index.php';
+
         $this->config = new Config([
             'app' => [
                 'sort_order' => 'type',

@@ -15,7 +15,7 @@ class FinderProvider
 {
     /** @const Application paths to be hidden */
     protected const APP_FILES = [
-        'app', 'node_modules', 'vendor', 'mix-manifest.json', 'index.php'
+        'app', 'node_modules', 'vendor', 'index.php'
     ];
 
     /** @const Array of sort options mapped to their respective methods  */

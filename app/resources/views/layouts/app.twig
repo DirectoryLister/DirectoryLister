@@ -2,7 +2,8 @@
 
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="icon" href="/app/resources/images/favicon.{{ config('dark_mode') ? 'dark' : 'light' }}.png">
+<link rel="icon" href="{{ config('dark_mode') ? asset('images/favicon.dark.png') : asset('images/favicon.light.png') }}">
+
 <link rel="stylesheet" href="{{ asset('app.css') }}">
 
 <title>{{ path | default('Home') }} &bull; Directory Lister</title>

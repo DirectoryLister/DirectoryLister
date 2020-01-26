@@ -65,4 +65,13 @@ return [
     'providers' => [
         // ...
     ],
+
+    /**
+     * Additional middlewares to be registered.
+     *
+     * Default value: []
+     */
+    'middlewares' => [
+        // ...
+    ],
 ];

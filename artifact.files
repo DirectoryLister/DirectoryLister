@@ -1,8 +1,0 @@
-app
-node_modules
-vendor
-.env.example
-directory-lister.svg
-LICENSE
-README.md
-index.php

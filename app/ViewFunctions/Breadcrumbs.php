@@ -24,10 +24,10 @@ class Breadcrumbs extends ViewFunction
 
         return $breadcrumbs->filter(function (string $crumb) {
             return $crumb !== '.';
-        })->reduce(function (array $carry, string $crumb) {
-            $carry[$crumb] = end($carry) . "/{$crumb}";
-
-            return $carry;
-        }, []);
+        })->reduce(function (Collection $carry, string $crumb) {
+            return $carry->put($crumb, $carry->last() . '/' . $crumb);
+        }, new Collection)->map(function (string $path) {
+            return '/' . ltrim(dirname($_SERVER['SCRIPT_NAME']) . $path, '/');
+        });
     }
 }

@@ -14,4 +14,14 @@ class AssetTest extends TestCase
         $this->assertEquals('/app/dist/css/app.css', $asset('css/app.css'));
         $this->assertEquals('/app/dist/js/app.js', $asset('js/app.js'));
     }
+
+    public function test_it_can_return_an_asset_with_a_subdirectory(): void
+    {
+        $_SERVER['SCRIPT_NAME'] = '/some/dir/index.php';
+
+        $asset = new Asset($this->container, $this->config);
+
+        $this->assertEquals('/some/dir/app/dist/css/app.css', $asset('css/app.css'));
+        $this->assertEquals('/some/dir/app/dist/js/app.js', $asset('js/app.js'));
+    }
 }

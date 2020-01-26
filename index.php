@@ -24,5 +24,5 @@ $app = $container->call(AppManager::class);
 $app->get('/file-info/[{path:.*}]', Controllers\FileInfoController::class);
 $app->get('/[{path:.*}]', Controllers\DirectoryController::class);
 
-// Enagage!
+// Engage!
 $app->run();

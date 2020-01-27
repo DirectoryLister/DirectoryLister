@@ -15,6 +15,7 @@ class TwigProvider
     /** @const Constant description */
     protected const VIEW_FUNCTIONS = [
         ViewFunctions\Asset::class,
+        ViewFunctions\BaseHref::class,
         ViewFunctions\Breadcrumbs::class,
         ViewFunctions\Config::class,
         ViewFunctions\Icon::class,

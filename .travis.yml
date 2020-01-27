@@ -16,8 +16,6 @@ cache:
     - $HOME/.composer/cache
     - app/vendor
 
-before_install: phpenv config-rm xdebug.ini || true
-
 install: composer install
 
 before_script:

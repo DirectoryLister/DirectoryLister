@@ -13,7 +13,9 @@ update upgrade: # Update application dependencies
 	@composer update && npm update && npm install
 
 test: # Run coding standards/static analysis checks and tests
-	@php-cs-fixer fix --diff --dry-run && psalm --show-info=false && phpunit --coverage-text
+	@app/vendor/bin/php-cs-fixer fix --diff --dry-run \
+		&& app/vendor/bin/psalm \
+		&& app/vendor/bin/phpunit --coverage-text
 
 tunnel: # Expose the application via secure tunnel
 	@ngrok http -host-header=rewrite http://directory-lister.local:80
@@ -22,12 +24,11 @@ clear-cache: # Clear the application cache
 	@rm app/cache/* -rfv
 
 tar: # Generate tarball
-	@tar --verbose --create --gzip --exclude-vcs --exclude-vcs-ignores \
-		--exclude app/cache/* --file artifacts/$(ARTIFACT_NAME).tar.gz \
-		$(ARTIFACT_FILES)
+	@tar --verbose --create --gzip --exclude-vcs --exclude app/cache/* \
+		--file artifacts/$(ARTIFACT_NAME).tar.gz $(ARTIFACT_FILES)
 
 zip: # Generate zip file
-	@zip --exclude "app/cache/**" --exclude "*.git*" \
+	@zip --exclude "*.git*" --exclude "app/cache/**" \
 		--recurse-paths artifacts/$(ARTIFACT_NAME).zip $(ARTIFACT_FILES)
 
-artifacts: clear-cache production tar zip # Generate release artifacts
+artifacts: production tar zip # Generate release artifacts

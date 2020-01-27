@@ -5,7 +5,7 @@ require('laravel-mix-purgecss');
 mix.setPublicPath('.');
 
 mix.webpackConfig({
-    watchOptions: { ignored: ['node_modules', 'vendor'] }
+    watchOptions: { ignored: ['node_modules', 'app/vendor'] }
 });
 
 mix.sass('app/resources/sass/app.scss', 'app/assets/app.css').options({

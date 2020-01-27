@@ -24,11 +24,11 @@ fit with the overall direction and goals of Directory Lister.
 
 ### Static Analysis
 
-    $ vendor/bin/psalm
+    $ app/vendor/bin/psalm
 
 ### Run Tests
 
-    $ vendor/bin/phpunit
+    $ app/vendor/bin/phpunit
 
 ---
 

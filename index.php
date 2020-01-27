@@ -5,7 +5,7 @@ use App\Controllers;
 use DI\Container;
 use Dotenv\Dotenv;
 
-require __DIR__ . '/vendor/autoload.php';
+require __DIR__ . '/app/vendor/autoload.php';
 
 // Set file access restrictions
 ini_set('open_basedir', __DIR__);

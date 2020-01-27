@@ -2,8 +2,8 @@
 
 $finder = PhpCsFixer\Finder::create()->in([
     __DIR__ . DIRECTORY_SEPARATOR . 'app',
-    __DIR__ . DIRECTORY_SEPARATOR . 'tests'
-])->notPath('cache');
+    __DIR__ . DIRECTORY_SEPARATOR . 'tests',
+])->notPath(['cache', 'vendor']);
 
 return PhpCsFixer\Config::create()->setRules([
     '@PSR1' => true,

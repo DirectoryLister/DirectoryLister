@@ -1,9 +1,7 @@
 app
-node_modules
-vendor
 .env.example
 .htaccess
 directory-lister.svg
+index.php
 LICENSE
 README.md
-index.php

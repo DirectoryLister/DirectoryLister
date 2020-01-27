@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<phpunit bootstrap="vendor/autoload.php" colors="true">
+<phpunit bootstrap="app/vendor/autoload.php" colors="true">
     <testsuites>
         <testsuite name="Directory Lister Test Suite">
             <directory suffix="Test.php">tests/</directory>
@@ -10,6 +10,7 @@
             <directory suffix=".php">app/</directory>
             <exclude>
                 <directory>app/cache</directory>
+                <directory>app/vendor</directory>
             </exclude>
         </whitelist>
     </filter>

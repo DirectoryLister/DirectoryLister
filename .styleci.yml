@@ -11,10 +11,11 @@ disabled:
   - trailing_comma_in_multiline_array
 
 finder:
-  exclude:
-    - "vendor"
-  name:
-    - "*.php"
   path:
     - "app"
     - "tests"
+  name:
+    - "*.php"
+  exclude:
+    - "app/cache"
+    - "app/vendor"

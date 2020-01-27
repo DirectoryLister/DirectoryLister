@@ -11,7 +11,7 @@
         <directory name="app" />
         <ignoreFiles>
             <directory name="app/cache" />
-            <directory name="vendor" />
+            <directory name="app/vendor" />
         </ignoreFiles>
     </projectFiles>
 

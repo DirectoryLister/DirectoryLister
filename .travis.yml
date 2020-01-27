@@ -14,14 +14,14 @@ matrix:
 cache:
   directories:
     - $HOME/.composer/cache
-    - vendor
+    - app/vendor
 
 before_install: phpenv config-rm xdebug.ini || true
 
 install: composer install
 
 before_script:
-  - vendor/bin/php-cs-fixer fix --diff --dry-run
-  - vendor/bin/psalm
+  - app/vendor/bin/php-cs-fixer fix --diff --dry-run
+  - app/vendor/bin/psalm
 
-script: vendor/bin/phpunit --coverage-text
+script: app/vendor/bin/phpunit --coverage-text

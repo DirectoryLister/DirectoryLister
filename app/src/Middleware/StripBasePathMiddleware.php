@@ -55,6 +55,6 @@ class StripBasePathMiddleware
     {
         $pattern = sprintf('/^%s/', preg_quote(dirname($_SERVER['SCRIPT_NAME']), '/'));
 
-        return preg_replace($pattern, '', $path);
+        return '/' . ltrim(preg_replace($pattern, '', $path), '/');
     }
 }

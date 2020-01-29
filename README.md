@@ -11,7 +11,7 @@
 
 ---
 
-Directory Lister is the easiest way to expose the contents of any web-accessable
+Directory Lister is the easiest way to expose the contents of any web-accessible
 folder for browsing and sharing. With a zero configuration, drag-and-drop
 installation you'll be up and running in less than a minute. 
 
@@ -33,7 +33,7 @@ Requirements
 Installation
 ------------
 
-  1. [Downoad Directory Lister](https://github.com/DirectoryLister/DirectoryLister/releases)
+  1. [Download Directory Lister](https://github.com/DirectoryLister/DirectoryLister/releases)
   2. Extract the zip/tar archive
   3. Copy extracted files/folders to your web server
 

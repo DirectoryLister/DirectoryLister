@@ -12,7 +12,7 @@ return [
     'sort_order' => Helpers::env('SORT_ORDER'),
 
     /**
-     * Reverse the sort order.
+     * When enabled, reverses the order of files (after sorting is applied).
      *
      * Default value: false
      */
@@ -36,7 +36,8 @@ return [
     'hide_app_files' => Helpers::env('HIDE_APP_FILES'),
 
     /**
-     * Hide version control system files (e.g. .git directories) from listing.
+     * Hide the files Version Control System (i.e. Git and Mercurial) use to
+     * store their metadata.
      *
      * Default value: true
      */
@@ -53,7 +54,7 @@ return [
      * The maximum file size (in bytes) that can be hashed. This helps to
      * prevent timeouts for excessively large files.
      *
-     * Defualt value: 1000000000
+     * Default value: 1000000000
      */
     'max_hash_size' => Helpers::env('MAX_HASH_SIZE'),
 

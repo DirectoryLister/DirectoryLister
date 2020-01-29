@@ -57,7 +57,7 @@ class TwigProvider
         );
 
         $twig->getEnvironment()->getExtension(CoreExtension::class)->setDateFormat(
-            $this->config->get('app.date_format', 'Y-m-d H:i:s'), '%d days'
+            $this->config->get('view.date_format', 'Y-m-d H:i:s'), '%d days'
         );
 
         foreach (self::VIEW_FUNCTIONS as $function) {

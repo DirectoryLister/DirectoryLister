@@ -27,8 +27,8 @@ clear-cache: # Clear the application cache
 	@rm app/cache/* -rfv
 
 tar: # Generate tarball
-	@tar --verbose --create --gzip --exclude-vcs  --exclude app/cache/* --exclude app/resources \
-		--file artifacts/$(ARTIFACT_NAME).tar.gz $(ARTIFACT_FILES)
+	@tar --verbose --exclude-vcs  --exclude app/cache/* --exclude app/resources \
+		--create --gzip --file artifacts/$(ARTIFACT_NAME).tar.gz $(ARTIFACT_FILES)
 
 zip: # Generate zip file
 	@zip --verbose --exclude "*.git*" "app/cache/**" "app/resources/*" \

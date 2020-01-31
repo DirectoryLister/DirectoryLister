@@ -1,5 +1,5 @@
 ---
-name: Bug report
+name: Bug Report
 about: Create a report to help us fix something that is broken
 title: ''
 labels: Bug
@@ -13,6 +13,7 @@ The version of directory lister you're using.
 
 Examples: `v2.7.1` or `v3.0.0-beta.1`
 
+_Reminder: Directory Lister 2.X is no longer being supported_
 
 **PHP Version**
 

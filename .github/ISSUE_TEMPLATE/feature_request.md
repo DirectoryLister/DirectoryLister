@@ -1,6 +1,6 @@
 ---
-name: Feature request
-about: Suggest an idea for this project
+name: Feature Request / Enhancement
+about: Suggest a new feature or improvement to existing functionality
 title: ''
 labels: Enhancement
 assignees: PHLAK

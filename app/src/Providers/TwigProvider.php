@@ -50,7 +50,7 @@ class TwigProvider
      */
     public function __invoke(): void
     {
-        $twig = new Twig(new FilesystemLoader('app/resources/views'));
+        $twig = new Twig(new FilesystemLoader('app/views'));
 
         $twig->getEnvironment()->setCache(
             $this->config->get('view.cache', 'app/cache/views')

@@ -20,15 +20,18 @@ test: # Run coding standards/static analysis checks and tests
 tunnel: # Expose the application via secure tunnel
 	@ngrok http -host-header=rewrite http://directory-lister.local:80
 
+clear-assets: # Clear the compiled assets
+	@rm app/assets/* -rfv
+
 clear-cache: # Clear the application cache
 	@rm app/cache/* -rfv
 
 tar: # Generate tarball
-	@tar --verbose --create --gzip --exclude-vcs --exclude app/cache/* \
+	@tar --verbose --create --gzip --exclude-vcs  --exclude app/cache/* --exclude app/resources \
 		--file artifacts/$(ARTIFACT_NAME).tar.gz $(ARTIFACT_FILES)
 
 zip: # Generate zip file
-	@zip --exclude "*.git*" --exclude "app/cache/**" \
+	@zip --verbose --exclude "*.git*" "app/cache/**" "app/resources/*" \
 		--recurse-paths artifacts/$(ARTIFACT_NAME).zip $(ARTIFACT_FILES)
 
-artifacts: production tar zip # Generate release artifacts
+artifacts: clear-assets production tar zip # Generate release artifacts

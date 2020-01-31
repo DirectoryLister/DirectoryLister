@@ -15,6 +15,8 @@ mix.sass('app/resources/sass/app.scss', 'app/assets/app.css').options({
 
 mix.js('app/resources/js/app.js', 'app/assets/app.js');
 
+mix.copyDirectory('app/resources/images', 'app/assets/images');
+
 mix.copyDirectory(
     'node_modules/@fortawesome/fontawesome-free/webfonts',
     'app/assets/webfonts'

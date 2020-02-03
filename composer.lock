@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "32eadb4e638e3fc66bdb4ab576ef26c1",
+    "content-hash": "275c48fcfa7711e0f1be78d127448fba",
     "packages": [
         {
             "name": "erusev/parsedown",
@@ -1469,7 +1469,7 @@
         },
         {
             "name": "tightenco/collect",
-            "version": "v6.13.0",
+            "version": "v6.13.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tightenco/collect.git",

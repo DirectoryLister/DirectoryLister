@@ -13,9 +13,9 @@ class BreadcrumbsTest extends TestCase
         $breadcrumbs = new Breadcrumbs($this->container, $this->config);
 
         $this->assertEquals(Collection::make([
-            'foo' => '/foo',
-            'bar' => '/foo/bar',
-            'baz' => '/foo/bar/baz',
+            'foo' => '?dir=foo',
+            'bar' => '?dir=foo/bar',
+            'baz' => '?dir=foo/bar/baz',
         ]), $breadcrumbs('foo/bar/baz'));
     }
 
@@ -33,9 +33,9 @@ class BreadcrumbsTest extends TestCase
         $breadcrumbs = new Breadcrumbs($this->container, $this->config);
 
         $this->assertEquals(Collection::make([
-            'foo' => '/some/dir/foo',
-            'bar' => '/some/dir/foo/bar',
-            'baz' => '/some/dir/foo/bar/baz',
+            'foo' => '?dir=foo',
+            'bar' => '?dir=foo/bar',
+            'baz' => '?dir=foo/bar/baz',
         ]), $breadcrumbs('foo/bar/baz'));
     }
 }

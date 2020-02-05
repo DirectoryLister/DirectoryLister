@@ -25,9 +25,9 @@ class Breadcrumbs extends ViewFunction
         return $breadcrumbs->filter(function (string $crumb) {
             return $crumb !== '.';
         })->reduce(function (Collection $carry, string $crumb) {
-            return $carry->put($crumb, $carry->last() . '/' . $crumb);
-        }, new Collection)->map(function (string $path) {
-            return '/' . ltrim(dirname($_SERVER['SCRIPT_NAME']) . $path, '/');
+            return $carry->put($crumb, ltrim("{$carry->last()}/{$crumb}", '/'));
+        }, new Collection)->map(function (string $path): string {
+            return sprintf('?dir=%s', $path);
         });
     }
 }

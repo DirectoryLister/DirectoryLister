@@ -14,10 +14,10 @@ class Url extends ViewFunction
      *
      * @return string
      */
-    public function __invoke(string $path): string
+    public function __invoke(string $path = '/'): string
     {
-        $url = dirname($_SERVER['SCRIPT_NAME']) . '/' . ltrim($path, '/');
+        $path = preg_replace('/^[.\/]+/', '', $path);
 
-        return '/' . trim($url, '/');
+        return empty($path) ? '' : sprintf('?dir=%s', ltrim($path, './'));
     }
 }

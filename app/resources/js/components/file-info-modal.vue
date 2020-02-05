@@ -56,9 +56,6 @@
             };
         },
         computed: {
-            baseHref() {
-                return document.getElementsByTagName('base')[0].href;
-            },
             styles() {
                 return { 'hidden': ! this.visible };
             },
@@ -71,7 +68,7 @@
                 this.filePath = filePath;
                 this.visible = true;
 
-                await axios.get(this.baseHref + 'file-info/' + filePath).then(function (response) {
+                await axios.get('?info=' + filePath).then(function (response) {
                     this.hashes = response.data.hashes;
                     this.loading = false;
                 }.bind(this)).catch(

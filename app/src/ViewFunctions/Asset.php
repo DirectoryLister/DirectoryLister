@@ -5,7 +5,7 @@ namespace App\ViewFunctions;
 class Asset extends ViewFunction
 {
     /** @const Constant description */
-    protected const ASSET_PATH = '/app/assets/';
+    protected const ASSET_PATH = 'app/assets/';
 
     /** @var string The function name */
     protected $name = 'asset';
@@ -19,8 +19,6 @@ class Asset extends ViewFunction
      */
     public function __invoke(string $path): string
     {
-        $assetPath = dirname($_SERVER['SCRIPT_NAME']) . self::ASSET_PATH . ltrim($path, '/');
-
-        return '/' . ltrim($assetPath, '/');
+        return self::ASSET_PATH . ltrim($path, '/');
     }
 }

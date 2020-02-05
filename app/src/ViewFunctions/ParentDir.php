@@ -18,10 +18,10 @@ class ParentDir extends ViewFunction
      */
     public function __invoke(string $path)
     {
-        $parentDir = dirname($_SERVER['SCRIPT_NAME']) . '/' . Collection::make(
+        $parentDir = Collection::make(
             explode('/', $path)
         )->filter()->slice(0, -1)->implode('/');
 
-        return '/' . ltrim($parentDir, '/');
+        return empty($parentDir) ? '' : sprintf('?dir=%s', $parentDir);
     }
 }

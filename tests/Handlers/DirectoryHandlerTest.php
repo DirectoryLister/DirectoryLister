@@ -2,7 +2,7 @@
 
 namespace Tests\Controllers;
 
-use App\Controllers\DirectoryController;
+use App\Handlers\DirectoryHandler;
 use App\Providers\TwigProvider;
 use Psr\Http\Message\ResponseInterface;
 use Slim\Psr7\Request;
@@ -11,7 +11,7 @@ use Slim\Views\Twig;
 use Symfony\Component\Finder\Finder;
 use Tests\TestCase;
 
-class DirectoryControllerTest extends TestCase
+class DirectoryHandlerTest extends TestCase
 {
     /** @dataProvider configOptions */
     public function test_it_returns_a_successful_response(
@@ -25,18 +25,13 @@ class DirectoryControllerTest extends TestCase
 
         $this->container->call(TwigProvider::class);
 
-        $controller = new DirectoryController(
-            $this->container,
+        $controller = new DirectoryHandler(
             $this->config,
+            new Finder,
             $this->container->get(Twig::class)
         );
 
-        chdir($this->filePath('.'));
-        $response = $controller(
-            new Finder(),
-            $this->createMock(Request::class),
-            new Response()
-        );
+        $response = $controller($this->createMock(Request::class), new Response);
 
         $this->assertInstanceOf(ResponseInterface::class, $response);
         $this->assertEquals(200, $response->getStatusCode());
@@ -54,19 +49,17 @@ class DirectoryControllerTest extends TestCase
 
         $this->container->call(TwigProvider::class);
 
-        $controller = new DirectoryController(
-            $this->container,
+        $controller = new DirectoryHandler(
             $this->config,
+            new Finder,
             $this->container->get(Twig::class)
         );
 
+        $request = $this->createMock(Request::class);
+        $request->method('getQueryParams')->willReturn(['dir' => 'subdir']);
+
         chdir($this->filePath('.'));
-        $response = $controller(
-            new Finder(),
-            $this->createMock(Request::class),
-            new Response(),
-            'subdir'
-        );
+        $response = $controller($request, new Response);
 
         $this->assertInstanceOf(ResponseInterface::class, $response);
         $this->assertEquals(200, $response->getStatusCode());
@@ -76,48 +69,19 @@ class DirectoryControllerTest extends TestCase
     {
         $this->container->call(TwigProvider::class);
 
-        $controller = new DirectoryController(
-            $this->container,
+        $controller = new DirectoryHandler(
             $this->config,
-            $this->container->get(Twig::class)
-        );
-
-        chdir($this->filePath('.'));
-        $response = $controller(
-            new Finder(),
-            $this->createMock(Request::class),
-            new Response(),
-            '404'
-        );
-
-        $this->assertInstanceOf(ResponseInterface::class, $response);
-        $this->assertEquals(404, $response->getStatusCode());
-    }
-
-    public function test_it_returns_a_successful_response_for_a_search_request(): void
-    {
-        $this->container->call(TwigProvider::class);
-
-        $controller = new DirectoryController(
-            $this->container,
-            $this->config,
+            new Finder,
             $this->container->get(Twig::class)
         );
 
         $request = $this->createMock(Request::class);
-        $request->method('getQueryParams')->willReturn([
-            'search' => 'charlie'
-        ]);
+        $request->method('getQueryParams')->willReturn(['dir' => '404']);
 
-        chdir($this->filePath('.'));
-        $response = $controller(
-            new Finder(),
-            $request,
-            new Response()
-        );
+        $response = $controller($request, new Response);
 
         $this->assertInstanceOf(ResponseInterface::class, $response);
-        $this->assertEquals(200, $response->getStatusCode());
+        $this->assertEquals(404, $response->getStatusCode());
     }
 
     /**

@@ -1,13 +1,14 @@
 <?php
 
-namespace App\Controllers;
+namespace App\Handlers;
 
 use DI\Container;
 use PHLAK\Config\Config;
+use Slim\Psr7\Request;
 use Slim\Psr7\Response;
 use SplFileInfo;
 
-class FileInfoController
+class FileInfoHandler
 {
     /** @var Container The application container */
     protected $container;
@@ -16,7 +17,7 @@ class FileInfoController
     protected $config;
 
     /**
-     * Create a new FileInfoController object.
+     * Create a new FileInfoHandler object.
      *
      * @param \DI\Container        $container
      * @param \PHLAK\Config\Config $config
@@ -28,13 +29,15 @@ class FileInfoController
     }
 
     /**
-     * Invoke the FileInfoController.
+     * Invoke the FileInfoHandler.
      *
+     * @param \Slim\Psr7\Request  $request
      * @param \Slim\Psr7\Response $response
-     * @param string              $path
      */
-    public function __invoke(Response $response, string $path = '.')
+    public function __invoke(Request $request, Response $response)
     {
+        $path = $request->getQueryParams()['info'];
+
         $file = new SplFileInfo(
             realpath($this->container->get('base_path') . '/' . $path)
         );

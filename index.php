@@ -21,8 +21,7 @@ $container->set('base_path', __DIR__);
 $app = $container->call(AppManager::class);
 
 // Register routes
-$app->get('/file-info/[{path:.*}]', Controllers\FileInfoController::class);
-$app->get('/[{path:.*}]', Controllers\DirectoryController::class);
+$app->get('/[{path:.*}]', Controllers\IndexController::class);
 
 // Engage!
 $app->run();

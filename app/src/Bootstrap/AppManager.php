@@ -2,7 +2,6 @@
 
 namespace App\Bootstrap;
 
-use App\Middleware;
 use App\Providers;
 use DI\Bridge\Slim\Bridge;
 use DI\Container;
@@ -22,7 +21,7 @@ class AppManager
 
     /** @const Constant description */
     protected const MIDDLEWARES = [
-        Middleware\StripBasePathMiddleware::class,
+        // ...
     ];
 
     /** @var Container The applicaiton container */

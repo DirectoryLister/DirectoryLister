@@ -31,6 +31,7 @@ class DirectoryHandlerTest extends TestCase
             $this->container->get(Twig::class)
         );
 
+        chdir($this->filePath('.'));
         $response = $controller($this->createMock(Request::class), new Response);
 
         $this->assertInstanceOf(ResponseInterface::class, $response);

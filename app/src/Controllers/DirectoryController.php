@@ -64,22 +64,9 @@ class DirectoryController
                 sprintf('/(?:.*)%s(?:.*)/i', preg_quote($search, '/'))
             ) : $files->depth(0),
             'path' => $path,
-            'is_root' => $this->isRoot($path),
             'readme' => $this->readme($path),
             'search' => $search,
         ]);
-    }
-
-    /**
-     * Determine if a provided path is the root path.
-     *
-     * @param string $path
-     *
-     * @return bool
-     */
-    protected function isRoot(string $path): bool
-    {
-        return realpath($path) === realpath($this->container->get('base_path'));
     }
 
     /**

@@ -21,7 +21,7 @@
 
             <ul id="file-list">
                 <li>
-                    {% if not search and not is_root %}
+                    {% if not search and path != '.' %}
                         {{ include('components/file.twig', { parentDir: true }) }}
                     {% endif %}
                 </li>

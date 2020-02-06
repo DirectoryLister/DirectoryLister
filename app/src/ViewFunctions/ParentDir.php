@@ -22,6 +22,6 @@ class ParentDir extends ViewFunction
             explode('/', $path)
         )->filter()->slice(0, -1)->implode('/');
 
-        return empty($parentDir) ? '' : sprintf('?dir=%s', $parentDir);
+        return empty($parentDir) ? '.' : sprintf('?dir=%s', $parentDir);
     }
 }

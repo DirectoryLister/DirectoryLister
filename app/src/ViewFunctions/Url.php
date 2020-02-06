@@ -18,6 +18,10 @@ class Url extends ViewFunction
     {
         $path = preg_replace('/^[.\/]+/', '', $path);
 
+        if (is_file($path)) {
+            return $path;
+        }
+
         return empty($path) ? '' : sprintf('?dir=%s', ltrim($path, './'));
     }
 }

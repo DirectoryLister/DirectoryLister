@@ -1,2 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<files psalm-version="3.8.3@389af1bfc739bfdff3f9e3dc7bd6499aee51a831"/>
+<files psalm-version="3.8.3@389af1bfc739bfdff3f9e3dc7bd6499aee51a831">
+  <file src="app/src/Handlers/DirectoryHandler.php">
+    <PossiblyInvalidMethodCall occurrences="1">
+      <code>current</code>
+    </PossiblyInvalidMethodCall>
+  </file>
+</files>

@@ -57,22 +57,4 @@ return [
      * Default value: 1000000000
      */
     'max_hash_size' => Helpers::env('MAX_HASH_SIZE'),
-
-    /**
-     * Additional providers to be loaded during application initialization.
-     *
-     * Default value: []
-     */
-    'providers' => [
-        // ...
-    ],
-
-    /**
-     * Additional middlewares to be registered.
-     *
-     * Default value: []
-     */
-    'middlewares' => [
-        // ...
-    ],
 ];

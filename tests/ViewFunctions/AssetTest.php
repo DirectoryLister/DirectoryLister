@@ -9,10 +9,12 @@ class AssetTest extends TestCase
 {
     public function test_it_can_return_an_asset_path(): void
     {
+        $this->container->set('base_path', $this->filePath('.'));
         $asset = new Asset($this->container, $this->config);
 
-        $this->assertEquals('app/assets/css/app.css', $asset('css/app.css'));
-        $this->assertEquals('app/assets/js/app.js', $asset('js/app.js'));
+        $this->assertEquals('app/assets/app.css?id=417c7a9bc03852aafb27', $asset('app.css'));
+        $this->assertEquals('app/assets/app.js?id=6753a7269276c7b52692', $asset('app.js'));
+        $this->assertEquals('app/assets/images/icon.png', $asset('images/icon.png'));
     }
 
     public function test_it_can_return_an_asset_with_a_subdirectory(): void
@@ -21,7 +23,8 @@ class AssetTest extends TestCase
 
         $asset = new Asset($this->container, $this->config);
 
-        $this->assertEquals('app/assets/css/app.css', $asset('css/app.css'));
-        $this->assertEquals('app/assets/js/app.js', $asset('js/app.js'));
+        $this->assertEquals('app/assets/app.css?id=417c7a9bc03852aafb27', $asset('app.css'));
+        $this->assertEquals('app/assets/app.js?id=6753a7269276c7b52692', $asset('app.js'));
+        $this->assertEquals('app/assets/images/icon.png', $asset('images/icon.png'));
     }
 }

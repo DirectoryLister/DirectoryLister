@@ -2,7 +2,7 @@ let mix = require('laravel-mix');
 let tailwindcss = require('tailwindcss');
 require('laravel-mix-purgecss');
 
-mix.setPublicPath('.');
+mix.setPublicPath('app/assets');
 
 mix.webpackConfig({
     watchOptions: { ignored: ['node_modules', 'app/vendor'] }

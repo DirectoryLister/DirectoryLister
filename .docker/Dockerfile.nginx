@@ -1,7 +1,0 @@
-# Build php-fpm image
-FROM php:7.4-fpm
-LABEL maintainer="Chris Kankiewicz <Chris@ChrisKankiewicz.com>"
-
-COPY ./php/config/php.ini /usr/local/etc/php/php.ini
-
-RUN pecl install xdebug && docker-php-ext-enable xdebug

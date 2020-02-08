@@ -17,14 +17,14 @@ class AssetTest extends TestCase
         $this->assertEquals('app/assets/images/icon.png', $asset('images/icon.png'));
     }
 
-    public function test_it_can_return_an_asset_with_a_subdirectory(): void
+    public function test_it_can_return_an_asset_from_a_subdirectory(): void
     {
-        $_SERVER['SCRIPT_NAME'] = '/some/dir/index.php';
+        $this->container->set('base_path', $this->filePath('subdir'));
 
         $asset = new Asset($this->container, $this->config);
 
-        $this->assertEquals('app/assets/app.css?id=417c7a9bc03852aafb27', $asset('app.css'));
-        $this->assertEquals('app/assets/app.js?id=6753a7269276c7b52692', $asset('app.js'));
+        $this->assertEquals('app/assets/app.css', $asset('app.css'));
+        $this->assertEquals('app/assets/app.js', $asset('app.js'));
         $this->assertEquals('app/assets/images/icon.png', $asset('images/icon.png'));
     }
 }

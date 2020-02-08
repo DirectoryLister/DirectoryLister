@@ -18,11 +18,6 @@ class AppManager
         Providers\TwigProvider::class,
     ];
 
-    /** @const Constant description */
-    protected const MIDDLEWARES = [
-        // ...
-    ];
-
     /** @var Container The applicaiton container */
     protected $container;
 
@@ -48,10 +43,8 @@ class AppManager
     public function __invoke(): App
     {
         $this->registerProviders();
-        $app = Bridge::create($this->container);
-        $this->registerMiddlewares($app);
 
-        return $app;
+        return Bridge::create($this->container);
     }
 
     /**
@@ -66,22 +59,6 @@ class AppManager
                 $this->container->call(
                     $this->callableResolver->resolve($provider)
                 );
-            }
-        );
-    }
-
-    /**
-     * Register application middleware.
-     *
-     * @param \Slim\App $app
-     *
-     * @return void
-     */
-    protected function registerMiddlewares(App $app): void
-    {
-        Collection::make(self::MIDDLEWARES)->each(
-            function (string $middleware) use ($app) {
-                $app->add($middleware);
             }
         );
     }

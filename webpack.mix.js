@@ -26,7 +26,7 @@ mix.purgeCss({
     extensions: ['html', 'js', 'php', 'scss', 'twig', 'vue'],
     folders: ['app'],
     whitelist: ['html', 'body', 'main', 'fab', 'far', 'fas'],
-    whitelistPatterns: [/^fa\-/]
+    whitelistPatterns: [/^fa\-/, /^hljs/]
 });
 
 if (mix.inProduction()) {

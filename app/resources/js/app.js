@@ -19,6 +19,9 @@ const app = new Vue({
     }
 });
 
+let hljs = require('highlight.js');
+hljs.initHighlightingOnLoad();
+
 let link = document.getElementById('scroll-to-top');
 window.addEventListener('scroll', function() {
     if (window.scrollY > 10) {

@@ -2,7 +2,7 @@
 
 namespace App\ViewFunctions;
 
-use Parsedown;
+use ParsedownExtra;
 
 class Markdown extends ViewFunction
 {
@@ -18,6 +18,6 @@ class Markdown extends ViewFunction
      */
     public function __invoke(string $string)
     {
-        return Parsedown::instance()->parse($string);
+        return ParsedownExtra::instance()->parse($string);
     }
 }

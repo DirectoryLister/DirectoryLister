@@ -2,8 +2,7 @@
     @apply break-words;
 
     a {
-        @apply text-blue-600;
-        @apply underline;
+        @apply text-blue-600 underline;
 
         &:hover {
             @apply text-blue-800;
@@ -38,15 +37,11 @@
     }
 
     h1 {
-        @apply text-4xl;
-        @apply border-b;
-        @apply border-gray-400;
+        @apply border-b border-gray-400 text-4xl;
     }
 
     h2 {
-        @apply text-3xl;
-        @apply border-b;
-        @apply border-gray-400;
+        @apply border-b border-gray-400 text-3xl;
     }
 
     h3 {
@@ -72,10 +67,7 @@
     h4,
     h5,
     h6 {
-        @apply font-bold;
-        @apply leading-relaxed;
-        @apply mt-8;
-        @apply mb-4;
+        @apply font-bold leading-relaxed mt-8 mb-4;
     }
 
     h1 + p,
@@ -85,23 +77,42 @@
     }
 
     code {
-        @apply bg-gray-200;
-        @apply rounded-sm;
-        @apply p-1;
-        @apply font-mono;
-        @apply overflow-y-auto;
+        @apply bg-gray-200 rounded-sm font-mono p-1 overflow-y-auto;
     }
 
     pre > code {
-        @apply block;
-        @apply p-4;
-        @apply text-sm;
-        @apply whitespace-pre;
+        @apply block p-4 text-sm whitespace-pre;
     }
 
     hr {
-        @apply border-t-2;
-        @apply border-gray-400;
+        @apply border-t-2 border-gray-400 my-4;
+    }
+
+    blockquote {
+        @apply border-l-4 border-gray-400 pl-2 text-gray-600;
+    }
+
+    table {
+        @apply table;
+
+        th,
+        td {
+            @apply border border-gray-400 p-1;
+        }
+
+        th {
+            @apply font-bold;
+        }
+    }
+
+    dl {
+        dt {
+            @apply font-bold;
+        }
+
+        dd {
+            @apply pl-4;
+        }
     }
 
     & > :first-child {

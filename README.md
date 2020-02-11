@@ -35,7 +35,7 @@ Requirements
 Installation
 ------------
 
-  1. [Download Directory Lister](https://github.com/DirectoryLister/DirectoryLister/releases)
+  1. [Download Directory Lister](https://www.directorylister.com)
   2. Extract the zip/tar archive
   3. Copy extracted files/folders to your web server
 

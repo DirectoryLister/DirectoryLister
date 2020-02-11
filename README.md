@@ -45,6 +45,8 @@ Configuration
   1. Copy `.env.example` to `.env`
   2. Edit the configuration values in `.env`
 
+See the [Config Reference](https://github.com/DirectoryLister/DirectoryLister/wiki/Config-Reference) for more information about individual options.
+
 Changelog
 ---------
 

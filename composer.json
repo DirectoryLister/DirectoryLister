@@ -12,6 +12,7 @@
     "require": {
         "php": ">=7.2",
         "erusev/parsedown-extra": "^0.8.1",
+        "middlewares/cache": "^2.0",
         "phlak/config": "^6.1",
         "php-di/php-di": "^6.0",
         "php-di/slim-bridge": "^3.0",

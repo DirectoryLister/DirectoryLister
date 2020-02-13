@@ -6,6 +6,7 @@ use App\Providers;
 use DI\Bridge\Slim\Bridge;
 use DI\Container;
 use Invoker\CallableResolver;
+use Middlewares;
 use Slim\App;
 use Tightenco\Collect\Support\Collection;
 
@@ -43,8 +44,10 @@ class AppManager
     public function __invoke(): App
     {
         $this->registerProviders();
+        $app = Bridge::create($this->container);
+        $app->add(new Middlewares\Expires(['text/json' => '+1 hour']));
 
-        return Bridge::create($this->container);
+        return $app;
     }
 
     /**
@@ -55,7 +58,7 @@ class AppManager
     protected function registerProviders(): void
     {
         Collection::make(self::PROVIDERS)->each(
-            function (string $provider) {
+            function (string $provider): void {
                 $this->container->call(
                     $this->callableResolver->resolve($provider)
                 );

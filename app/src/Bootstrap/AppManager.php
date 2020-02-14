@@ -28,7 +28,8 @@ class AppManager
     /**
      * Create a new Provider object.
      *
-     * @param \DI\Container $container
+     * @param \DI\Container             $container
+     * @param \Invoker\CallableResolver $callableResolver
      */
     public function __construct(Container $container, CallableResolver $callableResolver)
     {

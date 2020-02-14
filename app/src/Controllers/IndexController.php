@@ -39,6 +39,9 @@ class IndexController
             case array_key_exists('search', $request->getQueryParams()):
                 return $this->container->call(Handlers\SearchHandler::class, [$request, $response]);
 
+            case array_key_exists('zip', $request->getQueryParams()):
+                return $this->container->call(Handlers\ZipHandler::class, [$request, $response]);
+
             default:
                 return $this->container->call(Handlers\DirectoryHandler::class, [$request, $response]);
         }

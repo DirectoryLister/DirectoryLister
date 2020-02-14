@@ -1,6 +1,6 @@
 <header id="header" class="bg-blue-600 shadow sticky top-0">
-    <div class="container flex flex-col justify-between items-center mx-auto p-4 md:flex-row">
-        <div class="font-mono text-white text-sm tracking-tight mb-2 md:my-1">
+    <div class="container flex flex-coljustify-between items-center mx-auto p-4 md:flex-row">
+        <div class="flex-grow font-mono text-white text-sm tracking-tight mb-2 md:my-1">
             <a href="." class="hover:underline">Home</a>
 
             {% if path %}
@@ -10,23 +10,31 @@
             {% endif %}
         </div>
 
-        <form action="." method="get" id="search" class="group relative block w-full bg-blue-700 rounded-full shadow-inner md:w-4/12 md:-my-2">
-            <input type="text" name="search" placeholder="Search this directory..." value="{{ search }}"
-                class="bg-transparent placeholder-gray-900 text-white w-full px-10 py-2"
-                v-model="search"
-            >
-
-            <div class="flex items-center absolute left-0 inset-y-0 ml-2 pointer-events-none">
-                <div class="flex justify-center items-center text-blue-900 w-6 h-6">
-                    <i class="fas fa-search fa-fw"></i>
-                </div>
-            </div>
-
-            <div class="flex items-center absolute right-0 inset-y-0 mr-2" v-show="search">
-                <a href="."  class="flex justify-center items-center rounded-full text-blue-900 w-6 h-6 hover:bg-red-700 hover:text-white hover:shadow">
-                    <i class="fas fa-times"></i>
+        <div class="flex justify-end items-center">
+            {% if not search %}
+                <a href="?zip={{ path }}" title="Download this Directory" class="inline-block text-white mx-2">
+                    <i class="fas fa-download fa-lg"></i>
                 </a>
-            </div>
-        </form>
+            {% endif %}
+
+            <form action="." method="get" id="search" class="flex-grow group relative block bg-blue-700 rounded-full shadow-inner">
+                <input type="text" name="search" placeholder="Search..." value="{{ search }}"
+                    class="bg-transparent placeholder-gray-900 text-white w-full px-10 py-2"
+                    v-model="search"
+                >
+
+                <div class="flex items-center absolute left-0 inset-y-0 ml-2 pointer-events-none">
+                    <div class="flex justify-center items-center text-blue-900 w-6 h-6">
+                        <i class="fas fa-search fa-fw"></i>
+                    </div>
+                </div>
+
+                <div class="flex items-center absolute right-0 inset-y-0 mr-2" v-show="search">
+                    <a href="."  class="flex justify-center items-center rounded-full text-blue-900 w-6 h-6 hover:bg-red-700 hover:text-white hover:shadow">
+                        <i class="fas fa-times"></i>
+                    </a>
+                </div>
+            </form>
+        </div>
     </div>
 </header>

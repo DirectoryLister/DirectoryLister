@@ -46,7 +46,10 @@ class AppManager
     {
         $this->registerProviders();
         $app = Bridge::create($this->container);
-        $app->add(new Middlewares\Expires(['text/json' => '+1 hour']));
+        $app->add(new Middlewares\Expires([
+            'application/zip' => '+1 hour',
+            'text/json' => '+1 hour',
+        ]));
 
         return $app;
     }

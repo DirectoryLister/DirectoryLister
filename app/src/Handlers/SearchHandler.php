@@ -2,6 +2,7 @@
 
 namespace App\Handlers;
 
+use Psr\Http\Message\ResponseInterface;
 use Slim\Psr7\Request;
 use Slim\Psr7\Response;
 use Slim\Views\Twig;
@@ -35,7 +36,7 @@ class SearchHandler
      *
      * @return \Psr\Http\Message\ResponseInterface
      */
-    public function __invoke(Request $request, Response $response)
+    public function __invoke(Request $request, Response $response): ResponseInterface
     {
         $search = $request->getQueryParams()['search'];
 

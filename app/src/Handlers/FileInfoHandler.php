@@ -4,6 +4,7 @@ namespace App\Handlers;
 
 use DI\Container;
 use PHLAK\Config\Config;
+use Psr\Http\Message\ResponseInterface;
 use Slim\Psr7\Request;
 use Slim\Psr7\Response;
 use SplFileInfo;
@@ -33,8 +34,10 @@ class FileInfoHandler
      *
      * @param \Slim\Psr7\Request  $request
      * @param \Slim\Psr7\Response $response
+     *
+     * @return \Psr\Http\Message\ResponseInterface
      */
-    public function __invoke(Request $request, Response $response)
+    public function __invoke(Request $request, Response $response): ResponseInterface
     {
         $path = $request->getQueryParams()['info'];
 

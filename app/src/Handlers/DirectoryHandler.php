@@ -3,6 +3,7 @@
 namespace App\Handlers;
 
 use PHLAK\Config\Config;
+use Psr\Http\Message\ResponseInterface;
 use Slim\Psr7\Request;
 use Slim\Psr7\Response;
 use Slim\Views\Twig;
@@ -43,7 +44,7 @@ class DirectoryHandler
      *
      * @return \Psr\Http\Message\ResponseInterface
      */
-    public function __invoke(Request $request, Response $response)
+    public function __invoke(Request $request, Response $response): ResponseInterface
     {
         $path = $request->getQueryParams()['dir'] ?? '.';
 

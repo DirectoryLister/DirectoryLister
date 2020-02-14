@@ -43,6 +43,22 @@ class IndexControllerTest extends TestCase
         $controller($request, $response);
     }
 
+    public function test_it_handles_a_zip_request(): void
+    {
+        $request = $this->createMock(Request::class);
+        $request->method('getQueryParams')->willReturn(['zip' => 'subdir']);
+
+        $container = $this->createMock(Container::class);
+        $container->expects($this->once())->method('call')->with(
+            Handlers\ZipHandler::class,
+            [$request, $response = new Response]
+        );
+
+        $controller = new IndexController($container);
+
+        $controller($request, $response);
+    }
+
     public function test_it_handles_a_directory_request(): void
     {
         $request = $this->createMock(Request::class);

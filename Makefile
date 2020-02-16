@@ -17,6 +17,9 @@ test: # Run coding standards/static analysis checks and tests
 		&& app/vendor/bin/psalm \
 		&& app/vendor/bin/phpunit --coverage-text
 
+coverage: # Generate an HTML coverage report
+	@app/vendor/bin/phpunit --coverage-html .coverage
+
 tunnel: # Expose the application via secure tunnel
 	@ngrok http -host-header=rewrite http://directory-lister.local:80
 

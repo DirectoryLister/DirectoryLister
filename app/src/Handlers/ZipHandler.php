@@ -64,10 +64,12 @@ class ZipHandler
 
         $response->getBody()->write($tempFile->getContents());
 
+        $filename = Collection::make(explode('/', $path))->last();
+
         return $response->withHeader('Content-Type', 'application/zip')
             ->withHeader('Content-Disposition', sprintf(
                 'attachment; filename="%s.zip"',
-                Collection::make(explode('/', $path))->last()
+                $filename == '.' ? 'Home' : $filename
             ));
     }
 }

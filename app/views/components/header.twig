@@ -18,7 +18,7 @@
             {% endif %}
 
             <form action="." method="get" id="search" class="flex-grow group relative block bg-blue-700 rounded-full shadow-inner">
-                <input v-model="search" ref="searchInput"
+                <input v-model="search" ref="searchInput" v-on:focus="$event.target.select()"
                     type="text" name="search" placeholder="Search..." value="{{ search }}"
                     class="bg-transparent placeholder-gray-900 text-white w-full px-10 py-2"
                 >

@@ -11,6 +11,7 @@
     ],
     "require": {
         "php": ">=7.2",
+        "ext-zip": "*",
         "erusev/parsedown-extra": "^0.8.1",
         "middlewares/cache": "^2.0",
         "phlak/config": "^6.1",
@@ -30,6 +31,7 @@
         "psy/psysh": "^0.9.9",
         "vimeo/psalm": "^3.6"
     },
+
     "autoload": {
         "psr-4": {
             "App\\": "app/src/"

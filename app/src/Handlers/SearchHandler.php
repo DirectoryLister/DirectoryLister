@@ -40,6 +40,13 @@ class SearchHandler
     {
         $search = $request->getQueryParams()['search'];
 
+        if (empty($search)) {
+            return $this->view->render($response->withStatus(422), 'error.twig', [
+                'code' => 422,
+                'message' => 'Unprocessable Entity',
+            ]);
+        }
+
         $files = $this->finder->in('.')->name(
             sprintf('/(?:.*)%s(?:.*)/i', preg_quote($search, '/'))
         );
@@ -47,7 +54,6 @@ class SearchHandler
         return $this->view->render($response, 'index.twig', [
             'files' => $files,
             'search' => $search,
-            'title' => $search,
         ]);
     }
 }

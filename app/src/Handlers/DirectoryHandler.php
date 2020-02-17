@@ -51,14 +51,16 @@ class DirectoryHandler
         try {
             $files = $this->finder->in($path)->depth(0);
         } catch (DirectoryNotFoundException $exception) {
-            return $this->view->render($response->withStatus(404), '404.twig');
+            return $this->view->render($response->withStatus(404), 'error.twig', [
+                'code' => 404,
+                'message' => 'Not Found',
+            ]);
         }
 
         return $this->view->render($response, 'index.twig', [
             'files' => $files,
             'path' => $path,
             'readme' => $this->readme($files),
-            'title' => $path == '.' ? 'Home' : $path,
         ]);
     }
 

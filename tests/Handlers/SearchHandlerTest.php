@@ -27,4 +27,19 @@ class SearchHandlerTest extends TestCase
         $this->assertInstanceOf(ResponseInterface::class, $response);
         $this->assertEquals(200, $response->getStatusCode());
     }
+
+    public function test_it_returns_an_error_for_a_blank_search(): void
+    {
+        $this->container->call(TwigProvider::class);
+
+        $handler = new SearchHandler(new Finder, $this->container->get(Twig::class));
+
+        $request = $this->createMock(Request::class);
+        $request->method('getQueryParams')->willReturn(['search' => '']);
+
+        $response = $handler($request, new Response);
+
+        $this->assertInstanceOf(ResponseInterface::class, $response);
+        $this->assertEquals(422, $response->getStatusCode());
+    }
 }

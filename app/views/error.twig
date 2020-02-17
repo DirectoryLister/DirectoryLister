@@ -1,11 +1,12 @@
 {% extends 'layouts/app.twig' %}
+{% set title = message %}
 
 {% block content %}
     {% include 'components/header.twig' %}
 
     <div id="content" class="flex-grow container flex justify-center items-center mx-auto px-4">
         <p class="font-thin text-4xl text-gray-600">
-            404 &bull; Not Found
+            {{ code }} &bull; {{ message }}
         </p>
     </div>
 

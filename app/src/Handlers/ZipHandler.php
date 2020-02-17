@@ -8,6 +8,7 @@ use Psr\Http\Message\ResponseInterface;
 use Slim\Psr7\Request;
 use Slim\Psr7\Response;
 use Symfony\Component\Finder\Finder;
+use Symfony\Component\Finder\SplFileInfo;
 use Tightenco\Collect\Support\Collection;
 use ZipArchive;
 
@@ -47,17 +48,13 @@ class ZipHandler
             return $response->withStatus(404, 'File not found');
         }
 
-        $tempFile = new TemporaryFile(
-            $this->container->get('base_path') . '/app/cache'
-        );
-
         $zip = new ZipArchive;
-        $zip->open((string) $tempFile, ZipArchive::CREATE | ZipArchive::OVERWRITE);
+        $zip->open((string) $tempFile = new TemporaryFile(
+            $this->container->get('base_path') . '/app/cache'
+        ), ZipArchive::CREATE | ZipArchive::OVERWRITE);
 
-        foreach ($this->finder->in($path) as $file) {
-            if ($file->isFile()) {
-                $zip->addFile($file->getRealPath(), $file->getPathname());
-            }
+        foreach ($this->finder->in($path)->files() as $file) {
+            $zip->addFile($file->getRealPath(), $this->stripPath($file, $path));
         }
 
         $zip->close();
@@ -71,5 +68,20 @@ class ZipHandler
                 'attachment; filename="%s.zip"',
                 $filename == '.' ? 'Home' : $filename
             ));
+    }
+
+    /**
+     * Return the path to a file with the preceding root path stripped.
+     *
+     * @param \Symfony\Component\Finder\SplFileInfo $file
+     * @param string                                $path
+     *
+     * @return string
+     */
+    protected function stripPath(SplFileInfo $file, string $path): string
+    {
+        $pattern = sprintf('/^%s\/?/', preg_quote($path, '/'));
+
+        return preg_replace($pattern, '', $file->getPathname());
     }
 }

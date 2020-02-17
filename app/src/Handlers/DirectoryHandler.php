@@ -58,6 +58,7 @@ class DirectoryHandler
             'files' => $files,
             'path' => $path,
             'readme' => $this->readme($files),
+            'title' => $path == '.' ? 'Home' : $path,
         ]);
     }
 

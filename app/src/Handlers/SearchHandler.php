@@ -47,6 +47,7 @@ class SearchHandler
         return $this->view->render($response, 'index.twig', [
             'files' => $files,
             'search' => $search,
+            'title' => $search,
         ]);
     }
 }

@@ -26,11 +26,13 @@ Features
   - **File search** helps you locate the files you need quickly and efficiently.
   - **File hashes** instill confidence when downloading files through verification.
   - **Readme rendering** allows exposing the contents of READMEs directly on the page.
+  - **Zip downloads** for fetching an entire directory of files in a single action.
 
 Requirements
 ------------
 
   - [PHP](https://php.net) >= 7.2
+    - [PHP Zip](https://www.php.net/manual/en/book.zip.php) extension
 
 Installation
 ------------

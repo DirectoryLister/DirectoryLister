@@ -18,9 +18,9 @@
             {% endif %}
 
             <form action="." method="get" id="search" class="flex-grow group relative block bg-blue-700 rounded-full shadow-inner">
-                <input type="text" name="search" placeholder="Search..." value="{{ search }}"
+                <input v-model="search" ref="searchInput"
+                    type="text" name="search" placeholder="Search..." value="{{ search }}"
                     class="bg-transparent placeholder-gray-900 text-white w-full px-10 py-2"
-                    v-model="search"
                 >
 
                 <div class="flex items-center absolute left-0 inset-y-0 ml-2 pointer-events-none">

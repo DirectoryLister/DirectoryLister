@@ -16,6 +16,9 @@ const app = new Vue({
     },
     beforeMount: function() {
         this.search = this.$el.querySelector('input[name="search"]').value;
+    },
+    mounted: function() {
+        window.addEventListener('keyup', e => e.keyCode == 191 && this.$refs.searchInput.focus());
     }
 });
 

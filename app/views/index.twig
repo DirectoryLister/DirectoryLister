@@ -21,7 +21,7 @@
 
             <ul id="file-list">
                 <li>
-                    {% if not search and path != '.' %}
+                    {% if path and path != '.' %}
                         {{ include('components/file.twig', { parentDir: true }) }}
                     {% endif %}
                 </li>
@@ -34,7 +34,7 @@
             </ul>
         </div>
 
-        {% if readme and not search %}
+        {% if readme %}
             {% include 'components/readme.twig' %}
         {% endif %}
     </div>

@@ -26,8 +26,8 @@ return [
 
     /**
      * Your Google analytics tracking ID.
-     * Expected format: 'UA-123456789-0'.
      *
+     * Expected format: 'UA-123456789-0'
      * Default value: false
      */
     'google_analytics_id' => Helpers::env('GOOGLE_ANALYTICS_ID'),

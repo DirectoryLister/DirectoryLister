@@ -17,8 +17,6 @@ class Config extends ViewFunction
      */
     public function __invoke(string $key, $default = null)
     {
-        $viewConfig = $this->config->split('view');
-
-        return $viewConfig->get($key, $default);
+        return $this->config->split('app')->get($key, $default);
     }
 }

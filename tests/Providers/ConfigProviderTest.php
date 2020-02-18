@@ -17,6 +17,5 @@ class ConfigProviderTest extends TestCase
         $this->assertInstanceOf(Config::class, $config);
         $this->assertTrue($config->has('app'));
         $this->assertTrue($config->has('icons'));
-        $this->assertTrue($config->has('view'));
     }
 }

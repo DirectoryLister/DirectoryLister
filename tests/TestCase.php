@@ -35,10 +35,8 @@ class TestCase extends PHPUnitTestCase
                 'hide_vcs_files' => false,
                 'display_readmes' => true,
                 'max_hash_size' => 1000000000,
-            ],
-            'view' => [
-                'cache' => false
-            ],
+                'view_cache' => false,
+            ]
         ]);
 
         $this->container = new Container();

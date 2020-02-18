@@ -4,6 +4,28 @@ use App\Support\Helpers;
 
 return [
     /**
+     * Enable dark mode?
+     *
+     * Default value: false
+     */
+    'dark_mode' => Helpers::env('DARK_MODE'),
+
+    /**
+     * Parse and render README files on the page.
+     *
+     * Default value: true
+     */
+    'display_readmes' => Helpers::env('DISPLAY_READMES'),
+
+    /**
+     * Your Google analytics tracking ID.
+     * Expected format: 'UA-123456789-0'.
+     *
+     * Default value: false
+     */
+    'google_analytics_id' => Helpers::env('GOOGLE_ANALYTICS_ID'),
+
+    /**
      * Sorting order of files and folders.
      *
      * Possible values: type, natural, name, accessed, changed, modified
@@ -44,11 +66,12 @@ return [
     'hide_vcs_files' => Helpers::env('HIDE_VSC_FILES'),
 
     /**
-     * Parse and render README files on the page.
+     * Default date format. For additional info on date formatting see:
+     * https://www.php.net/manual/en/function.date.php.
      *
-     * Default value: true
+     * Default value: 'Y-m-d H:i:s'
      */
-    'display_readmes' => Helpers::env('DISPLAY_READMES'),
+    'date_format' => Helpers::env('DATE_FORMAT'),
 
     /**
      * The maximum file size (in bytes) that can be hashed. This helps to
@@ -57,4 +80,12 @@ return [
      * Default value: 1000000000
      */
     'max_hash_size' => Helpers::env('MAX_HASH_SIZE'),
+
+    /**
+     * Path to the view cache directory.
+     * Set to 'false' to disable view caching entirely.
+     *
+     * Default value: 'app/cache/views'
+     */
+    'view_cache' => Helpers::env('VIEW_CACHE'),
 ];

@@ -18,7 +18,7 @@ class ConfigTest extends TestCase
         $this->config = new AppConfig([
             'foo' => false,
             'bar' => 'Red herring',
-            'view' => [
+            'app' => [
                 'foo' => 'Test value; please ignore'
             ],
         ]);

@@ -52,11 +52,11 @@ class TwigProvider
         $twig = new Twig(new FilesystemLoader('app/views'));
 
         $twig->getEnvironment()->setCache(
-            $this->config->get('view.cache', 'app/cache/views')
+            $this->config->get('app.view_cache', 'app/cache/views')
         );
 
         $twig->getEnvironment()->getExtension(CoreExtension::class)->setDateFormat(
-            $this->config->get('view.date_format', 'Y-m-d H:i:s'), '%d days'
+            $this->config->get('app.date_format', 'Y-m-d H:i:s'), '%d days'
         );
 
         foreach (self::VIEW_FUNCTIONS as $function) {

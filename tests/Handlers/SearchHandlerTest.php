@@ -28,7 +28,7 @@ class SearchHandlerTest extends TestCase
         $this->assertEquals(200, $response->getStatusCode());
     }
 
-    public function test_it_returns_an_error_for_a_blank_search(): void
+    public function test_it_returns_a_successful_response_for_a_blank_search(): void
     {
         $this->container->call(TwigProvider::class);
 
@@ -40,6 +40,6 @@ class SearchHandlerTest extends TestCase
         $response = $handler($request, new Response);
 
         $this->assertInstanceOf(ResponseInterface::class, $response);
-        $this->assertEquals(422, $response->getStatusCode());
+        $this->assertEquals(200, $response->getStatusCode());
     }
 }

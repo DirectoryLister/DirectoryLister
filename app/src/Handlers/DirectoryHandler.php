@@ -52,8 +52,7 @@ class DirectoryHandler
             $files = $this->finder->in($path)->depth(0);
         } catch (DirectoryNotFoundException $exception) {
             return $this->view->render($response->withStatus(404), 'error.twig', [
-                'code' => 404,
-                'message' => 'Not Found',
+                'message' => 'Directory does not exist'
             ]);
         }
 

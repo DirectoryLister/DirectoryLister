@@ -6,7 +6,7 @@
 
     <div id="content" class="flex-grow container flex justify-center items-center mx-auto px-4">
         <p class="font-thin text-4xl text-gray-600">
-            {{ code }} &bull; {{ message }}
+            {{ message | default('An unexpected error occured') }}
         </p>
     </div>
 

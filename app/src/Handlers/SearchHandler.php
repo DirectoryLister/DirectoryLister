@@ -41,7 +41,9 @@ class SearchHandler
         $search = $request->getQueryParams()['search'];
 
         if (empty($search)) {
-            return $this->error($response);
+            return $this->view->render($response, 'error.twig', [
+                'message' => 'No results found'
+            ]);
         }
 
         $files = $this->finder->in('.')->name(
@@ -52,20 +54,6 @@ class SearchHandler
             'files' => $files,
             'search' => $search,
             'title' => $search,
-        ]);
-    }
-
-    /**
-     * Return an error response.
-     *
-     * @param \Psr\Http\Message\ResponseInterface $response
-     *
-     * @return \Psr\Http\Message\ResponseInterface
-     */
-    protected function error(ResponseInterface $response): ResponseInterface
-    {
-        return $this->view->render($response, 'error.twig', [
-            'message' => 'No results found'
         ]);
     }
 }

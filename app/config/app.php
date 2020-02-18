@@ -18,6 +18,13 @@ return [
     'display_readmes' => Helpers::env('DISPLAY_READMES'),
 
     /**
+     * Enable downloading of directories as a zip archive.
+     *
+     * Default value: true
+     */
+    'zip_downloads' => Helpers::env('ZIP_DOWNLOADS'),
+
+    /**
      * Your Google analytics tracking ID.
      * Expected format: 'UA-123456789-0'.
      *

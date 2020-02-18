@@ -4,6 +4,7 @@ namespace App\Handlers;
 
 use App\TemporaryFile;
 use DI\Container;
+use PHLAK\Config\Config;
 use Psr\Http\Message\ResponseInterface;
 use Slim\Psr7\Request;
 use Slim\Psr7\Response;
@@ -17,6 +18,9 @@ class ZipHandler
     /** @var Container The application container */
     protected $container;
 
+    /** @var Config The application config */
+    protected $config;
+
     /** @var Finder The Finder Component */
     protected $finder;
 
@@ -26,9 +30,10 @@ class ZipHandler
      * @param \DI\Container      $container
      * @param \PhpCsFixer\Finder $finder
      */
-    public function __construct(Container $container, Finder $finder)
+    public function __construct(Container $container, Config $config, Finder $finder)
     {
         $this->container = $container;
+        $this->config = $config;
         $this->finder = $finder;
     }
 
@@ -44,7 +49,7 @@ class ZipHandler
     {
         $path = $request->getQueryParams()['zip'];
 
-        if (! realpath($path)) {
+        if (! $this->config->get('app.zip_downloads', true) || ! realpath($path)) {
             return $response->withStatus(404, 'File not found');
         }
 

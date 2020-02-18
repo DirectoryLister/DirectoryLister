@@ -28,12 +28,16 @@ class TestCase extends PHPUnitTestCase
 
         $this->config = new Config([
             'app' => [
+                'dark_mode' => false,
+                'display_readmes' => true,
+                'zip_downloads' => true,
+                'google_analytics_id' => false,
                 'sort_order' => 'type',
                 'reverse_sort' => false,
                 'hidden_files' => [],
                 'hide_app_files' => true,
                 'hide_vcs_files' => false,
-                'display_readmes' => true,
+                'date_format' => 'Y-m-d H:i:s',
                 'max_hash_size' => 1000000000,
                 'view_cache' => false,
             ]

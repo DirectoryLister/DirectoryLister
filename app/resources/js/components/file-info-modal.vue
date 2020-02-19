@@ -1,11 +1,11 @@
 <template>
-    <div id="file-info-modal"
+    <div id="file-info-modal" v-bind:class="this.styles" v-on:click.self="hide()"
         class="fixed top-0 flex justify-center items-center w-screen h-screen p-4 z-50"
         style="background-color: hsla(218, 23%, 23%, 0.5)"
-        v-bind:class="this.styles"
-        v-on:click.self="hide()"
     >
-        <div id="file-info-dialogue" class="bg-white rounded-lg shadow-lg overflow-hidden" v-show="! loading">
+        <div id="file-info-dialogue" v-show="! loading"
+            class="transition duration-500 ease-in-out bg-white rounded-lg shadow-lg overflow-hidden"
+        >
             <header class="flex justify-between items-center bg-blue-600 p-4">
                 <i class="fas fa-info-circle fa-lg text-white"></i>
 
@@ -13,9 +13,8 @@
                     {{ title }}
                 </div>
 
-                <button
+                <button v-on:click="hide()"
                     class="flex justify-center items-center rounded-full w-6 h-6 text-blue-900 text-sm hover:bg-red-700 hover:text-white hover:shadow"
-                    v-on:click="hide()"
                 >
                     <i class="fas fa-times"></i>
                 </button>

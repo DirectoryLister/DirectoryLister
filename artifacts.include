@@ -1,6 +1,5 @@
 app
 .env.example
-.htaccess
 directory-lister.svg
 index.php
 LICENSE

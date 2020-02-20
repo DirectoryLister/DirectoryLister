@@ -17,8 +17,7 @@ cache:
 
 install: composer install
 
-before_script:
+script:
   - app/vendor/bin/php-cs-fixer fix --diff --dry-run
   - app/vendor/bin/psalm
-
-script: app/vendor/bin/phpunit --coverage-text
+  - app/vendor/bin/phpunit --coverage-text

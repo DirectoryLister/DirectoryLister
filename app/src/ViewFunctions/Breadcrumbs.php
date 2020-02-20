@@ -44,7 +44,8 @@ class Breadcrumbs extends ViewFunction
                 $carry->last() . DIRECTORY_SEPARATOR . $crumb, DIRECTORY_SEPARATOR
             ));
         }, new Collection)->map(function (string $path): string {
-            return sprintf('?dir=%s', $path);
+            $relativeRoot = substr(getcwd(), strlen($_SERVER['DOCUMENT_ROOT']));
+            return sprintf($this->config->get('app.rewrite', false) ? $relativeRoot . '/' . $path : '?dir=%s', $path);
         });
     }
 }

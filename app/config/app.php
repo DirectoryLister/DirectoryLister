@@ -161,4 +161,12 @@ return [
     'icons' => function (ContainerInterface $container): array {
         return require $container->get('icons_config');
     },
+
+    /**
+     * Support for Rewrite engines.
+     * Set to 'true' when you are ready.
+     *
+     * Default value: false
+     */
+    'rewrite' => Helpers::env('REWRITE'),
 ];

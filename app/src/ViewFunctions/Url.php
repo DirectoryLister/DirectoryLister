@@ -18,7 +18,7 @@ class Url extends ViewFunction
     {
         $path = preg_replace('/^.?(\/|\\\)+/', '', $path);
 
-        if (is_file($path)) {
+        if (is_file($path) || $this->config->get('app.rewrite') === true) {
             return $path;
         }
 

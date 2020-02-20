@@ -41,7 +41,8 @@ class Asset extends ViewFunction
             $path = $this->mixManifest()->get($path);
         }
 
-        return self::ASSET_PATH . ltrim($path, '/');
+        $relativeRoot = substr($this->container->get('base_path'), strlen($_SERVER['DOCUMENT_ROOT']));
+        return $relativeRoot . '/' . self::ASSET_PATH . ltrim($path, '/');
     }
 
     /**

@@ -95,4 +95,12 @@ return [
      * Default value: 'app/cache/views'
      */
     'view_cache' => Helpers::env('VIEW_CACHE'),
+
+    /**
+     * Support for Rewrite engines.
+     * Set to 'true' when you are ready.
+     *
+     * Default value: false
+     */
+    'rewrite' => Helpers::env('REWRITE'),
 ];

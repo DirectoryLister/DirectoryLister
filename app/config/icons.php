@@ -128,4 +128,7 @@ return [
     'bak' => 'fas fa-save',
     'lock' => 'fas fa-lock',
     'msg' => 'fas fa-envelope',
+
+    'apk' => 'fas fa-file-archive',
+    'ipa' => 'fas fa-file-archive',
 ];

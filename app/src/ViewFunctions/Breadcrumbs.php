@@ -27,7 +27,8 @@ class Breadcrumbs extends ViewFunction
         })->reduce(function (Collection $carry, string $crumb) {
             return $carry->put($crumb, ltrim("{$carry->last()}/{$crumb}", '/'));
         }, new Collection)->map(function (string $path): string {
-            return sprintf('?dir=%s', $path);
+            $relativeRoot = substr(getcwd(), strlen($_SERVER['DOCUMENT_ROOT']));
+            return sprintf($this->config->get('app.rewrite', false) ? $relativeRoot . '/' . $path : '?dir=%s', $path);
         });
     }
 }

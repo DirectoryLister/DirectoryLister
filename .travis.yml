@@ -25,3 +25,17 @@ script:
   - app/vendor/bin/psalm --show-info=true
   - app/vendor/bin/phpunit --coverage-text
   - npm run production --verbose
+
+before_deploy: make artifacts
+
+deploy:
+  on:
+    tags: true
+  provider: releases
+  token: ${GITHUB_TOKEN}
+  name: v${TRAVIS_TAG}
+  draft: true
+  file:
+    - artifacts/DirectoryLister-${TRAVIS_TAG}.tar.gz
+    - artifacts/DirectoryLister-${TRAVIS_TAG}.zip
+  edge: true

@@ -51,6 +51,9 @@ class AppManager
             'text/json' => '+1 hour',
         ]));
 
+        $errorMiddleware = $app->addErrorMiddleware(true, true, true);
+        $errorMiddleware->setDefaultErrorHandler(ErrorHandler::class);
+
         return $app;
     }
 

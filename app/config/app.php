@@ -4,6 +4,17 @@ use App\Support\Helpers;
 
 return [
     /**
+     * Enable application debugging and display error messages.
+     *
+     * !!! WARNING !!!
+     * It is recommended that debug remains OFF unless troubleshooting an issue.
+     * Leaving this enabled WILL cause leakage of sensitive server information.
+     *
+     * Default value: false
+     */
+    'debug' => Helpers::env('DEBUG'),
+
+    /**
      * Enable dark mode?
      *
      * Default value: false

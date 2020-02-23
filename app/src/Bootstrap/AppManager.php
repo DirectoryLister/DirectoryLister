@@ -2,11 +2,13 @@
 
 namespace App\Bootstrap;
 
+use App\Middlewares;
 use App\Providers;
 use DI\Bridge\Slim\Bridge;
 use DI\Container;
 use Invoker\CallableResolver;
-use Middlewares;
+use Middlewares as HttpMiddlewares;
+use PHLAK\Config\Config;
 use Slim\App;
 use Tightenco\Collect\Support\Collection;
 
@@ -17,6 +19,12 @@ class AppManager
         Providers\ConfigProvider::class,
         Providers\FinderProvider::class,
         Providers\TwigProvider::class,
+        Providers\WhoopsProvider::class,
+    ];
+
+    /** @const Array of application middlewares */
+    protected const MIDDLEWARES = [
+        Middlewares\WhoopsMiddleware::class
     ];
 
     /** @var Container The applicaiton container */
@@ -26,7 +34,7 @@ class AppManager
     protected $callableResolver;
 
     /**
-     * Create a new Provider object.
+     * Create a new AppManager object.
      *
      * @param \DI\Container             $container
      * @param \Invoker\CallableResolver $callableResolver
@@ -46,13 +54,16 @@ class AppManager
     {
         $this->registerProviders();
         $app = Bridge::create($this->container);
-        $app->add(new Middlewares\Expires([
-            'application/zip' => '+1 hour',
-            'text/json' => '+1 hour',
-        ]));
+        $this->registerMiddlewares($app);
 
-        $errorMiddleware = $app->addErrorMiddleware(true, true, true);
-        $errorMiddleware->setDefaultErrorHandler(ErrorHandler::class);
+        $this->container->call(function (App $app, Config $config): void {
+            if (! $config->get('app.debug', false)) {
+                return;
+            }
+
+            $errorMiddleware = $app->addErrorMiddleware(true, true, true);
+            $errorMiddleware->setDefaultErrorHandler(ErrorHandler::class);
+        });
 
         return $app;
     }
@@ -71,5 +82,26 @@ class AppManager
                 );
             }
         );
+    }
+
+    /**
+     * Register application middlewares.
+     *
+     * @param \Slim\App $app
+     *
+     * @return void
+     */
+    protected function registerMiddlewares(App $app): void
+    {
+        Collection::make(self::MIDDLEWARES)->each(
+            function (string $middleware) use ($app): void {
+                $app->add($middleware);
+            }
+        );
+
+        $app->add(new HttpMiddlewares\Expires([
+            'application/zip' => '+1 hour',
+            'text/json' => '+1 hour',
+        ]));
     }
 }

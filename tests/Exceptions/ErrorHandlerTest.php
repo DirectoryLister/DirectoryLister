@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Bootstrap;
+namespace Tests\Exceptions;
 
 use App\Exceptions\ErrorHandler;
 use App\Providers\TwigProvider;

@@ -17,7 +17,7 @@ class SearchHandlerTest extends TestCase
     {
         $this->container->call(TwigProvider::class);
 
-        $handler = new SearchHandler(new Finder, $this->container->get(Twig::class));
+        $handler = new SearchHandler(new Finder, $this->container->get(Twig::class), $this->translator);
 
         $request = $this->createMock(Request::class);
         $request->method('getQueryParams')->willReturn(['search' => 'charlie']);
@@ -32,7 +32,7 @@ class SearchHandlerTest extends TestCase
     {
         $this->container->call(TwigProvider::class);
 
-        $handler = new SearchHandler(new Finder, $this->container->get(Twig::class));
+        $handler = new SearchHandler(new Finder, $this->container->get(Twig::class), $this->translator);
 
         $request = $this->createMock(Request::class);
         $request->method('getQueryParams')->willReturn(['search' => '']);

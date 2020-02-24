@@ -4,6 +4,7 @@ namespace Tests\Providers;
 
 use App\Providers\TwigProvider;
 use App\ViewFunctions;
+use Invoker\CallableResolver;
 use PHLAK\Config\Config;
 use Slim\Views\Twig;
 use Tests\TestCase;
@@ -12,7 +13,8 @@ class TwigProviderTest extends TestCase
 {
     public function test_it_can_compose_the_view_component(): void
     {
-        (new TwigProvider($this->container, new Config))();
+        $callableResolver = $this->container->get(CallableResolver::class);
+        (new TwigProvider($this->container, new Config, $callableResolver))();
 
         $twig = $this->container->get(Twig::class);
 

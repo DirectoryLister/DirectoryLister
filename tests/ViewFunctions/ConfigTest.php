@@ -26,14 +26,14 @@ class ConfigTest extends TestCase
 
     public function test_it_can_retrieve_a_config_item(): void
     {
-        $config = new Config($this->container, $this->config);
+        $config = new Config($this->config);
 
         $this->assertEquals('Test value; please ignore', $config('foo'));
     }
 
     public function test_it_returns_a_default_value(): void
     {
-        $config = new Config($this->container, $this->config);
+        $config = new Config($this->config);
 
         $this->assertEquals('Default value', $config('bar', 'Default value'));
     }

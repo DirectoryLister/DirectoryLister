@@ -2,6 +2,7 @@
 
 namespace App\ViewFunctions;
 
+use DI\Container;
 use Tightenco\Collect\Support\Collection;
 
 class Asset extends ViewFunction
@@ -11,6 +12,19 @@ class Asset extends ViewFunction
 
     /** @var string The function name */
     protected $name = 'asset';
+
+    /** @var Container The application container */
+    protected $container;
+
+    /**
+     * Create a new Asset object.
+     *
+     * @param \DI\Container $container
+     */
+    public function __construct(Container $container)
+    {
+        $this->container = $container;
+    }
 
     /**
      * Return the path to an asset.

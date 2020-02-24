@@ -17,7 +17,7 @@ return [
     /**
      * The application interface language.
      *
-     * Possible values: See 'app/languages' folder for available translations.
+     * Possible values: See 'app/translations' folder for available translations.
      *
      * Defualt value: en
      */

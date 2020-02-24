@@ -1,0 +1,19 @@
+home: Hogar
+download: Descargar este Directorio
+search: Buscar
+file:
+  name: Nombre del Archivo
+  size: Tamaño
+  date: Fecha
+  info: Información del Archivo
+powered_by: Desarrollado por
+scroll_to_top: Vuelve al Comienzo
+
+error:
+  directory_not_found: El directorio no existe
+  file_not_found: Archivo no encontrado
+  file_size_exceeded: Tamaño de archivo demasiado grande
+  no_results_found: No se han encontrado resultados
+  unexpected: Ocurrió un error inesperado
+
+enable_debugging: Habilite la depuración para obtener información adicional

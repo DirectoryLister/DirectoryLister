@@ -8,6 +8,7 @@ use Psr\Http\Message\ResponseInterface;
 use Slim\Psr7\Request;
 use Slim\Psr7\Response;
 use SplFileInfo;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class FileInfoHandler
 {
@@ -17,16 +18,24 @@ class FileInfoHandler
     /** @var Config App configuration component */
     protected $config;
 
+    /** @var TranslatorInterface Translator component */
+    protected $translator;
+
     /**
      * Create a new FileInfoHandler object.
      *
-     * @param \DI\Container        $container
-     * @param \PHLAK\Config\Config $config
+     * @param \DI\Container                                      $container
+     * @param \PHLAK\Config\Config                               $config
+     * @param \Symfony\Contracts\Translation\TranslatorInterface $translator
      */
-    public function __construct(Container $container, Config $config)
-    {
+    public function __construct(
+        Container $container,
+        Config $config,
+        TranslatorInterface $translator
+    ) {
         $this->container = $container;
         $this->config = $config;
+        $this->translator = $translator;
     }
 
     /**
@@ -46,11 +55,11 @@ class FileInfoHandler
         );
 
         if (! $file->isFile()) {
-            return $response->withStatus(404, 'File not found');
+            return $response->withStatus(404, $this->translator->trans('error.file_not_found'));
         }
 
         if ($file->getSize() >= $this->config->get('app.max_hash_size', 1000000000)) {
-            return $response->withStatus(500, 'File size too large');
+            return $response->withStatus(500, $this->translator->trans('error.file_size_exceeded'));
         }
 
         $response->getBody()->write(json_encode([

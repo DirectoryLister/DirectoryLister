@@ -10,6 +10,7 @@ use Slim\Psr7\Request;
 use Slim\Psr7\Response;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Finder\SplFileInfo;
+use Symfony\Contracts\Translation\TranslatorInterface;
 use Tightenco\Collect\Support\Collection;
 use ZipArchive;
 
@@ -24,17 +25,25 @@ class ZipHandler
     /** @var Finder The Finder Component */
     protected $finder;
 
+    /** @var TranslatorInterface Translator component */
+    protected $translator;
+
     /**
      * Create a new ZipHandler object.
      *
      * @param \DI\Container      $container
      * @param \PhpCsFixer\Finder $finder
      */
-    public function __construct(Container $container, Config $config, Finder $finder)
-    {
+    public function __construct(
+        Container $container,
+        Config $config,
+        Finder $finder,
+        TranslatorInterface $translator
+    ) {
         $this->container = $container;
         $this->config = $config;
         $this->finder = $finder;
+        $this->translator = $translator;
     }
 
     /**
@@ -50,7 +59,7 @@ class ZipHandler
         $path = $request->getQueryParams()['zip'];
 
         if (! $this->config->get('app.zip_downloads', true) || ! realpath($path)) {
-            return $response->withStatus(404, 'File not found');
+            return $response->withStatus(404, $this->translator->trans('error.file_not_found'));
         }
 
         $zip = new ZipArchive;

@@ -18,6 +18,7 @@ class AppManager
     protected const PROVIDERS = [
         Providers\ConfigProvider::class,
         Providers\FinderProvider::class,
+        Providers\TranslationProvider::class,
         Providers\TwigProvider::class,
         Providers\WhoopsProvider::class,
     ];

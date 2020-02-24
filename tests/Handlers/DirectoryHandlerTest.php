@@ -28,7 +28,8 @@ class DirectoryHandlerTest extends TestCase
         $controller = new DirectoryHandler(
             $this->config,
             new Finder,
-            $this->container->get(Twig::class)
+            $this->container->get(Twig::class),
+            $this->translator
         );
 
         chdir($this->filePath('.'));
@@ -53,7 +54,8 @@ class DirectoryHandlerTest extends TestCase
         $controller = new DirectoryHandler(
             $this->config,
             new Finder,
-            $this->container->get(Twig::class)
+            $this->container->get(Twig::class),
+            $this->translator
         );
 
         $request = $this->createMock(Request::class);
@@ -73,7 +75,8 @@ class DirectoryHandlerTest extends TestCase
         $controller = new DirectoryHandler(
             $this->config,
             new Finder,
-            $this->container->get(Twig::class)
+            $this->container->get(Twig::class),
+            $this->translator
         );
 
         $request = $this->createMock(Request::class);

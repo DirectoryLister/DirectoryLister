@@ -10,6 +10,7 @@ use Slim\Views\Twig;
 use Symfony\Component\Finder\Exception\DirectoryNotFoundException;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Finder\SplFileInfo;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class DirectoryHandler
 {
@@ -22,18 +23,27 @@ class DirectoryHandler
     /** @var Twig Twig templating component */
     protected $view;
 
+    /** @var TranslatorInterface Translator component */
+    protected $translator;
+
     /**
      * Create a new IndexController object.
      *
-     * @param \PHLAK\Config\Config             $config
-     * @param \Symfony\Component\Finder\Finder $finder
-     * @param \Slim\Views\Twig                 $view
+     * @param \PHLAK\Config\Config                               $config
+     * @param \Symfony\Component\Finder\Finder                   $finder
+     * @param \Slim\Views\Twig                                   $view
+     * @param \Symfony\Contracts\Translation\TranslatorInterface $translator
      */
-    public function __construct(Config $config, Finder $finder, Twig $view)
-    {
+    public function __construct(
+        Config $config,
+        Finder $finder,
+        Twig $view,
+        TranslatorInterface $translator
+    ) {
         $this->config = $config;
         $this->finder = $finder;
         $this->view = $view;
+        $this->translator = $translator;
     }
 
     /**
@@ -52,7 +62,7 @@ class DirectoryHandler
             $files = $this->finder->in($path)->depth(0);
         } catch (DirectoryNotFoundException $exception) {
             return $this->view->render($response->withStatus(404), 'error.twig', [
-                'message' => 'Directory does not exist'
+                'message' => $this->translator->trans('error.directory_not_found')
             ]);
         }
 

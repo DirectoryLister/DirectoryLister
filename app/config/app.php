@@ -15,6 +15,15 @@ return [
     'debug' => Helpers::env('DEBUG'),
 
     /**
+     * The application interface language.
+     *
+     * Possible values: See 'app/languages' folder for available translations.
+     *
+     * Defualt value: en
+     */
+    'language' => Helpers::env('LANGUAGE'),
+
+    /**
      * Enable dark mode?
      *
      * Default value: false

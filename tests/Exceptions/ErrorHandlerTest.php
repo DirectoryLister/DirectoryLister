@@ -2,7 +2,7 @@
 
 namespace Tests\Bootstrap;
 
-use App\Bootstrap\ErrorHandler;
+use App\Exceptions\ErrorHandler;
 use App\Providers\TwigProvider;
 use Exception;
 use Slim\Psr7\Request;

@@ -2,13 +2,13 @@
 
 namespace App\Bootstrap;
 
+use App\Exceptions\ExceptionManager;
 use App\Middlewares;
 use App\Providers;
 use DI\Bridge\Slim\Bridge;
 use DI\Container;
 use Invoker\CallableResolver;
 use Middlewares as HttpMiddlewares;
-use PHLAK\Config\Config;
 use Slim\App;
 use Tightenco\Collect\Support\Collection;
 
@@ -56,14 +56,7 @@ class AppManager
         $app = Bridge::create($this->container);
         $this->registerMiddlewares($app);
 
-        $this->container->call(function (App $app, Config $config): void {
-            if (! $config->get('app.debug', false)) {
-                return;
-            }
-
-            $errorMiddleware = $app->addErrorMiddleware(true, true, true);
-            $errorMiddleware->setDefaultErrorHandler(ErrorHandler::class);
-        });
+        $this->container->call(ExceptionManager::class);
 
         return $app;
     }

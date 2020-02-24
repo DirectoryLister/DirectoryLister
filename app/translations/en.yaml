@@ -1,0 +1,19 @@
+home: Home
+download: Download this Directory
+search: Search
+file:
+  name: File Name
+  size: Size
+  date: Date
+  info: File Info
+powered_by: Powered by
+scroll_to_top: Scroll to Top
+
+error:
+  directory_not_found: Directory does not exist
+  file_not_found: File not found
+  file_size_exceeded: File size too large
+  no_results_found: No results found
+  unexpected: An unexpected error occurred
+
+enable_debugging: Enable debugging for additional information

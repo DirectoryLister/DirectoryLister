@@ -11,10 +11,19 @@ use Tests\TestCase;
 
 class ErrorHandlerTest extends TestCase
 {
+    public function setUp(): void
+    {
+        parent::setUp();
+
+        $this->container->call(TwigProvider::class);
+    }
+
     public function test_it_returns_an_error(): void
     {
-        $this->container->call(TwigProvider::class);
-        $errorHandler = new ErrorHandler($this->container->get(Twig::class));
+        $errorHandler = new ErrorHandler(
+            $this->container->get(Twig::class),
+            $this->translator
+        );
 
         $response = $errorHandler(
             $this->createMock(Request::class),
@@ -32,8 +41,10 @@ class ErrorHandlerTest extends TestCase
 
     public function test_it_returns_an_error_for_a_json_request(): void
     {
-        $this->container->call(TwigProvider::class);
-        $errorHandler = new ErrorHandler($this->container->get(Twig::class));
+        $errorHandler = new ErrorHandler(
+            $this->container->get(Twig::class),
+            $this->translator
+        );
 
         $request = $this->createMock(Request::class);
         $request->expects($this->once())->method('getHeaderLine')->willReturn(
@@ -50,7 +61,7 @@ class ErrorHandlerTest extends TestCase
 
         $this->assertEquals(500, $response->getStatusCode());
         $this->assertEquals('application/json', $response->getHeaderLine('Content-Type'));
-        $this->assertEquals('An unexpected error occured', json_decode(
+        $this->assertEquals('An unexpected error occurred', json_decode(
             (string) $response->getBody()
         )->error->message);
     }

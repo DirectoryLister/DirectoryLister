@@ -5,6 +5,9 @@ namespace Tests;
 use DI\Container;
 use PHLAK\Config\Config;
 use PHPUnit\Framework\TestCase as PHPUnitTestCase;
+use Symfony\Component\Translation\Loader\ArrayLoader;
+use Symfony\Component\Translation\Translator;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class TestCase extends PHPUnitTestCase
 {
@@ -13,6 +16,9 @@ class TestCase extends PHPUnitTestCase
 
     /** @var Config The test config */
     protected $config;
+
+    /** @var TranslatorInterface Test translator */
+    protected $translator;
 
     /** @var string Path to test files directory */
     protected $testFilesPath = __DIR__ . '/_files';
@@ -28,6 +34,8 @@ class TestCase extends PHPUnitTestCase
 
         $this->config = new Config([
             'app' => [
+                'debug' => false,
+                'language' => 'en',
                 'dark_mode' => false,
                 'display_readmes' => true,
                 'zip_downloads' => true,
@@ -43,9 +51,34 @@ class TestCase extends PHPUnitTestCase
             ]
         ]);
 
+        $this->translator = new Translator('en');
+        $this->translator->addLoader('array', new ArrayLoader);
+        $this->translator->addResource('array', [
+            'home' => 'Home',
+            'download' => 'Download this Directory',
+            'search' => 'Search',
+            'file' => [
+                'name' => 'File Name',
+                'size' => 'Size',
+                'date' => 'Date',
+                'info' => 'File Info',
+                'powered_by' => 'Powered by',
+                'scroll_to_top' => 'Scroll to Top',
+            ],
+            'error' => [
+                'directory_not_found' => 'Directory does not exist',
+                'file_not_found' => 'File not found',
+                'file_size_exceeded' => 'File size too large',
+                'no_results_found' => 'No results found',
+                'unexpected' => 'An unexpected error occurred',
+            ],
+            'enable_debugging' => 'Enable debugging for additional information',
+        ], 'en');
+
         $this->container = new Container();
         $this->container->set('base_path', $this->testFilesPath);
         $this->container->set(Config::class, $this->config);
+        $this->container->set(TranslatorInterface::class, $this->translator);
     }
 
     /**

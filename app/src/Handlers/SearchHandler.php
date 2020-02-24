@@ -7,6 +7,8 @@ use Slim\Psr7\Request;
 use Slim\Psr7\Response;
 use Slim\Views\Twig;
 use Symfony\Component\Finder\Finder;
+use Symfony\Component\Translation\Translator;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class SearchHandler
 {
@@ -16,16 +18,21 @@ class SearchHandler
     /** @var Twig Twig templating component */
     protected $view;
 
+    /** @var TranslatorInterface Translator component */
+    protected $translator;
+
     /**
      * Create a new SearchHandler object.
      *
-     * @param \Symfony\Component\Finder\Finder $finder
-     * @param \Slim\Views\Twig                 $view
+     * @param \Symfony\Component\Finder\Finder                   $finder
+     * @param \Slim\Views\Twig                                   $view
+     * @param \Symfony\Contracts\Translation\TranslatorInterface $translator
      */
-    public function __construct(Finder $finder, Twig $view)
+    public function __construct(Finder $finder, Twig $view, TranslatorInterface $translator)
     {
         $this->finder = $finder;
         $this->view = $view;
+        $this->translator = $translator;
     }
 
     /**
@@ -42,7 +49,7 @@ class SearchHandler
 
         if (empty($search)) {
             return $this->view->render($response, 'error.twig', [
-                'message' => 'No results found'
+                'message' => $this->translator->trans('error.no_results_found')
             ]);
         }
 

@@ -23,6 +23,7 @@
         "slim/slim": "^4.3",
         "slim/twig-view": "^3.0",
         "symfony/finder": "^5.0",
+        "symfony/translation": "^5.0",
         "tightenco/collect": "^6.4",
         "vlucas/phpdotenv": "^4.0"
     },

@@ -22,6 +22,7 @@ class TwigProvider
         ViewFunctions\Markdown::class,
         ViewFunctions\ParentDir::class,
         ViewFunctions\SizeForHumans::class,
+        ViewFunctions\Translate::class,
         ViewFunctions\Url::class,
     ];
 

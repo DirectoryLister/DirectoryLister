@@ -1,0 +1,19 @@
+home: 家
+download: 下载此目录
+search: 搜索
+file:
+  name: 文件名
+  size: 尺寸
+  date: 日期
+  info: 文件信息
+powered_by: 供电
+scroll_to_top: 滚动到顶部
+
+error:
+  directory_not_found: 目录不存在
+  file_not_found: 文件未找到
+  file_size_exceeded: 档案太大
+  no_results_found: 未找到结果
+  unexpected: 一个意料之外的问题发生了
+
+enable_debugging: 启用调试以获取其他信息

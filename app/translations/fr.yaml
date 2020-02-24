@@ -1,0 +1,19 @@
+home: Accueil
+download: Téléchargez ce Répertoire
+search: Chercher
+file:
+  name: Nom de Fichier
+  size: Taille
+  date: Date
+  info: Informations sur le Fichier
+powered_by: Alimenté par
+scroll_to_top: Faire Défiler vers le Haut
+
+error:
+  directory_not_found: Le répertoire n'existe pas
+  file_not_found: Fichier non trouvé
+  file_size_exceeded: Taille de fichier trop grande
+  no_results_found: Aucun résultat trouvé
+  unexpected: Une erreur inattendue est apparue
+
+enable_debugging: Activer le débogage pour des informations supplémentaires

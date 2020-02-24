@@ -7,24 +7,27 @@ use Psr\Http\Message\ServerRequestInterface;
 use Slim\Interfaces\ErrorHandlerInterface;
 use Slim\Psr7\Response;
 use Slim\Views\Twig;
+use Symfony\Contracts\Translation\TranslatorInterface;
 use Throwable;
 
 class ErrorHandler implements ErrorHandlerInterface
 {
-    /** @const The default error message string */
-    protected const DEFAULT_ERROR_MESSAGE = 'An unexpected error occured';
-
     /** @var Twig Twig templating component */
     protected $view;
+
+    /** @var TranslatorInterface Translation component */
+    protected $translator;
 
     /**
      * Create a new ErrorHandler object.
      *
-     * @param \Slim\Views\Twig $view
+     * @param \Slim\Views\Twig                                   $view
+     * @param \Symfony\Contracts\Translation\TranslatorInterface $translator
      */
-    public function __construct(Twig $view)
+    public function __construct(Twig $view, TranslatorInterface $translator)
     {
         $this->view = $view;
+        $this->translator = $translator;
     }
 
     /**
@@ -49,15 +52,15 @@ class ErrorHandler implements ErrorHandlerInterface
 
         if (in_array('application/json', explode(',', $request->getHeaderLine('Accept')))) {
             $response->getBody()->write(json_encode([
-                'error' => ['message' => self::DEFAULT_ERROR_MESSAGE]
+                'error' => ['message' => $this->translator->trans('error.unexpected')]
             ]));
 
             return $response->withHeader('Content-Type', 'application/json');
         }
 
         return $this->view->render($response, 'error.twig', [
-            'message' => self::DEFAULT_ERROR_MESSAGE,
-            'subtext' => 'Enable debugging for additional information',
+            'message' => $this->translator->trans('error.unexpected'),
+            'subtext' => $this->translator->trans('enable_debugging'),
         ]);
     }
 }

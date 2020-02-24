@@ -13,6 +13,7 @@
         "php": ">=7.2",
         "ext-zip": "*",
         "erusev/parsedown-extra": "^0.8.1",
+        "filp/whoops": "^2.7",
         "middlewares/cache": "^2.0",
         "phlak/config": "^6.1",
         "php-di/php-di": "^6.0",

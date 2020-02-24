@@ -3,11 +3,9 @@
 namespace Tests\Bootstrap;
 
 use App\Bootstrap\AppManager;
-use App\Middlewares;
 use App\Providers;
 use DI\Container;
 use Invoker\CallableResolver;
-use Middlewares as HttpMiddlewares;
 use Slim\App;
 use Tests\TestCase;
 

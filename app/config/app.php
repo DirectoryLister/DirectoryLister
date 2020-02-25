@@ -12,7 +12,7 @@ return [
      *
      * Default value: false
      */
-    'debug' => Helpers::env('DEBUG'),
+    'debug' => Helpers::env('APP_DEBUG'),
 
     /**
      * The application interface language.

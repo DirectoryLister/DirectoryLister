@@ -27,6 +27,7 @@ class AppManangerTest extends TestCase
         $container->expects($this->atLeast(4))->method('call')->withConsecutive(
             [$callableResolver->resolve(Providers\ConfigProvider::class)],
             [$callableResolver->resolve(Providers\FinderProvider::class)],
+            [$callableResolver->resolve(Providers\TranslationProvider::class)],
             [$callableResolver->resolve(Providers\TwigProvider::class)],
             [$callableResolver->resolve(Providers\WhoopsProvider::class)],
         );

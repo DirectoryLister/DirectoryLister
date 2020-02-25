@@ -21,7 +21,7 @@ return [
      *
      * Defualt value: en
      */
-    'language' => Helpers::env('LANGUAGE'),
+    'language' => Helpers::env('APP_LANGUAGE'),
 
     /**
      * Enable dark mode?

@@ -1,5 +1,5 @@
 home: Accueil
-download: Téléchargez ce Répertoire
+download: Télécharger ce Répertoire
 search: Chercher
 file:
   name: Nom de Fichier
@@ -7,13 +7,13 @@ file:
   date: Date
   info: Informations sur le Fichier
 powered_by: Alimenté par
-scroll_to_top: Faire Défiler vers le Haut
+scroll_to_top: Retour en Haut
 
 error:
   directory_not_found: Le répertoire n'existe pas
-  file_not_found: Fichier non trouvé
-  file_size_exceeded: Taille de fichier trop grande
+  file_not_found: Fichier introuvable
+  file_size_exceeded: Fichier trop gros
   no_results_found: Aucun résultat trouvé
-  unexpected: Une erreur inattendue est apparue
+  unexpected: Une erreur inattendue s'est produite
 
-enable_debugging: Activer le débogage pour des informations supplémentaires
+enable_debugging: Activer le "debugging" pour des informations supplémentaires

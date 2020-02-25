@@ -71,8 +71,7 @@ class FinderProvider
                 throw new RuntimeException("Invalid sort option '{$sortOrder}'");
             }
 
-            $sortMethod = self::SORT_METHODS[$sortOrder];
-            call_user_func(new $sortMethod, $finder);
+            $this->container->call(self::SORT_METHODS[$sortOrder], [$finder]);
         }
 
         if ($this->config->get('app.reverse_sort', false)) {

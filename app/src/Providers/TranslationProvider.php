@@ -14,7 +14,7 @@ class TranslationProvider
 {
     /** @const Available translation languages */
     protected const LANGUAGES = [
-        'de', 'en', 'es', 'fr', 'zh'
+        'de', 'en', 'es', 'fr', 'zh-CN', 'zh-TW'
     ];
 
     /** @var Container The applicaiton container */

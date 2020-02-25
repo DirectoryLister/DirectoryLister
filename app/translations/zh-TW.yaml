@@ -1,0 +1,19 @@
+home: 家
+download: 下載此目錄
+search: 搜索
+file:
+  name: 文件名
+  size: 尺寸
+  date: 日期
+  info: 文件信息
+powered_by: 供電
+scroll_to_top: 滾動到頂部
+
+error:
+  directory_not_found: 目錄不存在
+  file_not_found: 文件未找到
+  file_size_exceeded: 檔案太大
+  no_results_found: 未找到結果
+  unexpected: 一個意料之外的問題發生了
+
+enable_debugging: 啟用"debugging"以獲取其他信息

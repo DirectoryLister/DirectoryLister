@@ -1,0 +1,19 @@
+home: Hauptverzeichnis
+download: Laden Sie dieses Verzeichnis herunter
+search: Suche
+file:
+  name: Dateiname
+  size: Größe
+  date: Datum
+  info: Dateiinformation
+powered_by: Unterstützt von
+scroll_to_top: Nach oben Scrollen
+
+error:
+  directory_not_found: Verzeichnis existiert nicht
+  file_not_found: Datei nicht gefunden
+  file_size_exceeded: Dateigröße zu groß
+  no_results_found: Keine ergebnisse gefunden
+  unexpected: Ein unerwarteter fehler ist aufgetreten
+
+enable_debugging: Aktivieren sie das "debugging" für zusätzliche informationen

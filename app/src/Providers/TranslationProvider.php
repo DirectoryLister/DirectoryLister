@@ -3,7 +3,6 @@
 namespace App\Providers;
 
 use DI\Container;
-use Illuminate\Support\Collection;
 use PHLAK\Config\Config;
 use RuntimeException;
 use Symfony\Component\Translation\Loader\YamlFileLoader;
@@ -49,16 +48,8 @@ class TranslationProvider
         }
 
         $translator = new Translator($language);
-
         $translator->addLoader('yaml', new YamlFileLoader());
-
-        Collection::make(self::LANGUAGES)->each(
-            function (string $language) use ($translator): void {
-                $translator->addResource(
-                    'yaml', "app/translations/{$language}.yaml", $language
-                );
-            }
-        );
+        $translator->addResource('yaml', "app/translations/{$language}.yaml", $language);
 
         $this->container->set(TranslatorInterface::class, $translator);
     }

@@ -75,7 +75,7 @@ class ZipHandler
 
         $response->getBody()->write($tempFile->getContents());
 
-        $filename = Collection::make(explode('/', $path))->last();
+        $filename = Collection::make(explode(DIRECTORY_SEPARATOR, $path))->last();
 
         return $response->withHeader('Content-Type', 'application/zip')
             ->withHeader('Content-Disposition', sprintf(

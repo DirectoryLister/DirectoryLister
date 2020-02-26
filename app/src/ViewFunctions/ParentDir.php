@@ -19,8 +19,8 @@ class ParentDir extends ViewFunction
     public function __invoke(string $path)
     {
         $parentDir = Collection::make(
-            explode('/', $path)
-        )->filter()->slice(0, -1)->implode('/');
+            explode(DIRECTORY_SEPARATOR, $path)
+        )->filter()->slice(0, -1)->implode(DIRECTORY_SEPARATOR);
 
         return empty($parentDir) ? '.' : sprintf('?dir=%s', $parentDir);
     }

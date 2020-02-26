@@ -16,12 +16,12 @@ class Url extends ViewFunction
      */
     public function __invoke(string $path = '/'): string
     {
-        $path = preg_replace('/^[.\/]+/', '', $path);
+        $path = preg_replace('/^.?(\/|\\\)+/', '', $path);
 
         if (is_file($path)) {
             return $path;
         }
 
-        return empty($path) ? '' : sprintf('?dir=%s', ltrim($path, './'));
+        return empty($path) ? '' : sprintf('?dir=%s', $path);
     }
 }

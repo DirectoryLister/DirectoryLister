@@ -94,7 +94,9 @@ class ZipHandler
      */
     protected function stripPath(SplFileInfo $file, string $path): string
     {
-        $pattern = sprintf('/^%s\/?/', preg_quote($path, '/'));
+        $pattern = sprintf(
+            '/^%s%s?/', preg_quote($path, '/'), preg_quote(DIRECTORY_SEPARATOR, '/')
+        );
 
         return preg_replace($pattern, '', $file->getPathname());
     }

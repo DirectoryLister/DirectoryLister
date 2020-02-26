@@ -33,14 +33,16 @@ class Breadcrumbs extends ViewFunction
      */
     public function __invoke(string $path)
     {
-        $breadcrumbs = Collection::make(explode('/', $path))->diff(
-            explode('/', $this->container->get('base_path'))
+        $breadcrumbs = Collection::make(explode(DIRECTORY_SEPARATOR, $path))->diff(
+            explode(DIRECTORY_SEPARATOR, $this->container->get('base_path'))
         )->filter();
 
         return $breadcrumbs->filter(function (string $crumb) {
             return $crumb !== '.';
         })->reduce(function (Collection $carry, string $crumb) {
-            return $carry->put($crumb, ltrim("{$carry->last()}/{$crumb}", '/'));
+            return $carry->put($crumb, ltrim(
+                $carry->last() . DIRECTORY_SEPARATOR . $crumb, DIRECTORY_SEPARATOR
+            ));
         }, new Collection)->map(function (string $path): string {
             return sprintf('?dir=%s', $path);
         });

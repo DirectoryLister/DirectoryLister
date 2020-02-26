@@ -1,0 +1,19 @@
+home: Acasă
+download: Descarcă acest Director
+search: Căutare
+file:
+  name: Nume Fișier
+  size: Dimensiune
+  date: Data
+  info: Info Fișier
+powered_by: Cu suport de la
+scroll_to_top: Derulați la început
+
+error:
+  directory_not_found: Directorul nu există
+  file_not_found: Fișierul nu a fost găsit
+  file_size_exceeded: Dimensiunea fișierului este prea mare
+  no_results_found: Nici un rezultat gasit
+  unexpected: A apărut o eroare neprevăzută
+
+enable_debugging: Activați depanarea pentru informații suplimentare

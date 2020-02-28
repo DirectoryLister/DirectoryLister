@@ -27,6 +27,7 @@ Features
   - **File hashes** instill confidence when downloading files through verification.
   - **Readme rendering** allows exposing the contents of READMEs directly on the page.
   - **Zip downloads** for fetching an entire directory of files in a single action.
+  - **Multi-lingual support** brings Directory Lister to the language of your choice.
 
 Requirements
 ------------

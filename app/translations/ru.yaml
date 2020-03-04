@@ -1,0 +1,19 @@
+home: Дом
+download: Скачать этот каталог
+search: Поиск
+file:
+  name: Имя файла
+  size: Размер
+  date: Дата
+  info: Информация о файле
+powered_by: Питаться от
+scroll_to_top: Пролистать наверх
+
+error:
+  directory_not_found: Каталог не существует
+  file_not_found: Файл не найден
+  file_size_exceeded: Размер файла слишком велик
+  no_results_found: результаты не найдены
+  unexpected: произошла непредвиденная ошибка
+
+enable_debugging: Включить "debugging" для получения дополнительной информации

@@ -13,11 +13,8 @@ ini_set('open_basedir', __DIR__);
 // Initialize environment variable handler
 Dotenv::createImmutable(__DIR__)->safeLoad();
 
-// Initialize the container
-$container = new Container();
-
-// Configure the application
-$app = $container->call(AppManager::class, [__DIR__]);
+// Initialize the application
+$app = (new Container)->call(AppManager::class, [__DIR__]);
 
 // Register routes
 $app->get('/[{path:.*}]', Controllers\IndexController::class);

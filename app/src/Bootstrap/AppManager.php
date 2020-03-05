@@ -4,25 +4,14 @@ namespace App\Bootstrap;
 
 use App\Exceptions\ExceptionManager;
 use App\Middlewares;
-use App\Providers;
 use DI\Bridge\Slim\Bridge;
 use DI\Container;
-use Invoker\CallableResolver;
 use Middlewares as HttpMiddlewares;
 use Slim\App;
 use Tightenco\Collect\Support\Collection;
 
 class AppManager
 {
-    /** @const Array of application providers */
-    protected const PROVIDERS = [
-        Providers\ConfigProvider::class,
-        Providers\FinderProvider::class,
-        Providers\TranslationProvider::class,
-        Providers\TwigProvider::class,
-        Providers\WhoopsProvider::class,
-    ];
-
     /** @const Array of application middlewares */
     protected const MIDDLEWARES = [
         Middlewares\WhoopsMiddleware::class
@@ -31,19 +20,14 @@ class AppManager
     /** @var Container The applicaiton container */
     protected $container;
 
-    /** @var CallableResolver The callable resolver */
-    protected $callableResolver;
-
     /**
      * Create a new AppManager object.
      *
-     * @param \DI\Container             $container
-     * @param \Invoker\CallableResolver $callableResolver
+     * @param \DI\Container $container
      */
-    public function __construct(Container $container, CallableResolver $callableResolver)
+    public function __construct(Container $container)
     {
         $this->container = $container;
-        $this->callableResolver = $callableResolver;
     }
 
     /**
@@ -53,29 +37,13 @@ class AppManager
      */
     public function __invoke(): App
     {
-        $this->registerProviders();
+        $this->container->call(ProviderManager::class);
         $app = Bridge::create($this->container);
         $this->registerMiddlewares($app);
 
         $this->container->call(ExceptionManager::class);
 
         return $app;
-    }
-
-    /**
-     * Register application providers.
-     *
-     * @return void
-     */
-    protected function registerProviders(): void
-    {
-        Collection::make(self::PROVIDERS)->each(
-            function (string $provider): void {
-                $this->container->call(
-                    $this->callableResolver->resolve($provider)
-                );
-            }
-        );
     }
 
     /**

@@ -10,7 +10,7 @@ class AppManangerTest extends TestCase
 {
     public function test_it_returns_an_app_instance(): void
     {
-        $app = (new AppManager($this->container))();
+        $app = (new AppManager($this->container))($this->testFilesPath);
 
         $this->assertInstanceOf(App::class, $app);
     }

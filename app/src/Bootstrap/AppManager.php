@@ -25,10 +25,14 @@ class AppManager
     /**
      * Setup and configure the application.
      *
+     * @param string $basePath
+     *
      * @return \Slim\App
      */
-    public function __invoke(): App
+    public function __invoke(string $basePath): App
     {
+        $this->container->set('base_path', $basePath);
+
         $this->container->call(ProviderManager::class);
         $app = Bridge::create($this->container);
         $this->container->call(MiddlewareManager::class);

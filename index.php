@@ -15,10 +15,9 @@ Dotenv::createImmutable(__DIR__)->safeLoad();
 
 // Initialize the container
 $container = new Container();
-$container->set('base_path', __DIR__);
 
 // Configure the application
-$app = $container->call(AppManager::class);
+$app = $container->call(AppManager::class, [__DIR__]);
 
 // Register routes
 $app->get('/[{path:.*}]', Controllers\IndexController::class);

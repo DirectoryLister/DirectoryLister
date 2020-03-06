@@ -1,0 +1,19 @@
+home: Home
+download: Scarica questa cartella
+search: Cerca
+file:
+  name: Nome
+  size: Peso
+  date: Data
+  info: Info
+powered_by: Powered by
+scroll_to_top: Torna su
+
+error:
+  directory_not_found: La cartella non esiste
+  file_not_found: File non trovato
+  file_size_exceeded: "Il file è troppo largo"
+  no_results_found: Nessun risultato trovato
+  unexpected: "Si è verificato un errore inaspettato"
+
+enable_debugging: Abilita il debugging per altre informazioni

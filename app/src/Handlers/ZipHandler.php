@@ -2,6 +2,7 @@
 
 namespace App\Handlers;
 
+use App\Support\Str;
 use App\TemporaryFile;
 use DI\Container;
 use PHLAK\Config\Config;
@@ -11,7 +12,6 @@ use Slim\Psr7\Response;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Finder\SplFileInfo;
 use Symfony\Contracts\Translation\TranslatorInterface;
-use Tightenco\Collect\Support\Collection;
 use ZipArchive;
 
 class ZipHandler
@@ -75,7 +75,7 @@ class ZipHandler
 
         $response->getBody()->write($tempFile->getContents());
 
-        $filename = Collection::make(explode(DIRECTORY_SEPARATOR, $path))->last();
+        $filename = Str::explode($path, DIRECTORY_SEPARATOR)->last();
 
         return $response->withHeader('Content-Type', 'application/zip')
             ->withHeader('Content-Disposition', sprintf(

@@ -2,6 +2,7 @@
 
 namespace App\ViewFunctions;
 
+use App\Support\Str;
 use DI\Container;
 use Tightenco\Collect\Support\Collection;
 
@@ -33,7 +34,7 @@ class Breadcrumbs extends ViewFunction
      */
     public function __invoke(string $path)
     {
-        $breadcrumbs = Collection::make(explode(DIRECTORY_SEPARATOR, $path))->diff(
+        $breadcrumbs = Str::explode($path, DIRECTORY_SEPARATOR)->diff(
             explode(DIRECTORY_SEPARATOR, $this->container->get('base_path'))
         )->filter();
 
@@ -43,7 +44,7 @@ class Breadcrumbs extends ViewFunction
             return $carry->put($crumb, ltrim(
                 $carry->last() . DIRECTORY_SEPARATOR . $crumb, DIRECTORY_SEPARATOR
             ));
-        }, new Collection)->map(function (string $path): string {
+        }, new Collection())->map(function (string $path): string {
             return sprintf('?dir=%s', $path);
         });
     }

@@ -2,7 +2,7 @@
 
 namespace App\ViewFunctions;
 
-use Tightenco\Collect\Support\Collection;
+use App\Support\Str;
 
 class ParentDir extends ViewFunction
 {
@@ -18,9 +18,8 @@ class ParentDir extends ViewFunction
      */
     public function __invoke(string $path)
     {
-        $parentDir = Collection::make(
-            explode(DIRECTORY_SEPARATOR, $path)
-        )->filter()->slice(0, -1)->implode(DIRECTORY_SEPARATOR);
+        $parentDir = Str::explode($path, DIRECTORY_SEPARATOR)
+            ->filter()->slice(0, -1)->implode(DIRECTORY_SEPARATOR);
 
         return empty($parentDir) ? '.' : sprintf('?dir=%s', $parentDir);
     }

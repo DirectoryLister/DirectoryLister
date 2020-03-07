@@ -12,7 +12,7 @@ class Str
      * @param string $string
      * @param string $delimiter
      *
-     * @return self
+     * @return \Tightenco\Collect\Support\Collection
      */
     public static function explode(string $string, string $delimiter): Collection
     {

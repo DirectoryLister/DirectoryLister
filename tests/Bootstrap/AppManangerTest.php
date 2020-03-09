@@ -13,5 +13,6 @@ class AppManangerTest extends TestCase
         $app = (new AppManager($this->container))($this->testFilesPath);
 
         $this->assertInstanceOf(App::class, $app);
+        $this->assertSame($this->container, $app->getContainer());
     }
 }

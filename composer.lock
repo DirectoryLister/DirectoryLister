@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ff3de67fa7e2e36931a097bd167f441d",
+    "content-hash": "3df3926b0c49f2dd36907ff3ac136e59",
     "packages": [
         {
             "name": "erusev/parsedown",
@@ -2960,6 +2960,54 @@
             ],
             "description": "Highlight PHP code in terminal",
             "time": "2018-09-29T18:48:56+00:00"
+        },
+        {
+            "name": "johnkary/phpunit-speedtrap",
+            "version": "v3.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/johnkary/phpunit-speedtrap.git",
+                "reference": "8c0e149b80c6e86c33315f05699512678655c158"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/johnkary/phpunit-speedtrap/zipball/8c0e149b80c6e86c33315f05699512678655c158",
+                "reference": "8c0e149b80c6e86c33315f05699512678655c158",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1",
+                "phpunit/phpunit": "^7.0 || ^8.0 || ^9.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.2-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "JohnKary\\PHPUnit\\Listener\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "John Kary",
+                    "email": "john@johnkary.net"
+                }
+            ],
+            "description": "Find and report on slow tests in your PHPUnit test suite",
+            "homepage": "https://github.com/johnkary/phpunit-speedtrap",
+            "keywords": [
+                "phpunit",
+                "profile",
+                "slow"
+            ],
+            "time": "2020-02-12T16:19:51+00:00"
         },
         {
             "name": "myclabs/deep-copy",

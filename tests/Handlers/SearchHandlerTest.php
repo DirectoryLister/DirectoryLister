@@ -22,10 +22,12 @@ class SearchHandlerTest extends TestCase
         $request = $this->createMock(Request::class);
         $request->method('getQueryParams')->willReturn(['search' => 'charlie']);
 
+        chdir($this->filePath('.'));
         $response = $handler($request, new Response);
 
         $this->assertInstanceOf(ResponseInterface::class, $response);
         $this->assertEquals(200, $response->getStatusCode());
+        $this->assertNotRegExp('/No results found/', (string) $response->getBody());
     }
 
     public function test_it_returns_a_successful_response_for_a_blank_search(): void
@@ -37,9 +39,11 @@ class SearchHandlerTest extends TestCase
         $request = $this->createMock(Request::class);
         $request->method('getQueryParams')->willReturn(['search' => '']);
 
+        chdir($this->filePath('.'));
         $response = $handler($request, new Response);
 
         $this->assertInstanceOf(ResponseInterface::class, $response);
         $this->assertEquals(200, $response->getStatusCode());
+        $this->assertRegExp('/No results found/', (string) $response->getBody());
     }
 }

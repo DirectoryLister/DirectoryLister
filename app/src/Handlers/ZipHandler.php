@@ -62,6 +62,24 @@ class ZipHandler
             return $response->withStatus(404, $this->translator->trans('error.file_not_found'));
         }
 
+        $response->getBody()->write($this->createZip($path)->getContents());
+
+        return $response->withHeader('Content-Type', 'application/zip')
+            ->withHeader('Content-Disposition', sprintf(
+                'attachment; filename="%s.zip"',
+                $this->generateFileName($path)
+            ));
+    }
+
+    /**
+     * Create a zip file from a directory.
+     *
+     * @param string $path
+     *
+     * @return \App\TemporaryFile
+     */
+    protected function createZip(string $path): TemporaryFile
+    {
         $zip = new ZipArchive;
         $zip->open((string) $tempFile = new TemporaryFile(
             $this->container->get('base_path') . '/app/cache'
@@ -73,15 +91,7 @@ class ZipHandler
 
         $zip->close();
 
-        $response->getBody()->write($tempFile->getContents());
-
-        $filename = Str::explode($path, DIRECTORY_SEPARATOR)->last();
-
-        return $response->withHeader('Content-Type', 'application/zip')
-            ->withHeader('Content-Disposition', sprintf(
-                'attachment; filename="%s.zip"',
-                $filename == '.' ? 'Home' : $filename
-            ));
+        return $tempFile;
     }
 
     /**
@@ -99,5 +109,19 @@ class ZipHandler
         );
 
         return preg_replace($pattern, '', $file->getPathname());
+    }
+
+    /**
+     * Generate the file name for a path.
+     *
+     * @param string $path
+     *
+     * @return string
+     */
+    protected function generateFileName(string $path): string
+    {
+        $filename = Str::explode($path, DIRECTORY_SEPARATOR)->last();
+
+        return $filename == '.' ? 'Home' : $filename;
     }
 }

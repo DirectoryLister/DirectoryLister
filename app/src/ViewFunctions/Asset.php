@@ -54,7 +54,7 @@ class Asset extends ViewFunction
         $mixManifest = $this->container->get('base_path') . '/' . self::ASSET_PATH . 'mix-manifest.json';
 
         if (! is_file($mixManifest)) {
-            return new Collection();
+            return new Collection;
         }
 
         return Collection::make(

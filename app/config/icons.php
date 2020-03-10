@@ -6,14 +6,16 @@ return [
     'bmp' => 'fas fa-image',
     'eps' => 'fas fa-image',
     'gif' => 'fas fa-image',
-    'jpg' => 'fas fa-image',
+    'ico' => 'fas fa-image',
     'jpeg' => 'fas fa-image',
+    'jpg' => 'fas fa-image',
     'png' => 'fas fa-image',
     'ps' => 'fas fa-image',
     'psd' => 'fas fa-image',
     'svg' => 'fas fa-image',
     'tga' => 'fas fa-image',
     'tif' => 'fas fa-image',
+    'tiff' => 'fas fa-image',
     'drw' => 'fas fa-image',
 
     // Data
@@ -67,9 +69,11 @@ return [
 
     // Audio
     'aac' => 'fas fa-music',
+    'aif' => 'fas fa-music',
     'flac' => 'fas fa-music',
     'mid' => 'fas fa-music',
     'midi' => 'fas fa-music',
+    'mpa' => 'fas fa-music',
     'mp3' => 'fas fa-music',
     'ogg' => 'fas fa-music',
     'wma' => 'fas fa-music',
@@ -84,6 +88,7 @@ return [
     'sql' => 'fas fa-database',
 
     // Executables
+    'apk' => 'fab fa-android',
     'app' => 'fas fa-window',
     'com' => 'fas fa-window',
     'exe' => 'fas fa-window',
@@ -121,9 +126,9 @@ return [
     'mp4' => 'fas fa-video',
     'mpg' => 'fas fa-video',
     'ogv' => 'fas fa-video',
+    'swf' => 'fas fa-video',
     'webm' => 'fas fa-video',
     'wmv' => 'fas fa-video',
-    'swf' => 'fas fa-video',
 
     // Miscellaneous
     'bak' => 'fas fa-save',

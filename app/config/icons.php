@@ -127,6 +127,7 @@ return [
 
     // Miscellaneous
     'bak' => 'fas fa-save',
+    'iso' => 'fas fa-compact-disc',
     'lock' => 'fas fa-lock',
     'msg' => 'fas fa-envelope',
 ];

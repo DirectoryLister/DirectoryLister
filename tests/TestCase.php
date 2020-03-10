@@ -48,6 +48,10 @@ class TestCase extends PHPUnitTestCase
                 'date_format' => 'Y-m-d H:i:s',
                 'max_hash_size' => 1000000000,
                 'view_cache' => false,
+                'http_expires' => [
+                    'application/zip' => '+1 hour',
+                    'text/json' => '+1 hour',
+                ],
             ]
         ]);
 

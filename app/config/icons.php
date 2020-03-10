@@ -62,6 +62,7 @@ return [
     'gz' => 'fas fa-file-archive',
     'rar' => 'fas fa-file-archive',
     'tar' => 'fas fa-file-archive',
+    'xz' => 'fas fa-file-archive',
     'zip' => 'fas fa-file-archive',
 
     // Audio

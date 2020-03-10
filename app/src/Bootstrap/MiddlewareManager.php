@@ -24,8 +24,8 @@ class MiddlewareManager
     /**
      * Create a new MiddlwareManager object.
      *
-     * @param \Slim\App $app
-     * @param \PHLAK\Config\Config
+     * @param \Slim\App            $app
+     * @param \PHLAK\Config\Config $config
      */
     public function __construct(App $app, Config $config)
     {

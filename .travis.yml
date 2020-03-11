@@ -1,4 +1,5 @@
 os: linux
+dist: bionic
 language: php
 
 php:
@@ -19,5 +20,5 @@ install: composer install
 
 script:
   - app/vendor/bin/php-cs-fixer fix --diff --dry-run
-  - app/vendor/bin/psalm
+  - app/vendor/bin/psalm --show-info=true
   - app/vendor/bin/phpunit --coverage-text

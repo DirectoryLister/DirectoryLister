@@ -52,7 +52,8 @@ class SearchHandler
 
         if ($files->count() === 0) {
             return $this->view->render($response, 'error.twig', [
-                'message' => $this->translator->trans('error.no_results_found')
+                'message' => $this->translator->trans('error.no_results_found'),
+                'search' => $search,
             ]);
         }
 

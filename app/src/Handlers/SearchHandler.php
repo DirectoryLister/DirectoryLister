@@ -46,15 +46,15 @@ class SearchHandler
     {
         $search = $request->getQueryParams()['search'];
 
-        if (empty($search)) {
+        $files = $this->finder->in('.')->name(
+            $search ? sprintf('/(?:.*)%s(?:.*)/i', preg_quote($search, '/')) : ''
+        );
+
+        if ($files->count() === 0) {
             return $this->view->render($response, 'error.twig', [
                 'message' => $this->translator->trans('error.no_results_found')
             ]);
         }
-
-        $files = $this->finder->in('.')->name(
-            sprintf('/(?:.*)%s(?:.*)/i', preg_quote($search, '/'))
-        );
 
         return $this->view->render($response, 'index.twig', [
             'files' => $files,

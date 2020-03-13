@@ -1,7 +1,7 @@
 <form action="." method="get" id="search" class="flex-grow group relative block bg-blue-700 rounded-full shadow-inner">
-    <input v-model="search" ref="searchInput" v-on:focus="$event.target.select()"
-        type="text" name="search" placeholder="{{ translate('search') }}..." value="{{ search }}"
+    <input type="text" value="{{ search }}" name="search" placeholder="{{ translate('search') }}..."
         class="bg-transparent placeholder-gray-900 text-white w-full px-10 py-2"
+        ref="searchInput" v-on:focus="$event.target.select()"
     >
 
     <div class="flex items-center absolute left-0 inset-y-0 ml-2 pointer-events-none">

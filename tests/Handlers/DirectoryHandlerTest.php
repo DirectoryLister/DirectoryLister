@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Controllers;
+namespace Tests\Handlers;
 
 use App\Handlers\DirectoryHandler;
 use App\Providers\TwigProvider;

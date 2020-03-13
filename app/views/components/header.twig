@@ -19,24 +19,7 @@
                 </a>
             {% endif %}
 
-            <form action="." method="get" id="search" class="flex-grow group relative block bg-blue-700 rounded-full shadow-inner">
-                <input v-model="search" ref="searchInput" v-on:focus="$event.target.select()"
-                    type="text" name="search" placeholder="{{ translate('search') }}..." value="{{ search }}"
-                    class="bg-transparent placeholder-gray-900 text-white w-full px-10 py-2"
-                >
-
-                <div class="flex items-center absolute left-0 inset-y-0 ml-2 pointer-events-none">
-                    <div class="flex justify-center items-center text-blue-900 w-6 h-6">
-                        <i class="fas fa-search fa-fw"></i>
-                    </div>
-                </div>
-
-                <div class="flex items-center absolute right-0 inset-y-0 mr-2" v-show="search">
-                    <a href="."  class="flex justify-center items-center rounded-full text-blue-900 w-6 h-6 hover:bg-red-700 hover:text-white hover:shadow">
-                        <i class="fas fa-times"></i>
-                    </a>
-                </div>
-            </form>
+            {% include 'components/search.twig' %}
         </div>
     </div>
 </header>

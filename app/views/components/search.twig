@@ -1,4 +1,4 @@
-<form action="." method="get" id="search" class="flex-grow group relative block bg-blue-700 rounded-full shadow-inner">
+<form action="." method="get" class="flex-grow group relative block bg-blue-700 rounded-full shadow-inner">
     <input type="text" value="{{ search }}" name="search" placeholder="{{ translate('search') }}..."
         class="bg-transparent placeholder-gray-900 text-white w-full px-10 py-2"
         ref="searchInput" v-on:focus="$event.target.select()"
@@ -10,9 +10,12 @@
         </div>
     </div>
 
-    <div class="flex items-center absolute right-0 inset-y-0 mr-2" v-show="search">
-        <a href="."  class="flex justify-center items-center rounded-full text-blue-900 w-6 h-6 hover:bg-red-700 hover:text-white hover:shadow">
-            <i class="fas fa-times"></i>
-        </a>
-    </div>
+
+    {% if search %}
+        <div class="flex items-center absolute right-0 inset-y-0 mr-2">
+            <a href="."  class="flex justify-center items-center rounded-full text-blue-900 w-6 h-6 hover:bg-red-700 hover:text-white hover:shadow">
+                <i class="fas fa-times"></i>
+            </a>
+        </div>
+    {% endif %}
 </form>

@@ -2,12 +2,12 @@
 
 namespace App\Handlers;
 
+use Exception;
 use PHLAK\Config\Config;
 use Psr\Http\Message\ResponseInterface;
 use Slim\Psr7\Request;
 use Slim\Psr7\Response;
 use Slim\Views\Twig;
-use Symfony\Component\Finder\Exception\DirectoryNotFoundException;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Finder\SplFileInfo;
 use Symfony\Contracts\Translation\TranslatorInterface;
@@ -60,7 +60,7 @@ class DirectoryHandler
 
         try {
             $files = $this->finder->in($path)->depth(0);
-        } catch (DirectoryNotFoundException $exception) {
+        } catch (Exception $exception) {
             return $this->view->render($response->withStatus(404), 'error.twig', [
                 'message' => $this->translator->trans('error.directory_not_found')
             ]);

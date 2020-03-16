@@ -17,8 +17,7 @@ class Breadcrumbs extends ViewFunction
     /**
      * Create a new Breadcrumbs object.
      *
-     * @param \DI\Container        $container
-     * @param \PHLAK\Config\Config $config
+     * @param \DI\Container $container
      */
     public function __construct(Container $container)
     {

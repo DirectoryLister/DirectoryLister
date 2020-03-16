@@ -5,7 +5,7 @@ namespace App\Handlers;
 use App\Support\Str;
 use App\TemporaryFile;
 use DI\Container;
-use PHLAK\Config\Config;
+use PHLAK\Config\Interfaces\ConfigInterface;
 use Psr\Http\Message\ResponseInterface;
 use Slim\Psr7\Request;
 use Slim\Psr7\Response;
@@ -19,7 +19,7 @@ class ZipHandler
     /** @var Container The application container */
     protected $container;
 
-    /** @var Config The application config */
+    /** @var ConfigInterface The application config */
     protected $config;
 
     /** @var Finder The Finder Component */
@@ -31,12 +31,14 @@ class ZipHandler
     /**
      * Create a new ZipHandler object.
      *
-     * @param \DI\Container      $container
-     * @param \PhpCsFixer\Finder $finder
+     * @param \DI\Container                                      $container
+     * @param \PHLAK\Config\Interfaces\ConfigInterface           $config
+     * @param \PhpCsFixer\Finder                                 $finder
+     * @param \Symfony\Contracts\Translation\TranslatorInterface $translator
      */
     public function __construct(
         Container $container,
-        Config $config,
+        ConfigInterface $config,
         Finder $finder,
         TranslatorInterface $translator
     ) {

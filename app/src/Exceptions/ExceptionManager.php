@@ -2,7 +2,7 @@
 
 namespace App\Exceptions;
 
-use PHLAK\Config\Config;
+use PHLAK\Config\Interfaces\ConfigInterface;
 use Slim\App;
 
 class ExceptionManager
@@ -10,16 +10,16 @@ class ExceptionManager
     /** @var App The application */
     protected $app;
 
-    /** @var Config The application config */
+    /** @var ConfigInterface The application config */
     protected $config;
 
     /**
      * Create a new ExceptionManager object.
      *
-     * @param \Slim\App            $app
-     * @param \PHLAK\Config\Config $config
+     * @param \Slim\App                                $app
+     * @param \PHLAK\Config\Interfaces\ConfigInterface $config
      */
-    public function __construct(App $app, Config $config)
+    public function __construct(App $app, ConfigInterface $config)
     {
         $this->app = $app;
         $this->config = $config;

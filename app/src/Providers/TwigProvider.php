@@ -5,7 +5,7 @@ namespace App\Providers;
 use App\ViewFunctions;
 use DI\Container;
 use Invoker\CallableResolver;
-use PHLAK\Config\Config;
+use PHLAK\Config\Interfaces\ConfigInterface;
 use Slim\Views\Twig;
 use Twig\Extension\CoreExtension;
 use Twig\Loader\FilesystemLoader;
@@ -29,7 +29,7 @@ class TwigProvider
     /** @var Container The application container */
     protected $container;
 
-    /** @var Config Application config */
+    /** @var ConfigInterface Application config */
     protected $config;
 
     /** @var CallableResolver The callable resolver */
@@ -38,13 +38,13 @@ class TwigProvider
     /**
      * Create a new ViewProvider object.
      *
-     * @param \DI\Container             $container
-     * @param \PHLAK\Config\Config      $config
-     * @param \Invoker\CallableResolver $callableResolver
+     * @param \DI\Container                            $container
+     * @param \PHLAK\Config\Interfaces\ConfigInterface $config
+     * @param \Invoker\CallableResolver                $callableResolver
      */
     public function __construct(
         Container $container,
-        Config $config,
+        ConfigInterface $config,
         CallableResolver $callableResolver
     ) {
         $this->container = $container;

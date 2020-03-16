@@ -3,7 +3,7 @@
 namespace App\Handlers;
 
 use Exception;
-use PHLAK\Config\Config;
+use PHLAK\Config\Interfaces\ConfigInterface;
 use Psr\Http\Message\ResponseInterface;
 use Slim\Psr7\Request;
 use Slim\Psr7\Response;
@@ -14,7 +14,7 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 
 class DirectoryHandler
 {
-    /** @var Config App configuration component */
+    /** @var ConfigInterface App configuration component */
     protected $config;
 
     /** @var Finder File finder component */
@@ -29,13 +29,13 @@ class DirectoryHandler
     /**
      * Create a new IndexController object.
      *
-     * @param \PHLAK\Config\Config                               $config
+     * @param \PHLAK\Config\Interfaces\ConfigInterface           $config
      * @param \Symfony\Component\Finder\Finder                   $finder
      * @param \Slim\Views\Twig                                   $view
      * @param \Symfony\Contracts\Translation\TranslatorInterface $translator
      */
     public function __construct(
-        Config $config,
+        ConfigInterface $config,
         Finder $finder,
         Twig $view,
         TranslatorInterface $translator

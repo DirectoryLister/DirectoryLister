@@ -2,22 +2,22 @@
 
 namespace App\ViewFunctions;
 
-use PHLAK\Config\Config as AppConfig;
+use PHLAK\Config\Interfaces\ConfigInterface;
 
 class Config extends ViewFunction
 {
     /** @var string The function name */
     protected $name = 'config';
 
-    /** @var \PHLAK\Config\Config */
+    /** @var ConfigInterface The application configuration */
     protected $config;
 
     /**
      * Create a new Config object.
      *
-     * @param \PHLAK\Config\Config $config
+     * @param \PHLAK\Config\Interfaces\ConfigInterface $config
      */
-    public function __construct(AppConfig $config)
+    public function __construct(ConfigInterface $config)
     {
         $this->config = $config;
     }

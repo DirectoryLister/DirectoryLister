@@ -3,7 +3,7 @@
 namespace Tests\Providers;
 
 use App\Providers\ConfigProvider;
-use PHLAK\Config\Config;
+use PHLAK\Config\Interfaces\ConfigInterface;
 use Tests\TestCase;
 
 class ConfigProviderTest extends TestCase
@@ -12,9 +12,9 @@ class ConfigProviderTest extends TestCase
     {
         (new ConfigProvider($this->container))();
 
-        $config = $this->container->get(Config::class);
+        $config = $this->container->get(ConfigInterface::class);
 
-        $this->assertInstanceOf(Config::class, $config);
+        $this->assertInstanceOf(ConfigInterface::class, $config);
         $this->assertTrue($config->has('app'));
         $this->assertTrue($config->has('icons'));
     }

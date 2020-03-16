@@ -5,7 +5,7 @@ namespace App\Providers;
 use App\SortMethods;
 use Closure;
 use DI\Container;
-use PHLAK\Config\Config;
+use PHLAK\Config\Interfaces\ConfigInterface;
 use RuntimeException;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Finder\SplFileInfo;
@@ -26,7 +26,7 @@ class FinderProvider
         'type' => SortMethods\Type::class,
     ];
 
-    /** @var Config Application config */
+    /** @var ConfigInterface Application config */
     protected $config;
 
     /** @var Container The application container */
@@ -35,10 +35,10 @@ class FinderProvider
     /**
      * Create a new ConfigProvider object.
      *
-     * @param \DI\Container        $container
-     * @param \PHLAK\Config\Config $config
+     * @param \DI\Container                            $container
+     * @param \PHLAK\Config\Interfaces\ConfigInterface $config
      */
-    public function __construct(Container $container, Config $config)
+    public function __construct(Container $container, ConfigInterface $config)
     {
         $this->container = $container;
         $this->config = $config;

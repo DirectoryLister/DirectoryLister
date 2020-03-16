@@ -4,7 +4,7 @@ namespace App\Providers;
 
 use DI\Container;
 use Illuminate\Support\Collection;
-use PHLAK\Config\Config;
+use PHLAK\Config\Interfaces\ConfigInterface;
 use RuntimeException;
 use Symfony\Component\Translation\Loader\YamlFileLoader;
 use Symfony\Component\Translation\Translator;
@@ -20,16 +20,16 @@ class TranslationProvider
     /** @var Container The applicaiton container */
     protected $container;
 
-    /** @var Config The application config */
+    /** @var ConfigInterface The application config */
     protected $config;
 
     /**
      * Create a new TranslationProvider object.
      *
-     * @param \DI\Container        $container
-     * @param \PHLAK\Config\Config $config
+     * @param \DI\Container                            $container
+     * @param \PHLAK\Config\Interfaces\ConfigInterface $config
      */
-    public function __construct(Container $container, Config $config)
+    public function __construct(Container $container, ConfigInterface $config)
     {
         $this->container = $container;
         $this->config = $config;

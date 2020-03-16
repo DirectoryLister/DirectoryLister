@@ -4,6 +4,7 @@ namespace Tests;
 
 use DI\Container;
 use PHLAK\Config\Config;
+use PHLAK\Config\Interfaces\ConfigInterface;
 use PHPUnit\Framework\TestCase as PHPUnitTestCase;
 use Symfony\Component\Translation\Loader\ArrayLoader;
 use Symfony\Component\Translation\Translator;
@@ -81,7 +82,7 @@ class TestCase extends PHPUnitTestCase
 
         $this->container = new Container();
         $this->container->set('base_path', $this->testFilesPath);
-        $this->container->set(Config::class, $this->config);
+        $this->container->set(ConfigInterface::class, $this->config);
         $this->container->set(TranslatorInterface::class, $this->translator);
     }
 

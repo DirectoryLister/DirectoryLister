@@ -3,7 +3,7 @@
 namespace App\Handlers;
 
 use DI\Container;
-use PHLAK\Config\Config;
+use PHLAK\Config\Interfaces\ConfigInterface;
 use Psr\Http\Message\ResponseInterface;
 use Slim\Psr7\Request;
 use Slim\Psr7\Response;
@@ -15,7 +15,7 @@ class FileInfoHandler
     /** @var Container The application container */
     protected $container;
 
-    /** @var Config App configuration component */
+    /** @var ConfigInterface App configuration component */
     protected $config;
 
     /** @var TranslatorInterface Translator component */
@@ -25,12 +25,12 @@ class FileInfoHandler
      * Create a new FileInfoHandler object.
      *
      * @param \DI\Container                                      $container
-     * @param \PHLAK\Config\Config                               $config
+     * @param \PHLAK\Config\Interfaces\ConfigInterface           $config
      * @param \Symfony\Contracts\Translation\TranslatorInterface $translator
      */
     public function __construct(
         Container $container,
-        Config $config,
+        ConfigInterface $config,
         TranslatorInterface $translator
     ) {
         $this->container = $container;

@@ -2,7 +2,7 @@
 
 namespace App\ViewFunctions;
 
-use PHLAK\Config\Config;
+use PHLAK\Config\Interfaces\ConfigInterface;
 use Symfony\Component\Finder\SplFileInfo;
 
 class Icon extends ViewFunction
@@ -10,15 +10,15 @@ class Icon extends ViewFunction
     /** @var string The function name */
     protected $name = 'icon';
 
-    /** @var \PHLAK\Config\Config */
+    /** @var ConfigInterface The application configuration */
     protected $config;
 
     /**
      * Create a new Config object.
      *
-     * @param \PHLAK\Config\Config $config
+     * @param \PHLAK\Config\Interfaces\ConfigInterface $config
      */
-    public function __construct(Config $config)
+    public function __construct(ConfigInterface $config)
     {
         $this->config = $config;
     }

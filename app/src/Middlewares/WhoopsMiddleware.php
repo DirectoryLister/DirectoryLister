@@ -2,7 +2,7 @@
 
 namespace App\Middlewares;
 
-use PHLAK\Config\Config;
+use PHLAK\Config\Interfaces\ConfigInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Server\RequestHandlerInterface as RequestHandler;
@@ -21,22 +21,22 @@ class WhoopsMiddleware
     /** @var JsonResponseHandler The JSON response handler */
     protected $jsonHandler;
 
-    /** @var Config The application config */
+    /** @var ConfigInterface The application config */
     protected $config;
 
     /**
      * Create a new WhoopseMiddleware object.
      *
-     * @param \Whoops\RunInterface                $config
-     * @param \Whoops\Handler\PrettyPageHandler   $pageHandler
-     * @param \Whoops\Handler\JsonResponseHandler $jsonHandler
-     * @param \PHLAK\Config\Config                $config
+     * @param \Whoops\RunInterface                     $config
+     * @param \Whoops\Handler\PrettyPageHandler        $pageHandler
+     * @param \Whoops\Handler\JsonResponseHandler      $jsonHandler
+     * @param \PHLAK\Config\Interfaces\ConfigInterface $config
      */
     public function __construct(
         RunInterface $whoops,
         PrettyPageHandler $pageHandler,
         JsonResponseHandler $jsonHandler,
-        Config $config
+        ConfigInterface $config
     ) {
         $this->whoops = $whoops;
         $this->pageHandler = $pageHandler;

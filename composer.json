@@ -31,7 +31,7 @@
         "friendsofphp/php-cs-fixer": "^2.3",
         "johnkary/phpunit-speedtrap": "^3.2",
         "phpunit/phpunit": "^9.0",
-        "psy/psysh": "^0.9.9",
+        "psy/psysh": "^0.10.0",
         "vimeo/psalm": "^3.6"
     },
     "autoload": {

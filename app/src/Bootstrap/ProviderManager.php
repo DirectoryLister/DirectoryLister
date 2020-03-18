@@ -25,7 +25,7 @@ class ProviderManager
     protected $callableResolver;
 
     /**
-     * Create a new AppManager object.
+     * Create a new ProviderManager object.
      *
      * @param \DI\Container             $container
      * @param \Invoker\CallableResolver $callableResolver

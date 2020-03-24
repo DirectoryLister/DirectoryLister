@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<files psalm-version="3.8.3@389af1bfc739bfdff3f9e3dc7bd6499aee51a831">
+<files psalm-version="3.10.1@eeed5ecccc10131397f0eb7ee6da810c0be3a7fc">
   <file src="app/src/Handlers/DirectoryHandler.php">
     <PossiblyInvalidMethodCall occurrences="1">
       <code>current</code>
     </PossiblyInvalidMethodCall>
+  </file>
+  <file src="app/src/Providers/TwigProvider.php">
+    <InvalidMethodCall occurrences="1">
+      <code>name</code>
+    </InvalidMethodCall>
   </file>
 </files>

@@ -52,7 +52,7 @@ class FinderProvider
     public function __invoke(): void
     {
         $finder = Finder::create()->followLinks();
-        $finder->ignoreVCS($this->config->get('app.hide_vcs_files', false));
+        $finder->ignoreVCS($this->config->get('app.hide_vcs_files', true));
         $finder->filter(function (SplFileInfo $file) {
             foreach ($this->hiddenFiles() as $hiddenPath) {
                 if (strpos($file->getRealPath(), $hiddenPath) === 0) {

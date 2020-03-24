@@ -53,7 +53,7 @@ class FinderProvider
     {
         $finder = Finder::create()->followLinks();
         $finder->ignoreVCS($this->config->get('app.hide_vcs_files', true));
-        $finder->filter(function (SplFileInfo $file) {
+        $finder->filter(function (SplFileInfo $file): bool {
             foreach ($this->hiddenFiles() as $hiddenPath) {
                 if (strpos($file->getRealPath(), $hiddenPath) === 0) {
                     return false;
@@ -92,12 +92,12 @@ class FinderProvider
             $this->config->get('app.hidden_files', [])
         )->when($this->config->get('app.hide_app_files', true), function (Collection $collection) {
             return $collection->merge(self::APP_FILES);
-        })->map(function (string $file) {
+        })->map(function (string $file): array {
             return glob(
                 $this->container->get('base_path') . '/' . $file,
                 GLOB_BRACE | GLOB_NOSORT
             );
-        })->flatten()->map(function (string $file) {
+        })->flatten()->map(function (string $file): string {
             return realpath($file);
         })->unique();
     }

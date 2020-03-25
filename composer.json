@@ -11,6 +11,8 @@
     ],
     "require": {
         "php": ">=7.2",
+        "ext-dom": "*",
+        "ext-fileinfo": "*",
         "ext-zip": "*",
         "erusev/parsedown-extra": "^0.8.1",
         "filp/whoops": "^2.7",

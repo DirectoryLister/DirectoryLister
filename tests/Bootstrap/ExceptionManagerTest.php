@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Exceptions;
+namespace Tests\Bootstrap;
 
 use App\Bootstrap\ExceptionManager;
 use App\Exceptions\ErrorHandler;

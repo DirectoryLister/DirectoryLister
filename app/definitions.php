@@ -5,7 +5,7 @@ use App\Factories;
 return [
     'base_path' => dirname(__DIR__),
     'app_path' => __DIR__,
-    'icons' => function () {
+    'icons' => function (): array {
         return require __DIR__ . '/config/icons.php';
     },
     Symfony\Component\Finder\Finder::class => DI\factory(Factories\FinderFactory::class),

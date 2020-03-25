@@ -9,7 +9,7 @@ class UrlTest extends TestCase
 {
     public function test_it_can_return_a_url_for_a_directory(): void
     {
-        $url = new Url($this->container, $this->config);
+        $url = new Url;
 
         // Forward slashes
         $this->assertEquals('', $url('/'));
@@ -33,7 +33,7 @@ class UrlTest extends TestCase
     {
         chdir($this->filePath('.'));
 
-        $url = new Url($this->container, $this->config);
+        $url = new Url;
 
         $this->assertEquals('README.md', $url('README.md'));
         $this->assertEquals('README.md', $url('./README.md'));

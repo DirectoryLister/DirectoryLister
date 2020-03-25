@@ -24,6 +24,6 @@ class MiddlewareManagerTest extends TestCase
         $app->expects($this->atLeast(1))->method('add')
             ->withConsecutive(...$arguments);
 
-        (new MiddlewareManager($app, $this->config))();
+        (new MiddlewareManager($app, $this->container))();
     }
 }

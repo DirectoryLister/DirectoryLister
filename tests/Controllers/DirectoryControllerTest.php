@@ -3,12 +3,12 @@
 namespace Tests\Controllers;
 
 use App\Controllers\DirectoryController;
-use App\Providers\TwigProvider;
 use Psr\Http\Message\ResponseInterface;
 use Slim\Psr7\Request;
 use Slim\Psr7\Response;
 use Slim\Views\Twig;
 use Symfony\Component\Finder\Finder;
+use Symfony\Contracts\Translation\TranslatorInterface;
 use Tests\TestCase;
 
 class DirectoryControllerTest extends TestCase
@@ -19,17 +19,15 @@ class DirectoryControllerTest extends TestCase
         bool $hideVcsFiles,
         bool $displayReadmes
     ): void {
-        $this->config->set('app.hide_app_files', $hideAppFiles);
-        $this->config->set('app.hide_vcs_files', $hideVcsFiles);
-        $this->config->set('app.display_readmes', $displayReadmes);
-
-        $this->container->call(TwigProvider::class);
+        $this->container->set('hide_app_files', $hideAppFiles);
+        $this->container->set('hide_vcs_files', $hideVcsFiles);
+        $this->container->set('display_readmes', $displayReadmes);
 
         $controller = new DirectoryController(
-            $this->config,
+            $this->container,
             new Finder,
             $this->container->get(Twig::class),
-            $this->translator
+            $this->container->get(TranslatorInterface::class)
         );
 
         chdir($this->filePath('.'));
@@ -45,17 +43,15 @@ class DirectoryControllerTest extends TestCase
         bool $hideVcsFiles,
         bool $displayReadmes
     ): void {
-        $this->config->set('app.hide_app_files', $hideAppFiles);
-        $this->config->set('app.hide_vcs_files', $hideVcsFiles);
-        $this->config->set('app.display_readmes', $displayReadmes);
-
-        $this->container->call(TwigProvider::class);
+        $this->container->set('hide_app_files', $hideAppFiles);
+        $this->container->set('hide_vcs_files', $hideVcsFiles);
+        $this->container->set('display_readmes', $displayReadmes);
 
         $controller = new DirectoryController(
-            $this->config,
+            $this->container,
             new Finder,
             $this->container->get(Twig::class),
-            $this->translator
+            $this->container->get(TranslatorInterface::class)
         );
 
         $request = $this->createMock(Request::class);
@@ -70,13 +66,11 @@ class DirectoryControllerTest extends TestCase
 
     public function test_it_returns_a_404_error_when_not_found(): void
     {
-        $this->container->call(TwigProvider::class);
-
         $controller = new DirectoryController(
-            $this->config,
+            $this->container,
             new Finder,
             $this->container->get(Twig::class),
-            $this->translator
+            $this->container->get(TranslatorInterface::class)
         );
 
         $request = $this->createMock(Request::class);

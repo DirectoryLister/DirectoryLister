@@ -7,13 +7,18 @@ use Psr\Http\Message\ResponseInterface;
 use Slim\Psr7\Request;
 use Slim\Psr7\Response;
 use Symfony\Component\Finder\Finder;
+use Symfony\Contracts\Translation\TranslatorInterface;
 use Tests\TestCase;
 
 class ZipHandlerTest extends TestCase
 {
     public function test_it_returns_a_successful_response_for_a_zip_request(): void
     {
-        $handler = new ZipController($this->container, $this->config, new Finder, $this->translator);
+        $handler = new ZipController(
+            $this->container,
+            new Finder,
+            $this->container->get(TranslatorInterface::class)
+        );
 
         $request = $this->createMock(Request::class);
         $request->method('getQueryParams')->willReturn(['zip' => 'subdir']);
@@ -30,7 +35,11 @@ class ZipHandlerTest extends TestCase
 
     public function test_it_returns_a_404_error_when_not_found(): void
     {
-        $handler = new ZipController($this->container, $this->config, new Finder, $this->translator);
+        $handler = new ZipController(
+            $this->container,
+            new Finder,
+            $this->container->get(TranslatorInterface::class)
+        );
 
         $request = $this->createMock(Request::class);
         $request->method('getQueryParams')->willReturn(['zip' => '404']);
@@ -44,8 +53,12 @@ class ZipHandlerTest extends TestCase
 
     public function test_it_returns_a_404_error_when_disabled_via_config(): void
     {
-        $this->config->set('app.zip_downloads', false);
-        $handler = new ZipController($this->container, $this->config, new Finder, $this->translator);
+        $this->container->set('zip_downloads', false);
+        $handler = new ZipController(
+            $this->container,
+            new Finder,
+            $this->container->get(TranslatorInterface::class)
+        );
 
         $request = $this->createMock(Request::class);
         $request->method('getQueryParams')->willReturn(['zip' => 'subdir']);

@@ -10,7 +10,7 @@ class BreadcrumbsTest extends TestCase
 {
     public function test_it_can_parse_breadcrumbs_from_the_path(): void
     {
-        $breadcrumbs = new Breadcrumbs($this->container, $this->config);
+        $breadcrumbs = new Breadcrumbs($this->container);
 
         $this->assertEquals(Collection::make([
             'foo' => '?dir=foo',
@@ -21,7 +21,7 @@ class BreadcrumbsTest extends TestCase
 
     public function test_it_can_parse_breadcrumbs_for_dot_path(): void
     {
-        $breadcrumbs = new Breadcrumbs($this->container, $this->config);
+        $breadcrumbs = new Breadcrumbs($this->container);
 
         $this->assertEquals(new Collection, $breadcrumbs('.'));
     }
@@ -30,7 +30,7 @@ class BreadcrumbsTest extends TestCase
     {
         $_SERVER['SCRIPT_NAME'] = '/some/dir/index.php';
 
-        $breadcrumbs = new Breadcrumbs($this->container, $this->config);
+        $breadcrumbs = new Breadcrumbs($this->container);
 
         $this->assertEquals(Collection::make([
             'foo' => '?dir=foo',

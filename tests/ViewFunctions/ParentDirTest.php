@@ -9,21 +9,21 @@ class ParentDirTest extends TestCase
 {
     public function test_it_can_get_the_parent_directory_when_one_level_deep(): void
     {
-        $parentDir = new ParentDir($this->container, $this->config);
+        $parentDir = new ParentDir;
 
         $this->assertEquals('.', $parentDir('foo'));
     }
 
     public function test_it_can_get_the_parent_directory_when_two_levels_deep(): void
     {
-        $parentDir = new ParentDir($this->container, $this->config);
+        $parentDir = new ParentDir;
 
         $this->assertEquals('?dir=foo', $parentDir('foo/bar'));
     }
 
     public function test_it_can_get_the_parent_directory_when_three_levels_deep(): void
     {
-        $parentDir = new ParentDir($this->container, $this->config);
+        $parentDir = new ParentDir;
 
         $this->assertEquals('?dir=foo/bar', $parentDir('foo/bar/baz'));
     }
@@ -32,7 +32,7 @@ class ParentDirTest extends TestCase
     {
         $_SERVER['SCRIPT_NAME'] = '/some/dir/index.php';
 
-        $parentDir = new ParentDir($this->container, $this->config);
+        $parentDir = new ParentDir;
 
         $this->assertEquals('?dir=foo/bar', $parentDir('foo/bar/baz'));
     }

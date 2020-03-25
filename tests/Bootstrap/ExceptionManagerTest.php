@@ -2,8 +2,8 @@
 
 namespace Tests\Exceptions;
 
+use App\Bootstrap\ExceptionManager;
 use App\Exceptions\ErrorHandler;
-use App\Exceptions\ExceptionManager;
 use Slim\App;
 use Slim\Middleware\ErrorMiddleware;
 use Tests\TestCase;
@@ -22,16 +22,16 @@ class ExceptionManagerTest extends TestCase
             ->method('addErrorMiddleware')
             ->willReturn($errorMiddleware);
 
-        (new ExceptionManager($app, $this->config))();
+        (new ExceptionManager($app, $this->container))();
     }
 
     public function test_it_does_not_set_the_default_error_handler_when_debug_is_enabled(): void
     {
-        $this->config->set('app.debug', true);
+        $this->container->set('debug', true);
 
         $app = $this->createMock(App::class);
         $app->expects($this->never())->method('addErrorMiddleware');
 
-        (new ExceptionManager($app, $this->config))();
+        (new ExceptionManager($app, $this->container))();
     }
 }

@@ -1,18 +1,18 @@
 <?php
 
-namespace Tests\Providers;
+namespace Tests\Factories;
 
-use App\Providers\TranslationProvider;
+use App\Factories\TranslationFactory;
 use RuntimeException;
 use Symfony\Component\Translation\MessageCatalogue;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use Tests\TestCase;
 
-class TranslationProviderTest extends TestCase
+class TranslationFactoryTest extends TestCase
 {
     public function test_it_registers_the_translation_component(): void
     {
-        (new TranslationProvider($this->container, $this->config))();
+        (new TranslationFactory($this->container))();
 
         $translator = $this->container->get(TranslatorInterface::class);
 
@@ -25,7 +25,7 @@ class TranslationProviderTest extends TestCase
     {
         $this->expectException(RuntimeException::class);
 
-        $this->config->set('app.language', 'xx');
-        (new TranslationProvider($this->container, $this->config))();
+        $this->container->set('language', 'xx');
+        (new TranslationFactory($this->container))();
     }
 }

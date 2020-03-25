@@ -32,9 +32,10 @@ class Icon extends ViewFunction
      */
     public function __invoke(SplFileInfo $file): string
     {
-        $icons = $this->container->get(sprintf('icons'));
+        $icons = $this->container->get('icons');
 
-        $icon = $file->isDir() ? 'fas fa-folder' : $icons->get($file->getExtension()) ?? 'fas fa-file';
+        $icon = $file->isDir() ? 'fas fa-folder'
+            : $icons[$file->getExtension()] ?? 'fas fa-file';
 
         return "<i class=\"{$icon} fa-fw fa-lg\"></i>";
     }

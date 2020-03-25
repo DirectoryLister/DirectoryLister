@@ -21,9 +21,6 @@ class WhoopsMiddlewareTest extends TestCase
         $pageHandler->expects($this->once())->method('setPageTitle')->with(
             'Test title; please ignore • Directory Lister'
         );
-        $pageHandler->expects($this->once())->method('addDataTable')->with(
-            'Application Config', $this->config->split('app')->toArray()
-        );
 
         $whoops = $this->createMock(RunInterface::class);
         $whoops->expects($this->once())->method('pushHandler')->with(
@@ -31,7 +28,7 @@ class WhoopsMiddlewareTest extends TestCase
         );
 
         $middleware = new WhoopsMiddleware(
-            $whoops, $pageHandler, new JsonResponseHandler, $this->config
+            $whoops, $pageHandler, new JsonResponseHandler
         );
 
         $middleware(
@@ -49,9 +46,6 @@ class WhoopsMiddlewareTest extends TestCase
         $pageHandler->expects($this->once())->method('setPageTitle')->with(
             'Test title; please ignore • Directory Lister'
         );
-        $pageHandler->expects($this->once())->method('addDataTable')->with(
-            'Application Config', $this->config->split('app')->toArray()
-        );
 
         $jsonHandler = new JsonResponseHandler;
 
@@ -62,7 +56,7 @@ class WhoopsMiddlewareTest extends TestCase
         );
 
         $middleware = new WhoopsMiddleware(
-            $whoops, $pageHandler, $jsonHandler, $this->config
+            $whoops, $pageHandler, $jsonHandler
         );
 
         $request = $this->createMock(ServerRequestInterface::class);

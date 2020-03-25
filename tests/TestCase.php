@@ -2,24 +2,15 @@
 
 namespace Tests;
 
+use App\Bootstrap\AppManager;
 use DI\Container;
-use PHLAK\Config\Config;
-use PHLAK\Config\Interfaces\ConfigInterface;
+use DI\ContainerBuilder;
 use PHPUnit\Framework\TestCase as PHPUnitTestCase;
-use Symfony\Component\Translation\Loader\ArrayLoader;
-use Symfony\Component\Translation\Translator;
-use Symfony\Contracts\Translation\TranslatorInterface;
 
 class TestCase extends PHPUnitTestCase
 {
     /** @var Container The test container */
     protected $container;
-
-    /** @var Config The test config */
-    protected $config;
-
-    /** @var TranslatorInterface Test translator */
-    protected $translator;
 
     /** @var string Path to test files directory */
     protected $testFilesPath = __DIR__ . '/_files';
@@ -33,8 +24,8 @@ class TestCase extends PHPUnitTestCase
     {
         $_SERVER['SCRIPT_NAME'] = '/index.php';
 
-        $this->config = new Config([
-            'app' => [
+        $this->container = (new ContainerBuilder)->addDefinitions(
+            [
                 'debug' => false,
                 'language' => 'en',
                 'dark_mode' => false,
@@ -45,7 +36,7 @@ class TestCase extends PHPUnitTestCase
                 'reverse_sort' => false,
                 'hidden_files' => [],
                 'hide_app_files' => true,
-                'hide_vcs_files' => false,
+                'hide_vcs_files' => true,
                 'date_format' => 'Y-m-d H:i:s',
                 'max_hash_size' => 1000000000,
                 'view_cache' => false,
@@ -53,37 +44,13 @@ class TestCase extends PHPUnitTestCase
                     'application/zip' => '+1 hour',
                     'text/json' => '+1 hour',
                 ],
-            ]
-        ]);
-
-        $this->translator = new Translator('en');
-        $this->translator->addLoader('array', new ArrayLoader);
-        $this->translator->addResource('array', [
-            'home' => 'Home',
-            'download' => 'Download this Directory',
-            'search' => 'Search',
-            'file' => [
-                'name' => 'File Name',
-                'size' => 'Size',
-                'date' => 'Date',
-                'info' => 'File Info',
-                'powered_by' => 'Powered by',
-                'scroll_to_top' => 'Scroll to Top',
             ],
-            'error' => [
-                'directory_not_found' => 'Directory does not exist',
-                'file_not_found' => 'File not found',
-                'file_size_exceeded' => 'File size too large',
-                'no_results_found' => 'No results found',
-                'unexpected' => 'An unexpected error occurred',
-            ],
-            'enable_debugging' => 'Enable debugging for additional information',
-        ], 'en');
+            dirname(__DIR__) . '/app/definitions.php',
+        )->build();
 
-        $this->container = new Container();
         $this->container->set('base_path', $this->testFilesPath);
-        $this->container->set(ConfigInterface::class, $this->config);
-        $this->container->set(TranslatorInterface::class, $this->translator);
+
+        // $this->app = $this->container->call(AppManager::class);
     }
 
     /**

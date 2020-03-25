@@ -13,7 +13,7 @@ class SizeForHumansTest extends TestCase
         $file = $this->createMock(SplFileInfo::class);
         $file->method('getSize')->willReturn(13);
 
-        $sizeForHumans = new SizeForHumans($this->container, $this->config);
+        $sizeForHumans = new SizeForHumans;
 
         $this->assertEquals('13.00B', $sizeForHumans($file));
     }
@@ -23,7 +23,7 @@ class SizeForHumansTest extends TestCase
         $file = $this->createMock(SplFileInfo::class);
         $file->method('getSize')->willReturn(13690);
 
-        $sizeForHumans = new SizeForHumans($this->container, $this->config);
+        $sizeForHumans = new SizeForHumans;
 
         $this->assertEquals('13.37KB', $sizeForHumans($file));
     }
@@ -33,7 +33,7 @@ class SizeForHumansTest extends TestCase
         $file = $this->createMock(SplFileInfo::class);
         $file->method('getSize')->willReturn(14019461);
 
-        $sizeForHumans = new SizeForHumans($this->container, $this->config);
+        $sizeForHumans = new SizeForHumans;
 
         $this->assertEquals('13.37MB', $sizeForHumans($file));
     }
@@ -43,7 +43,7 @@ class SizeForHumansTest extends TestCase
         $file = $this->createMock(SplFileInfo::class);
         $file->method('getSize')->willReturn(14355900000);
 
-        $sizeForHumans = new SizeForHumans($this->container, $this->config);
+        $sizeForHumans = new SizeForHumans;
 
         $this->assertEquals('13.37GB', $sizeForHumans($file));
     }
@@ -53,7 +53,7 @@ class SizeForHumansTest extends TestCase
         $file = $this->createMock(SplFileInfo::class);
         $file->method('getSize')->willReturn(14700500000000);
 
-        $sizeForHumans = new SizeForHumans($this->container, $this->config);
+        $sizeForHumans = new SizeForHumans;
 
         $this->assertEquals('13.37TB', $sizeForHumans($file));
     }
@@ -63,7 +63,7 @@ class SizeForHumansTest extends TestCase
         $file = $this->createMock(SplFileInfo::class);
         $file->method('getSize')->willReturn(15053300000000000);
 
-        $sizeForHumans = new SizeForHumans($this->container, $this->config);
+        $sizeForHumans = new SizeForHumans;
 
         $this->assertEquals('13.37PB', $sizeForHumans($file));
     }
@@ -73,7 +73,7 @@ class SizeForHumansTest extends TestCase
         $file = $this->createMock(SplFileInfo::class);
         $file->method('getSize')->willReturn(PHP_INT_MAX);
 
-        $sizeForHumans = new SizeForHumans($this->container, $this->config);
+        $sizeForHumans = new SizeForHumans;
 
         $this->assertEquals('8.00EB', $sizeForHumans($file));
     }

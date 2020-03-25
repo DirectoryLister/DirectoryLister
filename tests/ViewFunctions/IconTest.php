@@ -16,17 +16,12 @@ class IconTest extends TestCase
     {
         parent::setUp();
 
-        $this->config = new Config([
-            'php' => false,
-            'icons' => [
-                'php' => 'fab fa-php',
-            ],
-        ]);
+        $this->container->set('icons', ['php' => 'fab fa-php']);
     }
 
     public function test_it_can_return_icon_markup_for_a_file(): void
     {
-        $icon = new Icon($this->config);
+        $icon = new Icon($this->container);
         $file = $this->createMock(SplFileInfo::class);
         $file->method('isDir')->willReturn(false);
         $file->method('getExtension')->willReturn('php');
@@ -36,7 +31,7 @@ class IconTest extends TestCase
 
     public function test_it_can_return_icon_markup_for_a_directory(): void
     {
-        $icon = new Icon($this->config);
+        $icon = new Icon($this->container);
         $file = $this->createMock(SplFileInfo::class);
         $file->method('isDir')->willReturn(true);
 
@@ -45,7 +40,7 @@ class IconTest extends TestCase
 
     public function test_it_can_return_the_default_icon_markup(): void
     {
-        $icon = new Icon($this->config);
+        $icon = new Icon($this->container);
         $file = $this->createMock(SplFileInfo::class);
         $file->method('isDir')->willReturn(false);
         $file->method('getExtension')->willReturn('default');

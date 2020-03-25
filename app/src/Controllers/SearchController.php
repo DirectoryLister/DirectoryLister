@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Handlers;
+namespace App\Controllers;
 
 use Psr\Http\Message\ResponseInterface;
 use Slim\Psr7\Request;
@@ -9,7 +9,7 @@ use Slim\Views\Twig;
 use Symfony\Component\Finder\Finder;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
-class SearchHandler
+class SearchController
 {
     /** @var Finder File finder component */
     protected $finder;

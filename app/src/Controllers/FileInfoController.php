@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Handlers;
+namespace App\Controllers;
 
 use DI\Container;
 use PHLAK\Config\Interfaces\ConfigInterface;
@@ -10,7 +10,7 @@ use Slim\Psr7\Response;
 use SplFileInfo;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
-class FileInfoHandler
+class FileInfoController
 {
     /** @var Container The application container */
     protected $container;

@@ -1,8 +1,8 @@
 <?php
 
-namespace Tests\Handlers;
+namespace Tests\Controllers;
 
-use App\Handlers\SearchHandler;
+use App\Controllers\SearchController;
 use App\Providers\TwigProvider;
 use Psr\Http\Message\ResponseInterface;
 use Slim\Psr7\Request;
@@ -11,13 +11,13 @@ use Slim\Views\Twig;
 use Symfony\Component\Finder\Finder;
 use Tests\TestCase;
 
-class SearchHandlerTest extends TestCase
+class SearchControllerTest extends TestCase
 {
     public function test_it_returns_a_successful_response_for_a_search_request(): void
     {
         $this->container->call(TwigProvider::class);
 
-        $handler = new SearchHandler(new Finder, $this->container->get(Twig::class), $this->translator);
+        $handler = new SearchController(new Finder, $this->container->get(Twig::class), $this->translator);
 
         $request = $this->createMock(Request::class);
         $request->method('getQueryParams')->willReturn(['search' => 'charlie']);
@@ -34,7 +34,7 @@ class SearchHandlerTest extends TestCase
     {
         $this->container->call(TwigProvider::class);
 
-        $handler = new SearchHandler(new Finder, $this->container->get(Twig::class), $this->translator);
+        $handler = new SearchController(new Finder, $this->container->get(Twig::class), $this->translator);
 
         $request = $this->createMock(Request::class);
         $request->method('getQueryParams')->willReturn(['search' => 'test search; please ignore']);
@@ -51,7 +51,7 @@ class SearchHandlerTest extends TestCase
     {
         $this->container->call(TwigProvider::class);
 
-        $handler = new SearchHandler(new Finder, $this->container->get(Twig::class), $this->translator);
+        $handler = new SearchController(new Finder, $this->container->get(Twig::class), $this->translator);
 
         $request = $this->createMock(Request::class);
         $request->method('getQueryParams')->willReturn(['search' => '']);

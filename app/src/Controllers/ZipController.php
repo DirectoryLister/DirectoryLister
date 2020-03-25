@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Handlers;
+namespace App\Controllers;
 
 use App\Support\Str;
 use App\TemporaryFile;
@@ -14,7 +14,7 @@ use Symfony\Component\Finder\SplFileInfo;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use ZipArchive;
 
-class ZipHandler
+class ZipController
 {
     /** @var Container The application container */
     protected $container;

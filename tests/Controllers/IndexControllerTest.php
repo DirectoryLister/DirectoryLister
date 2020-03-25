@@ -2,8 +2,7 @@
 
 namespace Tests\Controllers;
 
-use App\Controllers\IndexController;
-use App\Handlers;
+use App\Controllers;
 use DI\Container;
 use Slim\Psr7\Request;
 use Slim\Psr7\Response;
@@ -18,11 +17,11 @@ class IndexControllerTest extends TestCase
 
         $container = $this->createMock(Container::class);
         $container->expects($this->once())->method('call')->with(
-            Handlers\FileInfoHandler::class,
+            Controllers\FileInfoController::class,
             [$request, $response = new Response]
         );
 
-        $controller = new IndexController($container);
+        $controller = new Controllers\IndexController($container);
 
         $controller($request, $response);
     }
@@ -34,11 +33,11 @@ class IndexControllerTest extends TestCase
 
         $container = $this->createMock(Container::class);
         $container->expects($this->once())->method('call')->with(
-            Handlers\SearchHandler::class,
+            Controllers\SearchController::class,
             [$request, $response = new Response]
         );
 
-        $controller = new IndexController($container);
+        $controller = new Controllers\IndexController($container);
 
         $controller($request, $response);
     }
@@ -50,11 +49,11 @@ class IndexControllerTest extends TestCase
 
         $container = $this->createMock(Container::class);
         $container->expects($this->once())->method('call')->with(
-            Handlers\ZipHandler::class,
+            Controllers\ZipController::class,
             [$request, $response = new Response]
         );
 
-        $controller = new IndexController($container);
+        $controller = new Controllers\IndexController($container);
 
         $controller($request, $response);
     }
@@ -66,11 +65,11 @@ class IndexControllerTest extends TestCase
 
         $container = $this->createMock(Container::class);
         $container->expects($this->once())->method('call')->with(
-            Handlers\DirectoryHandler::class,
+            Controllers\DirectoryController::class,
             [$request, $response = new Response]
         );
 
-        $controller = new IndexController($container);
+        $controller = new Controllers\IndexController($container);
 
         $controller($request, $response);
     }
@@ -79,11 +78,11 @@ class IndexControllerTest extends TestCase
     {
         $container = $this->createMock(Container::class);
         $container->expects($this->once())->method('call')->with(
-            Handlers\DirectoryHandler::class,
+            Controllers\DirectoryController::class,
             [$request = $this->createMock(Request::class), $response = new Response]
         );
 
-        $controller = new IndexController($container);
+        $controller = new Controllers\IndexController($container);
 
         $controller($request, $response);
     }

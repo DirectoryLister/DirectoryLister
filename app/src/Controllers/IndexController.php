@@ -2,7 +2,6 @@
 
 namespace App\Controllers;
 
-use App\Handlers;
 use DI\Container;
 use Slim\Psr7\Request;
 use Slim\Psr7\Response;
@@ -34,16 +33,16 @@ class IndexController
     {
         switch (true) {
             case array_key_exists('info', $request->getQueryParams()):
-                return $this->container->call(Handlers\FileInfoHandler::class, [$request, $response]);
+                return $this->container->call(FileInfoController::class, [$request, $response]);
 
             case array_key_exists('search', $request->getQueryParams()):
-                return $this->container->call(Handlers\SearchHandler::class, [$request, $response]);
+                return $this->container->call(SearchController::class, [$request, $response]);
 
             case array_key_exists('zip', $request->getQueryParams()):
-                return $this->container->call(Handlers\ZipHandler::class, [$request, $response]);
+                return $this->container->call(ZipController::class, [$request, $response]);
 
             default:
-                return $this->container->call(Handlers\DirectoryHandler::class, [$request, $response]);
+                return $this->container->call(DirectoryController::class, [$request, $response]);
         }
     }
 }

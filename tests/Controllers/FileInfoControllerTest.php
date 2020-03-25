@@ -1,18 +1,18 @@
 <?php
 
-namespace Tests\Handlers;
+namespace Tests\Controllers;
 
-use App\Handlers\FileInfoHandler;
+use App\Controllers\FileInfoController;
 use Psr\Http\Message\ResponseInterface;
 use Slim\Psr7\Request;
 use Slim\Psr7\Response;
 use Tests\TestCase;
 
-class FileInfoHandlerTest extends TestCase
+class FileInfoControllerTest extends TestCase
 {
     public function test_it_can_return_a_successful_response(): void
     {
-        $handler = new FileInfoHandler($this->container, $this->config, $this->translator);
+        $handler = new FileInfoController($this->container, $this->config, $this->translator);
 
         $request = $this->createMock(Request::class);
         $request->method('getQueryParams')->willReturn(['info' => 'README.md']);
@@ -32,7 +32,7 @@ class FileInfoHandlerTest extends TestCase
 
     public function test_it_can_return_a_not_found_response(): void
     {
-        $handler = new FileInfoHandler($this->container, $this->config, $this->translator);
+        $handler = new FileInfoController($this->container, $this->config, $this->translator);
 
         $request = $this->createMock(Request::class);
         $request->method('getQueryParams')->willReturn(['info' => 'not_a_file.test']);
@@ -46,7 +46,7 @@ class FileInfoHandlerTest extends TestCase
     public function test_it_returns_an_error_when_file_size_is_too_large(): void
     {
         $this->config->set('app.max_hash_size', 10);
-        $handler = new FileInfoHandler($this->container, $this->config, $this->translator);
+        $handler = new FileInfoController($this->container, $this->config, $this->translator);
 
         $request = $this->createMock(Request::class);
         $request->method('getQueryParams')->willReturn(['info' => 'README.md']);

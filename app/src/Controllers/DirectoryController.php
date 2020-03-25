@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Handlers;
+namespace App\Controllers;
 
 use Exception;
 use PHLAK\Config\Interfaces\ConfigInterface;
@@ -12,7 +12,7 @@ use Symfony\Component\Finder\Finder;
 use Symfony\Component\Finder\SplFileInfo;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
-class DirectoryHandler
+class DirectoryController
 {
     /** @var ConfigInterface App configuration component */
     protected $config;

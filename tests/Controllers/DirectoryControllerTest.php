@@ -1,8 +1,8 @@
 <?php
 
-namespace Tests\Handlers;
+namespace Tests\Controllers;
 
-use App\Handlers\DirectoryHandler;
+use App\Controllers\DirectoryController;
 use App\Providers\TwigProvider;
 use Psr\Http\Message\ResponseInterface;
 use Slim\Psr7\Request;
@@ -11,7 +11,7 @@ use Slim\Views\Twig;
 use Symfony\Component\Finder\Finder;
 use Tests\TestCase;
 
-class DirectoryHandlerTest extends TestCase
+class DirectoryControllerTest extends TestCase
 {
     /** @dataProvider configOptions */
     public function test_it_returns_a_successful_response(
@@ -25,7 +25,7 @@ class DirectoryHandlerTest extends TestCase
 
         $this->container->call(TwigProvider::class);
 
-        $controller = new DirectoryHandler(
+        $controller = new DirectoryController(
             $this->config,
             new Finder,
             $this->container->get(Twig::class),
@@ -51,7 +51,7 @@ class DirectoryHandlerTest extends TestCase
 
         $this->container->call(TwigProvider::class);
 
-        $controller = new DirectoryHandler(
+        $controller = new DirectoryController(
             $this->config,
             new Finder,
             $this->container->get(Twig::class),
@@ -72,7 +72,7 @@ class DirectoryHandlerTest extends TestCase
     {
         $this->container->call(TwigProvider::class);
 
-        $controller = new DirectoryHandler(
+        $controller = new DirectoryController(
             $this->config,
             new Finder,
             $this->container->get(Twig::class),

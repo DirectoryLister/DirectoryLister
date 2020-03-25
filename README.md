@@ -32,8 +32,9 @@ Features
 Requirements
 ------------
 
-  - [PHP](https://php.net) >= 7.2
-    - [PHP Zip](https://www.php.net/manual/en/book.zip.php) extension
+  - Directory Lister requires [PHP](https://www.php.net/) >= 7.2
+    - The [Zip](https://www.php.net/manual/en/book.zip.php) extension is required for zip downloads
+    - The [DOM](https://www.php.net/en/dom) and [Fileinfo](https://www.php.net/manual/en/book.fileinfo.php) extensions are required for README rendering
 
 Installation
 ------------

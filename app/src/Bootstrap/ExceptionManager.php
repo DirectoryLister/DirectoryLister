@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Exceptions;
+namespace App\Bootstrap;
 
+use App\Exceptions\ErrorHandler;
 use DI\Container;
 use Slim\App;
 

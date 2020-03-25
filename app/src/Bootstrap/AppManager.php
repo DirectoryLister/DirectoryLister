@@ -2,7 +2,6 @@
 
 namespace App\Bootstrap;
 
-use App\Exceptions\ExceptionManager;
 use DI\Bridge\Slim\Bridge;
 use DI\Container;
 use Slim\App;

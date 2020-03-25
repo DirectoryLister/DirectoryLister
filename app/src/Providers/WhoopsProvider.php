@@ -3,8 +3,6 @@
 namespace App\Providers;
 
 use DI\Container;
-use Whoops\Handler\JsonResponseHandler;
-use Whoops\Handler\PrettyPageHandler;
 use Whoops\Run;
 use Whoops\RunInterface;
 
@@ -30,8 +28,6 @@ class WhoopsProvider
      */
     public function __invoke(): void
     {
-        $this->container->set(PrettyPageHandler::class, new PrettyPageHandler);
-        $this->container->set(JsonResponseHandler::class, new JsonResponseHandler);
         $this->container->set(RunInterface::class, new Run);
     }
 }

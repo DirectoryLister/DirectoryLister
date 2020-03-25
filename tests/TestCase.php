@@ -25,26 +25,7 @@ class TestCase extends PHPUnitTestCase
         $_SERVER['SCRIPT_NAME'] = '/index.php';
 
         $this->container = (new ContainerBuilder)->addDefinitions(
-            [
-                'debug' => false,
-                'language' => 'en',
-                'dark_mode' => false,
-                'display_readmes' => true,
-                'zip_downloads' => true,
-                'google_analytics_id' => false,
-                'sort_order' => 'type',
-                'reverse_sort' => false,
-                'hidden_files' => [],
-                'hide_app_files' => true,
-                'hide_vcs_files' => true,
-                'date_format' => 'Y-m-d H:i:s',
-                'max_hash_size' => 1000000000,
-                'view_cache' => false,
-                'http_expires' => [
-                    'application/zip' => '+1 hour',
-                    'text/json' => '+1 hour',
-                ],
-            ],
+            dirname(__DIR__) . '/app/config/app.php',
             dirname(__DIR__) . '/app/definitions.php',
         )->build();
 

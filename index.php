@@ -1,7 +1,6 @@
 <?php
 
 use App\Bootstrap\AppManager;
-use App\Controllers;
 use DI\ContainerBuilder;
 use Dotenv\Dotenv;
 
@@ -18,9 +17,6 @@ $app = (new ContainerBuilder)->addDefinitions(
     __DIR__ . '/app/config/app.php',
     __DIR__ . '/app/definitions.php',
 )->build()->call(AppManager::class);
-
-// Register routes
-$app->get('/[{path:.*}]', Controllers\IndexController::class);
 
 // Engage!
 $app->run();

@@ -2,7 +2,7 @@
 
 namespace App\Exceptions;
 
-use PHLAK\Config\Interfaces\ConfigInterface;
+use DI\Container;
 use Slim\App;
 
 class ExceptionManager
@@ -10,19 +10,19 @@ class ExceptionManager
     /** @var App The application */
     protected $app;
 
-    /** @var ConfigInterface The application config */
-    protected $config;
+    /** @var Container The application container */
+    protected $container;
 
     /**
      * Create a new ExceptionManager object.
      *
-     * @param \Slim\App                                $app
-     * @param \PHLAK\Config\Interfaces\ConfigInterface $config
+     * @param \Slim\App     $app
+     * @param \DI\Container $container
      */
-    public function __construct(App $app, ConfigInterface $config)
+    public function __construct(App $app, Container $container)
     {
         $this->app = $app;
-        $this->config = $config;
+        $this->container = $container;
     }
 
     /**
@@ -32,7 +32,7 @@ class ExceptionManager
      */
     public function __invoke(): void
     {
-        if ($this->config->get('app.debug', false)) {
+        if ($this->container->get('debug')) {
             return;
         }
 

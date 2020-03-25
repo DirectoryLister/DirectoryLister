@@ -1,17 +1,16 @@
 <?php
 
-namespace App\Providers;
+namespace App\Factories;
 
 use App\SortMethods;
 use Closure;
 use DI\Container;
-use PHLAK\Config\Interfaces\ConfigInterface;
 use RuntimeException;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Finder\SplFileInfo;
 use Tightenco\Collect\Support\Collection;
 
-class FinderProvider
+class FinderFactory
 {
     /** @const Application paths to be hidden */
     protected const APP_FILES = ['app', 'index.php'];
@@ -26,33 +25,28 @@ class FinderProvider
         'type' => SortMethods\Type::class,
     ];
 
-    /** @var ConfigInterface Application config */
-    protected $config;
-
     /** @var Container The application container */
     protected $container;
 
     /**
-     * Create a new ConfigProvider object.
+     * Create a new FinderFactory object.
      *
-     * @param \DI\Container                            $container
-     * @param \PHLAK\Config\Interfaces\ConfigInterface $config
+     * @param \DI\Container $container
      */
-    public function __construct(Container $container, ConfigInterface $config)
+    public function __construct(Container $container)
     {
         $this->container = $container;
-        $this->config = $config;
     }
 
     /**
-     * Initialize and register the Finder component.
+     * Initialize and return the Finder component.
      *
-     * @return void
+     * @return Finder
      */
-    public function __invoke(): void
+    public function __invoke(): Finder
     {
         $finder = Finder::create()->followLinks();
-        $finder->ignoreVCS($this->config->get('app.hide_vcs_files', true));
+        $finder->ignoreVCS($this->container->get('hide_vcs_files'));
         $finder->filter(function (SplFileInfo $file): bool {
             foreach ($this->hiddenFiles() as $hiddenPath) {
                 if (strpos($file->getRealPath(), $hiddenPath) === 0) {
@@ -63,7 +57,7 @@ class FinderProvider
             return true;
         });
 
-        $sortOrder = $this->config->get('app.sort_order', 'type');
+        $sortOrder = $this->container->get('sort_order');
         if ($sortOrder instanceof Closure) {
             $finder->sort($sortOrder);
         } else {
@@ -74,11 +68,11 @@ class FinderProvider
             $this->container->call(self::SORT_METHODS[$sortOrder], [$finder]);
         }
 
-        if ($this->config->get('app.reverse_sort', false)) {
+        if ($this->container->get('reverse_sort')) {
             $finder->reverseSorting();
         }
 
-        $this->container->set(Finder::class, $finder);
+        return $finder;
     }
 
     /**
@@ -89,8 +83,8 @@ class FinderProvider
     protected function hiddenFiles(): Collection
     {
         return Collection::make(
-            $this->config->get('app.hidden_files', [])
-        )->when($this->config->get('app.hide_app_files', true), function (Collection $collection) {
+            $this->container->get('hidden_files')
+        )->when($this->container->get('hide_app_files'), function (Collection $collection) {
             return $collection->merge(self::APP_FILES);
         })->map(function (string $file): array {
             return glob(

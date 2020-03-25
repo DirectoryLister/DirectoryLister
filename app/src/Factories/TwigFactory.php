@@ -1,17 +1,16 @@
 <?php
 
-namespace App\Providers;
+namespace App\Factories;
 
 use App\ViewFunctions;
 use DI\Container;
 use Invoker\CallableResolver;
-use PHLAK\Config\Interfaces\ConfigInterface;
 use Slim\Views\Twig;
 use Twig\Extension\CoreExtension;
 use Twig\Loader\FilesystemLoader;
 use Twig\TwigFunction;
 
-class TwigProvider
+class TwigFactory
 {
     /** @const Constant description */
     protected const VIEW_FUNCTIONS = [
@@ -29,44 +28,38 @@ class TwigProvider
     /** @var Container The application container */
     protected $container;
 
-    /** @var ConfigInterface Application config */
-    protected $config;
-
     /** @var CallableResolver The callable resolver */
     protected $callableResolver;
 
     /**
-     * Create a new ViewProvider object.
+     * Create a new TwigFactory object.
      *
-     * @param \DI\Container                            $container
-     * @param \PHLAK\Config\Interfaces\ConfigInterface $config
-     * @param \Invoker\CallableResolver                $callableResolver
+     * @param \DI\Container             $container
+     * @param \Invoker\CallableResolver $callableResolver
      */
     public function __construct(
         Container $container,
-        ConfigInterface $config,
         CallableResolver $callableResolver
     ) {
         $this->container = $container;
-        $this->config = $config;
         $this->callableResolver = $callableResolver;
     }
 
     /**
-     * Initialize and register the Twig component.
+     * Initialize and return the Twig component.
      *
-     * @return void
+     * @return \Slim\Views\Twig
      */
-    public function __invoke(): void
+    public function __invoke(): Twig
     {
         $twig = new Twig(new FilesystemLoader('app/views'));
 
         $twig->getEnvironment()->setCache(
-            $this->config->get('app.view_cache', 'app/cache/views')
+            $this->container->get('view_cache')
         );
 
         $twig->getEnvironment()->getExtension(CoreExtension::class)->setDateFormat(
-            $this->config->get('app.date_format', 'Y-m-d H:i:s'), '%d days'
+            $this->container->get('date_format'), '%d days'
         );
 
         foreach (self::VIEW_FUNCTIONS as $function) {
@@ -77,6 +70,6 @@ class TwigProvider
             );
         }
 
-        $this->container->set(Twig::class, $twig);
+        return $twig;
     }
 }

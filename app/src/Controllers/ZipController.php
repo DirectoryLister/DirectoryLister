@@ -5,7 +5,6 @@ namespace App\Controllers;
 use App\Support\Str;
 use App\TemporaryFile;
 use DI\Container;
-use PHLAK\Config\Interfaces\ConfigInterface;
 use Psr\Http\Message\ResponseInterface;
 use Slim\Psr7\Request;
 use Slim\Psr7\Response;
@@ -19,9 +18,6 @@ class ZipController
     /** @var Container The application container */
     protected $container;
 
-    /** @var ConfigInterface The application config */
-    protected $config;
-
     /** @var Finder The Finder Component */
     protected $finder;
 
@@ -32,18 +28,15 @@ class ZipController
      * Create a new ZipHandler object.
      *
      * @param \DI\Container                                      $container
-     * @param \PHLAK\Config\Interfaces\ConfigInterface           $config
      * @param \PhpCsFixer\Finder                                 $finder
      * @param \Symfony\Contracts\Translation\TranslatorInterface $translator
      */
     public function __construct(
         Container $container,
-        ConfigInterface $config,
         Finder $finder,
         TranslatorInterface $translator
     ) {
         $this->container = $container;
-        $this->config = $config;
         $this->finder = $finder;
         $this->translator = $translator;
     }
@@ -60,7 +53,7 @@ class ZipController
     {
         $path = $request->getQueryParams()['zip'];
 
-        if (! $this->config->get('app.zip_downloads', true) || ! realpath($path)) {
+        if (! $this->container->get('zip_downloads') || ! realpath($path)) {
             return $response->withStatus(404, $this->translator->trans('error.file_not_found'));
         }
 

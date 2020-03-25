@@ -2,7 +2,7 @@
 
 use App\Bootstrap\AppManager;
 use App\Controllers;
-use DI\Container;
+use DI\ContainerBuilder;
 use Dotenv\Dotenv;
 
 require __DIR__ . '/app/vendor/autoload.php';
@@ -14,7 +14,10 @@ ini_set('open_basedir', __DIR__);
 Dotenv::createImmutable(__DIR__)->safeLoad();
 
 // Initialize the application
-$app = (new Container)->call(AppManager::class, [__DIR__]);
+$app = (new ContainerBuilder)->addDefinitions(
+    __DIR__ . '/app/config/app.php',
+    __DIR__ . '/app/definitions.php',
+)->build()->call(AppManager::class);
 
 // Register routes
 $app->get('/[{path:.*}]', Controllers\IndexController::class);

@@ -1,16 +1,15 @@
 <?php
 
-namespace App\Providers;
+namespace App\Factories;
 
 use DI\Container;
 use Illuminate\Support\Collection;
-use PHLAK\Config\Interfaces\ConfigInterface;
 use RuntimeException;
 use Symfony\Component\Translation\Loader\YamlFileLoader;
 use Symfony\Component\Translation\Translator;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
-class TranslationProvider
+class TranslationFactory
 {
     /** @const Available translation languages */
     protected const LANGUAGES = [
@@ -20,29 +19,24 @@ class TranslationProvider
     /** @var Container The applicaiton container */
     protected $container;
 
-    /** @var ConfigInterface The application config */
-    protected $config;
-
     /**
-     * Create a new TranslationProvider object.
+     * Create a new TranslationFactory object.
      *
-     * @param \DI\Container                            $container
-     * @param \PHLAK\Config\Interfaces\ConfigInterface $config
+     * @param \DI\Container $container
      */
-    public function __construct(Container $container, ConfigInterface $config)
+    public function __construct(Container $container)
     {
         $this->container = $container;
-        $this->config = $config;
     }
 
     /**
-     * Initialize and register the translation component.
+     * Initialize and return the translation component.
      *
-     * @return void
+     * @return \Symfony\Contracts\Translation\TranslatorInterface
      */
-    public function __invoke(): void
+    public function __invoke(): TranslatorInterface
     {
-        $language = $this->config->get('app.language', 'en');
+        $language = $this->container->get('language');
 
         if (! in_array($language, self::LANGUAGES)) {
             throw new RuntimeException("Invalid language option '{$language}'");
@@ -58,6 +52,6 @@ class TranslationProvider
             }
         );
 
-        $this->container->set(TranslatorInterface::class, $translator);
+        return $translator;
     }
 }

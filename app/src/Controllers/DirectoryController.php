@@ -2,8 +2,8 @@
 
 namespace App\Controllers;
 
+use DI\Container;
 use Exception;
-use PHLAK\Config\Interfaces\ConfigInterface;
 use Psr\Http\Message\ResponseInterface;
 use Slim\Psr7\Request;
 use Slim\Psr7\Response;
@@ -14,8 +14,8 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 
 class DirectoryController
 {
-    /** @var ConfigInterface App configuration component */
-    protected $config;
+    /** @var Container The application container */
+    protected $container;
 
     /** @var Finder File finder component */
     protected $finder;
@@ -29,18 +29,18 @@ class DirectoryController
     /**
      * Create a new IndexController object.
      *
-     * @param \PHLAK\Config\Interfaces\ConfigInterface           $config
+     * @param \DI\Container                                      $container
      * @param \Symfony\Component\Finder\Finder                   $finder
      * @param \Slim\Views\Twig                                   $view
      * @param \Symfony\Contracts\Translation\TranslatorInterface $translator
      */
     public function __construct(
-        ConfigInterface $config,
+        Container $container,
         Finder $finder,
         Twig $view,
         TranslatorInterface $translator
     ) {
-        $this->config = $config;
+        $this->container = $container;
         $this->finder = $finder;
         $this->view = $view;
         $this->translator = $translator;
@@ -83,7 +83,7 @@ class DirectoryController
      */
     protected function readme(Finder $files): ?SplFileInfo
     {
-        if (! $this->config->get('app.display_readmes', true)) {
+        if (! $this->container->get('display_readmes')) {
             return null;
         }
 

@@ -2,7 +2,6 @@
 
 namespace App\Middlewares;
 
-use PHLAK\Config\Interfaces\ConfigInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Server\RequestHandlerInterface as RequestHandler;
@@ -21,27 +20,21 @@ class WhoopsMiddleware
     /** @var JsonResponseHandler The JSON response handler */
     protected $jsonHandler;
 
-    /** @var ConfigInterface The application config */
-    protected $config;
-
     /**
      * Create a new WhoopseMiddleware object.
      *
-     * @param \Whoops\RunInterface                     $config
-     * @param \Whoops\Handler\PrettyPageHandler        $pageHandler
-     * @param \Whoops\Handler\JsonResponseHandler      $jsonHandler
-     * @param \PHLAK\Config\Interfaces\ConfigInterface $config
+     * @param \Whoops\RunInterface                $whoops
+     * @param \Whoops\Handler\PrettyPageHandler   $pageHandler
+     * @param \Whoops\Handler\JsonResponseHandler $jsonHandler
      */
     public function __construct(
         RunInterface $whoops,
         PrettyPageHandler $pageHandler,
-        JsonResponseHandler $jsonHandler,
-        ConfigInterface $config
+        JsonResponseHandler $jsonHandler
     ) {
         $this->whoops = $whoops;
         $this->pageHandler = $pageHandler;
         $this->jsonHandler = $jsonHandler;
-        $this->config = $config;
     }
 
     /**
@@ -54,7 +47,6 @@ class WhoopsMiddleware
      */
     public function __invoke(Request $request, RequestHandler $handler): ResponseInterface
     {
-        $this->pageHandler->addDataTable('Application Config', $this->config->split('app')->toArray());
         $this->pageHandler->setPageTitle(
             sprintf('%s • Directory Lister', $this->pageHandler->getPageTitle())
         );

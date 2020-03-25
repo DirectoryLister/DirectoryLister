@@ -3,8 +3,8 @@
 namespace App\Bootstrap;
 
 use App\Middlewares;
+use DI\Container;
 use Middlewares as HttpMiddlewares;
-use PHLAK\Config\Interfaces\ConfigInterface;
 use Slim\App;
 use Tightenco\Collect\Support\Collection;
 
@@ -18,19 +18,19 @@ class MiddlewareManager
     /** @var App The application */
     protected $app;
 
-    /** @var ConfigInterface The application config */
-    protected $config;
+    /** @var Container The application container */
+    protected $container;
 
     /**
      * Create a new MiddlwareManager object.
      *
-     * @param \Slim\App                                $app
-     * @param \PHLAK\Config\Interfaces\ConfigInterface $config
+     * @param \Slim\App     $app
+     * @param \DI\Container $container
      */
-    public function __construct(App $app, ConfigInterface $config)
+    public function __construct(App $app, Container $container)
     {
         $this->app = $app;
-        $this->config = $config;
+        $this->container = $container;
     }
 
     /**
@@ -47,10 +47,7 @@ class MiddlewareManager
         );
 
         $this->app->add(new HttpMiddlewares\Expires(
-            $this->config->get('app.http_expires', [
-                'application/zip' => '+1 hour',
-                'text/json' => '+1 hour',
-            ])
+            $this->container->get('http_expires')
         ));
     }
 }

@@ -5,7 +5,7 @@
       <code>current</code>
     </PossiblyInvalidMethodCall>
   </file>
-  <file src="app/src/Providers/TwigProvider.php">
+  <file src="app/src/Factories/TwigFactory.php">
     <InvalidMethodCall occurrences="1">
       <code>name</code>
     </InvalidMethodCall>

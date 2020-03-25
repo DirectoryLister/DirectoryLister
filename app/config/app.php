@@ -12,7 +12,7 @@ return [
      *
      * Default value: false
      */
-    'debug' => Helpers::env('APP_DEBUG'),
+    'debug' => Helpers::env('APP_DEBUG', false),
 
     /**
      * The application interface language.
@@ -21,28 +21,28 @@ return [
      *
      * Defualt value: en
      */
-    'language' => Helpers::env('APP_LANGUAGE'),
+    'language' => Helpers::env('APP_LANGUAGE', 'en'),
 
     /**
      * Enable dark mode?
      *
      * Default value: false
      */
-    'dark_mode' => Helpers::env('DARK_MODE'),
+    'dark_mode' => Helpers::env('DARK_MODE', false),
 
     /**
      * Parse and render README files on the page.
      *
      * Default value: true
      */
-    'display_readmes' => Helpers::env('DISPLAY_READMES'),
+    'display_readmes' => Helpers::env('DISPLAY_READMES', true),
 
     /**
      * Enable downloading of directories as a zip archive.
      *
      * Default value: true
      */
-    'zip_downloads' => Helpers::env('ZIP_DOWNLOADS'),
+    'zip_downloads' => Helpers::env('ZIP_DOWNLOADS', true),
 
     /**
      * Your Google analytics tracking ID.
@@ -50,7 +50,7 @@ return [
      * Expected format: 'UA-123456789-0'
      * Default value: false
      */
-    'google_analytics_id' => Helpers::env('GOOGLE_ANALYTICS_ID'),
+    'google_analytics_id' => Helpers::env('GOOGLE_ANALYTICS_ID', false),
 
     /**
      * Sorting order of files and folders.
@@ -58,14 +58,14 @@ return [
      * Possible values: type, natural, name, accessed, changed, modified
      * Default value: type
      */
-    'sort_order' => Helpers::env('SORT_ORDER'),
+    'sort_order' => Helpers::env('SORT_ORDER', 'type'),
 
     /**
      * When enabled, reverses the order of files (after sorting is applied).
      *
      * Default value: false
      */
-    'reverse_sort' => Helpers::env('REVERSE_SORT'),
+    'reverse_sort' => Helpers::env('REVERSE_SORT', false),
 
     /**
      * Array of files that will be hidden from the listing.
@@ -82,7 +82,7 @@ return [
      *
      * Default value: true
      */
-    'hide_app_files' => Helpers::env('HIDE_APP_FILES'),
+    'hide_app_files' => Helpers::env('HIDE_APP_FILES', true),
 
     /**
      * Hide the files Version Control System (i.e. Git and Mercurial) use to
@@ -90,7 +90,7 @@ return [
      *
      * Default value: true
      */
-    'hide_vcs_files' => Helpers::env('HIDE_VSC_FILES'),
+    'hide_vcs_files' => Helpers::env('HIDE_VSC_FILES', true),
 
     /**
      * Default date format. For additional info on date formatting see:
@@ -98,7 +98,7 @@ return [
      *
      * Default value: 'Y-m-d H:i:s'
      */
-    'date_format' => Helpers::env('DATE_FORMAT'),
+    'date_format' => Helpers::env('DATE_FORMAT', 'Y-m-d H:i:s'),
 
     /**
      * The maximum file size (in bytes) that can be hashed. This helps to
@@ -106,7 +106,7 @@ return [
      *
      * Default value: 1000000000
      */
-    'max_hash_size' => Helpers::env('MAX_HASH_SIZE'),
+    'max_hash_size' => Helpers::env('MAX_HASH_SIZE', 1000000000),
 
     /**
      * Path to the view cache directory.
@@ -114,7 +114,7 @@ return [
      *
      * Default value: 'app/cache/views'
      */
-    'view_cache' => Helpers::env('VIEW_CACHE'),
+    'view_cache' => Helpers::env('VIEW_CACHE', 'app/cache/views'),
 
     /**
      * HTTP expires values.

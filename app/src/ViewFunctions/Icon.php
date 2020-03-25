@@ -2,7 +2,7 @@
 
 namespace App\ViewFunctions;
 
-use PHLAK\Config\Interfaces\ConfigInterface;
+use DI\Container;
 use Symfony\Component\Finder\SplFileInfo;
 
 class Icon extends ViewFunction
@@ -10,17 +10,17 @@ class Icon extends ViewFunction
     /** @var string The function name */
     protected $name = 'icon';
 
-    /** @var ConfigInterface The application configuration */
-    protected $config;
+    /** @var Container The application container */
+    protected $container;
 
     /**
      * Create a new Config object.
      *
-     * @param \PHLAK\Config\Interfaces\ConfigInterface $config
+     * @param \DI\Container $container
      */
-    public function __construct(ConfigInterface $config)
+    public function __construct(Container $container)
     {
-        $this->config = $config;
+        $this->container = $container;
     }
 
     /**
@@ -32,10 +32,9 @@ class Icon extends ViewFunction
      */
     public function __invoke(SplFileInfo $file): string
     {
-        $iconConfig = $this->config->split('icons');
+        $icons = $this->container->get(sprintf('icons'));
 
-        $icon = $file->isDir() ? 'fas fa-folder'
-            : $iconConfig->get($file->getExtension(), 'fas fa-file');
+        $icon = $file->isDir() ? 'fas fa-folder' : $icons->get($file->getExtension()) ?? 'fas fa-file';
 
         return "<i class=\"{$icon} fa-fw fa-lg\"></i>";
     }

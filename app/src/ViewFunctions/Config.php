@@ -2,24 +2,23 @@
 
 namespace App\ViewFunctions;
 
-use PHLAK\Config\Interfaces\ConfigInterface;
+use DI\Container;
+use DI\NotFoundException;
 
 class Config extends ViewFunction
 {
     /** @var string The function name */
     protected $name = 'config';
 
-    /** @var ConfigInterface The application configuration */
-    protected $config;
+    /** @var Container The application container */
+    protected $container;
 
     /**
      * Create a new Config object.
-     *
-     * @param \PHLAK\Config\Interfaces\ConfigInterface $config
      */
-    public function __construct(ConfigInterface $config)
+    public function __construct(Container $container)
     {
-        $this->config = $config;
+        $this->container = $container;
     }
 
     /**
@@ -32,6 +31,10 @@ class Config extends ViewFunction
      */
     public function __invoke(string $key, $default = null)
     {
-        return $this->config->split('app')->get($key, $default);
+        try {
+            return $this->container->get($key);
+        } catch (NotFoundException $exception) {
+            return $default;
+        }
     }
 }

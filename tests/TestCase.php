@@ -2,7 +2,6 @@
 
 namespace Tests;
 
-use App\Bootstrap\AppManager;
 use DI\Container;
 use DI\ContainerBuilder;
 use PHPUnit\Framework\TestCase as PHPUnitTestCase;
@@ -30,8 +29,6 @@ class TestCase extends PHPUnitTestCase
         )->build();
 
         $this->container->set('base_path', $this->testFilesPath);
-
-        // $this->app = $this->container->call(AppManager::class);
     }
 
     /**

@@ -5,16 +5,13 @@ namespace Tests\Factories;
 use App\Factories\TranslationFactory;
 use RuntimeException;
 use Symfony\Component\Translation\MessageCatalogue;
-use Symfony\Contracts\Translation\TranslatorInterface;
 use Tests\TestCase;
 
 class TranslationFactoryTest extends TestCase
 {
     public function test_it_registers_the_translation_component(): void
     {
-        (new TranslationFactory($this->container))();
-
-        $translator = $this->container->get(TranslatorInterface::class);
+        $translator = (new TranslationFactory($this->container))();
 
         $this->assertEquals('en', $translator->getLocale());
         $this->assertInstanceOf(MessageCatalogue::class, $translator->getCatalogue('en'));

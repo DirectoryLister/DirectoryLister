@@ -2,6 +2,7 @@
 
 namespace Tests\Factories;
 
+use App\Factories\TwigFactory;
 use App\ViewFunctions;
 use Invoker\CallableResolver;
 use Slim\Views\Twig;
@@ -14,7 +15,7 @@ class TwigFactoryTest extends TestCase
         $this->container->set('view_cache', 'app/cache/views');
         $callableResolver = $this->container->get(CallableResolver::class);
 
-        $twig = $this->container->get(Twig::class);
+        $twig = (new TwigFactory($this->container, $callableResolver))();
 
         $this->assertInstanceOf(Twig::class, $twig);
         $this->assertEquals('app/cache/views', $twig->getEnvironment()->getCache());
@@ -22,7 +23,9 @@ class TwigFactoryTest extends TestCase
 
     public function test_it_registers_the_view_functions(): void
     {
-        $twig = $this->container->get(Twig::class);
+        $callableResolver = $this->container->get(CallableResolver::class);
+
+        $twig = (new TwigFactory($this->container, $callableResolver))();
 
         $this->assertInstanceOf(
             ViewFunctions\Asset::class,

@@ -12,12 +12,12 @@ class FinderFactoryTest extends TestCase
 {
     public function test_it_can_compose_the_finder_component(): void
     {
-        (new FinderFactory($this->container))();
-
-        $finder = $this->container->get(Finder::class);
-        $finder->in($this->filePath('subdir'))->depth(0);
+        $finder = (new FinderFactory($this->container))();
 
         $this->assertInstanceOf(Finder::class, $finder);
+
+        $finder->in($this->filePath('subdir'))->depth(0);
+
         $this->assertEquals([
             'alpha.scss',
             'bravo.js',
@@ -29,13 +29,13 @@ class FinderFactoryTest extends TestCase
 
     public function test_it_can_sort_by_a_user_provided_closure(): void
     {
-        $this->container->set('sort_order', \DI\value(function (SplFileInfo $file1, SplFileInfo $file2) {
-            return $file1->getSize() <=> $file2->getSize();
-        }));
+        $this->container->set('sort_order', \DI\value(
+            function (SplFileInfo $file1, SplFileInfo $file2) {
+                return $file1->getSize() <=> $file2->getSize();
+            }
+        ));
 
-        (new FinderFactory($this->container))();
-
-        $finder = $this->container->get(Finder::class);
+        $finder = (new FinderFactory($this->container))();
         $finder->in($this->filePath('subdir'))->depth(0);
 
         $this->assertEquals([
@@ -51,9 +51,7 @@ class FinderFactoryTest extends TestCase
     {
         $this->container->set('reverse_sort', true);
 
-        (new FinderFactory($this->container))();
-
-        $finder = $this->container->get(Finder::class);
+        $finder = (new FinderFactory($this->container))();
         $finder->in($this->filePath('subdir'))->depth(0);
 
         $this->assertEquals([

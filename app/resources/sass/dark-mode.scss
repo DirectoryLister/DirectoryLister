@@ -100,5 +100,10 @@
         hr {
             @apply border-gray-800;
         }
+
+        .hljs,
+        .hljs-keyword {
+            @apply text-white;
+        }
     }
 }

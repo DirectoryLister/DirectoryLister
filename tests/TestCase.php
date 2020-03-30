@@ -22,7 +22,6 @@ class TestCase extends PHPUnitTestCase
      */
     public function setUp(): void
     {
-        $_SERVER['SCRIPT_NAME'] = '/index.php';
         Dotenv::createImmutable(__DIR__)->safeLoad();
 
         $this->container = (new ContainerBuilder)->addDefinitions(

@@ -17,19 +17,4 @@
     <listeners>
         <listener class="JohnKary\PHPUnit\Listener\SpeedTrapListener" />
     </listeners>
-    <php>
-        <server name="APP_DEBUG" value="false" />
-        <server name="APP_LANGUAGE" value="en" />
-        <server name="DARK_MODE" value="false" />
-        <server name="DISPLAY_READMES" value="true" />
-        <server name="ZIP_DOWNLOADS" value="true" />
-        <server name="GOOGLE_ANALYTICS_ID" value="false" />
-        <server name="SORT_ORDER" value="type" />
-        <server name="REVERSE_SORT" value="false" />
-        <server name="HIDE_APP_FILES" value="true" />
-        <server name="HIDE_VSC_FILES" value="true" />
-        <server name="DATE_FORMAT" value="Y-m-d H:i:s" />
-        <server name="MAX_HASH_SIZE" value="1000000000" />
-        <server name="VIEW_CACHE" value="false" />
-    </php>
 </phpunit>

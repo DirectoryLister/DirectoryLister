@@ -4,6 +4,7 @@ namespace Tests;
 
 use DI\Container;
 use DI\ContainerBuilder;
+use Dotenv\Dotenv;
 use PHPUnit\Framework\TestCase as PHPUnitTestCase;
 
 class TestCase extends PHPUnitTestCase
@@ -22,6 +23,7 @@ class TestCase extends PHPUnitTestCase
     public function setUp(): void
     {
         $_SERVER['SCRIPT_NAME'] = '/index.php';
+        Dotenv::createImmutable(__DIR__)->safeLoad();
 
         $this->container = (new ContainerBuilder)->addDefinitions(
             dirname(__DIR__) . '/app/config/app.php',

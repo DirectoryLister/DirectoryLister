@@ -82,7 +82,8 @@ return [
      * By defualt this will look for a '.hidden' file in the app root directory.
      * If found, each line of this file will be used as an ignore pattern.
      *
-     * Default value: []
+     * Default value: Array loaded from '.hidden' file if present, otherwise
+     *                an empty array ([])
      */
     'hidden_files' => function (ContainerInterface $container): array {
         if (! is_readable($container->get('hidden_files_list'))) {

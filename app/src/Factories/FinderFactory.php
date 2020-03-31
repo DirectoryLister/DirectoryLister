@@ -13,7 +13,7 @@ use Tightenco\Collect\Support\Collection;
 class FinderFactory
 {
     /** @const Application paths to be hidden */
-    protected const APP_FILES = ['app', 'index.php'];
+    protected const APP_FILES = ['app', 'index.php', '.hidden'];
 
     /** @const Array of sort options mapped to their respective methods  */
     public const SORT_METHODS = [

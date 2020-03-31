@@ -1,6 +1,7 @@
 /app/vendor/
 /node_modules/
 .env
+.hidden
 .php_cs.cache
 .phpunit.result.cache
 mix-manifest.json

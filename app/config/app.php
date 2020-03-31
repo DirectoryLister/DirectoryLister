@@ -1,6 +1,7 @@
 <?php
 
 use App\Support\Helpers;
+use Psr\Container\ContainerInterface;
 
 return [
     /**
@@ -68,14 +69,31 @@ return [
     'reverse_sort' => Helpers::env('REVERSE_SORT', false),
 
     /**
-     * Array of files that will be hidden from the listing.
-     * Supports glob patterns.
+     * File used by 'hidden_files' to define the list of hidden files.
+     *
+     * Default value: '{base_path}/.hidden'
+     */
+    'hidden_files_list' => DI\string('{base_path}/.hidden'),
+
+    /**
+     * Array of files that will be hidden from the listing. Supports glob
+     * patterns (e.g. *.txt, file.ya?ml, etc.).
+     *
+     * By defualt this will look for a '.hidden' file in the app root directory.
+     * If found, each line of this file will be used as an ignore pattern.
      *
      * Default value: []
      */
-    'hidden_files' => [
-        // ...
-    ],
+    'hidden_files' => function (ContainerInterface $container): array {
+        if (! is_readable($container->get('hidden_files_list'))) {
+            return [];
+        }
+
+        return file(
+            $container->get('hidden_files_list'),
+            FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES
+        );
+    },
 
     /**
      * Whether or not to hide application files/directories form the listing.

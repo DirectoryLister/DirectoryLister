@@ -26,7 +26,7 @@ class TestCase extends PHPUnitTestCase
 
         $this->container = (new ContainerBuilder)->addDefinitions(
             dirname(__DIR__) . '/app/config/app.php',
-            dirname(__DIR__) . '/app/definitions.php',
+            dirname(__DIR__) . '/app/config/container.php'
         )->build();
 
         $this->container->set('base_path', $this->testFilesPath);

@@ -15,7 +15,7 @@ Dotenv::createImmutable(__DIR__)->safeLoad();
 // Initialize the application
 $app = (new ContainerBuilder)->addDefinitions(
     __DIR__ . '/app/config/app.php',
-    __DIR__ . '/app/definitions.php'
+    __DIR__ . '/app/config/container.php'
 )->build()->call(AppManager::class);
 
 // Engage!

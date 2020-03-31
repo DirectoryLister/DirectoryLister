@@ -149,4 +149,15 @@ return [
         'application/zip' => '+1 hour',
         'text/json' => '+1 hour',
     ],
+
+    /**
+     * Array of icon definitions where the array key is the file extension
+     * (without a preceding dot) and the array value is the desired Font Awesome
+     * class names.
+     *
+     * Default value: Array loaded from 'icons.php' config file
+     */
+    'icons' => function (ContainerInterface $container): array {
+        return require $container->get('icons_config');
+    },
 ];

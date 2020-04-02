@@ -1,7 +1,7 @@
 <header id="header" class="bg-blue-600 shadow sticky top-0">
     <div class="container flex flex-col flex-coljustify-between items-center mx-auto p-4 md:flex-row">
         <div class="flex-grow font-mono text-white text-sm tracking-tight mb-2 md:my-1">
-            <a href="." class="inline-block hover:underline">
+            <a href="{{ config('rewrite') ? url('') : '.' }}" class="inline-block hover:underline">
                 {{ translate('home') }}
             </a>
 

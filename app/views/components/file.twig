@@ -1,5 +1,5 @@
 <a
-    href="{{ parentDir ? config('rewrite') ? '../' : parent_dir(path) : config('rewrite') ? url(file.getRelativePathname) : url(file.getPathname) }}"
+    href="{{ parentDir ? config('rewrite') ? '../' : parent_dir(path) : url(file.getPathname) }}"
     class="flex flex-col items-center rounded-lg font-mono group hover:bg-gray-200 hover:shadow"
 >
     <div class="flex justify-between items-center p-4 w-full">

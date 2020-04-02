@@ -168,5 +168,5 @@ return [
      *
      * Default value: false
      */
-    'rewrite' => Helpers::env('REWRITE'),
+    'rewrite' => Helpers::env('REWRITE', false),
 ];

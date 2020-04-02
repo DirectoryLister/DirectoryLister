@@ -21,6 +21,10 @@ class ParentDir extends ViewFunction
         $parentDir = Str::explode($path, DIRECTORY_SEPARATOR)
             ->filter()->slice(0, -1)->implode(DIRECTORY_SEPARATOR);
 
+        if ($this->container->get('rewrite')) {
+            return empty($parentDir) ? '.' : '../';
+        }
+
         return empty($parentDir) ? '.' : sprintf('?dir=%s', $parentDir);
     }
 }

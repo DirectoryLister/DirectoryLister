@@ -22,7 +22,11 @@
 
             <content class="flex justify-center items-center p-4">
                 <div class="overflow-x-auto">
-                    <table class="table-auto">
+                    <p class="font-thin text-2xl text-gray-600 m-4" v-if="error">
+                        {{ error }}
+                    </p>
+
+                    <table class="table-auto" v-else>
                         <tbody>
                             <tr v-for="(hash, title) in this.hashes" v-bind:key="hash">
                                 <td class="border font-bold px-4 py-2">{{ title }}</td>
@@ -44,6 +48,7 @@
     export default {
         data: function () {
             return {
+                error: null,
                 filePath: 'file-info.txt',
                 hashes: {
                     'md5': '••••••••••••••••••••••••••••••••',
@@ -69,14 +74,16 @@
 
                 await axios.get('?info=' + filePath).then(function (response) {
                     this.hashes = response.data.hashes;
-                    this.loading = false;
-                }.bind(this)).catch(
-                    response => this.hide() && console.error(response)
-                );
+                }.bind(this)).catch(function (error) {
+                    this.error = error.response.data.message;
+                }.bind(this));
+
+                this.loading = false;
             },
             hide() {
                 this.visible = false;
                 this.loading = true;
+                this.error = null;
             }
         },
         mounted() {

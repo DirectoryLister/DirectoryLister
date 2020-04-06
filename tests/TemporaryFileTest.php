@@ -32,6 +32,6 @@ class TemporaryFileTest extends TestCase
 
         unset($tempFile);
 
-        $this->assertFileNotExists($filePath);
+        $this->assertFileDoesNotExist($filePath);
     }
 }

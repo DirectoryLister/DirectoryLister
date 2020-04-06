@@ -48,18 +48,10 @@ class FileInfoController
         );
 
         if (! $file->isFile()) {
-            $response->getBody()->write(json_encode([
-                'message' => $this->translator->trans('error.file_not_found'),
-            ]));
-
             return $response->withStatus(404, $this->translator->trans('error.file_not_found'));
         }
 
         if ($file->getSize() >= $this->container->get('max_hash_size')) {
-            $response->getBody()->write(json_encode([
-                'message' => $this->translator->trans('error.file_size_exceeded'),
-            ]));
-
             return $response->withStatus(500, $this->translator->trans('error.file_size_exceeded'));
         }
 

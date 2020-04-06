@@ -75,7 +75,7 @@
                 await axios.get('?info=' + filePath).then(function (response) {
                     this.hashes = response.data.hashes;
                 }.bind(this)).catch(function (error) {
-                    this.error = error.response.data.message;
+                    this.error = error.response.request.statusText;
                 }.bind(this));
 
                 this.loading = false;

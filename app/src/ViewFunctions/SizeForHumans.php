@@ -7,7 +7,7 @@ use Symfony\Component\Finder\SplFileInfo;
 class SizeForHumans extends ViewFunction
 {
     /** @var string The function name */
-    protected $name = 'sizeForHumans';
+    protected $name = 'size_for_humans';
 
     /**
      * Get the human readable file size from a file object.

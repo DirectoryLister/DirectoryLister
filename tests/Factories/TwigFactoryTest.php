@@ -64,7 +64,7 @@ class TwigFactoryTest extends TestCase
 
         $this->assertInstanceOf(
             ViewFunctions\SizeForHumans::class,
-            $twig->getEnvironment()->getFunction('sizeForHumans')->getCallable()
+            $twig->getEnvironment()->getFunction('size_for_humans')->getCallable()
         );
 
         $this->assertInstanceOf(

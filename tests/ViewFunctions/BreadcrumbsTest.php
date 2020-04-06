@@ -58,4 +58,15 @@ class BreadcrumbsTest extends TestCase
             'baz' => '?dir=foo/bar/baz',
         ]), $breadcrumbs('foo/bar/baz'));
     }
+
+    public function test_it_can_parse_breadcrumbs_from_the_path_with_back_slashes(): void
+    {
+        $breadcrumbs = new Breadcrumbs($this->container, '\\');
+
+        $this->assertEquals(Collection::make([
+            'foo' => '?dir=foo',
+            'bar' => '?dir=foo\bar',
+            'baz' => '?dir=foo\bar\baz',
+        ]), $breadcrumbs('foo\bar\baz'));
+    }
 }

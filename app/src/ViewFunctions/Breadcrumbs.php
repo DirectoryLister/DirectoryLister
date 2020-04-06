@@ -14,14 +14,20 @@ class Breadcrumbs extends ViewFunction
     /** @var Container The application container */
     protected $container;
 
+    /** @var string The directory separator */
+    protected $directorySeparator;
+
     /**
      * Create a new Breadcrumbs object.
      *
      * @param \DI\Container $container
      */
-    public function __construct(Container $container)
-    {
+    public function __construct(
+        Container $container,
+        string $directorySeparator = DIRECTORY_SEPARATOR
+    ) {
         $this->container = $container;
+        $this->directorySeparator = $directorySeparator;
     }
 
     /**
@@ -33,15 +39,15 @@ class Breadcrumbs extends ViewFunction
      */
     public function __invoke(string $path)
     {
-        $breadcrumbs = Str::explode($path, DIRECTORY_SEPARATOR)->diff(
-            explode(DIRECTORY_SEPARATOR, $this->container->get('base_path'))
+        $breadcrumbs = Str::explode($path, $this->directorySeparator)->diff(
+            explode($this->directorySeparator, $this->container->get('base_path'))
         )->filter();
 
         return $breadcrumbs->filter(function (string $crumb) {
             return $crumb !== '.';
         })->reduce(function (Collection $carry, string $crumb) {
             return $carry->put($crumb, ltrim(
-                $carry->last() . DIRECTORY_SEPARATOR . urlencode($crumb), DIRECTORY_SEPARATOR
+                $carry->last() . $this->directorySeparator . urlencode($crumb), $this->directorySeparator
             ));
         }, new Collection)->map(function (string $path): string {
             return sprintf('?dir=%s', $path);

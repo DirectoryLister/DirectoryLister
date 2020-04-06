@@ -43,6 +43,11 @@ class TwigFactoryTest extends TestCase
         );
 
         $this->assertInstanceOf(
+            ViewFunctions\FileUrl::class,
+            $twig->getEnvironment()->getFunction('file_url')->getCallable()
+        );
+
+        $this->assertInstanceOf(
             ViewFunctions\Icon::class,
             $twig->getEnvironment()->getFunction('icon')->getCallable()
         );
@@ -54,7 +59,7 @@ class TwigFactoryTest extends TestCase
 
         $this->assertInstanceOf(
             ViewFunctions\ParentUrl::class,
-            $twig->getEnvironment()->getFunction('parent_dir')->getCallable()
+            $twig->getEnvironment()->getFunction('parent_url')->getCallable()
         );
 
         $this->assertInstanceOf(
@@ -70,6 +75,11 @@ class TwigFactoryTest extends TestCase
         $this->assertInstanceOf(
             ViewFunctions\Url::class,
             $twig->getEnvironment()->getFunction('url')->getCallable()
+        );
+
+        $this->assertInstanceOf(
+            ViewFunctions\ZipUrl::class,
+            $twig->getEnvironment()->getFunction('zip_url')->getCallable()
         );
     }
 }

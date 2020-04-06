@@ -14,7 +14,7 @@
 
         <div class="flex justify-end items-center">
             {% if path and files is not empty and config('zip_downloads') %}
-                <a href="{{ url(path, 'zip') }}" title="{{ translate('download') }}" class="inline-block text-white mx-2 p-1 hover:text-gray-400">
+                <a href="{{ zip_url(path) }}" title="{{ translate('download') }}" class="inline-block text-white mx-2 p-1 hover:text-gray-400">
                     <i class="fas fa-download fa-lg"></i>
                 </a>
             {% endif %}

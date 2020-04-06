@@ -17,12 +17,14 @@ class TwigFactory
         ViewFunctions\Asset::class,
         ViewFunctions\Breadcrumbs::class,
         ViewFunctions\Config::class,
+        ViewFunctions\FileUrl::class,
         ViewFunctions\Icon::class,
         ViewFunctions\Markdown::class,
         ViewFunctions\ParentUrl::class,
         ViewFunctions\SizeForHumans::class,
         ViewFunctions\Translate::class,
         ViewFunctions\Url::class,
+        ViewFunctions\ZipUrl::class,
     ];
 
     /** @var Container The application container */

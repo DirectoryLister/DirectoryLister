@@ -1,5 +1,5 @@
 <a
-    href="{{ parentDir ? parent_url(path) : url(file.getPathname, 'dir') }}"
+    href="{{ parentDir ? parent_url(path) : file_url(file.getPathname) }}"
     class="flex flex-col items-center rounded-lg font-mono group hover:bg-gray-200 hover:shadow"
 >
     <div class="flex justify-between items-center p-4 w-full">

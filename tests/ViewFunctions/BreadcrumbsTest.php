@@ -26,6 +26,26 @@ class BreadcrumbsTest extends TestCase
         $this->assertEquals(new Collection, $breadcrumbs('.'));
     }
 
+    public function test_it_url_encodes_directory_names(): void
+    {
+        $breadcrumbs = new Breadcrumbs($this->container);
+
+        $this->assertEquals(Collection::make([
+            'foo' => '?dir=foo',
+            'bar+baz' => '?dir=foo/bar%2Bbaz',
+        ]), $breadcrumbs('foo/bar+baz'));
+
+        $this->assertEquals(Collection::make([
+            'foo' => '?dir=foo',
+            'bar#baz' => '?dir=foo/bar%23baz',
+        ]), $breadcrumbs('foo/bar#baz'));
+
+        $this->assertEquals(Collection::make([
+            'foo' => '?dir=foo',
+            'bar&baz' => '?dir=foo/bar%26baz',
+        ]), $breadcrumbs('foo/bar&baz'));
+    }
+
     public function test_it_can_parse_breadcrumbs_from_a_subdirectory(): void
     {
         $_SERVER['SCRIPT_NAME'] = '/some/dir/index.php';

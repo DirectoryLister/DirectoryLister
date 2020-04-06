@@ -20,7 +20,7 @@
                 <button
                     title="{{ translate('file.info') }}"
                     class="flex justify-center items-center rounded-full p-2 -m-1 md:invisible hover:bg-gray-400 hover:shadow group-hover:visible"
-                    v-on:click.prevent="showFileInfo('{{ file.getPathname | escape('js') }}')"
+                    v-on:click.prevent="showFileInfo('{{ url(file.getPathname) | escape('js') }}')"
                 >
                     <i class="fas fa-info-circle"></i>
                 </button>

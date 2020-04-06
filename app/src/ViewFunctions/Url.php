@@ -3,6 +3,7 @@
 namespace App\ViewFunctions;
 
 use App\Support\Str;
+use RuntimeException;
 
 class Url extends ViewFunction
 {
@@ -23,21 +24,33 @@ class Url extends ViewFunction
     }
 
     /**
-     * Return the URL for a given path.
+     * Return the URL for a given path and action.
      *
-     * @param string $path
+     * @param string      $path
+     * @param string|null $action
      *
      * @return string
      */
-    public function __invoke(string $path = '/'): string
+    public function __invoke(string $path = '/', string $action = null): string
     {
         $path = preg_replace('/^.?(\/|\\\)+/', '', $path);
 
-        if (is_file($path)) {
-            return $this->escape($path);
-        }
+        switch ($action) {
+            case null:
+                return $this->escape($path);
 
-        return empty($path) ? '' : sprintf('?dir=%s', $this->escape($path));
+            case 'dir':
+                return empty($path) ? '' : sprintf('?dir=%s', $this->escape($path));
+
+            case 'info':
+                return empty($path) ? '?info=.' : sprintf('?info=%s', $this->escape($path));
+
+            case 'zip':
+                return empty($path) ? '?zip=.' : sprintf('?zip=%s', $this->escape($path));
+
+            default:
+                throw new RuntimeException(sprintf('Invalid action "%s"', $action));
+        }
     }
 
     /**

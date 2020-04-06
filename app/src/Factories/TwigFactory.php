@@ -19,7 +19,7 @@ class TwigFactory
         ViewFunctions\Config::class,
         ViewFunctions\Icon::class,
         ViewFunctions\Markdown::class,
-        ViewFunctions\ParentDir::class,
+        ViewFunctions\ParentUrl::class,
         ViewFunctions\SizeForHumans::class,
         ViewFunctions\Translate::class,
         ViewFunctions\Url::class,

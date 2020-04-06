@@ -53,7 +53,7 @@ class TwigFactoryTest extends TestCase
         );
 
         $this->assertInstanceOf(
-            ViewFunctions\ParentDir::class,
+            ViewFunctions\ParentUrl::class,
             $twig->getEnvironment()->getFunction('parent_dir')->getCallable()
         );
 

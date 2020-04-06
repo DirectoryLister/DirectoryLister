@@ -1,0 +1,42 @@
+<?php
+
+namespace App\ViewFunctions;
+
+use App\Support\Str;
+
+class ParentUrl extends ViewFunction
+{
+    /** @var string The function name */
+    protected $name = 'parent_url';
+
+    /** @var string The directory separator */
+    protected $directorySeparator;
+
+    /**
+     * Create a new ParentUrl object.
+     *
+     * @param string $directorySeparator
+     */
+    public function __construct(string $directorySeparator = DIRECTORY_SEPARATOR)
+    {
+        $this->directorySeparator = $directorySeparator;
+    }
+
+    /**
+     * Get the parent directory for a given path.
+     *
+     * @param string $path
+     *
+     * @return string
+     */
+    public function __invoke(string $path)
+    {
+        $parentDir = Str::explode($path, $this->directorySeparator)->map(
+            function (string $segment): string {
+                return urlencode($segment);
+            }
+        )->filter()->slice(0, -1)->implode($this->directorySeparator);
+
+        return empty($parentDir) ? '.' : sprintf('?dir=%s', $parentDir);
+    }
+}

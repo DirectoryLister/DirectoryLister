@@ -71,9 +71,9 @@ return [
     /**
      * File used by 'hidden_files' to define the list of hidden files.
      *
-     * Default value: '{base_path}/.hidden'
+     * Default value: '.hidden'
      */
-    'hidden_files_list' => DI\string('{base_path}/.hidden'),
+    'hidden_files_list' => Helpers::env('HIDDEN_FILES_LIST', '.hidden'),
 
     /**
      * Array of files that will be hidden from the listing. Supports glob

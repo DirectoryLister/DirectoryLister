@@ -17,9 +17,9 @@ class AssetTest extends TestCase
         $this->assertEquals('app/assets/images/icon.png', $asset('images/icon.png'));
     }
 
-    public function test_it_can_return_an_asset_from_a_subdirectory(): void
+    public function test_it_can_return_an_asset_path_without_a_mix_manifest_file(): void
     {
-        $this->container->set('base_path', $this->filePath('subdir'));
+        $this->container->set('asset_path', $this->filePath('.'));
 
         $asset = new Asset($this->container);
 

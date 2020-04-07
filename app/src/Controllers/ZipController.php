@@ -77,7 +77,7 @@ class ZipController
     {
         $zip = new ZipArchive;
         $zip->open((string) $tempFile = new TemporaryFile(
-            $this->container->get('base_path') . '/app/cache'
+            $this->container->get('cache_path')
         ), ZipArchive::CREATE | ZipArchive::OVERWRITE);
 
         foreach ($this->finder->in($path)->files() as $file) {

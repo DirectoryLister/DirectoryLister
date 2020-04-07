@@ -54,7 +54,9 @@ class TwigFactory
      */
     public function __invoke(): Twig
     {
-        $twig = new Twig(new FilesystemLoader('app/views'));
+        $twig = new Twig(new FilesystemLoader(
+            $this->container->get('views_path')
+        ));
 
         $twig->getEnvironment()->setCache(
             $this->container->get('view_cache')

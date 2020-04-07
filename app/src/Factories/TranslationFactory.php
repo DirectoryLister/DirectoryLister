@@ -47,7 +47,7 @@ class TranslationFactory
 
         Collection::make(self::LANGUAGES)->each(
             function (string $language) use ($translator): void {
-                $resource = sprintf($this->container->get('app_path') . '/translations/%s.yaml', $language);
+                $resource = sprintf($this->container->get('translations_path') . '/%s.yaml', $language);
                 $translator->addResource('yaml', $resource, $language);
             }
         );

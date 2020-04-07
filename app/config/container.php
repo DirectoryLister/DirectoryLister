@@ -4,9 +4,13 @@ use App\Factories;
 
 return [
     /** Path definitions */
-    'app_path' => dirname(__DIR__),
     'base_path' => dirname(__DIR__, 2),
+    'app_path' => dirname(__DIR__),
+    'asset_path' => DI\string('{app_path}/assets'),
+    'cache_path' => DI\string('{app_path}/cache'),
     'config_path' => DI\string('{app_path}/config'),
+    'translations_path' => DI\string('{app_path}/translations'),
+    'views_path' => DI\string('{app_path}/views'),
     'icons_config' => DI\string('{config_path}/icons.php'),
 
     /** Container definitions */

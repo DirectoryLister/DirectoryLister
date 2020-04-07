@@ -7,9 +7,6 @@ use Tightenco\Collect\Support\Collection;
 
 class Asset extends ViewFunction
 {
-    /** @const Constant description */
-    protected const ASSET_PATH = 'app/assets/';
-
     /** @var string The function name */
     protected $name = 'asset';
 
@@ -41,7 +38,7 @@ class Asset extends ViewFunction
             $path = $this->mixManifest()->get($path);
         }
 
-        return self::ASSET_PATH . ltrim($path, '/');
+        return 'app/assets/' . ltrim($path, '/');
     }
 
     /**
@@ -51,7 +48,7 @@ class Asset extends ViewFunction
      */
     protected function mixManifest(): Collection
     {
-        $mixManifest = $this->container->get('base_path') . '/' . self::ASSET_PATH . 'mix-manifest.json';
+        $mixManifest = $this->container->get('asset_path') . '/mix-manifest.json';
 
         if (! is_file($mixManifest)) {
             return new Collection;

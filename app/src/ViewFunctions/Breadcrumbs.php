@@ -47,7 +47,7 @@ class Breadcrumbs extends ViewFunction
             return $crumb !== '.';
         })->reduce(function (Collection $carry, string $crumb) {
             return $carry->put($crumb, ltrim(
-                $carry->last() . $this->directorySeparator . urlencode($crumb), $this->directorySeparator
+                $carry->last() . $this->directorySeparator . rawurlencode($crumb), $this->directorySeparator
             ));
         }, new Collection)->map(function (string $path): string {
             return sprintf('?dir=%s', $path);

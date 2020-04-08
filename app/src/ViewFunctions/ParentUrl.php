@@ -33,7 +33,7 @@ class ParentUrl extends ViewFunction
     {
         $parentDir = Str::explode($path, $this->directorySeparator)->map(
             function (string $segment): string {
-                return urlencode($segment);
+                return rawurlencode($segment);
             }
         )->filter()->slice(0, -1)->implode($this->directorySeparator);
 

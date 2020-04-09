@@ -9,6 +9,8 @@ services:
     volumes:
       - ./:/var/www/html
     restart: unless-stopped
+    extra_hosts:
+      - host.docker.internal:${DOCKER_HOST_IP}
 
 networks:
   default:

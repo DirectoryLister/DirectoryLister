@@ -18,7 +18,7 @@ class ZipUrl extends Url
     {
         $path = $this->stripLeadingSlashes($path);
 
-        if ($path === null || $path === '') {
+        if ($path === '') {
             return '?zip=.';
         }
 

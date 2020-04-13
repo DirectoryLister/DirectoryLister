@@ -22,7 +22,7 @@ class FileUrl extends Url
             return $this->escape($path);
         }
 
-        if ($path === null || $path === '') {
+        if ($path === '') {
             return '';
         }
 

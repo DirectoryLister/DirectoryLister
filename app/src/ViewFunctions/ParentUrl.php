@@ -35,8 +35,14 @@ class ParentUrl extends ViewFunction
             function (string $segment): string {
                 return rawurlencode($segment);
             }
-        )->filter()->slice(0, -1)->implode($this->directorySeparator);
+        )->filter(function ($value): bool {
+            return $value !== null;
+        })->slice(0, -1)->implode($this->directorySeparator);
 
-        return empty($parentDir) ? '.' : sprintf('?dir=%s', $parentDir);
+        if ($parentDir === '') {
+            return '.';
+        }
+
+        return sprintf('?dir=%s', $parentDir);
     }
 }

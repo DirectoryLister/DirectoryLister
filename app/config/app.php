@@ -121,7 +121,7 @@ return [
 
     /**
      * Default timezone. For a list of supported timezones see:
-     * https://www.php.net/manual/en/timezones.php
+     * https://www.php.net/manual/en/timezones.php.
      *
      * Default value: 'UTC'
      */

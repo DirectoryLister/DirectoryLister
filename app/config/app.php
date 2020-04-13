@@ -120,6 +120,14 @@ return [
     'date_format' => Helpers::env('DATE_FORMAT', 'Y-m-d H:i:s'),
 
     /**
+     * Default timezone. For a list of supported timezones see:
+     * https://www.php.net/manual/en/timezones.php
+     *
+     * Default value: 'UTC'
+     */
+    'timezone' => Helpers::env('TIMEZONE', 'UTC'),
+
+    /**
      * The maximum file size (in bytes) that can be hashed. This helps to
      * prevent timeouts for excessively large files.
      *

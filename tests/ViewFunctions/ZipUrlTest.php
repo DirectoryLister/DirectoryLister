@@ -18,6 +18,9 @@ class ZipUrlTest extends TestCase
         $this->assertEquals('?zip=some/path', $url('./some/path'));
         $this->assertEquals('?zip=some/file.test', $url('some/file.test'));
         $this->assertEquals('?zip=some/file.test', $url('./some/file.test'));
+        $this->assertEquals('?zip=0/path', $url('0/path'));
+        $this->assertEquals('?zip=1/path', $url('1/path'));
+        $this->assertEquals('?zip=0', $url('0'));
     }
 
     public function test_it_can_return_a_url_with_back_slashes(): void

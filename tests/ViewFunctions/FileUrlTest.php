@@ -18,6 +18,9 @@ class FileUrlTest extends TestCase
         $this->assertEquals('?dir=some/path', $url('./some/path'));
         $this->assertEquals('?dir=some/file.test', $url('some/file.test'));
         $this->assertEquals('?dir=some/file.test', $url('./some/file.test'));
+        $this->assertEquals('?dir=0/path', $url('0/path'));
+        $this->assertEquals('?dir=1/path', $url('1/path'));
+        $this->assertEquals('?dir=0', $url('0'));
     }
 
     public function test_it_can_return_a_url_with_back_slashes(): void
@@ -30,6 +33,8 @@ class FileUrlTest extends TestCase
         $this->assertEquals('?dir=some\path', $url('.\some\path'));
         $this->assertEquals('?dir=some\file.test', $url('some\file.test'));
         $this->assertEquals('?dir=some\file.test', $url('.\some\file.test'));
+        $this->assertEquals('?dir=0\path', $url('0\path'));
+        $this->assertEquals('?dir=1\path', $url('1\path'));
     }
 
     public function test_url_segments_are_url_encoded(): void

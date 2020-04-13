@@ -16,12 +16,16 @@ class FileUrl extends Url
      */
     public function __invoke(string $path = '/'): string
     {
-        $path = preg_replace('/^.?(\/|\\\)+/', '', $path);
+        $path = $this->stripLeadingSlashes($path);
 
         if (is_file($path)) {
             return $this->escape($path);
         }
 
-        return empty($path) ? '' : sprintf('?dir=%s', $this->escape($path));
+        if ($path === null || $path === '') {
+            return '';
+        }
+
+        return sprintf('?dir=%s', $this->escape($path));
     }
 }

@@ -16,8 +16,12 @@ class ZipUrl extends Url
      */
     public function __invoke(string $path = '/'): string
     {
-        $path = preg_replace('/^.?(\/|\\\)+/', '', $path);
+        $path = $this->stripLeadingSlashes($path);
 
-        return empty($path) ? '?zip=.' : sprintf('?zip=%s', $this->escape($path));
+        if ($path === null || $path === '') {
+            return '?zip=.';
+        }
+
+        return sprintf('?zip=%s', $this->escape($path));
     }
 }

@@ -31,9 +31,19 @@ class Url extends ViewFunction
      */
     public function __invoke(string $path = '/'): string
     {
-        $path = preg_replace('/^.?(\/|\\\)+/', '', $path);
+        return $this->escape($this->stripLeadingSlashes($path));
+    }
 
-        return $this->escape($path);
+    /**
+     * Strip all leading slashes (and a single dot) from a path.
+     *
+     * @param string $path
+     *
+     * @return string
+     */
+    protected function stripLeadingSlashes(string $path): string
+    {
+        return preg_replace('/^\.?(\/|\\\)+/', '', $path);
     }
 
     /**

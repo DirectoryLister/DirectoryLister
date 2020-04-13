@@ -16,7 +16,7 @@ class MiddlewareManagerTest extends TestCase
 
     public function test_it_registers_application_middlewares(): void
     {
-        $arguments = array_map(function (string $middleware): array {
+        $arguments = array_map(static function (string $middleware): array {
             return [$middleware];
         }, self::MIDDLEWARES);
 

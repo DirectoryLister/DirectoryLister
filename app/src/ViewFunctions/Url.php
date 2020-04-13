@@ -56,7 +56,7 @@ class Url extends ViewFunction
     protected function escape(string $path): string
     {
         return Str::explode($path, $this->directorySeparator)->map(
-            function (string $segment): string {
+            static function (string $segment): string {
                 return rawurlencode($segment);
             }
         )->implode($this->directorySeparator);

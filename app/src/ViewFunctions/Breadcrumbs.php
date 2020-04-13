@@ -41,13 +41,13 @@ class Breadcrumbs extends ViewFunction
     {
         return Str::explode($path, $this->directorySeparator)->diff(
             explode($this->directorySeparator, $this->container->get('base_path'))
-        )->filter(function (string $crumb): bool {
+        )->filter(static function (string $crumb): bool {
             return ! in_array($crumb, [null, '.']);
         })->reduce(function (Collection $carry, string $crumb): Collection {
             return $carry->put($crumb, ltrim(
                 $carry->last() . $this->directorySeparator . rawurlencode($crumb), $this->directorySeparator
             ));
-        }, new Collection)->map(function (string $path, string $name): string {
+        }, new Collection)->map(static function (string $path, string $name): string {
             return sprintf('?dir=%s', $path);
         });
     }

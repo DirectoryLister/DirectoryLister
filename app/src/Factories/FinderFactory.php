@@ -91,7 +91,7 @@ class FinderFactory
                 $this->container->get('base_path') . '/' . $file,
                 GLOB_BRACE | GLOB_NOSORT
             );
-        })->flatten()->map(function (string $file): string {
+        })->flatten()->map(static function (string $file): string {
             return realpath($file);
         })->unique();
     }

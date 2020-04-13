@@ -89,9 +89,9 @@ class DirectoryController
 
         $readmes = (clone $files)->name('/^README(?:\..+)?$/i');
 
-        $readmes->filter(function (SplFileInfo $file) {
+        $readmes->filter(static function (SplFileInfo $file) {
             return (bool) preg_match('/text\/.+/', mime_content_type($file->getPathname()));
-        })->sort(function (SplFileInfo $file1, SplFileInfo $file2) {
+        })->sort(static function (SplFileInfo $file1, SplFileInfo $file2) {
             return $file1->getExtension() <=> $file2->getExtension();
         });
 

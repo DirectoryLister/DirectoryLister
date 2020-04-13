@@ -85,7 +85,7 @@ return [
      * Default value: Array loaded from '.hidden' file if present, otherwise
      *                an empty array ([])
      */
-    'hidden_files' => function (ContainerInterface $container): array {
+    'hidden_files' => static function (ContainerInterface $container): array {
         if (! is_readable($container->get('hidden_files_list'))) {
             return [];
         }
@@ -158,7 +158,7 @@ return [
      *
      * Default value: Array loaded from 'icons.php' config file
      */
-    'icons' => function (ContainerInterface $container): array {
+    'icons' => static function (ContainerInterface $container): array {
         return require $container->get('icons_config');
     },
 ];

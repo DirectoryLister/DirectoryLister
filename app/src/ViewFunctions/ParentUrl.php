@@ -35,7 +35,7 @@ class ParentUrl extends ViewFunction
             function (string $segment): string {
                 return rawurlencode($segment);
             }
-        )->filter(function ($value): bool {
+        )->filter(function (?string $value): bool {
             return $value !== null;
         })->slice(0, -1)->implode($this->directorySeparator);
 

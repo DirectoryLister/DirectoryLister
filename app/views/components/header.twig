@@ -5,7 +5,7 @@
                 {{ translate('home') }}
             </a>
 
-            {% if path %}
+            {% if path is not null %}
                 {% for name, path in breadcrumbs(path) %}
                     / <a href="{{ path }}" class="inline-block hover:underline">{{ name }}</a>
                 {% endfor %}

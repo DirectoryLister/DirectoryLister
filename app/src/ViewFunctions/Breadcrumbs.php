@@ -41,7 +41,9 @@ class Breadcrumbs extends ViewFunction
     {
         $breadcrumbs = Str::explode($path, $this->directorySeparator)->diff(
             explode($this->directorySeparator, $this->container->get('base_path'))
-        )->filter();
+        )->filter(function ($value): bool {
+            return $value !== null;
+        });
 
         return $breadcrumbs->filter(function (string $crumb) {
             return $crumb !== '.';

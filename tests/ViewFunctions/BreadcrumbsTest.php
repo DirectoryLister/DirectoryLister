@@ -46,19 +46,6 @@ class BreadcrumbsTest extends TestCase
         ]), $breadcrumbs('foo/bar&baz'));
     }
 
-    public function test_it_can_parse_breadcrumbs_from_a_subdirectory(): void
-    {
-        $_SERVER['SCRIPT_NAME'] = '/some/dir/index.php';
-
-        $breadcrumbs = new Breadcrumbs($this->container);
-
-        $this->assertEquals(Collection::make([
-            'foo' => '?dir=foo',
-            'bar' => '?dir=foo/bar',
-            'baz' => '?dir=foo/bar/baz',
-        ]), $breadcrumbs('foo/bar/baz'));
-    }
-
     public function test_it_can_parse_breadcrumbs_from_the_path_with_back_slashes(): void
     {
         $breadcrumbs = new Breadcrumbs($this->container, '\\');
@@ -68,5 +55,16 @@ class BreadcrumbsTest extends TestCase
             'bar' => '?dir=foo\bar',
             'baz' => '?dir=foo\bar\baz',
         ]), $breadcrumbs('foo\bar\baz'));
+    }
+
+    public function test_it_can_parse_breadcrumbs_from_the_path_with_zeros(): void
+    {
+        $breadcrumbs = new Breadcrumbs($this->container, '\\');
+
+        $this->assertEquals(Collection::make([
+            'foo' => '?dir=foo',
+            '0' => '?dir=foo\0',
+            'bar' => '?dir=foo\0\bar',
+        ]), $breadcrumbs('foo\0\bar'));
     }
 }

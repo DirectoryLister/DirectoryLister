@@ -123,7 +123,7 @@ return [
      * Timezone used for date formatting. For a list of supported timezones see:
      * https://www.php.net/manual/en/timezones.php.
      *
-     * Default value: The server's configured timezone
+     * Default value: The server's timezone
      */
     'timezone' => Helpers::env('TIMEZONE', date_default_timezone_get()),
 

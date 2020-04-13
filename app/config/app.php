@@ -120,12 +120,12 @@ return [
     'date_format' => Helpers::env('DATE_FORMAT', 'Y-m-d H:i:s'),
 
     /**
-     * Default timezone. For a list of supported timezones see:
+     * Timezone used for date formatting. For a list of supported timezones see:
      * https://www.php.net/manual/en/timezones.php.
      *
-     * Default value: 'UTC'
+     * Default value: The server's configured timezone
      */
-    'timezone' => Helpers::env('TIMEZONE', 'UTC'),
+    'timezone' => Helpers::env('TIMEZONE', date_default_timezone_get()),
 
     /**
      * The maximum file size (in bytes) that can be hashed. This helps to

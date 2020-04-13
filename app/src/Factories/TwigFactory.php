@@ -66,6 +66,10 @@ class TwigFactory
             $this->container->get('date_format'), '%d days'
         );
 
+        $twig->getEnvironment()->getExtension(CoreExtension::class)->setTimezone(
+            $this->container->get('timezone')
+        );
+
         foreach (self::VIEW_FUNCTIONS as $function) {
             $function = $this->callableResolver->resolve($function);
 

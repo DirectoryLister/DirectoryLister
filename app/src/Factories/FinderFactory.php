@@ -7,6 +7,7 @@ use Closure;
 use DI\Container;
 use RuntimeException;
 use Symfony\Component\Finder\Finder;
+use Symfony\Component\Finder\Glob;
 use Symfony\Component\Finder\SplFileInfo;
 use Tightenco\Collect\Support\Collection;
 
@@ -48,13 +49,7 @@ class FinderFactory
         $finder = Finder::create()->followLinks();
         $finder->ignoreVCS($this->container->get('hide_vcs_files'));
         $finder->filter(function (SplFileInfo $file): bool {
-            foreach ($this->hiddenFiles() as $hiddenPath) {
-                if (strpos($file->getRealPath(), $hiddenPath) === 0) {
-                    return false;
-                }
-            }
-
-            return true;
+            return (bool) ! preg_match($this->hiddenPattern(), $file->getRealPath());
         });
 
         $sortOrder = $this->container->get('sort_order');
@@ -76,23 +71,22 @@ class FinderFactory
     }
 
     /**
-     * Get a collection of hidden files.
+     * Get the regular expression patern for hidden files.
      *
-     * @return \Tightenco\Collect\Support\Collection
+     * @return string
      */
-    protected function hiddenFiles(): Collection
+    protected function hiddenPattern(): string
     {
-        return Collection::make(
+        $collection = Collection::make(
             $this->container->get('hidden_files')
-        )->when($this->container->get('hide_app_files'), function (Collection $collection) {
+        )->when($this->container->get('hide_app_files'), static function (Collection $collection) {
             return $collection->merge(self::APP_FILES);
-        })->map(function (string $file): array {
-            return glob(
-                $this->container->get('base_path') . '/' . $file,
-                GLOB_BRACE | GLOB_NOSORT
-            );
-        })->flatten()->map(static function (string $file): string {
-            return realpath($file);
+        })->map(static function (string $pattern): string {
+            return DIRECTORY_SEPARATOR . ltrim($pattern, DIRECTORY_SEPARATOR);
         })->unique();
+
+        return substr_replace(Glob::toRegex(
+            sprintf('%s{%s}', $this->container->get('base_path'), $collection->implode(','))
+        ), '', -2, 1);
     }
 }

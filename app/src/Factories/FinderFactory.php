@@ -3,11 +3,11 @@
 namespace App\Factories;
 
 use App\SortMethods;
+use App\Support\Glob;
 use Closure;
 use DI\Container;
 use RuntimeException;
 use Symfony\Component\Finder\Finder;
-use Symfony\Component\Finder\Glob;
 use Symfony\Component\Finder\SplFileInfo;
 use Tightenco\Collect\Support\Collection;
 
@@ -81,12 +81,10 @@ class FinderFactory
             $this->container->get('hidden_files')
         )->when($this->container->get('hide_app_files'), static function (Collection $collection) {
             return $collection->merge(self::APP_FILES);
-        })->map(static function (string $pattern): string {
-            return DIRECTORY_SEPARATOR . ltrim($pattern, DIRECTORY_SEPARATOR);
         })->unique();
 
-        return substr_replace(Glob::toRegex(
-            sprintf('%s{%s}', $this->container->get('base_path'), $collection->implode(','))
-        ), '', -2, 1);
+        return Glob::toRegex(
+            sprintf('%s/{%s}', $this->container->get('base_path'), $collection->implode(','))
+        );
     }
 }

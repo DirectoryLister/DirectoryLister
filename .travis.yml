@@ -25,4 +25,4 @@ script:
   - app/vendor/bin/php-cs-fixer fix --diff --dry-run
   - app/vendor/bin/psalm --show-info=true
   - app/vendor/bin/phpunit --coverage-text
-  - npm run production
+  - npm run production --verbose

@@ -1,0 +1,19 @@
+home: Beranda
+download: Untuh Direktori Ini
+search: Cari
+file:
+  name: Nama Berkas
+  size: Ukuran
+  date: Tanggal
+  info: Info Berkas
+powered_by: Diberdayakan oleh
+scroll_to_top: Skrol ke atas
+
+error:
+  directory_not_found: Direktori tidak ditemukan
+  file_not_found: Berkas tidak ditemukan
+  file_size_exceeded: Ukuran berkas terlalu besar
+  no_results_found: Tidak ada hasil ditemukan
+  unexpected: Terjadi galat
+
+enable_debugging: Aktifkan debugging untuk informasi lainnya

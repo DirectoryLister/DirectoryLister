@@ -48,9 +48,14 @@ class FinderFactory
     {
         $finder = Finder::create()->followLinks();
         $finder->ignoreVCS($this->container->get('hide_vcs_files'));
-        $finder->filter(function (SplFileInfo $file): bool {
-            return (bool) ! preg_match($this->hiddenPattern(), $file->getRealPath());
-        });
+
+        if ($this->hiddenFiles()->isNotEmpty()) {
+            $finder->filter(function (SplFileInfo $file): bool {
+                return (bool) ! preg_match(Glob::toRegex(
+                    sprintf('%s/{%s}', $this->container->get('base_path'), $this->hiddenFiles()->implode(','))
+                ), $file->getRealPath());
+            });
+        }
 
         $sortOrder = $this->container->get('sort_order');
         if ($sortOrder instanceof Closure) {
@@ -71,20 +76,16 @@ class FinderFactory
     }
 
     /**
-     * Get the regular expression patern for hidden files.
+     * Get a collection of hidden file paths.
      *
-     * @return string
+     * @return \Illuminate\Support\Collection
      */
-    protected function hiddenPattern(): string
+    protected function hiddenFiles(): Collection
     {
-        $collection = Collection::make(
+        return Collection::make(
             $this->container->get('hidden_files')
         )->when($this->container->get('hide_app_files'), static function (Collection $collection) {
             return $collection->merge(self::APP_FILES);
         })->unique();
-
-        return Glob::toRegex(
-            sprintf('%s/{%s}', $this->container->get('base_path'), $collection->implode(','))
-        );
     }
 }

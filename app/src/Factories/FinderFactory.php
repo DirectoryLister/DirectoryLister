@@ -78,7 +78,7 @@ class FinderFactory
     /**
      * Get a collection of hidden file paths.
      *
-     * @return \Illuminate\Support\Collection
+     * @return \Tightenco\Collect\Support\Collection
      */
     protected function hiddenFiles(): Collection
     {

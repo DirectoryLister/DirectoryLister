@@ -3,11 +3,11 @@
 namespace App\Factories;
 
 use DI\Container;
-use Illuminate\Support\Collection;
 use RuntimeException;
 use Symfony\Component\Translation\Loader\YamlFileLoader;
 use Symfony\Component\Translation\Translator;
 use Symfony\Contracts\Translation\TranslatorInterface;
+use Tightenco\Collect\Support\Collection;
 
 class TranslationFactory
 {

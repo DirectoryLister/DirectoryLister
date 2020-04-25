@@ -34,6 +34,7 @@
         "johnkary/phpunit-speedtrap": "^3.2",
         "phpunit/phpunit": "^9.1",
         "psy/psysh": "^0.10",
+        "symfony/var-dumper": "^5.0",
         "vimeo/psalm": "^3.6"
     },
     "autoload": {

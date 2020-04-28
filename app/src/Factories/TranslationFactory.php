@@ -13,7 +13,7 @@ class TranslationFactory
 {
     /** @const Available translation languages */
     protected const LANGUAGES = [
-        'de', 'en', 'es', 'fr', 'id', 'it', 'ro', 'ru', 'zh-CN', 'zh-TW'
+        'de', 'en', 'es', 'fr', 'id', 'it', 'pl', 'ro', 'ru', 'zh-CN', 'zh-TW'
     ];
 
     /** @var Container The applicaiton container */

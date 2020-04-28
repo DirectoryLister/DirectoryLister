@@ -1,0 +1,19 @@
+home: Home
+download: Pobierz folder
+search: Szukaj
+file:
+  name: Nazwa pliku
+  size: Rozmiar
+  date: Data
+  info: Szczegóły
+powered_by: Wspierane przez
+scroll_to_top: Przewiń na górę
+
+error:
+  directory_not_found: Nie znaleziono ścieżki
+  file_not_found: Nie znaleziono pliku
+  file_size_exceeded: Plik jest za duży
+  no_results_found: Brak wyników
+  unexpected: Wystąpił nieznany błąd
+
+enable_debugging: Włącz debugowanie dla dodatkowych informacji

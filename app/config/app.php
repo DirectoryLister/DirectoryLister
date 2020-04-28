@@ -39,6 +39,13 @@ return [
     'display_readmes' => Helpers::env('DISPLAY_READMES', true),
 
     /**
+     * Show READMEs before the file listing.
+     *
+     * Default value: false
+     */
+    'readmes_first' => Helpers::env('READMES_FIRST', false),
+
+    /**
      * Enable downloading of directories as a zip archive.
      *
      * Default value: true

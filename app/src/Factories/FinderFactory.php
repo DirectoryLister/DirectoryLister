@@ -42,7 +42,7 @@ class FinderFactory
     /**
      * Initialize and return the Finder component.
      *
-     * @return Finder
+     * @return \Symfony\Component\Finder\Finder
      */
     public function __invoke(): Finder
     {

@@ -51,9 +51,7 @@ class FinderFactory
 
         if ($this->hiddenFiles()->isNotEmpty()) {
             $finder->filter(function (SplFileInfo $file): bool {
-                return (bool) ! Glob::pattern(
-                    sprintf('%s/{%s}', $this->container->get('base_path'), $this->hiddenFiles()->implode(','))
-                )->matchStart($file->getRealPath());
+                return ! $this->isHidden($file);
             });
         }
 
@@ -91,5 +89,19 @@ class FinderFactory
         })->when($this->container->get('hide_app_files'), static function (Collection $collection) {
             return $collection->merge(self::APP_FILES);
         })->unique();
+    }
+
+    /**
+     * Determine if a file should be hidden.
+     *
+     * @param \Symfony\Component\Finder\SplFileInfo $file
+     *
+     * @return bool
+     */
+    protected function isHidden(SplFileInfo $file): bool
+    {
+        return Glob::pattern(
+            sprintf('%s/{%s}', $this->container->get('base_path'), $this->hiddenFiles()->implode(','))
+        )->matchStart($file->getRealPath());
     }
 }

@@ -84,7 +84,11 @@ class FinderFactory
     {
         return Collection::make(
             $this->container->get('hidden_files')
-        )->when($this->container->get('hide_app_files'), static function (Collection $collection) {
+        )->when(is_readable($this->container->get('hidden_files_list')), function (Collection $collection) {
+            return $collection->merge(
+                file($this->container->get('hidden_files_list'), FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES)
+            );
+        })->when($this->container->get('hide_app_files'), static function (Collection $collection) {
             return $collection->merge(self::APP_FILES);
         })->unique();
     }

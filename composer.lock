@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "97cdefd2e4480748bbb183e286dc6640",
+    "content-hash": "e2699e8d103e85fea1e80125c6e9aa12",
     "packages": [
         {
             "name": "erusev/parsedown",
@@ -522,6 +522,60 @@
                 "php"
             ],
             "time": "2020-04-10T16:34:50+00:00"
+        },
+        {
+            "name": "phlak/glob",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PHLAK/Glob.git",
+                "reference": "6a58c5157b518d44da235dee8dda0bc8a038cf0b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PHLAK/Glob/zipball/6a58c5157b518d44da235dee8dda0bc8a038cf0b",
+                "reference": "6a58c5157b518d44da235dee8dda0bc8a038cf0b",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.0"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^2.10",
+                "php": ">=7.2",
+                "phpunit/phpunit": "^8.0 || ^9.0",
+                "psy/psysh": "^0.10",
+                "symfony/var-dumper": "^5.0",
+                "vimeo/psalm": "^3.8"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "PHLAK\\Utilities\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Chris Kankiewicz",
+                    "email": "Chris@ChrisKankiewicz.com"
+                }
+            ],
+            "description": "Glob-like pattern matching and utilities",
+            "funding": [
+                {
+                    "url": "https://github.com/sponsors/PHLAK",
+                    "type": "github"
+                },
+                {
+                    "url": "https://paypal.me/ChrisKankiewicz",
+                    "type": "paypal"
+                }
+            ],
+            "time": "2020-05-01T05:12:53+00:00"
         },
         {
             "name": "php-di/invoker",

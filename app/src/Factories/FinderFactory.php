@@ -3,9 +3,9 @@
 namespace App\Factories;
 
 use App\SortMethods;
-use App\Support\Glob;
 use Closure;
 use DI\Container;
+use PHLAK\Utilities\Glob;
 use RuntimeException;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Finder\SplFileInfo;
@@ -51,9 +51,9 @@ class FinderFactory
 
         if ($this->hiddenFiles()->isNotEmpty()) {
             $finder->filter(function (SplFileInfo $file): bool {
-                return (bool) ! preg_match(Glob::toRegex(
+                return (bool) ! Glob::pattern(
                     sprintf('%s/{%s}', $this->container->get('base_path'), $this->hiddenFiles()->implode(','))
-                ), $file->getRealPath());
+                )->matchStart($file->getRealPath());
             });
         }
 

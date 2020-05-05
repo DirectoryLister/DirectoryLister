@@ -18,7 +18,7 @@
         "@fortawesome/fontawesome-free": "^5.13.0",
         "cross-env": "^7.0.2",
         "laravel-mix": "^5.0.4",
-        "laravel-mix-purgecss": "^4.2.0",
+        "laravel-mix-purgecss": "^5.0.0",
         "resolve-url-loader": "^3.1.1",
         "sass": "^1.26.5",
         "sass-loader": "^8.0.2",

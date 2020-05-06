@@ -1,0 +1,19 @@
+home: Home
+download: Download this Directory
+search: Zoeken
+file:
+  name: Bestandsnaam
+  size: Grootte
+  date: Datum
+  info: Bestandsinformatie
+powered_by: Mogelijk gemaakt door
+scroll_to_top: Ga naar boven
+
+error:
+  directory_not_found: Map bestaat niet
+  file_not_found: Bestand niet gevonden
+  file_size_exceeded: Bestand is te groot
+  no_results_found: Geen resultaten gevonden
+  unexpected: Een onverwachtse fout is opgetreden
+
+enable_debugging: Zet foutopsporing aan voor gedetailleerde informatie

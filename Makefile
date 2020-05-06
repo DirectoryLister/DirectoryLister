@@ -30,11 +30,11 @@ clear-cache: # Clear the application cache
 	@rm app/cache/* -rfv
 
 tar: # Generate tarball
-	@tar --verbose --exclude-vcs  --exclude app/cache/* --exclude app/resources \
+	@tar --exclude-vcs  --exclude app/cache/* --exclude app/resources \
 		--create --gzip --file artifacts/$(ARTIFACT_NAME).tar.gz $(ARTIFACT_FILES)
 
 zip: # Generate zip file
-	@zip --verbose --exclude "*.git*" "app/cache/**" "app/resources/*" \
+	@zip --quiet --exclude "*.git*" "app/cache/**" "app/resources/*" \
 		--recurse-paths artifacts/$(ARTIFACT_NAME).zip $(ARTIFACT_FILES)
 
 artifacts: clear-assets production tar zip # Generate release artifacts

@@ -101,7 +101,9 @@ class FinderFactory
     protected function isHidden(SplFileInfo $file): bool
     {
         return Glob::pattern(
-            sprintf('%s/{%s}', $this->container->get('base_path'), $this->hiddenFiles()->implode(','))
+            Glob::escape(
+                $this->container->get('base_path') . DIRECTORY_SEPARATOR
+            ) . sprintf('{%s}', $this->hiddenFiles()->implode(','))
         )->matchStart($file->getRealPath());
     }
 }

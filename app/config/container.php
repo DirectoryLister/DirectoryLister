@@ -4,6 +4,8 @@ use App\Factories;
 use App\Middlewares;
 use App\SortMethods;
 use App\ViewFunctions;
+use Middlewares as HttpMiddlewares;
+use Psr\Container\ContainerInterface;
 use Tightenco\Collect\Support\Collection;
 
 return [
@@ -20,10 +22,13 @@ return [
     /** Array of application files (to be hidden) */
     'app_files' => ['app', 'index.php', '.hidden'],
 
-    /** Array of application middlewares */
-    'middlewares' => [
-        Middlewares\WhoopsMiddleware::class
-    ],
+    /** Collection of application middlewares */
+    'middlewares' => function (ContainerInterface $container): Collection {
+        return Collection::make([
+            Middlewares\WhoopsMiddleware::class,
+            new HttpMiddlewares\Expires($container->get('http_expires')),
+        ]);
+    },
 
     /** Array of sort options mapped to their respective classes */
     'sort_methods' => [

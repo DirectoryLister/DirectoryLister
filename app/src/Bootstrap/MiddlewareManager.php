@@ -2,11 +2,8 @@
 
 namespace App\Bootstrap;
 
-use App\Middlewares;
 use DI\Container;
-use Middlewares as HttpMiddlewares;
 use Slim\App;
-use Tightenco\Collect\Support\Collection;
 
 class MiddlewareManager
 {
@@ -33,16 +30,12 @@ class MiddlewareManager
      *
      * @return void
      */
-    public function __invoke()
+    public function __invoke(): void
     {
-        Collection::make($this->container->get('middlewares'))->each(
-            function (string $middleware): void {
+        $this->container->get('middlewares')->each(
+            function ($middleware): void {
                 $this->app->add($middleware);
             }
         );
-
-        $this->app->add(new HttpMiddlewares\Expires(
-            $this->container->get('http_expires')
-        ));
     }
 }

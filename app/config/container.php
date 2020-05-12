@@ -30,15 +30,17 @@ return [
         ]);
     },
 
-    /** Array of sort options mapped to their respective classes */
-    'sort_methods' => [
-        'accessed' => SortMethods\Accessed::class,
-        'changed' => SortMethods\Changed::class,
-        'modified' => SortMethods\Modified::class,
-        'name' => SortMethods\Name::class,
-        'natural' => SortMethods\Natural::class,
-        'type' => SortMethods\Type::class,
-    ],
+    /** Collection of sort options mapped to their respective classes */
+    'sort_methods' => function (): Collection {
+        return Collection::make([
+            'accessed' => SortMethods\Accessed::class,
+            'changed' => SortMethods\Changed::class,
+            'modified' => SortMethods\Modified::class,
+            'name' => SortMethods\Name::class,
+            'natural' => SortMethods\Natural::class,
+            'type' => SortMethods\Type::class,
+        ]);
+    },
 
     /** Collection of available translation languages */
     'translations' => function (): Collection {

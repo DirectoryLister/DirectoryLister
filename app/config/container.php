@@ -1,6 +1,9 @@
 <?php
 
 use App\Factories;
+use App\Middlewares;
+use App\SortMethods;
+use App\ViewFunctions;
 
 return [
     /** Path definitions */
@@ -12,6 +15,45 @@ return [
     'translations_path' => DI\string('{app_path}/translations'),
     'views_path' => DI\string('{app_path}/views'),
     'icons_config' => DI\string('{config_path}/icons.php'),
+
+    /** Array of application files (to be hidden) */
+    'app_files' => ['app', 'index.php', '.hidden'],
+
+    /** Array of application middlewares */
+    'middlewares' => [
+        Middlewares\WhoopsMiddleware::class
+    ],
+
+    /** Array of sort options mapped to their respective classes */
+    'sort_methods' => [
+        'accessed' => SortMethods\Accessed::class,
+        'changed' => SortMethods\Changed::class,
+        'modified' => SortMethods\Modified::class,
+        'name' => SortMethods\Name::class,
+        'natural' => SortMethods\Natural::class,
+        'type' => SortMethods\Type::class,
+    ],
+
+    /** Array of available translation languages */
+    'translations' => [
+        'de', 'en', 'es', 'fr', 'id', 'it', 'kr', 'nl',
+        'pl', 'pt-BR', 'ro', 'ru', 'zh-CN', 'zh-TW'
+    ],
+
+    /** Array of view functions */
+    'view_functions' => [
+        ViewFunctions\Asset::class,
+        ViewFunctions\Breadcrumbs::class,
+        ViewFunctions\Config::class,
+        ViewFunctions\FileUrl::class,
+        ViewFunctions\Icon::class,
+        ViewFunctions\Markdown::class,
+        ViewFunctions\ParentUrl::class,
+        ViewFunctions\SizeForHumans::class,
+        ViewFunctions\Translate::class,
+        ViewFunctions\Url::class,
+        ViewFunctions\ZipUrl::class,
+    ],
 
     /** Container definitions */
     Symfony\Component\Finder\Finder::class => DI\factory(Factories\FinderFactory::class),

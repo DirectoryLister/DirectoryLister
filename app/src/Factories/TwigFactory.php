@@ -2,7 +2,6 @@
 
 namespace App\Factories;
 
-use App\ViewFunctions;
 use DI\Container;
 use Invoker\CallableResolver;
 use Slim\Views\Twig;
@@ -12,21 +11,6 @@ use Twig\TwigFunction;
 
 class TwigFactory
 {
-    /** @const Constant description */
-    protected const VIEW_FUNCTIONS = [
-        ViewFunctions\Asset::class,
-        ViewFunctions\Breadcrumbs::class,
-        ViewFunctions\Config::class,
-        ViewFunctions\FileUrl::class,
-        ViewFunctions\Icon::class,
-        ViewFunctions\Markdown::class,
-        ViewFunctions\ParentUrl::class,
-        ViewFunctions\SizeForHumans::class,
-        ViewFunctions\Translate::class,
-        ViewFunctions\Url::class,
-        ViewFunctions\ZipUrl::class,
-    ];
-
     /** @var Container The application container */
     protected $container;
 
@@ -70,7 +54,7 @@ class TwigFactory
             $this->container->get('timezone')
         );
 
-        foreach (self::VIEW_FUNCTIONS as $function) {
+        foreach ($this->container->get('view_functions') as $function) {
             $function = $this->callableResolver->resolve($function);
 
             $twig->getEnvironment()->addFunction(

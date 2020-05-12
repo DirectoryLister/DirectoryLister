@@ -10,11 +10,6 @@ use Tightenco\Collect\Support\Collection;
 
 class MiddlewareManager
 {
-    /** @const Array of application middlewares */
-    protected const MIDDLEWARES = [
-        Middlewares\WhoopsMiddleware::class
-    ];
-
     /** @var App The application */
     protected $app;
 
@@ -40,7 +35,7 @@ class MiddlewareManager
      */
     public function __invoke()
     {
-        Collection::make(self::MIDDLEWARES)->each(
+        Collection::make($this->container->get('middlewares'))->each(
             function (string $middleware): void {
                 $this->app->add($middleware);
             }

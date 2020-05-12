@@ -2,7 +2,6 @@
 
 namespace App\Factories;
 
-use App\SortMethods;
 use Closure;
 use DI\Container;
 use PHLAK\Utilities\Glob;
@@ -13,19 +12,6 @@ use Tightenco\Collect\Support\Collection;
 
 class FinderFactory
 {
-    /** @const Application paths to be hidden */
-    protected const APP_FILES = ['app', 'index.php', '.hidden'];
-
-    /** @const Array of sort options mapped to their respective methods  */
-    public const SORT_METHODS = [
-        'accessed' => SortMethods\Accessed::class,
-        'changed' => SortMethods\Changed::class,
-        'modified' => SortMethods\Modified::class,
-        'name' => SortMethods\Name::class,
-        'natural' => SortMethods\Natural::class,
-        'type' => SortMethods\Type::class,
-    ];
-
     /** @var Container The application container */
     protected $container;
 
@@ -59,11 +45,11 @@ class FinderFactory
         if ($sortOrder instanceof Closure) {
             $finder->sort($sortOrder);
         } else {
-            if (! array_key_exists($sortOrder, self::SORT_METHODS)) {
+            if (! array_key_exists($sortOrder, $this->container->get('sort_methods'))) {
                 throw new RuntimeException("Invalid sort option '{$sortOrder}'");
             }
 
-            $this->container->call(self::SORT_METHODS[$sortOrder], [$finder]);
+            $this->container->call($this->container->get('sort_methods')[$sortOrder], [$finder]);
         }
 
         if ($this->container->get('reverse_sort')) {
@@ -86,8 +72,8 @@ class FinderFactory
             return $collection->merge(
                 file($this->container->get('hidden_files_list'), FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES)
             );
-        })->when($this->container->get('hide_app_files'), static function (Collection $collection) {
-            return $collection->merge(self::APP_FILES);
+        })->when($this->container->get('hide_app_files'), function (Collection $collection) {
+            return $collection->merge($this->container->get('app_files'));
         })->unique();
     }
 

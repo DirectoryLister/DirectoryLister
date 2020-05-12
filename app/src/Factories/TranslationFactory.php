@@ -32,19 +32,18 @@ class TranslationFactory
     {
         $language = $this->container->get('language');
 
-        if (! $this->container->get('translations')->contains($language)) {
+        if (! in_array($language, $this->container->get('translations'))) {
             throw new RuntimeException("Invalid language option '{$language}'");
         }
 
         $translator = new Translator($language);
         $translator->addLoader('yaml', new YamlFileLoader());
 
-        $this->container->get('translations')->each(
-            function (string $language) use ($translator): void {
-                $resource = sprintf($this->container->get('translations_path') . '/%s.yaml', $language);
-                $translator->addResource('yaml', $resource, $language);
-            }
-        );
+        foreach ($this->container->get('translations') as $language) {
+            $translator->addResource('yaml', sprintf(
+                '%s/%s.yaml', $this->container->get('translations_path'), $language
+            ), $language);
+        }
 
         return $translator;
     }

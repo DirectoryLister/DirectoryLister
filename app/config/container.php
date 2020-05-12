@@ -6,7 +6,6 @@ use App\SortMethods;
 use App\ViewFunctions;
 use Middlewares as HttpMiddlewares;
 use Psr\Container\ContainerInterface;
-use Tightenco\Collect\Support\Collection;
 
 return [
     /** Path definitions */
@@ -22,33 +21,29 @@ return [
     /** Array of application files (to be hidden) */
     'app_files' => ['app', 'index.php', '.hidden'],
 
-    /** Collection of application middlewares */
-    'middlewares' => function (ContainerInterface $container): Collection {
-        return Collection::make([
+    /** Array of application middlewares */
+    'middlewares' => function (ContainerInterface $container): array {
+        return [
             Middlewares\WhoopsMiddleware::class,
             new HttpMiddlewares\Expires($container->get('http_expires')),
-        ]);
+        ];
     },
 
-    /** Collection of sort options mapped to their respective classes */
-    'sort_methods' => function (): Collection {
-        return Collection::make([
-            'accessed' => SortMethods\Accessed::class,
-            'changed' => SortMethods\Changed::class,
-            'modified' => SortMethods\Modified::class,
-            'name' => SortMethods\Name::class,
-            'natural' => SortMethods\Natural::class,
-            'type' => SortMethods\Type::class,
-        ]);
-    },
+    /** Array of sort options mapped to their respective classes */
+    'sort_methods' => [
+        'accessed' => SortMethods\Accessed::class,
+        'changed' => SortMethods\Changed::class,
+        'modified' => SortMethods\Modified::class,
+        'name' => SortMethods\Name::class,
+        'natural' => SortMethods\Natural::class,
+        'type' => SortMethods\Type::class,
+    ],
 
-    /** Collection of available translation languages */
-    'translations' => function (): Collection {
-        return Collection::make([
-            'de', 'en', 'es', 'fr', 'id', 'it', 'kr', 'nl',
-            'pl', 'pt-BR', 'ro', 'ru', 'zh-CN', 'zh-TW'
-        ]);
-    },
+    /** Array of available translation languages */
+    'translations' => [
+        'de', 'en', 'es', 'fr', 'id', 'it', 'kr', 'nl',
+        'pl', 'pt-BR', 'ro', 'ru', 'zh-CN', 'zh-TW'
+    ],
 
     /** Array of view functions */
     'view_functions' => [

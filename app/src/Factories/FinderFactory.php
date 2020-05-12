@@ -45,11 +45,11 @@ class FinderFactory
         if ($sortOrder instanceof Closure) {
             $finder->sort($sortOrder);
         } else {
-            if (! $this->container->get('sort_methods')->has($sortOrder)) {
+            if (! array_key_exists($sortOrder, $this->container->get('sort_methods'))) {
                 throw new RuntimeException("Invalid sort option '{$sortOrder}'");
             }
 
-            $this->container->call($this->container->get('sort_methods')->get($sortOrder), [$finder]);
+            $this->container->call($this->container->get('sort_methods')[$sortOrder], [$finder]);
         }
 
         if ($this->container->get('reverse_sort')) {

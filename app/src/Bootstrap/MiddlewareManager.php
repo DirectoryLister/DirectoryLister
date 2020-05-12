@@ -32,10 +32,8 @@ class MiddlewareManager
      */
     public function __invoke(): void
     {
-        $this->container->get('middlewares')->each(
-            function ($middleware): void {
-                $this->app->add($middleware);
-            }
-        );
+        foreach ($this->container->get('middlewares') as $middleware) {
+            $this->app->add($middleware);
+        }
     }
 }

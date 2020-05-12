@@ -4,6 +4,7 @@ use App\Factories;
 use App\Middlewares;
 use App\SortMethods;
 use App\ViewFunctions;
+use Tightenco\Collect\Support\Collection;
 
 return [
     /** Path definitions */
@@ -34,11 +35,13 @@ return [
         'type' => SortMethods\Type::class,
     ],
 
-    /** Array of available translation languages */
-    'translations' => [
-        'de', 'en', 'es', 'fr', 'id', 'it', 'kr', 'nl',
-        'pl', 'pt-BR', 'ro', 'ru', 'zh-CN', 'zh-TW'
-    ],
+    /** Collection of available translation languages */
+    'translations' => function (): Collection {
+        return Collection::make([
+            'de', 'en', 'es', 'fr', 'id', 'it', 'kr', 'nl',
+            'pl', 'pt-BR', 'ro', 'ru', 'zh-CN', 'zh-TW'
+        ]);
+    },
 
     /** Array of view functions */
     'view_functions' => [

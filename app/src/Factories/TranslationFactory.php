@@ -7,7 +7,6 @@ use RuntimeException;
 use Symfony\Component\Translation\Loader\YamlFileLoader;
 use Symfony\Component\Translation\Translator;
 use Symfony\Contracts\Translation\TranslatorInterface;
-use Tightenco\Collect\Support\Collection;
 
 class TranslationFactory
 {
@@ -33,14 +32,14 @@ class TranslationFactory
     {
         $language = $this->container->get('language');
 
-        if (! in_array($language, $this->container->get('translations'))) {
+        if (! $this->container->get('translations')->contains($language)) {
             throw new RuntimeException("Invalid language option '{$language}'");
         }
 
         $translator = new Translator($language);
         $translator->addLoader('yaml', new YamlFileLoader());
 
-        Collection::make($this->container->get('translations'))->each(
+        $this->container->get('translations')->each(
             function (string $language) use ($translator): void {
                 $resource = sprintf($this->container->get('translations_path') . '/%s.yaml', $language);
                 $translator->addResource('yaml', $resource, $language);

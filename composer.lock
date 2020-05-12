@@ -525,16 +525,16 @@
         },
         {
             "name": "phlak/glob",
-            "version": "2.0.0",
+            "version": "2.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/PHLAK/Glob.git",
-                "reference": "95c93ae915771fde0001e2beb1682006f9aaf43c"
+                "reference": "9d0d08428c1e9e767652f40f51e0601805826309"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PHLAK/Glob/zipball/95c93ae915771fde0001e2beb1682006f9aaf43c",
-                "reference": "95c93ae915771fde0001e2beb1682006f9aaf43c",
+                "url": "https://api.github.com/repos/PHLAK/Glob/zipball/9d0d08428c1e9e767652f40f51e0601805826309",
+                "reference": "9d0d08428c1e9e767652f40f51e0601805826309",
                 "shasum": ""
             },
             "require": {
@@ -566,7 +566,7 @@
                 }
             ],
             "description": "Glob-like pattern matching and utilities",
-            "time": "2020-05-07T22:15:41+00:00"
+            "time": "2020-05-11T20:39:47+00:00"
         },
         {
             "name": "php-di/invoker",

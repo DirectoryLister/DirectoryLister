@@ -4,7 +4,7 @@ namespace App\Factories;
 
 use Closure;
 use DI\Container;
-use PHLAK\Utilities\Glob;
+use PHLAK\Splat\Glob;
 use RuntimeException;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Finder\SplFileInfo;

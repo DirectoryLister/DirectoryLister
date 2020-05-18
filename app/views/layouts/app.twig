@@ -7,7 +7,11 @@
 <link rel="stylesheet" href="{{ asset('app.css') }}">
 
 {% if config('google_analytics_id', false) %}
-    {% include 'components/google-analytics.twig' %}
+    {% include 'components/analytics/google.twig' %}
+{% endif %}
+
+{% if config('matomo_analytics_url', false) and config('matomo_analytics_site_id', false) %}
+    {% include 'components/analytics/matomo.twig' %}
 {% endif %}
 
 <title>{{ title }} &bull; Directory Lister</title>

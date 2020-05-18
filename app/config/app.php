@@ -61,6 +61,20 @@ return [
     'google_analytics_id' => Helpers::env('GOOGLE_ANALYTICS_ID', false),
 
     /**
+     * Your Matomo analytics URL.
+     *
+     *  Default value: false
+     */
+    'matomo_analytics_url' => Helpers::env('MATOMO_ANALYTICS_URL', false),
+
+    /**
+     * Your Matomo analytics site ID.
+     *
+     * Default value: false
+     */
+    'matomo_analytics_site_id' => Helpers::env('MATOMO_ANALYTICS_SITE_ID', false),
+
+    /**
      * Sorting order of files and folders.
      *
      * Possible values: type, natural, name, accessed, changed, modified

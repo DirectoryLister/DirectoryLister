@@ -6,11 +6,16 @@ use DI\Container;
 use DI\ContainerBuilder;
 use Dotenv\Dotenv;
 use PHPUnit\Framework\TestCase as PHPUnitTestCase;
+use Symfony\Component\Cache\Adapter\ArrayAdapter;
+use Symfony\Contracts\Cache\CacheInterface;
 
 class TestCase extends PHPUnitTestCase
 {
     /** @var Container The test container */
     protected $container;
+
+    /** @var CacheInterface The test cache */
+    protected $cache;
 
     /** @var string Path to test files directory */
     protected $testFilesPath = __DIR__ . '/_files';
@@ -25,9 +30,12 @@ class TestCase extends PHPUnitTestCase
         Dotenv::createImmutable(__DIR__)->safeLoad();
 
         $this->container = (new ContainerBuilder)->addDefinitions(
+            dirname(__DIR__) . '/app/config/cache.php',
             dirname(__DIR__) . '/app/config/app.php',
             dirname(__DIR__) . '/app/config/container.php'
         )->build();
+
+        $this->cache = new ArrayAdapter($this->container->get('cache_lifetime'));
 
         $this->container->set('base_path', $this->testFilesPath);
         $this->container->set('asset_path', $this->filePath('app/assets'));

@@ -11,7 +11,7 @@ class TranslationFactoryTest extends TestCase
 {
     public function test_it_registers_the_translation_component(): void
     {
-        $translator = (new TranslationFactory($this->container))();
+        $translator = (new TranslationFactory($this->container, $this->cache))();
 
         $this->assertEquals('en', $translator->getLocale());
         $this->assertInstanceOf(MessageCatalogue::class, $translator->getCatalogue('de'));
@@ -32,6 +32,6 @@ class TranslationFactoryTest extends TestCase
         $this->expectException(RuntimeException::class);
 
         $this->container->set('language', 'xx');
-        (new TranslationFactory($this->container))();
+        (new TranslationFactory($this->container, $this->cache))();
     }
 }

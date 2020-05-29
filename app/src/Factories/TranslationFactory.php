@@ -4,8 +4,11 @@ namespace App\Factories;
 
 use DI\Container;
 use RuntimeException;
+use Symfony\Component\Finder\Finder;
+use Symfony\Component\Finder\SplFileInfo;
 use Symfony\Component\Translation\Loader\YamlFileLoader;
 use Symfony\Component\Translation\Translator;
+use Symfony\Contracts\Cache\CacheInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 class TranslationFactory
@@ -13,14 +16,18 @@ class TranslationFactory
     /** @var Container The applicaiton container */
     protected $container;
 
+    /** @var CacheInterface The application cache */
+    protected $cache;
+
     /**
      * Create a new TranslationFactory object.
      *
      * @param \DI\Container $container
      */
-    public function __construct(Container $container)
+    public function __construct(Container $container, CacheInterface $cache)
     {
         $this->container = $container;
+        $this->cache = $cache;
     }
 
     /**
@@ -46,5 +53,21 @@ class TranslationFactory
         }
 
         return $translator;
+    }
+
+    /**
+     * Get an array of available translation languages.
+     *
+     * @return array
+     */
+    protected function translations(): array
+    {
+        return $this->cache->get('translations', function (): array {
+            return array_values(array_map(function (SplFileInfo $file): string {
+                return $file->getBasename('.yaml');
+            }, iterator_to_array(
+                Finder::create()->in($this->container->get('translations_path'))->name('*.yaml')
+            )));
+        });
     }
 }

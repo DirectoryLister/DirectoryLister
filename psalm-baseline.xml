@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<files psalm-version="3.11.2@d470903722cfcbc1cd04744c5491d3e6d13ec3d9">
+<files psalm-version="3.11.5@3c60609c218d4d4b3b257728b8089094e5c6c6c2">
   <file src="app/src/Controllers/DirectoryController.php">
     <PossiblyInvalidMethodCall occurrences="1">
       <code>current</code>
     </PossiblyInvalidMethodCall>
+  </file>
+  <file src="app/src/Factories/CacheFactory.php">
+    <UndefinedFunction occurrences="2">
+      <code>'memcached_config'</code>
+      <code>'redis_config'</code>
+    </UndefinedFunction>
   </file>
   <file src="app/src/Factories/TwigFactory.php">
     <InvalidMethodCall occurrences="1">

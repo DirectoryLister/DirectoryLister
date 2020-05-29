@@ -7,12 +7,16 @@ use Psr\Http\Message\ResponseInterface;
 use Slim\Psr7\Request;
 use Slim\Psr7\Response;
 use SplFileInfo;
+use Symfony\Contracts\Cache\CacheInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 class FileInfoController
 {
     /** @var Container The application container */
     protected $container;
+
+    /** @var CacheInterface The application cache */
+    protected $cache;
 
     /** @var TranslatorInterface Translator component */
     protected $translator;
@@ -21,13 +25,16 @@ class FileInfoController
      * Create a new FileInfoHandler object.
      *
      * @param \DI\Container                                      $container
+     * @param \Symfony\Contracts\Cache\CacheInterface            $cache
      * @param \Symfony\Contracts\Translation\TranslatorInterface $translator
      */
     public function __construct(
         Container $container,
+        CacheInterface $cache,
         TranslatorInterface $translator
     ) {
         $this->container = $container;
+        $this->cache = $cache;
         $this->translator = $translator;
     }
 
@@ -55,13 +62,18 @@ class FileInfoController
             return $response->withStatus(500, $this->translator->trans('error.file_size_exceeded'));
         }
 
-        $response->getBody()->write(json_encode([
-            'hashes' => [
-                'md5' => hash('md5', file_get_contents($file->getPathname())),
-                'sha1' => hash('sha1', file_get_contents($file->getPathname())),
-                'sha256' => hash('sha256', file_get_contents($file->getPathname())),
-            ]
-        ]));
+        $response->getBody()->write($this->cache->get(
+            sprintf('file-info-%s', sha1($file->getRealPath())),
+            function () use ($file): string {
+                return json_encode([
+                    'hashes' => [
+                        'md5' => hash_file('md5', $file->getPathname()),
+                        'sha1' => hash_file('sha1', $file->getPathname()),
+                        'sha256' => hash_file('sha256', $file->getPathname()),
+                    ]
+                ]);
+            }
+        ));
 
         return $response->withHeader('Content-Type', 'application/json');
     }

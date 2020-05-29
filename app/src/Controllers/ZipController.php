@@ -10,6 +10,7 @@ use Slim\Psr7\Request;
 use Slim\Psr7\Response;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Finder\SplFileInfo;
+use Symfony\Contracts\Cache\CacheInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use ZipArchive;
 
@@ -17,6 +18,9 @@ class ZipController
 {
     /** @var Container The application container */
     protected $container;
+
+    /** @var CacheInterface The application cache */
+    protected $cache;
 
     /** @var Finder The Finder Component */
     protected $finder;
@@ -28,15 +32,18 @@ class ZipController
      * Create a new ZipHandler object.
      *
      * @param \DI\Container                                      $container
+     * @param \Symfony\Contracts\Cache\CacheInterface            $cache
      * @param \PhpCsFixer\Finder                                 $finder
      * @param \Symfony\Contracts\Translation\TranslatorInterface $translator
      */
     public function __construct(
         Container $container,
+        CacheInterface $cache,
         Finder $finder,
         TranslatorInterface $translator
     ) {
         $this->container = $container;
+        $this->cache = $cache;
         $this->finder = $finder;
         $this->translator = $translator;
     }
@@ -57,7 +64,11 @@ class ZipController
             return $response->withStatus(404, $this->translator->trans('error.file_not_found'));
         }
 
-        $response->getBody()->write($this->createZip($path)->getContents());
+        $response->getBody()->write(
+            $this->cache->get(sprintf('zip-%s', sha1($path)), function () use ($path): string {
+                return $this->createZip($path)->getContents();
+            })
+        );
 
         return $response->withHeader('Content-Type', 'application/zip')
             ->withHeader('Content-Disposition', sprintf(

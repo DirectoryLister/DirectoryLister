@@ -12,6 +12,18 @@ services:
     extra_hosts:
       - host.docker.internal:${DOCKER_HOST_IP}
 
+  memcached:
+    container_name: directory-lister-memcached
+    ports:
+      - ${MEMCACHED_PORT:-11211}:11211
+    image: memcached:1.6
+
+  redis:
+    container_name: directory-lister-redis
+    ports:
+      - ${REDIS_PORT:-6379}:6379
+    image: redis:6.0
+
 networks:
   default:
     external:

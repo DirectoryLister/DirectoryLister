@@ -18,7 +18,7 @@ class CacheFactory
     protected const NAMESPACE_EXTERNAL = 'directory_lister';
 
     /** @const Namespace for internal cache drivers */
-    protected const NAMESAPCE_INTERNAL = 'app';
+    protected const NAMESPACE_INTERNAL = 'app';
 
     /** @var Container The application container */
     protected $container;
@@ -52,7 +52,7 @@ class CacheFactory
 
             case 'file':
                 return new FilesystemAdapter(
-                    self::NAMESAPCE_INTERNAL,
+                    self::NAMESPACE_INTERNAL,
                     $this->container->get('cache_lifetime'),
                     $this->container->get('cache_path')
                 );
@@ -68,7 +68,7 @@ class CacheFactory
 
             case 'php-file':
                 return new PhpFilesAdapter(
-                    self::NAMESAPCE_INTERNAL,
+                    self::NAMESPACE_INTERNAL,
                     $this->container->get('cache_lifetime'),
                     $this->container->get('cache_path')
                 );

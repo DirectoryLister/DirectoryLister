@@ -9,58 +9,14 @@ use Tests\TestCase;
 
 class CacheFactoryTest extends TestCase
 {
-    public function test_it_can_compose_an_apcu_adapter(): void
+    /** @dataProvider cacheAdapters */
+    public function test_it_can_compose_an_adapter(string $config, string $adapter): void
     {
-        $this->container->set('cache_driver', 'apcu');
+        $this->container->set('cache_driver', $config);
 
         $cache = (new CacheFactory($this->container))();
 
-        $this->assertInstanceOf(Adapter\ApcuAdapter::class, $cache);
-    }
-
-    public function test_it_can_compose_an_array_adapter(): void
-    {
-        $this->container->set('cache_driver', 'array');
-
-        $cache = (new CacheFactory($this->container))();
-
-        $this->assertInstanceOf(Adapter\ArrayAdapter::class, $cache);
-    }
-
-    public function test_it_can_compose_a_filesystem_adapter(): void
-    {
-        $this->container->set('cache_driver', 'file');
-
-        $cache = (new CacheFactory($this->container))();
-
-        $this->assertInstanceOf(Adapter\FilesystemAdapter::class, $cache);
-    }
-
-    public function test_it_can_compose_a_memcached_adapter(): void
-    {
-        $this->container->set('cache_driver', 'memcached');
-
-        $cache = (new CacheFactory($this->container))();
-
-        $this->assertInstanceOf(Adapter\MemcachedAdapter::class, $cache);
-    }
-
-    public function test_it_can_compose_a_php_files_adapter(): void
-    {
-        $this->container->set('cache_driver', 'php-file');
-
-        $cache = (new CacheFactory($this->container))();
-
-        $this->assertInstanceOf(Adapter\PhpFilesAdapter::class, $cache);
-    }
-
-    public function test_it_can_compose_a_redis_adapter(): void
-    {
-        $this->container->set('cache_driver', 'redis');
-
-        $cache = (new CacheFactory($this->container))();
-
-        $this->assertInstanceOf(Adapter\RedisAdapter::class, $cache);
+        $this->assertInstanceOf($adapter, $cache);
     }
 
     public function test_it_throws_a_runtime_exception_with_an_invalid_sort_order(): void
@@ -70,5 +26,17 @@ class CacheFactoryTest extends TestCase
         $this->expectException(InvalidConfiguration::class);
 
         (new CacheFactory($this->container))();
+    }
+
+    public function cacheAdapters(): array
+    {
+        return [
+            'APCu adapter' => ['apcu', Adapter\ApcuAdapter::class],
+            'Array adapter' => ['array', Adapter\ArrayAdapter::class],
+            'File adapter' => ['file', Adapter\FilesystemAdapter::class],
+            'Memcached adapter' => ['memcached', Adapter\MemcachedAdapter::class],
+            'PHP files adapter' => ['php-file', Adapter\PhpFilesAdapter::class],
+            'Redis adapter' => ['redis', Adapter\RedisAdapter::class],
+        ];
     }
 }

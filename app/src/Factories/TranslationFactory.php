@@ -2,8 +2,8 @@
 
 namespace App\Factories;
 
+use App\Exceptions\InvalidConfiguration;
 use DI\Container;
-use RuntimeException;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Finder\SplFileInfo;
 use Symfony\Component\Translation\Loader\YamlFileLoader;
@@ -37,16 +37,17 @@ class TranslationFactory
      */
     public function __invoke(): TranslatorInterface
     {
-        $language = $this->container->get('language');
-
-        if (! in_array($language, $this->container->get('translations'))) {
-            throw new RuntimeException("Invalid language option '{$language}'");
+        if (! in_array(
+            $language = $this->container->get('language'),
+            $translations = $this->translations())
+        ) {
+            throw InvalidConfiguration::fromConfig('language', $language);
         }
 
         $translator = new Translator($language);
         $translator->addLoader('yaml', new YamlFileLoader());
 
-        foreach ($this->container->get('translations') as $language) {
+        foreach ($translations as $language) {
             $translator->addResource('yaml', sprintf(
                 '%s/%s.yaml', $this->container->get('translations_path'), $language
             ), $language);

@@ -2,8 +2,8 @@
 
 namespace Tests\Factories;
 
+use App\Exceptions\InvalidConfiguration;
 use App\Factories\TranslationFactory;
-use RuntimeException;
 use Symfony\Component\Translation\MessageCatalogue;
 use Tests\TestCase;
 
@@ -29,7 +29,7 @@ class TranslationFactoryTest extends TestCase
 
     public function test_it_throws_an_exception_for_an_invalid_language(): void
     {
-        $this->expectException(RuntimeException::class);
+        $this->expectException(InvalidConfiguration::class);
 
         $this->container->set('language', 'xx');
         (new TranslationFactory($this->container, $this->cache))();

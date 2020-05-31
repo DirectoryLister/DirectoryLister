@@ -20,7 +20,7 @@ return [
      *
      * Possible values: See 'app/translations' folder for available translations.
      *
-     * Defualt value: en
+     * Defualt value: 'en'
      */
     'language' => Helpers::env('APP_LANGUAGE', 'en'),
 
@@ -78,7 +78,7 @@ return [
      * Sorting order of files and folders.
      *
      * Possible values: type, natural, name, accessed, changed, modified
-     * Default value: type
+     * Default value: 'type'
      */
     'sort_order' => Helpers::env('SORT_ORDER', 'type'),
 

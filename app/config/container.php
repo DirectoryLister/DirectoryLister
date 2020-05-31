@@ -14,6 +14,7 @@ return [
     'asset_path' => DI\string('{app_path}/assets'),
     'cache_path' => DI\string('{app_path}/cache'),
     'config_path' => DI\string('{app_path}/config'),
+    'source_path' => DI\string('{app_path}/src'),
     'translations_path' => DI\string('{app_path}/translations'),
     'views_path' => DI\string('{app_path}/views'),
     'icons_config' => DI\string('{config_path}/icons.php'),
@@ -39,12 +40,6 @@ return [
         'type' => SortMethods\Type::class,
     ],
 
-    /** Array of available translation languages */
-    'translations' => [
-        'de', 'en', 'es', 'fr', 'id', 'it', 'kr', 'nl',
-        'pl', 'pt-BR', 'ro', 'ru', 'zh-CN', 'zh-TW'
-    ],
-
     /** Array of view functions */
     'view_functions' => [
         ViewFunctions\Asset::class,
@@ -62,6 +57,7 @@ return [
 
     /** Container definitions */
     Symfony\Component\Finder\Finder::class => DI\factory(Factories\FinderFactory::class),
+    Symfony\Contracts\Cache\CacheInterface::class => DI\Factory(Factories\CacheFactory::class),
     Symfony\Contracts\Translation\TranslatorInterface::class => DI\factory(Factories\TranslationFactory::class),
     Slim\Views\Twig::class => DI\factory(Factories\TwigFactory::class),
     Whoops\RunInterface::class => DI\create(Whoops\Run::class),

@@ -24,6 +24,7 @@
         "slim/psr7": "^1.0",
         "slim/slim": "^4.3",
         "slim/twig-view": "^3.0",
+        "symfony/cache": "^5.0",
         "symfony/finder": "^5.0",
         "symfony/translation": "^5.0",
         "symfony/yaml": "^5.0",
@@ -38,6 +39,11 @@
         "psy/psysh": "^0.10",
         "symfony/var-dumper": "^5.0",
         "vimeo/psalm": "^3.6"
+    },
+    "suggest": {
+        "ext-apcu": "Required to use the APCu cache driver",
+        "ext-memcached": "Required to use the Memcached driver",
+        "ext-redis": "Required to use the Redis cache driver"
     },
     "autoload": {
         "psr-4": {

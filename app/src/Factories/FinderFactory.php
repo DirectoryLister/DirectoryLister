@@ -2,10 +2,10 @@
 
 namespace App\Factories;
 
+use App\Exceptions\InvalidConfiguration;
 use Closure;
 use DI\Container;
 use PHLAK\Splat\Glob;
-use RuntimeException;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Finder\SplFileInfo;
 use Tightenco\Collect\Support\Collection;
@@ -46,7 +46,7 @@ class FinderFactory
             $finder->sort($sortOrder);
         } else {
             if (! array_key_exists($sortOrder, $this->container->get('sort_methods'))) {
-                throw new RuntimeException("Invalid sort option '{$sortOrder}'");
+                throw InvalidConfiguration::fromConfig('sort_order', $sortOrder);
             }
 
             $this->container->call($this->container->get('sort_methods')[$sortOrder], [$finder]);

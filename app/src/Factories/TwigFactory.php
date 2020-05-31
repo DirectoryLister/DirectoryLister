@@ -40,24 +40,18 @@ class TwigFactory
     {
         $twig = new Twig(new FilesystemLoader(
             $this->container->get('views_path')
-        ));
+        ), ['cache' => $this->container->get('view_cache')]);
 
-        $twig->getEnvironment()->setCache(
-            $this->container->get('view_cache')
-        );
+        $environment = $twig->getEnvironment();
+        $core = $environment->getExtension(CoreExtension::class);
 
-        $twig->getEnvironment()->getExtension(CoreExtension::class)->setDateFormat(
-            $this->container->get('date_format'), '%d days'
-        );
-
-        $twig->getEnvironment()->getExtension(CoreExtension::class)->setTimezone(
-            $this->container->get('timezone')
-        );
+        $core->setDateFormat($this->container->get('date_format'), '%d days');
+        $core->setTimezone($this->container->get('timezone'));
 
         foreach ($this->container->get('view_functions') as $function) {
             $function = $this->callableResolver->resolve($function);
 
-            $twig->getEnvironment()->addFunction(
+            $environment->addFunction(
                 new TwigFunction($function->name(), $function)
             );
         }

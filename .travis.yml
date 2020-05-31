@@ -10,11 +10,19 @@ jobs:
   allow_failures:
     - php: nightly
 
+services:
+  - memcached
+  - redis
+
 cache:
   directories:
     - $HOME/.composer/cache
     - $HOME/.npm
     - app/vendor
+
+before_install:
+  - printf "\n" | pecl install -f apcu-5.1.18 memcached
+  - echo "extension = redis.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
 
 install:
   - composer install --no-suggest

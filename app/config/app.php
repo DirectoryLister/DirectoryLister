@@ -148,14 +148,6 @@ return [
     'max_hash_size' => Helpers::env('MAX_HASH_SIZE', 1000000000),
 
     /**
-     * Path to the view cache directory.
-     * Set to 'false' to disable view caching entirely.
-     *
-     * Default value: 'app/cache/views'
-     */
-    'view_cache' => Helpers::env('VIEW_CACHE', 'app/cache/views'),
-
-    /**
      * HTTP expires values.
      *
      * Possible values: An array of mime types mapped to their cache duration

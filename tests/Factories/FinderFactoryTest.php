@@ -2,8 +2,8 @@
 
 namespace Tests\Factories;
 
+use App\Exceptions\InvalidConfiguration;
 use App\Factories\FinderFactory;
-use RuntimeException;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Finder\SplFileInfo;
 use Tests\TestCase;
@@ -12,7 +12,7 @@ class FinderFactoryTest extends TestCase
 {
     public function test_it_can_compose_the_finder_component(): void
     {
-        $finder = (new FinderFactory($this->container))();
+        $finder = (new FinderFactory($this->container, $this->cache))();
 
         $this->assertInstanceOf(Finder::class, $finder);
 
@@ -35,7 +35,7 @@ class FinderFactoryTest extends TestCase
             }
         ));
 
-        $finder = (new FinderFactory($this->container))();
+        $finder = (new FinderFactory($this->container, $this->cache))();
         $finder->in($this->filePath('subdir'))->depth(0);
 
         $this->assertEquals([
@@ -51,7 +51,7 @@ class FinderFactoryTest extends TestCase
     {
         $this->container->set('reverse_sort', true);
 
-        $finder = (new FinderFactory($this->container))();
+        $finder = (new FinderFactory($this->container, $this->cache))();
         $finder->in($this->filePath('subdir'))->depth(0);
 
         $this->assertEquals([
@@ -69,7 +69,7 @@ class FinderFactoryTest extends TestCase
             'subdir/alpha.scss', 'subdir/charlie.bash', '**/*.yaml'
         ]);
 
-        (new FinderFactory($this->container))();
+        (new FinderFactory($this->container, $this->cache))();
 
         $finder = $this->container->get(Finder::class);
         $finder->in($this->filePath('subdir'))->depth(0);
@@ -85,9 +85,9 @@ class FinderFactoryTest extends TestCase
     {
         $this->container->set('sort_order', 'invalid');
 
-        $this->expectException(RuntimeException::class);
+        $this->expectException(InvalidConfiguration::class);
 
-        (new FinderFactory($this->container))();
+        (new FinderFactory($this->container, $this->cache))();
     }
 
     protected function getFilesArray(Finder $finder): array

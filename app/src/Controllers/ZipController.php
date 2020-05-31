@@ -60,7 +60,7 @@ class ZipController
     {
         $path = $request->getQueryParams()['zip'];
 
-        if (! $this->container->get('zip_downloads') || ! realpath($path)) {
+        if (! $this->container->get('zip_downloads') || ! is_dir($path)) {
             return $response->withStatus(404, $this->translator->trans('error.file_not_found'));
         }
 

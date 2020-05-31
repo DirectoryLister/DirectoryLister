@@ -3,10 +3,11 @@
 </p>
 
 <p align="center">
+  <a href="https://spectrum.chat/directory-lister"><img src="https://img.shields.io/badge/Join_the-Community-7b16ff.svg?style=for-the-badge" alt="Join our Community"></a>
+  <a href="https://github.com/users/PHLAK/sponsorship"><img src="https://img.shields.io/badge/Become_a-Sponsor-cc4195.svg?style=for-the-badge" alt="Become a Sponsor"></a>
+  <a href="https://paypal.me/ChrisKankiewicz"><img src="https://img.shields.io/badge/Make_a-Donation-006bb6.svg?style=for-the-badge" alt="One-time Donation"></a>
+  <br>
   <a href="https://github.com/DirectoryLister/DirectoryLister/blob/master/LICENSE"><img src="https://img.shields.io/github/license/DirectoryLister/DirectoryLister?style=flat-square" alt="License"></a>
-  <a href="https://spectrum.chat/directory-lister"><img src="https://img.shields.io/badge/Join_the-Community-7b16ff.svg?style=flat-square" alt="Join our Community"></a>
-  <a href="https://github.com/users/PHLAK/sponsorship"><img src="https://img.shields.io/badge/Become_a-Sponsor-cc4195.svg?style=flat-square" alt="Become a Sponsor"></a>
-  <a href="https://paypal.me/ChrisKankiewicz"><img src="https://img.shields.io/badge/Make_a-Donation-006bb6.svg?style=flat-square" alt="One-time Donation"></a>
   <a href="https://travis-ci.com/DirectoryLister/DirectoryLister"><img src="https://img.shields.io/travis/com/DirectoryLister/DirectoryLister/master?style=flat-square" alt="Build Status"></a>
   <a href="https://styleci.io/repos/1375774"><img src="https://styleci.io/repos/1375774/shield?branch=master" alt="StyleCI"></a>
 </p>
@@ -15,7 +16,12 @@
 
 Directory Lister is the easiest way to expose the contents of any web-accessible
 folder for browsing and sharing. With a zero configuration, drag-and-drop
-installation you'll be up and running in less than a minute. 
+installation you'll be up and running in less than a minute.
+
+Directory Lister is created and maintained by
+[Chris Kankiewicz](https://www.chriskankiewicz.com)
+([@PHLAK](https://twitter.com/PHLAK)) with help from
+[community contributions](https://github.com/DirectoryLister/DirectoryLister/graphs/contributors).
 
 Features
 --------

@@ -3,6 +3,7 @@
 namespace App\Factories;
 
 use App\Exceptions\InvalidConfiguration;
+use App\HiddenFiles;
 use Closure;
 use DI\Container;
 use PHLAK\Splat\Glob;
@@ -15,14 +16,21 @@ class FinderFactory
     /** @var Container The application container */
     protected $container;
 
+    /** @var Collection Collection of hidden files */
+    protected $hiddenFiles;
+
+    /** @var Glob Hidden files pattern cache */
+    protected $pattern;
+
     /**
      * Create a new FinderFactory object.
      *
      * @param \DI\Container $container
      */
-    public function __construct(Container $container)
+    public function __construct(Container $container, HiddenFiles $hiddenFiles)
     {
         $this->container = $container;
+        $this->hiddenFiles = $hiddenFiles;
     }
 
     /**
@@ -35,7 +43,7 @@ class FinderFactory
         $finder = Finder::create()->followLinks();
         $finder->ignoreVCS($this->container->get('hide_vcs_files'));
 
-        if ($this->hiddenFiles()->isNotEmpty()) {
+        if ($this->hiddenFiles->isNotEmpty()) {
             $finder->filter(function (SplFileInfo $file): bool {
                 return ! $this->isHidden($file);
             });
@@ -60,24 +68,6 @@ class FinderFactory
     }
 
     /**
-     * Get a collection of hidden file paths.
-     *
-     * @return \Tightenco\Collect\Support\Collection
-     */
-    protected function hiddenFiles(): Collection
-    {
-        return Collection::make(
-            $this->container->get('hidden_files')
-        )->when(is_readable($this->container->get('hidden_files_list')), function (Collection $collection) {
-            return $collection->merge(
-                file($this->container->get('hidden_files_list'), FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES)
-            );
-        })->when($this->container->get('hide_app_files'), function (Collection $collection) {
-            return $collection->merge($this->container->get('app_files'));
-        })->unique();
-    }
-
-    /**
      * Determine if a file should be hidden.
      *
      * @param \Symfony\Component\Finder\SplFileInfo $file
@@ -86,10 +76,12 @@ class FinderFactory
      */
     protected function isHidden(SplFileInfo $file): bool
     {
-        return Glob::pattern(
-            Glob::escape(
+        if (! isset($this->pattern)) {
+            $this->pattern = Glob::pattern(sprintf('%s{%s}', Glob::escape(
                 $this->container->get('base_path') . DIRECTORY_SEPARATOR
-            ) . sprintf('{%s}', $this->hiddenFiles()->implode(','))
-        )->matchStart($file->getRealPath());
+            ), $this->hiddenFiles->implode(',')));
+        }
+
+        return $this->pattern->matchStart($file->getRealPath());
     }
 }

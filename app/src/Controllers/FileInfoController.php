@@ -63,18 +63,28 @@ class FileInfoController
         }
 
         $response->getBody()->write($this->cache->get(
-            sprintf('file-info-%s', sha1($file->getRealPath())),
+            sprintf('file-info-%s', md5($file->getRealPath())),
             function () use ($file): string {
-                return json_encode([
-                    'hashes' => [
-                        'md5' => hash_file('md5', $file->getPathname()),
-                        'sha1' => hash_file('sha1', $file->getPathname()),
-                        'sha256' => hash_file('sha256', $file->getPathname()),
-                    ]
-                ]);
+                return json_encode(['hashes' => $this->calculateHashes($file)]);
             }
         ));
 
         return $response->withHeader('Content-Type', 'application/json');
+    }
+
+    /**
+     * Get an array of hashes for a file.
+     *
+     * @param \SplFileInfo $file
+     *
+     * @return array
+     */
+    protected function calculateHashes(SplFileInfo $file): array
+    {
+        return [
+            'md5' => hash_file('md5', $file->getRealPath()),
+            'sha1' => hash_file('sha1', $file->getRealPath()),
+            'sha256' => hash_file('sha256', $file->getRealPath()),
+        ];
     }
 }

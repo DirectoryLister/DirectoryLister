@@ -30,7 +30,7 @@ clear-cache: # Clear the application cache
 	@rm app/cache/* -rfv
 
 tar: # Generate tarball
-	@tar --exclude-vcs  --exclude app/cache/* --exclude app/resources \
+	@tar --exclude-vcs --exclude=app/cache/* --exclude=app/resources \
 		--create --gzip --file artifacts/$(ARTIFACT_NAME).tar.gz $(ARTIFACT_FILES)
 
 zip: # Generate zip file

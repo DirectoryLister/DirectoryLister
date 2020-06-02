@@ -31,8 +31,11 @@ class Markdown extends ViewFunction
      */
     public function __invoke(string $string): string
     {
-        return $this->cache->get(md5($string), function () use ($string): string {
-            return $this->parser->parse($string);
-        });
+        return $this->cache->get(
+            sprintf('markdown-%s', md5($string)),
+            function () use ($string): string {
+                return $this->parser->parse($string);
+            }
+        );
     }
 }

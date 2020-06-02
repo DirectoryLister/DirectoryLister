@@ -148,22 +148,6 @@ return [
     'max_hash_size' => Helpers::env('MAX_HASH_SIZE', 1000000000),
 
     /**
-     * HTTP expires values.
-     *
-     * Possible values: An array of mime types mapped to their cache duration
-     * as a relative datetime string.
-     *
-     * Default value: [
-     *     'application/zip' => '+1 hour',
-     *     'text/json' => '+1 hour',
-     * ]
-     */
-    'http_expires' => [
-        'application/zip' => '+1 hour',
-        'text/json' => '+1 hour',
-    ],
-
-    /**
      * Array of icon definitions where the array key is the file extension
      * (without a preceding dot) and the array value is the desired Font Awesome
      * class names.

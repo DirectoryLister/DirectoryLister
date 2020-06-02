@@ -16,7 +16,7 @@ class FinderFactory
     /** @var Container The application container */
     protected $container;
 
-    /** @var Collection Collection of hidden files */
+    /** @var HiddenFiles Collection of hidden files */
     protected $hiddenFiles;
 
     /** @var Glob Hidden files pattern cache */

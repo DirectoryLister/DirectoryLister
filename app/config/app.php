@@ -25,6 +25,14 @@ return [
     'language' => Helpers::env('APP_LANGUAGE', 'en'),
 
     /**
+     * Text of the 'home' link in the navigation breadcrumbs. If undefined or
+     * null will use the translated form of "home" from your selected language.
+     *
+     * Default value: null
+     */
+    'home_text' => Helpers::env('HOME_TEXT', null),
+
+    /**
      * Enable dark mode?
      *
      * Default value: false

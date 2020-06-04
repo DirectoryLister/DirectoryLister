@@ -63,7 +63,7 @@ class FileInfoController
         }
 
         $response->getBody()->write($this->cache->get(
-            sprintf('file-info-%s', md5($file->getRealPath())),
+            sprintf('file-info-%s', sha1($file->getRealPath())),
             function () use ($file): string {
                 return json_encode(['hashes' => $this->calculateHashes($file)]);
             }

@@ -65,7 +65,7 @@ class ZipController
         }
 
         $response->getBody()->write(
-            $this->cache->get(sprintf('zip-%s', md5($path)), function () use ($path): string {
+            $this->cache->get(sprintf('zip-%s', sha1($path)), function () use ($path): string {
                 return $this->createZip($path)->getContents();
             })
         );

@@ -9,6 +9,7 @@ use Symfony\Component\Finder\Finder;
 use Symfony\Component\Finder\SplFileInfo;
 use Tests\TestCase;
 
+/** @covers \App\Factories\FinderFactory */
 class FinderFactoryTest extends TestCase
 {
     public function test_it_can_compose_the_finder_component(): void

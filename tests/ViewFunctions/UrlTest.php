@@ -5,6 +5,7 @@ namespace Tests\ViewFunctions;
 use App\ViewFunctions\Url;
 use Tests\TestCase;
 
+/** @covers \App\ViewFunctions\Url */
 class UrlTest extends TestCase
 {
     public function test_it_can_return_a_url(): void

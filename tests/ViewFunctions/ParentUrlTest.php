@@ -5,6 +5,7 @@ namespace Tests\ViewFunctions;
 use App\ViewFunctions\ParentUrl;
 use Tests\TestCase;
 
+/** @covers \App\ViewFunctions\ParentUrl */
 class ParentUrlTest extends TestCase
 {
     public function test_it_can_get_the_parent_directory(): void

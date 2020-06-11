@@ -9,6 +9,7 @@ use Slim\Views\Twig;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use Tests\TestCase;
 
+/** @covers \App\Exceptions\ErrorHandler */
 class ErrorHandlerTest extends TestCase
 {
     public function test_it_returns_an_error(): void

@@ -4,6 +4,7 @@ namespace Tests;
 
 use App\TemporaryFile;
 
+/** @covers \App\TemporaryFile */
 class TemporaryFileTest extends TestCase
 {
     public function test_it_can_create_a_temporary_file(): void

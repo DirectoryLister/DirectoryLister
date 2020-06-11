@@ -5,6 +5,7 @@ namespace Tests\ViewFunctions;
 use App\ViewFunctions\ZipUrl;
 use Tests\TestCase;
 
+/** @covers \App\ViewFunctions\ZipUrl */
 class ZipUrlTest extends TestCase
 {
     public function test_it_can_return_a_url(): void

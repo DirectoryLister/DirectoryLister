@@ -6,6 +6,7 @@ use App\ViewFunctions\Breadcrumbs;
 use Tests\TestCase;
 use Tightenco\Collect\Support\Collection;
 
+/** @covers \App\ViewFunctions\Breadcrumbs */
 class BreadcrumbsTest extends TestCase
 {
     public function test_it_can_parse_breadcrumbs_from_the_path(): void

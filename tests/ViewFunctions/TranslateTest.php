@@ -7,6 +7,7 @@ use Symfony\Component\Translation\Loader\ArrayLoader;
 use Symfony\Component\Translation\Translator;
 use Tests\TestCase;
 
+/** @covers \App\ViewFunctions\Translate */
 class TranslateTest extends TestCase
 {
     /** @var Translator Translator component */

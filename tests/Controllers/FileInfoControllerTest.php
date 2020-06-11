@@ -9,6 +9,7 @@ use Slim\Psr7\Response;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use Tests\TestCase;
 
+/** @covers \App\Controllers\FileInfoController */
 class FileInfoControllerTest extends TestCase
 {
     public function test_it_can_return_a_successful_response(): void

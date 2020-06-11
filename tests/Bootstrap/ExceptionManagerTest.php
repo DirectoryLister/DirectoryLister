@@ -8,6 +8,7 @@ use Slim\App;
 use Slim\Middleware\ErrorMiddleware;
 use Tests\TestCase;
 
+/** @covers \App\Bootstrap\ExceptionManager */
 class ExceptionManagerTest extends TestCase
 {
     public function test_it_sets_the_default_error_handler(): void

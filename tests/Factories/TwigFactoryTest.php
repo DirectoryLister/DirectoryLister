@@ -8,6 +8,7 @@ use Invoker\CallableResolver;
 use Slim\Views\Twig;
 use Tests\TestCase;
 
+/** @covers \App\Factories\TwigFactory */
 class TwigFactoryTest extends TestCase
 {
     public function test_it_can_compose_the_view_component(): void

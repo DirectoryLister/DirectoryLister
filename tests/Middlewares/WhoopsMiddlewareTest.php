@@ -10,6 +10,7 @@ use Whoops\Handler\JsonResponseHandler;
 use Whoops\Handler\PrettyPageHandler;
 use Whoops\RunInterface;
 
+/** @covers \App\Middlewares\WhoopsMiddleware */
 class WhoopsMiddlewareTest extends TestCase
 {
     public function test_it_registers_whoops_with_the_page_handler(): void

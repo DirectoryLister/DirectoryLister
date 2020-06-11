@@ -8,6 +8,7 @@ use Slim\Psr7\Request;
 use Slim\Psr7\Response;
 use Tests\TestCase;
 
+/** @covers \App\Controllers\IndexController */
 class IndexControllerTest extends TestCase
 {
     public function test_it_handles_a_file_info_request(): void

@@ -6,6 +6,7 @@ use App\ViewFunctions\Markdown;
 use ParsedownExtra;
 use Tests\TestCase;
 
+/** @covers \App\ViewFunctions\Markdown */
 class MarkdownTest extends TestCase
 {
     public function test_it_can_parse_markdown_into_html(): void

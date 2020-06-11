@@ -5,6 +5,7 @@ namespace Tests\ViewFunctions;
 use App\ViewFunctions\Config;
 use Tests\TestCase;
 
+/** @covers \App\ViewFunctions\Config */
 class ConfigTest extends TestCase
 {
     public function test_it_can_retrieve_a_config_item(): void

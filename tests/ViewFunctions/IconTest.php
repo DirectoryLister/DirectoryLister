@@ -7,6 +7,7 @@ use PHLAK\Config\Config;
 use Symfony\Component\Finder\SplFileInfo;
 use Tests\TestCase;
 
+/** @covers \App\ViewFunctions\Icon */
 class IconTest extends TestCase
 {
     /** @var Config Application config */

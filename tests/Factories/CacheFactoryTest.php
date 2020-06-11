@@ -7,6 +7,7 @@ use App\Factories\CacheFactory;
 use Symfony\Component\Cache\Adapter;
 use Tests\TestCase;
 
+/** @covers \App\Factories\CacheFactory */
 class CacheFactoryTest extends TestCase
 {
     /** @dataProvider cacheAdapters */

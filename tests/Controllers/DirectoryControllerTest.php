@@ -11,6 +11,7 @@ use Symfony\Component\Finder\Finder;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use Tests\TestCase;
 
+/** @covers \App\Controllers\DirectoryController */
 class DirectoryControllerTest extends TestCase
 {
     /** @dataProvider configOptions */

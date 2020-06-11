@@ -11,6 +11,7 @@ use Symfony\Component\Finder\Finder;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use Tests\TestCase;
 
+/** @covers \App\Controllers\SearchController */
 class SearchControllerTest extends TestCase
 {
     public function test_it_returns_a_successful_response_for_a_search_request(): void

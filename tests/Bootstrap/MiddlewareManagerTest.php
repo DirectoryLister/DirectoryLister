@@ -7,6 +7,7 @@ use App\Middlewares;
 use Slim\App;
 use Tests\TestCase;
 
+/** @covers \App\Bootstrap\MiddlewareManager */
 class MiddlewareManagerTest extends TestCase
 {
     /** @const Array of application middlewares */

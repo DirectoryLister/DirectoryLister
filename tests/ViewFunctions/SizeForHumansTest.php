@@ -6,6 +6,7 @@ use App\ViewFunctions\SizeForHumans;
 use Symfony\Component\Finder\SplFileInfo;
 use Tests\TestCase;
 
+/** @covers \App\ViewFunctions\SizeForHumans */
 class SizeForHumansTest extends TestCase
 {
     public function test_it_can_convert_bytes_to_bytes(): void

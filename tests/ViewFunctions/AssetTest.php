@@ -5,6 +5,7 @@ namespace Tests\ViewFunctions;
 use App\ViewFunctions\Asset;
 use Tests\TestCase;
 
+/** @covers \App\ViewFunctions\Asset */
 class AssetTest extends TestCase
 {
     public function test_it_can_return_an_asset_path(): void

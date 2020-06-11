@@ -7,6 +7,7 @@ use App\Factories\TranslationFactory;
 use Symfony\Component\Translation\MessageCatalogue;
 use Tests\TestCase;
 
+/** @covers \App\Factories\TranslationFactory */
 class TranslationFactoryTest extends TestCase
 {
     public function test_it_registers_the_translation_component(): void

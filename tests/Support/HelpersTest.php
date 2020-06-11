@@ -5,6 +5,7 @@ namespace Tests\Support;
 use App\Support\Helpers;
 use PHPUnit\Framework\TestCase;
 
+/** @covers \App\Support\Helpers */
 class HelpersTest extends TestCase
 {
     public function test_it_can_get_an_environment_variable(): void

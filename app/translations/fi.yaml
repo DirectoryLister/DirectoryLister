@@ -1,0 +1,19 @@
+home: Etusivu
+download: Lataa tämä hakemisto
+search: Hae
+file:
+  name: Tiedostonimi
+  size: Koko
+  date: Päivämäärä
+  info: Tiedot
+powered_by: Voimanlähteenä
+scroll_to_top: Takaisin ylös
+
+error:
+  directory_not_found: Hakemistoa ei ole olemassa
+  file_not_found: Tiedostoa ei ole olemassa
+  file_size_exceeded: Tiedosto on liian suuri
+  no_results_found: Hakutuloksia ei löytynyt
+  unexpected: Tapahtui odottamaton virhe
+
+enable_debugging: Laita debug-tila päälle saadaksesi lisätietoja

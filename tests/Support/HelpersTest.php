@@ -24,7 +24,7 @@ class HelpersTest extends TestCase
         $this->assertEquals('Test default; please ignore', $env);
     }
 
-    public function test_it_can_a_retrieve_boolean_value(): void
+    public function test_it_can_retrieve_a_boolean_value(): void
     {
         putenv('TRUE_TEST=true');
         putenv('FALSE_TEST=false');

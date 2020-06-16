@@ -29,7 +29,7 @@
         "symfony/translation": "^5.0",
         "symfony/yaml": "^5.0",
         "tightenco/collect": "^7.0",
-        "vlucas/phpdotenv": "^4.0"
+        "vlucas/phpdotenv": "^5.0"
     },
     "require-dev": {
         "php": ">=7.4",

@@ -58,7 +58,7 @@ class FileInfoController
             return $response->withStatus(404, $this->translator->trans('error.file_not_found'));
         }
 
-        if ($file->getSize() >= $this->container->get('max_hash_size')) {
+        if ($file->getSize() >= (int) $this->container->get('max_hash_size')) {
             return $response->withStatus(500, $this->translator->trans('error.file_size_exceeded'));
         }
 

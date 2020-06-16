@@ -14,7 +14,7 @@ class FinderFactoryTest extends TestCase
 {
     public function test_it_can_compose_the_finder_component(): void
     {
-        $finder = (new FinderFactory($this->container, $this->container->get(HiddenFiles::class)))();
+        $finder = (new FinderFactory($this->container, HiddenFiles::fromContainer($this->container)))();
 
         $this->assertInstanceOf(Finder::class, $finder);
 
@@ -37,7 +37,7 @@ class FinderFactoryTest extends TestCase
             }
         ));
 
-        $finder = (new FinderFactory($this->container, $this->container->get(HiddenFiles::class)))();
+        $finder = (new FinderFactory($this->container, HiddenFiles::fromContainer($this->container)))();
         $finder->in($this->filePath('subdir'))->depth(0);
 
         $this->assertEquals([
@@ -53,7 +53,7 @@ class FinderFactoryTest extends TestCase
     {
         $this->container->set('reverse_sort', true);
 
-        $finder = (new FinderFactory($this->container, $this->container->get(HiddenFiles::class)))();
+        $finder = (new FinderFactory($this->container, HiddenFiles::fromContainer($this->container)))();
         $finder->in($this->filePath('subdir'))->depth(0);
 
         $this->assertEquals([
@@ -71,9 +71,7 @@ class FinderFactoryTest extends TestCase
             'subdir/alpha.scss', 'subdir/charlie.bash', '**/*.yaml'
         ]);
 
-        (new FinderFactory($this->container, $this->container->get(HiddenFiles::class)))();
-
-        $finder = $this->container->get(Finder::class);
+        $finder = (new FinderFactory($this->container, HiddenFiles::fromContainer($this->container)))();
         $finder->in($this->filePath('subdir'))->depth(0);
 
         $this->assertInstanceOf(Finder::class, $finder);
@@ -89,7 +87,7 @@ class FinderFactoryTest extends TestCase
 
         $this->expectException(InvalidConfiguration::class);
 
-        (new FinderFactory($this->container, $this->container->get(HiddenFiles::class)))();
+        (new FinderFactory($this->container, HiddenFiles::fromContainer($this->container)))();
     }
 
     protected function getFilesArray(Finder $finder): array

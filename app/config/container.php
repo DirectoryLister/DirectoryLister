@@ -56,6 +56,7 @@ return [
     ],
 
     /** Container definitions */
+    App\HiddenFiles::class => DI\factory([App\HiddenFiles::class, 'fromContainer']),
     Symfony\Component\Finder\Finder::class => DI\factory(Factories\FinderFactory::class),
     Symfony\Contracts\Cache\CacheInterface::class => DI\Factory(Factories\CacheFactory::class),
     Symfony\Contracts\Translation\TranslatorInterface::class => DI\factory(Factories\TranslationFactory::class),

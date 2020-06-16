@@ -10,7 +10,7 @@ require __DIR__ . '/app/vendor/autoload.php';
 ini_set('open_basedir', __DIR__);
 
 // Initialize environment variable handler
-Dotenv::createImmutable(__DIR__)->safeLoad();
+Dotenv::createUnsafeImmutable(__DIR__)->safeLoad();
 
 // Initialize the application
 $app = (new ContainerBuilder)->addDefinitions(

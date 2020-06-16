@@ -27,7 +27,7 @@ class TestCase extends PHPUnitTestCase
      */
     public function setUp(): void
     {
-        Dotenv::createImmutable(__DIR__)->safeLoad();
+        Dotenv::createUnsafeImmutable(__DIR__)->safeLoad();
 
         $this->container = (new ContainerBuilder)->addDefinitions(
             dirname(__DIR__) . '/app/config/cache.php',

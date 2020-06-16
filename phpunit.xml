@@ -10,6 +10,7 @@
             <directory suffix=".php">app/</directory>
             <exclude>
                 <directory>app/cache</directory>
+                <directory>app/config</directory>
                 <directory>app/vendor</directory>
             </exclude>
         </whitelist>

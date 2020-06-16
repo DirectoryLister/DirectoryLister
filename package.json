@@ -11,7 +11,7 @@
     },
     "dependencies": {
         "axios": "^0.19.2",
-        "highlight.js": "^10.0.3",
+        "highlight.js": "^10.1.1",
         "vue": "^2.6.11"
     },
     "devDependencies": {
@@ -20,7 +20,7 @@
         "laravel-mix": "^5.0.4",
         "laravel-mix-purgecss": "^4.2.0",
         "resolve-url-loader": "^3.1.1",
-        "sass": "^1.26.7",
+        "sass": "^1.26.8",
         "sass-loader": "^8.0.2",
         "tailwindcss": "^1.4.6",
         "vue-template-compiler": "^2.6.11"

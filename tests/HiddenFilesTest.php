@@ -12,12 +12,12 @@ class HiddenFilesTest extends TestCase
     public function test_it_creates_a_collection_of_hidden_files(
         array $hiddenFilesArray,
         string $hiddenFilesList,
-        bool $hideappFiles,
+        bool $hideAppFiles,
         array $expected
     ): void {
         $this->container->set('hidden_files', $hiddenFilesArray);
         $this->container->set('hidden_files_list', $hiddenFilesList);
-        $this->container->set('hide_app_files', $hideappFiles);
+        $this->container->set('hide_app_files', $hideAppFiles);
 
         $hiddenFiles = HiddenFiles::fromContainer($this->container);
 

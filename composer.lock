@@ -476,16 +476,16 @@
         },
         {
             "name": "opis/closure",
-            "version": "3.5.4",
+            "version": "3.5.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/opis/closure.git",
-                "reference": "1d0deef692f66dae5d70663caee2867d0971306b"
+                "reference": "dec9fc5ecfca93f45cd6121f8e6f14457dff372c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/opis/closure/zipball/1d0deef692f66dae5d70663caee2867d0971306b",
-                "reference": "1d0deef692f66dae5d70663caee2867d0971306b",
+                "url": "https://api.github.com/repos/opis/closure/zipball/dec9fc5ecfca93f45cd6121f8e6f14457dff372c",
+                "reference": "dec9fc5ecfca93f45cd6121f8e6f14457dff372c",
                 "shasum": ""
             },
             "require": {
@@ -533,7 +533,7 @@
                 "serialization",
                 "serialize"
             ],
-            "time": "2020-06-07T11:41:29+00:00"
+            "time": "2020-06-17T14:59:55+00:00"
         },
         {
             "name": "phlak/splat",
@@ -635,20 +635,20 @@
         },
         {
             "name": "php-di/php-di",
-            "version": "6.2.0",
+            "version": "6.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/PHP-DI/PHP-DI.git",
-                "reference": "5ca8b43f6dff54a30b0cd8bba86f76d8d1fd24c4"
+                "reference": "6875fe557c244b3830862c072c7719ca4ac2efe4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PHP-DI/PHP-DI/zipball/5ca8b43f6dff54a30b0cd8bba86f76d8d1fd24c4",
-                "reference": "5ca8b43f6dff54a30b0cd8bba86f76d8d1fd24c4",
+                "url": "https://api.github.com/repos/PHP-DI/PHP-DI/zipball/6875fe557c244b3830862c072c7719ca4ac2efe4",
+                "reference": "6875fe557c244b3830862c072c7719ca4ac2efe4",
                 "shasum": ""
             },
             "require": {
-                "opis/closure": "^3.5.4",
+                "opis/closure": "^3.5.5",
                 "php": ">=7.2.0",
                 "php-di/invoker": "^2.0",
                 "php-di/phpdoc-reader": "^2.0.1",
@@ -703,7 +703,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-06-10T16:26:00+00:00"
+            "time": "2020-06-18T09:54:32+00:00"
         },
         {
             "name": "php-di/phpdoc-reader",
@@ -1398,6 +1398,16 @@
                 "framework",
                 "micro",
                 "router"
+            ],
+            "funding": [
+                {
+                    "url": "https://opencollective.com/slimphp",
+                    "type": "open_collective"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/slim/slim",
+                    "type": "tidelift"
+                }
             ],
             "time": "2020-04-14T20:49:48+00:00"
         },

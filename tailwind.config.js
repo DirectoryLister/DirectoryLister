@@ -1,4 +1,19 @@
 module.exports = {
+    plugins: [],
+    purge: {
+        mode: 'all',
+        content: [
+            'app/**/*.js',
+            'app/**/*.php',
+            'app/**/*.scss',
+            'app/**/*.twig',
+            'app/**/*.vue',
+        ],
+        options: {
+            whitelist: ['html', 'body', 'main', 'fab', 'fas'],
+            whitelistPatterns: [/^fa\-/, /^hljs/]
+        }
+    },
     theme: {
         extend: {
             fontFamily: {
@@ -36,7 +51,5 @@ module.exports = {
     },
     variants: {
         visibility: ['responsive', 'hover', 'group-hover']
-    },
-    plugins: [],
-    purge: false
+    }
 };

@@ -1,6 +1,5 @@
 let mix = require('laravel-mix');
 let tailwindcss = require('tailwindcss');
-require('laravel-mix-purgecss');
 
 mix.setPublicPath('app/assets');
 
@@ -21,13 +20,6 @@ mix.copyDirectory(
     'node_modules/@fortawesome/fontawesome-free/webfonts',
     'app/assets/webfonts'
 );
-
-mix.purgeCss({
-    extensions: ['html', 'js', 'php', 'scss', 'twig', 'vue'],
-    folders: ['app'],
-    whitelist: ['html', 'body', 'main', 'fab', 'far', 'fas'],
-    whitelistPatterns: [/^fa\-/, /^hljs/]
-});
 
 if (mix.inProduction()) {
     mix.version();

@@ -10,7 +10,7 @@ prod production: # Build application for production
 	@npm install --no-save && npm run production && npm prune --production
 
 update upgrade: # Update application dependencies
-	@composer update && npm update && npm install
+	@composer update && npm update && npm install && npm audit fix
 
 test: # Run coding standards/static analysis checks and tests
 	@app/vendor/bin/php-cs-fixer fix --diff --dry-run \

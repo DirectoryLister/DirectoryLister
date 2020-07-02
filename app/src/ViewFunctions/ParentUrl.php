@@ -29,7 +29,7 @@ class ParentUrl extends ViewFunction
      *
      * @return string
      */
-    public function __invoke(string $path)
+    public function __invoke(string $path): string
     {
         $parentDir = Str::explode($path, $this->directorySeparator)->map(
             static function (string $segment): string {

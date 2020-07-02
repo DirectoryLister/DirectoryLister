@@ -18,7 +18,7 @@ class FinderFactory
     /** @var HiddenFiles Collection of hidden files */
     protected $hiddenFiles;
 
-    /** @var Glob Hidden files pattern cache */
+    /** @var Glob|null Hidden files pattern cache */
     protected $pattern;
 
     /**

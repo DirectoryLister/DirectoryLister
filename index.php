@@ -12,12 +12,18 @@ ini_set('open_basedir', __DIR__);
 // Initialize environment variable handler
 Dotenv::createUnsafeImmutable(__DIR__)->safeLoad();
 
+// Initialize the container
+$container = call_user_func_array(
+    [new ContainerBuilder, 'addDefinitions'],
+    glob(__DIR__ . '/app/config/*.php')
+);
+
+if (filter_var(getenv('APP_DEBUG'), FILTER_VALIDATE_BOOLEAN) !== true) {
+    $container->enableCompilation(__DIR__ . '/app/cache');
+}
+
 // Initialize the application
-$app = (new ContainerBuilder)->addDefinitions(
-    __DIR__ . '/app/config/cache.php',
-    __DIR__ . '/app/config/app.php',
-    __DIR__ . '/app/config/container.php'
-)->build()->call(AppManager::class);
+$app = $container->build()->call(AppManager::class);
 
 // Engage!
 $app->run();

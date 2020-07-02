@@ -7,7 +7,7 @@ use RuntimeException;
 class InvalidConfiguration extends RuntimeException
 {
     /**
-     * Createn an exception from a configiraton option and value.
+     * Create an exception from a configuration option and value.
      *
      * @param string $option
      * @param mixed  $value

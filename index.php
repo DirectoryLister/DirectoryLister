@@ -18,6 +18,7 @@ $container = call_user_func_array(
     glob(__DIR__ . '/app/config/*.php')
 );
 
+// Compile the container
 if (filter_var(getenv('APP_DEBUG'), FILTER_VALIDATE_BOOLEAN) !== true) {
     $container->enableCompilation(__DIR__ . '/app/cache');
 }

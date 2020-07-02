@@ -9,6 +9,9 @@
             "email": "Chris@ChrisKankiewicz.com"
         }
     ],
+    "support": {
+        "issues": "https://github.com/DirectoryLister/DirectoryLister/issues"
+    },
     "require": {
         "php": ">=7.2",
         "ext-dom": "*",

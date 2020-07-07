@@ -8,7 +8,6 @@ services:
       VIRTUAL_HOST: directory-lister.local
     volumes:
       - ./:/var/www/html
-    restart: unless-stopped
     extra_hosts:
       - host.docker.internal:${DOCKER_HOST_IP}
 

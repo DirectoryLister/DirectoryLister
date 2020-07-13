@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9163312f9a39f41ae99a67a4a8acdca5",
+    "content-hash": "16d97309e81fc053a80d199efc8c07ae",
     "packages": [
         {
             "name": "erusev/parsedown",
@@ -1399,6 +1399,16 @@
                 "micro",
                 "router"
             ],
+            "funding": [
+                {
+                    "url": "https://opencollective.com/slimphp",
+                    "type": "open_collective"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/slim/slim",
+                    "type": "tidelift"
+                }
+            ],
             "time": "2020-04-14T20:49:48+00:00"
         },
         {
@@ -2477,16 +2487,16 @@
         },
         {
             "name": "tightenco/collect",
-            "version": "v7.12.0",
+            "version": "v17.19.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tightenco/collect.git",
-                "reference": "ba504e959241f1f408867ffd03159b040f66e00b"
+                "reference": "e070bf74564f311bb3c97e673e97ea036b38a449"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tightenco/collect/zipball/ba504e959241f1f408867ffd03159b040f66e00b",
-                "reference": "ba504e959241f1f408867ffd03159b040f66e00b",
+                "url": "https://api.github.com/repos/tightenco/collect/zipball/e070bf74564f311bb3c97e673e97ea036b38a449",
+                "reference": "e070bf74564f311bb3c97e673e97ea036b38a449",
                 "shasum": ""
             },
             "require": {
@@ -2523,7 +2533,7 @@
                 "collection",
                 "laravel"
             ],
-            "time": "2020-05-08T22:25:37+00:00"
+            "time": "2020-07-10T22:08:24+00:00"
         },
         {
             "name": "twig/twig",

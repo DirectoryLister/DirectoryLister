@@ -1,4 +1,5 @@
 {
+    "name": "Directory Lister",
     "author": "Chris Kankiewicz",
     "license": "MIT",
     "scripts": {

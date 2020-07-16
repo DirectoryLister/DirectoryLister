@@ -29,9 +29,8 @@ class TestCase extends PHPUnitTestCase
     {
         Dotenv::createUnsafeImmutable(__DIR__)->safeLoad();
 
-        $this->container = call_user_func_array(
-            [new ContainerBuilder, 'addDefinitions'],
-            glob(dirname(__DIR__) . '/app/config/*.php')
+        $this->container = (new ContainerBuilder)->addDefinitions(
+            ...glob(dirname(__DIR__) . '/app/config/*.php')
         )->build();
 
         $this->cache = new ArrayAdapter($this->container->get('cache_lifetime'));

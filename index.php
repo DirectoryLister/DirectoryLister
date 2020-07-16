@@ -14,9 +14,8 @@ ini_set('open_basedir', __DIR__);
 Dotenv::createUnsafeImmutable(__DIR__)->safeLoad();
 
 // Initialize the container
-$container = call_user_func_array(
-    [new ContainerBuilder, 'addDefinitions'],
-    glob(__DIR__ . '/app/config/*.php')
+$container = (new ContainerBuilder)->addDefinitions(
+    ...glob(__DIR__ . '/app/config/*.php')
 );
 
 // Compile the container

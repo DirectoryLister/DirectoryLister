@@ -8,7 +8,6 @@ services:
       VIRTUAL_HOST: directory-lister.local
     volumes:
       - ./:/var/www/html
-    restart: on-failure
     extra_hosts:
       - host.docker.internal:${DOCKER_HOST_IP}
 
@@ -17,14 +16,12 @@ services:
     ports:
       - ${MEMCACHED_PORT:-11211}:11211
     image: memcached:1.6
-    restart: on-failure
 
   redis:
     container_name: directory-lister-redis
     ports:
       - ${REDIS_PORT:-6379}:6379
     image: redis:6.0
-    restart: on-failure
 
 networks:
   default:

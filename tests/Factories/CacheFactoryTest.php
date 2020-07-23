@@ -15,7 +15,7 @@ class CacheFactoryTest extends TestCase
     {
         $this->container->set('cache_driver', $config);
 
-        $cache = (new CacheFactory($this->container))();
+        $cache = (new CacheFactory($this->container, $this->config))();
 
         $this->assertInstanceOf($adapter, $cache);
     }
@@ -26,7 +26,7 @@ class CacheFactoryTest extends TestCase
 
         $this->expectException(InvalidConfiguration::class);
 
-        (new CacheFactory($this->container))();
+        (new CacheFactory($this->container, $this->config))();
     }
 
     public function cacheAdapters(): array

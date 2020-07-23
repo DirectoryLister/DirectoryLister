@@ -11,7 +11,7 @@ class BreadcrumbsTest extends TestCase
 {
     public function test_it_can_parse_breadcrumbs_from_the_path(): void
     {
-        $breadcrumbs = new Breadcrumbs($this->container);
+        $breadcrumbs = new Breadcrumbs($this->config);
 
         $this->assertEquals(Collection::make([
             'foo' => '?dir=foo',
@@ -22,14 +22,14 @@ class BreadcrumbsTest extends TestCase
 
     public function test_it_can_parse_breadcrumbs_for_dot_path(): void
     {
-        $breadcrumbs = new Breadcrumbs($this->container);
+        $breadcrumbs = new Breadcrumbs($this->config);
 
         $this->assertEquals(new Collection, $breadcrumbs('.'));
     }
 
     public function test_it_url_encodes_directory_names(): void
     {
-        $breadcrumbs = new Breadcrumbs($this->container);
+        $breadcrumbs = new Breadcrumbs($this->config);
 
         $this->assertEquals(Collection::make([
             'foo' => '?dir=foo',
@@ -49,7 +49,7 @@ class BreadcrumbsTest extends TestCase
 
     public function test_it_can_parse_breadcrumbs_from_the_path_with_back_slashes(): void
     {
-        $breadcrumbs = new Breadcrumbs($this->container, '\\');
+        $breadcrumbs = new Breadcrumbs($this->config, '\\');
 
         $this->assertEquals(Collection::make([
             'foo' => '?dir=foo',
@@ -60,7 +60,7 @@ class BreadcrumbsTest extends TestCase
 
     public function test_it_can_parse_breadcrumbs_from_the_path_with_zeros(): void
     {
-        $breadcrumbs = new Breadcrumbs($this->container, '\\');
+        $breadcrumbs = new Breadcrumbs($this->config, '\\');
 
         $this->assertEquals(Collection::make([
             'foo' => '?dir=foo',

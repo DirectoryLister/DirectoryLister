@@ -23,7 +23,7 @@ class ExceptionManagerTest extends TestCase
             ->method('addErrorMiddleware')
             ->willReturn($errorMiddleware);
 
-        (new ExceptionManager($app, $this->container))();
+        (new ExceptionManager($app, $this->config))();
     }
 
     public function test_it_does_not_set_the_default_error_handler_when_debug_is_enabled(): void
@@ -33,6 +33,6 @@ class ExceptionManagerTest extends TestCase
         $app = $this->createMock(App::class);
         $app->expects($this->never())->method('addErrorMiddleware');
 
-        (new ExceptionManager($app, $this->container))();
+        (new ExceptionManager($app, $this->config))();
     }
 }

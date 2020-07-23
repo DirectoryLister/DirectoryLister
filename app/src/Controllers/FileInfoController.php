@@ -2,7 +2,7 @@
 
 namespace App\Controllers;
 
-use DI\Container;
+use App\Config;
 use Psr\Http\Message\ResponseInterface;
 use Slim\Psr7\Request;
 use Slim\Psr7\Response;
@@ -12,8 +12,8 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 
 class FileInfoController
 {
-    /** @var Container The application container */
-    protected $container;
+    /** @var Config The application configuration */
+    protected $config;
 
     /** @var CacheInterface The application cache */
     protected $cache;
@@ -24,16 +24,16 @@ class FileInfoController
     /**
      * Create a new FileInfoHandler object.
      *
-     * @param \DI\Container                                      $container
+     * @param \App\Config                                        $config
      * @param \Symfony\Contracts\Cache\CacheInterface            $cache
      * @param \Symfony\Contracts\Translation\TranslatorInterface $translator
      */
     public function __construct(
-        Container $container,
+        Config $config,
         CacheInterface $cache,
         TranslatorInterface $translator
     ) {
-        $this->container = $container;
+        $this->config = $config;
         $this->cache = $cache;
         $this->translator = $translator;
     }
@@ -51,14 +51,14 @@ class FileInfoController
         $path = $request->getQueryParams()['info'];
 
         $file = new SplFileInfo(
-            realpath($this->container->get('base_path') . '/' . $path)
+            realpath($this->config->get('base_path') . '/' . $path)
         );
 
         if (! $file->isFile()) {
             return $response->withStatus(404, $this->translator->trans('error.file_not_found'));
         }
 
-        if ($file->getSize() >= (int) $this->container->get('max_hash_size')) {
+        if ($file->getSize() >= (int) $this->config->get('max_hash_size')) {
             return $response->withStatus(500, $this->translator->trans('error.file_size_exceeded'));
         }
 

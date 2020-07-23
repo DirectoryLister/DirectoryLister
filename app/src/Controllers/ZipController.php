@@ -2,9 +2,9 @@
 
 namespace App\Controllers;
 
+use App\Config;
 use App\Support\Str;
 use App\TemporaryFile;
-use DI\Container;
 use Psr\Http\Message\ResponseInterface;
 use Slim\Psr7\Request;
 use Slim\Psr7\Response;
@@ -16,8 +16,8 @@ use ZipArchive;
 
 class ZipController
 {
-    /** @var Container The application container */
-    protected $container;
+    /** @var Config The application configuration */
+    protected $config;
 
     /** @var CacheInterface The application cache */
     protected $cache;
@@ -31,18 +31,18 @@ class ZipController
     /**
      * Create a new ZipHandler object.
      *
-     * @param \DI\Container                                      $container
+     * @param \App\Config                                        $config
      * @param \Symfony\Contracts\Cache\CacheInterface            $cache
      * @param \PhpCsFixer\Finder                                 $finder
      * @param \Symfony\Contracts\Translation\TranslatorInterface $translator
      */
     public function __construct(
-        Container $container,
+        Config $config,
         CacheInterface $cache,
         Finder $finder,
         TranslatorInterface $translator
     ) {
-        $this->container = $container;
+        $this->config = $config;
         $this->cache = $cache;
         $this->finder = $finder;
         $this->translator = $translator;
@@ -60,7 +60,7 @@ class ZipController
     {
         $path = $request->getQueryParams()['zip'];
 
-        if (! $this->container->get('zip_downloads') || ! is_dir($path)) {
+        if (! $this->config->get('zip_downloads') || ! is_dir($path)) {
             return $response->withStatus(404, $this->translator->trans('error.file_not_found'));
         }
 
@@ -88,7 +88,7 @@ class ZipController
     {
         $zip = new ZipArchive;
         $zip->open((string) $tempFile = new TemporaryFile(
-            $this->container->get('cache_path')
+            $this->config->get('cache_path')
         ), ZipArchive::CREATE | ZipArchive::OVERWRITE);
 
         foreach ($this->finder->in($path)->files() as $file) {

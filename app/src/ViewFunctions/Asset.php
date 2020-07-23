@@ -2,7 +2,7 @@
 
 namespace App\ViewFunctions;
 
-use DI\Container;
+use App\Config;
 use Tightenco\Collect\Support\Collection;
 
 class Asset extends ViewFunction
@@ -10,17 +10,17 @@ class Asset extends ViewFunction
     /** @var string The function name */
     protected $name = 'asset';
 
-    /** @var Container The application container */
-    protected $container;
+    /** @var Config The application configuration */
+    protected $config;
 
     /**
      * Create a new Asset object.
      *
-     * @param \DI\Container $container
+     * @param \App\Config $container
      */
-    public function __construct(Container $container)
+    public function __construct(Config $container)
     {
-        $this->container = $container;
+        $this->config = $container;
     }
 
     /**
@@ -48,7 +48,7 @@ class Asset extends ViewFunction
      */
     protected function mixManifest(): Collection
     {
-        $mixManifest = $this->container->get('asset_path') . '/mix-manifest.json';
+        $mixManifest = $this->config->get('asset_path') . '/mix-manifest.json';
 
         if (! is_file($mixManifest)) {
             return new Collection;

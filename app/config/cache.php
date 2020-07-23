@@ -1,6 +1,6 @@
 <?php
 
-use App\Support\Helpers;
+use App\Config;
 
 return [
     /**
@@ -12,14 +12,14 @@ return [
      *
      * Default value: 'file'
      */
-    'cache_driver' => Helpers::env('CACHE_DRIVER', 'file'),
+    'cache_driver' => DI\env('CACHE_DRIVER', 'file'),
 
     /**
      * The app cache lifetime (in seconds). If set to 0, cache indefinitely.
      *
      * Default value: 0 (indefinitely)
      */
-    'cache_lifetime' => Helpers::env('CACHE_LIFETIME', 0),
+    'cache_lifetime' => DI\env('CACHE_LIFETIME', 0),
 
     /**
      * Path to the view cache directory. Set to 'false' to disable
@@ -28,7 +28,21 @@ return [
      *
      * Default value: 'app/cache/views'
      */
-    'view_cache' => Helpers::env('VIEW_CACHE', 'app/cache/views'),
+    'view_cache' => DI\env('VIEW_CACHE', 'app/cache/views'),
+
+    /**
+     * The Memcached server hostname or IP address.
+     *
+     * Default value: 'localhost'
+     */
+    'memcached_host' => DI\env('MEMCACHED_HOST', 'localhost'),
+
+    /**
+     * The Memcached server port.
+     *
+     * Default value: 11211
+     */
+    'memcached_port' => DI\env('MEMCACHED_PORT', 11211),
 
     /**
      * The Memcached configuration closure. This option is used when the
@@ -41,14 +55,28 @@ return [
      * Reference the PHP Memcached documentation for Memcached configuration
      * options: https://secure.php.net/manual/en/book.memcached.php
      *
-     * Default value: Adds a server at localhost:11211
+     * Default value: Connects to a server at localhost:11211
      */
-    'memcached_config' => DI\value(function (Memcached $memcached): void {
+    'memcached_config' => DI\value(function (Memcached $memcached, Config $config): void {
         $memcached->addServer(
-            Helpers::env('MEMCACHED_HOST', 'localhost'),
-            Helpers::env('MEMCACHED_PORT', 11211)
+            $config->get('memcached_host'),
+            $config->get('memcached_port')
         );
     }),
+
+    /**
+     * The Redis server hostname or IP address.
+     *
+     * Default value: 'localhost'
+     */
+    'redis_host' => DI\env('REDIS_HOST', 'localhost'),
+
+    /**
+     * The Redis server port.
+     *
+     * Default value: 6379
+     */
+    'redis_port' => DI\env('REDIS_PORT', 6379),
 
     /**
      * The Redis configuration closure. This option is used when the
@@ -60,12 +88,12 @@ return [
      * Reference the phpredis documentation for Redis configuration options:
      * https://github.com/phpredis/phpredis#readme
      *
-     * Default value: Adds a server at localhost:6379
+     * Default value: Connects to a server at localhost:6379
      */
-    'redis_config' => DI\value(function (Redis $redis): void {
+    'redis_config' => DI\value(function (Redis $redis, Config $config): void {
         $redis->pconnect(
-            Helpers::env('REDIS_HOST', 'localhost'),
-            Helpers::env('REDIS_PORT', 6379)
+            $config->get('redis_host'),
+            $config->get('redis_port')
         );
     }),
 

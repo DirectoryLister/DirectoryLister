@@ -11,7 +11,7 @@ class AssetTest extends TestCase
     public function test_it_can_return_an_asset_path(): void
     {
         $this->container->set('base_path', $this->filePath('.'));
-        $asset = new Asset($this->container);
+        $asset = new Asset($this->config);
 
         $this->assertEquals('app/assets/app.css?id=417c7a9bc03852aafb27', $asset('app.css'));
         $this->assertEquals('app/assets/app.js?id=6753a7269276c7b52692', $asset('app.js'));
@@ -22,7 +22,7 @@ class AssetTest extends TestCase
     {
         $this->container->set('asset_path', $this->filePath('.'));
 
-        $asset = new Asset($this->container);
+        $asset = new Asset($this->config);
 
         $this->assertEquals('app/assets/app.css', $asset('app.css'));
         $this->assertEquals('app/assets/app.js', $asset('app.js'));

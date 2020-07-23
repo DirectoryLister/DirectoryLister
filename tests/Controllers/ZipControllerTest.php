@@ -15,8 +15,8 @@ class ZipControllerTest extends TestCase
 {
     public function test_it_returns_a_successful_response_for_a_zip_request(): void
     {
-        $handler = new ZipController(
-            $this->container,
+        $controller = new ZipController(
+            $this->config,
             $this->cache,
             new Finder,
             $this->container->get(TranslatorInterface::class)
@@ -26,7 +26,7 @@ class ZipControllerTest extends TestCase
         $request->method('getQueryParams')->willReturn(['zip' => 'subdir']);
 
         chdir($this->filePath('.'));
-        $response = $handler($request, new Response);
+        $response = $controller($request, new Response);
 
         $this->assertInstanceOf(ResponseInterface::class, $response);
         $this->assertEquals(200, $response->getStatusCode());
@@ -37,8 +37,8 @@ class ZipControllerTest extends TestCase
 
     public function test_it_returns_a_404_error_when_not_found(): void
     {
-        $handler = new ZipController(
-            $this->container,
+        $controller = new ZipController(
+            $this->config,
             $this->cache,
             new Finder,
             $this->container->get(TranslatorInterface::class)
@@ -48,7 +48,7 @@ class ZipControllerTest extends TestCase
         $request->method('getQueryParams')->willReturn(['zip' => '404']);
 
         chdir($this->filePath('.'));
-        $response = $handler($request, new Response);
+        $response = $controller($request, new Response);
 
         $this->assertInstanceOf(ResponseInterface::class, $response);
         $this->assertEquals(404, $response->getStatusCode());
@@ -57,8 +57,8 @@ class ZipControllerTest extends TestCase
     public function test_it_returns_a_404_error_when_disabled_via_config(): void
     {
         $this->container->set('zip_downloads', false);
-        $handler = new ZipController(
-            $this->container,
+        $controller = new ZipController(
+            $this->config,
             $this->cache,
             new Finder,
             $this->container->get(TranslatorInterface::class)
@@ -68,7 +68,7 @@ class ZipControllerTest extends TestCase
         $request->method('getQueryParams')->willReturn(['zip' => 'subdir']);
 
         chdir($this->filePath('.'));
-        $response = $handler($request, new Response);
+        $response = $controller($request, new Response);
 
         $this->assertInstanceOf(ResponseInterface::class, $response);
         $this->assertEquals(404, $response->getStatusCode());

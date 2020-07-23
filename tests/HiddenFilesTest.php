@@ -19,7 +19,7 @@ class HiddenFilesTest extends TestCase
         $this->container->set('hidden_files_list', $hiddenFilesList);
         $this->container->set('hide_app_files', $hideAppFiles);
 
-        $hiddenFiles = HiddenFiles::fromContainer($this->container);
+        $hiddenFiles = HiddenFiles::fromConfig($this->config);
 
         $this->assertInstanceOf(Collection::class, $hiddenFiles);
         $this->assertEquals($expected, $hiddenFiles->values()->toArray());

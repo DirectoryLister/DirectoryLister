@@ -16,7 +16,7 @@ class TwigFactoryTest extends TestCase
         $this->container->set('view_cache', 'app/cache/views');
         $callableResolver = $this->container->get(CallableResolver::class);
 
-        $twig = (new TwigFactory($this->container, $callableResolver))();
+        $twig = (new TwigFactory($this->config, $callableResolver))();
 
         $this->assertInstanceOf(Twig::class, $twig);
         $this->assertEquals('app/cache/views', $twig->getEnvironment()->getCache());
@@ -26,7 +26,7 @@ class TwigFactoryTest extends TestCase
     {
         $callableResolver = $this->container->get(CallableResolver::class);
 
-        $twig = (new TwigFactory($this->container, $callableResolver))();
+        $twig = (new TwigFactory($this->config, $callableResolver))();
 
         $this->assertInstanceOf(
             ViewFunctions\Asset::class,

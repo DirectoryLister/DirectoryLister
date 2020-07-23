@@ -2,8 +2,8 @@
 
 namespace App\Bootstrap;
 
+use App\Config;
 use App\Exceptions\ErrorHandler;
-use DI\Container;
 use Slim\App;
 
 class ExceptionManager
@@ -11,19 +11,19 @@ class ExceptionManager
     /** @var App The application */
     protected $app;
 
-    /** @var Container The application container */
-    protected $container;
+    /** @var Config The application configuration */
+    protected $config;
 
     /**
      * Create a new ExceptionManager object.
      *
-     * @param \Slim\App     $app
-     * @param \DI\Container $container
+     * @param \Slim\App   $app
+     * @param \App\Config $config
      */
-    public function __construct(App $app, Container $container)
+    public function __construct(App $app, Config $config)
     {
         $this->app = $app;
-        $this->container = $container;
+        $this->config = $config;
     }
 
     /**
@@ -33,7 +33,7 @@ class ExceptionManager
      */
     public function __invoke(): void
     {
-        if ($this->container->get('debug')) {
+        if ($this->config->get('debug')) {
             return;
         }
 

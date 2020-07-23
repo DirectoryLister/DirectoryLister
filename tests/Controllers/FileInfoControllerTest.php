@@ -15,7 +15,7 @@ class FileInfoControllerTest extends TestCase
     public function test_it_can_return_a_successful_response(): void
     {
         $handler = new FileInfoController(
-            $this->container,
+            $this->config,
             $this->cache,
             $this->container->get(TranslatorInterface::class)
         );
@@ -39,7 +39,7 @@ class FileInfoControllerTest extends TestCase
     public function test_it_can_return_a_not_found_response(): void
     {
         $handler = new FileInfoController(
-            $this->container,
+            $this->config,
             $this->cache,
             $this->container->get(TranslatorInterface::class)
         );
@@ -57,7 +57,7 @@ class FileInfoControllerTest extends TestCase
     {
         $this->container->set('max_hash_size', 10);
         $handler = new FileInfoController(
-            $this->container,
+            $this->config,
             $this->cache,
             $this->container->get(TranslatorInterface::class)
         );

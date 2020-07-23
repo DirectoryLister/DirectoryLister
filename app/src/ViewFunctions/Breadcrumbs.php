@@ -2,8 +2,8 @@
 
 namespace App\ViewFunctions;
 
+use App\Config;
 use App\Support\Str;
-use DI\Container;
 use Tightenco\Collect\Support\Collection;
 
 class Breadcrumbs extends ViewFunction
@@ -11,8 +11,8 @@ class Breadcrumbs extends ViewFunction
     /** @var string The function name */
     protected $name = 'breadcrumbs';
 
-    /** @var Container The application container */
-    protected $container;
+    /** @var Config The application configuration */
+    protected $config;
 
     /** @var string The directory separator */
     protected $directorySeparator;
@@ -20,13 +20,13 @@ class Breadcrumbs extends ViewFunction
     /**
      * Create a new Breadcrumbs object.
      *
-     * @param \DI\Container $container
+     * @param \App\Config $config
      */
     public function __construct(
-        Container $container,
+        Config $config,
         string $directorySeparator = DIRECTORY_SEPARATOR
     ) {
-        $this->container = $container;
+        $this->config = $config;
         $this->directorySeparator = $directorySeparator;
     }
 
@@ -40,7 +40,7 @@ class Breadcrumbs extends ViewFunction
     public function __invoke(string $path)
     {
         return Str::explode($path, $this->directorySeparator)->diff(
-            explode($this->directorySeparator, $this->container->get('base_path'))
+            explode($this->directorySeparator, $this->config->get('base_path'))
         )->filter(static function (string $crumb): bool {
             return ! in_array($crumb, [null, '.']);
         })->reduce(function (Collection $carry, string $crumb): Collection {

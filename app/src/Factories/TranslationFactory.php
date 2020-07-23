@@ -2,8 +2,8 @@
 
 namespace App\Factories;
 
+use App\Config;
 use App\Exceptions\InvalidConfiguration;
-use DI\Container;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Finder\SplFileInfo;
 use Symfony\Component\Translation\Loader\YamlFileLoader;
@@ -13,8 +13,8 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 
 class TranslationFactory
 {
-    /** @var Container The applicaiton container */
-    protected $container;
+    /** @var Config The applicaiton configuration */
+    protected $config;
 
     /** @var CacheInterface The application cache */
     protected $cache;
@@ -22,11 +22,11 @@ class TranslationFactory
     /**
      * Create a new TranslationFactory object.
      *
-     * @param \DI\Container $container
+     * @param \App\Config $config
      */
-    public function __construct(Container $container, CacheInterface $cache)
+    public function __construct(Config $config, CacheInterface $cache)
     {
-        $this->container = $container;
+        $this->config = $config;
         $this->cache = $cache;
     }
 
@@ -38,7 +38,7 @@ class TranslationFactory
     public function __invoke(): TranslatorInterface
     {
         if (! in_array(
-            $language = $this->container->get('language'),
+            $language = $this->config->get('language'),
             $translations = $this->translations())
         ) {
             throw InvalidConfiguration::fromConfig('language', $language);
@@ -49,7 +49,7 @@ class TranslationFactory
 
         foreach ($translations as $language) {
             $translator->addResource('yaml', sprintf(
-                '%s/%s.yaml', $this->container->get('translations_path'), $language
+                '%s/%s.yaml', $this->config->get('translations_path'), $language
             ), $language);
         }
 
@@ -67,7 +67,7 @@ class TranslationFactory
             return array_values(array_map(function (SplFileInfo $file): string {
                 return $file->getBasename('.yaml');
             }, iterator_to_array(
-                Finder::create()->in($this->container->get('translations_path'))->name('*.yaml')
+                Finder::create()->in($this->config->get('translations_path'))->name('*.yaml')
             )));
         });
     }

@@ -2,6 +2,7 @@
 
 namespace App\Factories;
 
+use App\Config;
 use App\Exceptions\InvalidConfiguration;
 use App\HiddenFiles;
 use Closure;
@@ -21,14 +22,23 @@ class FinderFactory
     /** @var Glob|null Hidden files pattern cache */
     protected $pattern;
 
+    /** @var Config The application configuration */
+    protected $config;
+
     /**
      * Create a new FinderFactory object.
      *
-     * @param \DI\Container $container
+     * @param \DI\Container    $container
+     * @param \App\Config      $config
+     * @param \App\HiddenFiles $hiddenFiles
      */
-    public function __construct(Container $container, HiddenFiles $hiddenFiles)
-    {
+    public function __construct(
+        Container $container,
+        Config $config,
+        HiddenFiles $hiddenFiles
+    ) {
         $this->container = $container;
+        $this->config = $config;
         $this->hiddenFiles = $hiddenFiles;
     }
 
@@ -40,7 +50,7 @@ class FinderFactory
     public function __invoke(): Finder
     {
         $finder = Finder::create()->followLinks();
-        $finder->ignoreVCS($this->container->get('hide_vcs_files'));
+        $finder->ignoreVCS($this->config->get('hide_vcs_files'));
 
         if ($this->hiddenFiles->isNotEmpty()) {
             $finder->filter(function (SplFileInfo $file): bool {
@@ -48,18 +58,18 @@ class FinderFactory
             });
         }
 
-        $sortOrder = $this->container->get('sort_order');
+        $sortOrder = $this->config->get('sort_order');
         if ($sortOrder instanceof Closure) {
             $finder->sort($sortOrder);
         } else {
-            if (! array_key_exists($sortOrder, $this->container->get('sort_methods'))) {
+            if (! array_key_exists($sortOrder, $this->config->get('sort_methods'))) {
                 throw InvalidConfiguration::fromConfig('sort_order', $sortOrder);
             }
 
-            $this->container->call($this->container->get('sort_methods')[$sortOrder], [$finder]);
+            $this->container->call($this->config->get('sort_methods')[$sortOrder], [$finder]);
         }
 
-        if ($this->container->get('reverse_sort')) {
+        if ($this->config->get('reverse_sort')) {
             $finder->reverseSorting();
         }
 
@@ -77,7 +87,7 @@ class FinderFactory
     {
         if (! isset($this->pattern)) {
             $this->pattern = Glob::pattern(sprintf('%s{%s}', Glob::escape(
-                $this->container->get('base_path') . DIRECTORY_SEPARATOR
+                $this->config->get('base_path') . DIRECTORY_SEPARATOR
             ), $this->hiddenFiles->implode(',')));
         }
 

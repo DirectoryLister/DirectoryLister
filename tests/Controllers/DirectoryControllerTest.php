@@ -25,7 +25,7 @@ class DirectoryControllerTest extends TestCase
         $this->container->set('display_readmes', $displayReadmes);
 
         $controller = new DirectoryController(
-            $this->container,
+            $this->config,
             new Finder,
             $this->container->get(Twig::class),
             $this->container->get(TranslatorInterface::class)
@@ -49,7 +49,7 @@ class DirectoryControllerTest extends TestCase
         $this->container->set('display_readmes', $displayReadmes);
 
         $controller = new DirectoryController(
-            $this->container,
+            $this->config,
             new Finder,
             $this->container->get(Twig::class),
             $this->container->get(TranslatorInterface::class)
@@ -68,7 +68,7 @@ class DirectoryControllerTest extends TestCase
     public function test_it_returns_a_404_error_when_not_found(): void
     {
         $controller = new DirectoryController(
-            $this->container,
+            $this->config,
             new Finder,
             $this->container->get(Twig::class),
             $this->container->get(TranslatorInterface::class)

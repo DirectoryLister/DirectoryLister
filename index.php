@@ -1,7 +1,6 @@
 <?php
 
 use App\Bootstrap\AppManager;
-use App\Support\Helpers;
 use DI\ContainerBuilder;
 use Dotenv\Dotenv;
 
@@ -17,11 +16,6 @@ Dotenv::createUnsafeImmutable(__DIR__)->safeLoad();
 $container = (new ContainerBuilder)->addDefinitions(
     ...glob(__DIR__ . '/app/config/*.php')
 );
-
-// Compile the container
-if (! Helpers::env('APP_DEBUG', false)) {
-    $container->enableCompilation(__DIR__ . '/app/cache');
-}
 
 // Initialize the application
 $app = $container->build()->call(AppManager::class);

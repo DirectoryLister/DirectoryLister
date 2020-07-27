@@ -4,20 +4,20 @@ namespace Tests;
 
 class ConfigTest extends TestCase
 {
-    public function test_it_can_get_an_environment_variable(): void
+    public function test_it_can_retrieve_a_preset_configuration_value(): void
     {
         $this->container->set('test_string', 'Test string; please ignore');
 
-        $item = $this->config->get('test_string');
+        $string = $this->config->get('test_string');
 
-        $this->assertEquals('Test string; please ignore', $item);
+        $this->assertEquals('Test string; please ignore', $string);
     }
 
-    public function test_it_can_return_a_default_value(): void
+    public function test_it_returns_a_default_value(): void
     {
-        $item = $this->config->get('defualt_test', 'Test default; please ignore');
+        $default = $this->config->get('defualt_test', 'Test default; please ignore');
 
-        $this->assertEquals('Test default; please ignore', $item);
+        $this->assertEquals('Test default; please ignore', $default);
     }
 
     public function test_it_can_retrieve_a_boolean_value(): void
@@ -34,6 +34,15 @@ class ConfigTest extends TestCase
         $this->container->set('null_test', 'null');
 
         $this->assertNull($this->config->get('null_test'));
+    }
+
+    public function test_it_can_retrieve_an_array_value(): void
+    {
+        $this->container->set('array_test', ['foo', 'bar', 'baz']);
+
+        $array = $this->config->get('array_test');
+
+        $this->assertEquals(['foo', 'bar', 'baz'], $array);
     }
 
     public function test_it_can_be_surrounded_by_quotation_marks(): void

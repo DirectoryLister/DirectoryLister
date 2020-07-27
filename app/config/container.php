@@ -17,7 +17,6 @@ return [
     'source_path' => DI\string('{app_path}/src'),
     'translations_path' => DI\string('{app_path}/translations'),
     'views_path' => DI\string('{app_path}/views'),
-    'icons_config' => DI\string('{config_path}/icons.php'),
 
     /** Array of application files (to be hidden) */
     'app_files' => ['app', 'index.php', '.hidden'],

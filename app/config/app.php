@@ -1,7 +1,5 @@
 <?php
 
-use Psr\Container\ContainerInterface;
-
 return [
     /**
      * Enable application debugging and display error messages.
@@ -153,15 +151,4 @@ return [
      * Default value: 1000000000
      */
     'max_hash_size' => DI\env('MAX_HASH_SIZE', 1000000000),
-
-    /**
-     * Array of icon definitions where the array key is the file extension
-     * (without a preceding dot) and the array value is the desired Font Awesome
-     * class names.
-     *
-     * Default value: Array loaded from 'icons.php' config file
-     */
-    'icons' => static function (ContainerInterface $container): array {
-        return require $container->get('icons_config');
-    },
 ];

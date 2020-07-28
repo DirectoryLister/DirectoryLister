@@ -1,9 +1,9 @@
-window.Vue = require('vue');
-
-Vue.component('file-info-modal', require('./components/file-info-modal.vue').default);
+import Vue from 'vue';
+import FileInfoModal from './components/file-info-modal.vue';
 
 const app = new Vue({
-    el: "#app",
+    el: '#app',
+    components: { FileInfoModal },
     data: function () {
         return { menuOpen: false };
     },

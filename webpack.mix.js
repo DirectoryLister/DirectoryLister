@@ -16,8 +16,8 @@ mix.js('app/resources/js/app.js', 'app/assets/app.js');
 
 mix.copyDirectory('app/resources/images', 'app/assets/images');
 
-mix.copyDirectory(
-    'node_modules/@fortawesome/fontawesome-free/webfonts',
+mix.copy(
+    'node_modules/@fortawesome/fontawesome-free/webfonts/fa-{brands,solid}-*',
     'app/assets/webfonts'
 );
 

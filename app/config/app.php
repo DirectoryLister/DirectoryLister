@@ -104,7 +104,7 @@ return [
 
     /**
      * Array of hidden file definitions. Will be merged with definitions in the
-     * file definned in the 'hidden_files_list' configuration option. Supports
+     * file defined in the 'hidden_files_list' configuration option. Supports
      * glob patterns (e.g. *.txt, file.{yml,yaml}, etc.).
      *
      * Default value: []

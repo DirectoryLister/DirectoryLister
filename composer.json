@@ -64,6 +64,9 @@
         "vendor-dir": "app/vendor"
     },
     "scripts": {
-        "serve": "php -S localhost:8080"
+        "serve": "php -S localhost:8080",
+        "post-create-project-cmd": [
+            "npm install && npm run dev"
+        ]
     }
 }

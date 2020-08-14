@@ -10,10 +10,10 @@ powered_by: Unterstützt von
 scroll_to_top: Nach oben Scrollen
 
 error:
-  directory_not_found: Verzeichnis existiert nicht
+  directory_not_found: Verzeichnis nicht gefunden
   file_not_found: Datei nicht gefunden
   file_size_exceeded: Dateigröße zu groß
-  no_results_found: Keine ergebnisse gefunden
-  unexpected: Ein unerwarteter fehler ist aufgetreten
+  no_results_found: Keine Ergebnisse gefunden
+  unexpected: Ein unerwarteter Fehler ist aufgetreten
 
-enable_debugging: Aktivieren sie das "debugging" für zusätzliche informationen
+enable_debugging: Aktivieren sie das "Debugging" für zusätzliche Informationen

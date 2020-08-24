@@ -13,7 +13,7 @@
     "dependencies": {
         "axios": "^0.19.2",
         "highlight.js": "^10.1.2",
-        "vue": "^2.6.11"
+        "vue": "^2.6.12"
     },
     "devDependencies": {
         "@fortawesome/fontawesome-free": "^5.13.1",
@@ -23,6 +23,6 @@
         "sass": "^1.26.10",
         "sass-loader": "^9.0.3",
         "tailwindcss": "^1.6.2",
-        "vue-template-compiler": "^2.6.11"
+        "vue-template-compiler": "^2.6.12"
     }
 }

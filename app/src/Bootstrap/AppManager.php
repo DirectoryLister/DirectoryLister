@@ -11,21 +11,13 @@ class AppManager
     /** @var Container The applicaiton container */
     protected $container;
 
-    /**
-     * Create a new AppManager object.
-     *
-     * @param \DI\Container $container
-     */
+    /** Create a new AppManager object. */
     public function __construct(Container $container)
     {
         $this->container = $container;
     }
 
-    /**
-     * Setup and configure the application.
-     *
-     * @return \Slim\App
-     */
+    /** Setup and configure the application. */
     public function __invoke(): App
     {
         $app = Bridge::create($this->container);

@@ -21,13 +21,7 @@ class FileInfoController
     /** @var TranslatorInterface Translator component */
     protected $translator;
 
-    /**
-     * Create a new FileInfoHandler object.
-     *
-     * @param \App\Config                                        $config
-     * @param \Symfony\Contracts\Cache\CacheInterface            $cache
-     * @param \Symfony\Contracts\Translation\TranslatorInterface $translator
-     */
+    /** Create a new FileInfoHandler object. */
     public function __construct(
         Config $config,
         CacheInterface $cache,
@@ -38,14 +32,7 @@ class FileInfoController
         $this->translator = $translator;
     }
 
-    /**
-     * Invoke the FileInfoHandler.
-     *
-     * @param \Slim\Psr7\Request  $request
-     * @param \Slim\Psr7\Response $response
-     *
-     * @return \Psr\Http\Message\ResponseInterface
-     */
+    /** Invoke the FileInfoHandler. */
     public function __invoke(Request $request, Response $response): ResponseInterface
     {
         $path = $request->getQueryParams()['info'];
@@ -72,13 +59,7 @@ class FileInfoController
         return $response->withHeader('Content-Type', 'application/json');
     }
 
-    /**
-     * Get an array of hashes for a file.
-     *
-     * @param \SplFileInfo $file
-     *
-     * @return array
-     */
+    /** Get an array of hashes for a file. */
     protected function calculateHashes(SplFileInfo $file): array
     {
         return [

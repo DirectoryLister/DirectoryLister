@@ -27,23 +27,14 @@ class CacheFactory
     /** @var Config The application configuration */
     protected $config;
 
-    /**
-     * Create a new CacheFactory object.
-     *
-     * @param \DI\Container $container
-     * @param Config        $config
-     */
+    /** Create a new CacheFactory object. */
     public function __construct(Container $container, Config $config)
     {
         $this->container = $container;
         $this->config = $config;
     }
 
-    /**
-     * Initialize and return a CacheInterface.
-     *
-     * @return \Symfony\Contracts\Cache\CacheInterface
-     */
+    /** Initialize and return a CacheInterface. */
     public function __invoke(): CacheInterface
     {
         switch ($this->config->get('cache_driver')) {

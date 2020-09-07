@@ -19,22 +19,14 @@ class TranslationFactory
     /** @var CacheInterface The application cache */
     protected $cache;
 
-    /**
-     * Create a new TranslationFactory object.
-     *
-     * @param \App\Config $config
-     */
+    /** Create a new TranslationFactory object. */
     public function __construct(Config $config, CacheInterface $cache)
     {
         $this->config = $config;
         $this->cache = $cache;
     }
 
-    /**
-     * Initialize and return the translation component.
-     *
-     * @return \Symfony\Contracts\Translation\TranslatorInterface
-     */
+    /** Initialize and return the translation component. */
     public function __invoke(): TranslatorInterface
     {
         if (! in_array(
@@ -56,11 +48,7 @@ class TranslationFactory
         return $translator;
     }
 
-    /**
-     * Get an array of available translation languages.
-     *
-     * @return array
-     */
+    /** Get an array of available translation languages. */
     protected function translations(): array
     {
         return $this->cache->get('translations', function (): array {

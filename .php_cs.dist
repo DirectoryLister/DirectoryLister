@@ -1,33 +1,10 @@
 <?php
 
+require __DIR__ . '/app/vendor/autoload.php';
+
 $finder = PhpCsFixer\Finder::create()->in([
     __DIR__ . DIRECTORY_SEPARATOR . 'app',
     __DIR__ . DIRECTORY_SEPARATOR . 'tests',
 ])->notPath(['cache', 'vendor']);
 
-return PhpCsFixer\Config::create()->setRules([
-    '@PSR1' => true,
-    '@PSR2' => true,
-    '@Symfony' => true,
-    'array_indentation' => true,
-    'array_syntax' => [
-        'syntax' => 'short'
-    ],
-    'concat_space' => [
-        'spacing' => 'one'
-    ],
-    'linebreak_after_opening_tag' => true,
-    'new_with_braces' => false,
-    'no_multiline_whitespace_before_semicolons' => true,
-    'no_superfluous_phpdoc_tags' => false,
-    'no_useless_else' => true,
-    'no_useless_return' => true,
-    'not_operator_with_successor_space' => true,
-    'phpdoc_to_comment' => false,
-    'phpdoc_no_empty_return' => false,
-    'phpdoc_order' => true,
-    'semicolon_after_instruction' => true,
-    'single_trait_insert_per_statement' => false,
-    'trailing_comma_in_multiline_array' => false,
-    'yoda_style' => null
-])->setFinder($finder);
+return PHLAK\CodingStandards\ConfigFactory::make($finder);

@@ -28,14 +28,7 @@ class ZipController
     /** @var TranslatorInterface Translator component */
     protected $translator;
 
-    /**
-     * Create a new ZipHandler object.
-     *
-     * @param \App\Config                                        $config
-     * @param \Symfony\Contracts\Cache\CacheInterface            $cache
-     * @param \PhpCsFixer\Finder                                 $finder
-     * @param \Symfony\Contracts\Translation\TranslatorInterface $translator
-     */
+    /** Create a new ZipHandler object. */
     public function __construct(
         Config $config,
         CacheInterface $cache,
@@ -48,14 +41,7 @@ class ZipController
         $this->translator = $translator;
     }
 
-    /**
-     * Invoke the ZipHandler.
-     *
-     * @param \Slim\Psr7\Request  $request
-     * @param \Slim\Psr7\Response $response
-     *
-     *  @return \Psr\Http\Message\ResponseInterface
-     */
+    /** Invoke the ZipHandler. */
     public function __invoke(Request $request, Response $response): ResponseInterface
     {
         $path = $request->getQueryParams()['zip'];
@@ -77,13 +63,7 @@ class ZipController
             ));
     }
 
-    /**
-     * Create a zip file from a directory.
-     *
-     * @param string $path
-     *
-     * @return \App\TemporaryFile
-     */
+    /** Create a zip file from a directory. */
     protected function createZip(string $path): TemporaryFile
     {
         $zip = new ZipArchive;
@@ -100,14 +80,7 @@ class ZipController
         return $tempFile;
     }
 
-    /**
-     * Return the path to a file with the preceding root path stripped.
-     *
-     * @param \Symfony\Component\Finder\SplFileInfo $file
-     * @param string                                $path
-     *
-     * @return string
-     */
+    /** Return the path to a file with the preceding root path stripped. */
     protected function stripPath(SplFileInfo $file, string $path): string
     {
         $pattern = sprintf(
@@ -117,13 +90,7 @@ class ZipController
         return preg_replace($pattern, '', $file->getPathname());
     }
 
-    /**
-     * Generate the file name for a path.
-     *
-     * @param string $path
-     *
-     * @return string
-     */
+    /** Generate the file name for a path. */
     protected function generateFileName(string $path): string
     {
         $filename = Str::explode($path, DIRECTORY_SEPARATOR)->last();

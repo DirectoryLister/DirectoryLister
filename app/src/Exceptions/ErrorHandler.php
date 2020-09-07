@@ -18,29 +18,14 @@ class ErrorHandler implements ErrorHandlerInterface
     /** @var TranslatorInterface Translation component */
     protected $translator;
 
-    /**
-     * Create a new ErrorHandler object.
-     *
-     * @param \Slim\Views\Twig                                   $view
-     * @param \Symfony\Contracts\Translation\TranslatorInterface $translator
-     */
+    /** Create a new ErrorHandler object. */
     public function __construct(Twig $view, TranslatorInterface $translator)
     {
         $this->view = $view;
         $this->translator = $translator;
     }
 
-    /**
-     * Invoke the ErrorHandler class.
-     *
-     * @param \Psr\Http\Message\ServerRequestInterface $request
-     * @param \Throwable                               $exception
-     * @param bool                                     $displayErrorDetails
-     * @param bool                                     $logErrors
-     * @param bool                                     $logErrorDetails
-     *
-     * @return \Psr\Http\Message\ResponseInterface
-     */
+    /** Invoke the ErrorHandler class. */
     public function __invoke(
         ServerRequestInterface $request,
         Throwable $exception,
@@ -52,7 +37,7 @@ class ErrorHandler implements ErrorHandlerInterface
 
         if (in_array('application/json', explode(',', $request->getHeaderLine('Accept')))) {
             $response->getBody()->write(json_encode([
-                'error' => ['message' => $this->translator->trans('error.unexpected')]
+                'error' => ['message' => $this->translator->trans('error.unexpected')],
             ]));
 
             return $response->withHeader('Content-Type', 'application/json');

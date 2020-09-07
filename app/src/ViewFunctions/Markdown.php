@@ -22,13 +22,7 @@ class Markdown extends ViewFunction
         $this->cache = $cache;
     }
 
-    /**
-     * Parses a string of markdown into HTML.
-     *
-     * @param string $string
-     *
-     * @return string
-     */
+    /** Parses a string of markdown into HTML. */
     public function __invoke(string $string): string
     {
         return $this->cache->get(

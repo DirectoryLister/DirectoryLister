@@ -20,13 +20,7 @@ class SearchController
     /** @var TranslatorInterface Translator component */
     protected $translator;
 
-    /**
-     * Create a new SearchHandler object.
-     *
-     * @param \Symfony\Component\Finder\Finder                   $finder
-     * @param \Slim\Views\Twig                                   $view
-     * @param \Symfony\Contracts\Translation\TranslatorInterface $translator
-     */
+    /** Create a new SearchHandler object. */
     public function __construct(Finder $finder, Twig $view, TranslatorInterface $translator)
     {
         $this->finder = $finder;
@@ -34,14 +28,7 @@ class SearchController
         $this->translator = $translator;
     }
 
-    /**
-     * Invoke the SearchHandler.
-     *
-     * @param \Slim\Psr7\Request  $request
-     * @param \Slim\Psr7\Response $response
-     *
-     * @return \Psr\Http\Message\ResponseInterface
-     */
+    /** Invoke the SearchHandler. */
     public function __invoke(Request $request, Response $response): ResponseInterface
     {
         $search = $request->getQueryParams()['search'];

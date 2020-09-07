@@ -12,23 +12,13 @@ class ParentUrl extends ViewFunction
     /** @var string The directory separator */
     protected $directorySeparator;
 
-    /**
-     * Create a new ParentUrl object.
-     *
-     * @param string $directorySeparator
-     */
+    /** Create a new ParentUrl object. */
     public function __construct(string $directorySeparator = DIRECTORY_SEPARATOR)
     {
         $this->directorySeparator = $directorySeparator;
     }
 
-    /**
-     * Get the parent directory for a given path.
-     *
-     * @param string $path
-     *
-     * @return string
-     */
+    /** Get the parent directory for a given path. */
     public function __invoke(string $path): string
     {
         $parentDir = Str::explode($path, $this->directorySeparator)->map(

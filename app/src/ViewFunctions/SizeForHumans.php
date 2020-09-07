@@ -9,13 +9,7 @@ class SizeForHumans extends ViewFunction
     /** @var string The function name */
     protected $name = 'size_for_humans';
 
-    /**
-     * Get the human readable file size from a file object.
-     *
-     * @param SplFileInfo $file A file object
-     *
-     * @return string
-     */
+    /** Get the human readable file size from a file object. */
     public function __invoke(SplFileInfo $file): string
     {
         $sizes = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];

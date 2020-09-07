@@ -12,47 +12,25 @@ class Url extends ViewFunction
     /** @var string The directory separator */
     protected $directorySeparator;
 
-    /**
-     * Create a new Url object.
-     *
-     * @param string The directory separator
-     */
+    /** Create a new Url object. */
     public function __construct(string $directorySeparator = DIRECTORY_SEPARATOR)
     {
         $this->directorySeparator = $directorySeparator;
     }
 
-    /**
-     * Return the URL for a given path.
-     *
-     * @param string $path
-     *
-     * @return string
-     */
+    /** Return the URL for a given path. */
     public function __invoke(string $path = '/'): string
     {
         return $this->escape($this->stripLeadingSlashes($path));
     }
 
-    /**
-     * Strip all leading slashes (and a single dot) from a path.
-     *
-     * @param string $path
-     *
-     * @return string
-     */
+    /** Strip all leading slashes (and a single dot) from a path. */
     protected function stripLeadingSlashes(string $path): string
     {
         return preg_replace('/^\.?(\/|\\\)+/', '', $path);
     }
 
-    /**
-     * Escape URL characters in path segments.
-     *
-     * @param string $path
-     *
-     * @return string
-     */
+    /** Escape URL characters in path segments. */
     protected function escape(string $path): string
     {
         return Str::explode($path, $this->directorySeparator)->map(

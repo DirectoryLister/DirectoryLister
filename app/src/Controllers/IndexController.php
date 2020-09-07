@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use DI\Container;
+use Psr\Http\Message\ResponseInterface;
 use Slim\Psr7\Request;
 use Slim\Psr7\Response;
 
@@ -11,25 +12,14 @@ class IndexController
     /** @var Container Application container */
     protected $container;
 
-    /**
-     * Create a new IndexController object.
-     *
-     * @param \DI\Container $container
-     */
+    /** Create a new IndexController object. */
     public function __construct(Container $container)
     {
         $this->container = $container;
     }
 
-    /**
-     * Invoke the IndexController.
-     *
-     * @param \Slim\Psr7\Request  $request
-     * @param \Slim\Psr7\Response $response
-     *
-     * @return \Psr\Http\Message\ResponseInterface
-     */
-    public function __invoke(Request $request, Response $response)
+    /** Invoke the IndexController. */
+    public function __invoke(Request $request, Response $response): ResponseInterface
     {
         switch (true) {
             case array_key_exists('info', $request->getQueryParams()):

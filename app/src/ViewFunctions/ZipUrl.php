@@ -7,13 +7,7 @@ class ZipUrl extends Url
     /** @var string The function name */
     protected $name = 'zip_url';
 
-    /**
-     * Return the URL for a given path and action.
-     *
-     * @param string $path
-     *
-     * @return string
-     */
+    /** Return the URL for a given path and action. */
     public function __invoke(string $path = '/'): string
     {
         $path = $this->stripLeadingSlashes($path);

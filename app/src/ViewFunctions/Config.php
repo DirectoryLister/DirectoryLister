@@ -12,22 +12,13 @@ class Config extends ViewFunction
     /** @var AppConfig The application configuration */
     protected $config;
 
-    /**
-     * Create a new Config object.
-     */
+    /** Create a new Config object. */
     public function __construct(AppConfig $config)
     {
         $this->config = $config;
     }
 
-    /**
-     * Retrieve an item from the view config.
-     *
-     * @param string $key
-     * @param mixed  $default
-     *
-     * @return mixed
-     */
+    /** Retrieve an item from the view config. */
     public function __invoke(string $key, $default = null)
     {
         return $this->config->get($key, $default);

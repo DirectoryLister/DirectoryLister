@@ -12,23 +12,13 @@ class Translate extends ViewFunction
     /** @var TranslatorInterface The application translator */
     protected $translator;
 
-    /**
-     * Create a new Translate object.
-     *
-     * @param \Symfony\Contracts\Translation\TranslatorInterface $translator
-     */
+    /** Create a new Translate object. */
     public function __construct(TranslatorInterface $translator)
     {
         $this->translator = $translator;
     }
 
-    /**
-     * Retrieve a translated string by ID.
-     *
-     * @param string $id
-     *
-     * @return string
-     */
+    /** Retrieve a translated string by ID. */
     public function __invoke(string $id): string
     {
         return $this->translator->trans($id);

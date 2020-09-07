@@ -21,11 +21,7 @@ class TestCase extends PHPUnitTestCase
     /** @var string Path to test files directory */
     protected $testFilesPath = __DIR__ . '/_files';
 
-    /**
-     * This method is called before each test.
-     *
-     * @return void
-     */
+    /** This method is called before each test. */
     public function setUp(): void
     {
         Dotenv::createUnsafeImmutable(__DIR__)->safeLoad();
@@ -42,13 +38,7 @@ class TestCase extends PHPUnitTestCase
         $this->container->set('cache_path', $this->filePath('app/cache'));
     }
 
-    /**
-     * Get the file path to a test file.
-     *
-     * @param string $filePath
-     *
-     * @return string
-     */
+    /** Get the file path to a test file. */
     protected function filePath(string $filePath): string
     {
         return realpath($this->testFilesPath . '/' . $filePath);

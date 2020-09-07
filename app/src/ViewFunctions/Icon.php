@@ -13,23 +13,13 @@ class Icon extends ViewFunction
     /** @var Config The application configuration */
     protected $config;
 
-    /**
-     * Create a new Config object.
-     *
-     * @param \App\Config $config
-     */
+    /** Create a new Config object. */
     public function __construct(Config $config)
     {
         $this->config = $config;
     }
 
-    /**
-     * Retrieve the icon markup for a file.
-     *
-     * @param \Symfony\Component\Finder\SplFileInfo $file
-     *
-     * @return string
-     */
+    /** Retrieve the icon markup for a file. */
     public function __invoke(SplFileInfo $file): string
     {
         $icons = $this->config->get('icons');

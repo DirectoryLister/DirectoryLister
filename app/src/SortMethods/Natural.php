@@ -6,13 +6,7 @@ use Symfony\Component\Finder\Finder;
 
 class Natural extends SortMethod
 {
-    /**
-     * Sort by (natural) file name.
-     *
-     * @param \Symfony\Component\Finder\Finder $finder
-     *
-     * @return void
-     */
+    /** Sort by (natural) file name. */
     public function __invoke(Finder $finder): void
     {
         $finder->sortByName(true);

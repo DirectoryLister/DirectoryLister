@@ -17,12 +17,7 @@ class TwigFactory
     /** @var CallableResolver The callable resolver */
     protected $callableResolver;
 
-    /**
-     * Create a new TwigFactory object.
-     *
-     * @param \App\Config               $config
-     * @param \Invoker\CallableResolver $callableResolver
-     */
+    /** Create a new TwigFactory object. */
     public function __construct(
         Config $config,
         CallableResolver $callableResolver
@@ -31,11 +26,7 @@ class TwigFactory
         $this->callableResolver = $callableResolver;
     }
 
-    /**
-     * Initialize and return the Twig component.
-     *
-     * @return \Slim\Views\Twig
-     */
+    /** Initialize and return the Twig component. */
     public function __invoke(): Twig
     {
         $twig = new Twig(new FilesystemLoader(

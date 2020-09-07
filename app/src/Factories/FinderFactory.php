@@ -25,13 +25,7 @@ class FinderFactory
     /** @var Config The application configuration */
     protected $config;
 
-    /**
-     * Create a new FinderFactory object.
-     *
-     * @param \DI\Container    $container
-     * @param \App\Config      $config
-     * @param \App\HiddenFiles $hiddenFiles
-     */
+    /** Create a new FinderFactory object. */
     public function __construct(
         Container $container,
         Config $config,
@@ -42,11 +36,7 @@ class FinderFactory
         $this->hiddenFiles = $hiddenFiles;
     }
 
-    /**
-     * Initialize and return the Finder component.
-     *
-     * @return \Symfony\Component\Finder\Finder
-     */
+    /** Initialize and return the Finder component. */
     public function __invoke(): Finder
     {
         $finder = Finder::create()->followLinks();
@@ -76,13 +66,7 @@ class FinderFactory
         return $finder;
     }
 
-    /**
-     * Determine if a file should be hidden.
-     *
-     * @param \Symfony\Component\Finder\SplFileInfo $file
-     *
-     * @return bool
-     */
+    /** Determine if a file should be hidden. */
     protected function isHidden(SplFileInfo $file): bool
     {
         if (! isset($this->pattern)) {

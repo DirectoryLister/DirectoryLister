@@ -17,11 +17,7 @@ class Breadcrumbs extends ViewFunction
     /** @var string The directory separator */
     protected $directorySeparator;
 
-    /**
-     * Create a new Breadcrumbs object.
-     *
-     * @param \App\Config $config
-     */
+    /** Create a new Breadcrumbs object. */
     public function __construct(
         Config $config,
         string $directorySeparator = DIRECTORY_SEPARATOR
@@ -30,14 +26,8 @@ class Breadcrumbs extends ViewFunction
         $this->directorySeparator = $directorySeparator;
     }
 
-    /**
-     * Build an array of breadcrumbs for a given path.
-     *
-     * @param string $path
-     *
-     * @return array
-     */
-    public function __invoke(string $path)
+    /** Build a collection of breadcrumbs for a given path. */
+    public function __invoke(string $path): Collection
     {
         return Str::explode($path, $this->directorySeparator)->diff(
             explode($this->directorySeparator, $this->config->get('base_path'))

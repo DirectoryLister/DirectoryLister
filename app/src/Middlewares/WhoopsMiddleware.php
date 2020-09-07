@@ -20,13 +20,7 @@ class WhoopsMiddleware
     /** @var JsonResponseHandler The JSON response handler */
     protected $jsonHandler;
 
-    /**
-     * Create a new WhoopseMiddleware object.
-     *
-     * @param \Whoops\RunInterface                $whoops
-     * @param \Whoops\Handler\PrettyPageHandler   $pageHandler
-     * @param \Whoops\Handler\JsonResponseHandler $jsonHandler
-     */
+    /** Create a new WhoopseMiddleware object. */
     public function __construct(
         RunInterface $whoops,
         PrettyPageHandler $pageHandler,
@@ -37,14 +31,7 @@ class WhoopsMiddleware
         $this->jsonHandler = $jsonHandler;
     }
 
-    /**
-     * Invoke the WhoopseMiddleware class.
-     *
-     * @param \Psr\Http\Message\ServerRequestInterface $request
-     * @param \Psr\Http\Server\RequestHandlerInterface $handler
-     *
-     * @return \Psr\Http\Message\ResponseInterface
-     */
+    /** Invoke the WhoopseMiddleware class. */
     public function __invoke(Request $request, RequestHandler $handler): ResponseInterface
     {
         $this->pageHandler->setPageTitle(

@@ -32,7 +32,7 @@ class FileInfoControllerTest extends TestCase
                 'md5' => '6e35c5c3bca40dfb96cbb449fd06df38',
                 'sha1' => '7ea619032a992824fac30026d3df919939c7ebfb',
                 'sha256' => '40adf7348820699ed3e72dc950ccd8d8d538065a91eba3c76263c44b1d12df9c',
-            ]
+            ],
         ]), (string) $response->getBody());
     }
 

@@ -12,11 +12,7 @@ class HiddenFiles extends Collection
         $this->items = $this->getArrayableItems($items);
     }
 
-    /**
-     * Create a new HiddenFiles collection object.
-     *
-     * @param \App\Config $config
-     */
+    /** Create a new HiddenFiles collection object. */
     public static function fromConfig(Config $config): self
     {
         $items = $config->get('hidden_files');

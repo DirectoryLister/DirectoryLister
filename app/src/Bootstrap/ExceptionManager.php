@@ -14,23 +14,14 @@ class ExceptionManager
     /** @var Config The application configuration */
     protected $config;
 
-    /**
-     * Create a new ExceptionManager object.
-     *
-     * @param \Slim\App   $app
-     * @param \App\Config $config
-     */
+    /** Create a new ExceptionManager object. */
     public function __construct(App $app, Config $config)
     {
         $this->app = $app;
         $this->config = $config;
     }
 
-    /**
-     * Set up and configure exception handling.
-     *
-     * @return void
-     */
+    /** Set up and configure exception handling. */
     public function __invoke(): void
     {
         if ($this->config->get('debug')) {

@@ -26,14 +26,7 @@ class DirectoryController
     /** @var TranslatorInterface Translator component */
     protected $translator;
 
-    /**
-     * Create a new IndexController object.
-     *
-     * @param \App\Config                                        $config
-     * @param \Symfony\Component\Finder\Finder                   $finder
-     * @param \Slim\Views\Twig                                   $view
-     * @param \Symfony\Contracts\Translation\TranslatorInterface $translator
-     */
+    /** Create a new IndexController object. */
     public function __construct(
         Config $config,
         Finder $finder,
@@ -46,14 +39,7 @@ class DirectoryController
         $this->translator = $translator;
     }
 
-    /**
-     * Invoke the IndexController.
-     *
-     * @param \Slim\Psr7\Request  $request
-     * @param \Slim\Psr7\Response $response
-     *
-     * @return \Psr\Http\Message\ResponseInterface
-     */
+    /** Invoke the IndexController. */
     public function __invoke(Request $request, Response $response): ResponseInterface
     {
         $path = $request->getQueryParams()['dir'] ?? '.';
@@ -62,7 +48,7 @@ class DirectoryController
             $files = $this->finder->in($path)->depth(0);
         } catch (Exception $exception) {
             return $this->view->render($response->withStatus(404), 'error.twig', [
-                'message' => $this->translator->trans('error.directory_not_found')
+                'message' => $this->translator->trans('error.directory_not_found'),
             ]);
         }
 
@@ -74,13 +60,7 @@ class DirectoryController
         ]);
     }
 
-    /**
-     * Return the README file within a finder object.
-     *
-     * @param \Symfony\Component\Finder\Finder $files
-     *
-     * @return \Symfony\Component\Finder\SplFileInfo|null
-     */
+    /** Return the README file within a finder object. */
     protected function readme(Finder $files): ?SplFileInfo
     {
         if (! $this->config->get('display_readmes')) {

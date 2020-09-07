@@ -86,8 +86,6 @@ class DirectoryControllerTest extends TestCase
     /**
      * Provide config options in the following order:
      * [ app.hide_app_files, app.hide_vcs_files, app.display_readmes ].
-     *
-     * @return array
      */
     public function configOptions(): array
     {

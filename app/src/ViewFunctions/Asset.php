@@ -13,23 +13,13 @@ class Asset extends ViewFunction
     /** @var Config The application configuration */
     protected $config;
 
-    /**
-     * Create a new Asset object.
-     *
-     * @param \App\Config $container
-     */
+    /** Create a new Asset object. */
     public function __construct(Config $container)
     {
         $this->config = $container;
     }
 
-    /**
-     * Return the path to an asset.
-     *
-     * @param string $path
-     *
-     * @return string
-     */
+    /** Return the path to an asset. */
     public function __invoke(string $path): string
     {
         $path = '/' . ltrim($path, '/');
@@ -41,11 +31,7 @@ class Asset extends ViewFunction
         return 'app/assets/' . ltrim($path, '/');
     }
 
-    /**
-     * Return the mix manifest collection.
-     *
-     * @return \Tightenco\Collect\Support\Collection
-     */
+    /** Return the mix manifest collection. */
     protected function mixManifest(): Collection
     {
         $mixManifest = $this->config->get('asset_path') . '/mix-manifest.json';

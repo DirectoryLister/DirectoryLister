@@ -10,20 +10,14 @@ class Config
     /** @var Container The application container */
     protected $container;
 
+    /** Create a new Config object. */
     public function __construct(Container $container)
     {
         $this->container = $container;
     }
 
-    /**
-     * Get the value of a configuration variable.
-     *
-     * @param string $key     The unique configuration variable ID
-     * @param mixed  $default Default value to return if no environment variable is set
-     *
-     * @return mixed
-     */
-    public function get($key, $default = null)
+    /** Get the value of a configuration variable. */
+    public function get(string $key, $default = null)
     {
         try {
             $value = $this->container->get($key);

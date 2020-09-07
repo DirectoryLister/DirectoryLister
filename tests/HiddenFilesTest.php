@@ -29,24 +29,24 @@ class HiddenFilesTest extends TestCase
     {
         return [
             'None' => [
-                [], 'NOT_A_REAL_FILE', false, []
+                [], 'NOT_A_REAL_FILE', false, [],
             ],
             'Hidden files array' => [
-                ['foo', 'bar', 'baz'], 'NOT_A_REAL_FILE', false, ['foo', 'bar', 'baz']
+                ['foo', 'bar', 'baz'], 'NOT_A_REAL_FILE', false, ['foo', 'bar', 'baz'],
             ],
             'Hidden files array with duplicates' => [
-                ['foo', 'bar', 'foo'], 'NOT_A_REAL_FILE', false, ['foo', 'bar']
+                ['foo', 'bar', 'foo'], 'NOT_A_REAL_FILE', false, ['foo', 'bar'],
             ],
             'Hidden files list' => [
-                [], $this->filePath('.hidden'), false, ['alpha', 'bravo']
+                [], $this->filePath('.hidden'), false, ['alpha', 'bravo'],
             ],
             'App files' => [
-                [], 'NOT_A_REAL_FILE', true, ['app', 'index.php', '.hidden']
+                [], 'NOT_A_REAL_FILE', true, ['app', 'index.php', '.hidden'],
             ],
             'All' => [
                 ['foo', 'alpha'], $this->filePath('.hidden'), true, [
-                    'foo', 'alpha', 'bravo', 'app', 'index.php', '.hidden'
-                ]
+                    'foo', 'alpha', 'bravo', 'app', 'index.php', '.hidden',
+                ],
             ],
         ];
     }

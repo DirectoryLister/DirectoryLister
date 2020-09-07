@@ -12,7 +12,7 @@ class MiddlewareManagerTest extends TestCase
 {
     /** @const Array of application middlewares */
     protected const MIDDLEWARES = [
-        Middlewares\WhoopsMiddleware::class
+        Middlewares\WhoopsMiddleware::class,
     ];
 
     public function test_it_registers_application_middlewares(): void

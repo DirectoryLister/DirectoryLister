@@ -7,12 +7,7 @@ class TemporaryFile
     /** @var string Path to the temporary file */
     protected $path;
 
-    /**
-     * Create a new TemporaryFile object.
-     *
-     * @param string $dir
-     * @param string $prefix
-     */
+    /** Create a new TemporaryFile object. */
     public function __construct(string $dir, string $prefix = '')
     {
         $this->path = tempnam($dir, $prefix);
@@ -24,21 +19,13 @@ class TemporaryFile
         unlink($this->path);
     }
 
-    /**
-     * Get the path to the temporary file.
-     *
-     * @return string
-     */
+    /** Get the path to the temporary file. */
     public function __toString(): string
     {
         return $this->path;
     }
 
-    /**
-     * Get the raw contents of the file.
-     *
-     * @return string
-     */
+    /** Get the raw contents of the file. */
     public function getContents(): string
     {
         return file_get_contents($this->path);

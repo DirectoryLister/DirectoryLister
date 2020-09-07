@@ -80,7 +80,7 @@ class FinderFactoryTest extends TestCase
     public function test_it_does_not_return_hidden_files(): void
     {
         $this->container->set('hidden_files', [
-            'subdir/alpha.scss', 'subdir/charlie.bash', '**/*.yaml'
+            'subdir/alpha.scss', 'subdir/charlie.bash', '**/*.yaml',
         ]);
 
         $finder = (new FinderFactory(

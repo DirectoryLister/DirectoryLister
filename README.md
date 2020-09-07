@@ -1,15 +1,15 @@
 <p align="center">
-  <img src="directory-lister.svg" alt="Directory Lister" width="66%">
+    <img src="directory-lister.svg" alt="Directory Lister" width="66%">
 </p>
 
 <p align="center">
-  <a href="https://spectrum.chat/directory-lister"><img src="https://img.shields.io/badge/Join_the-Community-7b16ff.svg?style=for-the-badge" alt="Join our Community"></a>
-  <a href="https://github.com/users/PHLAK/sponsorship"><img src="https://img.shields.io/badge/Become_a-Sponsor-cc4195.svg?style=for-the-badge" alt="Become a Sponsor"></a>
-  <a href="https://paypal.me/ChrisKankiewicz"><img src="https://img.shields.io/badge/Make_a-Donation-006bb6.svg?style=for-the-badge" alt="One-time Donation"></a>
-  <br>
-  <a href="https://github.com/DirectoryLister/DirectoryLister/blob/master/LICENSE"><img src="https://img.shields.io/github/license/DirectoryLister/DirectoryLister?style=flat-square" alt="License"></a>
-  <a href="https://travis-ci.com/DirectoryLister/DirectoryLister"><img src="https://img.shields.io/travis/com/DirectoryLister/DirectoryLister/master?style=flat-square" alt="Build Status"></a>
-  <a href="https://styleci.io/repos/1375774"><img src="https://styleci.io/repos/1375774/shield?branch=master" alt="StyleCI"></a>
+    <a href="https://spectrum.chat/directory-lister"><img src="https://img.shields.io/badge/Join_the-Community-7b16ff.svg?style=for-the-badge" alt="Join our Community"></a>
+    <a href="https://github.com/users/PHLAK/sponsorship"><img src="https://img.shields.io/badge/Become_a-Sponsor-cc4195.svg?style=for-the-badge" alt="Become a Sponsor"></a>
+    <a href="https://paypal.me/ChrisKankiewicz"><img src="https://img.shields.io/badge/Make_a-Donation-006bb6.svg?style=for-the-badge" alt="One-time Donation"></a>
+    <br>
+    <a href="https://github.com/DirectoryLister/DirectoryLister/blob/master/LICENSE"><img src="https://img.shields.io/github/license/DirectoryLister/DirectoryLister?style=flat-square" alt="License"></a>
+    <a href="https://travis-ci.com/DirectoryLister/DirectoryLister"><img src="https://img.shields.io/travis/com/DirectoryLister/DirectoryLister/master?style=flat-square" alt="Build Status"></a>
+    <a href="https://styleci.io/repos/1375774"><img src="https://styleci.io/repos/1375774/shield?branch=master" alt="StyleCI"></a>
 </p>
 
 ---

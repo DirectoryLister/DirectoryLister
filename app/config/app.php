@@ -30,6 +30,13 @@ return [
     'home_text' => DI\env('HOME_TEXT', null),
 
     /**
+     * Meta tag description text.
+     *
+     * Default value: 'Yet another directory listing, powered by Directory Lister.'.
+     */
+    'meta_description' => DI\env('META_DESCRIPTION', 'Yet another directory listing, powered by Directory Lister.'),
+
+    /**
      * Enable dark mode?
      *
      * Default value: false

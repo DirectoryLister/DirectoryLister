@@ -1,0 +1,19 @@
+home: Αρχική
+download: Λήψη αυτού του καταλόγου
+search: Αναζήτηση
+file:
+  name: Όνομα αρχείου
+  size: Μέγεθος
+  date: Ημερομηνία
+  info: Πληροφορίες αρχείου
+powered_by: Powered by
+scroll_to_top: Μεταβείτε στην κορυφή
+
+error:
+  directory_not_found: Ο κατάλογος δεν υπάρχει
+  file_not_found: Το αρχείο δεν βρέθηκε
+  file_size_exceeded: Το μέγεθος του αρχείου είναι πολύ μεγάλο
+  no_results_found: Δεν βρέθηκαν αποτελέσματα
+  unexpected: Παρουσιάστηκε μη αναμενόμενο σφάλμα
+
+enable_debugging: Ενεργοποιήστε τον εντοπισμό σφαλμάτων για πρόσθετες πληροφορίες

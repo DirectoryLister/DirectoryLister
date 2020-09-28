@@ -636,16 +636,16 @@
         },
         {
             "name": "php-di/php-di",
-            "version": "6.2.2",
+            "version": "6.2.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/PHP-DI/PHP-DI.git",
-                "reference": "40140b5bca07c5fed6919a0f1029ff67617faccd"
+                "reference": "63c444646f5f41d84818af1c780abed8ebcc082c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PHP-DI/PHP-DI/zipball/40140b5bca07c5fed6919a0f1029ff67617faccd",
-                "reference": "40140b5bca07c5fed6919a0f1029ff67617faccd",
+                "url": "https://api.github.com/repos/PHP-DI/PHP-DI/zipball/63c444646f5f41d84818af1c780abed8ebcc082c",
+                "reference": "63c444646f5f41d84818af1c780abed8ebcc082c",
                 "shasum": ""
             },
             "require": {
@@ -704,7 +704,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-08-23T16:23:17+00:00"
+            "time": "2020-09-24T12:21:43+00:00"
         },
         {
             "name": "php-di/phpdoc-reader",
@@ -1400,6 +1400,16 @@
                 "framework",
                 "micro",
                 "router"
+            ],
+            "funding": [
+                {
+                    "url": "https://opencollective.com/slimphp",
+                    "type": "open_collective"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/slim/slim",
+                    "type": "tidelift"
+                }
             ],
             "time": "2020-04-14T20:49:48+00:00"
         },

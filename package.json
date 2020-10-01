@@ -16,7 +16,7 @@
         "vue": "^2.6.12"
     },
     "devDependencies": {
-        "@fortawesome/fontawesome-free": "^5.13.1",
+        "@fortawesome/fontawesome-free": "^5.15.0",
         "cross-env": "^7.0.2",
         "laravel-mix": "^5.0.5",
         "resolve-url-loader": "^3.1.1",

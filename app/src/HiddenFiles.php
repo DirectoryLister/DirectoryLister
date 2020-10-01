@@ -21,6 +21,6 @@ class HiddenFiles extends Collection
             $items = array_merge($items, $config->get('app_files'));
         }
 
-        return new static(array_unique($items));
+        return new self(array_unique($items));
     }
 }

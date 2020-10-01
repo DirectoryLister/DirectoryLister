@@ -6,12 +6,6 @@ use Tightenco\Collect\Support\Collection;
 
 class HiddenFiles extends Collection
 {
-    /** {@inheritdoc} */
-    protected function __construct($items = [])
-    {
-        $this->items = $this->getArrayableItems($items);
-    }
-
     /** Create a new HiddenFiles collection object. */
     public static function fromConfig(Config $config): self
     {
@@ -27,6 +21,6 @@ class HiddenFiles extends Collection
             $items = array_merge($items, $config->get('app_files'));
         }
 
-        return new self(array_unique($items));
+        return new static(array_unique($items));
     }
 }

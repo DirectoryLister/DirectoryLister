@@ -16,7 +16,13 @@ class Config
         $this->container = $container;
     }
 
-    /** Get the value of a configuration variable. */
+    /**
+     * Get the value of a configuration variable.
+     *
+     * @param mixed $default
+     *
+     * @return mixed
+     */
     public function get(string $key, $default = null)
     {
         try {

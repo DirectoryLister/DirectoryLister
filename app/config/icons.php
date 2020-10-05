@@ -38,7 +38,7 @@ return [
         'eot' => 'fas fa-font-case',
         'eps' => 'fas fa-image',
         'erb' => 'fas fa-code',
-        'exe' => 'fas fa-window',
+        'exe' => 'fab fa-windows',
         'flac' => 'fas fa-music',
         'flv' => 'fas fa-video',
         'gam' => 'fas fa-gamepad',

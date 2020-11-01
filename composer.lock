@@ -537,16 +537,16 @@
         },
         {
             "name": "phlak/splat",
-            "version": "3.0.0",
+            "version": "3.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/PHLAK/Splat.git",
-                "reference": "4fa09d6c517561d56c5e9862b298843c11c11a81"
+                "reference": "a57702eec01b9da631e39f936a6341edce2eb103"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PHLAK/Splat/zipball/4fa09d6c517561d56c5e9862b298843c11c11a81",
-                "reference": "4fa09d6c517561d56c5e9862b298843c11c11a81",
+                "url": "https://api.github.com/repos/PHLAK/Splat/zipball/a57702eec01b9da631e39f936a6341edce2eb103",
+                "reference": "a57702eec01b9da631e39f936a6341edce2eb103",
                 "shasum": ""
             },
             "require": {
@@ -588,7 +588,7 @@
                     "type": "paypal"
                 }
             ],
-            "time": "2020-05-15T17:01:07+00:00"
+            "time": "2020-10-10T06:24:40+00:00"
         },
         {
             "name": "php-di/invoker",
@@ -1400,6 +1400,16 @@
                 "framework",
                 "micro",
                 "router"
+            ],
+            "funding": [
+                {
+                    "url": "https://opencollective.com/slimphp",
+                    "type": "open_collective"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/slim/slim",
+                    "type": "tidelift"
+                }
             ],
             "time": "2020-04-14T20:49:48+00:00"
         },

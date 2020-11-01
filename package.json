@@ -12,7 +12,7 @@
     },
     "dependencies": {
         "axios": "^0.20.0",
-        "highlight.js": "^10.2.0",
+        "highlight.js": "^10.3.2",
         "vue": "^2.6.12"
     },
     "devDependencies": {

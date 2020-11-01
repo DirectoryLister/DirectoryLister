@@ -1401,6 +1401,16 @@
                 "micro",
                 "router"
             ],
+            "funding": [
+                {
+                    "url": "https://opencollective.com/slimphp",
+                    "type": "open_collective"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/slim/slim",
+                    "type": "tidelift"
+                }
+            ],
             "time": "2020-04-14T20:49:48+00:00"
         },
         {
@@ -3862,16 +3872,16 @@
         },
         {
             "name": "phlak/coding-standards",
-            "version": "1.1.0",
+            "version": "1.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/PHLAK/CodingStandards.git",
-                "reference": "ec47c343a7ee6f517dd405e263d62fd127432a38"
+                "reference": "7c02d824591dd96228ef4de395f88efb476dba15"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PHLAK/CodingStandards/zipball/ec47c343a7ee6f517dd405e263d62fd127432a38",
-                "reference": "ec47c343a7ee6f517dd405e263d62fd127432a38",
+                "url": "https://api.github.com/repos/PHLAK/CodingStandards/zipball/7c02d824591dd96228ef4de395f88efb476dba15",
+                "reference": "7c02d824591dd96228ef4de395f88efb476dba15",
                 "shasum": ""
             },
             "require": {
@@ -3911,7 +3921,7 @@
                     "type": "paypal"
                 }
             ],
-            "time": "2020-09-11T02:43:12+00:00"
+            "time": "2020-10-05T01:13:42+00:00"
         },
         {
             "name": "php-cs-fixer/diff",

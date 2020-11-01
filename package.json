@@ -20,7 +20,7 @@
         "cross-env": "^7.0.2",
         "laravel-mix": "^5.0.5",
         "resolve-url-loader": "^3.1.1",
-        "sass": "^1.26.11",
+        "sass": "^1.28.0",
         "sass-loader": "^10.0.2",
         "tailwindcss": "^1.8.10",
         "vue-template-compiler": "^2.6.12"

@@ -12,17 +12,17 @@
     },
     "dependencies": {
         "axios": "^0.20.0",
-        "highlight.js": "^10.2.1",
+        "highlight.js": "^10.3.2",
         "vue": "^2.6.12"
     },
     "devDependencies": {
-        "@fortawesome/fontawesome-free": "^5.15.0",
+        "@fortawesome/fontawesome-free": "^5.15.1",
         "cross-env": "^7.0.2",
-        "laravel-mix": "^5.0.5",
-        "resolve-url-loader": "^3.1.1",
-        "sass": "^1.26.11",
-        "sass-loader": "^10.0.2",
-        "tailwindcss": "^1.8.10",
+        "laravel-mix": "^5.0.7",
+        "resolve-url-loader": "^3.1.2",
+        "sass": "^1.28.0",
+        "sass-loader": "^10.0.5",
+        "tailwindcss": "^1.9.6",
         "vue-template-compiler": "^2.6.12"
     }
 }

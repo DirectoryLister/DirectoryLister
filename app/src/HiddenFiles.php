@@ -2,10 +2,23 @@
 
 namespace App;
 
+use BadMethodCallException;
 use Tightenco\Collect\Support\Collection;
 
 class HiddenFiles extends Collection
 {
+    /** {@inheritdoc} */
+    protected function __construct(...$args)
+    {
+        parent::__construct(...$args);
+    }
+
+    /** {@inheritdoc} */
+    public static function make($items = [])
+    {
+        throw new BadMethodCallException('Method not implemented');
+    }
+
     /** Create a new HiddenFiles collection object. */
     public static function fromConfig(Config $config): self
     {

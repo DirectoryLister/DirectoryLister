@@ -11,7 +11,7 @@
         "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
     },
     "dependencies": {
-        "axios": "^0.20.0",
+        "axios": "^0.21.0",
         "highlight.js": "^10.3.2",
         "vue": "^2.6.12"
     },

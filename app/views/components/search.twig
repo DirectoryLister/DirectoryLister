@@ -1,6 +1,7 @@
 <form id="search" action="." method="get" class="group relative block bg-blue-700 rounded-full shadow-inner">
     <input type="text" value="{{ search }}" name="search" placeholder="{{ translate('search') }}..."
-        class="bg-transparent placeholder-gray-900 text-white w-full px-10 py-2"
+        class="bg-transparent text-white w-full px-10 py-2"
+        style="outline-width:inherit;"
         ref="searchInput" v-on:focus="$event.target.select()"
     >
 

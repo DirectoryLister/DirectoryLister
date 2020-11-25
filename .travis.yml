@@ -1,11 +1,13 @@
 os: linux
-dist: focal
+dist: bionic
 language: php
 
 env:
   - PATH="app/vendor/bin:${PATH}"
 
 php:
+  - 7.2
+  - 7.3
   - 7.4
   - nightly
 
@@ -28,7 +30,7 @@ before_install:
   - echo "extension = redis.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
 
 install:
-  - composer install --no-suggest
+  - composer update
   - npm ci
 
 script:

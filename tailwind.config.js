@@ -1,8 +1,7 @@
+const defaultTheme = require('tailwindcss/defaultTheme');
+const colors = require('tailwindcss/colors');
+
 module.exports = {
-    future: {
-        purgeLayersByDefault: true,
-        removeDeprecatedGapUtilities: true
-    },
     plugins: [],
     purge: {
         mode: 'all',
@@ -14,37 +13,19 @@ module.exports = {
             'app/**/*.vue',
         ],
         options: {
-            whitelist: ['html', 'body', 'main', 'fab', 'fas'],
-            whitelistPatterns: [/^fa\-/, /^hljs/]
+            safelist: ['html', 'body', 'main', 'fab', 'fas'],
+            safelistPatterns: [/^fa\-/, /^hljs/]
         }
     },
     theme: {
         extend: {
+            colors: {
+                blue: colors.lightBlue,
+                gray: colors.blueGray,
+            },
             fontFamily: {
-                mono: [
-                    'Source Code Pro',
-                    'Menlo',
-                    'Monaco',
-                    'Consolas',
-                    '"Liberation Mono"',
-                    '"Courier New"',
-                    'monospace',
-                ],
-                sans: [
-                    'Work Sans',
-                    '-apple-system',
-                    'BlinkMacSystemFont',
-                    '"Segoe UI"',
-                    'Roboto',
-                    '"Helvetica Neue"',
-                    'Arial',
-                    '"Noto Sans"',
-                    'sans-serif',
-                    '"Apple Color Emoji"',
-                    '"Segoe UI Emoji"',
-                    '"Segoe UI Symbol"',
-                    '"Noto Color Emoji"',
-                ]
+                mono: ['Source Code Pro', ...defaultTheme.fontFamily.mono],
+                sans: ['Work Sans', ...defaultTheme.fontFamily.sans]
             },
             textColor: {
                 github: '#171515',

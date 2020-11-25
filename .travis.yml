@@ -26,6 +26,7 @@ cache:
     - app/vendor
 
 before_install:
+  - nvm install 14.15
   - printf "\n" | pecl install -f apcu-5.1.18 memcached
   - echo "extension = redis.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
 

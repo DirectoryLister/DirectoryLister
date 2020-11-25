@@ -12,16 +12,16 @@
     },
     "dependencies": {
         "axios": "^0.21.0",
-        "highlight.js": "^10.3.2",
+        "highlight.js": "^10.4.0",
         "vue": "^2.6.12"
     },
     "devDependencies": {
         "@fortawesome/fontawesome-free": "^5.15.1",
         "cross-env": "^7.0.2",
-        "laravel-mix": "^5.0.7",
+        "laravel-mix": "^5.0.9",
         "resolve-url-loader": "^3.1.2",
-        "sass": "^1.28.0",
-        "sass-loader": "^10.0.5",
+        "sass": "^1.29.0",
+        "sass-loader": "^10.1.0",
         "tailwindcss": "^1.9.6",
         "vue-template-compiler": "^2.6.12"
     }

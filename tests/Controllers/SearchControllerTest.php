@@ -30,7 +30,7 @@ class SearchControllerTest extends TestCase
 
         $this->assertInstanceOf(ResponseInterface::class, $response);
         $this->assertEquals(200, $response->getStatusCode());
-        $this->assertDoesNotMatchRegularExpression('/No results found/', (string) $response->getBody());
+        $this->assertStringNotContainsString('No results found', (string) $response->getBody());
     }
 
     public function test_it_returns_no_results_found_when_there_are_no_results(): void
@@ -49,7 +49,7 @@ class SearchControllerTest extends TestCase
 
         $this->assertInstanceOf(ResponseInterface::class, $response);
         $this->assertEquals(200, $response->getStatusCode());
-        $this->assertMatchesRegularExpression('/No results found/', (string) $response->getBody());
+        $this->assertStringContainsString('No results found', (string) $response->getBody());
     }
 
     public function test_it_returns_no_results_found_for_a_blank_search(): void
@@ -68,6 +68,6 @@ class SearchControllerTest extends TestCase
 
         $this->assertInstanceOf(ResponseInterface::class, $response);
         $this->assertEquals(200, $response->getStatusCode());
-        $this->assertMatchesRegularExpression('/No results found/', (string) $response->getBody());
+        $this->assertStringContainsString('No results found', (string) $response->getBody());
     }
 }

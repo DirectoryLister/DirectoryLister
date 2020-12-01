@@ -41,7 +41,7 @@
         "phpunit/phpunit": "^8.0 || ^9.0",
         "psy/psysh": "^0.10",
         "symfony/var-dumper": "^5.0",
-        "vimeo/psalm": "^3.6"
+        "vimeo/psalm": "^4.2"
     },
     "suggest": {
         "ext-apcu": "Required to use the APCu cache driver",

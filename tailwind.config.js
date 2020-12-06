@@ -22,6 +22,7 @@ module.exports = {
             colors: {
                 blue: colors.lightBlue,
                 gray: colors.blueGray,
+                purple: colors.violet,
             },
             fontFamily: {
                 mono: ['Source Code Pro', ...defaultTheme.fontFamily.mono],

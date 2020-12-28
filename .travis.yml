@@ -3,8 +3,7 @@ dist: bionic
 language: php
 
 env:
-  - PATH="app/vendor/bin:${PATH}"
-  - PHP_CS_FIXER_IGNORE_ENV="true"
+  - PATH="app/vendor/bin:${PATH}" PHP_CS_FIXER_IGNORE_ENV="true"
 
 php:
   - 7.2

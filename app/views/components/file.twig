@@ -1,6 +1,6 @@
 <a
     href="{{ parentDir ? parent_url(path) : file_url(file.getPathname) }}"
-    class="flex flex-col items-center rounded-lg font-mono group hover:bg-gray-100 hover:shadow"
+    class="flex flex-col items-center rounded-lg font-mono group hover:bg-gray-100 hover:shadow dark:hover:bg-purple-700"
 >
     <div class="flex justify-between items-center p-4 w-full">
         <div class="pr-2">
@@ -19,7 +19,7 @@
             <div class="ml-2">
                 <button
                     title="{{ translate('file.info') }}"
-                    class="flex justify-center items-center rounded-full p-2 -m-1 md:invisible hover:bg-gray-300 hover:shadow group-hover:visible"
+                    class="flex justify-center items-center rounded-full p-2 -m-1 md:invisible hover:bg-gray-300 hover:shadow dark:hover:bg-purple-900 group-hover:visible"
                     v-on:click.prevent="showFileInfo('{{ url(file.getPathname) | escape('js') }}')"
                 >
                     <i class="fas fa-info-circle"></i>

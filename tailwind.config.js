@@ -2,6 +2,7 @@ const defaultTheme = require('tailwindcss/defaultTheme');
 const colors = require('tailwindcss/colors');
 
 module.exports = {
+    darkMode: 'class',
     plugins: [],
     purge: {
         mode: 'all',
@@ -35,6 +36,7 @@ module.exports = {
         }
     },
     variants: {
+        backgroundOpacity: ['dark'],
         visibility: ['responsive', 'hover', 'group-hover']
     }
 };

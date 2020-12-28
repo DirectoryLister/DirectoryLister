@@ -1,11 +1,11 @@
-<form id="search" action="." method="get" class="group relative block bg-blue-700 rounded-full shadow-inner">
+<form id="search" action="." method="get" class="group relative block bg-blue-700 rounded-full shadow-inner dark:bg-purple-800">
     <input type="text" value="{{ search }}" name="search" placeholder="{{ translate('search') }}..."
         class="bg-transparent placeholder-gray-900 text-white w-full px-10 py-2"
         ref="searchInput" v-on:focus="$event.target.select()"
     >
 
     <div class="flex items-center absolute left-0 inset-y-0 ml-2 pointer-events-none">
-        <div class="flex justify-center items-center text-blue-900 w-6 h-6">
+        <div class="flex justify-center items-center text-gray-900 text-opacity-50 w-6 h-6">
             <i class="fas fa-search fa-fw"></i>
         </div>
     </div>
@@ -13,7 +13,7 @@
 
     {% if search %}
         <div class="flex items-center absolute right-0 inset-y-0 mr-2">
-            <a href="."  class="flex justify-center items-center rounded-full text-blue-900 w-6 h-6 hover:bg-red-700 hover:text-white hover:shadow">
+            <a href="."  class="flex justify-center items-center rounded-full text-gray-900 text-opacity-50 w-6 h-6 hover:bg-red-700 hover:text-white hover:text-opacity-100 hover:shadow">
                 <i class="fas fa-times"></i>
             </a>
         </div>

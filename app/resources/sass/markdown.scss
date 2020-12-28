@@ -13,18 +13,11 @@
         @apply inline;
     }
 
-    p,
-    blockquote,
-    ul,
-    ol,
-    dl,
-    table,
-    pre {
+    p, blockquote, ul, ol, dl, table, pre {
         @apply my-4;
     }
 
-    ul,
-    ol {
+    ul, ol {
         @apply pl-8;
     }
 
@@ -61,18 +54,11 @@
         @apply text-gray-600;
     }
 
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6 {
+    h1, h2, h3, h4, h5, h6 {
         @apply font-bold leading-relaxed mt-8 mb-4;
     }
 
-    h1 + p,
-    h2 + p,
-    h3 + p {
+    h1 + p, h2 + p, h3 + p {
         @apply mt-4;
     }
 
@@ -95,8 +81,7 @@
     table {
         @apply table;
 
-        th,
-        td {
+        th, td {
             @apply border border-gray-400 p-1;
         }
 
@@ -121,5 +106,36 @@
 
     & > :last-child {
         @apply mb-0;
+    }
+}
+
+body.dark .markdown {
+    a {
+        @apply text-purple-600;
+
+        &:hover {
+            @apply text-purple-800;
+        }
+    }
+
+    h1, h2 {
+        @apply border-gray-800;
+    }
+
+    h6 {
+        @apply text-base;
+        @apply text-gray-600;
+    }
+
+    code {
+        @apply bg-gray-800;
+    }
+
+    hr {
+        @apply border-gray-800;
+    }
+
+    .hljs, .hljs-keyword {
+        @apply text-white;
     }
 }

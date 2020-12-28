@@ -17,8 +17,10 @@
 
 <title>{{ title }} &bull; Directory Lister</title>
 
-<div id="app" class="flex flex-col min-h-screen font-sans {{ config('dark_mode') ? 'dark-mode' : 'light-mode' }}">
-    {% block content %}{% endblock %}
-</div>
+<body class="{{ config('dark_mode') ? 'dark' : null }}">
+    <div id="app" class="flex flex-col min-h-screen font-sans dark:bg-gray-800">
+        {% block content %}{% endblock %}
+    </div>
 
-<script src="{{ asset('app.js') }}" defer></script>
+    <script src="{{ asset('app.js') }}" defer></script>
+</body>

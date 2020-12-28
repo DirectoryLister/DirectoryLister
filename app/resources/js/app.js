@@ -19,7 +19,7 @@ const app = new Vue({
         }
     },
     mounted: function() {
-        window.addEventListener('keyup', e => e.keyCode == 191 && this.$refs.searchInput.focus());
+        window.addEventListener('keyup', e => e.key == '/' && this.$refs.searchInput.focus());
 
         let scrollToTop = this.$refs.scrollToTop;
         window.addEventListener('scroll', function() {

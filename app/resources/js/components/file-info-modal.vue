@@ -86,7 +86,7 @@
             }
         },
         mounted() {
-            window.addEventListener('keyup', e => e.keyCode == 27 && this.hide());
+            window.addEventListener('keyup', e => e.key == 'Escape' && this.hide());
         }
     }
 </script>

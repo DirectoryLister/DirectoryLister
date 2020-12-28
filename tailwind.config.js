@@ -30,7 +30,6 @@ module.exports = {
             },
             textColor: {
                 github: '#171515',
-                spectrum: '#7B16FF',
                 twitter: '#1DA1F2'
             }
         }

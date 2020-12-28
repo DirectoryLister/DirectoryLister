@@ -3,7 +3,7 @@ dist: bionic
 language: php
 
 env:
-  - PATH="app/vendor/bin:${PATH}" PHP_CS_FIXER_IGNORE_ENV="true"
+  - PHP_CS_FIXER_IGNORE_ENV="true"
 
 php:
   - 7.2
@@ -37,9 +37,9 @@ install:
 
 script:
   - npm run production --verbose
-  - php-cs-fixer fix --diff --dry-run
-  - psalm --show-info=true
-  - phpunit --coverage-text
+  - app/vendor/bin/php-cs-fixer fix --diff --dry-run
+  - app/vendor/bin/psalm --show-info=true
+  - app/vendor/bin/phpunit --coverage-text
 
 before_deploy: make artifacts
 

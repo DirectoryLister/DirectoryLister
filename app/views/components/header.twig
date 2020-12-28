@@ -13,12 +13,8 @@
         </div>
 
         <button class="inline-block text-white mx-2 hover:text-gray-400 md:hidden" v-on:click="toggleMenuVisibility">
-            <div v-if="menuOpen">
-                <i class="fas fa-times fa-lg fa-fw"></i>
-            </div>
-            <div v-else>
-                <i class="fas fa-ellipsis-v fa-lg fa-fw"></i>
-            </div>
+            <i class="fas fa-times fa-lg fa-fw" v-if="menuOpen"></i>
+            <i class="fas fa-ellipsis-v fa-lg fa-fw" v-else></i>
         </button>
 
         <div class="flex items-center flex-grow flex-shrink-0 w-full pt-4 space-x-2 md:flex md:max-w-xs md:p-0" v-bind:class="menuStyles">

@@ -17,12 +17,3 @@ $fa-font-path: "./webfonts";
 
 // Additional Styles
 @import "markdown.scss";
-
-// Miscellaneous
-:target::before {
-    content: "";
-    display: block;
-    height: 80px;
-    margin-top: -80px;
-    visibility: hidden;
-}

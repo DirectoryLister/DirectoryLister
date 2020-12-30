@@ -25,7 +25,7 @@ const app = new Vue({
         },
     },
     created: function () {
-        this.theme = localStorage.getItem('theme') || 'light';
+        this.theme = localStorage.theme || (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
     },
     mounted: function() {
         window.addEventListener('keyup', e => e.key === '/' && this.$refs.searchInput.focus());

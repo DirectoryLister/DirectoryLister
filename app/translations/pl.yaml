@@ -8,6 +8,7 @@ file:
   info: Szczegóły
 powered_by: Wspierane przez
 scroll_to_top: Przewiń na górę
+toggle_theme: Przełącz tryb jasny/ciemny
 
 error:
   directory_not_found: Nie znaleziono ścieżki

@@ -8,6 +8,7 @@ file:
   info: Info
 powered_by: Powered by
 scroll_to_top: Torna su
+toggle_theme: Attiva/disattiva la modalità luce/buio
 
 error:
   directory_not_found: La cartella non esiste

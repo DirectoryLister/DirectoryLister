@@ -8,6 +8,7 @@ file:
   info: Informations sur le Fichier
 powered_by: Alimenté par
 scroll_to_top: Retour en Haut
+toggle_theme: Basculer entre le thème clair/sombre
 
 error:
   directory_not_found: Le répertoire n'existe pas

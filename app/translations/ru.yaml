@@ -8,6 +8,7 @@ file:
   info: Информация о файле
 powered_by: Питаться от
 scroll_to_top: Пролистать наверх
+toggle_theme: Переключить светлый/темный режим
 
 error:
   directory_not_found: Каталог не существует

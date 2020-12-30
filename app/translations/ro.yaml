@@ -8,6 +8,7 @@ file:
   info: Info Fișier
 powered_by: Cu sprijinul
 scroll_to_top: Derulați la început
+toggle_theme: Comutați modul lumină/întuneric
 
 error:
   directory_not_found: Directorul nu există

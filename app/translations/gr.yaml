@@ -8,6 +8,7 @@ file:
   info: Πληροφορίες αρχείου
 powered_by: Powered by
 scroll_to_top: Μεταβείτε στην κορυφή
+toggle_theme: Εναλλαγή φωτεινής/σκοτεινής λειτουργίας
 
 error:
   directory_not_found: Ο κατάλογος δεν υπάρχει

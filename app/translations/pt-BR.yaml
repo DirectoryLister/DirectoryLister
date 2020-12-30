@@ -8,6 +8,7 @@ file:
   info: Informação do arquivo
 powered_by: Desenvolvido por
 scroll_to_top: Voltar ao início
+toggle_theme: Alternar modo claro/escuro
 
 error:
   directory_not_found: Diretório não existe

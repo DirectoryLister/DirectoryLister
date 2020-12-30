@@ -8,6 +8,7 @@ file:
   info: Tiedot
 powered_by: Voimanlähteenä
 scroll_to_top: Takaisin ylös
+toggle_theme: Vaihda vaalea/tumma tila
 
 error:
   directory_not_found: Hakemistoa ei ole olemassa

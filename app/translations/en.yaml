@@ -8,6 +8,7 @@ file:
   info: File Info
 powered_by: Powered by
 scroll_to_top: Scroll to Top
+toggle_theme: Toggle Light/Dark Mode
 
 error:
   directory_not_found: Directory does not exist

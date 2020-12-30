@@ -8,6 +8,7 @@ file:
   info: 文件信息
 powered_by: 基于
 scroll_to_top: 回到顶部
+toggle_theme: 切换亮/暗模式
 
 error:
   directory_not_found: 目录不存在

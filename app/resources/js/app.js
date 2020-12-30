@@ -4,31 +4,42 @@ import FileInfoModal from './components/file-info-modal.vue';
 const app = new Vue({
     el: '#app',
     components: { FileInfoModal },
-    data: function () {
-        return { menuOpen: false };
-    },
+    data: () => ({
+        theme: 'light',
+        menuOpen: false,
+    }),
     computed: {
-        menuStyles() { return { 'hidden': ! this.menuOpen } }
+        darkMode() {
+            return this.theme === 'dark';
+        },
+        lightMode() {
+            return this.theme === 'light';
+        }
     },
     methods: {
         showFileInfo(filePath) {
             this.$refs.fileInfoModal.show(filePath);
         },
-        toggleMenuVisibility() {
-            this.menuOpen = ! this.menuOpen;
-        }
+        toggleTheme() {
+            this.theme = this.lightMode ? 'dark' : 'light';
+        },
+    },
+    created: function () {
+        this.theme = localStorage.getItem('theme') || 'light';
     },
     mounted: function() {
-        window.addEventListener('keyup', e => e.key == '/' && this.$refs.searchInput.focus());
+        window.addEventListener('keyup', e => e.key === '/' && this.$refs.searchInput.focus());
 
-        let scrollToTop = this.$refs.scrollToTop;
         window.addEventListener('scroll', function() {
             if (window.scrollY > 10) {
-                scrollToTop.classList.remove('hidden');
+                this.$refs.scrollToTop.classList.remove('hidden');
             } else {
-                scrollToTop.classList.add('hidden');
+                this.$refs.scrollToTop.classList.add('hidden');
             }
-        });
+        }.bind(this));
+    },
+    watch: {
+        theme: value => localStorage.setItem('theme', value),
     }
 });
 

@@ -8,6 +8,7 @@ file:
   info: Info Berkas
 powered_by: Diberdayakan oleh
 scroll_to_top: Skrol ke atas
+toggle_theme: Alihkan mode terang/gelap
 
 error:
   directory_not_found: Direktori tidak ditemukan

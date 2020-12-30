@@ -8,6 +8,7 @@ file:
   info: Dateiinformation
 powered_by: Unterstützt von
 scroll_to_top: Nach oben Scrollen
+toggle_theme: Schalten Sie den Hell/Dunkel-Modus um
 
 error:
   directory_not_found: Verzeichnis nicht gefunden

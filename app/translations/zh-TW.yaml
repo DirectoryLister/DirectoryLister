@@ -8,6 +8,7 @@ file:
   info: 文件資訊
 powered_by: 基於
 scroll_to_top: 回到頂部
+toggle_theme: 切換亮/暗模式
 
 error:
   directory_not_found: 目錄不存在

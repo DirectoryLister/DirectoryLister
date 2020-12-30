@@ -1,5 +1,5 @@
 home: Home
-download: Download this Directory
+download: Download deze directory
 search: Zoeken
 file:
   name: Bestandsnaam
@@ -8,6 +8,7 @@ file:
   info: Bestandsinformatie
 powered_by: Mogelijk gemaakt door
 scroll_to_top: Ga naar boven
+toggle_theme: Schakel tussen licht/donker modus
 
 error:
   directory_not_found: Map bestaat niet

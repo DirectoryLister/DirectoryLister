@@ -4,7 +4,7 @@
 <meta name="description" content="{{ config('meta_description') }}">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<link rel="icon" href="{{ config('dark_mode') ? asset('images/favicon.dark.png') : asset('images/favicon.light.png') }}">
+<link rel="icon" href="{{ asset('images/favicon.light.png') }}">
 <link rel="stylesheet" href="{{ asset('app.css') }}">
 
 {% if config('google_analytics_id', false) %}
@@ -17,10 +17,10 @@
 
 <title>{{ title }} &bull; Directory Lister</title>
 
-<body class="{{ config('dark_mode') ? 'dark' : null }}">
-    <div id="app" class="flex flex-col min-h-screen font-sans dark:bg-gray-800">
+<div id="app" v-bind:class="{ dark: darkMode }" v-cloak>
+    <div class="flex flex-col min-h-screen font-sans dark:bg-gray-800">
         {% block content %}{% endblock %}
     </div>
+</div>
 
-    <script src="{{ asset('app.js') }}" defer></script>
-</body>
+<script src="{{ asset('app.js') }}" defer></script>

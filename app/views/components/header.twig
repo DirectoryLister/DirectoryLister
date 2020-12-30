@@ -12,17 +12,23 @@
             {% endif %}
         </div>
 
-        <button class="inline-block text-white mx-2 hover:text-gray-400 md:hidden" v-on:click="toggleMenuVisibility">
+        <button class="inline-block text-white mx-2 hover:text-gray-400 md:hidden" v-on:click="menuOpen = ! menuOpen">
             <i class="fas fa-times fa-lg fa-fw" v-if="menuOpen"></i>
             <i class="fas fa-ellipsis-v fa-lg fa-fw" v-else></i>
         </button>
 
-        <div class="flex items-center flex-grow flex-shrink-0 w-full pt-4 space-x-2 md:flex md:max-w-xs md:p-0" v-bind:class="menuStyles">
+        <div class="flex items-center flex-grow flex-shrink-0 w-full pt-4 space-x-2 md:flex md:max-w-xs md:p-0" v-bind:class="{ 'hidden': ! menuOpen }">
             {% if path and files is not empty and config('zip_downloads') %}
                 <a href="{{ zip_url(path) }}" title="{{ translate('download') }}" class="inline-block text-white p-1 hover:text-gray-300">
                     <i class="fas fa-download fa-lg"></i>
                 </a>
             {% endif %}
+
+            <div class="w-8 h-4 flex justify-center items-center bg-gray-900 bg-opacity-30 rounded-full cursor-pointer p-1 duration-300 ease-in-out" title="{{ translate('toggle_theme') }}" v-on:click="toggleTheme">
+                <div class="flex justify-center items-center bg-white w-5 h-5 rounded-full shadow-md transform duration-300 ease-in-out" v-bind:class="{ '-translate-x-2': darkMode, 'translate-x-2': lightMode }">
+                    <i class="fas fa-lightbulb fa-xs" v-bind:class="{ 'text-gray-600': darkMode, 'text-yellow-400': lightMode }"></i>
+                </div>
+            </div>
 
             <div class="flex-1">
                 {% include 'components/search.twig' %}

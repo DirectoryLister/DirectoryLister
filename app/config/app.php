@@ -37,13 +37,6 @@ return [
     'meta_description' => DI\env('META_DESCRIPTION', 'Yet another directory listing, powered by Directory Lister.'),
 
     /**
-     * Enable dark mode?
-     *
-     * Default value: false
-     */
-    'dark_mode' => DI\env('DARK_MODE', false),
-
-    /**
      * Parse and render README files on the page.
      *
      * Default value: true

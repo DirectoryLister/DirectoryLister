@@ -8,6 +8,7 @@ file:
   info: 파일 정보
 powered_by: Powered by
 scroll_to_top: 맨위로 스크롤
+toggle_theme: 밝게/어둡게 모드 전환
 
 error:
   directory_not_found:  디렉토리 찾을 수 없습니다

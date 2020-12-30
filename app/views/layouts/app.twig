@@ -17,10 +17,14 @@
 
 <title>{{ title }} &bull; Directory Lister</title>
 
-<div id="app" v-bind:class="{ dark: darkMode }" v-cloak>
+<div id="app" v-bind:class="{ dark: darkMode }">
     <div class="flex flex-col min-h-screen font-sans dark:bg-gray-800">
         {% block content %}{% endblock %}
     </div>
+
+    <div class="fixed inset-0 flex flex-col justify-center items-center min-h-screen bg-gray-900 bg-opacity-90" v-show="loading">
+        <i class="fas fa-spinner fa-pulse fa-5x text-white"></i>
+    </div>
 </div>
 
-<script src="{{ asset('app.js') }}" defer></script>
+<script src="{{ asset('app.js') }}"></script>

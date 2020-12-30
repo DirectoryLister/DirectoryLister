@@ -5,6 +5,7 @@ const app = new Vue({
     el: '#app',
     components: { FileInfoModal },
     data: () => ({
+        loading: true,
         theme: 'light',
         menuOpen: false,
     }),
@@ -37,6 +38,8 @@ const app = new Vue({
                 this.$refs.scrollToTop.classList.add('hidden');
             }
         }.bind(this));
+
+        this.loading = false;
     },
     watch: {
         theme: value => localStorage.setItem('theme', value),

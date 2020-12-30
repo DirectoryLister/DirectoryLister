@@ -2,10 +2,10 @@
     @apply break-words;
 
     a {
-        @apply text-blue-600 underline dark:text-purple-600;
+        @apply text-blue-600 underline;
 
         &:hover {
-            @apply text-blue-800 dark:text-purple-800;
+            @apply text-blue-800;
         }
     }
 
@@ -30,11 +30,11 @@
     }
 
     h1 {
-        @apply border-b border-gray-400 text-4xl dark:border-gray;
+        @apply border-b border-gray-400 text-4xl;
     }
 
     h2 {
-        @apply border-b border-gray-400 text-3xl dark:border-gray;
+        @apply border-b border-gray-400 text-3xl;
     }
 
     h3 {
@@ -62,19 +62,15 @@
     }
 
     code {
-        @apply bg-gray-200 rounded-sm font-mono p-1 overflow-y-auto dark:bg-gray-800;
+        @apply bg-gray-200 rounded-sm font-mono p-1 overflow-y-auto;
     }
 
     pre > code {
         @apply block p-4 text-sm whitespace-pre;
     }
 
-    .hljs, .hljs-keyword {
-        @apply dark:text-white;
-    }
-
     hr {
-        @apply border-t-2 border-gray-400 my-4 dark:border-gray-800;
+        @apply border-t-2 border-gray-400 my-4;
     }
 
     blockquote {
@@ -109,5 +105,31 @@
 
     & > :last-child {
         @apply mb-0;
+    }
+}
+
+#app.dark .markdown {
+    a {
+        @apply text-purple-600;
+
+        &:hover {
+            @apply text-purple-800;
+        }
+    }
+
+    h1, h2 {
+        @apply border-gray-800;
+    }
+
+    code {
+        @apply bg-gray-800;
+    }
+
+    hr {
+        @apply border-gray-800;
+    }
+
+    .hljs, .hljs-keyword {
+        @apply text-white;
     }
 }

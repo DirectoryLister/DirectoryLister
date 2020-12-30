@@ -1,6 +1,6 @@
 <template>
     <div id="file-info-modal" v-bind:class="this.styles" v-on:click.self="hide()"
-        class="fixed top-0 flex justify-center items-center bg-gray-800 bg-opacity-50 w-screen h-screen p-4 z-50 dark:bg-gray-600 dark:bg-opacity-50"
+        class="fixed inset-0 flex justify-center items-center bg-gray-800 bg-opacity-50 p-4 z-50 dark:bg-gray-600 dark:bg-opacity-50"
     >
         <div id="file-info-dialogue" v-show="! loading"
             class="bg-white rounded-lg shadow-lg overflow-hidden dark:bg-gray-800 dark:text-white"

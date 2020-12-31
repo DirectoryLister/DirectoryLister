@@ -15,15 +15,15 @@
         "autoprefixer": "^10.1.0",
         "axios": "^0.21.1",
         "highlight.js": "^10.5.0",
-        "postcss": "^8.2.1",
+        "postcss": "^8.2.2",
         "vue": "^2.6.12"
     },
     "devDependencies": {
         "@fortawesome/fontawesome-free": "^5.15.1",
         "cross-env": "^7.0.3",
-        "laravel-mix": "^6.0.5",
+        "laravel-mix": "^6.0.6",
         "resolve-url-loader": "^3.1.2",
-        "sass": "^1.30.0",
+        "sass": "^1.32.0",
         "sass-loader": "^10.1.0",
         "tailwindcss": "^2.0.2",
         "vue-loader": "^15.9.6",

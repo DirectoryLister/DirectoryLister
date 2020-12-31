@@ -3,6 +3,7 @@
 namespace Tests;
 
 use App\HiddenFiles;
+use BadMethodCallException;
 use Tightenco\Collect\Support\Collection;
 
 /** @covers \App\HiddenFiles */
@@ -23,6 +24,14 @@ class HiddenFilesTest extends TestCase
 
         $this->assertInstanceOf(Collection::class, $hiddenFiles);
         $this->assertEquals($expected, $hiddenFiles->values()->toArray());
+    }
+
+    /** @test */
+    public function it_can_not_be_instantiated_via_the_static_make_method(): void
+    {
+        $this->expectException(BadMethodCallException::class);
+
+        HiddenFiles::make([]);
     }
 
     public function hiddenFilesProvider(): array

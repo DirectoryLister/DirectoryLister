@@ -1,38 +1,31 @@
 <header id="header" class="bg-blue-600 shadow sticky top-0 dark:bg-purple-700">
-    <div class="container flex justify-between flex-wrap items-center mx-auto p-4 md:flex-row xl:max-w-screen-xl">
-        <div class="flex-1 font-mono text-white text-sm tracking-tight overflow-x-auto whitespace-nowrap py-1">
-            <a href="." class="inline-block hover:underline">
-                {{ config('home_text') | default(translate('home')) }}
+    <div class="border-b border-blue-700 dark:border-purple-800">
+        <div class="container flex flex-wrap justify-between items-center space-x-6 mx-auto p-4 md:flex-row xl:max-w-screen-xl">
+            <a href="." class="flex items-center space-x-2 p-1" title="{{ config('site_title') }}">
+                <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="folder-tree" class="inline-block fill-current text-white w-8 h-8" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                    <path fill="currentColor" d="M544 32H432L400 0h-80a32 32 0 0 0-32 32v160a32 32 0 0 0 32 32h224a32 32 0 0 0 32-32V64a32 32 0 0 0-32-32zm0 288H432l-32-32h-80a32 32 0 0 0-32 32v160a32 32 0 0 0 32 32h224a32 32 0 0 0 32-32V352a32 32 0 0 0-32-32zM64 16A16 16 0 0 0 48 0H16A16 16 0 0 0 0 16v400a32 32 0 0 0 32 32h224v-64H64V160h192V96H64z"></path>
+                </svg>
             </a>
 
-            {% if path is not null %}
-                {% for name, path in breadcrumbs(path) %}
-                    / <a href="{{ path }}" class="inline-block hover:underline">{{ name }}</a>
-                {% endfor %}
-            {% endif %}
-        </div>
-
-        <button class="inline-block text-white mx-2 hover:text-gray-400 md:hidden" v-on:click="menuOpen = ! menuOpen">
-            <i class="fas fa-times fa-lg fa-fw" v-if="menuOpen"></i>
-            <i class="fas fa-ellipsis-v fa-lg fa-fw" v-else></i>
-        </button>
-
-        <div class="flex items-center flex-grow flex-shrink-0 w-full pt-4 space-x-3 md:flex md:max-w-xs md:p-0" v-bind:class="{ 'hidden': ! menuOpen }">
-            {% if path and files is not empty and config('zip_downloads') %}
-                <a href="{{ zip_url(path) }}" title="{{ translate('download') }}" class="inline-block text-white p-1 hover:text-gray-300">
-                    <i class="fas fa-download fa-lg"></i>
-                </a>
-            {% endif %}
-
-            <div class="w-4 h-8 flex flex-col justify-center items-center bg-gray-900 bg-opacity-30 rounded-full cursor-pointer duration-300 ease-in-out" title="{{ translate('toggle_theme') }}" v-on:click="toggleTheme">
-                <div class="flex justify-center items-center bg-white w-5 h-5 rounded-full shadow-md transform duration-300 ease-in-out" v-bind:class="{ '-translate-y-2': lightMode, 'translate-y-2': darkMode }">
-                    <i class="fas fa-lightbulb fa-xs" v-bind:class="{ 'text-gray-600': darkMode, 'text-yellow-400': lightMode }"></i>
-                </div>
-            </div>
-
-            <div class="flex-1">
+            <div class="flex-1 max-w-xl">
                 {% include 'components/search.twig' %}
             </div>
+
+            <div class="flex items-center p-1">
+                {% include 'components/theme-toggle.twig' %}
+            </div>
+        </div>
+    </div>
+
+    <div class="border-t border-blue-500 dark:border-purple-600">
+        <div class="container flex flex-wrap justify-between items-center space-x-6 mx-auto px-4 py-1 md:flex-row xl:max-w-screen-xl">
+            {% include 'components/breadcrumbs.twig' %}
+
+            {% if path and files is not empty and config('zip_downloads') %}
+                <a href="{{ zip_url(path) }}" title="{{ translate('download') }}" class="inline-block text-white p-1 hover:text-gray-300">
+                    <i class="fas fa-download"></i>
+                </a>
+            {% endif %}
         </div>
     </div>
 </header>

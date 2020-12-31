@@ -7,7 +7,6 @@ const app = new Vue({
     data: () => ({
         loading: true,
         theme: 'light',
-        menuOpen: false,
     }),
     computed: {
         darkMode() {

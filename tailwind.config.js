@@ -26,8 +26,9 @@ module.exports = {
                 purple: colors.violet,
             },
             fontFamily: {
+                merriweather: ['Merriweather', ...defaultTheme.fontFamily.serif],
                 mono: ['Source Code Pro', ...defaultTheme.fontFamily.mono],
-                sans: ['Work Sans', ...defaultTheme.fontFamily.sans]
+                sans: ['Work Sans', ...defaultTheme.fontFamily.sans],
             },
             textColor: {
                 github: '#171515',

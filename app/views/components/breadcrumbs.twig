@@ -1,0 +1,11 @@
+<div class="flex-1 font-mono text-white text-sm tracking-tight overflow-x-auto whitespace-nowrap py-1">
+    <a href="." class="inline-block hover:underline">
+        {{ config('home_text') | default(translate('home')) }}
+    </a>
+
+    {% if path is not null %}
+        {% for name, path in breadcrumbs(path) %}
+            / <a href="{{ path }}" class="inline-block hover:underline">{{ name }}</a>
+        {% endfor %}
+    {% endif %}
+</div>

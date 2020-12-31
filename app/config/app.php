@@ -22,12 +22,12 @@ return [
     'language' => DI\env('APP_LANGUAGE', 'en'),
 
     /**
-     * Text of the 'home' link in the navigation breadcrumbs. If undefined or
-     * null will use the translated form of "home" from your selected language.
+     * The title of your directory listing. This will be displayed in the
+     * browser tab/title bar along with the current path.
      *
-     * Default value: null
+     * Default value: 'Directory Lister'
      */
-    'home_text' => DI\env('HOME_TEXT', null),
+    'site_title' => DI\env('SITE_TITLE', 'Directory Lister'),
 
     /**
      * Meta tag description text.
@@ -35,6 +35,14 @@ return [
      * Default value: 'Yet another directory listing, powered by Directory Lister.'.
      */
     'meta_description' => DI\env('META_DESCRIPTION', 'Yet another directory listing, powered by Directory Lister.'),
+
+    /**
+     * Text of the 'home' link in the navigation breadcrumbs. If undefined or
+     * null will use the translated form of "home" from your selected language.
+     *
+     * Default value: null
+     */
+    'home_text' => DI\env('HOME_TEXT', null),
 
     /**
      * Parse and render README files on the page.

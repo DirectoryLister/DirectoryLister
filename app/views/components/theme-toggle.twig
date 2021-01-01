@@ -1,4 +1,4 @@
-<div class="flex flex-col justify-evenly items-center bg-gray-900 bg-opacity-30 rounded-full cursor-pointer w-4 h-8" title="{{ translate('toggle_theme') }}" v-on:click="toggleTheme">
+<div class="flex flex-col justify-center items-center bg-gray-900 bg-opacity-30 rounded-full cursor-pointer w-4 h-8" title="{{ translate('toggle_theme') }}" v-on:click="toggleTheme">
     <div class="flex justify-center items-center bg-white w-5 h-5 rounded-full shadow-md transform duration-300 ease-in-out" v-bind:class="{ '-translate-y-2': lightMode, 'translate-y-2': darkMode }">
         <i class="fas fa-lightbulb fa-xs" v-bind:class="{ 'text-gray-600': darkMode, 'text-yellow-400': lightMode }"></i>
     </div>

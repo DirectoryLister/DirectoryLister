@@ -20,6 +20,20 @@ const app = new Vue({
         showFileInfo(filePath) {
             this.$refs.fileInfoModal.show(filePath);
         },
+        copyUrl(tFileUrl, fileUrlPrefix) {
+            let hostname = (!fileUrlPrefix.includes('http'))
+                ? location.protocol + '//' + location.hostname + (location.port ? ':' + location.port : '')
+                : '';
+            let inputElement = document.createElement('input');
+            inputElement.value = hostname+tFileUrl;
+            inputElement.style.display = 'block';
+            inputElement.style.height = 0;
+            inputElement.style.width = 0;
+            document.body.appendChild(inputElement);
+            inputElement.select();
+            document.execCommand("copy");
+            inputElement.remove();
+        },
         toggleTheme() {
             this.theme = this.lightMode ? 'dark' : 'light';
         },

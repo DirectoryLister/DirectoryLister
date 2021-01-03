@@ -11,6 +11,7 @@ use Slim\Views\Twig;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Finder\SplFileInfo;
 use Symfony\Contracts\Translation\TranslatorInterface;
+use App\Support\Utils;
 
 class DirectoryController
 {
@@ -42,7 +43,11 @@ class DirectoryController
     /** Invoke the IndexController. */
     public function __invoke(Request $request, Response $response): ResponseInterface
     {
-        $path = $request->getQueryParams()['dir'] ?? '.';
+        $dir = $request->getQueryParams()['dir'] ?? '';
+        $uriPath = $request->getUri()->getPath();
+        $basePath = $this->config->get('base_path');
+        if ($dir == '/') $dir = '';
+        $path = $basePath . $dir;
 
         try {
             $files = $this->finder->in($path)->depth(0);
@@ -53,10 +58,12 @@ class DirectoryController
         }
 
         return $this->view->render($response, 'index.twig', [
+            'fileUrlPrefix' => $this->config->get('file_url_prefix'),
+            'basePath' => $basePath,
             'files' => $files,
             'path' => $path,
             'readme' => $this->readme($files),
-            'title' => $path == '.' ? 'Home' : $path,
+            'title' => $path == $basePath ? 'Home' : $dir,
         ]);
     }
 

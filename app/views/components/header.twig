@@ -22,7 +22,7 @@
             {% include 'components/breadcrumbs.twig' %}
 
             {% if path and files is not empty and config('zip_downloads') %}
-                <a href="{{ zip_url(path) }}" title="{{ translate('download') }}" class="flex justify-center  items-center text-sm text-white w-6 hover:text-gray-300">
+                <a href="{{ zip_url(path, basePath) }}" title="{{ translate('download') }}" class="flex justify-center  items-center text-sm text-white w-6 hover:text-gray-300">
                     <i class="fas fa-download fa-lg"></i>
                 </a>
             {% endif %}

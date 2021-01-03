@@ -13,6 +13,14 @@ return [
     'debug' => DI\env('APP_DEBUG', false),
 
     /**
+     * Allow another server or path rule to handle files when listing an outside
+     * directory.
+     *
+     * Default value: ''
+     */
+    'file_url_prefix' => DI\env('FILE_URL_PREFIX', ''),
+
+    /**
      * The application interface language.
      *
      * Possible values: See 'app/translations' folder for available translations.
@@ -27,7 +35,7 @@ return [
      *
      * Default value: 'Directory Lister'
      */
-    'site_title' => DI\env('SITE_TITLE', 'Directory Lister'),
+    'site_title' => DI\env('SITE_TITLE', '• Directory Lister'),
 
     /**
      * Meta tag description text.
@@ -156,7 +164,18 @@ return [
      * The maximum file size (in bytes) that can be hashed. This helps to
      * prevent timeouts for excessively large files.
      *
-     * Default value: 1000000000
+     * Set to 0 to disable hashing.
+     *
+     * Default value: Maximum 32-bit integer value.
      */
-    'max_hash_size' => DI\env('MAX_HASH_SIZE', 1000000000),
+    'max_hash_size' => DI\env('MAX_HASH_SIZE', 2147483647),
+
+    /**
+     * Hashes to support in file info.
+     *
+     * Set to empty string to disable hashing.
+     *
+     * Default value: md5, sha1, sha256
+     */
+    'supported_hashes' => DI\env('SUPPORTED_HASHES', 'md5, sha1, sha256'),
 ];

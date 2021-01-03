@@ -19,15 +19,23 @@ class Url extends ViewFunction
     }
 
     /** Return the URL for a given path. */
-    public function __invoke(string $path = '/'): string
+    public function __invoke(string $path = '/', string $basePath = ''): string
     {
-        return $this->escape($this->stripLeadingSlashes($path));
+        return $this->getRelativePath($path, $basePath);
     }
 
-    /** Strip all leading slashes (and a single dot) from a path. */
-    protected function stripLeadingSlashes(string $path): string
+    /** Return the path relative to the base path for a complete path. */
+    protected function getRelativePath(string $path, string $basePath): string
     {
-        return preg_replace('/^\.?(\/|\\\)+/', '', $path);
+        $basePathLen = strlen($basePath);
+
+        if (strlen($path) < $basePathLen || substr($path, 0, $basePathLen) != $basePath) {
+            $pathToReturn = $path;
+        } else {
+            $pathToReturn = substr_replace($path, '', 0, $basePathLen);
+        }
+
+        return $this->escape($pathToReturn);
     }
 
     /** Escape URL characters in path segments. */

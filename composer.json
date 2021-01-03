@@ -64,6 +64,7 @@
         "vendor-dir": "app/vendor"
     },
     "scripts": {
+        "test": "phpunit --configuration phpunit.xml",
         "serve": "php -S localhost:8080",
         "post-create-project-cmd": [
             "npm install && npm run dev",

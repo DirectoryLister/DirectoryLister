@@ -27,9 +27,9 @@
 
                     <table class="table-auto" v-else>
                         <tbody>
-                            <tr v-for="(hash, title) in this.hashes" v-bind:key="hash">
-                                <td class="border font-bold px-4 py-2">{{ title }}</td>
-                                <td class="border font-mono px-4 py-2">{{ hash }}</td>
+                            <tr v-for="(fileMetaValue, fileMetaKey) in this.fileMeta" v-bind:key="fileMetaKey">
+                                <td class="border font-bold px-4 py-2">{{ fileMetaKey }}</td>
+                                <td class="border font-mono px-4 py-2">{{ fileMetaValue }}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -49,11 +49,7 @@
             return {
                 error: null,
                 filePath: 'file-info.txt',
-                hashes: {
-                    'md5': '••••••••••••••••••••••••••••••••',
-                    'sha1': '••••••••••••••••••••••••••••••••••••••••',
-                    'sha256': '••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••'
-                },
+                fileMeta: {},
                 loading: true,
                 visible: false,
             };
@@ -63,7 +59,7 @@
                 return { 'hidden': ! this.visible };
             },
             title() {
-                return this.filePath.split('/').pop();
+                return decodeURIComponent(this.filePath.split('/').pop());
             }
         },
         methods: {
@@ -72,7 +68,7 @@
                 this.visible = true;
 
                 await axios.get('?info=' + filePath).then(function (response) {
-                    this.hashes = response.data.hashes;
+                    this.fileMeta = response.data;
                 }.bind(this)).catch(function (error) {
                     this.error = error.response.request.statusText;
                 }.bind(this));

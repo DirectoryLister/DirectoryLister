@@ -8,14 +8,14 @@ class ZipUrl extends Url
     protected $name = 'zip_url';
 
     /** Return the URL for a given path and action. */
-    public function __invoke(string $path = '/'): string
+    public function __invoke(string $path = '/', string $basePath = ''): string
     {
-        $path = $this->stripLeadingSlashes($path);
+        $path = $this->getRelativePath($path, $basePath);
 
         if ($path === '') {
-            return '?zip=.';
+            return '?zip=';
         }
 
-        return sprintf('?zip=%s', $this->escape($path));
+        return sprintf('?zip=%s', $path);
     }
 }

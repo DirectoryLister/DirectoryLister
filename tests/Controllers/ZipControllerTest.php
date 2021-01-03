@@ -23,9 +23,8 @@ class ZipControllerTest extends TestCase
         );
 
         $request = $this->createMock(Request::class);
-        $request->method('getQueryParams')->willReturn(['zip' => 'subdir']);
+        $request->method('getQueryParams')->willReturn(['zip' => '/subdir']);
 
-        chdir($this->filePath('.'));
         $response = $controller($request, new Response);
 
         $this->assertInstanceOf(ResponseInterface::class, $response);

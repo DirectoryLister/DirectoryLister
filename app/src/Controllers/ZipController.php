@@ -44,7 +44,8 @@ class ZipController
     /** Invoke the ZipHandler. */
     public function __invoke(Request $request, Response $response): ResponseInterface
     {
-        $path = $request->getQueryParams()['zip'];
+        $zipTarget = $request->getQueryParams()['zip'];
+        $path = $this->config->get('base_path') . $zipTarget;
 
         if (! $this->config->get('zip_downloads') || ! is_dir($path)) {
             return $response->withStatus(404, $this->translator->trans('error.file_not_found'));
@@ -59,7 +60,7 @@ class ZipController
         return $response->withHeader('Content-Type', 'application/zip')
             ->withHeader('Content-Disposition', sprintf(
                 'attachment; filename="%s.zip"',
-                $this->generateFileName($path)
+                $this->generateFileName($path, $zipTarget=='')
             ));
     }
 
@@ -91,10 +92,10 @@ class ZipController
     }
 
     /** Generate the file name for a path. */
-    protected function generateFileName(string $path): string
+    protected function generateFileName(string $path, bool $provideFilename): string
     {
         $filename = Str::explode($path, DIRECTORY_SEPARATOR)->last();
 
-        return $filename == '.' ? 'Home' : $filename;
+        return $provideFilename ? 'Home' : $filename;
     }
 }

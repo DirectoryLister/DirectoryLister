@@ -12,13 +12,12 @@ class ZipUrlTest extends TestCase
     {
         $url = new ZipUrl;
 
-        $this->assertEquals('?zip=.', $url('/'));
-        $this->assertEquals('?zip=.', $url('./'));
+        $this->assertEquals('?zip=/', $url('/'));
+        $this->assertEquals('?zip=./', $url('./'));
         $this->assertEquals('?zip=some/path', $url('some/path'));
-        $this->assertEquals('?zip=some/path', $url('./some/path'));
-        $this->assertEquals('?zip=some/path', $url('./some/path'));
+        $this->assertEquals('?zip=./some/path', $url('./some/path'));
         $this->assertEquals('?zip=some/file.test', $url('some/file.test'));
-        $this->assertEquals('?zip=some/file.test', $url('./some/file.test'));
+        $this->assertEquals('?zip=./some/file.test', $url('./some/file.test'));
         $this->assertEquals('?zip=0/path', $url('0/path'));
         $this->assertEquals('?zip=1/path', $url('1/path'));
         $this->assertEquals('?zip=0', $url('0'));
@@ -28,12 +27,12 @@ class ZipUrlTest extends TestCase
     {
         $url = new ZipUrl('\\');
 
-        $this->assertEquals('?zip=.', $url('\\'));
-        $this->assertEquals('?zip=.', $url('.\\'));
+        $this->assertEquals('?zip=\\', $url('\\'));
+        $this->assertEquals('?zip=.\\', $url('.\\'));
         $this->assertEquals('?zip=some\path', $url('some\path'));
-        $this->assertEquals('?zip=some\path', $url('.\some\path'));
+        $this->assertEquals('?zip=.\some\path', $url('.\some\path'));
         $this->assertEquals('?zip=some\file.test', $url('some\file.test'));
-        $this->assertEquals('?zip=some\file.test', $url('.\some\file.test'));
+        $this->assertEquals('?zip=.\some\file.test', $url('.\some\file.test'));
     }
 
     public function test_url_segments_are_url_encoded(): void

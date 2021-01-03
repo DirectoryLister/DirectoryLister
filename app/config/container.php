@@ -9,7 +9,7 @@ use Psr\Container\ContainerInterface;
 
 return [
     /** Path definitions */
-    'base_path' => dirname(__DIR__, 2),
+    'base_path' =>  DI\env('BASE_PATH', dirname(__DIR__, 2)),
     'app_path' => dirname(__DIR__),
     'asset_path' => DI\string('{app_path}/assets'),
     'cache_path' => DI\string('{app_path}/cache'),

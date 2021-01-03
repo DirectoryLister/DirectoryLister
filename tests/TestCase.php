@@ -19,7 +19,7 @@ class TestCase extends PHPUnitTestCase
     protected $cache;
 
     /** @var string Path to test files directory */
-    protected $testFilesPath = __DIR__ . '/_files';
+    public $testFilesPath = __DIR__ . '/_files';
 
     /** This method is called before each test. */
     public function setUp(): void

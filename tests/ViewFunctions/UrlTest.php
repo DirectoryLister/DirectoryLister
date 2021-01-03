@@ -12,13 +12,12 @@ class UrlTest extends TestCase
     {
         $url = new Url;
 
-        $this->assertEquals('', $url('/'));
-        $this->assertEquals('', $url('./'));
+        $this->assertEquals('/', $url('/'));
+        $this->assertEquals('./', $url('./'));
         $this->assertEquals('some/path', $url('some/path'));
-        $this->assertEquals('some/path', $url('./some/path'));
-        $this->assertEquals('some/path', $url('./some/path'));
+        $this->assertEquals('./some/path', $url('./some/path'));
         $this->assertEquals('some/file.test', $url('some/file.test'));
-        $this->assertEquals('some/file.test', $url('./some/file.test'));
+        $this->assertEquals('./some/file.test', $url('./some/file.test'));
         $this->assertEquals('0/path', $url('0/path'));
         $this->assertEquals('1/path', $url('1/path'));
         $this->assertEquals('0', $url('0'));
@@ -28,12 +27,12 @@ class UrlTest extends TestCase
     {
         $url = new Url('\\');
 
-        $this->assertEquals('', $url('\\'));
-        $this->assertEquals('', $url('.\\'));
+        $this->assertEquals('\\', $url('\\'));
+        $this->assertEquals('.\\', $url('.\\'));
         $this->assertEquals('some\path', $url('some\path'));
-        $this->assertEquals('some\path', $url('.\some\path'));
+        $this->assertEquals('.\some\path', $url('.\some\path'));
         $this->assertEquals('some\file.test', $url('some\file.test'));
-        $this->assertEquals('some\file.test', $url('.\some\file.test'));
+        $this->assertEquals('.\some\file.test', $url('.\some\file.test'));
         $this->assertEquals('0\path', $url('0\path'));
         $this->assertEquals('1\path', $url('1\path'));
     }

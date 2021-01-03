@@ -9,6 +9,7 @@ use Slim\Psr7\Response;
 use SplFileInfo;
 use Symfony\Contracts\Cache\CacheInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
+use App\Support\Utils;
 
 class FileInfoController
 {
@@ -38,21 +39,21 @@ class FileInfoController
         $path = $request->getQueryParams()['info'];
 
         $file = new SplFileInfo(
-            realpath($this->config->get('base_path') . '/' . $path)
+            realpath($this->config->get('base_path') . $path)
         );
 
         if (! $file->isFile()) {
             return $response->withStatus(404, $this->translator->trans('error.file_not_found'));
         }
 
-        if ($file->getSize() >= (int) $this->config->get('max_hash_size')) {
-            return $response->withStatus(500, $this->translator->trans('error.file_size_exceeded'));
-        }
-
         $response->getBody()->write($this->cache->get(
             sprintf('file-info-%s', sha1($file->getRealPath())),
             function () use ($file): string {
-                return json_encode(['hashes' => $this->calculateHashes($file)]);
+                return json_encode(
+                    ['modification time' => date($this->config->get('date_format'), $file->getMTime())] +
+                    ['size' => Utils::sizeForHumans($file)] +
+                    $this->calculateHashes($file)
+                );
             }
         ));
 
@@ -62,10 +63,20 @@ class FileInfoController
     /** Get an array of hashes for a file. */
     protected function calculateHashes(SplFileInfo $file): array
     {
-        return [
-            'md5' => hash_file('md5', $file->getRealPath()),
-            'sha1' => hash_file('sha1', $file->getRealPath()),
-            'sha256' => hash_file('sha256', $file->getRealPath()),
-        ];
+        $maxHashSize = (int) $this->config->get('max_hash_size');
+
+        if ($maxHashSize==0 || $file->getSize() >= $maxHashSize) {
+            return [];
+        }
+
+        $supportedHashes = explode(',', $this->config->get('supported_hashes'));
+        $calculatedHashes = [];
+
+        foreach ($supportedHashes as &$hash) {
+            $hash = trim($hash);
+            $calculatedHashes[$hash] = hash_file($hash, $file->getRealPath());
+        }
+
+        return $calculatedHashes;
     }
 }

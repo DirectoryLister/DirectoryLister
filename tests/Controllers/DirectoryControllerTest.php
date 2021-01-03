@@ -56,9 +56,8 @@ class DirectoryControllerTest extends TestCase
         );
 
         $request = $this->createMock(Request::class);
-        $request->method('getQueryParams')->willReturn(['dir' => 'subdir']);
+        $request->method('getQueryParams')->willReturn(['dir' => '/subdir']);
 
-        chdir($this->filePath('.'));
         $response = $controller($request, new Response);
 
         $this->assertInstanceOf(ResponseInterface::class, $response);

@@ -17,6 +17,7 @@ class SearchControllerTest extends TestCase
     public function test_it_returns_a_successful_response_for_a_search_request(): void
     {
         $handler = new SearchController(
+            $this->config,
             new Finder,
             $this->container->get(Twig::class),
             $this->container->get(TranslatorInterface::class)
@@ -36,6 +37,7 @@ class SearchControllerTest extends TestCase
     public function test_it_returns_no_results_found_when_there_are_no_results(): void
     {
         $handler = new SearchController(
+            $this->config,
             new Finder,
             $this->container->get(Twig::class),
             $this->container->get(TranslatorInterface::class)
@@ -55,6 +57,7 @@ class SearchControllerTest extends TestCase
     public function test_it_returns_no_results_found_for_a_blank_search(): void
     {
         $handler = new SearchController(
+            $this->config,
             new Finder,
             $this->container->get(Twig::class),
             $this->container->get(TranslatorInterface::class)

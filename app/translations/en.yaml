@@ -6,6 +6,7 @@ file:
   size: Size
   date: Date
   info: File Info
+  copy_url: Copy Url
 powered_by: Powered by
 scroll_to_top: Scroll to Top
 toggle_theme: Toggle Light/Dark Mode

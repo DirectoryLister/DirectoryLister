@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Config;
 use Psr\Http\Message\ResponseInterface;
 use Slim\Psr7\Request;
 use Slim\Psr7\Response;
@@ -21,8 +22,13 @@ class SearchController
     protected $translator;
 
     /** Create a new SearchHandler object. */
-    public function __construct(Finder $finder, Twig $view, TranslatorInterface $translator)
+    public function __construct(
+        Config $config,
+        Finder $finder,
+        Twig $view,
+        TranslatorInterface $translator)
     {
+        $this->config = $config;
         $this->finder = $finder;
         $this->view = $view;
         $this->translator = $translator;
@@ -32,8 +38,9 @@ class SearchController
     public function __invoke(Request $request, Response $response): ResponseInterface
     {
         $search = $request->getQueryParams()['search'];
+        $basePath = $this->config->get('base_path');
 
-        $files = $this->finder->in('.')->name(
+        $files = $this->finder->in($basePath)->name(
             $search ? sprintf('/(?:.*)%s(?:.*)/i', preg_quote($search, '/')) : ''
         );
 
@@ -45,6 +52,8 @@ class SearchController
         }
 
         return $this->view->render($response, 'index.twig', [
+            'fileUrlPrefix' => $this->config->get('file_url_prefix'),
+            'basePath' => $basePath,
             'files' => $files,
             'search' => $search,
             'title' => $search,

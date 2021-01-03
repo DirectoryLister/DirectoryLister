@@ -29,15 +29,28 @@ class Breadcrumbs extends ViewFunction
     /** Build a collection of breadcrumbs for a given path. */
     public function __invoke(string $path): Collection
     {
-        return Str::explode($path, $this->directorySeparator)->diff(
+        // Path parts.
+        $pathParts = Str::explode($path, $this->directorySeparator);
+
+        // Path parts without base path.
+        $pathParts = $pathParts->diff(
             explode($this->directorySeparator, $this->config->get('base_path'))
-        )->filter(static function (string $crumb): bool {
+        );
+
+        // Path parts (crumbs) without base path, cleaned up.
+        $pathParts = $pathParts->filter(static function (string $crumb): bool {
             return ! in_array($crumb, [null, '.']);
-        })->reduce(function (Collection $carry, string $crumb): Collection {
-            return $carry->put($crumb, ltrim(
-                $carry->last() . $this->directorySeparator . rawurlencode($crumb), $this->directorySeparator
-            ));
-        }, new Collection)->map(static function (string $path): string {
+        });
+
+        // Mapping of crumbs to target paths.
+        $pathParts = $pathParts->reduce(function (Collection $carry, string $crumb): Collection {
+            return $carry->put($crumb,
+                $carry->last() . $this->directorySeparator . rawurlencode($crumb)
+            );
+        }, new Collection);
+
+        // Return mapping of crumbs to valid paths, but with target paths formatted.
+        return $pathParts->map(static function (string $path): string {
             return sprintf('?dir=%s', $path);
         });
     }

@@ -8,18 +8,18 @@ class FileUrl extends Url
     protected $name = 'file_url';
 
     /** Return the URL for a given path and action. */
-    public function __invoke(string $path = '/'): string
+    public function __invoke(string $path = '/', string $fileUrlPrefix = '', string $basePath = ''): string
     {
-        $path = $this->stripLeadingSlashes($path);
+        $relPath = $this->getRelativePath($path, $basePath);
 
         if (is_file($path)) {
-            return $this->escape($path);
+            return $fileUrlPrefix . $relPath;
         }
 
         if ($path === '') {
             return '';
         }
 
-        return sprintf('?dir=%s', $this->escape($path));
+        return sprintf('?dir=%s', $relPath);
     }
 }

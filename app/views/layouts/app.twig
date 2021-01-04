@@ -20,7 +20,7 @@
 <title>{{ title }} &bull; {{ config('site_title') }}</title>
 
 <div id="app" v-bind:class="{ dark: darkMode }">
-    <div class="flex flex-col min-h-screen font-sans dark:bg-gray-800" v-cloak>
+    <div class="flex flex-col min-h-screen font-sans dark:bg-gray-800">
         {% block content %}{% endblock %}
     </div>
 

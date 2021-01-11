@@ -21,11 +21,11 @@ const app = new Vue({
             this.$refs.fileInfoModal.show(filePath);
         },
         copyUrl(tFileUrl, fileUrlPrefix) {
-            let hostname = (!fileUrlPrefix.includes('http'))
+            let origin = (!fileUrlPrefix.includes('http'))
                 ? location.protocol + '//' + location.hostname + (location.port ? ':' + location.port : '')
                 : '';
             let inputElement = document.createElement('input');
-            inputElement.value = hostname+tFileUrl;
+            inputElement.value = origin+tFileUrl;
             inputElement.style.display = 'block';
             document.body.appendChild(inputElement);
             inputElement.select();

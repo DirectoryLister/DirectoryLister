@@ -3,7 +3,7 @@
         class="fixed inset-0 flex justify-center items-center bg-gray-800 bg-opacity-50 p-4 z-50 dark:bg-gray-600 dark:bg-opacity-50"
     >
         <div id="file-info-dialogue" v-show="! loading"
-            class="bg-white rounded-lg shadow-lg overflow-hidden dark:bg-gray-800 dark:text-white"
+            class="bg-white rounded-lg shadow-lg overflow-hidden dark:bg-gray-800 dark:text-white" style="overflow-wrap: anywhere;"
         >
             <header class="flex justify-between items-center bg-blue-600 p-4 dark:bg-purple-700">
                 <i class="fas fa-info-circle fa-lg text-white"></i>

@@ -1,4 +1,4 @@
-# Contributing
+# Contributing to Directory Lister
 
 Contributions are **welcome** via Pull Requests on [GitHub](https://github.com/DirectoryLister/DirectoryLister).
 
@@ -7,6 +7,9 @@ Contributions are **welcome** via Pull Requests on [GitHub](https://github.com/D
 to verify fit with the overall direction and goals of Directory Lister.
 
 ## Pull Requests Requirements
+
+- **One feature per pull request.** If you want to change more than one thing,
+  send multiple pull requests.
 
 - **[PSR-2 Coding Standard.](https://www.php-fig.org/psr/psr-2/)** The easiest
   way to apply the conventions is to install and run
@@ -17,16 +20,30 @@ to verify fit with the overall direction and goals of Directory Lister.
 - **Document changes in behaviour.** Make sure relevant documentation is kept
   up to date.
 
-- **One feature per pull request.** If you want to do change more than one
-  thing, send multiple pull requests.
+## Checking Your Work
 
-## Checking your work
+Please check your work before submitting. Your branch must meet our coding
+standards and pass static analysis and tests before it will be accepted.
+
+### Coding Standards
+
+You can check your code formatting without applying any fixes by running
+
+    $ app/vendor/bin/php-cs-fixer fix --diff --dry-run
+
+To automatically apply any fixes run the same command without the flags.
+
+    $ app/vendor/bin/php-cs-fixer fix
 
 ### Static Analysis
+
+Psalm is used to generate a report of static analysis errors.
 
     $ app/vendor/bin/psalm
 
 ### Run Tests
+
+Application tests can be ran with phpunit.
 
     $ app/vendor/bin/phpunit
 

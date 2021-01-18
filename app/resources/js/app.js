@@ -1,7 +1,8 @@
 import Vue from 'vue';
 import FileInfoModal from './components/file-info-modal.vue';
+import hljs from 'highlight.js';
 
-const app = new Vue({
+new Vue({
     el: '#app',
     components: { FileInfoModal },
     data: () => ({
@@ -27,10 +28,10 @@ const app = new Vue({
     created: function () {
         this.theme = localStorage.theme || (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
     },
-    mounted: function() {
+    mounted: function () {
         window.addEventListener('keyup', e => e.key === '/' && this.$refs.searchInput.focus());
 
-        window.addEventListener('scroll', function() {
+        window.addEventListener('scroll', function () {
             if (window.scrollY > 10) {
                 this.$refs.scrollToTop.classList.remove('hidden');
             } else {
@@ -41,9 +42,10 @@ const app = new Vue({
         this.loading = false;
     },
     watch: {
-        theme: value => localStorage.setItem('theme', value),
+        theme(value) {
+            localStorage.setItem('theme', value);
+        }
     }
 });
 
-let hljs = require('highlight.js');
 hljs.initHighlightingOnLoad();

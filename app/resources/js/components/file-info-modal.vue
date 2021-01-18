@@ -42,7 +42,7 @@
 </template>
 
 <script>
-    const axios = require('axios').default;
+    import axios from 'axios';
 
     export default {
         data: function () {

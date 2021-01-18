@@ -1,0 +1,20 @@
+home: Domov
+download: Stiahnuť tento priečinok
+search: Vyhľadávanie
+file:
+  name: Názov súboru
+  size: Veľkosť
+  date: Dátum
+  info: Informácie o súbore
+powered_by: Powered by
+scroll_to_top: Scroll to Top
+toggle_theme: Prepnúť Svetlý/Tmavý režim
+
+error:
+  directory_not_found: Priečinok neexistuje
+  file_not_found: Súbor sa nenašiel
+  file_size_exceeded: Súbor je príliš veľký
+  no_results_found: Nič sa nenašlo
+  unexpected: Nastala neočakávaná chyba
+
+enable_debugging: Zapni ladenie pre získanie dodatočných informácií

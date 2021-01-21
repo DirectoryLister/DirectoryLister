@@ -21,7 +21,7 @@
     "devDependencies": {
         "@fortawesome/fontawesome-free": "^5.15.1",
         "cross-env": "^7.0.3",
-        "eslint": "^7.17.0",
+        "eslint": "^7.18.0",
         "eslint-plugin-vue": "^7.4.1",
         "laravel-mix": "^6.0.6",
         "resolve-url-loader": "^3.1.2",

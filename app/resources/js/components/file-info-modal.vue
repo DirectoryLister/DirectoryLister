@@ -42,51 +42,51 @@
 </template>
 
 <script>
-    import axios from 'axios';
+import axios from 'axios';
 
-    export default {
-        data: function () {
-            return {
-                error: null,
-                filePath: 'file-info.txt',
-                hashes: {
-                    'md5': '••••••••••••••••••••••••••••••••',
-                    'sha1': '••••••••••••••••••••••••••••••••••••••••',
-                    'sha256': '••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••'
-                },
-                loading: true,
-                visible: false,
-            };
-        },
-        computed: {
-            styles() {
-                return { 'hidden': ! this.visible };
+export default {
+    data: function () {
+        return {
+            error: null,
+            filePath: 'file-info.txt',
+            hashes: {
+                'md5': '••••••••••••••••••••••••••••••••',
+                'sha1': '••••••••••••••••••••••••••••••••••••••••',
+                'sha256': '••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••'
             },
-            title() {
-                return this.filePath.split('/').pop();
-            }
+            loading: true,
+            visible: false,
+        };
+    },
+    computed: {
+        styles() {
+            return { 'hidden': ! this.visible };
         },
-        methods: {
-            async show(filePath) {
-                this.filePath = filePath;
-                this.visible = true;
-
-                await axios.get('?info=' + filePath).then(function (response) {
-                    this.hashes = response.data.hashes;
-                }.bind(this)).catch(function (error) {
-                    this.error = error.response.request.statusText;
-                }.bind(this));
-
-                this.loading = false;
-            },
-            hide() {
-                this.visible = false;
-                this.loading = true;
-                this.error = null;
-            }
-        },
-        mounted() {
-            window.addEventListener('keyup', e => e.key == 'Escape' && this.hide());
+        title() {
+            return this.filePath.split('/').pop();
         }
+    },
+    methods: {
+        async show(filePath) {
+            this.filePath = filePath;
+            this.visible = true;
+
+            await axios.get('?info=' + filePath).then(function (response) {
+                this.hashes = response.data.hashes;
+            }.bind(this)).catch(function (error) {
+                this.error = error.response.request.statusText;
+            }.bind(this));
+
+            this.loading = false;
+        },
+        hide() {
+            this.visible = false;
+            this.loading = true;
+            this.error = null;
+        }
+    },
+    mounted() {
+        window.addEventListener('keyup', e => e.key == 'Escape' && this.hide());
     }
+};
 </script>

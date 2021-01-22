@@ -12,10 +12,12 @@ prod production: # Build application for production
 update upgrade: # Update application dependencies
 	@composer update && npm update && npm install && npm audit fix
 
-test: # Run coding standards/static analysis checks and tests
-	@app/vendor/bin/php-cs-fixer fix --diff --dry-run \
-		&& app/vendor/bin/psalm \
-		&& app/vendor/bin/phpunit --coverage-text
+analyze: # Run coding standards and static analysis checks
+	@app/vendor/bin/php-cs-fixer fix --diff --dry-run && app/vendor/bin/psalm
+	@npx eslint app/resources/js/**/*.{js,vue}
+
+test: analyze # Run coding standards/static analysis checks and tests
+	@app/vendor/bin/phpunit --coverage-text
 
 coverage: # Generate an HTML coverage report
 	@app/vendor/bin/phpunit --coverage-html .coverage

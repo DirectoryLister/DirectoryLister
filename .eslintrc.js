@@ -1,4 +1,4 @@
-export default {
+module.exports = {
     'env': {
         'browser': true,
         'es2021': true
@@ -13,7 +13,10 @@ export default {
     },
     'plugins': ['vue'],
     'rules': {
+        'eol-last': ['error', 'always'],
+        'indent': ['error', 4],
+        'no-multi-spaces': ['error'],
         'quotes': ['error', 'single'],
-        'semi': ['always', { 'omitLastInOneLineBlock': true }],
+        'semi': ['error', 'always', { 'omitLastInOneLineBlock': true }],
     }
 };

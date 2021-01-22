@@ -12,21 +12,21 @@
         "production": "mix --production"
     },
     "dependencies": {
-        "autoprefixer": "^10.1.0",
+        "autoprefixer": "^10.2.3",
         "axios": "^0.21.1",
         "highlight.js": "^10.5.0",
-        "postcss": "^8.2.2",
+        "postcss": "^8.2.4",
         "vue": "^2.6.12"
     },
     "devDependencies": {
-        "@fortawesome/fontawesome-free": "^5.15.1",
+        "@fortawesome/fontawesome-free": "^5.15.2",
         "cross-env": "^7.0.3",
-        "eslint": "^7.17.0",
-        "eslint-plugin-vue": "^7.4.1",
-        "laravel-mix": "^6.0.6",
+        "eslint": "^7.18.0",
+        "eslint-plugin-vue": "^7.5.0",
+        "laravel-mix": "^6.0.10",
         "resolve-url-loader": "^3.1.2",
-        "sass": "^1.32.0",
-        "sass-loader": "^10.1.0",
+        "sass": "^1.32.5",
+        "sass-loader": "^10.1.1",
         "tailwindcss": "^2.0.2",
         "vue-loader": "^15.9.6",
         "vue-template-compiler": "^2.6.12"

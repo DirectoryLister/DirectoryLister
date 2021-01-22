@@ -38,6 +38,7 @@ install:
 script:
   - npm run production --verbose
   - app/vendor/bin/php-cs-fixer fix --diff --dry-run
+  - node_modules/.bin/eslint app/resources/js/**/*.{js,vue}
   - app/vendor/bin/psalm --show-info=true
   - app/vendor/bin/phpunit --coverage-text
 

@@ -25,7 +25,7 @@ class Icon extends ViewFunction
         $icons = $this->config->get('icons');
 
         $icon = $file->isDir() ? 'fas fa-folder'
-            : $icons[$file->getExtension()] ?? 'fas fa-file';
+            : $icons[strtolower($file->getExtension())] ?? 'fas fa-file';
 
         return "<i class=\"{$icon} fa-fw fa-lg\"></i>";
     }

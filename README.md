@@ -55,7 +55,7 @@ Configuration
   1. Copy `.env.example` to `.env`
   2. Edit the configuration values in `.env`
 
-See the [Config Reference](https://github.com/DirectoryLister/DirectoryLister/wiki/Config-Reference) for more information about individual options.
+See the [Configuration Documentation](https://docs.directorylister.com/configuration) for more information.
 
 Changelog
 ---------
@@ -65,7 +65,7 @@ A list of changes can be found on the [GitHub Releases](https://github.com/Direc
 Troubleshooting
 ---------------
 
-See the [Common Issues](https://github.com/DirectoryLister/DirectoryLister/wiki/Common-Issues) page for a list of common issues and help in solving them.
+See the [Help & Support](https://docs.directorylister.com/help-and-support) section of the documentation for troubleshooting instructions.
 
 For general help and support join our [GitHub Discussion](https://github.com/DirectoryLister/DirectoryLister/discussions) or reach out on [Twitter](https://twitter.com/DirectoryLister).
 

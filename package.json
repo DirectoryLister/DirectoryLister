@@ -12,7 +12,7 @@
         "production": "mix --production"
     },
     "dependencies": {
-        "autoprefixer": "^10.2.3",
+        "autoprefixer": "^10.2.4",
         "axios": "^0.21.1",
         "highlight.js": "^10.5.0",
         "postcss": "^8.2.4",

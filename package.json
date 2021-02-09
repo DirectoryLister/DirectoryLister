@@ -3,6 +3,7 @@
     "author": "Chris Kankiewicz",
     "license": "MIT",
     "scripts": {
+        "cs": "npx eslint app/resources/js/**/*.{js,vue} || true",
         "dev": "npm run development",
         "development": "mix",
         "watch": "mix watch",

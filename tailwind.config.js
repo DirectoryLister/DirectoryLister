@@ -14,8 +14,7 @@ module.exports = {
             'app/**/*.vue',
         ],
         options: {
-            safelist: ['html', 'body', 'main', 'fab', 'fas'],
-            safelistPatterns: [/^fa\-/, /^hljs/]
+            safelist: ['html', 'body', 'main', 'fab', 'fas', /^hljs/],
         }
     },
     theme: {

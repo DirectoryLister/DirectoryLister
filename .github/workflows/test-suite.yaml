@@ -1,0 +1,77 @@
+name: Directory Lister Test Suite
+on: [push]
+
+jobs:
+  php:
+    name: PHP Checks & Tests
+    runs-on: 'ubuntu-latest'
+
+    strategy:
+      matrix:
+        php-versions: ['7.2', '7.3', '7.4', '8.0']
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-versions }}
+          extensions: mbstring, intl
+          coverage: xdebug
+
+      - name: Get Composer Cache Directory
+        id: composer-cache
+        run: echo "::set-output name=dir::$(composer config cache-files-dir)"
+
+      - name: Cache PHP Dependencies
+        uses: actions/cache@v2
+        with:
+          path: ${{ steps.composer-cache.outputs.dir }}
+          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+          restore-keys: ${{ runner.os }}-composer-
+
+      - name: Start Redis
+        uses: supercharge/redis-github-action@1.2.0
+        with:
+          redis-version: 6
+
+      - name: Validate Composer Files
+        run: composer validate
+
+      - name: Install PHP Dependencies
+        run: composer update
+
+      - name: Verify Coding Standards
+        run: app/vendor/bin/php-cs-fixer fix --diff --dry-run
+
+      - name: Run Static Analysis
+        run: app/vendor/bin/psalm --show-info=true
+
+      - name: Run Tests
+        run: app/vendor/bin/phpunit --coverage-text
+
+  javascript:
+    name: Javascript Checks
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Cache JavaScript Dependencies
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: ${{ runner.os }}-node-
+
+      - name: Install JavaScript Dependencies
+        run: npm ci
+
+      - name: Compile Assets
+        run: npm run production --verbose
+
+      - name: Lint JavaScript Files
+        run: npx eslint app/resources/js/**/*.{js,vue}

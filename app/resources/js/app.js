@@ -48,4 +48,4 @@ new Vue({
     }
 });
 
-hljs.initHighlightingOnLoad();
+hljs.highlightAll();

@@ -6,6 +6,11 @@ jobs:
     name: PHP Checks & Tests
     runs-on: 'ubuntu-latest'
 
+    services:
+      redis:
+        image: redis:6.2
+        options: --health-cmd "redis-cli ping" --health-interval=10s --health-timeout=5s --health-retries=3
+
     strategy:
       matrix:
         php-versions: ['7.2', '7.3', '7.4', '8.0']
@@ -31,11 +36,6 @@ jobs:
           path: ${{ steps.composer-cache.outputs.dir }}
           key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
           restore-keys: ${{ runner.os }}-composer-
-
-      - name: Start Redis
-        uses: supercharge/redis-github-action@1.2.0
-        with:
-          redis-version: 6
 
       - name: Validate Composer Files
         run: composer validate

@@ -16,7 +16,7 @@ class SizeForHumans extends ViewFunction
         try {
             $fileSize = $file->getSize();
         } catch (RuntimeException $exception) {
-            return 0;
+            return '0B';
         }
 
         $sizes = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];

@@ -50,6 +50,8 @@ jobs:
         run: app/vendor/bin/psalm --show-info=true
 
       - name: Run Tests
+        env:
+          REDIS_HOST: redis
         run: app/vendor/bin/phpunit --coverage-text
 
   javascript:

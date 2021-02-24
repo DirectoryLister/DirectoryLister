@@ -36,7 +36,7 @@
         </div>
 
         <div class="hidden whitespace-nowrap text-right truncate ml-2 w-1/4 sm:block">
-            {{ parentDir ? '—' : file.getMTime | date }}
+            {{ parentDir ? '—' : modified_time(file) }}
         </div>
     </div>
 </a>

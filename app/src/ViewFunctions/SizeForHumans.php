@@ -2,6 +2,7 @@
 
 namespace App\ViewFunctions;
 
+use RuntimeException;
 use Symfony\Component\Finder\SplFileInfo;
 
 class SizeForHumans extends ViewFunction
@@ -12,9 +13,15 @@ class SizeForHumans extends ViewFunction
     /** Get the human readable file size from a file object. */
     public function __invoke(SplFileInfo $file): string
     {
-        $sizes = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
-        $factor = (int) floor((strlen((string) $file->getSize()) - 1) / 3);
+        try {
+            $fileSize = $file->getSize();
+        } catch (RuntimeException $exception) {
+            return 0;
+        }
 
-        return sprintf('%.2f', $file->getSize() / pow(1024, $factor)) . $sizes[$factor];
+        $sizes = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
+        $factor = (int) floor((strlen((string) $fileSize) - 1) / 3);
+
+        return sprintf('%.2f', $fileSize / pow(1024, $factor)) . $sizes[$factor];
     }
 }

@@ -11,7 +11,8 @@ class ModifiedTime extends ViewFunction
     /** @var string The function name */
     protected $name = 'modified_time';
 
-    private Config $config;
+    /** @var Config The application config */
+    private $config;
 
     public function __construct(Config $config)
     {

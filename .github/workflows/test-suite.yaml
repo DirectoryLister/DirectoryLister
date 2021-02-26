@@ -2,6 +2,30 @@ name: Directory Lister Test Suite
 on: [push]
 
 jobs:
+  asset-compilation:
+    name: Asset Compilation
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Cache JavaScript Dependencies
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: ${{ runner.os }}-node-
+
+      - name: Install JavaScript Dependencies
+        run: npm ci
+
+      - name: Compile Assets
+        run: npm run production --verbose
+
+      - name: Lint JavaScript Files
+        run: npx eslint app/resources/js/**/*.{js,vue}
+
   coding-standards:
     name: Coding Standards
     runs-on: 'ubuntu-latest'
@@ -72,27 +96,3 @@ jobs:
 
       - name: Run Tests
         run: app/vendor/bin/phpunit --coverage-text
-
-  javascript:
-    name: Javascript Checks
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v2
-
-      - name: Cache JavaScript Dependencies
-        uses: actions/cache@v2
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: ${{ runner.os }}-node-
-
-      - name: Install JavaScript Dependencies
-        run: npm ci
-
-      - name: Compile Assets
-        run: npm run production --verbose
-
-      - name: Lint JavaScript Files
-        run: npx eslint app/resources/js/**/*.{js,vue}

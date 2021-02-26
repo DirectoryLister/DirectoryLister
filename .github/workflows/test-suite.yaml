@@ -2,8 +2,36 @@ name: Directory Lister Test Suite
 on: [push]
 
 jobs:
-  php:
-    name: PHP Checks & Tests
+  coding-standards:
+    name: Coding Standards
+    runs-on: 'ubuntu-latest'
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Install PHP Dependencies
+        run: composer update
+
+      - name: Verify Coding Standards
+        run: app/vendor/bin/php-cs-fixer fix --diff --dry-run
+
+  static-analysis:
+    name: Static Analysis
+    runs-on: 'ubuntu-latest'
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Install PHP Dependencies
+        run: composer update
+
+      - name: Run Static Analysis
+        run: app/vendor/bin/psalm
+
+  tests:
+    name: Tests
     runs-on: 'ubuntu-latest'
 
     services:
@@ -39,17 +67,8 @@ jobs:
           key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
           restore-keys: ${{ runner.os }}-composer-
 
-      - name: Validate Composer Files
-        run: composer validate
-
       - name: Install PHP Dependencies
         run: composer update
-
-      - name: Verify Coding Standards
-        run: app/vendor/bin/php-cs-fixer fix --diff --dry-run
-
-      - name: Run Static Analysis
-        run: app/vendor/bin/psalm --show-info=true
 
       - name: Run Tests
         run: app/vendor/bin/phpunit --coverage-text

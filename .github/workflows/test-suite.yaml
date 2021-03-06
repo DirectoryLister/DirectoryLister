@@ -96,3 +96,31 @@ jobs:
 
       - name: Run Tests
         run: app/vendor/bin/phpunit --coverage-text
+
+  release:
+    name: Create Release
+    runs-on: 'ubuntu-latest'
+    if: startsWith(github.ref, 'refs/tags/')
+    needs: tests
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Get Tag
+        id: vars
+        run: echo ::set-output name=tag::${GITHUB_REF#refs/*/}
+
+      - name: Build Artifact
+        run: make artifacts
+
+      - name: Publish Release
+        uses: softprops/action-gh-release@v1
+        with:
+          name: v${{ steps.vars.outputs.tag }}
+          draft: true
+          files: |
+            artifacts/DirectoryLister-${{ steps.vars.outputs.tag }}.tar.gz
+            artifacts/DirectoryLister-${{ steps.vars.outputs.tag }}.zip

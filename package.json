@@ -15,7 +15,7 @@
     "dependencies": {
         "autoprefixer": "^10.2.5",
         "axios": "^0.21.1",
-        "highlight.js": "^10.6.0",
+        "highlight.js": "^10.7.1",
         "postcss": "^8.2.7",
         "vue": "^2.6.12"
     },

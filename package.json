@@ -16,7 +16,7 @@
         "autoprefixer": "^10.2.5",
         "axios": "^0.21.1",
         "highlight.js": "^10.6.0",
-        "postcss": "^8.2.7",
+        "postcss": "^8.2.9",
         "vue": "^2.6.12"
     },
     "devDependencies": {

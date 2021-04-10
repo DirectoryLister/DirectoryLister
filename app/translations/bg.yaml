@@ -1,0 +1,19 @@
+home: Начало
+download: Изтегляне
+search: Търсене
+file:
+  name: Име
+  size: Размер
+  date: Дата
+  info: Информация
+powered_by: Страницата е създадена с
+scroll_to_top: Към началото
+
+error:
+  directory_not_found:  Директорията не е намерена
+  file_not_found: Файлът не е намерен
+  file_size_exceeded: Размерът на файла превишава зададения лимит
+  no_results_found: Не са намерени резултати
+  unexpected: Неочаквана грешка
+
+enable_debugging: Включване на дебъгинг

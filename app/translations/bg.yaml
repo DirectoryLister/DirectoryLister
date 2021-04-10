@@ -8,6 +8,7 @@ file:
   info: Информация
 powered_by: Страницата е създадена с
 scroll_to_top: Към началото
+toggle_theme: Превключване на светло/тъмно режим
 
 error:
   directory_not_found:  Директорията не е намерена

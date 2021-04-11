@@ -38,10 +38,10 @@
         "friendsofphp/php-cs-fixer": "^2.3",
         "johnkary/phpunit-speedtrap": "^3.2",
         "phlak/coding-standards": "^1.1",
-        "phpunit/phpunit": "^8.0 || ~9.0 <9.5",
         "psy/psysh": "^0.10",
         "symfony/var-dumper": "^5.0",
-        "vimeo/psalm": "^4.3"
+        "vimeo/psalm": "^4.3",
+        "yoast/phpunit-polyfills": "^0.2.0"
     },
     "suggest": {
         "ext-apcu": "Required to use the APCu cache driver",

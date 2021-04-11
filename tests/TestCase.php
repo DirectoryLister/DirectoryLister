@@ -6,11 +6,11 @@ use App\Config;
 use DI\Container;
 use DI\ContainerBuilder;
 use Dotenv\Dotenv;
-use PHPUnit\Framework\TestCase as PHPUnitTestCase;
 use Symfony\Component\Cache\Adapter\ArrayAdapter;
 use Symfony\Contracts\Cache\CacheInterface;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase as BaseTestCase;
 
-class TestCase extends PHPUnitTestCase
+class TestCase extends BaseTestCase
 {
     /** @var Container The test container */
     protected $container;

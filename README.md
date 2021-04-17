@@ -8,7 +8,7 @@
     <a href="https://paypal.me/ChrisKankiewicz"><img src="https://img.shields.io/badge/Make_a-Donation-006bb6.svg?style=for-the-badge" alt="One-time Donation"></a>
     <br>
     <a href="https://github.com/DirectoryLister/DirectoryLister/blob/master/LICENSE"><img src="https://img.shields.io/github/license/DirectoryLister/DirectoryLister?style=flat-square" alt="License"></a>
-    <a href="https://github.com/DirectoryLister/DirectoryLister/actions?query=branch%3Amaster" alt="Build Status"><img src="https://img.shields.io/github/checks-status/DirectoryLister/DirectoryLister/master?style=flat-square"></a>
+    <a href="https://github.com/DirectoryLister/DirectoryLister/actions" alt="Build Status"><img src="https://img.shields.io/github/checks-status/DirectoryLister/DirectoryLister/master?style=flat-square"></a>
     <a href="https://styleci.io/repos/1375774"><img src="https://styleci.io/repos/1375774/shield?branch=master" alt="StyleCI"></a>
 </p>
 

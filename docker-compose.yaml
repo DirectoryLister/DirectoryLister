@@ -9,7 +9,7 @@ services:
     volumes:
       - ./:/var/www/html
     extra_hosts:
-      - host.docker.internal:${DOCKER_HOST_IP}
+      - host.docker.internal:${DOCKER_HOST_IP:-172.17.0.1}
 
   memcached:
     container_name: directory-lister-memcached

@@ -6,6 +6,8 @@ services:
     build: .
     environment:
       VIRTUAL_HOST: directory-lister.local
+    ports:
+      - ${APP_PORT:-80}:80
     volumes:
       - ./:/var/www/html
     extra_hosts:
@@ -22,8 +24,3 @@ services:
     ports:
       - ${REDIS_PORT:-6379}:6379
     image: redis:6.0
-
-networks:
-  default:
-    external:
-      name: development

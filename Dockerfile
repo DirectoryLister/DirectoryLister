@@ -3,7 +3,6 @@ LABEL maintainer="Chris Kankiewicz <Chris@ChrisKankiewicz.com>"
 
 ENV COMPOSER_ALLOW_SUPERUSER=1
 ENV COMPOSER_HOME="/tmp"
-ENV PATH="app/vendor/bin:${PATH}"
 
 COPY --from=composer:2.0 /usr/bin/composer /usr/bin/composer
 COPY .docker/apache/config/000-default.conf /etc/apache2/sites-available/000-default.conf

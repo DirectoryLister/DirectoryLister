@@ -15,7 +15,7 @@ ENV XDG_CONFIG_HOME="/tmp/.config"
 
 RUN a2enmod rewrite
 
-RUN apt-get update && apt-get install --assume-yes libmemcached-dev libzip-dev \
+RUN apt-get update && apt-get install --assume-yes libmemcached-dev libzip-dev tar zip \
     && rm -rf /var/lib/apt/lists/*
 
 RUN docker-php-ext-install opcache zip \

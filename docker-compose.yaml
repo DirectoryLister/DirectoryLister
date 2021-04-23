@@ -4,14 +4,19 @@ services:
   app:
     container_name: directory-lister-app
     build: .
+    image: directory-lister-dev:local
+    depends_on:
+      - memcached
+      - redis
     environment:
       VIRTUAL_HOST: directory-lister.local
     ports:
       - ${APP_PORT:-80}:80
-    volumes:
-      - ./:/var/www/html
     extra_hosts:
       - host.docker.internal:${DOCKER_HOST_IP:-172.17.0.1}
+    user: ${HOST_USER_ID:-0}:${HOST_GROUP_ID:-0}
+    volumes:
+      - ./:/var/www/html
 
   memcached:
     container_name: directory-lister-memcached
@@ -24,3 +29,11 @@ services:
     ports:
       - ${REDIS_PORT:-6379}:6379
     image: redis:6.0
+
+  npm:
+    container_name: drectory-lister-npm
+    image: directory-lister-dev:local
+    volumes:
+      - ./:/var/www/html
+    user: ${HOST_USER_ID:-0}:${HOST_GROUP_ID:-0}
+    command: npm run watch

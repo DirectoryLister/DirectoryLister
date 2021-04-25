@@ -3,6 +3,7 @@
 namespace Tests\ViewFunctions;
 
 use App\ViewFunctions\SizeForHumans;
+use RuntimeException;
 use Symfony\Component\Finder\SplFileInfo;
 use Tests\TestCase;
 
@@ -77,5 +78,16 @@ class SizeForHumansTest extends TestCase
         $sizeForHumans = new SizeForHumans;
 
         $this->assertEquals('8.00EB', $sizeForHumans($file));
+    }
+
+    /** @test */
+    public function it_returns_zero_bytes_when_it_can_not_get_the_file_size(): void
+    {
+        $file = $this->createMock(SplFileInfo::class);
+        $file->method('getSize')->willThrowException(new RuntimeException);
+
+        $sizeForHumans = new SizeForHumans;
+
+        $this->assertEquals('0B', $sizeForHumans($file));
     }
 }

@@ -14,7 +14,10 @@ ini_set('open_basedir', __DIR__);
 Dotenv::createUnsafeImmutable(__DIR__)->safeLoad();
 
 // Initialize the container
-$container = BootManager::createContainer(__DIR__ . '/app/config');
+$container = BootManager::createContainer(
+    __DIR__ . '/app/config',
+    __DIR__ . '/app/cache'
+);
 
 // Initialize the application
 $app = $container->call(AppManager::class);

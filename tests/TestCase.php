@@ -27,7 +27,8 @@ class TestCase extends BaseTestCase
         Dotenv::createUnsafeImmutable(__DIR__)->safeLoad();
 
         $this->container = BootManager::createContainer(
-            dirname(__DIR__) . '/app/config'
+            dirname(__DIR__) . '/app/config',
+            dirname(__DIR__) . '/app/cache'
         );
 
         $this->config = new Config($this->container);

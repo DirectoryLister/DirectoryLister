@@ -8,14 +8,14 @@ use DI\ContainerBuilder;
 class BootManager
 {
     /** Create the application service container. */
-    public static function createContainer(string $configDirectory): Container
+    public static function createContainer(string $configPath, string $cachePath): Container
     {
         $container = (new ContainerBuilder)->addDefinitions(
-            ...glob($configDirectory . '/*.php')
+            ...glob($configPath . '/*.php')
         );
 
         if (self::enableContainerCompilation()) {
-            $container->enableCompilation(dirname(__DIR__, 2) . '/cache');
+            $container->enableCompilation($cachePath);
         }
 
         return $container->build();

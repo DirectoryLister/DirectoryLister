@@ -57,6 +57,11 @@ Configuration
 
 See the [Configuration Documentation](https://docs.directorylister.com/configuration) for more information.
 
+Sponsors
+--------
+
+<a href="https://besturate.com"><img src="https://i.imgur.com/fUKxT63.png" alt="Besturate" height="100"></a>
+
 Changelog
 ---------
 

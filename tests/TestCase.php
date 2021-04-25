@@ -2,9 +2,9 @@
 
 namespace Tests;
 
+use App\Bootstrap\BootManager;
 use App\Config;
 use DI\Container;
-use DI\ContainerBuilder;
 use Dotenv\Dotenv;
 use Symfony\Component\Cache\Adapter\ArrayAdapter;
 use Symfony\Contracts\Cache\CacheInterface;
@@ -26,9 +26,9 @@ class TestCase extends BaseTestCase
     {
         Dotenv::createUnsafeImmutable(__DIR__)->safeLoad();
 
-        $this->container = (new ContainerBuilder)->addDefinitions(
-            ...glob(dirname(__DIR__) . '/app/config/*.php')
-        )->build();
+        $this->container = BootManager::createContainer(
+            dirname(__DIR__) . '/app/config'
+        );
 
         $this->config = new Config($this->container);
         $this->cache = new ArrayAdapter($this->config->get('cache_lifetime'));

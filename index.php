@@ -2,7 +2,6 @@
 
 use App\Bootstrap\AppManager;
 use App\Bootstrap\BootManager;
-use DI\ContainerBuilder;
 use Dotenv\Dotenv;
 
 require __DIR__ . '/app/vendor/autoload.php';

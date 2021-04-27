@@ -14,7 +14,7 @@ class BootManager
             ...glob($configPath . '/*.php')
         );
 
-        if (self::enableContainerCompilation()) {
+        if (self::containerCompilationEnabled()) {
             $container->enableCompilation($cachePath);
         }
 
@@ -22,16 +22,18 @@ class BootManager
     }
 
     /** Determine if container compilation should be enabled. */
-    protected static function enableContainerCompilation(): bool
+    protected static function containerCompilationEnabled(): bool
     {
         if (filter_var(getenv('APP_DEBUG'), FILTER_VALIDATE_BOOL)) {
             return false;
         }
 
-        if (! filter_var(getenv('COMPILE_CONTAINER'), FILTER_VALIDATE_BOOL)) {
-            return false;
+        $compileContainer = getenv('COMPILE_CONTAINER');
+
+        if ($compileContainer === false) {
+            return true;
         }
 
-        return true;
+        return strtolower($compileContainer) !== 'false';
     }
 }

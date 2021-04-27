@@ -22,10 +22,9 @@ class BootManagerTest extends TestCase
     }
 
     /** @test */
-    public function it_caches_the_container_when_compile_container_is_true(): void
+    public function it_caches_the_container_by_default(): void
     {
-        putenv('APP_DEBUG=false');
-        putenv('COMPILE_CONTAINER=true');
+        putenv('COMPILE_CONTAINER=');
 
         $container = BootManager::createContainer(
             $this->filePath('app/config'),
@@ -37,9 +36,8 @@ class BootManagerTest extends TestCase
     }
 
     /** @test */
-    public function it_does_not_cache_the_container_when_compilation_is_explicitly_disabled(): void
+    public function it_does_not_cache_the_container_when_explicitly_disabled(): void
     {
-        putenv('APP_DEBUG=false');
         putenv('COMPILE_CONTAINER=false');
 
         $container = BootManager::createContainer(
@@ -55,7 +53,6 @@ class BootManagerTest extends TestCase
     public function it_does_not_cache_the_container_when_debug_is_enabled(): void
     {
         putenv('APP_DEBUG=true');
-        putenv('COMPILE_CONTAINER=true');
 
         $container = BootManager::createContainer(
             $this->filePath('app/config'),

@@ -16,7 +16,7 @@ assignees: PHLAK
 
 **Describe alternatives you've considered**
 
-<!-- HAve you considered any alternative solutions or features? -->
+<!-- Have you considered any alternative solutions or features? -->
 
 **Additional context**
 

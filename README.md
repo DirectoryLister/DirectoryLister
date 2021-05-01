@@ -7,9 +7,9 @@
     <a href="https://github.com/users/PHLAK/sponsorship"><img src="https://img.shields.io/badge/Become_a-Sponsor-cc4195.svg?style=for-the-badge" alt="Become a Sponsor"></a>
     <a href="https://paypal.me/ChrisKankiewicz"><img src="https://img.shields.io/badge/Make_a-Donation-006bb6.svg?style=for-the-badge" alt="One-time Donation"></a>
     <br>
+    <img alt="Packagist PHP Version Support" src="https://img.shields.io/packagist/php-v/phlak/directory-lister?style=flat-square">
     <a href="https://github.com/DirectoryLister/DirectoryLister/blob/master/LICENSE"><img src="https://img.shields.io/github/license/DirectoryLister/DirectoryLister?style=flat-square" alt="License"></a>
     <a href="https://github.com/DirectoryLister/DirectoryLister/actions" alt="Build Status"><img src="https://img.shields.io/github/checks-status/DirectoryLister/DirectoryLister/master?style=flat-square"></a>
-    <a href="https://styleci.io/repos/1375774"><img src="https://styleci.io/repos/1375774/shield?branch=master" alt="StyleCI"></a>
 </p>
 
 ---
@@ -60,7 +60,7 @@ See the [Configuration Documentation](https://docs.directorylister.com/configura
 Sponsors
 --------
 
-<a href="https://besturate.com"><img src="https://i.imgur.com/fUKxT63.png" alt="Besturate" height="100"></a>
+<a href="https://besturate.com"><img src="https://i.imgur.com/fUKxT63.png" alt="Besturate" height="100" style="height: 100px;"></a>
 
 Changelog
 ---------

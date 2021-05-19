@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "44a453ef59a78a7e969be445b1e561f3",
+    "content-hash": "c135cb50c4c9716cdaa6d47f57f861f6",
     "packages": [
         {
             "name": "erusev/parsedown",
@@ -585,16 +585,16 @@
         },
         {
             "name": "phlak/splat",
-            "version": "3.1.0",
+            "version": "4.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/PHLAK/Splat.git",
-                "reference": "a57702eec01b9da631e39f936a6341edce2eb103"
+                "reference": "a3da691298336dfd541aded61d4612170652ddf1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PHLAK/Splat/zipball/a57702eec01b9da631e39f936a6341edce2eb103",
-                "reference": "a57702eec01b9da631e39f936a6341edce2eb103",
+                "url": "https://api.github.com/repos/PHLAK/Splat/zipball/a3da691298336dfd541aded61d4612170652ddf1",
+                "reference": "a3da691298336dfd541aded61d4612170652ddf1",
                 "shasum": ""
             },
             "require": {
@@ -603,11 +603,13 @@
             },
             "require-dev": {
                 "friendsofphp/php-cs-fixer": "^2.10",
+                "phlak/coding-standards": "^1.2",
                 "php": ">=7.2",
                 "phpunit/phpunit": "^8.0 || ^9.0",
                 "psy/psysh": "^0.10",
                 "symfony/var-dumper": "^5.0",
-                "vimeo/psalm": "^3.8"
+                "vimeo/psalm": "^4.7",
+                "yoast/phpunit-polyfills": "^0.2.0"
             },
             "type": "library",
             "autoload": {
@@ -628,7 +630,7 @@
             "description": "Glob-like pattern matching and utilities",
             "support": {
                 "issues": "https://github.com/PHLAK/Splat/issues",
-                "source": "https://github.com/PHLAK/Splat/tree/3.1.0"
+                "source": "https://github.com/PHLAK/Splat/tree/4.0.0"
             },
             "funding": [
                 {
@@ -640,7 +642,7 @@
                     "type": "paypal"
                 }
             ],
-            "time": "2020-10-10T06:24:40+00:00"
+            "time": "2021-05-17T00:50:22+00:00"
         },
         {
             "name": "php-di/invoker",

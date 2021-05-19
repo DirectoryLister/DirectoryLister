@@ -20,7 +20,7 @@
         "erusev/parsedown-extra": "^0.8.1",
         "filp/whoops": "^2.7",
         "middlewares/cache": "^2.0",
-        "phlak/splat": "^3.0",
+        "phlak/splat": "^4.0",
         "php-di/php-di": "^6.0",
         "php-di/slim-bridge": "^3.0",
         "psr/http-message": "^1.0.1",

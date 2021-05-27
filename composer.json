@@ -35,9 +35,8 @@
         "vlucas/phpdotenv": "^5.0"
     },
     "require-dev": {
-        "friendsofphp/php-cs-fixer": "^2.3",
-        "johnkary/phpunit-speedtrap": "^3.2",
-        "phlak/coding-standards": "^1.1",
+        "johnkary/phpunit-speedtrap": "^4.0",
+        "phlak/coding-standards": "^2.0",
         "psy/psysh": "^0.10",
         "symfony/var-dumper": "^5.0",
         "vimeo/psalm": "^4.3",

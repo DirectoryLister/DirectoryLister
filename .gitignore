@@ -2,6 +2,6 @@
 /node_modules/
 /.env
 /.hidden
-/.php_cs.cache
+/.php-cs-fixer.cache
 /.phpunit.result.cache
 /mix-manifest.json

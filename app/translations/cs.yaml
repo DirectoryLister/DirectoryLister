@@ -1,0 +1,20 @@
+home: Domů
+download: Stáhnout tento adresář
+search: Hledat
+file:
+  name: Jméno souboru
+  size: Velikost
+  date: Datum
+  info: Informace o souboru
+powered_by: Poháněno
+scroll_to_top: Scrollovat nahoru
+toggle_theme: Přepnout světlý/tmavý režim
+
+error:
+  directory_not_found: Adresář nebyl nalezen
+  file_not_found: Soubor nebyl nalezen
+  file_size_exceeded: File size too large
+  no_results_found: Žádné výsledky nebyly nalezeny
+  unexpected: Došlo k neočekávané chybě
+
+enable_debugging: Povolit ladění pro další informace

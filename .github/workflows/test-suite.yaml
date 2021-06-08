@@ -1,5 +1,5 @@
 name: Directory Lister Test Suite
-on: [push]
+on: [push, pull_request]
 
 jobs:
   asset-compilation:

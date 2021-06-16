@@ -6,13 +6,7 @@ module.exports = {
     mode: 'jit',
     purge: {
         mode: 'all',
-        content: [
-            'app/**/*.js',
-            'app/**/*.php',
-            'app/**/*.scss',
-            'app/**/*.twig',
-            'app/**/*.vue',
-        ],
+        content: ['app/**/*.{js,php,scss,twig}'],
         options: {
             safelist: ['html', 'body', 'main', 'fab', 'fas', /^hljs/],
         }
@@ -20,7 +14,7 @@ module.exports = {
     theme: {
         extend: {
             colors: {
-                blue: colors.lightBlue,
+                blue: colors.sky,
                 gray: colors.blueGray,
                 purple: colors.violet,
             },

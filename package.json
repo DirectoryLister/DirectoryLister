@@ -3,7 +3,7 @@
     "author": "Chris Kankiewicz",
     "license": "MIT",
     "scripts": {
-        "cs": "npx eslint app/resources/js/**/*.{js,vue} || true",
+        "cs": "npx eslint app/resources/js/**/*.js || true",
         "dev": "npm run development",
         "development": "mix",
         "watch": "mix watch",
@@ -13,23 +13,20 @@
         "production": "mix --production"
     },
     "dependencies": {
+        "alpinejs": "^3.0.1",
         "autoprefixer": "^10.2.5",
         "axios": "^0.21.1",
         "highlight.js": "^10.6.0",
-        "postcss": "^8.2.7",
-        "vue": "^2.6.12"
+        "postcss": "^8.2.7"
     },
     "devDependencies": {
         "@fortawesome/fontawesome-free": "^5.15.2",
         "cross-env": "^7.0.3",
         "eslint": "^7.21.0",
-        "eslint-plugin-vue": "^7.7.0",
         "laravel-mix": "^6.0.19",
         "resolve-url-loader": "^4.0.0",
         "sass": "^1.32.8",
         "sass-loader": "^11.0.1",
-        "tailwindcss": "^2.1.0",
-        "vue-loader": "^15.9.6",
-        "vue-template-compiler": "^2.6.12"
+        "tailwindcss": "^2.1.0"
     }
 }

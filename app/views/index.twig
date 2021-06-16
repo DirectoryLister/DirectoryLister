@@ -3,7 +3,7 @@
 {% block content %}
     {% include "components/header.twig" %}
 
-    <div id="content" class="flex flex-col flex-grow container mx-auto px-4 xl:max-w-screen-xl dark:text-white">
+    <div class="flex flex-col flex-grow container mx-auto px-4 xl:max-w-screen-xl dark:text-white">
         <div class="my-4">
             <div class="flex justify-between font-bold p-4">
                 <div class="flex-grow font-mono mr-2">
@@ -19,7 +19,7 @@
                 </div>
             </div>
 
-            <ul id="file-list">
+            <ul>
                 <li>
                     {% if path and path != '.' %}
                         {{ include('components/file.twig', { parentDir: true }) }}
@@ -42,5 +42,6 @@
     {% include 'components/footer.twig' %}
 
     {% include 'components/scroll-to-top.twig' %}
-    <file-info-modal ref="fileInfoModal"></file-info-modal>
+
+    {% include 'components/file-info-modal.twig' %}
 {% endblock %}

@@ -4,7 +4,7 @@
 {% block content %}
     {% include 'components/header.twig' %}
 
-    <div id="content" class="flex-grow container flex flex-col justify-center items-center mx-auto px-4 xl:max-w-screen-xl">
+    <div class="flex-grow container flex flex-col justify-center items-center mx-auto px-4 xl:max-w-screen-xl">
         <p class="font-thin text-4xl text-gray-600">
             {{ message | default('An unexpected error occured') }}
         </p>

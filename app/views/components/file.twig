@@ -17,10 +17,8 @@
 
         {% if file.isFile %}
             <div class="ml-2">
-                <button
-                    title="{{ translate('file.info') }}"
-                    class="flex justify-center items-center rounded-full p-2 -m-1 md:invisible hover:bg-gray-300 hover:shadow dark:hover:bg-purple-900 group-hover:visible"
-                    v-on:click.prevent="showFileInfo('{{ url(file.getPathname) | escape('js') }}')"
+                <button title="{{ translate('file.info') }}" @click.prevent="$dispatch('show-file-info', { file: '{{ url(file.getPathname) | escape('js') }}' })"
+                    class="justify-center items-center rounded-full p-2 -m-1 md:invisible hover:bg-gray-300 hover:shadow dark:hover:bg-purple-900 group-hover:visible"
                 >
                     <i class="fas fa-info-circle"></i>
                 </button>

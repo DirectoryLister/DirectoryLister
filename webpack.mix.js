@@ -12,7 +12,7 @@ mix.sass('app/resources/sass/app.scss', 'app/assets/app.css').options({
     postCss: [tailwindcss('tailwind.config.js')]
 });
 
-mix.js('app/resources/js/app.js', 'app/assets/app.js').vue();
+mix.js('app/resources/js/app.js', 'app/assets/app.js');
 
 mix.copyDirectory('app/resources/images', 'app/assets/images');
 

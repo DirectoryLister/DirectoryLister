@@ -19,6 +19,6 @@ $fa-font-path: "./webfonts";
 @import "markdown.scss";
 
 // Miscellaneous
-[v-cloak] {
-    display: none;
+[x-cloak] {
+    display: none !important;
 }

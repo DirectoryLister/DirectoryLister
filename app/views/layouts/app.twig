@@ -9,6 +9,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link rel="stylesheet" href="{{ asset('app.css') }}">
 
+<script src="{{ asset('app.js') }}" defer></script>
+
 {% if config('google_analytics_id', false) %}
     {% include 'components/analytics/google.twig' %}
 {% endif %}
@@ -19,14 +21,12 @@
 
 <title>{{ title }} &bull; {{ config('site_title') }}</title>
 
-<div id="app" v-bind:class="{ dark: darkMode }">
+<div x-data="application" x-init="loading = false" x-effect="localStorage.setItem('theme', theme)" :class="{ 'dark': theme === 'dark' }">
     <div class="flex flex-col min-h-screen font-sans dark:bg-gray-800">
         {% block content %}{% endblock %}
     </div>
 
-    <div class="fixed inset-0 flex items-center justify-center bg-gray-600 p-4 z-50" v-show="loading">
+    <div class="fixed inset-0 flex items-center justify-center bg-gray-600 p-4 z-50" x-show="loading" x-transition>
         <i class="fas fa-spinner fa-pulse fa-5x text-white"></i>
     </div>
 </div>
-
-<script src="{{ asset('app.js') }}"></script>

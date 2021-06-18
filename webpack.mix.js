@@ -24,3 +24,5 @@ mix.copy(
 if (mix.inProduction()) {
     mix.version();
 }
+
+mix.disableSuccessNotifications();

@@ -31,7 +31,7 @@ services:
     image: redis:6.0
 
   npm:
-    container_name: drectory-lister-npm
+    container_name: directory-lister-npm
     image: directory-lister-dev:local
     volumes:
       - ./:/var/www/html

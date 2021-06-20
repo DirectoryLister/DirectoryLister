@@ -7,7 +7,7 @@ export default () => ({
         this.theme = theme || (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
 
         if (cookie === undefined) {
-            storeThemeCookie(this.theme);
+            this.storeThemeCookie(this.theme);
         }
     },
 

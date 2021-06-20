@@ -3,21 +3,19 @@ import axios from 'axios';
 export default () => ({
     error: null,
     filePath: 'file.info',
-    hashes: {
-        md5: '••••••••••••••••••••••••••••••••',
-        sha1: '••••••••••••••••••••••••••••••••••••••••',
-        sha256: '••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••'
-    },
-    loading: false,
+    hashes: null,
     visible: false,
 
     get title() {
         return this.filePath.split('/').pop();
     },
 
+    get loading() {
+        return this.hashes === null;
+    },
+
     async show(filePath) {
         this.filePath = filePath;
-        this.loading = true;
         this.visible = true;
 
         try {
@@ -28,12 +26,11 @@ export default () => ({
         }
 
         this.hashes = response.data.hashes;
-        this.loading = false;
     },
 
     hide() {
         this.visible = false;
-        this.loading = false;
+        this.hashes = null;
         this.error = null;
     }
 });

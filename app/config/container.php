@@ -4,7 +4,6 @@ use App\Factories;
 use App\Middlewares;
 use App\SortMethods;
 use App\ViewFunctions;
-use Middlewares as HttpMiddlewares;
 use Psr\Container\ContainerInterface;
 
 return [
@@ -26,7 +25,6 @@ return [
         return [
             Middlewares\ThemeMiddleware::class,
             Middlewares\WhoopsMiddleware::class,
-            new HttpMiddlewares\Expires($container->get('http_expires')),
         ];
     },
 

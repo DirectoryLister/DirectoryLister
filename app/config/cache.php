@@ -96,20 +96,4 @@ return [
             $config->get('redis_port')
         );
     }),
-
-    /**
-     * HTTP expires values to control browser cache durations.
-     *
-     * Possible values: An array of mime types mapped to their cache duration
-     * as a relative datetime string.
-     *
-     * Default value: [
-     *     'application/zip' => '+1 hour',
-     *     'text/json' => '+1 hour',
-     * ]
-     */
-    'http_expires' => [
-        'application/zip' => '+1 hour',
-        'text/json' => '+1 hour',
-    ],
 ];

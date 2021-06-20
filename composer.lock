@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1964d2728516e1d70f17d544b23183b2",
+    "content-hash": "312ad2f3da3a10bc06ae3914cc97a9fa",
     "packages": [
         {
             "name": "erusev/parsedown",
@@ -299,175 +299,6 @@
                 }
             ],
             "time": "2020-04-13T13:17:36+00:00"
-        },
-        {
-            "name": "micheh/psr7-cache",
-            "version": "0.5",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/micheh/psr7-cache.git",
-                "reference": "b99e8ae6d024d8c70945084b5b979a62cfd05df4"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/micheh/psr7-cache/zipball/b99e8ae6d024d8c70945084b5b979a62cfd05df4",
-                "reference": "b99e8ae6d024d8c70945084b5b979a62cfd05df4",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.4",
-                "psr/http-message": "~1.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "~4.0||~5.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Micheh\\Cache\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-3-Clause"
-            ],
-            "description": "Cache and conditional request helpers for PSR-7 HTTP Messages",
-            "keywords": [
-                "cache",
-                "conditional",
-                "http",
-                "http-message",
-                "if-match",
-                "if-modified-since",
-                "if-none-match",
-                "if-unmodified-since",
-                "psr",
-                "psr-7",
-                "request",
-                "response"
-            ],
-            "support": {
-                "issues": "https://github.com/micheh/psr7-cache/issues",
-                "source": "https://github.com/micheh/psr7-cache/tree/master"
-            },
-            "abandoned": true,
-            "time": "2016-04-15T16:31:14+00:00"
-        },
-        {
-            "name": "middlewares/cache",
-            "version": "v2.1.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/middlewares/cache.git",
-                "reference": "131929e40044d53167ee8ad6da569ddbbb7d79d9"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/middlewares/cache/zipball/131929e40044d53167ee8ad6da569ddbbb7d79d9",
-                "reference": "131929e40044d53167ee8ad6da569ddbbb7d79d9",
-                "shasum": ""
-            },
-            "require": {
-                "micheh/psr7-cache": "^0.5.0",
-                "middlewares/utils": "^3.0",
-                "php": "^7.2 || ^8.0",
-                "psr/cache": "^1.0",
-                "psr/http-server-middleware": "^1.0"
-            },
-            "require-dev": {
-                "friendsofphp/php-cs-fixer": "^2.0",
-                "laminas/laminas-diactoros": "^2.3",
-                "matthiasmullie/scrapbook": "^1.4",
-                "oscarotero/php-cs-fixer-config": "^1.0",
-                "phpstan/phpstan": "^0.12",
-                "phpunit/phpunit": "^8|^9",
-                "squizlabs/php_codesniffer": "^3.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Middlewares\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "description": "Middleware with various cache utilities",
-            "homepage": "https://github.com/middlewares/cache",
-            "keywords": [
-                "http",
-                "middleware",
-                "psr-15",
-                "psr-7"
-            ],
-            "support": {
-                "issues": "https://github.com/middlewares/cache/issues",
-                "source": "https://github.com/middlewares/cache/tree/v2.1.0"
-            },
-            "time": "2020-12-02T00:05:27+00:00"
-        },
-        {
-            "name": "middlewares/utils",
-            "version": "v3.2.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/middlewares/utils.git",
-                "reference": "a9ef1e5365020ead0ae343b95602bd877a9bf852"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/middlewares/utils/zipball/a9ef1e5365020ead0ae343b95602bd877a9bf852",
-                "reference": "a9ef1e5365020ead0ae343b95602bd877a9bf852",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^7.2 || ^8.0",
-                "psr/container": "^1.0",
-                "psr/http-factory": "^1.0",
-                "psr/http-message": "^1.0",
-                "psr/http-server-middleware": "^1.0"
-            },
-            "require-dev": {
-                "friendsofphp/php-cs-fixer": "^v2.16",
-                "guzzlehttp/psr7": "dev-master",
-                "laminas/laminas-diactoros": "^2.4",
-                "nyholm/psr7": "^1.0",
-                "oscarotero/php-cs-fixer-config": "^1.0",
-                "phpstan/phpstan": "^0.12",
-                "phpunit/phpunit": "^8|^9",
-                "slim/psr7": "~0.3",
-                "squizlabs/php_codesniffer": "^3.5",
-                "sunrise/http-message": "^1.0",
-                "sunrise/http-server-request": "^1.0",
-                "sunrise/stream": "^1.0.15",
-                "sunrise/uri": "^1.0.15"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Middlewares\\Utils\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "description": "Common utils for PSR-15 middleware packages",
-            "homepage": "https://github.com/middlewares/utils",
-            "keywords": [
-                "PSR-11",
-                "http",
-                "middleware",
-                "psr-15",
-                "psr-17",
-                "psr-7"
-            ],
-            "support": {
-                "issues": "https://github.com/middlewares/utils/issues",
-                "source": "https://github.com/middlewares/utils/tree/v3.2.0"
-            },
-            "time": "2020-11-30T20:07:15+00:00"
         },
         {
             "name": "nikic/fast-route",
@@ -7159,5 +6990,5 @@
         "ext-zip": "*"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.0.0"
+    "plugin-api-version": "2.1.0"
 }

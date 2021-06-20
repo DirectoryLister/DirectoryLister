@@ -96,4 +96,21 @@ return [
             $config->get('redis_port')
         );
     }),
+
+    /**
+     * HTTP cache values for controlling browser page cache durations.
+     *
+     * Possible values: An array of content types mapped to their cache duration
+     * in seconds
+     *
+     * Default value: [
+     *     'application/json' => '300',
+     *     'application/zip' => '300',
+     * ]
+     */
+    'http_cache' => [
+        'application/json' => '300',
+        'application/zip' => '300',
+    ],
+
 ];

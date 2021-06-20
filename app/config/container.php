@@ -23,6 +23,7 @@ return [
     /** Array of application middlewares */
     'middlewares' => function (ContainerInterface $container): array {
         return [
+            Middlewares\CacheMiddleware::class,
             Middlewares\ThemeMiddleware::class,
             Middlewares\WhoopsMiddleware::class,
         ];

@@ -22,8 +22,10 @@ class TestCase extends BaseTestCase
     protected $testFilesPath = __DIR__ . '/_files';
 
     /** This method is called before each test. */
-    public function setUp(): void
+    protected function setUp(): void
     {
+        parent::setUp();
+
         Dotenv::createUnsafeImmutable(__DIR__)->safeLoad();
 
         $this->container = BootManager::createContainer(

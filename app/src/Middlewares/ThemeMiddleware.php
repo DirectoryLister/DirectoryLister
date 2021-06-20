@@ -31,14 +31,16 @@ class ThemeMiddleware
     /** Determine the theme from the request. */
     private function getThemeFromRequest(Request $request): string
     {
-        if (! isset($request->getCookieParams()['theme'])) {
+        $cookies = $request->getCookieParams();
+
+        if (! isset($cookies['theme'])) {
             return 'light';
         }
 
-        if (! in_array($request->getCookieParams()['theme'], self::VALID_THEMES)) {
+        if (! in_array($cookies['theme'], self::VALID_THEMES)) {
             return 'light';
         }
 
-        return $request->getCookieParams()['theme'];
+        return $cookies['theme'];
     }
 }

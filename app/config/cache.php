@@ -109,8 +109,8 @@ return [
      * ]
      */
     'http_cache' => [
-        'application/json' => '300',
-        'application/zip' => '300',
+        'application/json' => 300,
+        'application/zip' => 300,
     ],
 
 ];

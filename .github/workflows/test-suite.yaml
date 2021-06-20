@@ -24,7 +24,7 @@ jobs:
         run: npm run production --verbose
 
       - name: Lint JavaScript Files
-        run: npx eslint app/resources/js/**/*.{js,vue}
+        run: npx eslint app/resources/js/**/*.js
 
   coding-standards:
     name: Coding Standards

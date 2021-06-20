@@ -24,6 +24,7 @@ return [
     /** Array of application middlewares */
     'middlewares' => function (ContainerInterface $container): array {
         return [
+            Middlewares\ThemeMiddleware::class,
             Middlewares\WhoopsMiddleware::class,
             new HttpMiddlewares\Expires($container->get('http_expires')),
         ];

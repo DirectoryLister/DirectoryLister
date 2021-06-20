@@ -8,7 +8,7 @@ export default () => ({
         sha1: '••••••••••••••••••••••••••••••••••••••••',
         sha256: '••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••'
     },
-    loading: true,
+    loading: false,
     visible: false,
 
     get title() {
@@ -17,12 +17,14 @@ export default () => ({
 
     async show(filePath) {
         this.filePath = filePath;
+        this.loading = true;
         this.visible = true;
 
         try {
             var response = await axios.get('?info=' + filePath);
         } catch (error) {
             this.error = error.response.request.statusText;
+            this.loading = false;
         }
 
         this.hashes = response.data.hashes;
@@ -31,10 +33,7 @@ export default () => ({
 
     hide() {
         this.visible = false;
-
-        this.$nextTick(() => {
-            this.loading = true;
-            this.error = null;
-        });
+        this.loading = false;
+        this.error = null;
     }
 });

@@ -12,6 +12,8 @@ class MiddlewareManagerTest extends TestCase
 {
     /** @const Array of application middlewares */
     protected const MIDDLEWARES = [
+        Middlewares\CacheMiddleware::class,
+        Middlewares\ThemeMiddleware::class,
         Middlewares\WhoopsMiddleware::class,
     ];
 
@@ -22,8 +24,7 @@ class MiddlewareManagerTest extends TestCase
         }, self::MIDDLEWARES);
 
         $app = $this->createMock(App::class);
-        $app->expects($this->atLeast(1))->method('add')
-            ->withConsecutive(...$arguments);
+        $app->expects($this->atLeast(1))->method('add')->withConsecutive(...$arguments);
 
         (new MiddlewareManager($app, $this->config))();
     }

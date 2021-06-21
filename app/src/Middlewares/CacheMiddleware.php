@@ -29,6 +29,6 @@ class CacheMiddleware
             }
         }
 
-        return $response->withHeader('Cache-Control', 'max-age=0, must-revalidate');
+        return $response->withHeader('Cache-Control', 'max-age=0');
     }
 }

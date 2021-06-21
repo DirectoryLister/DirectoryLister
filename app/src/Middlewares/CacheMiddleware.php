@@ -25,10 +25,10 @@ class CacheMiddleware
 
         foreach ($this->config->get('http_cache') as $contentType => $age) {
             if (in_array($contentType, $response->getHeader('Content-Type'))) {
-                return $response->withHeader('Cache-Control', sprintf('max-age=%d', $age));
+                return $response->withHeader('Cache-Control', sprintf('max-age=%d, private, must-revalidate', $age));
             }
         }
 
-        return $response->withHeader('Cache-Control', 'max-age=0');
+        return $response->withHeader('Cache-Control', 'max-age=0, private, must-revalidate');
     }
 }

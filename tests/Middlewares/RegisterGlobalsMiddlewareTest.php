@@ -2,15 +2,15 @@
 
 namespace Tests\Middlewares;
 
-use App\Middlewares\ThemeMiddleware;
+use App\Middlewares\RegisterGlobalsMiddleware;
 use PHPUnit\Framework\MockObject\MockObject;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 use Slim\Views\Twig;
 use Tests\TestCase;
 
-/** @covers \App\Middlewares\ThemeMiddleware */
-class ThemeMiddlewareTest extends TestCase
+/** @covers \App\Middlewares\RegisterGlobalsMiddleware */
+class RegisterGlobalsMiddlewareTest extends TestCase
 {
     /** @var Twig Twig templating component */
     protected $view;
@@ -32,7 +32,7 @@ class ThemeMiddlewareTest extends TestCase
 
     public function test_it_sets_the_theme_view_variabe_to_light_by_default(): void
     {
-        (new ThemeMiddleware($this->view))($this->request, $this->handler);
+        (new RegisterGlobalsMiddleware($this->view))($this->request, $this->handler);
 
         $this->assertEquals(['theme' => 'light'], $this->view->getEnvironment()->getGlobals());
     }
@@ -43,7 +43,7 @@ class ThemeMiddlewareTest extends TestCase
             'theme' => 'dark',
         ]);
 
-        (new ThemeMiddleware($this->view))($this->request, $this->handler);
+        (new RegisterGlobalsMiddleware($this->view))($this->request, $this->handler);
 
         $this->assertEquals(['theme' => 'dark'], $this->view->getEnvironment()->getGlobals());
     }
@@ -54,7 +54,7 @@ class ThemeMiddlewareTest extends TestCase
             'theme' => 'dark',
         ]);
 
-        (new ThemeMiddleware($this->view))($this->request, $this->handler);
+        (new RegisterGlobalsMiddleware($this->view))($this->request, $this->handler);
 
         $this->assertEquals(['theme' => 'dark'], $this->view->getEnvironment()->getGlobals());
     }
@@ -65,7 +65,7 @@ class ThemeMiddlewareTest extends TestCase
             'theme' => 'dim',
         ]);
 
-        (new ThemeMiddleware($this->view))($this->request, $this->handler);
+        (new RegisterGlobalsMiddleware($this->view))($this->request, $this->handler);
 
         $this->assertEquals(['theme' => 'light'], $this->view->getEnvironment()->getGlobals());
     }

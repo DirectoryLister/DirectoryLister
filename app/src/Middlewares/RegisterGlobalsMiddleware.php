@@ -7,7 +7,7 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Server\RequestHandlerInterface as RequestHandler;
 use Slim\Views\Twig;
 
-class ThemeMiddleware
+class RegisterGlobalsMiddleware
 {
     /** Array of valid theme strings. */
     private const VALID_THEMES = ['dark', 'light'];
@@ -20,7 +20,7 @@ class ThemeMiddleware
         $this->view = $view;
     }
 
-    /** Invoke the ThemeMiddleware class. */
+    /** Invoke the RegisterGlobalsMiddleware class. */
     public function __invoke(Request $request, RequestHandler $handler): ResponseInterface
     {
         $this->view->getEnvironment()->addGlobal('theme', $this->getThemeFromRequest($request));

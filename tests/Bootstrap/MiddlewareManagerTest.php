@@ -12,9 +12,10 @@ class MiddlewareManagerTest extends TestCase
 {
     /** @const Array of application middlewares */
     protected const MIDDLEWARES = [
-        Middlewares\CacheMiddleware::class,
-        Middlewares\ThemeMiddleware::class,
         Middlewares\WhoopsMiddleware::class,
+        Middlewares\PruneCacheMiddleware::class,
+        Middlewares\CacheControlMiddleware::class,
+        Middlewares\RegisterGlobalsMiddleware::class,
     ];
 
     public function test_it_registers_application_middlewares(): void

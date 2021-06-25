@@ -2,7 +2,7 @@
 
 namespace Tests\Middlewares;
 
-use App\Middlewares\CacheMiddleware;
+use App\Middlewares\CacheControlMiddleware;
 use Fig\Http\Message\StatusCodeInterface;
 use PHPUnit\Framework\MockObject\MockObject;
 use Psr\Http\Message\ServerRequestInterface;
@@ -11,8 +11,8 @@ use Slim\Psr7\Headers;
 use Slim\Psr7\Response;
 use Tests\TestCase;
 
-/** @covers \App\Middlewares\CacheMiddleware */
-class CacheMiddlewareTest extends TestCase
+/** @covers \App\Middlewares\CacheControlMiddleware */
+class CacheControlMiddlewareTest extends TestCase
 {
     /** @var RequestHandlerInterface&MockObject */
     protected $handler;
@@ -33,7 +33,7 @@ class CacheMiddlewareTest extends TestCase
             ]))
         );
 
-        $response = (new CacheMiddleware($this->config))($this->request, $this->handler);
+        $response = (new CacheControlMiddleware($this->config))($this->request, $this->handler);
 
         $this->assertEquals(['max-age=0, private, must-revalidate'], $response->getHeader('Cache-Control'));
     }
@@ -46,7 +46,7 @@ class CacheMiddlewareTest extends TestCase
             ]))
         );
 
-        $response = (new CacheMiddleware($this->config))($this->request, $this->handler);
+        $response = (new CacheControlMiddleware($this->config))($this->request, $this->handler);
 
         $this->assertEquals(['max-age=300, private, must-revalidate'], $response->getHeader('Cache-Control'));
     }

@@ -22,6 +22,15 @@ return [
     'cache_lifetime' => DI\env('CACHE_LIFETIME', 0),
 
     /**
+     * Some cache drivers require manually pruning the cache periodically to
+     * remove expired items. This is the percentage chance (out of 100) of a
+     * request "winning" the lottery causing the cache to be pruned.
+     *
+     * Default value: 2
+     */
+    'cache_lottery' => DI\env('CACHE_LOTTERY', 2),
+
+    /**
      * Path to the view cache directory. Set to 'false' to disable
      * view caching entirely. The view cache is separate from the application
      * cache defined above.

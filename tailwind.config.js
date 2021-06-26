@@ -6,7 +6,11 @@ module.exports = {
     mode: 'jit',
     purge: {
         mode: 'all',
-        content: ['app/**/*.{js,php,scss,twig}'],
+        content: [
+            'app/resources/**/*.{js,scss}',
+            'app/src/**/*.php',
+            'app/views/**/*.twig',
+        ],
         options: {
             safelist: ['html', 'body', 'main', 'fab', 'fas', /^hljs/],
         }

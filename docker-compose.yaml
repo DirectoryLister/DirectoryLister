@@ -9,6 +9,8 @@ services:
       - memcached
       - redis
     environment:
+      MEMCACHED_HOST: memcached
+      REDIS_HOST: redis
       VIRTUAL_HOST: directory-lister.local
     ports:
       - ${APP_PORT:-80}:80

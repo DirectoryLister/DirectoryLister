@@ -40,7 +40,7 @@
         "psy/psysh": "^0.10",
         "symfony/var-dumper": "^5.0",
         "vimeo/psalm": "^4.3",
-        "yoast/phpunit-polyfills": "^0.2.0"
+        "yoast/phpunit-polyfills": "^1.0"
     },
     "suggest": {
         "ext-apcu": "Required to use the APCu cache driver",

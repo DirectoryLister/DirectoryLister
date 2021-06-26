@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "91d56fb5c09c6eaeb2e1ad4e46de3d4d",
+    "content-hash": "b84da7491b0b4da7f437f0b6f2d6e6a6",
     "packages": [
         {
             "name": "erusev/parsedown",
@@ -4541,16 +4541,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "9.5.5",
+            "version": "9.5.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "89ff45ea9d70e35522fb6654a2ebc221158de276"
+                "reference": "fb9b8333f14e3dce976a60ef6a7e05c7c7ed8bfb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/89ff45ea9d70e35522fb6654a2ebc221158de276",
-                "reference": "89ff45ea9d70e35522fb6654a2ebc221158de276",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/fb9b8333f14e3dce976a60ef6a7e05c7c7ed8bfb",
+                "reference": "fb9b8333f14e3dce976a60ef6a7e05c7c7ed8bfb",
                 "shasum": ""
             },
             "require": {
@@ -4580,7 +4580,7 @@
                 "sebastian/global-state": "^5.0.1",
                 "sebastian/object-enumerator": "^4.0.3",
                 "sebastian/resource-operations": "^3.0.3",
-                "sebastian/type": "^2.3.2",
+                "sebastian/type": "^2.3.4",
                 "sebastian/version": "^3.0.2"
             },
             "require-dev": {
@@ -4628,7 +4628,7 @@
             ],
             "support": {
                 "issues": "https://github.com/sebastianbergmann/phpunit/issues",
-                "source": "https://github.com/sebastianbergmann/phpunit/tree/9.5.5"
+                "source": "https://github.com/sebastianbergmann/phpunit/tree/9.5.6"
             },
             "funding": [
                 {
@@ -4640,7 +4640,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2021-06-05T04:49:07+00:00"
+            "time": "2021-06-23T05:14:38+00:00"
         },
         {
             "name": "psr/event-dispatcher",
@@ -5620,7 +5620,6 @@
                     "type": "github"
                 }
             ],
-            "abandoned": true,
             "time": "2020-09-28T06:45:17+00:00"
         },
         {
@@ -6917,25 +6916,25 @@
         },
         {
             "name": "yoast/phpunit-polyfills",
-            "version": "0.2.0",
+            "version": "1.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Yoast/PHPUnit-Polyfills.git",
-                "reference": "c48e4cf0c44b2d892540846aff19fb0468627bab"
+                "reference": "5d257d5a6977137016f3df440ce640ce72ffd61a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Yoast/PHPUnit-Polyfills/zipball/c48e4cf0c44b2d892540846aff19fb0468627bab",
-                "reference": "c48e4cf0c44b2d892540846aff19fb0468627bab",
+                "url": "https://api.github.com/repos/Yoast/PHPUnit-Polyfills/zipball/5d257d5a6977137016f3df440ce640ce72ffd61a",
+                "reference": "5d257d5a6977137016f3df440ce640ce72ffd61a",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.5",
+                "php": ">=5.4",
                 "phpunit/phpunit": "^4.8.36 || ^5.7.21 || ^6.0 || ^7.0 || ^8.0 || ^9.0"
             },
             "require-dev": {
                 "php-parallel-lint/php-console-highlighter": "^0.5",
-                "php-parallel-lint/php-parallel-lint": "^1.2.0",
+                "php-parallel-lint/php-parallel-lint": "^1.3.0",
                 "yoast/yoastcs": "^2.1.0"
             },
             "type": "library",
@@ -6976,7 +6975,7 @@
                 "issues": "https://github.com/Yoast/PHPUnit-Polyfills/issues",
                 "source": "https://github.com/Yoast/PHPUnit-Polyfills"
             },
-            "time": "2020-11-25T02:59:57+00:00"
+            "time": "2021-06-21T03:13:22+00:00"
         }
     ],
     "aliases": [],

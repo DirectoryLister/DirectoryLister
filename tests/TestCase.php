@@ -44,6 +44,6 @@ class TestCase extends BaseTestCase
     /** Get the file path to a test file. */
     protected function filePath(string $filePath): string
     {
-        return realpath($this->testFilesPath . '/' . $filePath);
+        return sprintf('%s/%s', $this->testFilesPath, $filePath);
     }
 }

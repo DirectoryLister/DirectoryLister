@@ -12,10 +12,20 @@ class BootManagerTest extends TestCase
     /** Path to the compiled container. */
     private const COMPILED_CONTAINER_PATH = 'app/cache/CompiledContainer.php';
 
+    /** @var string The compiled container path */
+    private $compiledContainerPath;
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->compiledContainerPath = $this->filePath(self::COMPILED_CONTAINER_PATH);
+    }
+
     protected function tearDown(): void
     {
-        if (file_exists($this->filePath(self::COMPILED_CONTAINER_PATH))) {
-            unlink($this->filePath(self::COMPILED_CONTAINER_PATH));
+        if (file_exists($this->compiledContainerPath)) {
+            unlink($this->compiledContainerPath);
         }
 
         parent::tearDown();
@@ -32,7 +42,7 @@ class BootManagerTest extends TestCase
         );
 
         $this->assertInstanceOf(Container::class, $container);
-        $this->assertFileExists($this->filePath(self::COMPILED_CONTAINER_PATH));
+        $this->assertFileExists($this->compiledContainerPath);
     }
 
     /** @test */
@@ -46,7 +56,7 @@ class BootManagerTest extends TestCase
         );
 
         $this->assertInstanceOf(Container::class, $container);
-        $this->assertFileDoesNotExist($this->filePath('app/cache/CompiledContainer.php'));
+        $this->assertFileDoesNotExist($this->compiledContainerPath);
     }
 
     /** @test */
@@ -60,6 +70,6 @@ class BootManagerTest extends TestCase
         );
 
         $this->assertInstanceOf(Container::class, $container);
-        $this->assertFileDoesNotExist($this->filePath('app/cache/CompiledContainer.php'));
+        $this->assertFileDoesNotExist($this->compiledContainerPath);
     }
 }

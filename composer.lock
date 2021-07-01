@@ -1255,16 +1255,16 @@
         },
         {
             "name": "slim/slim",
-            "version": "4.8.0",
+            "version": "4.8.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/slimphp/Slim.git",
-                "reference": "c9bdc9e0d2f8613055632334ec6711b965d5fdf3"
+                "reference": "c8934c35d9d98b1a1df9f99ee69b77a59e0aa820"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/slimphp/Slim/zipball/c9bdc9e0d2f8613055632334ec6711b965d5fdf3",
-                "reference": "c9bdc9e0d2f8613055632334ec6711b965d5fdf3",
+                "url": "https://api.github.com/repos/slimphp/Slim/zipball/c8934c35d9d98b1a1df9f99ee69b77a59e0aa820",
+                "reference": "c8934c35d9d98b1a1df9f99ee69b77a59e0aa820",
                 "shasum": ""
             },
             "require": {
@@ -1365,7 +1365,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-04-29T03:43:44+00:00"
+            "time": "2021-06-29T19:41:06+00:00"
         },
         {
             "name": "slim/twig-view",

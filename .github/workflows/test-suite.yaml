@@ -101,7 +101,7 @@ jobs:
     name: Create Release
     runs-on: 'ubuntu-latest'
     if: startsWith(github.ref, 'refs/tags/')
-    needs: tests
+    needs: [asset-compilation, coding-standards, static-analysis, tests]
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 

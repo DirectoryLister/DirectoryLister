@@ -22,6 +22,6 @@ class SizeForHumans extends ViewFunction
         $sizes = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
         $factor = (int) floor((strlen((string) $fileSize) - 1) / 3);
 
-        return sprintf('%.2f', $fileSize / pow(1024, $factor)) . $sizes[$factor];
+        return sprintf('%.2f%s', $fileSize / pow(1024, $factor), $sizes[$factor]);
     }
 }

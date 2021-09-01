@@ -20,7 +20,7 @@
         "postcss": "^8.2.7"
     },
     "devDependencies": {
-        "@fortawesome/fontawesome-free": "^5.15.2",
+        "@fortawesome/fontawesome-free": "^5.15.4",
         "cross-env": "^7.0.3",
         "eslint": "^7.21.0",
         "laravel-mix": "^6.0.19",

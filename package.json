@@ -16,7 +16,7 @@
         "alpinejs": "^3.0.1",
         "autoprefixer": "^10.2.5",
         "axios": "^0.21.1",
-        "highlight.js": "^11.0.1",
+        "highlight.js": "^11.2.0",
         "postcss": "^8.2.7"
     },
     "devDependencies": {

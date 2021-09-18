@@ -162,7 +162,7 @@ return [
 
     /**
      * Whether or not to hide dot files/directories from the listing.
-     * Like '.env' or '.ssh/'
+     * Like '.env' or '.ssh/'.
      *
      * Default value: true
      */

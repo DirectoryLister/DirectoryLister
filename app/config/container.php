@@ -17,7 +17,7 @@ return [
     'views_path' => DI\string('{app_path}/views'),
 
     /** Array of application files (to be hidden) */
-    'app_files' => ['app', 'index.php', '.hidden'],
+    'app_files' => ['app', 'index.php', '.hidden', '.env', '.env.example'],
 
     /** Array of application middlewares */
     'middlewares' => function (): array {

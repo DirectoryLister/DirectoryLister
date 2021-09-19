@@ -100,7 +100,7 @@ class FinderFactoryTest extends TestCase
     public function test_dot_files_are_returned(): void
     {
         $this->container->set('hidden_files', []);
-        $this->container->set('hide_dot_files', FALSE);
+        $this->container->set('hide_dot_files', false);
 
         $finder = (new FinderFactory(
             $this->container,
@@ -112,7 +112,6 @@ class FinderFactoryTest extends TestCase
         $this->assertInstanceOf(Finder::class, $finder);
         $this->assertEquals([
             '.dot_dir',
-            '.dot_file',
             'alpha.scss',
             'bravo.js',
             'charlie.bash',
@@ -124,7 +123,7 @@ class FinderFactoryTest extends TestCase
     public function test_dot_directory_contents_are_returned(): void
     {
         $this->container->set('hidden_files', []);
-        $this->container->set('hide_dot_files', FALSE);
+        $this->container->set('hide_dot_files', false);
 
         $finder = (new FinderFactory(
             $this->container,

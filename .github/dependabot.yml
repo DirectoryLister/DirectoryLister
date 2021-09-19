@@ -4,15 +4,13 @@ updates:
   - package-ecosystem: composer
     directory: "/"
     schedule:
-      interval: monthly
-    open-pull-requests-limit: 10
+      interval: weekly
     assignees:
       - PHLAK
 
   - package-ecosystem: npm
     directory: "/"
     schedule:
-      interval: monthly
-    open-pull-requests-limit: 10
+      interval: weekly
     assignees:
       - PHLAK

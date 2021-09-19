@@ -122,7 +122,7 @@ return [
     ],
 
     /**
-     * Whether or not to hide application files/directories form the listing.
+     * Whether or not to hide application files/directories from the listing.
      *
      * Default value: true
      */
@@ -159,4 +159,12 @@ return [
      * Default value: 1000000000
      */
     'max_hash_size' => DI\env('MAX_HASH_SIZE', 1000000000),
+
+    /**
+     * Whether or not to hide dot files/directories from the listing.
+     * Like '.env' or '.ssh/'.
+     *
+     * Default value: true
+     */
+    'hide_dot_files' => DI\env('HIDE_DOT_FILES', true),
 ];

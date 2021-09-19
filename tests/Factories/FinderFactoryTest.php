@@ -97,6 +97,45 @@ class FinderFactoryTest extends TestCase
         ], $this->getFilesArray($finder));
     }
 
+    public function test_dot_files_are_returned(): void
+    {
+        $this->container->set('hidden_files', []);
+        $this->container->set('hide_dot_files', false);
+
+        $finder = (new FinderFactory(
+            $this->container,
+            $this->config,
+            HiddenFiles::fromConfig($this->config)
+        ))();
+        $finder->in($this->filePath('subdir'))->depth(0);
+
+        $this->assertInstanceOf(Finder::class, $finder);
+        $this->assertEquals([
+            '.dot_dir',
+            'alpha.scss',
+            'bravo.js',
+            'charlie.bash',
+            'delta.html',
+            'echo.yaml',
+        ], $this->getFilesArray($finder));
+    }
+
+    public function test_dot_directory_contents_are_returned(): void
+    {
+        $this->container->set('hidden_files', []);
+        $this->container->set('hide_dot_files', false);
+
+        $finder = (new FinderFactory(
+            $this->container,
+            $this->config,
+            HiddenFiles::fromConfig($this->config)
+        ))();
+        $finder->in($this->filePath('subdir/.dot_dir'))->depth(0);
+
+        $this->assertInstanceOf(Finder::class, $finder);
+        $this->assertEquals(['.dot_file'], $this->getFilesArray($finder));
+    }
+
     public function test_it_throws_a_runtime_exception_with_an_invalid_sort_order(): void
     {
         $this->container->set('sort_order', 'invalid');

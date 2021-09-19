@@ -23,7 +23,7 @@
         "@fortawesome/fontawesome-free": "^5.15.2",
         "cross-env": "^7.0.3",
         "eslint": "^7.21.0",
-        "laravel-mix": "^6.0.19",
+        "laravel-mix": "^6.0.31",
         "resolve-url-loader": "^4.0.0",
         "sass": "^1.32.8",
         "sass-loader": "^12.1.0",

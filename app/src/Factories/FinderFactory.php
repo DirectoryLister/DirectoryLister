@@ -42,6 +42,7 @@ class FinderFactory
     {
         $finder = Finder::create()->followLinks();
         $finder->ignoreVCS($this->config->get('hide_vcs_files'));
+        $finder->ignoreDotFiles($this->config->get('hide_dot_files'));
 
         if ($this->hiddenFiles->isNotEmpty()) {
             $finder->filter(function (SplFileInfo $file): bool {

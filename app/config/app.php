@@ -129,6 +129,13 @@ return [
     'hide_app_files' => DI\env('HIDE_APP_FILES', true),
 
     /**
+     * Whether or not to hide dot files/directories from the listing.
+     *
+     * Default value: true
+     */
+    'hide_dot_files' => DI\env('HIDE_DOT_FILES', true),
+
+    /**
      * Hide the files Version Control System (i.e. Git and Mercurial) use to
      * store their metadata.
      *
@@ -159,12 +166,4 @@ return [
      * Default value: 1000000000
      */
     'max_hash_size' => DI\env('MAX_HASH_SIZE', 1000000000),
-
-    /**
-     * Whether or not to hide dot files/directories from the listing.
-     * Like '.env' or '.ssh/'.
-     *
-     * Default value: true
-     */
-    'hide_dot_files' => DI\env('HIDE_DOT_FILES', true),
 ];

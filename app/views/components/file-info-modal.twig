@@ -1,5 +1,5 @@
 <div class="fixed inset-0 flex justify-center items-center bg-gray-800 bg-opacity-50 p-4 z-50 dark:bg-gray-600 dark:bg-opacity-50"
-    x-data="file-info-modal" x-show="visible" @click.self="hide()" @keyup.escape.window="hide()"
+    x-data="fileInfoModal" x-show="visible" @click.self="hide()" @keyup.escape.window="hide()"
     @show-file-info.window="show($event.detail.file)" x-transition:enter.opacity x-cloak
 >
     <div x-show="!loading" x-transition:enter @click.away="hide()" class="bg-white rounded-lg shadow-lg overflow-hidden dark:bg-gray-800 dark:text-white">

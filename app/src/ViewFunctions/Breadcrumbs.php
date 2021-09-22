@@ -29,7 +29,7 @@ class Breadcrumbs extends ViewFunction
     /** Build a collection of breadcrumbs for a given path. */
     public function __invoke(string $path): Collection
     {
-        return Str::explode($path, $this->directorySeparator)->diff(
+        return Str::explode($path, $this->directorySeparator)->diffAssoc(
             explode($this->directorySeparator, $this->config->get('base_path'))
         )->filter(static function (string $crumb): bool {
             return ! in_array($crumb, [null, '.']);

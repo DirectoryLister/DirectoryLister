@@ -17,7 +17,8 @@ class BreadcrumbsTest extends TestCase
             'foo' => '?dir=foo',
             'bar' => '?dir=foo/bar',
             'baz' => '?dir=foo/bar/baz',
-        ]), $breadcrumbs('foo/bar/baz'));
+            'tests' => '?dir=foo/bar/baz/tests',
+        ]), $breadcrumbs('foo/bar/baz/tests'));
     }
 
     public function test_it_can_parse_breadcrumbs_for_dot_path(): void

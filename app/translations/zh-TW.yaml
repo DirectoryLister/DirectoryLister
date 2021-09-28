@@ -1,20 +1,20 @@
-home: 目錄起始頁
+home: 目錄
 download: 下載
-search: 檢索
+search: 搜尋
 file:
-  name: 文件名
+  name: 檔案名稱
   size: 大小
   date: 日期
-  info: 文件資訊
+  info: 資訊
 powered_by: 基於
 scroll_to_top: 回到頂部
 toggle_theme: 切換亮/暗模式
 
 error:
   directory_not_found: 目錄不存在
-  file_not_found: 文件未找到
-  file_size_exceeded: 文件過大
+  file_not_found: 檔案未找到
+  file_size_exceeded: 檔案過大
   no_results_found: 未找到結果
   unexpected: 一個意料之外的問題發生了
 
-enable_debugging: 啓用調試以獲得更多資訊
+enable_debugging: 啟用開發人員以獲得更多資訊

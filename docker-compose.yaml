@@ -4,7 +4,7 @@ services:
   app:
     container_name: directory-lister-app
     build: .
-    image: directory-lister-dev:local
+    image: phlak/directory-lister:dev
     depends_on:
       - memcached
       - redis
@@ -34,7 +34,7 @@ services:
 
   npm:
     container_name: directory-lister-npm
-    image: directory-lister-dev:local
+    image: phlak/directory-lister:dev
     volumes:
       - ./:/var/www/html
     user: ${HOST_USER_ID:-0}:${HOST_GROUP_ID:-0}

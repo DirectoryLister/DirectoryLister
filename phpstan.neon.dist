@@ -1,0 +1,33 @@
+parameters:
+
+  paths:
+    - app
+    - tests
+
+  excludePaths:
+    - app/cache/*
+    - app/vendor/*
+
+  stubFiles:
+    - stubs/DI/Container.stub
+
+  level: 8
+
+  checkFunctionNameCase: true
+  checkMissingIterableValueType: false
+
+  implicitThrows: false
+
+  reportUnmatchedIgnoredErrors: false
+
+  # exceptions:
+  #   check:
+  #     missingCheckedExceptionInThrows: true
+  #     tooWideThrowType: true
+
+  #   uncheckedExceptionClasses:
+  #     - 'PHPUnit\Framework\Exception'
+  #     - 'SebastianBergmann\RecursionContext\InvalidArgumentException'
+
+includes:
+  - phpstan-baseline.neon

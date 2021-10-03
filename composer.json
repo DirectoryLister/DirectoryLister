@@ -37,9 +37,9 @@
     "require-dev": {
         "johnkary/phpunit-speedtrap": "^4.0",
         "phlak/coding-standards": "^2.0",
+        "phpstan/phpstan": "^0.12.99",
         "psy/psysh": "^0.10",
         "symfony/var-dumper": "^5.0",
-        "vimeo/psalm": "^4.3",
         "yoast/phpunit-polyfills": "^1.0"
     },
     "suggest": {

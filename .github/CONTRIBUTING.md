@@ -37,9 +37,9 @@ To automatically apply any fixes run the same command without the flags.
 
 ### Static Analysis
 
-Psalm is used to generate a report of static analysis errors.
+[PHPStan](https://phpstan.org) is used to generate a report of static analysis errors.
 
-    $ app/vendor/bin/psalm
+    $ app/vendor/bin/phpstan
 
 ### Run Tests
 

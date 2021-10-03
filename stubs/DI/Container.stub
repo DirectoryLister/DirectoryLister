@@ -1,0 +1,14 @@
+<?php
+
+namespace DI;
+
+class Container
+{
+    /**
+     * @phpstan-param callable|string $callable
+     * @phpstan-param array<mixed> $parameters
+     *
+     * @phpstan-return mixed
+     */
+    public function call($callable, array $parameters = []);
+}

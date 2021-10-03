@@ -27,7 +27,7 @@ class Url extends ViewFunction
     /** Strip all leading slashes (and a single dot) from a path. */
     protected function stripLeadingSlashes(string $path): string
     {
-        return preg_replace('/^\.?(\/|\\\)+/', '', $path);
+        return (string) preg_replace('/^\.?(\/|\\\)+/', '', $path);
     }
 
     /** Escape URL characters in path segments. */

@@ -70,7 +70,7 @@ class DirectoryController
         $readmes = (clone $files)->name('/^README(?:\..+)?$/i');
 
         $readmes->filter(static function (SplFileInfo $file) {
-            return (bool) preg_match('/text\/.+/', mime_content_type($file->getPathname()));
+            return (bool) preg_match('/text\/.+/', (string) mime_content_type($file->getPathname()));
         })->sort(static function (SplFileInfo $file1, SplFileInfo $file2) {
             return $file1->getExtension() <=> $file2->getExtension();
         });

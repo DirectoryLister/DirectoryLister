@@ -38,7 +38,7 @@ class FileInfoController
         $path = $request->getQueryParams()['info'];
 
         $file = new SplFileInfo(
-            realpath($this->config->get('base_path') . '/' . $path)
+           (string) realpath($this->config->get('base_path') . '/' . $path)
         );
 
         if (! $file->isFile()) {
@@ -50,9 +50,9 @@ class FileInfoController
         }
 
         $response->getBody()->write($this->cache->get(
-            sprintf('file-info-%s', sha1($file->getRealPath())),
+            sprintf('file-info-%s', sha1((string) $file->getRealPath())),
             function () use ($file): string {
-                return json_encode(['hashes' => $this->calculateHashes($file)]);
+                return (string) json_encode(['hashes' => $this->calculateHashes($file)]);
             }
         ));
 
@@ -63,9 +63,9 @@ class FileInfoController
     protected function calculateHashes(SplFileInfo $file): array
     {
         return [
-            'md5' => hash_file('md5', $file->getRealPath()),
-            'sha1' => hash_file('sha1', $file->getRealPath()),
-            'sha256' => hash_file('sha256', $file->getRealPath()),
+            'md5' => hash_file('md5', (string) $file->getRealPath()),
+            'sha1' => hash_file('sha1', (string) $file->getRealPath()),
+            'sha256' => hash_file('sha256', (string) $file->getRealPath()),
         ];
     }
 }

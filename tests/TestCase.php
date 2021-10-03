@@ -15,6 +15,9 @@ class TestCase extends BaseTestCase
     /** @var Container The test container */
     protected $container;
 
+    /** @var Config Application configuration */
+    protected $config;
+
     /** @var CacheInterface The test cache */
     protected $cache;
 

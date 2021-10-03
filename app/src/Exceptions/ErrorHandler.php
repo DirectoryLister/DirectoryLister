@@ -36,7 +36,7 @@ class ErrorHandler implements ErrorHandlerInterface
         $response = (new Response)->withStatus(500);
 
         if (in_array('application/json', explode(',', $request->getHeaderLine('Accept')))) {
-            $response->getBody()->write(json_encode([
+            $response->getBody()->write((string) json_encode([
                 'error' => ['message' => $this->translator->trans('error.unexpected')],
             ]));
 

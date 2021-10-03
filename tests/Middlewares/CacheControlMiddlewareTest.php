@@ -14,6 +14,9 @@ use Tests\TestCase;
 /** @covers \App\Middlewares\CacheControlMiddleware */
 class CacheControlMiddlewareTest extends TestCase
 {
+    /** @var ServerRequestInterface&MockObject */
+    protected $request;
+
     /** @var RequestHandlerInterface&MockObject */
     protected $handler;
 

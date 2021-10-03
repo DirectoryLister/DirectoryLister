@@ -34,11 +34,10 @@ class IndexControllerTest extends TestCase
     public function test_it_handles_a_file_info_request(): void
     {
         $this->request->method('getQueryParams')->willReturn(['info' => 'file.test']);
-        $this->response = $this->createMock(ResponseInterface::class);
 
         $this->container->expects($this->once())->method('call')->with(
             Controllers\FileInfoController::class,
-            [$this->request, $this->response = new Response]
+            [$this->request, $this->response]
         )->willReturn($this->response);
 
         $controller = new Controllers\IndexController($this->container);

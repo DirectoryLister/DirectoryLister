@@ -58,7 +58,7 @@ return [
     /** Container definitions */
     App\HiddenFiles::class => DI\factory([App\HiddenFiles::class, 'fromConfig']),
     Symfony\Component\Finder\Finder::class => DI\factory(Factories\FinderFactory::class),
-    Symfony\Contracts\Cache\CacheInterface::class => DI\Factory(Factories\CacheFactory::class),
+    Symfony\Contracts\Cache\CacheInterface::class => DI\factory(Factories\CacheFactory::class),
     Symfony\Contracts\Translation\TranslatorInterface::class => DI\factory(Factories\TranslationFactory::class),
     Slim\Views\Twig::class => DI\factory(Factories\TwigFactory::class),
     Whoops\RunInterface::class => DI\create(Whoops\Run::class),

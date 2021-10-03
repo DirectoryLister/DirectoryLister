@@ -2,8 +2,8 @@
 
 namespace Tests\ViewFunctions;
 
+use App\Config;
 use App\ViewFunctions\Icon;
-use PHLAK\Config\Config;
 use Symfony\Component\Finder\SplFileInfo;
 use Tests\TestCase;
 

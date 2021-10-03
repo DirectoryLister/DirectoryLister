@@ -22,6 +22,8 @@ class Config extends ViewFunction
      * Retrieve an item from the view config.
      *
      * @param mixed $default
+     *
+     * @return mixed
      */
     public function __invoke(string $key, $default = null)
     {

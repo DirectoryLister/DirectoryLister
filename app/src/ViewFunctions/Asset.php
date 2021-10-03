@@ -41,7 +41,7 @@ class Asset extends ViewFunction
         }
 
         return Collection::make(
-            json_decode(file_get_contents($mixManifest), true) ?? []
+            json_decode((string) file_get_contents($mixManifest), true) ?? []
         );
     }
 }

@@ -52,7 +52,7 @@ jobs:
         run: composer update
 
       - name: Run Static Analysis
-        run: app/vendor/bin/psalm
+        run: app/vendor/bin/phpstan
 
   tests:
     name: Tests
@@ -67,7 +67,7 @@ jobs:
 
     strategy:
       matrix:
-        php-versions: ['7.3', '7.4', '8.0']
+        php-versions: ['7.4', '8.0']
 
     steps:
       - name: Checkout Repository

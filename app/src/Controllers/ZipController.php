@@ -72,7 +72,7 @@ class ZipController
         ), ZipArchive::CREATE | ZipArchive::OVERWRITE);
 
         foreach ($this->finder->in($path)->files() as $file) {
-            $zip->addFile($file->getRealPath(), $this->stripPath($file, $path));
+            $zip->addFile((string) $file->getRealPath(), $this->stripPath($file, $path));
         }
 
         $zip->close();
@@ -87,7 +87,7 @@ class ZipController
             '/^%s%s?/', preg_quote($path, '/'), preg_quote(DIRECTORY_SEPARATOR, '/')
         );
 
-        return preg_replace($pattern, '', $file->getPathname());
+        return (string) preg_replace($pattern, '', $file->getPathname());
     }
 
     /** Generate the file name for a path. */

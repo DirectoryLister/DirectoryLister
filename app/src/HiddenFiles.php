@@ -7,10 +7,10 @@ use Tightenco\Collect\Support\Collection;
 
 class HiddenFiles extends Collection
 {
-    /** {@inheritdoc} */
-    protected function __construct(...$args)
+    /** @inheritdoc */
+    protected function __construct($items = [])
     {
-        parent::__construct(...$args);
+        parent::__construct($items);
     }
 
     /** {@inheritdoc} */
@@ -25,9 +25,8 @@ class HiddenFiles extends Collection
         $items = $config->get('hidden_files');
 
         if (is_readable($config->get('hidden_files_list'))) {
-            $items = array_merge($items, file(
-                $config->get('hidden_files_list'), FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES
-            ));
+            $hiddenFiles = file($config->get('hidden_files_list'), FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+            $items = array_merge($items, $hiddenFiles ?: []);
         }
 
         if ($config->get('hide_app_files')) {

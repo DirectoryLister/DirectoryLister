@@ -1,0 +1,72 @@
+parameters:
+	ignoreErrors:
+		-
+			message: "#^Parameter \\#1 \\$factory of function DI\\\\factory expects callable\\(\\)\\: mixed, 'App\\\\\\\\Factories\\\\\\\\CacheFactory' given\\.$#"
+			count: 1
+			path: app/config/container.php
+
+		-
+			message: "#^Parameter \\#1 \\$factory of function DI\\\\factory expects callable\\(\\)\\: mixed, 'App\\\\\\\\Factories\\\\\\\\FinderFactory' given\\.$#"
+			count: 1
+			path: app/config/container.php
+
+		-
+			message: "#^Parameter \\#1 \\$factory of function DI\\\\factory expects callable\\(\\)\\: mixed, 'App\\\\\\\\Factories\\\\\\\\TranslationFactory' given\\.$#"
+			count: 1
+			path: app/config/container.php
+
+		-
+			message: "#^Parameter \\#1 \\$factory of function DI\\\\factory expects callable\\(\\)\\: mixed, 'App\\\\\\\\Factories\\\\\\\\TwigFactory' given\\.$#"
+			count: 1
+			path: app/config/container.php
+
+		-
+			message: "#^Parameter \\#1 \\$separator of function explode expects non\\-empty\\-string, string given\\.$#"
+			count: 1
+			path: app/src/Support/Str.php
+
+		-
+			message: "#^Parameter \\#1 \\$separator of function explode expects non\\-empty\\-string, string given\\.$#"
+			count: 1
+			path: app/src/ViewFunctions/Breadcrumbs.php
+
+		-
+			message: "#^Parameter \\#1 \\$finfo of function finfo_buffer expects resource, resource\\|false given\\.$#"
+			count: 1
+			path: tests/Controllers/ZipControllerTest.php
+
+		-
+			message: "#^Parameter \\#1 \\$finfo of function finfo_buffer expects resource, resource\\|false given\\.$#"
+			count: 1
+			path: tests/Exceptions/ErrorHandlerTest.php
+
+		-
+			message: "#^Parameter \\#1 \\$expected of method PHPUnit\\\\Framework\\\\Assert\\:\\:assertInstanceOf\\(\\) expects class\\-string\\<object\\>, string given\\.$#"
+			count: 1
+			path: tests/Factories/CacheFactoryTest.php
+
+		-
+			message: "#^Cannot call method getCallable\\(\\) on Twig\\\\TwigFunction\\|null\\.$#"
+			count: 11
+			path: tests/Factories/TwigFactoryTest.php
+
+		-
+			message: "#^Parameter \\#1 \\$className of method PHPUnit\\\\Framework\\\\TestCase\\:\\:getMockBuilder\\(\\) expects class\\-string\\<object\\>, string given\\.$#"
+			count: 1
+			path: tests/Middlewares/PruneCacheMiddlewareTest.php
+
+		-
+			message: "#^Parameter \\#1 \\$originalClassName of method PHPUnit\\\\Framework\\\\TestCase\\:\\:createMock\\(\\) expects class\\-string\\<object\\>, string given\\.$#"
+			count: 1
+			path: tests/Middlewares/PruneCacheMiddlewareTest.php
+
+		-
+			message: "#^Unable to resolve the template type RealInstanceType in call to method PHPUnit\\\\Framework\\\\TestCase\\:\\:createMock\\(\\)$#"
+			count: 1
+			path: tests/Middlewares/PruneCacheMiddlewareTest.php
+
+		-
+			message: "#^Unable to resolve the template type RealInstanceType in call to method PHPUnit\\\\Framework\\\\TestCase\\:\\:getMockBuilder\\(\\)$#"
+			count: 1
+			path: tests/Middlewares/PruneCacheMiddlewareTest.php
+

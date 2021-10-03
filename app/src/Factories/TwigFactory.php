@@ -3,6 +3,7 @@
 namespace App\Factories;
 
 use App\Config;
+use App\ViewFunctions\ViewFunction;
 use Invoker\CallableResolver;
 use Slim\Views\Twig;
 use Twig\Extension\CoreExtension;
@@ -33,16 +34,17 @@ class TwigFactory
             $this->config->get('views_path')
         ), ['cache' => $this->config->get('view_cache')]);
 
-        $environment = $twig->getEnvironment();
-        $core = $environment->getExtension(CoreExtension::class);
+        /** @var CoreExtension $core */
+        $core = $twig->getEnvironment()->getExtension(CoreExtension::class);
 
         $core->setDateFormat($this->config->get('date_format'), '%d days');
         $core->setTimezone($this->config->get('timezone'));
 
         foreach ($this->config->get('view_functions') as $function) {
+            /** @var ViewFunction&Callable $function */
             $function = $this->callableResolver->resolve($function);
 
-            $environment->addFunction(
+            $twig->getEnvironment()->addFunction(
                 new TwigFunction($function->name(), $function)
             );
         }

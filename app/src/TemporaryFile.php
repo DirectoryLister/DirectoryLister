@@ -10,7 +10,7 @@ class TemporaryFile
     /** Create a new TemporaryFile object. */
     public function __construct(string $dir, string $prefix = '')
     {
-        $this->path = tempnam($dir, $prefix);
+        $this->path = (string) tempnam($dir, $prefix);
     }
 
     /** Destroy this TemporaryFile object. */
@@ -28,6 +28,6 @@ class TemporaryFile
     /** Get the raw contents of the file. */
     public function getContents(): string
     {
-        return file_get_contents($this->path);
+        return (string) file_get_contents($this->path);
     }
 }

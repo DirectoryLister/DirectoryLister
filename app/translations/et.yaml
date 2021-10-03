@@ -1,0 +1,20 @@
+home: Algusesse
+download: Laadi see kataloog alla
+search: Otsi
+file:
+  name: Failinimi
+  size: Suurus
+  date: Kuupäev
+  info: Teave
+powered_by: Kasutusel
+scroll_to_top: Liigu üles
+toggle_theme: Lülita Hele/Tume režiim
+
+error:
+  directory_not_found: Kataloogi ei eksisteeri
+  file_not_found: Faili ei leitud
+  file_size_exceeded: Fail liiga suur
+  no_results_found: Tulemusi ei leitud
+  unexpected: Ilmnes ootamatu viga
+
+enable_debugging: Lisateabe saamiseks lubage silumine

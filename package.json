@@ -14,7 +14,7 @@
     },
     "dependencies": {
         "alpinejs": "^3.0.1",
-        "autoprefixer": "^10.2.5",
+        "autoprefixer": "^10.3.6",
         "axios": "^0.21.1",
         "highlight.js": "^11.0.1",
         "postcss": "^8.2.7"

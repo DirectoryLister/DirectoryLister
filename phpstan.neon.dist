@@ -20,14 +20,22 @@ parameters:
 
   reportUnmatchedIgnoredErrors: false
 
-  # exceptions:
-  #   check:
-  #     missingCheckedExceptionInThrows: true
-  #     tooWideThrowType: true
+  exceptions:
+    check:
+      missingCheckedExceptionInThrows: true
+      tooWideThrowType: true
 
-  #   uncheckedExceptionClasses:
-  #     - 'PHPUnit\Framework\Exception'
-  #     - 'SebastianBergmann\RecursionContext\InvalidArgumentException'
+    uncheckedExceptionClasses:
+      - 'DI\DependencyException'
+      - 'InvalidArgumentException'
+      - 'Invoker\Exception\NotCallableException'
+      - 'LogicException'
+      - 'RuntimeException'
+      - 'Psr\Cache\InvalidArgumentException'
+      - 'SebastianBergmann\RecursionContext\InvalidArgumentException'
+      - 'Symfony\Component\Cache\Exception\CacheException'
+      - 'PHPUnit\Framework\Exception'
 
 includes:
   - phpstan-baseline.neon
+  - phpstan-ignores.neon

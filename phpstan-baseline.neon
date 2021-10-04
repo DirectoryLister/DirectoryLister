@@ -21,6 +21,61 @@ parameters:
 			path: app/config/container.php
 
 		-
+			message: "#^Method App\\\\Controllers\\\\DirectoryController\\:\\:__invoke\\(\\) throws checked exception Twig\\\\Error\\\\LoaderError but it's missing from the PHPDoc @throws tag\\.$#"
+			count: 2
+			path: app/src/Controllers/DirectoryController.php
+
+		-
+			message: "#^Method App\\\\Controllers\\\\DirectoryController\\:\\:__invoke\\(\\) throws checked exception Twig\\\\Error\\\\RuntimeError but it's missing from the PHPDoc @throws tag\\.$#"
+			count: 2
+			path: app/src/Controllers/DirectoryController.php
+
+		-
+			message: "#^Method App\\\\Controllers\\\\DirectoryController\\:\\:__invoke\\(\\) throws checked exception Twig\\\\Error\\\\SyntaxError but it's missing from the PHPDoc @throws tag\\.$#"
+			count: 2
+			path: app/src/Controllers/DirectoryController.php
+
+		-
+			message: "#^Method App\\\\Controllers\\\\SearchController\\:\\:__invoke\\(\\) throws checked exception Twig\\\\Error\\\\LoaderError but it's missing from the PHPDoc @throws tag\\.$#"
+			count: 2
+			path: app/src/Controllers/SearchController.php
+
+		-
+			message: "#^Method App\\\\Controllers\\\\SearchController\\:\\:__invoke\\(\\) throws checked exception Twig\\\\Error\\\\RuntimeError but it's missing from the PHPDoc @throws tag\\.$#"
+			count: 2
+			path: app/src/Controllers/SearchController.php
+
+		-
+			message: "#^Method App\\\\Controllers\\\\SearchController\\:\\:__invoke\\(\\) throws checked exception Twig\\\\Error\\\\SyntaxError but it's missing from the PHPDoc @throws tag\\.$#"
+			count: 2
+			path: app/src/Controllers/SearchController.php
+
+		-
+			message: "#^Method App\\\\Exceptions\\\\ErrorHandler\\:\\:__invoke\\(\\) throws checked exception Twig\\\\Error\\\\LoaderError but it's missing from the PHPDoc @throws tag\\.$#"
+			count: 1
+			path: app/src/Exceptions/ErrorHandler.php
+
+		-
+			message: "#^Method App\\\\Exceptions\\\\ErrorHandler\\:\\:__invoke\\(\\) throws checked exception Twig\\\\Error\\\\RuntimeError but it's missing from the PHPDoc @throws tag\\.$#"
+			count: 1
+			path: app/src/Exceptions/ErrorHandler.php
+
+		-
+			message: "#^Method App\\\\Exceptions\\\\ErrorHandler\\:\\:__invoke\\(\\) throws checked exception Twig\\\\Error\\\\SyntaxError but it's missing from the PHPDoc @throws tag\\.$#"
+			count: 1
+			path: app/src/Exceptions/ErrorHandler.php
+
+		-
+			message: "#^Method App\\\\Factories\\\\TwigFactory\\:\\:__invoke\\(\\) throws checked exception ReflectionException but it's missing from the PHPDoc @throws tag\\.$#"
+			count: 1
+			path: app/src/Factories/TwigFactory.php
+
+		-
+			message: "#^Method App\\\\Middlewares\\\\PruneCacheMiddleware\\:\\:winsLottery\\(\\) throws checked exception Exception but it's missing from the PHPDoc @throws tag\\.$#"
+			count: 1
+			path: app/src/Middlewares/PruneCacheMiddleware.php
+
+		-
 			message: "#^Parameter \\#1 \\$separator of function explode expects non\\-empty\\-string, string given\\.$#"
 			count: 1
 			path: app/src/Support/Str.php

@@ -17,6 +17,7 @@ class TranslationFactoryTest extends TestCase
         $translator = (new TranslationFactory($this->config, $this->cache))();
 
         $this->assertEquals('en', $translator->getLocale());
+        $this->assertInstanceOf(MessageCatalogue::class, $translator->getCatalogue('ar'));
         $this->assertInstanceOf(MessageCatalogue::class, $translator->getCatalogue('de'));
         $this->assertInstanceOf(MessageCatalogue::class, $translator->getCatalogue('en'));
         $this->assertInstanceOf(MessageCatalogue::class, $translator->getCatalogue('es'));

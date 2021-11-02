@@ -86,6 +86,16 @@ parameters:
 			path: app/src/ViewFunctions/Breadcrumbs.php
 
 		-
+			message: "#^Dead catch \\- RuntimeException is never thrown in the try block\\.$#"
+			count: 1
+			path: app/src/ViewFunctions/ModifiedTime.php
+
+		-
+			message: "#^Dead catch \\- RuntimeException is never thrown in the try block\\.$#"
+			count: 1
+			path: app/src/ViewFunctions/SizeForHumans.php
+
+		-
 			message: "#^Parameter \\#1 \\$finfo of function finfo_buffer expects resource, resource\\|false given\\.$#"
 			count: 1
 			path: tests/Controllers/ZipControllerTest.php

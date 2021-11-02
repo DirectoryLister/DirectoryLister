@@ -16,11 +16,12 @@ parameters:
   checkFunctionNameCase: true
   checkMissingIterableValueType: false
 
-  implicitThrows: false
 
   reportUnmatchedIgnoredErrors: false
 
   exceptions:
+    implicitThrows: false
+
     check:
       missingCheckedExceptionInThrows: true
       tooWideThrowType: true

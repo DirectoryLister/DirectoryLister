@@ -1,0 +1,20 @@
+home: الرَئيِّسَة
+download: تَنزيل هذا المُجَلَّد
+search: البَحث
+file:
+  name: اِسمُ المِلَف
+  size: الحَجم
+  date: التاريخ
+  info: مَعلومات المِلَف
+powered_by: مُشغَّلٌ بِواسِطةِ
+scroll_to_top: التَمرير لأعلَى
+toggle_theme: تَبديلُ النَمَطِ الفاتِح/الداكِن
+
+error:
+  directory_not_found: يَتَعذَّرُ إيجادُ المُجَلَّد
+  file_not_found: يَتَعذَّرُ إيجادُ المِلَف
+  file_size_exceeded: حَجمُ المِلَف كَبيرٌ جدًا
+  no_results_found: لَم يُعثَر عَلى نتائِج
+  unexpected: حَدَثَ خطأٌ غَيرُ مُتوقَّع
+
+enable_debugging: تمكين نمط التصحيح للحصول على معلومات إضافيَّة

@@ -9,7 +9,6 @@ body:
     attributes:
       label: Directory Lister Version
       description: What version of Directory Lister are you using?
-      placeholder: '3.X.X'
     validations:
       required: true
 
@@ -20,7 +19,6 @@ body:
       description: |
         What version of PHP do you have installed?
         Run `php --version` from a command line to find your version.
-      placeholder: '8.1'
     validations:
       required: true
 

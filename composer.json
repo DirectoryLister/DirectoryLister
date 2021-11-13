@@ -35,6 +35,7 @@
         "vlucas/phpdotenv": "^5.0"
     },
     "require-dev": {
+        "beyondcode/expose": "^2.0",
         "johnkary/phpunit-speedtrap": "^4.0",
         "phlak/coding-standards": "^2.0",
         "phpstan/phpstan": "^1.0",

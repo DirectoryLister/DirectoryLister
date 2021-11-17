@@ -41,7 +41,7 @@ class TwigFactory
         $core->setTimezone($this->config->get('timezone'));
 
         foreach ($this->config->get('view_functions') as $function) {
-            /** @var ViewFunction&Callable $function */
+            /** @var ViewFunction&callable $function */
             $function = $this->callableResolver->resolve($function);
 
             $twig->getEnvironment()->addFunction(

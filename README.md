@@ -61,7 +61,7 @@ Sponsors
 --------
 
 Love Directory Lister? [Sponsor development](https://github.com/sponsors/PHLAK)
-and your name or logo featured here!
+and have your name or logo featured here!
 
 Changelog
 ---------

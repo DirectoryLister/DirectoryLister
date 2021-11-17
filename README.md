@@ -60,7 +60,8 @@ See the [Configuration Documentation](https://docs.directorylister.com/configura
 Sponsors
 --------
 
-<a href="https://besturate.com"><img src="https://i.imgur.com/fUKxT63.png" alt="Besturate" height="100" style="height: 100px;"></a>
+Love Directory Lister? [Sponsor development](https://github.com/sponsors/PHLAK)
+and your name or logo featured here!
 
 Changelog
 ---------

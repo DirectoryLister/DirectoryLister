@@ -13,7 +13,7 @@
         "issues": "https://github.com/DirectoryLister/DirectoryLister/issues"
     },
     "require": {
-        "php": "^7.3 || ^8.0",
+        "php": "^7.3 || ^8.0 || ^8.1",
         "ext-dom": "*",
         "ext-fileinfo": "*",
         "ext-zip": "*",

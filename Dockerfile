@@ -5,7 +5,7 @@ ENV HOME="/tmp"
 ENV COMPOSER_HOME="/tmp"
 ENV XDG_CONFIG_HOME="/tmp/.config"
 
-COPY --from=composer:2.0 /usr/bin/composer /usr/bin/composer
+COPY --from=composer:2.1 /usr/bin/composer /usr/bin/composer
 COPY --from=node:16.8 /usr/local/bin/node /usr/local/bin/node
 COPY --from=node:16.8 /usr/local/lib/node_modules /usr/local/lib/node_modules
 

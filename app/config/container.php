@@ -22,7 +22,7 @@ return [
     /** Array of application middlewares */
     'middlewares' => function (): array {
         return [
-            Middlewares\WhoopsMiddleware::class,
+            // Middlewares\WhoopsMiddleware::class,
             Middlewares\PruneCacheMiddleware::class,
             Middlewares\CacheControlMiddleware::class,
             Middlewares\RegisterGlobalsMiddleware::class,
@@ -61,5 +61,5 @@ return [
     Symfony\Contracts\Cache\CacheInterface::class => DI\factory(Factories\CacheFactory::class),
     Symfony\Contracts\Translation\TranslatorInterface::class => DI\factory(Factories\TranslationFactory::class),
     Slim\Views\Twig::class => DI\factory(Factories\TwigFactory::class),
-    Whoops\RunInterface::class => DI\create(Whoops\Run::class),
+    // Whoops\RunInterface::class => DI\create(Whoops\Run::class),
 ];

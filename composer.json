@@ -13,12 +13,11 @@
         "issues": "https://github.com/DirectoryLister/DirectoryLister/issues"
     },
     "require": {
-        "php": "^7.4 || ^8.0 || ^8.1",
+        "php": "^8.0 || ^8.1",
         "ext-dom": "*",
         "ext-fileinfo": "*",
         "ext-zip": "*",
         "erusev/parsedown-extra": "^0.8.1",
-        "filp/whoops": "^2.7",
         "phlak/splat": "^4.0",
         "php-di/php-di": "^6.0",
         "php-di/slim-bridge": "^3.0",
@@ -26,6 +25,7 @@
         "slim/psr7": "^1.0",
         "slim/slim": "^4.3",
         "slim/twig-view": "^3.0",
+        "spatie/ignition": "^1.0",
         "symfony/cache": "^5.0",
         "symfony/finder": "^5.0",
         "symfony/translation": "^5.0",
@@ -60,7 +60,7 @@
     "config": {
         "optimize-autoloader": true,
         "platform": {
-            "php": "7.4"
+            "php": "8.0"
         },
         "platform-check": true,
         "sort-packages": true,

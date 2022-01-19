@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Config;
 use Exception;
 use Psr\Http\Message\ResponseInterface;
+use RuntimeException;
 use Slim\Psr7\Request;
 use Slim\Psr7\Response;
 use Slim\Views\Twig;
@@ -42,6 +43,8 @@ class DirectoryController
     /** Invoke the IndexController. */
     public function __invoke(Request $request, Response $response): ResponseInterface
     {
+        throw new RuntimeException('Test exception; please ignore');
+
         $path = $request->getQueryParams()['dir'] ?? '.';
 
         try {

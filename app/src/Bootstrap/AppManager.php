@@ -22,7 +22,7 @@ class AppManager
     {
         $app = Bridge::create($this->container);
         $this->container->call(MiddlewareManager::class);
-        $this->container->call(ExceptionManager::class);
+        // $this->container->call(ExceptionManager::class);
         $this->container->call(RouteManager::class);
 
         return $app;

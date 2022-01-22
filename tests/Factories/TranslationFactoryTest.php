@@ -31,6 +31,7 @@ class TranslationFactoryTest extends TestCase
         $this->assertInstanceOf(MessageCatalogue::class, $translator->getCatalogue('pt-BR'));
         $this->assertInstanceOf(MessageCatalogue::class, $translator->getCatalogue('ro'));
         $this->assertInstanceOf(MessageCatalogue::class, $translator->getCatalogue('ru'));
+        $this->assertInstanceOf(MessageCatalogue::class, $translator->getCatalogue('sv'));
         $this->assertInstanceOf(MessageCatalogue::class, $translator->getCatalogue('tr'));
         $this->assertInstanceOf(MessageCatalogue::class, $translator->getCatalogue('zh-CN'));
         $this->assertInstanceOf(MessageCatalogue::class, $translator->getCatalogue('zh-TW'));

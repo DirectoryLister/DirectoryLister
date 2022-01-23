@@ -1,0 +1,20 @@
+home: Hem
+download: Hämta denna mappen
+search: Sök
+file:
+  name: Filnamn
+  size: Storlek
+  date: Datum
+  info: Filinformation
+powered_by: Drivs av
+scroll_to_top: Gå till sidans top
+toggle_theme: Växla Ljust/Mörkt tema
+
+error:
+  directory_not_found: Mappen finns inte
+  file_not_found: Filen finns inte
+  file_size_exceeded: Filen är för stor
+  no_results_found: Inget resultat hittat
+  unexpected: Ett oväntat fel uppstod
+
+enable_debugging: Aktivera felsökning för mer information

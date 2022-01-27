@@ -1,7 +1,5 @@
-// Tailwind
 @tailwind base;
 @tailwind components;
-@tailwind utilities;
 
 // Icons
 $fa-font-path: "./webfonts";
@@ -22,3 +20,5 @@ $fa-font-path: "./webfonts";
 [x-cloak] {
     display: none !important;
 }
+
+@tailwind utilities;

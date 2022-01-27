@@ -348,16 +348,16 @@
         },
         {
             "name": "opis/closure",
-            "version": "3.6.2",
+            "version": "3.6.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/opis/closure.git",
-                "reference": "06e2ebd25f2869e54a306dda991f7db58066f7f6"
+                "reference": "3d81e4309d2a927abbe66df935f4bb60082805ad"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/opis/closure/zipball/06e2ebd25f2869e54a306dda991f7db58066f7f6",
-                "reference": "06e2ebd25f2869e54a306dda991f7db58066f7f6",
+                "url": "https://api.github.com/repos/opis/closure/zipball/3d81e4309d2a927abbe66df935f4bb60082805ad",
+                "reference": "3d81e4309d2a927abbe66df935f4bb60082805ad",
                 "shasum": ""
             },
             "require": {
@@ -407,9 +407,9 @@
             ],
             "support": {
                 "issues": "https://github.com/opis/closure/issues",
-                "source": "https://github.com/opis/closure/tree/3.6.2"
+                "source": "https://github.com/opis/closure/tree/3.6.3"
             },
-            "time": "2021-04-09T13:42:10+00:00"
+            "time": "2022-01-27T09:35:39+00:00"
         },
         {
             "name": "phlak/splat",
@@ -2639,16 +2639,16 @@
         },
         {
             "name": "tightenco/collect",
-            "version": "v8.80.0",
+            "version": "v8.81.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tighten/collect.git",
-                "reference": "16c200babd4bee20a039b542a8a75645b8900a62"
+                "reference": "2b629c5095c89f3e96488f4bde8ac11642465200"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tighten/collect/zipball/16c200babd4bee20a039b542a8a75645b8900a62",
-                "reference": "16c200babd4bee20a039b542a8a75645b8900a62",
+                "url": "https://api.github.com/repos/tighten/collect/zipball/2b629c5095c89f3e96488f4bde8ac11642465200",
+                "reference": "2b629c5095c89f3e96488f4bde8ac11642465200",
                 "shasum": ""
             },
             "require": {
@@ -2687,9 +2687,9 @@
             ],
             "support": {
                 "issues": "https://github.com/tighten/collect/issues",
-                "source": "https://github.com/tighten/collect/tree/v8.80.0"
+                "source": "https://github.com/tighten/collect/tree/v8.81.0"
             },
-            "time": "2022-01-18T18:14:11+00:00"
+            "time": "2022-01-25T22:55:34+00:00"
         },
         {
             "name": "twig/twig",

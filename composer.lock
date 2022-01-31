@@ -2402,16 +2402,16 @@
         },
         {
             "name": "symfony/var-dumper",
-            "version": "v5.4.2",
+            "version": "v5.4.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/var-dumper.git",
-                "reference": "1b56c32c3679002b3a42384a580e16e2600f41c1"
+                "reference": "970a01f208bf895c5f327ba40b72288da43adec4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/var-dumper/zipball/1b56c32c3679002b3a42384a580e16e2600f41c1",
-                "reference": "1b56c32c3679002b3a42384a580e16e2600f41c1",
+                "url": "https://api.github.com/repos/symfony/var-dumper/zipball/970a01f208bf895c5f327ba40b72288da43adec4",
+                "reference": "970a01f208bf895c5f327ba40b72288da43adec4",
                 "shasum": ""
             },
             "require": {
@@ -2471,7 +2471,7 @@
                 "dump"
             ],
             "support": {
-                "source": "https://github.com/symfony/var-dumper/tree/v5.4.2"
+                "source": "https://github.com/symfony/var-dumper/tree/v5.4.3"
             },
             "funding": [
                 {
@@ -2487,7 +2487,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-12-29T10:10:35+00:00"
+            "time": "2022-01-17T16:30:37+00:00"
         },
         {
             "name": "symfony/var-exporter",
@@ -2639,16 +2639,16 @@
         },
         {
             "name": "tightenco/collect",
-            "version": "v8.80.0",
+            "version": "v8.81.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tighten/collect.git",
-                "reference": "16c200babd4bee20a039b542a8a75645b8900a62"
+                "reference": "2b629c5095c89f3e96488f4bde8ac11642465200"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tighten/collect/zipball/16c200babd4bee20a039b542a8a75645b8900a62",
-                "reference": "16c200babd4bee20a039b542a8a75645b8900a62",
+                "url": "https://api.github.com/repos/tighten/collect/zipball/2b629c5095c89f3e96488f4bde8ac11642465200",
+                "reference": "2b629c5095c89f3e96488f4bde8ac11642465200",
                 "shasum": ""
             },
             "require": {
@@ -2687,9 +2687,9 @@
             ],
             "support": {
                 "issues": "https://github.com/tighten/collect/issues",
-                "source": "https://github.com/tighten/collect/tree/v8.80.0"
+                "source": "https://github.com/tighten/collect/tree/v8.81.0"
             },
-            "time": "2022-01-18T18:14:11+00:00"
+            "time": "2022-01-25T22:55:34+00:00"
         },
         {
             "name": "twig/twig",

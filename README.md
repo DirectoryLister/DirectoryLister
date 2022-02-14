@@ -60,6 +60,8 @@ See the [Configuration Documentation](https://docs.directorylister.com/configura
 Sponsors
 --------
 
+[![Flux Industries](https://user-images.githubusercontent.com/53531/153962964-4462d459-42e2-4420-9907-16645aa12ca4.png)](https://flux.industries)
+
 Love Directory Lister? [Sponsor development](https://github.com/sponsors/PHLAK)
 and have your name or logo featured here!
 

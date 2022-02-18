@@ -16,7 +16,6 @@ parameters:
   checkFunctionNameCase: true
   checkMissingIterableValueType: false
 
-
   reportUnmatchedIgnoredErrors: false
 
   exceptions:

@@ -1,4 +1,4 @@
-FROM php:8.0-apache
+FROM php:8.1-apache
 LABEL maintainer="Chris Kankiewicz <Chris@ChrisKankiewicz.com>"
 
 ENV HOME="/tmp"

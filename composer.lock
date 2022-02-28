@@ -2639,7 +2639,7 @@
         },
         {
             "name": "tightenco/collect",
-            "version": "v8.83.1",
+            "version": "v8.83.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tighten/collect.git",
@@ -2687,7 +2687,7 @@
             ],
             "support": {
                 "issues": "https://github.com/tighten/collect/issues",
-                "source": "https://github.com/tighten/collect/tree/v8.83.1"
+                "source": "https://github.com/tighten/collect/tree/v8.83.2"
             },
             "time": "2022-02-16T16:15:54+00:00"
         },

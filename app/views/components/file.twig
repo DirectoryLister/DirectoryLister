@@ -36,5 +36,13 @@
         <div class="hidden whitespace-nowrap text-right truncate ml-2 w-1/4 sm:block">
             {{ parentDir ? '—' : modified_time(file) }}
         </div>
+
+        <div class="hidden whitespace-nowrap text-right truncate ml-2 w-1/4 sm:block">
+            {% if parentDir or file.isDir %}
+                -
+            {% else %}
+                {{ file_downloads(file) }}
+            {% endif %}
+        </div>
     </div>
 </a>

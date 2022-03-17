@@ -11,9 +11,8 @@ class FileUrl extends Url
     public function __invoke(string $path = '/'): string
     {
         $path = $this->stripLeadingSlashes($path);
-
         if (is_file($path)) {
-            return $this->escape($path);
+            return 'index.php?download=' . $this->escape($path);
         }
 
         if ($path === '') {

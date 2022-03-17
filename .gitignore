@@ -5,3 +5,4 @@
 /.php-cs-fixer.cache
 /.phpunit.result.cache
 /mix-manifest.json
+/app/.downloads

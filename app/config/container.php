@@ -48,6 +48,7 @@ return [
         ViewFunctions\Icon::class,
         ViewFunctions\Markdown::class,
         ViewFunctions\ModifiedTime::class,
+        ViewFunctions\FileDownloads::class,
         ViewFunctions\ParentUrl::class,
         ViewFunctions\SizeForHumans::class,
         ViewFunctions\Translate::class,

@@ -5,6 +5,7 @@ file:
   name: File Name
   size: Size
   date: Date
+  downloads: Downloads
   info: File Info
 powered_by: Powered by
 scroll_to_top: Scroll to Top

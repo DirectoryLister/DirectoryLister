@@ -19,6 +19,8 @@ services:
     user: ${HOST_USER_ID:-0}:${HOST_GROUP_ID:-0}
     volumes:
       - ./:/var/www/html
+      - ./.docker/php/config/php.ini:/usr/local/etc/php/php.ini
+      - ./.docker/apache2/config/000-default.conf:/etc/apache2/sites-available/000-default.conf
 
   memcached:
     container_name: directory-lister-memcached

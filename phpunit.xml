@@ -1,24 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<phpunit bootstrap="app/vendor/autoload.php" colors="true"
+<phpunit
+    bootstrap="app/vendor/autoload.php" colors="true" forceCoversAnnotation="true"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:noNamespaceSchemaLocation="app/vendor/phpunit/phpunit/phpunit.xsd"
 >
-  <coverage processUncoveredFiles="true">
-    <include>
-      <directory suffix=".php">app/</directory>
-    </include>
-    <exclude>
-      <directory>app/cache</directory>
-      <directory>app/config</directory>
-      <directory>app/vendor</directory>
-    </exclude>
-  </coverage>
-  <testsuites>
-    <testsuite name="Directory Lister Test Suite">
-      <directory suffix="Test.php">tests/</directory>
-    </testsuite>
-  </testsuites>
-  <listeners>
-    <listener class="JohnKary\PHPUnit\Listener\SpeedTrapListener"/>
-  </listeners>
+    <coverage cacheDirectory=".coverage-cache" processUncoveredFiles="true">
+        <include>
+            <directory suffix=".php">app/</directory>
+        </include>
+
+        <exclude>
+            <directory>app/cache</directory>
+            <directory>app/config</directory>
+            <directory>app/vendor</directory>
+        </exclude>
+    </coverage>
+
+    <testsuites>
+        <testsuite name="Directory Lister Test Suite">
+            <directory suffix="Test.php">tests/</directory>
+        </testsuite>
+    </testsuites>
+
+    <listeners>
+        <listener class="JohnKary\PHPUnit\Listener\SpeedTrapListener" />
+    </listeners>
 </phpunit>

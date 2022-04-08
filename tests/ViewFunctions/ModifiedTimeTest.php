@@ -6,6 +6,7 @@ use App\ViewFunctions\ModifiedTime;
 use Symfony\Component\Finder\SplFileInfo;
 use Tests\TestCase;
 
+/** @covers \App\ViewFunctions\ModifiedTime */
 class ModifiedTimeTest extends TestCase
 {
     public function test_it_can_return_the_modified_time_for_a_file(): void

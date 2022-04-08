@@ -2,6 +2,7 @@
 
 namespace Tests;
 
+/** @covers \App\Config */
 class ConfigTest extends TestCase
 {
     public function test_it_can_retrieve_a_preset_configuration_value(): void

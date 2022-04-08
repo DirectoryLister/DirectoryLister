@@ -40,7 +40,7 @@ class WhoopsMiddleware
 
         $this->whoops->pushHandler($this->pageHandler);
 
-        if (in_array('application/json', explode(',', $request->getHeaderLine('Accept')))) {
+        if (in_array('application/json', explode(',', (string) $request->getHeaderLine('Accept')))) {
             $this->whoops->pushHandler($this->jsonHandler);
         }
 

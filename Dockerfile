@@ -22,5 +22,5 @@ RUN docker-php-ext-install opcache zip \
 
 RUN a2enmod rewrite
 
-COPY .docker/apache/config/000-default.conf /etc/apache2/sites-available/000-default.conf
+COPY .docker/apache2/config/000-default.conf /etc/apache2/sites-available/000-default.conf
 COPY .docker/php/config/php.ini /usr/local/etc/php/php.ini

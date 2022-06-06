@@ -22,7 +22,7 @@
         "autoprefixer": "^10.4.2",
         "cross-env": "^7.0.3",
         "eslint": "^8.1.0",
-        "laravel-mix": "^6.0.19",
+        "laravel-mix": "^6.0.48",
         "postcss": "^8.4.5",
         "resolve-url-loader": "^5.0.0",
         "sass": "^1.32.8",

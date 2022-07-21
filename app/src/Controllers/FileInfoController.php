@@ -38,7 +38,7 @@ class FileInfoController
         $path = $request->getQueryParams()['info'];
 
         $file = new SplFileInfo(
-           (string) realpath($this->config->get('base_path') . '/' . $path)
+            (string) realpath($this->config->get('base_path') . '/' . $path)
         );
 
         if (! $file->isFile()) {

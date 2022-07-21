@@ -5,9 +5,9 @@ ENV HOME="/tmp"
 ENV COMPOSER_HOME="/tmp"
 ENV XDG_CONFIG_HOME="/tmp/.config"
 
-COPY --from=composer:2.1 /usr/bin/composer /usr/bin/composer
-COPY --from=node:17.5 /usr/local/bin/node /usr/local/bin/node
-COPY --from=node:17.5 /usr/local/lib/node_modules /usr/local/lib/node_modules
+COPY --from=composer:2.3 /usr/bin/composer /usr/bin/composer
+COPY --from=node:18.4 /usr/local/bin/node /usr/local/bin/node
+COPY --from=node:18.4 /usr/local/lib/node_modules /usr/local/lib/node_modules
 
 RUN ln --symbolic ../lib/node_modules/npm/bin/npm-cli.js /usr/local/bin/npm \
     && ln --symbolic ../lib/node_modules/npm/bin/npx-cli.js /usr/local/bin/npx

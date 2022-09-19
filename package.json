@@ -19,7 +19,7 @@
     },
     "devDependencies": {
         "@fortawesome/fontawesome-free": "^6.1.1",
-        "autoprefixer": "^10.4.2",
+        "autoprefixer": "^10.4.11",
         "cross-env": "^7.0.3",
         "eslint": "^8.1.0",
         "laravel-mix": "^6.0.19",

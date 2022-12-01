@@ -1,5 +1,7 @@
 <?php
 
+use function DI\env;
+
 return [
     /**
      * Enable application debugging and display error messages.
@@ -10,7 +12,7 @@ return [
      *
      * Default value: false
      */
-    'debug' => DI\env('APP_DEBUG', false),
+    'debug' => env('APP_DEBUG', false),
 
     /**
      * The application interface language.
@@ -19,7 +21,7 @@ return [
      *
      * Defualt value: 'en'
      */
-    'language' => DI\env('APP_LANGUAGE', 'en'),
+    'language' => env('APP_LANGUAGE', 'en'),
 
     /**
      * The title of your directory listing. This will be displayed in the
@@ -27,14 +29,14 @@ return [
      *
      * Default value: 'Directory Lister'
      */
-    'site_title' => DI\env('SITE_TITLE', 'Directory Lister'),
+    'site_title' => env('SITE_TITLE', 'Directory Lister'),
 
     /**
      * Meta tag description text.
      *
      * Default value: 'Yet another directory listing, powered by Directory Lister.'.
      */
-    'meta_description' => DI\env('META_DESCRIPTION', 'Yet another directory listing, powered by Directory Lister.'),
+    'meta_description' => env('META_DESCRIPTION', 'Yet another directory listing, powered by Directory Lister.'),
 
     /**
      * Text of the 'home' link in the navigation breadcrumbs. If undefined or
@@ -42,28 +44,28 @@ return [
      *
      * Default value: null
      */
-    'home_text' => DI\env('HOME_TEXT', null),
+    'home_text' => env('HOME_TEXT', null),
 
     /**
      * Parse and render README files on the page.
      *
      * Default value: true
      */
-    'display_readmes' => DI\env('DISPLAY_READMES', true),
+    'display_readmes' => env('DISPLAY_READMES', true),
 
     /**
      * Show READMEs before the file listing.
      *
      * Default value: false
      */
-    'readmes_first' => DI\env('READMES_FIRST', false),
+    'readmes_first' => env('READMES_FIRST', false),
 
     /**
      * Enable downloading of directories as a zip archive.
      *
      * Default value: true
      */
-    'zip_downloads' => DI\env('ZIP_DOWNLOADS', true),
+    'zip_downloads' => env('ZIP_DOWNLOADS', true),
 
     /**
      * Your Google analytics tracking ID.
@@ -71,21 +73,21 @@ return [
      * Expected format: 'UA-123456789-0'
      * Default value: false
      */
-    'google_analytics_id' => DI\env('GOOGLE_ANALYTICS_ID', false),
+    'google_analytics_id' => env('GOOGLE_ANALYTICS_ID', false),
 
     /**
      * Your Matomo analytics URL.
      *
      *  Default value: false
      */
-    'matomo_analytics_url' => DI\env('MATOMO_ANALYTICS_URL', false),
+    'matomo_analytics_url' => env('MATOMO_ANALYTICS_URL', false),
 
     /**
      * Your Matomo analytics site ID.
      *
      * Default value: false
      */
-    'matomo_analytics_site_id' => DI\env('MATOMO_ANALYTICS_SITE_ID', false),
+    'matomo_analytics_site_id' => env('MATOMO_ANALYTICS_SITE_ID', false),
 
     /**
      * Sorting order of files and folders.
@@ -93,14 +95,14 @@ return [
      * Possible values: type, natural, name, accessed, changed, modified
      * Default value: 'type'
      */
-    'sort_order' => DI\env('SORT_ORDER', 'type'),
+    'sort_order' => env('SORT_ORDER', 'type'),
 
     /**
      * When enabled, reverses the order of files (after sorting is applied).
      *
      * Default value: false
      */
-    'reverse_sort' => DI\env('REVERSE_SORT', false),
+    'reverse_sort' => env('REVERSE_SORT', false),
 
     /**
      * File containing hidden file definitions. Will be merged with definitions
@@ -108,7 +110,7 @@ return [
      *
      * Default value: '.hidden'
      */
-    'hidden_files_list' => DI\env('HIDDEN_FILES_LIST', '.hidden'),
+    'hidden_files_list' => env('HIDDEN_FILES_LIST', '.hidden'),
 
     /**
      * Array of hidden file definitions. Will be merged with definitions in the
@@ -126,14 +128,14 @@ return [
      *
      * Default value: true
      */
-    'hide_app_files' => DI\env('HIDE_APP_FILES', true),
+    'hide_app_files' => env('HIDE_APP_FILES', true),
 
     /**
      * Whether or not to hide dot files/directories from the listing.
      *
      * Default value: true
      */
-    'hide_dot_files' => DI\env('HIDE_DOT_FILES', true),
+    'hide_dot_files' => env('HIDE_DOT_FILES', true),
 
     /**
      * Hide the files Version Control System (i.e. Git and Mercurial) use to
@@ -141,7 +143,7 @@ return [
      *
      * Default value: true
      */
-    'hide_vcs_files' => DI\env('HIDE_VSC_FILES', true),
+    'hide_vcs_files' => env('HIDE_VSC_FILES', true),
 
     /**
      * Default date format. For additional info on date formatting see:
@@ -149,7 +151,7 @@ return [
      *
      * Default value: 'Y-m-d H:i:s'
      */
-    'date_format' => DI\env('DATE_FORMAT', 'Y-m-d H:i:s'),
+    'date_format' => env('DATE_FORMAT', 'Y-m-d H:i:s'),
 
     /**
      * Timezone used for date formatting. For a list of supported timezones see:
@@ -157,7 +159,7 @@ return [
      *
      * Default value: The server's timezone
      */
-    'timezone' => DI\env('TIMEZONE', date_default_timezone_get()),
+    'timezone' => env('TIMEZONE', date_default_timezone_get()),
 
     /**
      * The maximum file size (in bytes) that can be hashed. This helps to
@@ -165,5 +167,5 @@ return [
      *
      * Default value: 1000000000
      */
-    'max_hash_size' => DI\env('MAX_HASH_SIZE', 1000000000),
+    'max_hash_size' => env('MAX_HASH_SIZE', 1000000000),
 ];

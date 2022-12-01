@@ -7,7 +7,7 @@ export default () => ({
     visible: false,
 
     get title() {
-        return this.filePath.split('/').pop();
+        return decodeURI(this.filePath.split('/').pop());
     },
 
     get loading() {

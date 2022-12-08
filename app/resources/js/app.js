@@ -5,6 +5,8 @@ import hljs from 'highlight.js';
 import Application from './components/Application.js';
 import FileInfoModal from './components/FileInfoModal.js';
 
+Alpine.store('theme', 'light');
+
 Alpine.data('application', Application);
 Alpine.data('fileInfoModal', FileInfoModal);
 

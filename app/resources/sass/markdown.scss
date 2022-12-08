@@ -61,14 +61,6 @@
         @apply mt-4;
     }
 
-    code {
-        @apply bg-gray-200 rounded-sm font-mono p-1 overflow-y-auto;
-    }
-
-    pre > code {
-        @apply block p-4 text-sm whitespace-pre;
-    }
-
     hr {
         @apply border-t-2 border-gray-400 my-4;
     }
@@ -119,10 +111,6 @@
 
     h1, h2 {
         @apply border-gray-800;
-    }
-
-    code {
-        @apply bg-gray-800;
     }
 
     hr {

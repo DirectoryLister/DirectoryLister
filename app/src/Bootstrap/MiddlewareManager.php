@@ -7,17 +7,11 @@ use Slim\App;
 
 class MiddlewareManager
 {
-    /** @var App The application */
-    protected $app;
-
-    /** @var Config The application configuration */
-    protected $config;
-
     /** Create a new MiddlwareManager object. */
-    public function __construct(App $app, Config $config)
-    {
-        $this->app = $app;
-        $this->config = $config;
+    public function __construct(
+        private App $app,
+        private Config $config
+    ) {
     }
 
     /** Register application middlewares. */

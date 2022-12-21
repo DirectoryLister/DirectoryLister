@@ -7,16 +7,12 @@ use Tightenco\Collect\Support\Collection;
 
 class Asset extends ViewFunction
 {
-    /** @var string The function name */
-    protected $name = 'asset';
-
-    /** @var Config The application configuration */
-    protected $config;
+    protected string $name = 'asset';
 
     /** Create a new Asset object. */
-    public function __construct(Config $container)
-    {
-        $this->config = $container;
+    public function __construct(
+        private Config $config
+    ) {
     }
 
     /** Return the path to an asset. */

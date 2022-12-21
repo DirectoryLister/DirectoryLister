@@ -11,24 +11,12 @@ use Whoops\RunInterface;
 
 class WhoopsMiddleware
 {
-    /** @var RunInterface The Whoops component */
-    protected $whoops;
-
-    /** @var PrettyPageHandler The pretty page handler */
-    protected $pageHandler;
-
-    /** @var JsonResponseHandler The JSON response handler */
-    protected $jsonHandler;
-
     /** Create a new WhoopseMiddleware object. */
     public function __construct(
-        RunInterface $whoops,
-        PrettyPageHandler $pageHandler,
-        JsonResponseHandler $jsonHandler
+        private RunInterface $whoops,
+        private PrettyPageHandler $pageHandler,
+        private JsonResponseHandler $jsonHandler
     ) {
-        $this->whoops = $whoops;
-        $this->pageHandler = $pageHandler;
-        $this->jsonHandler = $jsonHandler;
     }
 
     /** Invoke the WhoopseMiddleware class. */

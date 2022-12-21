@@ -6,16 +6,12 @@ use App\Support\Str;
 
 class Url extends ViewFunction
 {
-    /** @var string The function name */
-    protected $name = 'url';
-
-    /** @var string The directory separator */
-    protected $directorySeparator;
+    protected string $name = 'url';
 
     /** Create a new Url object. */
-    public function __construct(string $directorySeparator = DIRECTORY_SEPARATOR)
-    {
-        $this->directorySeparator = $directorySeparator;
+    public function __construct(
+        private string $directorySeparator = DIRECTORY_SEPARATOR
+    ) {
     }
 
     /** Return the URL for a given path. */

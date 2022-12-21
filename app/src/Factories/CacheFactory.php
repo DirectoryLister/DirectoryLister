@@ -23,17 +23,11 @@ class CacheFactory
     /** @const Namespace for internal cache drivers */
     protected const NAMESPACE_INTERNAL = 'app';
 
-    /** @var Container The application container */
-    protected $container;
-
-    /** @var Config The application configuration */
-    protected $config;
-
     /** Create a new CacheFactory object. */
-    public function __construct(Container $container, Config $config)
-    {
-        $this->container = $container;
-        $this->config = $config;
+    public function __construct(
+        private Container $container,
+        private Config $config
+    ) {
     }
 
     /** Initialize and return a CacheInterface. */

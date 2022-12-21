@@ -8,15 +8,11 @@ use Symfony\Component\Finder\SplFileInfo;
 
 class ModifiedTime extends ViewFunction
 {
-    /** @var string The function name */
-    protected $name = 'modified_time';
+    protected string $name = 'modified_time';
 
-    /** @var Config The application config */
-    private $config;
-
-    public function __construct(Config $config)
-    {
-        $this->config = $config;
+    public function __construct(
+        private Config $config
+    ) {
     }
 
     /** Get the modified time from a file object. */

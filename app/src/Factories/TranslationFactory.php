@@ -13,17 +13,11 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 
 class TranslationFactory
 {
-    /** @var Config The applicaiton configuration */
-    protected $config;
-
-    /** @var CacheInterface The application cache */
-    protected $cache;
-
     /** Create a new TranslationFactory object. */
-    public function __construct(Config $config, CacheInterface $cache)
-    {
-        $this->config = $config;
-        $this->cache = $cache;
+    public function __construct(
+        private Config $config,
+        private CacheInterface $cache
+    ) {
     }
 
     /** Initialize and return the translation component. */

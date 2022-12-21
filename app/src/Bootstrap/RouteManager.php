@@ -7,13 +7,10 @@ use Slim\App;
 
 class RouteManager
 {
-    /** @var App The application */
-    protected $app;
-
     /** Create a new RouteManager object. */
-    public function __construct(App $app)
-    {
-        $this->app = $app;
+    public function __construct(
+        private App $app
+    ) {
     }
 
     /** Register the application routes. */

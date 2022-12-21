@@ -8,17 +8,11 @@ use Slim\App;
 
 class ExceptionManager
 {
-    /** @var App The application */
-    protected $app;
-
-    /** @var Config The application configuration */
-    protected $config;
-
     /** Create a new ExceptionManager object. */
-    public function __construct(App $app, Config $config)
-    {
-        $this->app = $app;
-        $this->config = $config;
+    public function __construct(
+        private App $app,
+        private Config $config
+    ) {
     }
 
     /** Set up and configure exception handling. */

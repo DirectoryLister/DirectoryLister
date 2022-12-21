@@ -6,16 +6,12 @@ use App\Config as AppConfig;
 
 class Config extends ViewFunction
 {
-    /** @var string The function name */
-    protected $name = 'config';
-
-    /** @var AppConfig The application configuration */
-    protected $config;
+    protected string $name = 'config';
 
     /** Create a new Config object. */
-    public function __construct(AppConfig $config)
-    {
-        $this->config = $config;
+    public function __construct(
+        private AppConfig $config
+    ) {
     }
 
     /**

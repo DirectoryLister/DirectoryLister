@@ -5,7 +5,7 @@ namespace App\ViewFunctions;
 abstract class ViewFunction
 {
     /** @var string The function name */
-    protected $name = '';
+    protected string $name = '';
 
     /** Get the function name. */
     public function name(): string

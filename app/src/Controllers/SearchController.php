@@ -11,21 +11,12 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 
 class SearchController
 {
-    /** @var Finder File finder component */
-    protected $finder;
-
-    /** @var Twig Twig templating component */
-    protected $view;
-
-    /** @var TranslatorInterface Translator component */
-    protected $translator;
-
     /** Create a new SearchHandler object. */
-    public function __construct(Finder $finder, Twig $view, TranslatorInterface $translator)
-    {
-        $this->finder = $finder;
-        $this->view = $view;
-        $this->translator = $translator;
+    public function __construct(
+        private Finder $finder,
+        private Twig $view,
+        private TranslatorInterface $translator
+    ) {
     }
 
     /** Invoke the SearchHandler. */

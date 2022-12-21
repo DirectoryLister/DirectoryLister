@@ -11,17 +11,11 @@ use Symfony\Contracts\Cache\CacheInterface;
 
 class PruneCacheMiddleware
 {
-    /** @var Config The application configuration */
-    protected $config;
-
-    /** @var CacheInterface The application cache */
-    protected $cache;
-
     /** Create a new CachePruneMiddleware object. */
-    public function __construct(Config $config, CacheInterface $cache)
-    {
-        $this->config = $config;
-        $this->cache = $cache;
+    public function __construct(
+        private Config $config,
+        private CacheInterface $cache
+    ) {
     }
 
     /** Invoke the CachePruneMiddleware class. */

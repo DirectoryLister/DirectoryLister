@@ -12,24 +12,12 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 
 class FileInfoController
 {
-    /** @var Config The application configuration */
-    protected $config;
-
-    /** @var CacheInterface The application cache */
-    protected $cache;
-
-    /** @var TranslatorInterface Translator component */
-    protected $translator;
-
     /** Create a new FileInfoHandler object. */
     public function __construct(
-        Config $config,
-        CacheInterface $cache,
-        TranslatorInterface $translator
+        private Config $config,
+        private CacheInterface $cache,
+        private TranslatorInterface $translator
     ) {
-        $this->config = $config;
-        $this->cache = $cache;
-        $this->translator = $translator;
     }
 
     /** Invoke the FileInfoHandler. */

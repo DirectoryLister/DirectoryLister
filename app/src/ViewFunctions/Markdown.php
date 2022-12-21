@@ -7,19 +7,12 @@ use Symfony\Contracts\Cache\CacheInterface;
 
 class Markdown extends ViewFunction
 {
-    /** @var string The function name */
-    protected $name = 'markdown';
+    protected string $name = 'markdown';
 
-    /** @var ParsedownExtra The markdown parser */
-    protected $parser;
-
-    /** @var CacheInterface */
-    protected $cache;
-
-    public function __construct(ParsedownExtra $parser, CacheInterface $cache)
-    {
-        $this->parser = $parser;
-        $this->cache = $cache;
+    public function __construct(
+        private ParsedownExtra $parser,
+        private CacheInterface $cache
+    ) {
     }
 
     /** Parses a string of markdown into HTML. */

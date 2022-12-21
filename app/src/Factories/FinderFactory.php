@@ -14,27 +14,15 @@ use Symfony\Component\Finder\SplFileInfo;
 
 class FinderFactory
 {
-    /** @var Container The application container */
-    protected $container;
-
-    /** @var HiddenFiles Collection of hidden files */
-    protected $hiddenFiles;
-
-    /** @var Pattern|null Hidden files pattern cache */
-    protected $pattern;
-
-    /** @var Config The application configuration */
-    protected $config;
+    /** @var ?Pattern Hidden files pattern cache */
+    private ?Pattern $pattern = null;
 
     /** Create a new FinderFactory object. */
     public function __construct(
-        Container $container,
-        Config $config,
-        HiddenFiles $hiddenFiles
+        private Container $container,
+        private Config $config,
+        private HiddenFiles $hiddenFiles
     ) {
-        $this->container = $container;
-        $this->config = $config;
-        $this->hiddenFiles = $hiddenFiles;
     }
 
     /** Initialize and return the Finder component. */

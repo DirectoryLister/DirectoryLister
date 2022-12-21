@@ -7,13 +7,11 @@ use Tightenco\Collect\Support\Collection;
 
 class HiddenFiles extends Collection
 {
-    /** @inheritdoc */
     protected function __construct($items = [])
     {
         parent::__construct($items);
     }
 
-    /** {@inheritdoc} */
     public static function make($items = [])
     {
         throw new BadMethodCallException('Method not implemented');

@@ -12,12 +12,9 @@ class RegisterGlobalsMiddleware
     /** Array of valid theme strings. */
     private const VALID_THEMES = ['dark', 'light'];
 
-    /** @var Twig Twig templating component */
-    protected $view;
-
-    public function __construct(Twig $view)
-    {
-        $this->view = $view;
+    public function __construct(
+        private Twig $view
+    ) {
     }
 
     /** Invoke the RegisterGlobalsMiddleware class. */

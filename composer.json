@@ -13,7 +13,7 @@
         "issues": "https://github.com/DirectoryLister/DirectoryLister/issues"
     },
     "require": {
-        "php": "^7.4 || ^8.0 || ^8.1",
+        "php": "^8.0 || ^8.1 || ^8.2",
         "ext-dom": "*",
         "ext-fileinfo": "*",
         "ext-zip": "*",
@@ -61,7 +61,7 @@
     "config": {
         "optimize-autoloader": true,
         "platform": {
-            "php": "7.4"
+            "php": "8.0"
         },
         "platform-check": true,
         "sort-packages": true,

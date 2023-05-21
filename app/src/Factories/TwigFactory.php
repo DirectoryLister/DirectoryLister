@@ -12,19 +12,11 @@ use Twig\TwigFunction;
 
 class TwigFactory
 {
-    /** @var Config The application configuration */
-    protected $config;
-
-    /** @var CallableResolver The callable resolver */
-    protected $callableResolver;
-
     /** Create a new TwigFactory object. */
     public function __construct(
-        Config $config,
-        CallableResolver $callableResolver
+        private Config $config,
+        private CallableResolver $callableResolver
     ) {
-        $this->config = $config;
-        $this->callableResolver = $callableResolver;
     }
 
     /** Initialize and return the Twig component. */

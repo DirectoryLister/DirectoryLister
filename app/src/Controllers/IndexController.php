@@ -9,13 +9,10 @@ use Slim\Psr7\Response;
 
 class IndexController
 {
-    /** @var Container Application container */
-    protected $container;
-
     /** Create a new IndexController object. */
-    public function __construct(Container $container)
-    {
-        $this->container = $container;
+    public function __construct(
+        private Container $container
+    ) {
     }
 
     /** Invoke the IndexController. */

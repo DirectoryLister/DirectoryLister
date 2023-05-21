@@ -6,16 +6,12 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 
 class Translate extends ViewFunction
 {
-    /** @var string The function name */
-    protected $name = 'translate';
-
-    /** @var TranslatorInterface The application translator */
-    protected $translator;
+    protected string $name = 'translate';
 
     /** Create a new Translate object. */
-    public function __construct(TranslatorInterface $translator)
-    {
-        $this->translator = $translator;
+    public function __construct(
+        private TranslatorInterface $translator
+    ) {
     }
 
     /** Retrieve a translated string by ID. */

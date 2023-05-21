@@ -12,17 +12,11 @@ use Throwable;
 
 class ErrorHandler implements ErrorHandlerInterface
 {
-    /** @var Twig Twig templating component */
-    protected $view;
-
-    /** @var TranslatorInterface Translation component */
-    protected $translator;
-
     /** Create a new ErrorHandler object. */
-    public function __construct(Twig $view, TranslatorInterface $translator)
-    {
-        $this->view = $view;
-        $this->translator = $translator;
+    public function __construct(
+        private Twig $view,
+        private TranslatorInterface $translator
+    ) {
     }
 
     /** Invoke the ErrorHandler class. */

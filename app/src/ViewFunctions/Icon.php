@@ -7,16 +7,12 @@ use Symfony\Component\Finder\SplFileInfo;
 
 class Icon extends ViewFunction
 {
-    /** @var string The function name */
-    protected $name = 'icon';
-
-    /** @var Config The application configuration */
-    protected $config;
+    protected string $name = 'icon';
 
     /** Create a new Config object. */
-    public function __construct(Config $config)
-    {
-        $this->config = $config;
+    public function __construct(
+        private Config $config
+    ) {
     }
 
     /** Retrieve the icon markup for a file. */

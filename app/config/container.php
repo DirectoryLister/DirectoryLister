@@ -23,14 +23,12 @@ return [
     'app_files' => ['app', 'index.php', '.env', '.env.example', '.hidden'],
 
     /** Array of application middlewares */
-    'middlewares' => function (): array {
-        return [
-            Middlewares\WhoopsMiddleware::class,
-            Middlewares\PruneCacheMiddleware::class,
-            Middlewares\CacheControlMiddleware::class,
-            Middlewares\RegisterGlobalsMiddleware::class,
-        ];
-    },
+    'middlewares' => fn (): array => [
+        Middlewares\WhoopsMiddleware::class,
+        Middlewares\PruneCacheMiddleware::class,
+        Middlewares\CacheControlMiddleware::class,
+        Middlewares\RegisterGlobalsMiddleware::class,
+    ],
 
     /** Array of sort options mapped to their respective classes */
     'sort_methods' => [

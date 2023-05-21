@@ -6,16 +6,12 @@ use App\Support\Str;
 
 class ParentUrl extends ViewFunction
 {
-    /** @var string The function name */
-    protected $name = 'parent_url';
-
-    /** @var string The directory separator */
-    protected $directorySeparator;
+    protected string $name = 'parent_url';
 
     /** Create a new ParentUrl object. */
-    public function __construct(string $directorySeparator = DIRECTORY_SEPARATOR)
-    {
-        $this->directorySeparator = $directorySeparator;
+    public function __construct(
+        private string $directorySeparator = DIRECTORY_SEPARATOR
+    ) {
     }
 
     /** Get the parent directory for a given path. */

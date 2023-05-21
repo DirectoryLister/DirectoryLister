@@ -5,7 +5,7 @@ namespace App;
 class TemporaryFile
 {
     /** @var string Path to the temporary file */
-    protected $path;
+    private string $path;
 
     /** Create a new TemporaryFile object. */
     public function __construct(string $dir, string $prefix = '')

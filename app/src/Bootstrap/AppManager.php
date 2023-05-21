@@ -8,13 +8,10 @@ use Slim\App;
 
 class AppManager
 {
-    /** @var Container The applicaiton container */
-    protected $container;
-
     /** Create a new AppManager object. */
-    public function __construct(Container $container)
-    {
-        $this->container = $container;
+    public function __construct(
+        private Container $container
+    ) {
     }
 
     /** Setup and configure the application. */

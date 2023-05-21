@@ -1,26 +1,6 @@
 parameters:
 	ignoreErrors:
 		-
-			message: "#^Parameter \\#1 \\$factory of function DI\\\\factory expects callable\\(\\)\\: mixed, 'App\\\\\\\\Factories\\\\\\\\CacheFactory' given\\.$#"
-			count: 1
-			path: app/config/container.php
-
-		-
-			message: "#^Parameter \\#1 \\$factory of function DI\\\\factory expects callable\\(\\)\\: mixed, 'App\\\\\\\\Factories\\\\\\\\FinderFactory' given\\.$#"
-			count: 1
-			path: app/config/container.php
-
-		-
-			message: "#^Parameter \\#1 \\$factory of function DI\\\\factory expects callable\\(\\)\\: mixed, 'App\\\\\\\\Factories\\\\\\\\TranslationFactory' given\\.$#"
-			count: 1
-			path: app/config/container.php
-
-		-
-			message: "#^Parameter \\#1 \\$factory of function DI\\\\factory expects callable\\(\\)\\: mixed, 'App\\\\\\\\Factories\\\\\\\\TwigFactory' given\\.$#"
-			count: 1
-			path: app/config/container.php
-
-		-
 			message: "#^Method App\\\\Controllers\\\\DirectoryController\\:\\:__invoke\\(\\) throws checked exception Twig\\\\Error\\\\LoaderError but it's missing from the PHPDoc @throws tag\\.$#"
 			count: 2
 			path: app/src/Controllers/DirectoryController.php
@@ -51,6 +31,11 @@ parameters:
 			path: app/src/Controllers/SearchController.php
 
 		-
+			message: "#^Method App\\\\Controllers\\\\ZipController\\:\\:generateFileName\\(\\) should return string but returns string\\|null\\.$#"
+			count: 1
+			path: app/src/Controllers/ZipController.php
+
+		-
 			message: "#^Method App\\\\Exceptions\\\\ErrorHandler\\:\\:__invoke\\(\\) throws checked exception Twig\\\\Error\\\\LoaderError but it's missing from the PHPDoc @throws tag\\.$#"
 			count: 1
 			path: app/src/Exceptions/ErrorHandler.php
@@ -79,6 +64,16 @@ parameters:
 			message: "#^Parameter \\#1 \\$separator of function explode expects non\\-empty\\-string, string given\\.$#"
 			count: 1
 			path: app/src/Support/Str.php
+
+		-
+			message: "#^Unable to resolve the template type TMakeKey in call to method static method Tightenco\\\\Collect\\\\Support\\\\Collection\\<\\(int\\|string\\),mixed\\>\\:\\:make\\(\\)$#"
+			count: 1
+			path: app/src/ViewFunctions/Asset.php
+
+		-
+			message: "#^Unable to resolve the template type TMakeValue in call to method static method Tightenco\\\\Collect\\\\Support\\\\Collection\\<\\(int\\|string\\),mixed\\>\\:\\:make\\(\\)$#"
+			count: 1
+			path: app/src/ViewFunctions/Asset.php
 
 		-
 			message: "#^Parameter \\#1 \\$separator of function explode expects non\\-empty\\-string, string given\\.$#"

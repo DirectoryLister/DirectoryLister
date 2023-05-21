@@ -17,7 +17,11 @@ class Breadcrumbs extends ViewFunction
     ) {
     }
 
-    /** Build a collection of breadcrumbs for a given path. */
+    /**
+     * Build a collection of breadcrumbs for a given path.
+     *
+     * @return Collection<int, string>
+     */
     public function __invoke(string $path): Collection
     {
         return Str::explode($path, $this->directorySeparator)->diffAssoc(

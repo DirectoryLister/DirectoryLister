@@ -5,6 +5,7 @@ namespace App;
 use BadMethodCallException;
 use Tightenco\Collect\Support\Collection;
 
+/** @extends Collection<int, string> */
 class HiddenFiles extends Collection
 {
     protected function __construct($items = [])

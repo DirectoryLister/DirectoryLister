@@ -21,13 +21,18 @@ class Asset extends ViewFunction
         $path = '/' . ltrim($path, '/');
 
         if ($this->mixManifest()->has($path)) {
+            /** @var string $path */
             $path = $this->mixManifest()->get($path);
         }
 
         return 'app/assets/' . ltrim($path, '/');
     }
 
-    /** Return the mix manifest collection. */
+    /**
+     * Return the mix manifest collection.
+     *
+     * @return Collection<string, string>
+     */
     protected function mixManifest(): Collection
     {
         $mixManifest = $this->config->get('asset_path') . '/mix-manifest.json';

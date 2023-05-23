@@ -68,6 +68,13 @@ return [
     'zip_downloads' => env('ZIP_DOWNLOADS', true),
 
     /**
+     * Compress Zip using Deflate
+     *
+     * Default value: false
+     */
+    'zip_compress' => env('ZIP_COMPRESS', false),
+
+    /**
      * Your Google analytics tracking ID.
      *
      * Expected format: 'UA-123456789-0'

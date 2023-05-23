@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\CallbackStream;
 use App\Config;
 use App\Support\Str;
 use App\TemporaryFile;
@@ -12,7 +13,10 @@ use Symfony\Component\Finder\Finder;
 use Symfony\Component\Finder\SplFileInfo;
 use Symfony\Contracts\Cache\CacheInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
-use ZipArchive;
+use ZipStream\Option\Archive;
+use ZipStream\Option\File;
+use ZipStream\Option\Method;
+use ZipStream\ZipStream;
 
 class ZipController
 {
@@ -33,34 +37,54 @@ class ZipController
             return $response->withStatus(404, $this->translator->trans('error.file_not_found'));
         }
 
-        $response->getBody()->write(
-            $this->cache->get(sprintf('zip-%s', sha1($path)), function () use ($path): string {
-                return $this->createZip($path)->getContents();
-            })
-        );
-
-        return $response->withHeader('Content-Type', 'application/zip')
+        $response = $response
+            ->withHeader('Content-Type', 'application/zip')
             ->withHeader('Content-Disposition', sprintf(
                 'attachment; filename="%s.zip"',
                 $this->generateFileName($path)
-            ));
+            ))
+            ->withHeader('X-Accel-Buffering', 'no');
+        
+        $files = $this->finder->in($path)->files();
+        
+        $response = $this->augmentHeadersWithEstimatedSize($response, $path, $files);
+
+        return $response->withBody(new CallbackStream(function () use ($path, $files) {
+            $this->createZip($path, $files);
+        }));
     }
 
-    /** Create a zip file from a directory. */
-    protected function createZip(string $path): TemporaryFile
+    /** Create a zip stream from a directory. */
+    protected function createZip(string $path, Finder $files): void
     {
-        $zip = new ZipArchive;
-        $zip->open((string) $tempFile = new TemporaryFile(
-            $this->config->get('cache_path')
-        ), ZipArchive::CREATE | ZipArchive::OVERWRITE);
+        $compressionMethod = $this->config->get('zip_compress') ? Method::DEFLATE() : Method::STORE();
 
-        foreach ($this->finder->in($path)->files() as $file) {
-            $zip->addFile((string) $file->getRealPath(), $this->stripPath($file, $path));
+        $zipStreamOptions = new Archive();
+        $zipStreamOptions->setLargeFileMethod($compressionMethod);
+        $zipStreamOptions->setFlushOutput(true);
+
+        $zip = new ZipStream(null, $zipStreamOptions);
+
+        $fileOption = new File();
+        $fileOption->setMethod($compressionMethod);
+
+        foreach ($files as $file) {
+            $zip->addFileFromPath($this->stripPath($file, $path), (string) $file->getRealPath(), $fileOption);
         }
 
-        $zip->close();
+        $zip->finish();
+    }
 
-        return $tempFile;
+    protected function augmentHeadersWithEstimatedSize(Response $response, string $path, Finder $files): Response
+    {
+        $estimate = 22;
+        if (!$this->config->get('zip_compress')) {
+            foreach ($files as $file) {
+                $estimate += 76 + 2 * strlen($this->stripPath($file, $path)) + $file->getSize();
+            }
+            $response = $response->withHeader('Content-Length', (string) $estimate);
+        }
+        return $response;
     }
 
     /** Return the path to a file with the preceding root path stripped. */

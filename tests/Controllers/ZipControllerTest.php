@@ -17,7 +17,6 @@ class ZipControllerTest extends TestCase
     {
         $controller = new ZipController(
             $this->config,
-            $this->cache,
             new Finder,
             $this->container->get(TranslatorInterface::class)
         );
@@ -30,16 +29,13 @@ class ZipControllerTest extends TestCase
 
         $this->assertInstanceOf(ResponseInterface::class, $response);
         $this->assertEquals(200, $response->getStatusCode());
-        $this->assertEquals('application/zip', finfo_buffer(
-            finfo_open(), (string) $response->getBody(), FILEINFO_MIME_TYPE
-        ));
+        $this->assertEquals('application/zip', $response->getHeader('Content-Type')[0]);
     }
 
     public function test_it_returns_a_404_error_when_not_found(): void
     {
         $controller = new ZipController(
             $this->config,
-            $this->cache,
             new Finder,
             $this->container->get(TranslatorInterface::class)
         );
@@ -59,7 +55,6 @@ class ZipControllerTest extends TestCase
         $this->container->set('zip_downloads', false);
         $controller = new ZipController(
             $this->config,
-            $this->cache,
             new Finder,
             $this->container->get(TranslatorInterface::class)
         );

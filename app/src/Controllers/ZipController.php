@@ -69,13 +69,17 @@ class ZipController
 
         $zip = new ZipStream(null, $zipStreamOptions);
 
-        
         foreach ($files as $file) {
             $fileOption = new File();
             $fileOption->setMethod($compressionMethod);
             $fileOption->setSize($file->getSize());
-            $creationTime = $file->getMTime();
-            $fileOption->setTime(new \DateTime("@$creationTime"));
+
+            try {
+                $creationTime = (int) $file->getMTime();
+                $fileOption->setTime(new \DateTime('@' . $creationTime));
+            } catch (\Exception $e) {
+                // We couldn't get the creation time, so we don't set it
+            }
             $zip->addFileFromPath($this->stripPath($file, $path), (string) $file->getRealPath(), $fileOption);
         }
 
@@ -86,74 +90,105 @@ class ZipController
     {
         if (! $this->config->get('zip_compress')) {
             $totalSize = 0;
+            $hasUtf8 = false;
             $filesMeta = [];
             foreach ($files as $file) {
                 $fileSize = $file->getSize();
                 $totalSize += $fileSize;
-                $filesMeta[] = [strlen($this->stripPath($file, $path)), $fileSize];
+                $fileName = $this->filterFilename($this->stripPath($file, $path));
+                if (! mb_check_encoding(preg_replace('/^\\/+/', '', $fileName), 'ASCII')) {
+                    $hasUtf8 = true;
+                }
+                $filesMeta[] = [$fileName, $fileSize];
             }
-            # If there is more than 4 GB or 2^16 files, it will be a ZIP64, changing the estimation method
-            if ($totalSize >= 2^32 || count($filesMeta) >= 0xFFFF) {
+            // If there is more than 4 GB or 2^16 files, it will be a ZIP64, changing the estimation method
+            if (
+                $totalSize >= pow(2, 32) ||
+                count($filesMeta) >= 0xFFFF ||
+                $hasUtf8
+            ) {
                 $estimate = $this->calculateZip64Size($filesMeta);
             } else {
                 $estimate = $this->calculateZipSize($filesMeta);
             }
-            
+
             $response = $response->withHeader('Content-Length', (string) $estimate);
         }
 
         return $response;
     }
 
-    protected function calculateZipSize(Array $filesMeta): int
+    protected function calculateZipSize(array $filesMeta): int
     {
         $estimate = 22;
         foreach ($filesMeta as $fileMeta) {
-            $estimate += 76 + 2 * $fileMeta[0] + $fileMeta[1];
+            $estimate += 76 + 2 * strlen($fileMeta[0]) + $fileMeta[1];
         }
+
         return $estimate;
     }
 
-    protected function calculateZip64Size(Array $filesMeta): int
+    protected function calculateZip64Size(array $filesMeta): int
     {
-        # Size of the CDR calculated by ZipStream is always 44 + 12 for signature and the size itself
-        $estimate = 56;
-        # Size of the CRD locator (always 20 according to the spec)
-        $estimate += 20;
+        $estimate = 0;
         foreach ($filesMeta as $fileMeta) {
-            # This is not different from standard Zip
-            $estimate += 76 + 2 * $fileMeta[0] + $fileMeta[1];
-            # This is where it gets funky
-            $zip64ExtraBlockSize = 0;
-            if ($fileMeta[1] >= 2^32) {
-                # If file size is more than 2^32, add it to the extra block
-                $zip64ExtraBlockSize += 16; // 8 for size + 8 for compressed size
-            }
-    
-            # Offset
-            if ($estimate >= 2^32) {
-                $zip64ExtraBlockSize += 8; // if offset is more than 2^32, then we add it to the extra block
-            }
-    
-            if ($zip64ExtraBlockSize != 0) {
-                $zip64ExtraBlockSize += 4; // 2 for header ID + 2 for the block size 
-            }
-
-            # If the filename or path is in UTF-8, then ZipStream will add the two remaining fields with special values
-            if (mb_check_encoding($filesMeta[0], 'UTF-8')) {
-                $zip64ExtraBlockSize += 4;
-            }
-
-            $estimate += $zip64ExtraBlockSize;
+            $beginning = $estimate;
+            // This is similar from standard Zip
+            // Adding header size and filename
+            $header = 30 + strlen($fileMeta[0]);
+            // With Zip64, the size of the header is variable, so we need to calculate it
+            $header += $this->calculateZip64ExtraBlockSize($fileMeta, 0);
+            // Adding file content to the size
+            $content = $fileMeta[1];
+            // Default footer size (data descriptor) including filename
+            $footer = 46 + strlen($fileMeta[0]);
+            // This block also gets added at the end of the file, but offsets are differents, so we need to calculate it again
+            $footer += $this->calculateZip64ExtraBlockSize($fileMeta, $beginning);
+            $estimate += $header + $content + $footer;
         }
+        // Size of the CDR64 EOF calculated by ZipStream is always 44 + 12 for signature and the size itself
+        $estimate += 56;
+        // Size of the CDR64 locator
+        $estimate += 20;
+        // Size of the CDR EOF locator
+        $estimate += 22;
+
         return $estimate;
+    }
+
+    protected function calculateZip64ExtraBlockSize(array $fileMeta, int $currentOffset): int
+    {
+        // This is where it gets funky
+        $zip64ExtraBlockSize = 0;
+        if ($fileMeta[1] >= pow(2, 32)) {
+            // If file size is more than 2^32, add it to the extra block
+            $zip64ExtraBlockSize += 16; // 8 for size + 8 for compressed size
+        }
+
+        // Offset
+        if ($currentOffset >= pow(2, 32)) {
+            $zip64ExtraBlockSize += 8; // if offset is more than 2^32, then we add it to the extra block
+        }
+
+        if ($zip64ExtraBlockSize != 0) {
+            $zip64ExtraBlockSize += 4; // 2 for header ID + 2 for the block size
+        }
+
+        // If the filename or path does not fit into ASCII, then ZipStream will add the two remaining fields with special values
+        if (! mb_check_encoding(preg_replace('/^\\/+/', '', $fileMeta[0]), 'ASCII')) {
+            $zip64ExtraBlockSize += 4;
+        }
+
+        return $zip64ExtraBlockSize;
     }
 
     /** Return the path to a file with the preceding root path stripped. */
     protected function stripPath(SplFileInfo $file, string $path): string
     {
         $pattern = sprintf(
-            '/^%s%s?/', preg_quote($path, '/'), preg_quote(DIRECTORY_SEPARATOR, '/')
+            '/^%s%s?/',
+            preg_quote($path, '/'),
+            preg_quote(DIRECTORY_SEPARATOR, '/')
         );
 
         return (string) preg_replace($pattern, '', $file->getPathname());
@@ -165,5 +200,15 @@ class ZipController
         $filename = Str::explode($path, DIRECTORY_SEPARATOR)->last();
 
         return $filename == '.' ? 'Home' : $filename;
+    }
+
+    /** Filter a file name to remove invalid characters inside a Zip */
+    protected function filterFilename(string $filename): string
+    {
+        // strip leading slashes from file name
+        // (fixes bug in windows archive viewer)
+        $filename = (string) preg_replace('/^\\/+/', '', $filename);
+
+        return str_replace(['\\', ':', '*', '?', '"', '<', '>', '|'], '_', $filename);
     }
 }

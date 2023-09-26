@@ -12,8 +12,7 @@ class Asset extends ViewFunction
     /** Create a new Asset object. */
     public function __construct(
         private Config $config
-    ) {
-    }
+    ) {}
 
     /** Return the path to an asset. */
     public function __invoke(string $path): string

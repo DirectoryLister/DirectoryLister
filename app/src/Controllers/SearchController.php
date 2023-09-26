@@ -16,8 +16,7 @@ class SearchController
         private Finder $finder,
         private Twig $view,
         private TranslatorInterface $translator
-    ) {
-    }
+    ) {}
 
     /** Invoke the SearchHandler. */
     public function __invoke(Request $request, Response $response): ResponseInterface

@@ -16,8 +16,7 @@ class TwigFactory
     public function __construct(
         private Config $config,
         private CallableResolver $callableResolver
-    ) {
-    }
+    ) {}
 
     /** Initialize and return the Twig component. */
     public function __invoke(): Twig

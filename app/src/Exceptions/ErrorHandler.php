@@ -16,8 +16,7 @@ class ErrorHandler implements ErrorHandlerInterface
     public function __construct(
         private Twig $view,
         private TranslatorInterface $translator
-    ) {
-    }
+    ) {}
 
     /** Invoke the ErrorHandler class. */
     public function __invoke(

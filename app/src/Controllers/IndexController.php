@@ -12,8 +12,7 @@ class IndexController
     /** Create a new IndexController object. */
     public function __construct(
         private Container $container
-    ) {
-    }
+    ) {}
 
     /** Invoke the IndexController. */
     public function __invoke(Request $request, Response $response): ResponseInterface

@@ -14,8 +14,7 @@ class RegisterGlobalsMiddleware
 
     public function __construct(
         private Twig $view
-    ) {
-    }
+    ) {}
 
     /** Invoke the RegisterGlobalsMiddleware class. */
     public function __invoke(Request $request, RequestHandler $handler): ResponseInterface

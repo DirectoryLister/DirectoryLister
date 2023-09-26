@@ -15,8 +15,7 @@ class PruneCacheMiddleware
     public function __construct(
         private Config $config,
         private CacheInterface $cache
-    ) {
-    }
+    ) {}
 
     /** Invoke the CachePruneMiddleware class. */
     public function __invoke(Request $request, RequestHandler $handler): ResponseInterface

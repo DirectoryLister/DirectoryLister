@@ -12,8 +12,7 @@ class Markdown extends ViewFunction
     public function __construct(
         private ParsedownExtra $parser,
         private CacheInterface $cache
-    ) {
-    }
+    ) {}
 
     /** Parses a string of markdown into HTML. */
     public function __invoke(string $string): string

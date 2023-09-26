@@ -11,8 +11,7 @@ class Config extends ViewFunction
     /** Create a new Config object. */
     public function __construct(
         private AppConfig $config
-    ) {
-    }
+    ) {}
 
     /**
      * Retrieve an item from the view config.

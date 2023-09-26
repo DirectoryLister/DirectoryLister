@@ -22,8 +22,7 @@ class ZipController
         private CacheInterface $cache,
         private Finder $finder,
         private TranslatorInterface $translator
-    ) {
-    }
+    ) {}
 
     /** Invoke the ZipHandler. */
     public function __invoke(Request $request, Response $response): ResponseInterface

@@ -12,8 +12,7 @@ class Icon extends ViewFunction
     /** Create a new Config object. */
     public function __construct(
         private Config $config
-    ) {
-    }
+    ) {}
 
     /** Retrieve the icon markup for a file. */
     public function __invoke(SplFileInfo $file): string

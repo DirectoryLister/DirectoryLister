@@ -17,8 +17,7 @@ class FileInfoController
         private Config $config,
         private CacheInterface $cache,
         private TranslatorInterface $translator
-    ) {
-    }
+    ) {}
 
     /** Invoke the FileInfoHandler. */
     public function __invoke(Request $request, Response $response): ResponseInterface

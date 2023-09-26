@@ -22,8 +22,7 @@ class FinderFactory
         private Container $container,
         private Config $config,
         private HiddenFiles $hiddenFiles
-    ) {
-    }
+    ) {}
 
     /** Initialize and return the Finder component. */
     public function __invoke(): Finder

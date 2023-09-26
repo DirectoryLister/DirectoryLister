@@ -17,8 +17,7 @@ class TranslationFactory
     public function __construct(
         private Config $config,
         private CacheInterface $cache
-    ) {
-    }
+    ) {}
 
     /** Initialize and return the translation component. */
     public function __invoke(): TranslatorInterface
@@ -31,7 +30,7 @@ class TranslationFactory
         }
 
         $translator = new Translator($language);
-        $translator->addLoader('yaml', new YamlFileLoader());
+        $translator->addLoader('yaml', new YamlFileLoader);
 
         foreach ($translations as $language) {
             $translator->addResource('yaml', sprintf(

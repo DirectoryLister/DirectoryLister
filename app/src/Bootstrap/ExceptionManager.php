@@ -12,8 +12,7 @@ class ExceptionManager
     public function __construct(
         private App $app,
         private Config $config
-    ) {
-    }
+    ) {}
 
     /** Set up and configure exception handling. */
     public function __invoke(): void

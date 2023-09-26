@@ -11,8 +11,7 @@ class MiddlewareManager
     public function __construct(
         private App $app,
         private Config $config
-    ) {
-    }
+    ) {}
 
     /** Register application middlewares. */
     public function __invoke(): void

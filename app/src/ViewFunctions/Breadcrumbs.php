@@ -14,8 +14,7 @@ class Breadcrumbs extends ViewFunction
     public function __construct(
         private Config $config,
         private string $directorySeparator = DIRECTORY_SEPARATOR
-    ) {
-    }
+    ) {}
 
     /**
      * Build a collection of breadcrumbs for a given path.

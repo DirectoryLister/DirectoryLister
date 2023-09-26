@@ -27,8 +27,7 @@ class CacheFactory
     public function __construct(
         private Container $container,
         private Config $config
-    ) {
-    }
+    ) {}
 
     /** Initialize and return a CacheInterface. */
     public function __invoke(): CacheInterface

@@ -20,8 +20,7 @@ class DirectoryController
         private Finder $finder,
         private Twig $view,
         private TranslatorInterface $translator
-    ) {
-    }
+    ) {}
 
     /** Invoke the IndexController. */
     public function __invoke(Request $request, Response $response): ResponseInterface

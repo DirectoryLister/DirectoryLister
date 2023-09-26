@@ -16,8 +16,7 @@ class WhoopsMiddleware
         private RunInterface $whoops,
         private PrettyPageHandler $pageHandler,
         private JsonResponseHandler $jsonHandler
-    ) {
-    }
+    ) {}
 
     /** Invoke the WhoopseMiddleware class. */
     public function __invoke(Request $request, RequestHandler $handler): ResponseInterface

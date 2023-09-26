@@ -11,8 +11,7 @@ class Url extends ViewFunction
     /** Create a new Url object. */
     public function __construct(
         private string $directorySeparator = DIRECTORY_SEPARATOR
-    ) {
-    }
+    ) {}
 
     /** Return the URL for a given path. */
     public function __invoke(string $path = '/'): string

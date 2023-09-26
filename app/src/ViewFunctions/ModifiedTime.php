@@ -12,8 +12,7 @@ class ModifiedTime extends ViewFunction
 
     public function __construct(
         private Config $config
-    ) {
-    }
+    ) {}
 
     /** Get the modified time from a file object. */
     public function __invoke(SplFileInfo $file): string

@@ -11,8 +11,7 @@ class ParentUrl extends ViewFunction
     /** Create a new ParentUrl object. */
     public function __construct(
         private string $directorySeparator = DIRECTORY_SEPARATOR
-    ) {
-    }
+    ) {}
 
     /** Get the parent directory for a given path. */
     public function __invoke(string $path): string

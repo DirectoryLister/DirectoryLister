@@ -14,3 +14,10 @@ updates:
       interval: weekly
     assignees:
       - PHLAK
+
+  - package-ecosystem: github-actions
+    directory: "/"
+    schedule:
+      interval: weekly
+    assignees:
+      - PHLAK

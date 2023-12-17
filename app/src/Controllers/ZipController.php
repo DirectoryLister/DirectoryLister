@@ -61,7 +61,7 @@ class ZipController
     {
         $compressionMethod = $this->config->get('zip_compress') ? Method::DEFLATE() : Method::STORE();
 
-        $zipStreamOptions = new Archive();
+        $zipStreamOptions = new Archive;
         $zipStreamOptions->setLargeFileMethod($compressionMethod);
         $zipStreamOptions->setSendHttpHeaders(false);
         $zipStreamOptions->setFlushOutput(true);
@@ -70,7 +70,7 @@ class ZipController
         $zip = new ZipStream(null, $zipStreamOptions);
 
         foreach ($files as $file) {
-            $fileOption = new File();
+            $fileOption = new File;
             $fileOption->setMethod($compressionMethod);
             $fileOption->setSize($file->getSize());
 

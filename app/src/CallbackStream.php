@@ -40,9 +40,7 @@ class CallbackStream implements StreamInterface
     }
 
     /** Closes the stream and any underlying resources. */
-    public function close()
-    {
-    }
+    public function close() {}
 
     /**
      * Separates any underlying resources from the stream.
@@ -110,9 +108,7 @@ class CallbackStream implements StreamInterface
      *                    offset bytes SEEK_CUR: Set position to current location plus offset
      *                    SEEK_END: Set position to end-of-stream plus offset.
      */
-    public function seek($offset, $whence = SEEK_SET): void
-    {
-    }
+    public function seek($offset, $whence = SEEK_SET): void {}
 
     /**
      * Seek to the beginning of the stream.

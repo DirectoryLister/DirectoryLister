@@ -56,7 +56,7 @@ parameters:
 			path: app/src/Factories/TwigFactory.php
 
 		-
-			message: "#^Method App\\\\Middlewares\\\\PruneCacheMiddleware\\:\\:winsLottery\\(\\) throws checked exception Exception but it's missing from the PHPDoc @throws tag\\.$#"
+			message: "#^Method App\\\\Middlewares\\\\PruneCacheMiddleware\\:\\:winsLottery\\(\\) throws checked exception Random\\\\RandomException but it's missing from the PHPDoc @throws tag\\.$#"
 			count: 1
 			path: app/src/Middlewares/PruneCacheMiddleware.php
 

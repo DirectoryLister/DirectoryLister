@@ -19,17 +19,17 @@
         "ext-zip": "*",
         "erusev/parsedown-extra": "^0.8.1",
         "filp/whoops": "^2.7",
-        "phlak/splat": "^4.0",
+        "phlak/splat": "^5.0",
         "php-di/php-di": "^7.0",
         "php-di/slim-bridge": "^3.0",
         "psr/http-message": "^1.1",
         "slim/psr7": "^1.0",
         "slim/slim": "^4.3",
         "slim/twig-view": "^3.0",
-        "symfony/cache": "^5.0",
-        "symfony/finder": "^5.0",
-        "symfony/translation": "^5.0",
-        "symfony/yaml": "^5.0",
+        "symfony/cache": "^6.0",
+        "symfony/finder": "^6.0",
+        "symfony/translation": "^6.0",
+        "symfony/yaml": "^6.0",
         "tightenco/collect": "^9.52",
         "vlucas/phpdotenv": "^5.0"
     },
@@ -39,8 +39,8 @@
         "johnkary/phpunit-speedtrap": "^4.0",
         "phlak/coding-standards": "^2.0",
         "phpstan/phpstan": "^1.0",
-        "psy/psysh": "^0.11.0",
-        "symfony/var-dumper": "^5.0",
+        "psy/psysh": "^0.12.0",
+        "symfony/var-dumper": "^6.0",
         "yoast/phpunit-polyfills": "^2.0"
     },
     "suggest": {
@@ -61,7 +61,7 @@
     "config": {
         "optimize-autoloader": true,
         "platform": {
-            "php": "8.0"
+            "php": "8.1"
         },
         "platform-check": true,
         "sort-packages": true,

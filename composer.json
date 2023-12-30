@@ -39,7 +39,7 @@
         "johnkary/phpunit-speedtrap": "^4.0",
         "phlak/coding-standards": "^2.0",
         "phpstan/phpstan": "^1.0",
-        "psy/psysh": "^0.11.0",
+        "psy/psysh": "^0.12.0",
         "symfony/var-dumper": "^5.0",
         "yoast/phpunit-polyfills": "^2.0"
     },

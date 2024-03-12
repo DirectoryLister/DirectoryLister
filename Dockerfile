@@ -13,7 +13,7 @@ RUN ln --symbolic ../lib/node_modules/npm/bin/npm-cli.js /usr/local/bin/npm \
     && ln --symbolic ../lib/node_modules/npm/bin/npx-cli.js /usr/local/bin/npx
 
 RUN apt-get update && apt-get install --assume-yes --no-install-recommends \
-    libmemcached-dev libzip-dev tar zip \
+    libmemcached-dev libzip-dev libssl-dev tar zip \
     && rm -rf /var/lib/apt/lists/*
 
 RUN docker-php-ext-install opcache zip \

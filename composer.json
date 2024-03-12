@@ -42,7 +42,6 @@
         "phpstan/phpstan": "^1.0",
         "psy/psysh": "^0.12.0",
         "symfony/var-dumper": "^6.0",
-        "timeweb/phpstan-enum": "^3.1",
         "yoast/phpunit-polyfills": "^2.0"
     },
     "suggest": {

@@ -39,4 +39,3 @@ parameters:
 includes:
   - phpstan-baseline.neon
   - phpstan-ignores.neon
-  - app/vendor/timeweb/phpstan-enum/extension.neon

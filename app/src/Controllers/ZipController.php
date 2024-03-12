@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\CallbackStream;
 use App\Config;
 use App\Support\Str;
+use DateTime;
 use Exception;
 use Psr\Http\Message\ResponseInterface;
 use RuntimeException;
@@ -52,16 +53,17 @@ class ZipController
         $zip = $this->createZip($path, $files);
         $size = $zip->finish();
 
-        $response = $this
-            ->augmentHeadersWithEstimatedSize($response, $size)
-            ->withBody(new CallbackStream(function () use ($zip) {
+        $response = $this->augmentHeadersWithEstimatedSize($response, $size)->withBody(
+            new CallbackStream(function () use ($zip) {
                 $zip->executeSimulation();
-            }));
+            })
+        );
 
         return $response;
     }
 
-    /** Create a zip stream from a directory.
+    /**
+     * Create a zip stream from a directory.
      *
      * @throws \ZipStream\Exception\FileNotFoundException
      * @throws \ZipStream\Exception\FileNotReadableException
@@ -77,16 +79,12 @@ class ZipController
         );
 
         foreach ($files as $file) {
-            $modifiedTime = null;
-
             try {
-                $modifiedTime = new \DateTime('@' . (int) $file->getMTime());
-            } catch (RuntimeException $e) {
-                $lstat_data = lstat($file->getPathname());
-                if ($lstat_data) {
-                    $modifiedTime = new \DateTime('@' . (int) ['mtime']);
-                }
+                $modifiedTime = new DateTime('@' . (int) $file->getMTime());
+            } catch (RuntimeException) {
+                $modifiedTime = new DateTime('@' . (int) lstat($file->getPathname())['mtime']);
             }
+
             $zip->addFileFromPath(
                 $this->stripPath($file, $path),
                 (string) $file->getRealPath(),
@@ -109,11 +107,7 @@ class ZipController
     /** Return the path to a file with the preceding root path stripped. */
     protected function stripPath(SplFileInfo $file, string $path): string
     {
-        $pattern = sprintf(
-            '/^%s%s?/',
-            preg_quote($path, '/'),
-            preg_quote(DIRECTORY_SEPARATOR, '/')
-        );
+        $pattern = sprintf('/^%s%s?/', preg_quote($path, '/'), preg_quote(DIRECTORY_SEPARATOR, '/'));
 
         return (string) preg_replace($pattern, '', $file->getPathname());
     }

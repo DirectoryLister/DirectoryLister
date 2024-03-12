@@ -31,6 +31,11 @@ parameters:
 			path: app/src/Controllers/SearchController.php
 
 		-
+			message: "#^Cannot access offset 'mtime' on array\\{0\\: int, 1\\: int, 2\\: int, 3\\: int, 4\\: int, 5\\: int, 6\\: int, 7\\: int, \\.\\.\\.\\}\\|false\\.$#"
+			count: 1
+			path: app/src/Controllers/ZipController.php
+
+		-
 			message: "#^Method App\\\\Controllers\\\\ZipController\\:\\:generateFileName\\(\\) should return string but returns string\\|null\\.$#"
 			count: 1
 			path: app/src/Controllers/ZipController.php
@@ -94,11 +99,6 @@ parameters:
 			message: "#^Method App\\\\ViewFunctions\\\\SizeForHumans\\:\\:__invoke\\(\\) throws checked exception DivisionByZeroError but it's missing from the PHPDoc @throws tag\\.$#"
 			count: 1
 			path: app/src/ViewFunctions/SizeForHumans.php
-
-		-
-			message: "#^Parameter \\#1 \\$finfo of function finfo_buffer expects finfo, finfo\\|false given\\.$#"
-			count: 1
-			path: tests/Controllers/ZipControllerTest.php
 
 		-
 			message: "#^Parameter \\#1 \\$finfo of function finfo_buffer expects finfo, finfo\\|false given\\.$#"

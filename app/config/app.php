@@ -68,6 +68,14 @@ return [
     'zip_downloads' => env('ZIP_DOWNLOADS', true),
 
     /**
+     * Compress Zip using Deflate. The main drawback of enabling this option is that
+     * the file size cannot be estimated, and it can also prevent the resuming of the download.
+     *
+     * Default value: false
+     */
+    'zip_compress' => env('ZIP_COMPRESS', false),
+
+    /**
      * Your Google analytics tracking ID.
      *
      * Expected format: 'UA-123456789-0'

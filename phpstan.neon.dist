@@ -14,7 +14,6 @@ parameters:
   level: 8
 
   checkFunctionNameCase: true
-  checkMissingIterableValueType: false
 
   reportUnmatchedIgnoredErrors: false
 

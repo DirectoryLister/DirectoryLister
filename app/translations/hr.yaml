@@ -1,0 +1,20 @@
+home: Početna
+download: Preuzmi ovaj Direktorij
+search: Traži
+file:
+  name: Naziv Datoteke
+  size: Veličina
+  date: Datum
+  info: Podaci o Datoteci
+powered_by: Pokreće
+scroll_to_top: Povratak na Vrh
+toggle_theme: Prebacivanje Svijetlog/Tamnog Načina Rada
+
+error:
+  directory_not_found: Direktorij ne postoji
+  file_not_found: Datoteka nije pronađena
+  file_size_exceeded: Veličina datoteke je prevelika
+  no_results_found: Nema rezultata
+  unexpected: Došlo je do neočekivane pogreške
+
+enable_debugging: Omogućite otklanjanje pogrešaka za dodatne informacije

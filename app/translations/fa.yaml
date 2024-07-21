@@ -15,6 +15,6 @@ error:
   file_not_found: فایل موردنظر پیدا نشد
   file_size_exceeded: اندازه فایل بسیار زیاد است
   no_results_found: نتیجه ای یافت نشد
-  unexpected: An unexpected error occurred
+  unexpected: یک خطای غیرمنتظره یافت شد
 
 enable_debugging: قابلیت دیباگ کردن را برای قابلیت های جدید فعال کنید

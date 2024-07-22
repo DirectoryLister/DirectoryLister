@@ -1,0 +1,20 @@
+home: صفحه اصلی
+download: این دایرکتوری را دانلود کنید
+search: جستجو ...
+file:
+  name: اسم فایل
+  size: اندازه فایل
+  date: تاریخ
+  info: اطلاعات فایل
+powered_by: قدرت گرفته از
+scroll_to_top: اسکرول به بالا
+toggle_theme: تغییر به حالت روشن/تاریک
+
+error:
+  directory_not_found: دایرکتوری مورد نظر وجود ندارد
+  file_not_found: فایل موردنظر پیدا نشد
+  file_size_exceeded: اندازه فایل بسیار زیاد است
+  no_results_found: نتیجه ای یافت نشد
+  unexpected: یک خطای غیرمنتظره یافت شد
+
+enable_debugging: قابلیت دیباگ کردن را برای قابلیت های جدید فعال کنید

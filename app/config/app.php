@@ -68,8 +68,8 @@ return [
     'zip_downloads' => env('ZIP_DOWNLOADS', true),
 
     /**
-     * Compress Zip using Deflate. The main drawback of enabling this option is that
-     * the file size cannot be estimated, and it can also prevent the resuming of the download.
+     * Compress Zip using Deflate. Enabling this option prevents file size
+     * estimation and it may prevent zip download resuming when paused.
      *
      * Default value: false
      */

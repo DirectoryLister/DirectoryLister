@@ -1,0 +1,20 @@
+home: Orri nagusia
+download: Deskargatu direktorio hau
+search: Bilatu
+file:
+  name: Fitxategiaren izena
+  size: Tamaina
+  date: Data
+  info: Fitxategiaren informazioa
+powered_by: Eskerrik asko,
+scroll_to_top: Korritu gora
+toggle_theme: Itxura argia / iluna
+
+error:
+  directory_not_found: Direktorioa ez dago
+  file_not_found: Ez da fitxategia aurkitu
+  file_size_exceeded: Fitxategiaren tamaina handiegia da
+  no_results_found: Ez da emaitzarik aurkitu
+  unexpected: Ustekabeko errorea
+
+enable_debugging: Gaitu arazketa informazio gehiagorako

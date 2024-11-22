@@ -77,8 +77,6 @@ class CallbackStream implements StreamInterface
 
     /**
      * Returns true if the stream is at the end of the stream.
-     *
-     * @return bool
      */
     public function eof(): bool
     {
@@ -87,8 +85,6 @@ class CallbackStream implements StreamInterface
 
     /**
      * Returns whether the stream is seekable.
-     *
-     * @return bool
      */
     public function isSeekable(): bool
     {
@@ -116,14 +112,12 @@ class CallbackStream implements StreamInterface
      * otherwise, it will perform a seek(0).
      *
      * @see seek()
-     * @link http://www.php.net/manual/en/function.fseek.php
+     * @see http://www.php.net/manual/en/function.fseek.php
      */
     public function rewind(): void {}
 
     /**
      * Returns whether the stream is writable.
-     *
-     * @return bool
      */
     public function isWritable(): bool
     {
@@ -144,8 +138,6 @@ class CallbackStream implements StreamInterface
 
     /**
      * Returns whether the stream is readable.
-     *
-     * @return bool
      */
     public function isReadable(): bool
     {
@@ -176,8 +168,6 @@ class CallbackStream implements StreamInterface
 
     /**
      * Returns the remaining contents in a string.
-     *
-     * @return string
      */
     public function getContents(): string
     {

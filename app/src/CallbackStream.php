@@ -75,17 +75,13 @@ class CallbackStream implements StreamInterface
         return 0;
     }
 
-    /**
-     * Returns true if the stream is at the end of the stream.
-     */
+    /** Returns true if the stream is at the end of the stream. */
     public function eof(): bool
     {
         return $this->called;
     }
 
-    /**
-     * Returns whether the stream is seekable.
-     */
+    /** Returns whether the stream is seekable. */
     public function isSeekable(): bool
     {
         return false;
@@ -116,9 +112,7 @@ class CallbackStream implements StreamInterface
      */
     public function rewind(): void {}
 
-    /**
-     * Returns whether the stream is writable.
-     */
+    /** Returns whether the stream is writable. */
     public function isWritable(): bool
     {
         return false;
@@ -136,9 +130,7 @@ class CallbackStream implements StreamInterface
         return 0;
     }
 
-    /**
-     * Returns whether the stream is readable.
-     */
+    /** Returns whether the stream is readable. */
     public function isReadable(): bool
     {
         return true;
@@ -166,9 +158,7 @@ class CallbackStream implements StreamInterface
         return '';
     }
 
-    /**
-     * Returns the remaining contents in a string.
-     */
+    /** Returns the remaining contents in a string. */
     public function getContents(): string
     {
         return '';

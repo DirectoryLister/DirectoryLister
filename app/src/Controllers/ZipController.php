@@ -80,6 +80,7 @@ class ZipController
 
         foreach ($files as $file) {
             try {
+                /** @throws RuntimeException */
                 $modifiedTime = new DateTime('@' . (int) $file->getMTime());
             } catch (RuntimeException) {
                 $modifiedTime = new DateTime('@' . (int) lstat($file->getPathname())['mtime']);

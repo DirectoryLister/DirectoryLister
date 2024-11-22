@@ -1,212 +1,248 @@
 parameters:
 	ignoreErrors:
 		-
-			message: "#^Method App\\\\Bootstrap\\\\AppManager\\:\\:__invoke\\(\\) return type with generic class Slim\\\\App does not specify its types\\: TContainerInterface$#"
+			message: '#^Method App\\Bootstrap\\AppManager\:\:__invoke\(\) return type with generic class Slim\\App does not specify its types\: TContainerInterface$#'
+			identifier: missingType.generics
 			count: 1
 			path: app/src/Bootstrap/AppManager.php
 
 		-
-			message: "#^PHPDoc tag @var for variable \\$configFiles has no value type specified in iterable type iterable\\.$#"
-			count: 1
-			path: app/src/Bootstrap/BootManager.php
-
-		-
-			message: "#^Method App\\\\Bootstrap\\\\ExceptionManager\\:\\:__construct\\(\\) has parameter \\$app with generic class Slim\\\\App but does not specify its types\\: TContainerInterface$#"
+			message: '#^Method App\\Bootstrap\\ExceptionManager\:\:__construct\(\) has parameter \$app with generic class Slim\\App but does not specify its types\: TContainerInterface$#'
+			identifier: missingType.generics
 			count: 1
 			path: app/src/Bootstrap/ExceptionManager.php
 
 		-
-			message: "#^Method App\\\\Bootstrap\\\\MiddlewareManager\\:\\:__construct\\(\\) has parameter \\$app with generic class Slim\\\\App but does not specify its types\\: TContainerInterface$#"
+			message: '#^Method App\\Bootstrap\\MiddlewareManager\:\:__construct\(\) has parameter \$app with generic class Slim\\App but does not specify its types\: TContainerInterface$#'
+			identifier: missingType.generics
 			count: 1
 			path: app/src/Bootstrap/MiddlewareManager.php
 
 		-
-			message: "#^Method App\\\\Bootstrap\\\\RouteManager\\:\\:__construct\\(\\) has parameter \\$app with generic class Slim\\\\App but does not specify its types\\: TContainerInterface$#"
+			message: '#^Method App\\Bootstrap\\RouteManager\:\:__construct\(\) has parameter \$app with generic class Slim\\App but does not specify its types\: TContainerInterface$#'
+			identifier: missingType.generics
 			count: 1
 			path: app/src/Bootstrap/RouteManager.php
 
 		-
-			message: "#^Method App\\\\Controllers\\\\DirectoryController\\:\\:__invoke\\(\\) throws checked exception Twig\\\\Error\\\\LoaderError but it's missing from the PHPDoc @throws tag\\.$#"
+			message: '#^Method App\\Controllers\\DirectoryController\:\:__invoke\(\) throws checked exception Twig\\Error\\LoaderError but it''s missing from the PHPDoc @throws tag\.$#'
+			identifier: missingType.checkedException
 			count: 2
 			path: app/src/Controllers/DirectoryController.php
 
 		-
-			message: "#^Method App\\\\Controllers\\\\DirectoryController\\:\\:__invoke\\(\\) throws checked exception Twig\\\\Error\\\\RuntimeError but it's missing from the PHPDoc @throws tag\\.$#"
+			message: '#^Method App\\Controllers\\DirectoryController\:\:__invoke\(\) throws checked exception Twig\\Error\\RuntimeError but it''s missing from the PHPDoc @throws tag\.$#'
+			identifier: missingType.checkedException
 			count: 2
 			path: app/src/Controllers/DirectoryController.php
 
 		-
-			message: "#^Method App\\\\Controllers\\\\DirectoryController\\:\\:__invoke\\(\\) throws checked exception Twig\\\\Error\\\\SyntaxError but it's missing from the PHPDoc @throws tag\\.$#"
+			message: '#^Method App\\Controllers\\DirectoryController\:\:__invoke\(\) throws checked exception Twig\\Error\\SyntaxError but it''s missing from the PHPDoc @throws tag\.$#'
+			identifier: missingType.checkedException
 			count: 2
 			path: app/src/Controllers/DirectoryController.php
 
 		-
-			message: "#^Method App\\\\Controllers\\\\FileInfoController\\:\\:calculateHashes\\(\\) return type has no value type specified in iterable type array\\.$#"
+			message: '#^Method App\\Controllers\\FileInfoController\:\:calculateHashes\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
 			count: 1
 			path: app/src/Controllers/FileInfoController.php
 
 		-
-			message: "#^Method App\\\\Controllers\\\\SearchController\\:\\:__invoke\\(\\) throws checked exception Twig\\\\Error\\\\LoaderError but it's missing from the PHPDoc @throws tag\\.$#"
+			message: '#^Method App\\Controllers\\SearchController\:\:__invoke\(\) throws checked exception Twig\\Error\\LoaderError but it''s missing from the PHPDoc @throws tag\.$#'
+			identifier: missingType.checkedException
 			count: 2
 			path: app/src/Controllers/SearchController.php
 
 		-
-			message: "#^Method App\\\\Controllers\\\\SearchController\\:\\:__invoke\\(\\) throws checked exception Twig\\\\Error\\\\RuntimeError but it's missing from the PHPDoc @throws tag\\.$#"
+			message: '#^Method App\\Controllers\\SearchController\:\:__invoke\(\) throws checked exception Twig\\Error\\RuntimeError but it''s missing from the PHPDoc @throws tag\.$#'
+			identifier: missingType.checkedException
 			count: 2
 			path: app/src/Controllers/SearchController.php
 
 		-
-			message: "#^Method App\\\\Controllers\\\\SearchController\\:\\:__invoke\\(\\) throws checked exception Twig\\\\Error\\\\SyntaxError but it's missing from the PHPDoc @throws tag\\.$#"
+			message: '#^Method App\\Controllers\\SearchController\:\:__invoke\(\) throws checked exception Twig\\Error\\SyntaxError but it''s missing from the PHPDoc @throws tag\.$#'
+			identifier: missingType.checkedException
 			count: 2
 			path: app/src/Controllers/SearchController.php
 
 		-
-			message: "#^Cannot access offset 'mtime' on array\\{0\\: int, 1\\: int, 2\\: int, 3\\: int, 4\\: int, 5\\: int, 6\\: int, 7\\: int, \\.\\.\\.\\}\\|false\\.$#"
+			message: '#^Cannot access offset ''mtime'' on array\{0\: int, 1\: int, 2\: int, 3\: int, 4\: int, 5\: int, 6\: int, 7\: int, \.\.\.\}\|false\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
 			count: 1
 			path: app/src/Controllers/ZipController.php
 
 		-
-			message: "#^Method App\\\\Controllers\\\\ZipController\\:\\:generateFileName\\(\\) should return string but returns string\\|null\\.$#"
+			message: '#^Method App\\Controllers\\ZipController\:\:generateFileName\(\) should return string but returns string\|null\.$#'
+			identifier: return.type
 			count: 1
 			path: app/src/Controllers/ZipController.php
 
 		-
-			message: "#^Method App\\\\Exceptions\\\\ErrorHandler\\:\\:__invoke\\(\\) throws checked exception Twig\\\\Error\\\\LoaderError but it's missing from the PHPDoc @throws tag\\.$#"
+			message: '#^Method App\\Exceptions\\ErrorHandler\:\:__invoke\(\) throws checked exception Twig\\Error\\LoaderError but it''s missing from the PHPDoc @throws tag\.$#'
+			identifier: missingType.checkedException
 			count: 1
 			path: app/src/Exceptions/ErrorHandler.php
 
 		-
-			message: "#^Method App\\\\Exceptions\\\\ErrorHandler\\:\\:__invoke\\(\\) throws checked exception Twig\\\\Error\\\\RuntimeError but it's missing from the PHPDoc @throws tag\\.$#"
+			message: '#^Method App\\Exceptions\\ErrorHandler\:\:__invoke\(\) throws checked exception Twig\\Error\\RuntimeError but it''s missing from the PHPDoc @throws tag\.$#'
+			identifier: missingType.checkedException
 			count: 1
 			path: app/src/Exceptions/ErrorHandler.php
 
 		-
-			message: "#^Method App\\\\Exceptions\\\\ErrorHandler\\:\\:__invoke\\(\\) throws checked exception Twig\\\\Error\\\\SyntaxError but it's missing from the PHPDoc @throws tag\\.$#"
+			message: '#^Method App\\Exceptions\\ErrorHandler\:\:__invoke\(\) throws checked exception Twig\\Error\\SyntaxError but it''s missing from the PHPDoc @throws tag\.$#'
+			identifier: missingType.checkedException
 			count: 1
 			path: app/src/Exceptions/ErrorHandler.php
 
 		-
-			message: "#^Method App\\\\Factories\\\\TranslationFactory\\:\\:translations\\(\\) return type has no value type specified in iterable type array\\.$#"
+			message: '#^Method App\\Factories\\TranslationFactory\:\:translations\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
 			count: 1
 			path: app/src/Factories/TranslationFactory.php
 
 		-
-			message: "#^Method App\\\\Factories\\\\TwigFactory\\:\\:__invoke\\(\\) throws checked exception ReflectionException but it's missing from the PHPDoc @throws tag\\.$#"
+			message: '#^Method App\\Factories\\TwigFactory\:\:__invoke\(\) throws checked exception ReflectionException but it''s missing from the PHPDoc @throws tag\.$#'
+			identifier: missingType.checkedException
 			count: 1
 			path: app/src/Factories/TwigFactory.php
 
 		-
-			message: "#^Method App\\\\Middlewares\\\\PruneCacheMiddleware\\:\\:winsLottery\\(\\) throws checked exception Random\\\\RandomException but it's missing from the PHPDoc @throws tag\\.$#"
+			message: '#^Method App\\Middlewares\\PruneCacheMiddleware\:\:winsLottery\(\) throws checked exception Random\\RandomException but it''s missing from the PHPDoc @throws tag\.$#'
+			identifier: missingType.checkedException
 			count: 1
 			path: app/src/Middlewares/PruneCacheMiddleware.php
 
 		-
-			message: "#^Parameter \\#1 \\$separator of function explode expects non\\-empty\\-string, string given\\.$#"
+			message: '#^Parameter \#1 \$separator of function explode expects non\-empty\-string, string given\.$#'
+			identifier: argument.type
 			count: 1
 			path: app/src/Support/Str.php
 
 		-
-			message: "#^Unable to resolve the template type TMakeKey in call to method static method Tightenco\\\\Collect\\\\Support\\\\Collection\\<\\(int\\|string\\),mixed\\>\\:\\:make\\(\\)$#"
+			message: '#^Unable to resolve the template type TMakeKey in call to method static method Tightenco\\Collect\\Support\\Collection\<\(int\|string\),mixed\>\:\:make\(\)$#'
+			identifier: argument.templateType
 			count: 1
 			path: app/src/ViewFunctions/Asset.php
 
 		-
-			message: "#^Unable to resolve the template type TMakeValue in call to method static method Tightenco\\\\Collect\\\\Support\\\\Collection\\<\\(int\\|string\\),mixed\\>\\:\\:make\\(\\)$#"
+			message: '#^Unable to resolve the template type TMakeValue in call to method static method Tightenco\\Collect\\Support\\Collection\<\(int\|string\),mixed\>\:\:make\(\)$#'
+			identifier: argument.templateType
 			count: 1
 			path: app/src/ViewFunctions/Asset.php
 
 		-
-			message: "#^Parameter \\#1 \\$separator of function explode expects non\\-empty\\-string, string given\\.$#"
+			message: '#^Method App\\ViewFunctions\\Breadcrumbs\:\:__invoke\(\) should return Tightenco\\Collect\\Support\\Collection\<int, string\> but returns Tightenco\\Collect\\Support\\Collection\<\*NEVER\*, non\-falsy\-string\>\.$#'
+			identifier: return.type
 			count: 1
 			path: app/src/ViewFunctions/Breadcrumbs.php
 
 		-
-			message: "#^Dead catch \\- RuntimeException is never thrown in the try block\\.$#"
+			message: '#^Parameter \#1 \$separator of function explode expects non\-empty\-string, string given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/src/ViewFunctions/Breadcrumbs.php
+
+		-
+			message: '#^Dead catch \- RuntimeException is never thrown in the try block\.$#'
+			identifier: catch.neverThrown
 			count: 1
 			path: app/src/ViewFunctions/ModifiedTime.php
 
 		-
-			message: "#^Dead catch \\- RuntimeException is never thrown in the try block\\.$#"
+			message: '#^Method App\\ViewFunctions\\SizeForHumans\:\:__invoke\(\) throws checked exception DivisionByZeroError but it''s missing from the PHPDoc @throws tag\.$#'
+			identifier: missingType.checkedException
 			count: 1
 			path: app/src/ViewFunctions/SizeForHumans.php
 
 		-
-			message: "#^Method App\\\\ViewFunctions\\\\SizeForHumans\\:\\:__invoke\\(\\) throws checked exception DivisionByZeroError but it's missing from the PHPDoc @throws tag\\.$#"
-			count: 1
-			path: app/src/ViewFunctions/SizeForHumans.php
-
-		-
-			message: "#^Method Tests\\\\Controllers\\\\DirectoryControllerTest\\:\\:configOptions\\(\\) return type has no value type specified in iterable type array\\.$#"
+			message: '#^Method Tests\\Controllers\\DirectoryControllerTest\:\:configOptions\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
 			count: 1
 			path: tests/Controllers/DirectoryControllerTest.php
 
 		-
-			message: "#^Parameter \\#1 \\$finfo of function finfo_buffer expects finfo, finfo\\|false given\\.$#"
+			message: '#^Parameter \#1 \$finfo of function finfo_buffer expects finfo, finfo\|false given\.$#'
+			identifier: argument.type
 			count: 1
 			path: tests/Exceptions/ErrorHandlerTest.php
 
 		-
-			message: "#^Method Tests\\\\Factories\\\\CacheFactoryTest\\:\\:cacheAdapters\\(\\) return type has no value type specified in iterable type array\\.$#"
+			message: '#^Method Tests\\Factories\\CacheFactoryTest\:\:cacheAdapters\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
 			count: 1
 			path: tests/Factories/CacheFactoryTest.php
 
 		-
-			message: "#^Parameter \\#1 \\$expected of method PHPUnit\\\\Framework\\\\Assert\\:\\:assertInstanceOf\\(\\) expects class\\-string\\<object\\>, string given\\.$#"
+			message: '#^Parameter \#1 \$expected of method PHPUnit\\Framework\\Assert\:\:assertInstanceOf\(\) expects class\-string\<object\>, string given\.$#'
+			identifier: argument.type
 			count: 1
 			path: tests/Factories/CacheFactoryTest.php
 
 		-
-			message: "#^Method Tests\\\\Factories\\\\FinderFactoryTest\\:\\:getFilesArray\\(\\) return type has no value type specified in iterable type array\\.$#"
+			message: '#^Method Tests\\Factories\\FinderFactoryTest\:\:getFilesArray\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
 			count: 1
 			path: tests/Factories/FinderFactoryTest.php
 
 		-
-			message: "#^Cannot call method getCallable\\(\\) on Twig\\\\TwigFunction\\|null\\.$#"
+			message: '#^Cannot call method getCallable\(\) on Twig\\TwigFunction\|null\.$#'
+			identifier: method.nonObject
 			count: 11
 			path: tests/Factories/TwigFactoryTest.php
 
 		-
-			message: "#^Method Tests\\\\HiddenFilesTest\\:\\:hiddenFilesProvider\\(\\) return type has no value type specified in iterable type array\\.$#"
+			message: '#^Method Tests\\HiddenFilesTest\:\:hiddenFilesProvider\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
 			count: 1
 			path: tests/HiddenFilesTest.php
 
 		-
-			message: "#^Method Tests\\\\HiddenFilesTest\\:\\:test_it_creates_a_collection_of_hidden_files\\(\\) has parameter \\$expected with no value type specified in iterable type array\\.$#"
+			message: '#^Method Tests\\HiddenFilesTest\:\:test_it_creates_a_collection_of_hidden_files\(\) has parameter \$expected with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
 			count: 1
 			path: tests/HiddenFilesTest.php
 
 		-
-			message: "#^Method Tests\\\\HiddenFilesTest\\:\\:test_it_creates_a_collection_of_hidden_files\\(\\) has parameter \\$hiddenFilesArray with no value type specified in iterable type array\\.$#"
+			message: '#^Method Tests\\HiddenFilesTest\:\:test_it_creates_a_collection_of_hidden_files\(\) has parameter \$hiddenFilesArray with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
 			count: 1
 			path: tests/HiddenFilesTest.php
 
 		-
-			message: "#^Method Tests\\\\Middlewares\\\\PruneCacheMiddlewareTest\\:\\:nonPruneableCacheAdapters\\(\\) return type has no value type specified in iterable type array\\.$#"
+			message: '#^Method Tests\\Middlewares\\PruneCacheMiddlewareTest\:\:nonPruneableCacheAdapters\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
 			count: 1
 			path: tests/Middlewares/PruneCacheMiddlewareTest.php
 
 		-
-			message: "#^Method Tests\\\\Middlewares\\\\PruneCacheMiddlewareTest\\:\\:pruneableCacheAdapters\\(\\) return type has no value type specified in iterable type array\\.$#"
+			message: '#^Method Tests\\Middlewares\\PruneCacheMiddlewareTest\:\:pruneableCacheAdapters\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
 			count: 1
 			path: tests/Middlewares/PruneCacheMiddlewareTest.php
 
 		-
-			message: "#^Parameter \\#1 \\$className of method PHPUnit\\\\Framework\\\\TestCase\\:\\:getMockBuilder\\(\\) expects class\\-string\\<object\\>, string given\\.$#"
+			message: '#^Parameter \#1 \$className of method PHPUnit\\Framework\\TestCase\:\:getMockBuilder\(\) expects class\-string\<object\>, string given\.$#'
+			identifier: argument.type
 			count: 1
 			path: tests/Middlewares/PruneCacheMiddlewareTest.php
 
 		-
-			message: "#^Parameter \\#1 \\$originalClassName of method PHPUnit\\\\Framework\\\\TestCase\\:\\:createMock\\(\\) expects class\\-string\\<object\\>, string given\\.$#"
+			message: '#^Parameter \#1 \$originalClassName of method PHPUnit\\Framework\\TestCase\:\:createMock\(\) expects class\-string\<object\>, string given\.$#'
+			identifier: argument.type
 			count: 1
 			path: tests/Middlewares/PruneCacheMiddlewareTest.php
 
 		-
-			message: "#^Unable to resolve the template type RealInstanceType in call to method PHPUnit\\\\Framework\\\\TestCase\\:\\:createMock\\(\\)$#"
+			message: '#^Unable to resolve the template type RealInstanceType in call to method PHPUnit\\Framework\\TestCase\:\:createMock\(\)$#'
+			identifier: argument.templateType
 			count: 1
 			path: tests/Middlewares/PruneCacheMiddlewareTest.php
 
 		-
-			message: "#^Unable to resolve the template type RealInstanceType in call to method PHPUnit\\\\Framework\\\\TestCase\\:\\:getMockBuilder\\(\\)$#"
+			message: '#^Unable to resolve the template type RealInstanceType in call to method PHPUnit\\Framework\\TestCase\:\:getMockBuilder\(\)$#'
+			identifier: argument.templateType
 			count: 1
 			path: tests/Middlewares/PruneCacheMiddlewareTest.php
 

@@ -10,7 +10,7 @@ class BootManager
     /** Create the application service container. */
     public static function createContainer(string $configPath, string $cachePath): Container
     {
-        /** @var iterable $configFiles */
+        /** @var list<string> $configFiles */
         $configFiles = glob($configPath . '/*.php') ?: [];
 
         $container = (new ContainerBuilder)->addDefinitions(...$configFiles);

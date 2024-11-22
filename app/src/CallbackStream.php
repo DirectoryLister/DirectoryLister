@@ -33,14 +33,13 @@ class CallbackStream implements StreamInterface
         $this->callback = $callback;
     }
 
-    /** @return string */
-    public function __toString()
+    public function __toString(): string
     {
         return '';
     }
 
     /** Closes the stream and any underlying resources. */
-    public function close() {}
+    public function close(): void {}
 
     /**
      * Separates any underlying resources from the stream.
@@ -61,7 +60,7 @@ class CallbackStream implements StreamInterface
      *
      * @return int|null returns the size in bytes if known, or null if unknown
      */
-    public function getSize()
+    public function getSize(): ?int
     {
         return null;
     }
@@ -71,7 +70,7 @@ class CallbackStream implements StreamInterface
      *
      * @return int Position of the file pointer
      */
-    public function tell()
+    public function tell(): int
     {
         return 0;
     }
@@ -81,7 +80,7 @@ class CallbackStream implements StreamInterface
      *
      * @return bool
      */
-    public function eof()
+    public function eof(): bool
     {
         return $this->called;
     }
@@ -91,7 +90,7 @@ class CallbackStream implements StreamInterface
      *
      * @return bool
      */
-    public function isSeekable()
+    public function isSeekable(): bool
     {
         return false;
     }
@@ -116,22 +115,17 @@ class CallbackStream implements StreamInterface
      * If the stream is not seekable, this method will raise an exception;
      * otherwise, it will perform a seek(0).
      *
-     * @see http://www.php.net/manual/en/function.fseek.php
      * @see seek()
-     *
-     * @return bool
+     * @link http://www.php.net/manual/en/function.fseek.php
      */
-    public function rewind()
-    {
-        return false;
-    }
+    public function rewind(): void {}
 
     /**
      * Returns whether the stream is writable.
      *
      * @return bool
      */
-    public function isWritable()
+    public function isWritable(): bool
     {
         return false;
     }
@@ -143,7 +137,7 @@ class CallbackStream implements StreamInterface
      *
      * @return int returns the number of bytes written to the stream
      */
-    public function write($string)
+    public function write($string): int
     {
         return 0;
     }
@@ -153,7 +147,7 @@ class CallbackStream implements StreamInterface
      *
      * @return bool
      */
-    public function isReadable()
+    public function isReadable(): bool
     {
         return true;
     }
@@ -166,7 +160,7 @@ class CallbackStream implements StreamInterface
      *
      * @return string returns the data read from the stream, or an empty string if no bytes are available
      */
-    public function read($length)
+    public function read($length): string
     {
         if ($this->called || ! $this->callback) {
             return '';
@@ -185,7 +179,7 @@ class CallbackStream implements StreamInterface
      *
      * @return string
      */
-    public function getContents()
+    public function getContents(): string
     {
         return '';
     }

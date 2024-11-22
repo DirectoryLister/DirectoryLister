@@ -1,13 +1,13 @@
-FROM php:8.2-apache
+FROM php:8.3-apache
 LABEL maintainer="Chris Kankiewicz <Chris@ChrisKankiewicz.com>"
 
 ENV HOME="/tmp"
 ENV COMPOSER_HOME="/tmp"
 ENV XDG_CONFIG_HOME="/tmp/.config"
 
-COPY --from=composer:2.6 /usr/bin/composer /usr/bin/composer
-COPY --from=node:20.9 /usr/local/bin/node /usr/local/bin/node
-COPY --from=node:20.9 /usr/local/lib/node_modules /usr/local/lib/node_modules
+COPY --from=composer:2.8 /usr/bin/composer /usr/bin/composer
+COPY --from=node:22.11 /usr/local/bin/node /usr/local/bin/node
+COPY --from=node:22.11 /usr/local/lib/node_modules /usr/local/lib/node_modules
 
 RUN ln --symbolic ../lib/node_modules/npm/bin/npm-cli.js /usr/local/bin/npm \
     && ln --symbolic ../lib/node_modules/npm/bin/npx-cli.js /usr/local/bin/npx

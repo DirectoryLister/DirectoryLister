@@ -20,7 +20,7 @@ installation you'll be up and running in less than a minute.
 
 Directory Lister is created and maintained by
 [Chris Kankiewicz](https://www.chriskankiewicz.com)
-([@PHLAK](https://twitter.com/PHLAK)) with help from
+([@PHLAK.dev](https://bsky.app/profile/phlak.dev)) with help through
 [community contributions](https://github.com/DirectoryLister/DirectoryLister/graphs/contributors).
 
 Features
@@ -73,7 +73,7 @@ Troubleshooting
 
 See the [Help & Support](https://docs.directorylister.com/help-and-support) section of the documentation for troubleshooting instructions.
 
-For general help and support join our [GitHub Discussion](https://github.com/DirectoryLister/DirectoryLister/discussions) or reach out on [Twitter](https://twitter.com/DirectoryLister).
+For general help and support join our [GitHub Discussion](https://github.com/DirectoryLister/DirectoryLister/discussions) or reach out on [Bluesky](https://bsky.app/profile/directorylister.com).
 
 Please report bugs to the [GitHub Issue Tracker](https://github.com/DirectoryLister/DirectoryLister/issues).
 

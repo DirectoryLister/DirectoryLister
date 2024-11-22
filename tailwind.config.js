@@ -21,8 +21,8 @@ module.exports = {
                 sans: ['Work Sans', ...defaultTheme.fontFamily.sans],
             },
             textColor: {
+                bluesky: '#0886FE',
                 github: '#171515',
-                twitter: '#1DA1F2'
             }
         }
     }

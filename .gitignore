@@ -1,6 +1,7 @@
 /app/vendor/
 /node_modules/
 /.coverage-cache/
+/.analytics
 /.env
 /.hidden
 /.php-cs-fixer.cache

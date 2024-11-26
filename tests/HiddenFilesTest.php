@@ -51,12 +51,12 @@ class HiddenFilesTest extends TestCase
             ],
             'App files' => [
                 [], 'NOT_A_REAL_FILE', true, [
-                    'app', 'index.php', '.env', '.env.example', '.hidden',
+                    'app', 'index.php', '.analytics', '.env', '.env.example', '.hidden',
                 ],
             ],
             'All' => [
                 ['foo', 'alpha'], $this->filePath('.hidden'), true, [
-                    'foo', 'alpha', 'bravo', 'app', 'index.php', '.env', '.env.example', '.hidden',
+                    'foo', 'alpha', 'bravo', 'app', 'index.php', '.analytics', '.env', '.env.example', '.hidden',
                 ],
             ],
         ];

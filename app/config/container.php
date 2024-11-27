@@ -20,7 +20,7 @@ return [
     'views_path' => string('{app_path}/views'),
 
     /** Array of application files (to be hidden) */
-    'app_files' => ['app', 'index.php', '.env', '.env.example', '.hidden'],
+    'app_files' => ['app', 'index.php', '.analytics', '.env', '.env.example', '.hidden'],
 
     /** Array of application middlewares */
     'middlewares' => fn (): array => [
@@ -42,6 +42,7 @@ return [
 
     /** Array of view functions */
     'view_functions' => [
+        ViewFunctions\Analytics::class,
         ViewFunctions\Asset::class,
         ViewFunctions\Breadcrumbs::class,
         ViewFunctions\Config::class,

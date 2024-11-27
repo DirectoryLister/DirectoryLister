@@ -76,6 +76,8 @@ return [
     'zip_compress' => env('ZIP_COMPRESS', false),
 
     /**
+     * DEPRECATED: Will be removed in a future release.
+     *
      * Your Google analytics tracking ID.
      *
      * Expected format: 'UA-123456789-0'
@@ -84,6 +86,8 @@ return [
     'google_analytics_id' => env('GOOGLE_ANALYTICS_ID', false),
 
     /**
+     * DEPRECATED: Will be removed in a future release.
+     *
      * Your Matomo analytics URL.
      *
      *  Default value: false
@@ -111,6 +115,14 @@ return [
      * Default value: false
      */
     'reverse_sort' => env('REVERSE_SORT', false),
+
+    /**
+     * File containing analytics scripts that will be included in the HTML
+     * output of your directory listing.
+     *
+     * Default value: '.analytics'
+     */
+    'analytics_file' => env('ANALYTICS_FILE', '.analytics'),
 
     /**
      * File containing hidden file definitions. Will be merged with definitions

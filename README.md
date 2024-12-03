@@ -9,8 +9,7 @@
     <br>
     <img alt="Packagist PHP Version Support" src="https://img.shields.io/packagist/php-v/phlak/directory-lister?style=flat-square">
     <a href="https://github.com/DirectoryLister/DirectoryLister/blob/master/LICENSE"><img src="https://img.shields.io/github/license/DirectoryLister/DirectoryLister?style=flat-square" alt="License"></a>
-    <a href="https://github.com/DirectoryLister/DirectoryLister/actions" alt="Build Status"><img src="https://img.shields.io/github/actions/workflow/status/DirectoryLister/DirectoryLister/test-suite.yaml?style=flat-square
-"></a>
+    <a href="https://github.com/DirectoryLister/DirectoryLister/actions" alt="Build Status"><img src="https://img.shields.io/github/actions/workflow/status/DirectoryLister/DirectoryLister/test-suite.yaml?style=flat-square"></a>
 </p>
 
 ---

@@ -1,4 +1,4 @@
-home: Hogar
+home: Inicio
 download: Descargar este Directorio
 search: Buscar
 file:
@@ -7,8 +7,8 @@ file:
   date: Fecha
   info: Información del Archivo
 powered_by: Desarrollado por
-scroll_to_top: Vuelve al Comienzo
-toggle_theme: Alternar modo claro/oscuro
+scroll_to_top: Desplazarse hacia arriba
+toggle_theme: Cambiar modo claro/oscuro
 
 error:
   directory_not_found: El directorio no existe
@@ -17,4 +17,4 @@ error:
   no_results_found: No se han encontrado resultados
   unexpected: Ocurrió un error inesperado
 
-enable_debugging: Habilite la "debugging" para obtener información adicional
+enable_debugging: Habilite la depuración para obtener información adicional

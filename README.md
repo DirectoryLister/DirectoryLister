@@ -18,6 +18,8 @@ Directory Lister is the easiest way to expose the contents of any web-accessible
 folder for browsing and sharing. With a zero configuration, drag-and-drop
 installation you'll be up and running in less than a minute.
 
+![Screenshot](screenshot.png)
+
 Directory Lister is created and maintained by
 [Chris Kankiewicz](https://www.chriskankiewicz.com)
 ([@PHLAK.dev](https://bsky.app/profile/phlak.dev)) with help through

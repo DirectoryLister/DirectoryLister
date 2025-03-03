@@ -38,7 +38,7 @@
         "beyondcode/expose": "^2.0",
         "friendsofphp/php-cs-fixer": "!=3.5.0",
         "johnkary/phpunit-speedtrap": "^4.0",
-        "phlak/coding-standards": "^2.0",
+        "phlak/coding-standards": "^4.0",
         "phpstan/phpstan": "^2.0",
         "psy/psysh": "^0.12.0",
         "symfony/var-dumper": "^6.0",

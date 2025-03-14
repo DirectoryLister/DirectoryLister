@@ -9,7 +9,7 @@ class ZipUrl extends Url
     /** Return the URL for a given path and action. */
     public function __invoke(string $path = '/'): string
     {
-        $path = $this->stripLeadingSlashes($path);
+        $path = $this->normalizePath($path);
 
         if ($path === '') {
             return '?zip=.';

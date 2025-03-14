@@ -17,18 +17,16 @@ class IndexController
     /** Invoke the IndexController. */
     public function __invoke(Request $request, Response $response): ResponseInterface
     {
-        switch (true) {
-            case array_key_exists('info', $request->getQueryParams()):
-                return $this->container->call(FileInfoController::class, [$request, $response]);
+        $firstQueryParam = array_key_first($request->getQueryParams());
 
-            case array_key_exists('search', $request->getQueryParams()):
-                return $this->container->call(SearchController::class, [$request, $response]);
+        $controller = match ($firstQueryParam) {
+            'file' => FileController::class,
+            'info' => FileInfoController::class,
+            'search' => SearchController::class,
+            'zip' => ZipController::class,
+            default => DirectoryController::class,
+        };
 
-            case array_key_exists('zip', $request->getQueryParams()):
-                return $this->container->call(ZipController::class, [$request, $response]);
-
-            default:
-                return $this->container->call(DirectoryController::class, [$request, $response]);
-        }
+        return $this->container->call($controller, [$request, $response]);
     }
 }

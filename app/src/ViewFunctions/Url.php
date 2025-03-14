@@ -2,6 +2,7 @@
 
 namespace App\ViewFunctions;
 
+use App\Config;
 use App\Support\Str;
 
 class Url extends ViewFunction
@@ -10,13 +11,34 @@ class Url extends ViewFunction
 
     /** Create a new Url object. */
     public function __construct(
+        private Config $config,
         private string $directorySeparator = DIRECTORY_SEPARATOR
     ) {}
 
     /** Return the URL for a given path. */
     public function __invoke(string $path = '/'): string
     {
-        return $this->escape($this->stripLeadingSlashes($path));
+        return $this->escape($this->normalizePath($path));
+    }
+
+    /** Strip base path and leading slashes (and a single dot) from a path */
+    protected function normalizePath(string $path): string
+    {
+        return $this->stripLeadingSlashes($this->stripBasePath($path));
+    }
+
+    /** Strip the base path from the beginning of a path. */
+    protected function stripBasePath(string $path): string
+    {
+        $basePath = $this->config->get('files_path') . $this->directorySeparator;
+
+        $position = strpos($path, $basePath);
+
+        if ($position !== 0) {
+            return $path;
+        }
+
+        return (string) substr_replace($path, '', 0, strlen($basePath));
     }
 
     /** Strip all leading slashes (and a single dot) from a path. */

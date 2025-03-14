@@ -10,7 +10,7 @@ class ZipUrlTest extends TestCase
 {
     public function test_it_can_return_a_url(): void
     {
-        $url = new ZipUrl;
+        $url = $this->container->get(ZipUrl::class);
 
         $this->assertEquals('?zip=.', $url('/'));
         $this->assertEquals('?zip=.', $url('./'));
@@ -26,7 +26,7 @@ class ZipUrlTest extends TestCase
 
     public function test_it_can_return_a_url_with_back_slashes(): void
     {
-        $url = new ZipUrl('\\');
+        $url = $this->container->make(ZipUrl::class, ['directorySeparator' => '\\']);
 
         $this->assertEquals('?zip=.', $url('\\'));
         $this->assertEquals('?zip=.', $url('.\\'));
@@ -38,7 +38,7 @@ class ZipUrlTest extends TestCase
 
     public function test_url_segments_are_url_encoded(): void
     {
-        $url = new ZipUrl;
+        $url = $this->container->get(ZipUrl::class);
 
         $this->assertEquals('?zip=foo/bar%2Bbaz', $url('foo/bar+baz'));
         $this->assertEquals('?zip=foo/bar%23baz', $url('foo/bar#baz'));

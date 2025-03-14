@@ -1,0 +1,48 @@
+<?php
+
+namespace Tests\Controllers;
+
+use App\Controllers\FileController;
+use Psr\Http\Message\ResponseInterface;
+use Slim\Psr7\Request;
+use Slim\Psr7\Response;
+use Tests\TestCase;
+
+/** @covers \App\Controllers\FileController */
+class FileControllerTest extends TestCase
+{
+    public function test_it_returns_a_successful_response_for_a_file_request(): void
+    {
+        $controller = $this->container->get(FileController::class);
+
+        $request = $this->createMock(Request::class);
+        $request->method('getQueryParams')->willReturn(['file' => 'README.md']);
+
+        $response = $controller($request, new Response);
+
+        $this->assertInstanceOf(ResponseInterface::class, $response);
+        $this->assertSame(200, $response->getStatusCode());
+
+        $this->assertSame([
+            'Content-Description' => ['File Transfer'],
+            'Content-Disposition' => ['attachment; filename="README.md"'],
+            'Content-Length' => ['30'],
+            'Content-Type' => ['file']
+        ], $response->getHeaders());
+
+        $this->assertSame("Test README.md; please ignore\n", (string) $response->getBody());
+    }
+
+    public function test_it_returns_a_404_error_when_not_found(): void
+    {
+        $controller = $this->container->get(FileController::class);
+
+        $request = $this->createMock(Request::class);
+        $request->method('getQueryParams')->willReturn(['file' => '404']);
+
+        $response = $controller($request, new Response);
+
+        $this->assertInstanceOf(ResponseInterface::class, $response);
+        $this->assertSame(404, $response->getStatusCode());
+    }
+}

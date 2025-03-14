@@ -1,15 +1,19 @@
 <?php
 
+use App\Config;
 use App\Factories;
 use App\Middlewares;
 use App\SortMethods;
 use App\ViewFunctions;
 use function DI\create;
+use function DI\env;
 use function DI\factory;
+use function DI\get;
 use function DI\string;
+use function DI\value;
 
 return [
-    /** Path definitions */
+    /** Path definitions and helpers */
     'base_path' => dirname(__DIR__, 2),
     'app_path' => dirname(__DIR__),
     'asset_path' => string('{app_path}/assets'),
@@ -18,6 +22,8 @@ return [
     'source_path' => string('{app_path}/src'),
     'translations_path' => string('{app_path}/translations'),
     'views_path' => string('{app_path}/views'),
+    'files_path' => env('FILES_PATH', get('base_path')),
+    'full_path' => value(fn (string $path, Config $config): string => $config->get('files_path') . '/' . $path),
 
     /** Array of application files (to be hidden) */
     'app_files' => ['app', 'index.php', '.analytics', '.env', '.env.example', '.hidden'],

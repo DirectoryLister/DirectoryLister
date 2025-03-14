@@ -6,6 +6,7 @@ use App\CallbackStream;
 use App\Config;
 use App\Support\Str;
 use DateTime;
+use DI\Container;
 use Exception;
 use Psr\Http\Message\ResponseInterface;
 use RuntimeException;
@@ -22,6 +23,7 @@ class ZipController
 {
     /** Create a new ZipHandler object. */
     public function __construct(
+        private Container $container,
         private Config $config,
         private Finder $finder,
         private TranslatorInterface $translator
@@ -34,7 +36,7 @@ class ZipController
      */
     public function __invoke(Request $request, Response $response): ResponseInterface
     {
-        $path = $request->getQueryParams()['zip'];
+        $path = $this->container->call('full_path', ['path' => $request->getQueryParams()['zip']]);
 
         if (! $this->config->get('zip_downloads') || ! is_dir($path)) {
             return $response->withStatus(404, $this->translator->trans('error.file_not_found'));
@@ -100,9 +102,7 @@ class ZipController
 
     protected function augmentHeadersWithEstimatedSize(Response $response, int $size): Response
     {
-        $response = $response->withHeader('Content-Length', (string) $size);
-
-        return $response;
+        return $response->withHeader('Content-Length', (string) $size);
     }
 
     /** Return the path to a file with the preceding root path stripped. */

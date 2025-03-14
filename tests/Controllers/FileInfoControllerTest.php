@@ -6,7 +6,6 @@ use App\Controllers\FileInfoController;
 use Psr\Http\Message\ResponseInterface;
 use Slim\Psr7\Request;
 use Slim\Psr7\Response;
-use Symfony\Contracts\Translation\TranslatorInterface;
 use Tests\TestCase;
 
 /** @covers \App\Controllers\FileInfoController */
@@ -14,11 +13,7 @@ class FileInfoControllerTest extends TestCase
 {
     public function test_it_can_return_a_successful_response(): void
     {
-        $handler = new FileInfoController(
-            $this->config,
-            $this->cache,
-            $this->container->get(TranslatorInterface::class)
-        );
+        $handler = $this->container->get(FileInfoController::class);
 
         $request = $this->createMock(Request::class);
         $request->method('getQueryParams')->willReturn(['info' => 'README.md']);
@@ -38,11 +33,7 @@ class FileInfoControllerTest extends TestCase
 
     public function test_it_can_return_a_not_found_response(): void
     {
-        $handler = new FileInfoController(
-            $this->config,
-            $this->cache,
-            $this->container->get(TranslatorInterface::class)
-        );
+        $handler = $this->container->get(FileInfoController::class);
 
         $request = $this->createMock(Request::class);
         $request->method('getQueryParams')->willReturn(['info' => 'not_a_file.test']);
@@ -56,11 +47,8 @@ class FileInfoControllerTest extends TestCase
     public function test_it_returns_an_error_when_file_size_is_too_large(): void
     {
         $this->container->set('max_hash_size', 10);
-        $handler = new FileInfoController(
-            $this->config,
-            $this->cache,
-            $this->container->get(TranslatorInterface::class)
-        );
+
+        $handler = $this->container->get(FileInfoController::class);
 
         $request = $this->createMock(Request::class);
         $request->method('getQueryParams')->willReturn(['info' => 'README.md']);

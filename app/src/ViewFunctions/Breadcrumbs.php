@@ -24,7 +24,7 @@ class Breadcrumbs extends ViewFunction
     public function __invoke(string $path): Collection
     {
         return Str::explode($path, $this->directorySeparator)->diffAssoc(
-            explode($this->directorySeparator, $this->config->get('base_path'))
+            explode($this->directorySeparator, $this->config->get('files_path'))
         )->filter(static function (string $crumb): bool {
             return ! in_array($crumb, [null, '.']);
         })->reduce(function (Collection $carry, string $crumb): Collection {

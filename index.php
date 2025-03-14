@@ -6,11 +6,11 @@ use Dotenv\Dotenv;
 
 require __DIR__ . '/app/vendor/autoload.php';
 
-// Set file access restrictions
-ini_set('open_basedir', __DIR__);
-
 // Initialize environment variable handler
 Dotenv::createUnsafeImmutable(__DIR__)->safeLoad();
+
+// Set file access restrictions
+ini_set('open_basedir', implode(PATH_SEPARATOR, [__DIR__, getenv('FILES_PATH')]));
 
 // Initialize the container
 $container = BootManager::createContainer(

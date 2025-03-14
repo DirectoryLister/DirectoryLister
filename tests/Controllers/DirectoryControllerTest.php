@@ -24,12 +24,7 @@ class DirectoryControllerTest extends TestCase
         $this->container->set('hide_vcs_files', $hideVcsFiles);
         $this->container->set('display_readmes', $displayReadmes);
 
-        $controller = new DirectoryController(
-            $this->config,
-            new Finder,
-            $this->container->get(Twig::class),
-            $this->container->get(TranslatorInterface::class)
-        );
+        $controller = $this->container->get(DirectoryController::class);
 
         chdir($this->filePath('.'));
         $response = $controller($this->createMock(Request::class), new Response);
@@ -48,12 +43,7 @@ class DirectoryControllerTest extends TestCase
         $this->container->set('hide_vcs_files', $hideVcsFiles);
         $this->container->set('display_readmes', $displayReadmes);
 
-        $controller = new DirectoryController(
-            $this->config,
-            new Finder,
-            $this->container->get(Twig::class),
-            $this->container->get(TranslatorInterface::class)
-        );
+        $controller = $this->container->get(DirectoryController::class);
 
         $request = $this->createMock(Request::class);
         $request->method('getQueryParams')->willReturn(['dir' => 'subdir']);
@@ -68,6 +58,7 @@ class DirectoryControllerTest extends TestCase
     public function test_it_returns_a_404_error_when_not_found(): void
     {
         $controller = new DirectoryController(
+            $this->container,
             $this->config,
             new Finder,
             $this->container->get(Twig::class),

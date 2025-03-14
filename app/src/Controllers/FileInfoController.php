@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Config;
+use DI\Container;
 use Psr\Http\Message\ResponseInterface;
 use Slim\Psr7\Request;
 use Slim\Psr7\Response;
@@ -14,6 +15,7 @@ class FileInfoController
 {
     /** Create a new FileInfoHandler object. */
     public function __construct(
+        private Container $container,
         private Config $config,
         private CacheInterface $cache,
         private TranslatorInterface $translator
@@ -22,11 +24,9 @@ class FileInfoController
     /** Invoke the FileInfoHandler. */
     public function __invoke(Request $request, Response $response): ResponseInterface
     {
-        $path = $request->getQueryParams()['info'];
+        $path = $this->container->call('full_path', ['path' => $request->getQueryParams()['info']]);
 
-        $file = new SplFileInfo(
-            (string) realpath($this->config->get('base_path') . '/' . $path)
-        );
+        $file = new SplFileInfo((string) realpath($path));
 
         if (! $file->isFile()) {
             return $response->withStatus(404, $this->translator->trans('error.file_not_found'));

@@ -9,11 +9,11 @@ class FileUrl extends Url
     /** Return the URL for a given path and action. */
     public function __invoke(string $path = '/'): string
     {
-        $path = $this->stripLeadingSlashes($path);
-
         if (is_file($path)) {
-            return $this->escape($path);
+            return sprintf('?file=%s', $this->escape($this->normalizePath($path)));
         }
+
+        $path = $this->normalizePath($path);
 
         if ($path === '') {
             return '';

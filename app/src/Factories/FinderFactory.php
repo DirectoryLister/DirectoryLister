@@ -60,7 +60,7 @@ class FinderFactory
     {
         if (! $this->pattern instanceof Pattern) {
             $this->pattern = Pattern::make(sprintf('%s{%s}', Pattern::escape(
-                $this->config->get('base_path') . DIRECTORY_SEPARATOR
+                $this->config->get('files_path') . DIRECTORY_SEPARATOR
             ), $this->hiddenFiles->implode(',')));
         }
 

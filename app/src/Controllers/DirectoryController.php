@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Config;
+use DI\Container;
 use Exception;
 use Psr\Http\Message\ResponseInterface;
 use Slim\Psr7\Request;
@@ -16,6 +17,7 @@ class DirectoryController
 {
     /** Create a new IndexController object. */
     public function __construct(
+        private Container $container,
         private Config $config,
         private Finder $finder,
         private Twig $view,
@@ -25,10 +27,11 @@ class DirectoryController
     /** Invoke the IndexController. */
     public function __invoke(Request $request, Response $response): ResponseInterface
     {
-        $path = $request->getQueryParams()['dir'] ?? '.';
+        $relativePath = $request->getQueryParams()['dir'] ?? '.';
+        $fullPath = $this->container->call('full_path', ['path' => $relativePath]);
 
         try {
-            $files = $this->finder->in($path)->depth(0);
+            $files = $this->finder->in($fullPath)->depth(0);
         } catch (Exception $exception) {
             return $this->view->render($response->withStatus(404), 'error.twig', [
                 'message' => $this->translator->trans('error.directory_not_found'),
@@ -37,9 +40,9 @@ class DirectoryController
 
         return $this->view->render($response, 'index.twig', [
             'files' => $files,
-            'path' => $path,
+            'path' => $relativePath,
             'readme' => $this->readme($files),
-            'title' => $path == '.' ? 'Home' : $path,
+            'title' => $relativePath == '.' ? 'Home' : $relativePath,
         ]);
     }
 

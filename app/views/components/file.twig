@@ -1,6 +1,6 @@
 <a
     href="{{ parentDir ? parent_url(path) : file_url(file.getPathname) }}"
-    class="flex flex-col items-center rounded-lg font-mono group hover:bg-gray-100 hover:shadow dark:hover:bg-purple-700"
+    class="flex flex-col items-center rounded-lg font-mono group hover:bg-slate-100 hover:shadow-sm dark:hover:bg-violet-700"
 >
     <div class="flex justify-between items-center p-4 w-full">
         <div class="pr-2">
@@ -18,7 +18,7 @@
         {% if file.isFile %}
             <div class="ml-2">
                 <button title="{{ translate('file.info') }}" @click.prevent="$dispatch('show-file-info', { file: '{{ url(file.getPathname) | escape('js') }}' })"
-                    class="justify-center items-center rounded-full w-8 h-8 -m-1 md:invisible hover:bg-gray-300 hover:shadow dark:hover:bg-purple-900 group-hover:visible"
+                    class="justify-center items-center rounded-full w-8 h-8 -m-1 cursor-pointer md:invisible hover:bg-slate-300 hover:shadow-sm dark:hover:bg-violet-900 group-hover:visible"
                 >
                     <i class="fas fa-info-circle"></i>
                 </button>

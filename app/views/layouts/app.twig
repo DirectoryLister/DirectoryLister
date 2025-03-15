@@ -7,12 +7,8 @@
 <link rel="icon" href="{{ asset('images/favicon.light.png') }}">
 <link rel="dns-prefetch" href="//fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com">
-<link rel="stylesheet" href="{{ asset('app.css') }}">
 
-<link x-data rel="stylesheet" href="{{ asset('hljs-github.css') }}" :disabled="$store.theme !== 'light'">
-<link x-data rel="stylesheet" href="{{ asset('hljs-github-dark.css') }}" :disabled="$store.theme !== 'dark'">
-
-<script src="{{ asset('app.js') }}" defer></script>
+{{ vite(['app/resources/css/app.css', 'app/resources/js/app.js']) | raw }}
 
 {{ analytics() | raw }}
 
@@ -29,7 +25,7 @@
 <title>{{ title }} &bull; {{ config('site_title') }}</title>
 
 <div class="{{ theme }}" x-data="application" x-effect="storeThemeCookie($store.theme)" :class="{ 'dark': $store.theme === 'dark' }">
-    <div class="flex flex-col min-h-screen font-sans dark:bg-gray-800">
+    <div class="flex flex-col min-h-screen font-sans dark:bg-slate-800">
         {% block content %}{% endblock %}
     </div>
 </div>

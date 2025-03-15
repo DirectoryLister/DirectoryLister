@@ -1,5 +1,5 @@
-<header class="bg-blue-600 shadow sticky top-0 dark:bg-purple-700">
-    <div class="border-b border-blue-700 dark:border-purple-800">
+<header class="bg-sky-600 shadow-sm sticky top-0 dark:bg-violet-700">
+    <div class="border-b border-sky-700 dark:border-violet-800">
         <div class="container flex flex-wrap justify-between items-center space-x-6 mx-auto p-4 md:flex-row xl:max-w-screen-xl">
             <a href="." class="flex items-center space-x-2 p-1" title="{{ config('site_title') }}">
                 <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="folder-tree" class="inline-block fill-current text-white w-8 h-8" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
@@ -17,13 +17,13 @@
         </div>
     </div>
 
-    <div class="border-t border-blue-500 dark:border-purple-600">
+    <div class="border-t border-sky-500 dark:border-violet-600">
         <div class="container flex flex-wrap justify-between items-center space-x-6 mx-auto px-4 py-1 md:flex-row xl:max-w-screen-xl">
             {% include 'components/breadcrumbs.twig' %}
 
             {% if path and files is not empty and config('zip_downloads') %}
                 <a href="{{ zip_url(path) }}" title="{{ translate('download') }}" rel="nofollow"
-                    class="flex justify-center  items-center text-sm text-white w-6 hover:text-gray-300"
+                    class="flex justify-center items-center text-sm text-white w-6 hover:text-slate-300"
                 >
                     <i class="fas fa-download fa-lg"></i>
                 </a>

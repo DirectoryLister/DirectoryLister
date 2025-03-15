@@ -32,7 +32,7 @@ class DirectoryController
 
         try {
             $files = $this->finder->in($fullPath)->depth(0);
-        } catch (Exception $exception) {
+        } catch (Exception) {
             return $this->view->render($response->withStatus(404), 'error.twig', [
                 'message' => $this->translator->trans('error.directory_not_found'),
             ]);

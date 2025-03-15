@@ -1,0 +1,119 @@
+.markdown {
+    @apply break-words;
+}
+
+.markdown a {
+    @apply text-sky-600 underline;
+}
+
+.markdown a:hover {
+    @apply text-sky-800;
+}
+
+.markdown img {
+    @apply inline;
+}
+
+.markdown p, .markdown blockquote, .markdown ul, .markdown ol, .markdown dl, .markdown table, .markdown pre {
+    @apply my-4;
+}
+
+.markdown ul, .markdown ol {
+    @apply pl-8;
+}
+
+.markdown ul {
+    @apply list-disc;
+}
+
+.markdown ol {
+    @apply list-decimal;
+}
+
+.markdown h1 {
+    @apply border-b border-slate-400 text-4xl;
+}
+
+.markdown h2 {
+    @apply border-b border-slate-400 text-3xl;
+}
+
+.markdown h3 {
+    @apply text-2xl;
+}
+
+.markdown h4 {
+    @apply text-xl;
+}
+
+.markdown h5 {
+    @apply text-base;
+}
+
+.markdown h6 {
+    @apply text-base text-slate-600;
+}
+
+.markdown h1, .markdown h2, .markdown h3, .markdown h4, .markdown h5, .markdown h6 {
+    @apply font-bold leading-relaxed mt-8 mb-4;
+}
+
+.markdown h1 + p, .markdown h2 + p, .markdown h3 + p {
+    @apply mt-4;
+}
+
+.markdown hr {
+    @apply border-t-2 border-slate-400 my-4;
+}
+
+.markdown blockquote {
+    @apply border-l-4 border-slate-400 pl-2 text-slate-600;
+}
+
+.markdown table {
+    @apply table;
+}
+
+.markdown table th, .markdown table td {
+    @apply border border-slate-400 p-1;
+}
+
+.markdown table th {
+    @apply font-bold;
+}
+
+.markdown dl dt {
+    @apply font-bold;
+}
+
+.markdown dl dd {
+    @apply pl-4;
+}
+
+.markdown > :first-child {
+    @apply mt-0;
+}
+
+.markdown > :last-child {
+    @apply mb-0;
+}
+
+#app.dark .markdown a {
+    @apply text-violet-600;
+}
+
+#app.dark .markdown a:hover {
+    @apply text-violet-800;
+}
+
+#app.dark .markdown h1, #app.dark .markdown h2 {
+    @apply border-slate-800;
+}
+
+#app.dark .markdown hr {
+    @apply border-slate-800;
+}
+
+#app.dark .markdown .hljs, #app.dark .markdown .hljs-keyword {
+    @apply text-white;
+}

@@ -60,6 +60,7 @@ return [
         ViewFunctions\SizeForHumans::class,
         ViewFunctions\Translate::class,
         ViewFunctions\Url::class,
+        ViewFunctions\Vite::class,
         ViewFunctions\ZipUrl::class,
     ],
 

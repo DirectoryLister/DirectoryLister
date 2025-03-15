@@ -19,29 +19,6 @@ class Asset extends ViewFunction
     {
         $path = '/' . ltrim($path, '/');
 
-        if ($this->mixManifest()->has($path)) {
-            /** @var string $path */
-            $path = $this->mixManifest()->get($path);
-        }
-
         return 'app/assets/' . ltrim($path, '/');
-    }
-
-    /**
-     * Return the mix manifest collection.
-     *
-     * @return Collection<string, string>
-     */
-    protected function mixManifest(): Collection
-    {
-        $mixManifest = $this->config->get('asset_path') . '/mix-manifest.json';
-
-        if (! is_file($mixManifest)) {
-            return new Collection;
-        }
-
-        return Collection::make(
-            json_decode((string) file_get_contents($mixManifest), true) ?? []
-        );
     }
 }

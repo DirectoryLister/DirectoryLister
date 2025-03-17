@@ -3,7 +3,7 @@
 namespace App;
 
 use BadMethodCallException;
-use Tightenco\Collect\Support\Collection;
+use Illuminate\Support\Collection;
 
 /** @extends Collection<int, string> */
 class HiddenFiles extends Collection

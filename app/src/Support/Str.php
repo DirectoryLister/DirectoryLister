@@ -2,7 +2,7 @@
 
 namespace App\Support;
 
-use Tightenco\Collect\Support\Collection;
+use Illuminate\Support\Collection;
 
 class Str
 {

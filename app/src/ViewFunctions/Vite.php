@@ -3,7 +3,7 @@
 namespace App\ViewFunctions;
 
 use App\Config;
-use Tightenco\Collect\Support\Collection;
+use Illuminate\Support\Collection;
 use UnexpectedValueException;
 
 class Vite extends ViewFunction

@@ -6,7 +6,7 @@ use App\Support\Str;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
-use Tightenco\Collect\Support\Collection;
+use Illuminate\Support\Collection;
 
 #[CoversClass(Str::class)]
 class StrTest extends TestCase

@@ -7,7 +7,7 @@ use BadMethodCallException;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Test;
-use Tightenco\Collect\Support\Collection;
+use Illuminate\Support\Collection;
 
 #[CoversClass(HiddenFiles::class)]
 class HiddenFilesTest extends TestCase

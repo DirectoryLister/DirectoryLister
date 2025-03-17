@@ -4,7 +4,7 @@ namespace App\ViewFunctions;
 
 use App\Config;
 use App\Support\Str;
-use Tightenco\Collect\Support\Collection;
+use Illuminate\Support\Collection;
 
 class Breadcrumbs extends ViewFunction
 {

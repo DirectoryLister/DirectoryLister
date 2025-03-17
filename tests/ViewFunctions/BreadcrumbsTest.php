@@ -6,7 +6,7 @@ use App\ViewFunctions\Breadcrumbs;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
-use Tightenco\Collect\Support\Collection;
+use Illuminate\Support\Collection;
 
 #[CoversClass(Breadcrumbs::class)]
 class BreadcrumbsTest extends TestCase

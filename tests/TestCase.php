@@ -40,7 +40,6 @@ class TestCase extends BaseTestCase
         $this->cache = new ArrayAdapter($this->config->get('cache_lifetime'));
 
         $this->container->set('base_path', $this->testFilesPath);
-        $this->container->set('asset_path', $this->filePath('app/assets'));
         $this->container->set('cache_path', $this->filePath('app/cache'));
     }
 

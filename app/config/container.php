@@ -16,7 +16,6 @@ return [
     /** Path definitions and helpers */
     'base_path' => dirname(__DIR__, 2),
     'app_path' => dirname(__DIR__),
-    'asset_path' => string('{app_path}/assets'),
     'cache_path' => string('{app_path}/cache'),
     'config_path' => string('{app_path}/config'),
     'source_path' => string('{app_path}/src'),
@@ -49,7 +48,6 @@ return [
     /** Array of view functions */
     'view_functions' => [
         ViewFunctions\Analytics::class,
-        ViewFunctions\Asset::class,
         ViewFunctions\Breadcrumbs::class,
         ViewFunctions\Config::class,
         ViewFunctions\FileUrl::class,

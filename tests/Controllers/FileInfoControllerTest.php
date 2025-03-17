@@ -3,15 +3,18 @@
 namespace Tests\Controllers;
 
 use App\Controllers\FileInfoController;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use Psr\Http\Message\ResponseInterface;
 use Slim\Psr7\Request;
 use Slim\Psr7\Response;
 use Tests\TestCase;
 
-/** @covers \App\Controllers\FileInfoController */
+#[CoversClass(FileInfoController::class)]
 class FileInfoControllerTest extends TestCase
 {
-    public function test_it_can_return_a_successful_response(): void
+    #[Test]
+    public function it_can_return_a_successful_response(): void
     {
         $handler = $this->container->get(FileInfoController::class);
 
@@ -31,7 +34,8 @@ class FileInfoControllerTest extends TestCase
         ]), (string) $response->getBody());
     }
 
-    public function test_it_can_return_a_not_found_response(): void
+    #[Test]
+    public function it_can_return_a_not_found_response(): void
     {
         $handler = $this->container->get(FileInfoController::class);
 
@@ -44,7 +48,8 @@ class FileInfoControllerTest extends TestCase
         $this->assertEquals(404, $response->getStatusCode());
     }
 
-    public function test_it_returns_an_error_when_file_size_is_too_large(): void
+    #[Test]
+    public function it_returns_an_error_when_file_size_is_too_large(): void
     {
         $this->container->set('max_hash_size', 10);
 

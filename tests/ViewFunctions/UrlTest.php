@@ -3,12 +3,15 @@
 namespace Tests\ViewFunctions;
 
 use App\ViewFunctions\Url;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
-/** @covers \App\ViewFunctions\Url */
+#[CoversClass(Url::class)]
 class UrlTest extends TestCase
 {
-    public function test_it_can_return_a_url(): void
+    #[Test]
+    public function it_can_return_a_url(): void
     {
         $url = $this->container->get(Url::class);
 
@@ -24,7 +27,8 @@ class UrlTest extends TestCase
         $this->assertEquals('0', $url('0'));
     }
 
-    public function test_it_can_return_a_url_with_back_slashes(): void
+    #[Test]
+    public function it_can_return_a_url_with_back_slashes(): void
     {
         $url = $this->container->make(Url::class, ['directorySeparator' => '\\']);
 

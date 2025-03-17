@@ -5,6 +5,7 @@ use App\Factories;
 use App\Middlewares;
 use App\SortMethods;
 use App\ViewFunctions;
+
 use function DI\create;
 use function DI\env;
 use function DI\factory;
@@ -13,15 +14,18 @@ use function DI\string;
 use function DI\value;
 
 return [
-    /** Path definitions and helpers */
+    /** Path definitions */
     'base_path' => dirname(__DIR__, 2),
     'app_path' => dirname(__DIR__),
     'cache_path' => string('{app_path}/cache'),
     'config_path' => string('{app_path}/config'),
+    'files_path' => env('FILES_PATH', get('base_path')),
+    'manifest_path' => string('{app_path}/manifest.json'),
     'source_path' => string('{app_path}/src'),
     'translations_path' => string('{app_path}/translations'),
     'views_path' => string('{app_path}/views'),
-    'files_path' => env('FILES_PATH', get('base_path')),
+
+    /** Path helpers */
     'full_path' => value(fn (string $path, Config $config): string => $config->get('files_path') . '/' . $path),
 
     /** Array of application files (to be hidden) */

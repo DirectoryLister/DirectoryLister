@@ -4,14 +4,17 @@ namespace Tests\Bootstrap;
 
 use App\Bootstrap\ExceptionManager;
 use App\Exceptions\ErrorHandler;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use Slim\App;
 use Slim\Middleware\ErrorMiddleware;
 use Tests\TestCase;
 
-/** @covers \App\Bootstrap\ExceptionManager */
+#[CoversClass(ExceptionManager::class)]
 class ExceptionManagerTest extends TestCase
 {
-    public function test_it_sets_the_default_error_handler(): void
+    #[Test]
+    public function it_sets_the_default_error_handler(): void
     {
         $errorMiddleware = $this->createMock(ErrorMiddleware::class);
         $errorMiddleware->expects($this->once())
@@ -26,7 +29,8 @@ class ExceptionManagerTest extends TestCase
         (new ExceptionManager($app, $this->config))();
     }
 
-    public function test_it_does_not_set_the_default_error_handler_when_debug_is_enabled(): void
+    #[Test]
+    public function it_does_not_set_the_default_error_handler_when_debug_is_enabled(): void
     {
         $this->container->set('debug', true);
 

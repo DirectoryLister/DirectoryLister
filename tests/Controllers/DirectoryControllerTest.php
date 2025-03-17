@@ -3,6 +3,9 @@
 namespace Tests\Controllers;
 
 use App\Controllers\DirectoryController;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Test;
 use Psr\Http\Message\ResponseInterface;
 use Slim\Psr7\Request;
 use Slim\Psr7\Response;
@@ -11,11 +14,29 @@ use Symfony\Component\Finder\Finder;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use Tests\TestCase;
 
-/** @covers \App\Controllers\DirectoryController */
+#[CoversClass(DirectoryController::class)]
 class DirectoryControllerTest extends TestCase
 {
-    /** @dataProvider configOptions */
-    public function test_it_returns_a_successful_response(
+    /**
+     * Provide config options in the following order:
+     * [ app.hide_app_files, app.hide_vcs_files, app.display_readmes ].
+     */
+    public static function configOptions(): array
+    {
+        return [
+            [true, false, false],
+            [true, true, false],
+            [true, false, true],
+            [true, true, true],
+            [false, true, false],
+            [false, true, true],
+            [false, false, true],
+            [false, false, false],
+        ];
+    }
+
+    #[Test, DataProvider('configOptions')]
+    public function it_returns_a_successful_response(
         bool $hideAppFiles,
         bool $hideVcsFiles,
         bool $displayReadmes
@@ -33,8 +54,8 @@ class DirectoryControllerTest extends TestCase
         $this->assertEquals(200, $response->getStatusCode());
     }
 
-    /** @dataProvider configOptions */
-    public function test_it_returns_a_successful_response_when_listing_a_subdirectory(
+    #[Test, DataProvider('configOptions')]
+    public function it_returns_a_successful_response_when_listing_a_subdirectory(
         bool $hideAppFiles,
         bool $hideVcsFiles,
         bool $displayReadmes
@@ -55,7 +76,8 @@ class DirectoryControllerTest extends TestCase
         $this->assertEquals(200, $response->getStatusCode());
     }
 
-    public function test_it_returns_a_404_error_when_not_found(): void
+    #[Test]
+    public function it_returns_a_404_error_when_not_found(): void
     {
         $controller = new DirectoryController(
             $this->container,
@@ -72,23 +94,5 @@ class DirectoryControllerTest extends TestCase
 
         $this->assertInstanceOf(ResponseInterface::class, $response);
         $this->assertEquals(404, $response->getStatusCode());
-    }
-
-    /**
-     * Provide config options in the following order:
-     * [ app.hide_app_files, app.hide_vcs_files, app.display_readmes ].
-     */
-    public function configOptions(): array
-    {
-        return [
-            [true, false, false],
-            [true, true, false],
-            [true, false, true],
-            [true, true, true],
-            [false, true, false],
-            [false, true, true],
-            [false, false, true],
-            [false, false, false],
-        ];
     }
 }

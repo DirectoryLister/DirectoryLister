@@ -3,12 +3,15 @@
 namespace Tests\ViewFunctions;
 
 use App\ViewFunctions\ZipUrl;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
-/** @covers \App\ViewFunctions\ZipUrl */
+#[CoversClass(ZipUrl::class)]
 class ZipUrlTest extends TestCase
 {
-    public function test_it_can_return_a_url(): void
+    #[Test]
+    public function it_can_return_a_url(): void
     {
         $url = $this->container->get(ZipUrl::class);
 
@@ -24,7 +27,8 @@ class ZipUrlTest extends TestCase
         $this->assertEquals('?zip=0', $url('0'));
     }
 
-    public function test_it_can_return_a_url_with_back_slashes(): void
+    #[Test]
+    public function it_can_return_a_url_with_back_slashes(): void
     {
         $url = $this->container->make(ZipUrl::class, ['directorySeparator' => '\\']);
 

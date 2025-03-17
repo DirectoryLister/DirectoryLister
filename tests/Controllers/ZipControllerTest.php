@@ -3,15 +3,18 @@
 namespace Tests\Controllers;
 
 use App\Controllers\ZipController;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use Psr\Http\Message\ResponseInterface;
 use Slim\Psr7\Request;
 use Slim\Psr7\Response;
 use Tests\TestCase;
 
-/** @covers \App\Controllers\ZipController */
+#[CoversClass(ZipController::class)]
 class ZipControllerTest extends TestCase
 {
-    public function test_it_returns_a_successful_response_for_a_zip_request(): void
+    #[Test]
+    public function it_returns_a_successful_response_for_a_zip_request(): void
     {
         $controller = $this->container->get(ZipController::class);
 
@@ -26,7 +29,8 @@ class ZipControllerTest extends TestCase
         $this->assertEquals('application/zip', $response->getHeader('Content-Type')[0]);
     }
 
-    public function test_it_returns_a_404_error_when_not_found(): void
+    #[Test]
+    public function it_returns_a_404_error_when_not_found(): void
     {
         $controller = $this->container->get(ZipController::class);
 
@@ -40,7 +44,8 @@ class ZipControllerTest extends TestCase
         $this->assertEquals(404, $response->getStatusCode());
     }
 
-    public function test_it_returns_a_404_error_when_disabled_via_config(): void
+    #[Test]
+    public function it_returns_a_404_error_when_disabled_via_config(): void
     {
         $this->container->set('zip_downloads', false);
 

@@ -14,21 +14,25 @@ class Vite extends ViewFunction
         private Config $config,
     ) {}
 
+    /** @param array<string> $assets */
     public function __invoke(array $assets): string
     {
-        $manifest = $this->config->get('app_path') . '/manifest.json';
-
-        $tags = is_file($manifest) ? $this->getBuildTags($manifest, $assets) : $this->getDevTags($assets);
+        $tags = is_file($this->config->get('manifest_path')) ? $this->getBuildTags($assets) : $this->getDevTags($assets);
 
         return $tags->implode("\n");
     }
 
-    private function getBuildTags(string $manifest, array $assets): Collection
+    /**
+     * @param array<string> $assets
+     *
+     * @return Collection<int, string>
+     */
+    private function getBuildTags(array $assets): Collection
     {
-        $manifest = json_decode(file_get_contents($manifest), flags: JSON_THROW_ON_ERROR);
+        $manifest = json_decode((string) file_get_contents($this->config->get('manifest_path')), flags: JSON_THROW_ON_ERROR);
 
         return Collection::make($assets)->map(
-            fn (string $asset): string => match (mb_substr($asset, mb_strrpos($asset, '.'))) {
+            fn (string $asset): string => match (mb_substr($asset, (int) mb_strrpos($asset, '.'))) {
                 '.js' => sprintf('<script type="module" src="app/%s"></script>', $manifest->{$asset}->file),
                 '.css' => sprintf('<link rel="stylesheet" href="app/%s">', $manifest->{$asset}->file),
                 default => throw new UnexpectedValueException(sprintf('Unsupported asset type: %s', $asset))
@@ -36,10 +40,15 @@ class Vite extends ViewFunction
         );
     }
 
+    /**
+     * @param array<string> $assets
+     *
+     * @return Collection<int, string>
+     */
     private function getDevTags(array $assets): Collection
     {
         return Collection::make($assets)->map(
-            fn (string $asset): string => match (mb_substr($asset, mb_strrpos($asset, '.'))) {
+            fn (string $asset): string => match (mb_substr($asset, (int) mb_strrpos($asset, '.'))) {
                 '.js' => sprintf('<script type="module" src="http://%s:5173/%s"></script>', $_SERVER['HTTP_HOST'], $asset),
                 '.css' => sprintf('<link rel="stylesheet" href="http://%s:5173/%s">', $_SERVER['HTTP_HOST'], $asset),
                 default => throw new UnexpectedValueException(sprintf('Unsupported asset type: %s', $asset))

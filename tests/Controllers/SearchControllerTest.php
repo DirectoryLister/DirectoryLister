@@ -3,15 +3,18 @@
 namespace Tests\Controllers;
 
 use App\Controllers\SearchController;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use Psr\Http\Message\ResponseInterface;
 use Slim\Psr7\Request;
 use Slim\Psr7\Response;
 use Tests\TestCase;
 
-/** @covers \App\Controllers\SearchController */
+#[CoversClass(SearchController::class)]
 class SearchControllerTest extends TestCase
 {
-    public function test_it_returns_a_successful_response_for_a_search_request(): void
+    #[Test]
+    public function it_returns_a_successful_response_for_a_search_request(): void
     {
         $handler = $this->container->get(SearchController::class);
 
@@ -26,7 +29,8 @@ class SearchControllerTest extends TestCase
         $this->assertStringNotContainsString('No results found', (string) $response->getBody());
     }
 
-    public function test_it_returns_no_results_found_when_there_are_no_results(): void
+    #[Test]
+    public function it_returns_no_results_found_when_there_are_no_results(): void
     {
         $handler = $this->container->get(SearchController::class);
 
@@ -41,7 +45,8 @@ class SearchControllerTest extends TestCase
         $this->assertStringContainsString('No results found', (string) $response->getBody());
     }
 
-    public function test_it_returns_no_results_found_for_a_blank_search(): void
+    #[Test]
+    public function it_returns_no_results_found_for_a_blank_search(): void
     {
         $handler = $this->container->get(SearchController::class);
 

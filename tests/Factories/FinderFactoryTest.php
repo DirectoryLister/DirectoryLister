@@ -5,14 +5,17 @@ namespace Tests\Factories;
 use App\Exceptions\InvalidConfiguration;
 use App\Factories\FinderFactory;
 use App\HiddenFiles;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Finder\SplFileInfo;
 use Tests\TestCase;
 
-/** @covers \App\Factories\FinderFactory */
+#[CoversClass(FinderFactory::class)]
 class FinderFactoryTest extends TestCase
 {
-    public function test_it_can_compose_the_finder_component(): void
+    #[Test]
+    public function it_can_compose_the_finder_component(): void
     {
         $finder = (new FinderFactory(
             $this->container,
@@ -33,7 +36,8 @@ class FinderFactoryTest extends TestCase
         ], $this->getFilesArray($finder));
     }
 
-    public function test_it_can_sort_by_a_user_provided_closure(): void
+    #[Test]
+    public function it_can_sort_by_a_user_provided_closure(): void
     {
         $this->container->set('sort_order', \DI\value(
             static function (SplFileInfo $file1, SplFileInfo $file2) {
@@ -57,7 +61,8 @@ class FinderFactoryTest extends TestCase
         ], $this->getFilesArray($finder));
     }
 
-    public function test_it_can_reverse_the_sort_order(): void
+    #[Test]
+    public function it_can_reverse_the_sort_order(): void
     {
         $this->container->set('reverse_sort', true);
 
@@ -77,7 +82,8 @@ class FinderFactoryTest extends TestCase
         ], $this->getFilesArray($finder));
     }
 
-    public function test_it_does_not_return_hidden_files(): void
+    #[Test]
+    public function it_does_not_return_hidden_files(): void
     {
         $this->container->set('hidden_files', [
             'subdir/alpha.scss', 'subdir/charlie.bash', '**/*.yaml',
@@ -136,7 +142,8 @@ class FinderFactoryTest extends TestCase
         $this->assertEquals(['.dot_file'], $this->getFilesArray($finder));
     }
 
-    public function test_it_throws_a_runtime_exception_with_an_invalid_sort_order(): void
+    #[Test]
+    public function it_throws_a_runtime_exception_with_an_invalid_sort_order(): void
     {
         $this->container->set('sort_order', 'invalid');
 

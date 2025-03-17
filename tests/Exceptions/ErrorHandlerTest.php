@@ -4,15 +4,18 @@ namespace Tests\Exceptions;
 
 use App\Exceptions\ErrorHandler;
 use Exception;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use Slim\Psr7\Request;
 use Slim\Views\Twig;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use Tests\TestCase;
 
-/** @covers \App\Exceptions\ErrorHandler */
+#[CoversClass(ErrorHandler::class)]
 class ErrorHandlerTest extends TestCase
 {
-    public function test_it_returns_an_error(): void
+    #[Test]
+    public function it_returns_an_error(): void
     {
         $errorHandler = new ErrorHandler(
             $this->container->get(Twig::class),
@@ -33,7 +36,8 @@ class ErrorHandlerTest extends TestCase
         ));
     }
 
-    public function test_it_returns_an_error_for_a_json_request(): void
+    #[Test]
+    public function it_returns_an_error_for_a_json_request(): void
     {
         $errorHandler = new ErrorHandler(
             $this->container->get(Twig::class),

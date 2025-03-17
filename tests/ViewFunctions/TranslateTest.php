@@ -3,11 +3,13 @@
 namespace Tests\ViewFunctions;
 
 use App\ViewFunctions\Translate;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use Symfony\Component\Translation\Loader\ArrayLoader;
 use Symfony\Component\Translation\Translator;
 use Tests\TestCase;
 
-/** @covers \App\ViewFunctions\Translate */
+#[CoversClass(Translate::class)]
 class TranslateTest extends TestCase
 {
     /** @var Translator Translator component */
@@ -27,7 +29,8 @@ class TranslateTest extends TestCase
         ], 'fr');
     }
 
-    public function test_it_can_get_a_translation_for_the_defualt_locale(): void
+    #[Test]
+    public function it_can_get_a_translation_for_the_defualt_locale(): void
     {
         $translate = new Translate($this->translator);
 
@@ -35,7 +38,8 @@ class TranslateTest extends TestCase
         $this->assertEquals('Bar Baz', $translate('bar.baz'));
     }
 
-    public function test_it_can_get_a_translation_for_an_alternative_locale(): void
+    #[Test]
+    public function it_can_get_a_translation_for_an_alternative_locale(): void
     {
         $this->translator->setLocale('fr');
         $translate = new Translate($this->translator);

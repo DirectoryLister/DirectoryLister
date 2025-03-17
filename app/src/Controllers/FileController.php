@@ -2,7 +2,6 @@
 
 namespace App\Controllers;
 
-use App\Config;
 use DI\Container;
 use Psr\Http\Message\ResponseInterface;
 use Slim\Psr7\Factory\StreamFactory;
@@ -15,7 +14,6 @@ class FileController
 {
     public function __construct(
         private Container $container,
-        private Config $config,
         private TranslatorInterface $translator
     ) {}
 
@@ -31,8 +29,14 @@ class FileController
 
         $response = $response->withHeader('Content-Description', 'File Transfer');
         $response = $response->withHeader('Content-Disposition', sprintf('attachment; filename="%s"', $file->getFilename()));
-        $response = $response->withHeader('Content-Length', $file->getSize());
-        $response = $response->withHeader('Content-Type', $file->getType());
+
+        if ($file->getSize() !== false) {
+            $response = $response->withHeader('Content-Length', (string) $file->getSize());
+        }
+
+        if ($file->getType() !== false) {
+            $response = $response->withHeader('Content-Type', (string) $file->getType());
+        }
 
         return $response->withBody(
             (new StreamFactory)->createStreamFromFile($file->getRealPath())

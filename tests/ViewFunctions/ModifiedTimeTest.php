@@ -3,13 +3,16 @@
 namespace Tests\ViewFunctions;
 
 use App\ViewFunctions\ModifiedTime;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use Symfony\Component\Finder\SplFileInfo;
 use Tests\TestCase;
 
-/** @covers \App\ViewFunctions\ModifiedTime */
+#[CoversClass(ModifiedTime::class)]
 class ModifiedTimeTest extends TestCase
 {
-    public function test_it_can_return_the_modified_time_for_a_file(): void
+    #[Test]
+    public function it_can_return_the_modified_time_for_a_file(): void
     {
         $file = $this->createMock(SplFileInfo::class);
         $file->method('getMTime')->willReturn(516976496);

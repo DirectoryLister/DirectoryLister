@@ -4,6 +4,8 @@ namespace Tests\Middlewares;
 
 use App\Middlewares\CacheControlMiddleware;
 use Fig\Http\Message\StatusCodeInterface;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\MockObject\MockObject;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
@@ -11,7 +13,7 @@ use Slim\Psr7\Headers;
 use Slim\Psr7\Response;
 use Tests\TestCase;
 
-/** @covers \App\Middlewares\CacheControlMiddleware */
+#[CoversClass(CacheControlMiddleware::class)]
 class CacheControlMiddlewareTest extends TestCase
 {
     /** @var ServerRequestInterface&MockObject */
@@ -28,7 +30,8 @@ class CacheControlMiddlewareTest extends TestCase
         $this->handler = $this->createMock(RequestHandlerInterface::class);
     }
 
-    public function test_it_adds_a_response_cache_header_with_age_of_zero_by_defualt(): void
+    #[Test]
+    public function it_adds_a_response_cache_header_with_age_of_zero_by_defualt(): void
     {
         $this->handler->expects($this->once())->method('handle')->willReturn(
             new Response(StatusCodeInterface::STATUS_OK, new Headers([
@@ -41,7 +44,8 @@ class CacheControlMiddlewareTest extends TestCase
         $this->assertEquals(['max-age=0, private, must-revalidate'], $response->getHeader('Cache-Control'));
     }
 
-    public function test_it_adds_a_response_cache_header_for_a_pre_configured_http_cache_option(): void
+    #[Test]
+    public function it_adds_a_response_cache_header_for_a_pre_configured_http_cache_option(): void
     {
         $this->handler->expects($this->once())->method('handle')->willReturn(
             new Response(StatusCodeInterface::STATUS_OK, new Headers([

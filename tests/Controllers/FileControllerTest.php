@@ -3,15 +3,18 @@
 namespace Tests\Controllers;
 
 use App\Controllers\FileController;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use Psr\Http\Message\ResponseInterface;
 use Slim\Psr7\Request;
 use Slim\Psr7\Response;
 use Tests\TestCase;
 
-/** @covers \App\Controllers\FileController */
+#[CoversClass(FileController::class)]
 class FileControllerTest extends TestCase
 {
-    public function test_it_returns_a_successful_response_for_a_file_request(): void
+    #[Test]
+    public function it_returns_a_successful_response_for_a_file_request(): void
     {
         $controller = $this->container->get(FileController::class);
 
@@ -27,13 +30,14 @@ class FileControllerTest extends TestCase
             'Content-Description' => ['File Transfer'],
             'Content-Disposition' => ['attachment; filename="README.md"'],
             'Content-Length' => ['30'],
-            'Content-Type' => ['file']
+            'Content-Type' => ['file'],
         ], $response->getHeaders());
 
         $this->assertSame("Test README.md; please ignore\n", (string) $response->getBody());
     }
 
-    public function test_it_returns_a_404_error_when_not_found(): void
+    #[Test]
+    public function it_returns_a_404_error_when_not_found(): void
     {
         $controller = $this->container->get(FileController::class);
 

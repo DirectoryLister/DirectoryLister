@@ -4,9 +4,11 @@ namespace Tests\Bootstrap;
 
 use App\Bootstrap\BootManager;
 use DI\Container;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
-/** @covers \App\Bootstrap\BootManager */
+#[CoversClass(BootManager::class)]
 class BootManagerTest extends TestCase
 {
     /** Path to the compiled container. */
@@ -31,7 +33,7 @@ class BootManagerTest extends TestCase
         parent::tearDown();
     }
 
-    /** @test */
+    #[Test]
     public function it_caches_the_container_by_default(): void
     {
         putenv('COMPILE_CONTAINER=');
@@ -45,7 +47,7 @@ class BootManagerTest extends TestCase
         $this->assertFileExists($this->compiledContainerPath);
     }
 
-    /** @test */
+    #[Test]
     public function it_does_not_cache_the_container_when_explicitly_disabled(): void
     {
         putenv('COMPILE_CONTAINER=false');
@@ -59,7 +61,7 @@ class BootManagerTest extends TestCase
         $this->assertFileDoesNotExist($this->compiledContainerPath);
     }
 
-    /** @test */
+    #[Test]
     public function it_does_not_cache_the_container_when_debug_is_enabled(): void
     {
         putenv('APP_DEBUG=true');

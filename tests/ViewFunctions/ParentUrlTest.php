@@ -3,12 +3,15 @@
 namespace Tests\ViewFunctions;
 
 use App\ViewFunctions\ParentUrl;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
-/** @covers \App\ViewFunctions\ParentUrl */
+#[CoversClass(ParentUrl::class)]
 class ParentUrlTest extends TestCase
 {
-    public function test_it_can_get_the_parent_directory(): void
+    #[Test]
+    public function it_can_get_the_parent_directory(): void
     {
         $parentDir = new ParentUrl;
 
@@ -19,7 +22,8 @@ class ParentUrlTest extends TestCase
         $this->assertEquals('?dir=0', $parentDir('0/bar'));
     }
 
-    public function test_it_can_get_the_parent_directory_with_back_slashes(): void
+    #[Test]
+    public function it_can_get_the_parent_directory_with_back_slashes(): void
     {
         $parentDir = new ParentUrl('\\');
 

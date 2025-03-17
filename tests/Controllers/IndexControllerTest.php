@@ -3,14 +3,17 @@
 namespace Tests\Controllers;
 
 use App\Controllers;
+use App\Controllers\IndexController;
 use DI\Container;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\MockObject\MockObject;
 use Psr\Http\Message\ResponseInterface;
 use Slim\Psr7\Request;
 use Slim\Psr7\Response;
 use Tests\TestCase;
 
-/** @covers \App\Controllers\IndexController */
+#[CoversClass(IndexController::class)]
 class IndexControllerTest extends TestCase
 {
     /** @var Request&MockObject */
@@ -31,7 +34,8 @@ class IndexControllerTest extends TestCase
         $this->container = $this->createMock(Container::class);
     }
 
-    public function test_it_handles_a_file_info_request(): void
+    #[Test]
+    public function it_handles_a_file_info_request(): void
     {
         $this->request->method('getQueryParams')->willReturn(['info' => 'file.test']);
 
@@ -47,7 +51,8 @@ class IndexControllerTest extends TestCase
         $this->assertInstanceOf(ResponseInterface::class, $response);
     }
 
-    public function test_it_handles_a_search_request(): void
+    #[Test]
+    public function it_handles_a_search_request(): void
     {
         $this->request->method('getQueryParams')->willReturn(['search' => 'file.test']);
 
@@ -63,7 +68,8 @@ class IndexControllerTest extends TestCase
         $this->assertInstanceOf(ResponseInterface::class, $response);
     }
 
-    public function test_it_handles_a_zip_request(): void
+    #[Test]
+    public function it_handles_a_zip_request(): void
     {
         $this->request->method('getQueryParams')->willReturn(['zip' => 'subdir']);
 
@@ -79,7 +85,8 @@ class IndexControllerTest extends TestCase
         $this->assertInstanceOf(ResponseInterface::class, $response);
     }
 
-    public function test_it_handles_a_directory_request(): void
+    #[Test]
+    public function it_handles_a_directory_request(): void
     {
         $this->request->method('getQueryParams')->willReturn(['dir' => 'some/directory']);
 
@@ -95,7 +102,8 @@ class IndexControllerTest extends TestCase
         $this->assertInstanceOf(ResponseInterface::class, $response);
     }
 
-    public function test_it_handles_a_directory_request_by_default(): void
+    #[Test]
+    public function it_handles_a_directory_request_by_default(): void
     {
         $this->container->expects($this->once())->method('call')->with(
             Controllers\DirectoryController::class,

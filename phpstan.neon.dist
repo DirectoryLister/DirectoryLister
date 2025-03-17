@@ -1,4 +1,5 @@
 parameters:
+  level: 8
 
   paths:
     - app
@@ -8,10 +9,10 @@ parameters:
     - app/cache/*
     - app/vendor/*
 
+  tmpDir: .cache/phpstan
+
   stubFiles:
     - stubs/DI/Container.stub
-
-  level: 8
 
   checkFunctionNameCase: true
 
@@ -28,6 +29,7 @@ parameters:
       - 'DI\DependencyException'
       - 'InvalidArgumentException'
       - 'Invoker\Exception\NotCallableException'
+      - 'JsonException'
       - 'LogicException'
       - 'RuntimeException'
       - 'Psr\Cache\InvalidArgumentException'

@@ -3,13 +3,16 @@
 namespace Tests\ViewFunctions;
 
 use App\ViewFunctions\Breadcrumbs;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 use Tightenco\Collect\Support\Collection;
 
-/** @covers \App\ViewFunctions\Breadcrumbs */
+#[CoversClass(Breadcrumbs::class)]
 class BreadcrumbsTest extends TestCase
 {
-    public function test_it_can_parse_breadcrumbs_from_the_path(): void
+    #[Test]
+    public function it_can_parse_breadcrumbs_from_the_path(): void
     {
         $breadcrumbs = new Breadcrumbs($this->config);
 
@@ -21,14 +24,16 @@ class BreadcrumbsTest extends TestCase
         ]), $breadcrumbs('foo/bar/baz/tests'));
     }
 
-    public function test_it_can_parse_breadcrumbs_for_dot_path(): void
+    #[Test]
+    public function it_can_parse_breadcrumbs_for_dot_path(): void
     {
         $breadcrumbs = new Breadcrumbs($this->config);
 
         $this->assertEquals(new Collection, $breadcrumbs('.'));
     }
 
-    public function test_it_url_encodes_directory_names(): void
+    #[Test]
+    public function it_url_encodes_directory_names(): void
     {
         $breadcrumbs = new Breadcrumbs($this->config);
 
@@ -48,7 +53,8 @@ class BreadcrumbsTest extends TestCase
         ]), $breadcrumbs('foo/bar&baz'));
     }
 
-    public function test_it_can_parse_breadcrumbs_from_the_path_with_back_slashes(): void
+    #[Test]
+    public function it_can_parse_breadcrumbs_from_the_path_with_back_slashes(): void
     {
         $breadcrumbs = new Breadcrumbs($this->config, '\\');
 
@@ -59,7 +65,8 @@ class BreadcrumbsTest extends TestCase
         ]), $breadcrumbs('foo\bar\baz'));
     }
 
-    public function test_it_can_parse_breadcrumbs_from_the_path_with_zeros(): void
+    #[Test]
+    public function it_can_parse_breadcrumbs_from_the_path_with_zeros(): void
     {
         $breadcrumbs = new Breadcrumbs($this->config, '\\');
 

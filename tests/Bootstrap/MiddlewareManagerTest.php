@@ -4,10 +4,12 @@ namespace Tests\Bootstrap;
 
 use App\Bootstrap\MiddlewareManager;
 use App\Middlewares;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use Slim\App;
 use Tests\TestCase;
 
-/** @covers \App\Bootstrap\MiddlewareManager */
+#[CoversClass(MiddlewareManager::class)]
 class MiddlewareManagerTest extends TestCase
 {
     /** @const Array of application middlewares */
@@ -18,7 +20,8 @@ class MiddlewareManagerTest extends TestCase
         Middlewares\RegisterGlobalsMiddleware::class,
     ];
 
-    public function test_it_registers_application_middlewares(): void
+    #[Test]
+    public function it_registers_application_middlewares(): void
     {
         $arguments = array_map(static function (string $middleware): array {
             return [$middleware];

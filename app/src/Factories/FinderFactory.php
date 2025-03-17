@@ -38,6 +38,7 @@ class FinderFactory
         }
 
         $sortOrder = $this->config->get('sort_order');
+
         if ($sortOrder instanceof Closure) {
             $finder->sort($sortOrder);
         } else {

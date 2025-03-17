@@ -3,13 +3,16 @@
 namespace Tests\Support;
 
 use App\Support\Str;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 use Tightenco\Collect\Support\Collection;
 
-/** @covers \App\Support\Str */
+#[CoversClass(Str::class)]
 class StrTest extends TestCase
 {
-    public function test_it_can_create_a_collection_from_a_string(): void
+    #[Test]
+    public function it_can_create_a_collection_from_a_string(): void
     {
         $this->assertEquals(
             Collection::make(['foo', 'bar', 'baz']),

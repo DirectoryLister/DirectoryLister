@@ -3,6 +3,7 @@ import tailwindcss from '@tailwindcss/vite'
 
 export default defineConfig(({ command }) => {
     return {
+        cacheDir: '.cache/vite',
         build: {
             emptyOutDir: false,
             manifest: 'manifest.json',

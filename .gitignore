@@ -1,9 +1,7 @@
 /app/vendor/
 /node_modules/
+/.cache/
 /.coverage-cache/
 /.analytics
 /.env
 /.hidden
-/.php-cs-fixer.cache
-/.phpunit.result.cache
-/mix-manifest.json

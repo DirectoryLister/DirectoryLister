@@ -3,13 +3,15 @@
 namespace Tests\ViewFunctions;
 
 use App\ViewFunctions\Markdown;
-use ParsedownExtra;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
-/** @covers \App\ViewFunctions\Markdown */
+#[CoversClass(Markdown::class)]
 class MarkdownTest extends TestCase
 {
-    public function test_it_can_parse_markdown_into_html(): void
+    #[Test]
+    public function it_can_parse_markdown_into_html(): void
     {
         $markdown = $this->container->get(Markdown::class);
 

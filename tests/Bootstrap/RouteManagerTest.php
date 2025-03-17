@@ -4,13 +4,16 @@ namespace Tests\Bootstrap;
 
 use App\Bootstrap\RouteManager;
 use App\Controllers;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use Slim\App;
 use Tests\TestCase;
 
-/** @covers \App\Bootstrap\RouteManager */
+#[CoversClass(RouteManager::class)]
 class RouteManagerTest extends TestCase
 {
-    public function test_it_registers_application_routes(): void
+    #[Test]
+    public function it_registers_application_routes(): void
     {
         $app = $this->createMock(App::class);
         $app->expects($this->once())->method('get')->with(

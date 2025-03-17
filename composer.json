@@ -13,36 +13,34 @@
         "issues": "https://github.com/DirectoryLister/DirectoryLister/issues"
     },
     "require": {
-        "php": ">= 8.1",
+        "php": ">= 8.2",
         "ext-dom": "*",
         "ext-fileinfo": "*",
         "ext-zip": "*",
         "filp/whoops": "^2.7",
         "league/commonmark": "^2.6",
         "maennchen/zipstream-php": "^3.1",
-        "phlak/splat": "^5.0",
+        "phlak/splat": "^6.0",
         "php-di/php-di": "^7.0",
         "php-di/slim-bridge": "^3.0",
         "psr/http-message": "^2.0",
         "slim/psr7": "^1.0",
         "slim/slim": "^4.3",
         "slim/twig-view": "^3.0",
-        "symfony/cache": "^6.0",
-        "symfony/finder": "^6.0",
-        "symfony/translation": "^6.0",
-        "symfony/yaml": "^6.0",
+        "symfony/cache": "^7.0",
+        "symfony/finder": "^7.0",
+        "symfony/translation": "^7.0",
+        "symfony/yaml": "^7.0",
         "tightenco/collect": "^9.52",
         "vlucas/phpdotenv": "^5.0"
     },
     "require-dev": {
-        "beyondcode/expose": "^2.0",
-        "friendsofphp/php-cs-fixer": "!=3.5.0",
-        "johnkary/phpunit-speedtrap": "^4.0",
-        "phlak/coding-standards": "^2.0",
+        "phlak/coding-standards": "^4.0",
         "phpstan/phpstan": "^2.0",
+        "phpunit/phpunit": "^11.0",
         "psy/psysh": "^0.12.0",
         "symfony/var-dumper": "^6.0",
-        "yoast/phpunit-polyfills": "^3.0"
+        "yoast/phpunit-polyfills": "^4.0"
     },
     "suggest": {
         "ext-apcu": "Required to use the APCu cache driver",
@@ -62,7 +60,7 @@
     "config": {
         "optimize-autoloader": true,
         "platform": {
-            "php": "8.1"
+            "php": "8.2"
         },
         "platform-check": true,
         "sort-packages": true,

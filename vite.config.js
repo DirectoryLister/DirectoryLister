@@ -3,11 +3,10 @@ import tailwindcss from '@tailwindcss/vite'
 
 export default defineConfig(({ command }) => {
     return {
-        cacheDir: '.cache/vite',
         build: {
+            outDir: 'app',
             emptyOutDir: false,
             manifest: 'manifest.json',
-            outDir: 'app',
             rollupOptions: {
                 input: [
                     'app/resources/css/app.css',
@@ -19,15 +18,12 @@ export default defineConfig(({ command }) => {
             host: true,
             port: 5173,
             strictPort: true,
-            cors: {
-                origin: '*'
-            },
-            hmr: command === 'serve' ? {
-                host: 'directory-lister.local'
-            } : {},
+            allowedHosts: true,
+            cors: true,
         },
         plugins: [
             tailwindcss(),
         ],
+        cacheDir: '.cache/vite',
     }
 });

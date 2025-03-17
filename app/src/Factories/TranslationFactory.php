@@ -47,7 +47,7 @@ class TranslationFactory
     protected function translations(): array
     {
         return $this->cache->get('translations', function (): array {
-            return array_values(array_map(function (SplFileInfo $file): string {
+            return array_values(array_map(static function (SplFileInfo $file): string {
                 return $file->getBasename('.yaml');
             }, iterator_to_array(
                 Finder::create()->in($this->config->get('translations_path'))->name('*.yaml')

@@ -58,7 +58,7 @@ class ZipController
         $size = $zip->finish();
 
         $response = $this->augmentHeadersWithEstimatedSize($response, $size)->withBody(
-            new CallbackStream(function () use ($zip) {
+            new CallbackStream(static function () use ($zip) {
                 $zip->executeSimulation();
             })
         );

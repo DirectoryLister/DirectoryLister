@@ -28,13 +28,13 @@ return [
     'views_path' => string('{app_path}/views'),
 
     /** Path helpers */
-    'full_path' => value(fn (string $path, Config $config): string => $config->get('files_path') . '/' . $path),
+    'full_path' => value(static fn (string $path, Config $config): string => $config->get('files_path') . '/' . $path),
 
     /** Array of application files (to be hidden) */
     'app_files' => ['app', 'index.php', '.analytics', '.env', '.env.example', '.hidden'],
 
     /** Array of application middlewares */
-    'middlewares' => fn (): array => [
+    'middlewares' => [
         Middlewares\WhoopsMiddleware::class,
         Middlewares\PruneCacheMiddleware::class,
         Middlewares\CacheControlMiddleware::class,

@@ -34,7 +34,7 @@ class Vite extends ViewFunction
         $manifest = json_decode((string) file_get_contents($this->config->get('manifest_path')), flags: JSON_THROW_ON_ERROR);
 
         return Collection::make($assets)->map(
-            fn (string $asset): string => match (mb_substr($asset, (int) mb_strrpos($asset, '.'))) {
+            static fn (string $asset): string => match (mb_substr($asset, (int) mb_strrpos($asset, '.'))) {
                 '.js' => sprintf('<script type="module" src="app/%s"></script>', $manifest->{$asset}->file),
                 '.css' => sprintf('<link rel="stylesheet" href="app/%s">', $manifest->{$asset}->file),
                 default => throw new UnexpectedValueException(sprintf('Unsupported asset type: %s', $asset))
@@ -50,7 +50,7 @@ class Vite extends ViewFunction
     private function getDevTags(array $assets): Collection
     {
         return Collection::make($assets)->map(
-            fn (string $asset): string => match (mb_substr($asset, (int) mb_strrpos($asset, '.'))) {
+            static fn (string $asset): string => match (mb_substr($asset, (int) mb_strrpos($asset, '.'))) {
                 '.js' => sprintf('<script type="module" src="http://%s:5173/%s"></script>', $_SERVER['HTTP_HOST'], $asset),
                 '.css' => sprintf('<link rel="stylesheet" href="http://%s:5173/%s">', $_SERVER['HTTP_HOST'], $asset),
                 default => throw new UnexpectedValueException(sprintf('Unsupported asset type: %s', $asset))

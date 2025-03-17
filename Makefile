@@ -3,7 +3,7 @@ ARTIFACT_NAME="DirectoryLister-$$(git describe --tags --exact-match HEAD 2> /dev
 
 dev development: # Build application for development
 	@composer install --no-interaction
-	@npm install && npm run dev
+	@npm install
 
 prod production: # Build application for production
 	@composer install --no-dev --no-interaction --prefer-dist --optimize-autoloader

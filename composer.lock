@@ -4219,16 +4219,16 @@
         },
         {
             "name": "phpstan/phpstan",
-            "version": "2.0.2",
+            "version": "2.1.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan.git",
-                "reference": "6c98c7600fc717b2c78c11ef60040d5b1e359c82"
+                "reference": "f9adff3b87c03b12cc7e46a30a524648e497758f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/6c98c7600fc717b2c78c11ef60040d5b1e359c82",
-                "reference": "6c98c7600fc717b2c78c11ef60040d5b1e359c82",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/f9adff3b87c03b12cc7e46a30a524648e497758f",
+                "reference": "f9adff3b87c03b12cc7e46a30a524648e497758f",
                 "shasum": ""
             },
             "require": {
@@ -4273,7 +4273,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-11-17T14:17:00+00:00"
+            "time": "2025-03-09T09:30:48+00:00"
         },
         {
             "name": "phpunit/php-code-coverage",
@@ -7136,7 +7136,7 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {},
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
@@ -7145,9 +7145,9 @@
         "ext-fileinfo": "*",
         "ext-zip": "*"
     },
-    "platform-dev": {},
+    "platform-dev": [],
     "platform-overrides": {
         "php": "8.1"
     },
-    "plugin-api-version": "2.6.0"
+    "plugin-api-version": "2.3.0"
 }

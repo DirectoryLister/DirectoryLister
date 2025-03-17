@@ -2,7 +2,7 @@
 
 namespace App\ViewFunctions;
 
-use ParsedownExtra;
+use League\CommonMark\GithubFlavoredMarkdownConverter;
 use Symfony\Contracts\Cache\CacheInterface;
 
 class Markdown extends ViewFunction
@@ -10,7 +10,7 @@ class Markdown extends ViewFunction
     protected string $name = 'markdown';
 
     public function __construct(
-        private ParsedownExtra $parser,
+        private GithubFlavoredMarkdownConverter $converter,
         private CacheInterface $cache
     ) {}
 
@@ -20,7 +20,7 @@ class Markdown extends ViewFunction
         return $this->cache->get(
             sprintf('markdown-%s', sha1($string)),
             function () use ($string): string {
-                return $this->parser->parse($string);
+                return $this->converter->convert($string);
             }
         );
     }

@@ -19,10 +19,11 @@ return [
     /** Path definitions */
     'base_path' => dirname(__DIR__, 2),
     'app_path' => dirname(__DIR__),
+    'assets_path' => string('{app_path}/assets'),
     'cache_path' => string('{app_path}/cache'),
     'config_path' => string('{app_path}/config'),
     'files_path' => env('FILES_PATH', get('base_path')),
-    'manifest_path' => string('{app_path}/manifest.json'),
+    'manifest_path' => string('{assets_path}/manifest.json'),
     'source_path' => string('{app_path}/src'),
     'translations_path' => string('{app_path}/translations'),
     'views_path' => string('{app_path}/views'),

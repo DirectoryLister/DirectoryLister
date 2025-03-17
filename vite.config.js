@@ -4,9 +4,10 @@ import tailwindcss from '@tailwindcss/vite'
 export default defineConfig(({ command }) => {
     return {
         build: {
-            outDir: 'app',
+            outDir: '.',
             emptyOutDir: false,
-            manifest: 'manifest.json',
+            assetsDir: 'app/assets',
+            manifest: 'app/assets/manifest.json',
             rollupOptions: {
                 input: [
                     'app/resources/css/app.css',

@@ -35,8 +35,8 @@ class Vite extends ViewFunction
 
         return Collection::make($assets)->map(
             static fn (string $asset): string => match (mb_substr($asset, (int) mb_strrpos($asset, '.'))) {
-                '.js' => sprintf('<script type="module" src="app/%s"></script>', $manifest->{$asset}->file),
-                '.css' => sprintf('<link rel="stylesheet" href="app/%s">', $manifest->{$asset}->file),
+                '.js' => sprintf('<script type="module" src="%s"></script>', $manifest->{$asset}->file),
+                '.css' => sprintf('<link rel="stylesheet" href="%s">', $manifest->{$asset}->file),
                 default => throw new UnexpectedValueException(sprintf('Unsupported asset type: %s', $asset))
             }
         );

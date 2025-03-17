@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\ViewFunctions;
 
 use League\CommonMark\GithubFlavoredMarkdownConverter;
@@ -20,7 +22,7 @@ class Markdown extends ViewFunction
         return $this->cache->get(
             sprintf('markdown-%s', sha1($string)),
             function () use ($string): string {
-                return $this->converter->convert($string);
+                return (string) $this->converter->convert($string);
             }
         );
     }

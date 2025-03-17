@@ -1,13 +1,15 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests;
 
 use App\HiddenFiles;
 use BadMethodCallException;
+use Illuminate\Support\Collection;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Test;
-use Illuminate\Support\Collection;
 
 #[CoversClass(HiddenFiles::class)]
 class HiddenFilesTest extends TestCase

@@ -1,12 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Support;
 
 use App\Support\Str;
+use Illuminate\Support\Collection;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
-use Illuminate\Support\Collection;
 
 #[CoversClass(Str::class)]
 class StrTest extends TestCase

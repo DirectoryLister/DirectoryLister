@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests;
 
 use App\Bootstrap\BootManager;
@@ -37,7 +39,7 @@ class TestCase extends BaseTestCase
         );
 
         $this->config = new Config($this->container);
-        $this->cache = new ArrayAdapter($this->config->get('cache_lifetime'));
+        $this->cache = new ArrayAdapter((int) $this->config->get('cache_lifetime'));
 
         $this->container->set('base_path', $this->testFilesPath);
         $this->container->set('cache_path', $this->filePath('app/cache'));

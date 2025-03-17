@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Factories;
 
 use App\Config;
@@ -45,19 +47,19 @@ class CacheFactory
 
     private function getApcuAdapter(): ApcuAdapter
     {
-        return new ApcuAdapter(self::NAMESPACE_EXTERNAL, $this->config->get('cache_lifetime'));
+        return new ApcuAdapter(self::NAMESPACE_EXTERNAL, (int) $this->config->get('cache_lifetime'));
     }
 
     private function getArrayAdapter(): ArrayAdapter
     {
-        return new ArrayAdapter($this->config->get('cache_lifetime'));
+        return new ArrayAdapter((int) $this->config->get('cache_lifetime'));
     }
 
     private function getFilesystemAdapter(): FilesystemAdapter
     {
         return new FilesystemAdapter(
             self::NAMESPACE_INTERNAL,
-            $this->config->get('cache_lifetime'),
+            (int) $this->config->get('cache_lifetime'),
             $this->config->get('cache_path')
         );
     }
@@ -69,7 +71,7 @@ class CacheFactory
         return new MemcachedAdapter(
             $memcached,
             self::NAMESPACE_EXTERNAL,
-            $this->config->get('cache_lifetime')
+            (int) $this->config->get('cache_lifetime')
         );
     }
 
@@ -77,7 +79,7 @@ class CacheFactory
     {
         return new PhpFilesAdapter(
             self::NAMESPACE_INTERNAL,
-            $this->config->get('cache_lifetime'),
+            (int) $this->config->get('cache_lifetime'),
             $this->config->get('cache_path')
         );
     }
@@ -89,7 +91,7 @@ class CacheFactory
         return new RedisAdapter(
             $redis,
             self::NAMESPACE_EXTERNAL,
-            $this->config->get('cache_lifetime')
+            (int) $this->config->get('cache_lifetime')
         );
     }
 }

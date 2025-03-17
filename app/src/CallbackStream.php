@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * @copyright Copyright (c) 2015 Matthew Weier O'Phinney (https://mwop.net)
  * @license   http://opensource.org/licenses/BSD-2-Clause BSD-2-Clause

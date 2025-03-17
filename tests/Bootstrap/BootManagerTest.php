@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Bootstrap;
 
 use App\Bootstrap\BootManager;

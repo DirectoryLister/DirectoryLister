@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Config;
 use App\Factories;
 use App\Middlewares;

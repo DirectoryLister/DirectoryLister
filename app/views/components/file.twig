@@ -18,7 +18,7 @@
         {% if file.isFile %}
             <div class="ml-2">
                 <button title="{{ translate('file.info') }}" @click.prevent="$dispatch('show-file-info', { file: '{{ url(file.getPathname) | escape('js') }}' })"
-                    class="justify-center items-center rounded-full w-8 h-8 -m-1 cursor-pointer md:invisible hover:bg-slate-300 hover:shadow-sm dark:hover:bg-violet-900 group-hover:visible"
+                    class="justify-center items-center rounded-full w-8 h-8 -m-1 cursor-pointer transition md:invisible hover:bg-slate-300 hover:shadow-sm hover:scale-110 dark:hover:bg-violet-900 group-hover:visible"
                 >
                     <i class="fas fa-info-circle"></i>
                 </button>

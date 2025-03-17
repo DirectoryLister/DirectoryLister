@@ -29,8 +29,8 @@ class TwigFactoryTest extends TestCase
         $twig = (new TwigFactory($this->config, $callableResolver))();
 
         $this->assertInstanceOf(
-            ViewFunctions\Asset::class,
-            $twig->getEnvironment()->getFunction('asset')->getCallable()
+            ViewFunctions\Analytics::class,
+            $twig->getEnvironment()->getFunction('analytics')->getCallable()
         );
 
         $this->assertInstanceOf(
@@ -59,6 +59,11 @@ class TwigFactoryTest extends TestCase
         );
 
         $this->assertInstanceOf(
+            ViewFunctions\ModifiedTime::class,
+            $twig->getEnvironment()->getFunction('modified_time')->getCallable()
+        );
+
+        $this->assertInstanceOf(
             ViewFunctions\ParentUrl::class,
             $twig->getEnvironment()->getFunction('parent_url')->getCallable()
         );
@@ -76,6 +81,11 @@ class TwigFactoryTest extends TestCase
         $this->assertInstanceOf(
             ViewFunctions\Url::class,
             $twig->getEnvironment()->getFunction('url')->getCallable()
+        );
+
+        $this->assertInstanceOf(
+            ViewFunctions\Vite::class,
+            $twig->getEnvironment()->getFunction('vite')->getCallable()
         );
 
         $this->assertInstanceOf(

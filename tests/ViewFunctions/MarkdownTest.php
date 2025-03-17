@@ -11,10 +11,10 @@ class MarkdownTest extends TestCase
 {
     public function test_it_can_parse_markdown_into_html(): void
     {
-        $markdown = new Markdown(new ParsedownExtra, $this->cache);
+        $markdown = $this->container->get(Markdown::class);
 
         $this->assertEquals(
-            '<p><strong>Test</strong> <code>markdown</code>, <del>please</del> <em>ignore</em></p>',
+            "<p><strong>Test</strong> <code>markdown</code>, <del>please</del> <em>ignore</em></p>\n",
             $markdown('**Test** `markdown`, ~~please~~ _ignore_')
         );
     }

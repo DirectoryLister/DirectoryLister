@@ -25,4 +25,8 @@
     <listeners>
         <listener class="JohnKary\PHPUnit\Listener\SpeedTrapListener" />
     </listeners>
+
+    <php>
+        <server name="HTTP_HOST" value="localhost"/>
+    </php>
 </phpunit>

@@ -1,7 +1,9 @@
 services:
   app:
     container_name: directory-lister-app
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
     image: phlak/directory-lister:dev
     depends_on:
       - memcached
@@ -13,7 +15,7 @@ services:
     user: ${HOST_USER_ID:-0}:${HOST_GROUP_ID:-0}
     volumes:
       - ./:/var/www/html
-      - ./.docker/php/config/php.ini:/usr/local/etc/php/php.ini
+      - ./.docker/php/config/php.dev.ini:/usr/local/etc/php/php.ini
       - ./.docker/apache2/config/000-default.conf:/etc/apache2/sites-available/000-default.conf
 
   memcached:

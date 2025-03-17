@@ -1,0 +1,57 @@
+# --------- BUILD ----------
+
+FROM php:8.4-apache as build
+LABEL maintainer="Chris Kankiewicz <Chris@ChrisKankiewicz.com>"
+
+ENV HOME="/tmp"
+ENV COMPOSER_HOME="/tmp"
+ENV XDG_CONFIG_HOME="/tmp/.config"
+
+COPY --from=composer:2.8 /usr/bin/composer /usr/bin/composer
+COPY --from=node:22.11 /usr/local/bin/node /usr/local/bin/node
+COPY --from=node:22.11 /usr/local/lib/node_modules /usr/local/lib/node_modules
+
+RUN ln --symbolic ../lib/node_modules/npm/bin/npm-cli.js /usr/local/bin/npm
+
+RUN apt-get update && apt-get install --assume-yes --no-install-recommends \
+    libzip-dev zip \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN docker-php-ext-install zip
+
+COPY ./ /var/www/html
+
+WORKDIR /var/www/html
+
+RUN composer install --no-dev --no-interaction --prefer-dist --optimize-autoloader
+RUN npm install --no-save && npm run build && npm prune --production
+
+# --------- FINAL ----------
+
+FROM php:8.4-apache
+LABEL maintainer="Chris Kankiewicz <Chris@ChrisKankiewicz.com>"
+
+ENV FILES_PATH="/data"
+
+COPY .docker/apache2/config/000-default.conf /etc/apache2/sites-available/000-default.conf
+COPY .docker/php/config/php.prod.ini /usr/local/etc/php/php.ini
+
+COPY --from=build /var/www/html /var/www/html
+
+RUN apt-get update && apt-get install --assume-yes --no-install-recommends \
+    libmemcached-dev libzip-dev libssl-dev tar zip \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN docker-php-ext-install opcache zip \
+    && pecl install apcu \
+    && pecl install memcached \
+    && pecl install redis
+
+# Fix for memcached
+RUN echo extension=memcached.so >> /usr/local/etc/php/conf.d/memcached.ini
+
+RUN docker-php-ext-enable apcu memcached redis
+
+RUN a2enmod rewrite
+
+EXPOSE 80

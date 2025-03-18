@@ -18,14 +18,13 @@ use Tests\TestCase;
 #[CoversClass(IndexController::class)]
 class IndexControllerTest extends TestCase
 {
-    /** @var Request&MockObject */
-    protected $request;
-
-    /** @var Response&MockObject */
-    protected $response;
-
     /** @var Container&MockObject */
     protected $container;
+    /** @var Request&MockObject */
+    private $request;
+
+    /** @var Response&MockObject */
+    private $response;
 
     public function setUp(): void
     {

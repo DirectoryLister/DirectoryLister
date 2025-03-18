@@ -49,7 +49,7 @@ class FileInfoController
      *
      * @return array{md5: string, sha1: string, sha256: string}
      */
-    protected function calculateHashes(SplFileInfo $file): array
+    private function calculateHashes(SplFileInfo $file): array
     {
         return [
             'md5' => (string) hash_file('md5', (string) $file->getRealPath()),

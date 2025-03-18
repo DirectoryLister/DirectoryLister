@@ -68,7 +68,7 @@ class ZipController
      *
      * @throws \ZipStream\Exception
      */
-    protected function createZip(string $path, Finder $files): ZipStream
+    private function createZip(string $path, Finder $files): ZipStream
     {
         $compressionMethod = $this->config->get('zip_compress') ? CompressionMethod::DEFLATE : CompressionMethod::STORE;
 
@@ -98,7 +98,7 @@ class ZipController
     }
 
     /** Return the path to a file with the preceding root path stripped. */
-    protected function stripPath(SplFileInfo $file, string $path): string
+    private function stripPath(SplFileInfo $file, string $path): string
     {
         $pattern = sprintf('/^%s%s?/', preg_quote($path, '/'), preg_quote(DIRECTORY_SEPARATOR, '/'));
 
@@ -106,7 +106,7 @@ class ZipController
     }
 
     /** Generate the file name for a path. */
-    protected function generateFileName(string $path): string
+    private function generateFileName(string $path): string
     {
         $filename = (string) Str::explode($path, DIRECTORY_SEPARATOR)->last();
 

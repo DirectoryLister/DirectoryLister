@@ -25,7 +25,7 @@ class BootManager
     }
 
     /** Determine if container compilation should be enabled. */
-    protected static function containerCompilationEnabled(): bool
+    private static function containerCompilationEnabled(): bool
     {
         if (filter_var(getenv('APP_DEBUG'), FILTER_VALIDATE_BOOL)) {
             return false;

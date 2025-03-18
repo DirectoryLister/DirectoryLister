@@ -156,7 +156,7 @@ class FinderFactoryTest extends TestCase
         ))();
     }
 
-    protected function getFilesArray(Finder $finder): array
+    private function getFilesArray(Finder $finder): array
     {
         $files = array_map(
             static fn (SplFileInfo $file): string => $file->getFilename(),

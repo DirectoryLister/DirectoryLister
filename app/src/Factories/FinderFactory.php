@@ -55,7 +55,7 @@ class FinderFactory
     }
 
     /** Determine if a file should be hidden. */
-    protected function isHidden(SplFileInfo $file): bool
+    private function isHidden(SplFileInfo $file): bool
     {
         if (! $this->pattern instanceof Pattern) {
             $this->pattern = Pattern::make(sprintf('%s{%s}', Pattern::escape(

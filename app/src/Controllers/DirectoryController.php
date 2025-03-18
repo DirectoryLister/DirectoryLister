@@ -47,7 +47,7 @@ class DirectoryController
     }
 
     /** Return the README file within a finder object. */
-    protected function readme(Finder $files): ?SplFileInfo
+    private function readme(Finder $files): ?SplFileInfo
     {
         if (! $this->config->get('display_readmes')) {
             return null;

@@ -46,7 +46,7 @@ class TranslationFactory
      *
      * @return list<string>
      */
-    protected function translations(): array
+    private function translations(): array
     {
         return $this->cache->get('translations', fn (): array => array_values(array_map(
             static fn (SplFileInfo $file): string => $file->getBasename('.yaml'),

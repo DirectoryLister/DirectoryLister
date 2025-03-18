@@ -15,7 +15,7 @@ use Tests\TestCase;
 class MiddlewareManagerTest extends TestCase
 {
     /** @const Array of application middlewares */
-    protected const MIDDLEWARES = [
+    private const MIDDLEWARES = [
         Middlewares\WhoopsMiddleware::class,
         Middlewares\PruneCacheMiddleware::class,
         Middlewares\CacheControlMiddleware::class,

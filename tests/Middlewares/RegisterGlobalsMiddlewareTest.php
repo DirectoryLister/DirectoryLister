@@ -17,13 +17,13 @@ use Tests\TestCase;
 class RegisterGlobalsMiddlewareTest extends TestCase
 {
     /** @var Twig Twig templating component */
-    protected $view;
+    private $view;
 
     /** @var ServerRequestInterface&MockObject */
-    protected $request;
+    private $request;
 
     /** @var RequestHandlerInterface&MockObject */
-    protected $handler;
+    private $handler;
 
     protected function setUp(): void
     {

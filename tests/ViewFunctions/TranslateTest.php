@@ -15,7 +15,7 @@ use Tests\TestCase;
 class TranslateTest extends TestCase
 {
     /** @var Translator Translator component */
-    protected $translator;
+    private $translator;
 
     public function setUp(): void
     {

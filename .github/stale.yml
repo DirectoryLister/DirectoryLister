@@ -1,13 +1,16 @@
 daysUntilStale: 90
-daysUntilClose: 7
-exemptLabels:
-  - Pinned
-  - Security
+daysUntilClose: 30
+
+exemptLabels: [Pinned, Security]
+
 markComment: >
   This issue has been automatically marked as stale because it has not had
   recent activity and will be closed if no further activity occurs.
+
+  This doesn't mean the issue is not important or won't be addressed, however
+  development resources are limited and keeping the backlog clean helps us
+  focus on the most pressing issues.
+
 closeComment: >
   This issue has now been closed due to inactivity. If you're still having
   issues please open a new issue and reference this one in your comments.
-
-  Thank you for your contributions.

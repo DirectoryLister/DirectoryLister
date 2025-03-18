@@ -15,7 +15,7 @@ class HiddenFiles extends Collection
         parent::__construct($items);
     }
 
-    public static function make($items = [])
+    public static function make($items = []): never
     {
         throw new BadMethodCallException('Method not implemented');
     }

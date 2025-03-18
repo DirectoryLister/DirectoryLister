@@ -25,12 +25,14 @@ class MiddlewareManagerTest extends TestCase
     #[Test]
     public function it_registers_application_middlewares(): void
     {
-        $arguments = array_map(static function (string $middleware): array {
-            return [$middleware];
-        }, self::MIDDLEWARES);
-
         $app = $this->createMock(App::class);
-        $app->expects($this->atLeast(1))->method('add')->withConsecutive(...$arguments);
+        $app->expects($matcher = $this->atLeast(1))->method('add')->willReturnCallback(
+            function ($parameter) use ($matcher, $app): App {
+                $this->assertSame(self::MIDDLEWARES[$matcher->numberOfInvocations() - 1], $parameter);
+
+                return $app;
+            }
+        );
 
         (new MiddlewareManager($app, $this->config))();
     }

@@ -10,6 +10,7 @@ use PHPUnit\Framework\Attributes\Test;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 use Tests\TestCase;
+use Whoops\Handler\Handler;
 use Whoops\Handler\JsonResponseHandler;
 use Whoops\Handler\PrettyPageHandler;
 use Whoops\RunInterface;
@@ -57,9 +58,11 @@ class WhoopsMiddlewareTest extends TestCase
         $jsonHandler = new JsonResponseHandler;
 
         $whoops = $this->createMock(RunInterface::class);
-        $whoops->expects($this->exactly(2))->method('pushHandler')->withConsecutive(
-            [$pageHandler],
-            [$jsonHandler]
+        $whoops->expects($matcher = $this->exactly(2))->method('pushHandler')->willReturnCallback(
+            fn (Handler $parameter) => match ($matcher->numberOfInvocations()) {
+                1 => $this->assertSame($pageHandler, $parameter),
+                2 => $this->assertSame($jsonHandler, $parameter),
+            }
         );
 
         $middleware = new WhoopsMiddleware($whoops, $pageHandler, $jsonHandler);

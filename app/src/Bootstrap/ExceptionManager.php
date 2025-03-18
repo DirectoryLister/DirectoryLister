@@ -6,11 +6,12 @@ namespace App\Bootstrap;
 
 use App\Config;
 use App\Exceptions\ErrorHandler;
+use DI\Container;
 use Slim\App;
 
 class ExceptionManager
 {
-    /** Create a new ExceptionManager object. */
+    /** @param App<Container> $app */
     public function __construct(
         private App $app,
         private Config $config

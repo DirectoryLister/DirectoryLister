@@ -5,11 +5,12 @@ declare(strict_types=1);
 namespace App\Bootstrap;
 
 use App\Config;
+use DI\Container;
 use Slim\App;
 
 class MiddlewareManager
 {
-    /** Create a new MiddlwareManager object. */
+    /** @param App<Container> $app */
     public function __construct(
         private App $app,
         private Config $config

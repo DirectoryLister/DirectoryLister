@@ -15,13 +15,11 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 
 class TranslationFactory
 {
-    /** Create a new TranslationFactory object. */
     public function __construct(
         private Config $config,
         private CacheInterface $cache
     ) {}
 
-    /** Initialize and return the translation component. */
     public function __invoke(): TranslatorInterface
     {
         if (! in_array(
@@ -43,7 +41,11 @@ class TranslationFactory
         return $translator;
     }
 
-    /** Get an array of available translation languages. */
+    /**
+     * Get an array of available translation languages.
+     *
+     * @return list<string>
+     */
     protected function translations(): array
     {
         return $this->cache->get('translations', function (): array {

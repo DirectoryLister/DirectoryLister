@@ -20,8 +20,9 @@ class ModifiedTime extends ViewFunction
     public function __invoke(SplFileInfo $file): string
     {
         try {
+            /** @throws RuntimeException */
             $modifiedTime = $file->getMTime();
-        } catch (RuntimeException $exception) {
+        } catch (RuntimeException) {
             $modifiedTime = lstat($file->getPathname())['mtime'];
         }
 

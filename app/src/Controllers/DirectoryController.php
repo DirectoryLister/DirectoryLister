@@ -17,7 +17,6 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 
 class DirectoryController
 {
-    /** Create a new IndexController object. */
     public function __construct(
         private Container $container,
         private Config $config,
@@ -26,7 +25,6 @@ class DirectoryController
         private TranslatorInterface $translator
     ) {}
 
-    /** Invoke the IndexController. */
     public function __invoke(Request $request, Response $response): ResponseInterface
     {
         $relativePath = $request->getQueryParams()['dir'] ?? '.';
@@ -57,11 +55,11 @@ class DirectoryController
 
         $readmes = (clone $files)->name('/^README(?:\..+)?$/i');
 
-        $readmes->filter(static function (SplFileInfo $file) {
-            return (bool) preg_match('/text\/.+/', (string) mime_content_type($file->getPathname()));
-        })->sort(static function (SplFileInfo $file1, SplFileInfo $file2) {
-            return $file1->getExtension() <=> $file2->getExtension();
-        });
+        $readmes->filter(
+            static fn (SplFileInfo $file): bool => (bool) preg_match('/text\/.+/', (string) mime_content_type($file->getPathname()))
+        )->sort(
+            static fn (SplFileInfo $file1, SplFileInfo $file2): int => $file1->getExtension() <=> $file2->getExtension()
+        );
 
         if (! $readmes->hasResults()) {
             return null;

@@ -13,13 +13,11 @@ use Symfony\Contracts\Cache\CacheInterface;
 
 class PruneCacheMiddleware
 {
-    /** Create a new CachePruneMiddleware object. */
     public function __construct(
         private Config $config,
         private CacheInterface $cache
     ) {}
 
-    /** Invoke the CachePruneMiddleware class. */
     public function __invoke(Request $request, RequestHandler $handler): ResponseInterface
     {
         $response = $handler->handle($request);

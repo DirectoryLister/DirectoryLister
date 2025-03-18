@@ -62,6 +62,7 @@ class WhoopsMiddlewareTest extends TestCase
             fn (Handler $parameter) => match ($matcher->numberOfInvocations()) {
                 1 => $this->assertSame($pageHandler, $parameter),
                 2 => $this->assertSame($jsonHandler, $parameter),
+                default => $this->fail('Unexpected invocation')
             }
         );
 

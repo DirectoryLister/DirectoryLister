@@ -10,7 +10,7 @@ class ParentUrl extends ViewFunction
 {
     protected string $name = 'parent_url';
 
-    /** Create a new ParentUrl object. */
+    /** @param non-empty-string $directorySeparator */
     public function __construct(
         private string $directorySeparator = DIRECTORY_SEPARATOR
     ) {}

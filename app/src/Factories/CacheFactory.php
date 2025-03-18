@@ -19,19 +19,14 @@ use Symfony\Contracts\Cache\CacheInterface;
 
 class CacheFactory
 {
-    /** @const Namespace for external cache drivers */
-    protected const NAMESPACE_EXTERNAL = 'directory_lister';
+    private const NAMESPACE_EXTERNAL = 'directory_lister';
+    private const NAMESPACE_INTERNAL = 'app';
 
-    /** @const Namespace for internal cache drivers */
-    protected const NAMESPACE_INTERNAL = 'app';
-
-    /** Create a new CacheFactory object. */
     public function __construct(
         private Container $container,
         private Config $config
     ) {}
 
-    /** Initialize and return a CacheInterface. */
     public function __invoke(): CacheInterface
     {
         return match ($this->config->get('cache_driver')) {

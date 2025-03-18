@@ -9,6 +9,8 @@ use Symfony\Component\Finder\SplFileInfo;
 
 class SizeForHumans extends ViewFunction
 {
+    private const array UNITS = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
+
     protected string $name = 'size_for_humans';
 
     /** Get the human readable file size from a file object. */
@@ -16,13 +18,12 @@ class SizeForHumans extends ViewFunction
     {
         try {
             $fileSize = $file->getSize();
-        } catch (RuntimeException $exception) {
+        } catch (RuntimeException) {
             return '0B';
         }
 
-        $sizes = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
         $factor = (int) floor((strlen((string) $fileSize) - 1) / 3);
 
-        return sprintf('%.2f%s', $fileSize / pow(1024, $factor), $sizes[$factor]);
+        return sprintf('%.2f%s', $fileSize / pow(1024, $factor), self::UNITS[$factor]);
     }
 }

@@ -43,6 +43,7 @@ class PruneCacheMiddlewareTest extends TestCase
         ];
     }
 
+    /** @param class-string $cacheAdapter */
     #[Test, DataProvider('pruneableCacheAdapters')]
     public function it_prunes_the_cache_whe_using_a_pruneable_adapter_and_winning_the_lottery(string $cacheAdapter): void
     {
@@ -56,6 +57,7 @@ class PruneCacheMiddlewareTest extends TestCase
         );
     }
 
+    /** @param class-string $cacheAdapter */
     #[Test, DataProvider('nonPruneableCacheAdapters')]
     public function it_does_not_prune_the_cache_when_using_a_non_prunable_adapter(string $cacheAdapter): void
     {

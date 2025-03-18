@@ -11,7 +11,7 @@ class Url extends ViewFunction
 {
     protected string $name = 'url';
 
-    /** Create a new Url object. */
+    /** @param non-empty-string $directorySeparator */
     public function __construct(
         private Config $config,
         private string $directorySeparator = DIRECTORY_SEPARATOR

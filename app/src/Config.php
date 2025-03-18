@@ -9,23 +9,16 @@ use DI\NotFoundException;
 
 class Config
 {
-    /** Create a new Config object. */
     public function __construct(
         private Container $container
     ) {}
 
-    /**
-     * Get the value of a configuration variable.
-     *
-     * @param mixed $default
-     *
-     * @return mixed
-     */
-    public function get(string $key, $default = null)
+    /** Get the value of a configuration variable. */
+    public function get(string $key, mixed $default = null): mixed
     {
         try {
             $value = $this->container->get($key);
-        } catch (NotFoundException $exception) {
+        } catch (NotFoundException) {
             return $default;
         }
 

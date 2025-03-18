@@ -16,17 +16,15 @@ use Symfony\Component\Finder\SplFileInfo;
 
 class FinderFactory
 {
-    /** @var ?Pattern Hidden files pattern cache */
+    /** Hidden files pattern cache */
     private ?Pattern $pattern = null;
 
-    /** Create a new FinderFactory object. */
     public function __construct(
         private Container $container,
         private Config $config,
         private HiddenFiles $hiddenFiles
     ) {}
 
-    /** Initialize and return the Finder component. */
     public function __invoke(): Finder
     {
         $finder = Finder::create()->followLinks();

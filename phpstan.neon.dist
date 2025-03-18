@@ -16,8 +16,6 @@ parameters:
 
   checkFunctionNameCase: true
 
-  reportUnmatchedIgnoredErrors: false
-
   exceptions:
     implicitThrows: false
 
@@ -31,11 +29,13 @@ parameters:
       - 'Invoker\Exception\NotCallableException'
       - 'JsonException'
       - 'LogicException'
-      - 'RuntimeException'
+      - 'PHPUnit\Framework\Exception'
       - 'Psr\Cache\InvalidArgumentException'
+      - 'Random\RandomException'
+      - 'RuntimeException'
       - 'SebastianBergmann\RecursionContext\InvalidArgumentException'
       - 'Symfony\Component\Cache\Exception\CacheException'
-      - 'PHPUnit\Framework\Exception'
+      - 'Twig\Error\Error'
 
 includes:
   - phpstan-baseline.neon

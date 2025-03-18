@@ -9,7 +9,6 @@ use App\Config;
 use App\Support\Str;
 use DateTime;
 use DI\Container;
-use Exception;
 use Psr\Http\Message\ResponseInterface;
 use RuntimeException;
 use Slim\Psr7\Request;
@@ -18,12 +17,12 @@ use Symfony\Component\Finder\Finder;
 use Symfony\Component\Finder\SplFileInfo;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use ZipStream\CompressionMethod;
+use ZipStream\Exception as ZipStreamException;
 use ZipStream\OperationMode;
 use ZipStream\ZipStream;
 
 class ZipController
 {
-    /** Create a new ZipHandler object. */
     public function __construct(
         private Container $container,
         private Config $config,
@@ -31,11 +30,6 @@ class ZipController
         private TranslatorInterface $translator
     ) {}
 
-    /** Invoke the ZipHandler.
-     * @throws \ZipStream\Exception\FileNotFoundException
-     * @throws \ZipStream\Exception\FileNotReadableException
-     * @throws Exception
-     */
     public function __invoke(Request $request, Response $response): ResponseInterface
     {
         $path = $this->container->call('full_path', ['path' => $request->getQueryParams()['zip']]);
@@ -54,24 +48,25 @@ class ZipController
 
         $files = $this->finder->in($path)->files();
 
-        $zip = $this->createZip($path, $files);
+        try {
+            $zip = $this->createZip($path, $files);
+        } catch (ZipStreamException) {
+            return $response->withStatus(500, $this->translator->trans('error.unexpected'));
+        }
+
         $size = $zip->finish();
 
-        $response = $this->augmentHeadersWithEstimatedSize($response, $size)->withBody(
-            new CallbackStream(static function () use ($zip) {
+        return $response->withHeader('Content-Length', (string) $size)->withBody(
+            new CallbackStream(static function () use ($zip): void {
                 $zip->executeSimulation();
             })
         );
-
-        return $response;
     }
 
     /**
      * Create a zip stream from a directory.
      *
-     * @throws \ZipStream\Exception\FileNotFoundException
-     * @throws \ZipStream\Exception\FileNotReadableException
-     * @throws Exception
+     * @throws \ZipStream\Exception
      */
     protected function createZip(string $path, Finder $files): ZipStream
     {
@@ -102,11 +97,6 @@ class ZipController
         return $zip;
     }
 
-    protected function augmentHeadersWithEstimatedSize(Response $response, int $size): Response
-    {
-        return $response->withHeader('Content-Length', (string) $size);
-    }
-
     /** Return the path to a file with the preceding root path stripped. */
     protected function stripPath(SplFileInfo $file, string $path): string
     {
@@ -118,7 +108,7 @@ class ZipController
     /** Generate the file name for a path. */
     protected function generateFileName(string $path): string
     {
-        $filename = Str::explode($path, DIRECTORY_SEPARATOR)->last();
+        $filename = (string) Str::explode($path, DIRECTORY_SEPARATOR)->last();
 
         return $filename == '.' ? 'Home' : $filename;
     }

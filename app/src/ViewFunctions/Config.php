@@ -10,7 +10,6 @@ class Config extends ViewFunction
 {
     protected string $name = 'config';
 
-    /** Create a new Config object. */
     public function __construct(
         private AppConfig $config
     ) {}

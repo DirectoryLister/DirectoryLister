@@ -11,6 +11,8 @@ class Str
     /**
      * Explode a string by a string into a collection.
      *
+     * @param non-empty-string $delimiter
+     *
      * @return Collection<int, string>
      */
     public static function explode(string $string, string $delimiter): Collection

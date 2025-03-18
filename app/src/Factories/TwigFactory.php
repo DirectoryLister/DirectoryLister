@@ -14,18 +14,16 @@ use Twig\TwigFunction;
 
 class TwigFactory
 {
-    /** Create a new TwigFactory object. */
     public function __construct(
         private Config $config,
         private CallableResolver $callableResolver
     ) {}
 
-    /** Initialize and return the Twig component. */
     public function __invoke(): Twig
     {
-        $twig = new Twig(new FilesystemLoader(
-            $this->config->get('views_path')
-        ), ['cache' => $this->config->get('view_cache')]);
+        $twig = new Twig(new FilesystemLoader($this->config->get('views_path')), [
+            'cache' => $this->config->get('view_cache'),
+        ]);
 
         /** @var CoreExtension $core */
         $core = $twig->getEnvironment()->getExtension(CoreExtension::class);

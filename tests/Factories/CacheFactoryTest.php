@@ -28,6 +28,7 @@ class CacheFactoryTest extends TestCase
         ];
     }
 
+    /** @param class-string $adapter */
     #[Test, DataProvider('cacheAdapters')]
     public function it_can_compose_an_adapter(string $config, string $adapter, bool $available = true): void
     {

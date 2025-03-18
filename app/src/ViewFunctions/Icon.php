@@ -11,7 +11,6 @@ class Icon extends ViewFunction
 {
     protected string $name = 'icon';
 
-    /** Create a new Config object. */
     public function __construct(
         private Config $config
     ) {}
@@ -21,8 +20,7 @@ class Icon extends ViewFunction
     {
         $icons = $this->config->get('icons');
 
-        $icon = $file->isDir() ? 'fas fa-folder'
-            : $icons[strtolower($file->getExtension())] ?? 'fas fa-file';
+        $icon = $file->isDir() ? 'fas fa-folder' : $icons[strtolower($file->getExtension())] ?? 'fas fa-file';
 
         return "<i class=\"{$icon} fa-fw fa-lg\"></i>";
     }

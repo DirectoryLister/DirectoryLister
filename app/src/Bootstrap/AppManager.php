@@ -10,12 +10,15 @@ use Slim\App;
 
 class AppManager
 {
-    /** Create a new AppManager object. */
     public function __construct(
         private Container $container
     ) {}
 
-    /** Setup and configure the application. */
+    /**
+     * Setup and configure the application.
+     *
+     * @return App<Container>
+     */
     public function __invoke(): App
     {
         $app = Bridge::create($this->container);

@@ -12,7 +12,7 @@ class Breadcrumbs extends ViewFunction
 {
     protected string $name = 'breadcrumbs';
 
-    /** Create a new Breadcrumbs object. */
+    /** @param non-empty-string $directorySeparator */
     public function __construct(
         private Config $config,
         private string $directorySeparator = DIRECTORY_SEPARATOR

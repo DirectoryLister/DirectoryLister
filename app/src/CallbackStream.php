@@ -95,11 +95,11 @@ class CallbackStream implements StreamInterface
      * @see http://www.php.net/manual/en/function.fseek.php
      *
      * @param int $offset Stream offset
-     * @param int $whence Specifies how the cursor position will be calculated
-     *                    based on the seek offset. Valid values are identical to the built-in
-     *                    PHP $whence values for `fseek()`.  SEEK_SET: Set position equal to
-     *                    offset bytes SEEK_CUR: Set position to current location plus offset
-     *                    SEEK_END: Set position to end-of-stream plus offset.
+     * @param int $whence Specifies how the cursor position will be calculated based on the seek offset.
+     *                    Valid values are identical to the built-in PHP $whence values for `fseek()`.
+     *                    - SEEK_SET: Set position equal to offset bytes
+     *                    - SEEK_CUR: Set position to current location plus offset
+     *                    - SEEK_END: Set position to end-of-stream plus offset.
      */
     public function seek($offset, $whence = SEEK_SET): void {}
 
@@ -154,7 +154,6 @@ class CallbackStream implements StreamInterface
 
         $this->called = true;
 
-        // Execute the callback
         call_user_func($this->callback);
 
         return '';
@@ -176,9 +175,9 @@ class CallbackStream implements StreamInterface
      *
      * @param string $key specific metadata to retrieve
      *
-     * @return array|mixed|null Returns an associative array if no key is
-     *                          provided. Returns a specific key value if a key is provided and the
-     *                          value is found, or null if the key is not found.
+     * @return array|mixed|null Returns an associative array if no key is provided.
+     *                          Returns a specific key value if a key is provided and
+     *                          the value is found, or null if the key is not found.
      */
     public function getMetadata($key = null)
     {

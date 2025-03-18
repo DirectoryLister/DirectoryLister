@@ -21,9 +21,7 @@ class Markdown extends ViewFunction
     {
         return $this->cache->get(
             sprintf('markdown-%s', sha1($string)),
-            function () use ($string): string {
-                return (string) $this->converter->convert($string);
-            }
+            fn (): string => (string) $this->converter->convert($string)
         );
     }
 }

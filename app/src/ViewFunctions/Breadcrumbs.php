@@ -27,14 +27,12 @@ class Breadcrumbs extends ViewFunction
     {
         return Str::explode($path, $this->directorySeparator)->diffAssoc(
             explode($this->directorySeparator, $this->config->get('files_path'))
-        )->filter(static function (string $crumb): bool {
-            return ! in_array($crumb, [null, '.']);
-        })->reduce(function (Collection $carry, string $crumb): Collection {
-            return $carry->put($crumb, ltrim(
-                $carry->last() . $this->directorySeparator . rawurlencode($crumb), $this->directorySeparator
-            ));
-        }, new Collection)->map(static function (string $path): string {
-            return sprintf('?dir=%s', $path);
-        });
+        )->filter(
+            static fn (string $crumb): bool => ! in_array($crumb, [null, '.'])
+        )->reduce(fn (Collection $carry, string $crumb): Collection => $carry->put($crumb, ltrim(
+            $carry->last() . $this->directorySeparator . rawurlencode($crumb), $this->directorySeparator
+        )), new Collection)->map(
+            static fn (string $path): string => sprintf('?dir=%s', $path)
+        );
     }
 }

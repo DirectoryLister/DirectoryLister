@@ -42,9 +42,7 @@ class FinderFactoryTest extends TestCase
     public function it_can_sort_by_a_user_provided_closure(): void
     {
         $this->container->set('sort_order', \DI\value(
-            static function (SplFileInfo $file1, SplFileInfo $file2) {
-                return $file1->getSize() <=> $file2->getSize();
-            }
+            static fn (SplFileInfo $file1, SplFileInfo $file2) => $file1->getSize() <=> $file2->getSize()
         ));
 
         $finder = (new FinderFactory(
@@ -160,9 +158,10 @@ class FinderFactoryTest extends TestCase
 
     protected function getFilesArray(Finder $finder): array
     {
-        $files = array_map(static function (SplFileInfo $file) {
-            return $file->getFilename();
-        }, iterator_to_array($finder));
+        $files = array_map(
+            static fn (SplFileInfo $file): string => $file->getFilename(),
+            iterator_to_array($finder)
+        );
 
         return array_values($files);
     }

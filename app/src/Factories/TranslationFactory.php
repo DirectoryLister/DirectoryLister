@@ -48,12 +48,9 @@ class TranslationFactory
      */
     protected function translations(): array
     {
-        return $this->cache->get('translations', function (): array {
-            return array_values(array_map(static function (SplFileInfo $file): string {
-                return $file->getBasename('.yaml');
-            }, iterator_to_array(
-                Finder::create()->in($this->config->get('translations_path'))->name('*.yaml')
-            )));
-        });
+        return $this->cache->get('translations', fn (): array => array_values(array_map(
+            static fn (SplFileInfo $file): string => $file->getBasename('.yaml'),
+            iterator_to_array(Finder::create()->in($this->config->get('translations_path'))->name('*.yaml'))
+        )));
     }
 }

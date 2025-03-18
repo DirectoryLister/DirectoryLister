@@ -19,12 +19,10 @@ class ParentUrl extends ViewFunction
     public function __invoke(string $path): string
     {
         $parentDir = Str::explode($path, $this->directorySeparator)->map(
-            static function (string $segment): string {
-                return rawurlencode($segment);
-            }
-        )->filter(static function (?string $value): bool {
-            return $value !== null;
-        })->slice(0, -1)->implode($this->directorySeparator);
+            static fn (string $segment): string => rawurlencode($segment)
+        )->filter(
+            static fn (?string $value): bool => $value !== null
+        )->slice(0, -1)->implode($this->directorySeparator);
 
         if ($parentDir === '') {
             return '.';

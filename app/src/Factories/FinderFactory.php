@@ -32,9 +32,7 @@ class FinderFactory
         $finder->ignoreDotFiles($this->config->get('hide_dot_files'));
 
         if ($this->hiddenFiles->isNotEmpty()) {
-            $finder->filter(function (SplFileInfo $file): bool {
-                return ! $this->isHidden($file);
-            });
+            $finder->filter(fn (SplFileInfo $file): bool => ! $this->isHidden($file));
         }
 
         $sortOrder = $this->config->get('sort_order');

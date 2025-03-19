@@ -24,7 +24,7 @@ jobs:
         run: npm run build --verbose
 
       - name: Lint JavaScript Files
-        run: npx eslint app/resources/js/**/*.js
+        run: npx eslint app/resources/js/
 
   coding-standards:
     name: Coding Standards

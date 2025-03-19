@@ -170,5 +170,5 @@ jobs:
           name: v${{ env.TAG }}
           draft: true
           files: |
-            artifacts/DirectoryLister-${{ steps.vars.outputs.tag }}.tar.gz
-            artifacts/DirectoryLister-${{ steps.vars.outputs.tag }}.zip
+            artifacts/DirectoryLister-${{ env.TAG }}.tar.gz
+            artifacts/DirectoryLister-${{ env.TAG }}.zip

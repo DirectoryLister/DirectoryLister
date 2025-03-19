@@ -31,6 +31,8 @@ RUN npm install --no-save && npm run build && npm prune --production
 FROM php:8.4-apache
 LABEL maintainer="Chris Kankiewicz <Chris@ChrisKankiewicz.com>"
 
+EXPOSE 80
+
 ENV FILES_PATH="/data"
 
 COPY .docker/apache2/config/000-default.conf /etc/apache2/sites-available/000-default.conf
@@ -38,7 +40,9 @@ COPY .docker/php/config/php.prod.ini /usr/local/etc/php/php.ini
 
 COPY --from=build /var/www/html /var/www/html
 
-RUN chowwn --recursive www-data:www-data /var/www/html
+RUN chown --recursive www-data:www-data /var/www/html
+
+VOLUME /var/www/html/app/cache
 
 RUN apt-get update && apt-get install --assume-yes --no-install-recommends \
     libmemcached-dev libzip-dev libssl-dev tar zip \
@@ -55,7 +59,3 @@ RUN echo extension=memcached.so >> /usr/local/etc/php/conf.d/memcached.ini
 RUN docker-php-ext-enable apcu memcached redis
 
 RUN a2enmod rewrite
-
-VOLUME /var/www/html/app/cache
-
-EXPOSE 80

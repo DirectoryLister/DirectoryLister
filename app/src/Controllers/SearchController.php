@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controllers;
 
+use DI\Container;
 use Psr\Http\Message\ResponseInterface;
 use Slim\Psr7\Request;
 use Slim\Psr7\Response;
@@ -14,6 +15,7 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 class SearchController
 {
     public function __construct(
+        private Container $container,
         private Finder $finder,
         private Twig $view,
         private TranslatorInterface $translator
@@ -23,7 +25,7 @@ class SearchController
     {
         $search = $request->getQueryParams()['search'];
 
-        $files = $this->finder->in('.')->name(
+        $files = $this->finder->in($this->container->call('full_path', ['path' => '.']))->name(
             $search ? sprintf('/(?:.*)%s(?:.*)/i', preg_quote($search, '/')) : ''
         );
 

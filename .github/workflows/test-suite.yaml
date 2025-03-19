@@ -21,7 +21,7 @@ jobs:
         run: npm ci
 
       - name: Compile Assets
-        run: npm run production --verbose
+        run: npm run build --verbose
 
       - name: Lint JavaScript Files
         run: npx eslint app/resources/js/**/*.js

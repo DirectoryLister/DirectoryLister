@@ -159,8 +159,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Get Tag
-        id: vars
-        run: echo ::set-output name=tag::${GITHUB_REF#refs/*/}
+        run: echo "TAG=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
 
       - name: Build Artifact
         run: make artifacts
@@ -168,7 +167,7 @@ jobs:
       - name: Publish Release
         uses: softprops/action-gh-release@v2
         with:
-          name: v${{ steps.vars.outputs.tag }}
+          name: v${{ env.TAG }}
           draft: true
           files: |
             artifacts/DirectoryLister-${{ steps.vars.outputs.tag }}.tar.gz

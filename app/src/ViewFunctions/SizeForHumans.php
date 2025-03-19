@@ -9,7 +9,7 @@ use Symfony\Component\Finder\SplFileInfo;
 
 class SizeForHumans extends ViewFunction
 {
-    private const array UNITS = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
+    private const UNITS = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
 
     protected string $name = 'size_for_humans';
 

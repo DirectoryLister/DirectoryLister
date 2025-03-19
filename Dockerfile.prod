@@ -54,4 +54,6 @@ RUN docker-php-ext-enable apcu memcached redis
 
 RUN a2enmod rewrite
 
+VOLUME /var/www/html/app/cache
+
 EXPOSE 80

@@ -38,6 +38,8 @@ COPY .docker/php/config/php.prod.ini /usr/local/etc/php/php.ini
 
 COPY --from=build /var/www/html /var/www/html
 
+RUN chowwn --recursive www-data:www-data /var/www/html
+
 RUN apt-get update && apt-get install --assume-yes --no-install-recommends \
     libmemcached-dev libzip-dev libssl-dev tar zip \
     && rm -rf /var/lib/apt/lists/*

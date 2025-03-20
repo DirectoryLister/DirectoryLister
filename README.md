@@ -79,6 +79,55 @@ For general help and support join our [GitHub Discussion](https://github.com/Dir
 
 Please report bugs to the [GitHub Issue Tracker](https://github.com/DirectoryLister/DirectoryLister/issues).
 
+Development
+----------
+
+### Requirements
+
+To contribute to or modify Directory Lister, you'll need:
+
+- [PHP](https://www.php.net/) >= 8.2
+  - Required extensions: zip, dom, fileinfo
+  - Optional extensions: apcu, memcached, redis (for alternative cache drivers)
+- [Composer](https://getcomposer.org/) for PHP dependency management
+- [Node.js](https://nodejs.org/) and NPM for frontend asset building
+- [Git](https://git-scm.com/) for version control
+
+### Setup Development Environment
+
+1. Clone the repository
+   ```bash
+   git clone https://github.com/DirectoryLister/DirectoryLister.git
+   cd DirectoryLister
+   ```
+
+2. Install dependencies
+   ```bash
+   composer install
+   npm install
+   ```
+
+3. Build frontend assets
+   ```bash
+   npm run dev   # Development build
+   npm run build # Production build
+   ```
+
+4. Run a local development server
+   ```bash
+   composer serve
+   ```
+
+### Common Commands
+
+- Run tests: `make test`
+- Check coding standards: `make cs`
+- Run static analysis: `make static-analysis`
+- Run the complete test suite: `make suite`
+- Clear app cache: `make clear-cache`
+
+See the `Makefile` for additional commands.
+
 Copyright
 ---------
 

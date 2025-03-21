@@ -136,6 +136,7 @@ jobs:
           tags: |
             type=raw,value=latest
             type=ref,event=tag
+            type=semver,pattern={{version}},value=stable
 
       - name: Build & Push Image
         uses: docker/build-push-action@v6

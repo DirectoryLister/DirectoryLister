@@ -34,10 +34,10 @@ coverage: # Generate an HTML coverage report
 	@docker-compose run --rm -e XDEBUG_MODE=coverage app app/vendor/bin/phpunit --coverage-html .coverage
 
 clear-assets: # Clear the compiled assets
-	@rm app/assets/* -rfv
+	@rm --recursive --force --verbose app/assets/*
 
 clear-cache: # Clear the application cache
-	@rm app/cache/* -rfv
+	@rm --recursive --force --verbose app/cache/*
 
 tar: # Generate tarball
 	@tar --exclude-vcs --exclude=app/cache/* --exclude=app/resources \

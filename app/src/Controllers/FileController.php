@@ -30,10 +30,7 @@ class FileController
         }
 
         $response = $response->withHeader('Content-Disposition', sprintf('attachment; filename="%s"', $file->getFilename()));
-
-        $response = $response->withHeader('Content-Type', finfo_file(
-            finfo_open(), (string) $file->getRealPath(), FILEINFO_MIME_TYPE
-        ));
+        $response = $response->withHeader('Content-Type', $this->contentType($file));
 
         if ($file->getSize() !== false) {
             $response = $response->withHeader('Content-Length', (string) $file->getSize());
@@ -42,5 +39,18 @@ class FileController
         return $response->withBody(
             (new StreamFactory)->createStreamFromFile($file->getRealPath())
         );
+    }
+
+    private function contentType(SplFileInfo $file, string $default = 'application/octet-stream'): string
+    {
+        $finfo = finfo_open(FILEINFO_MIME_TYPE);
+
+        if ($finfo === false) {
+            return $default;
+        }
+
+        $mimeType = finfo_file($finfo, (string) $file->getRealPath(), FILEINFO_MIME_TYPE);
+
+        return $mimeType ? $mimeType : $default;
     }
 }

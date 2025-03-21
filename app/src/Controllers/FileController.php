@@ -29,15 +29,14 @@ class FileController
             return $response->withStatus(404, $this->translator->trans('error.file_not_found'));
         }
 
-        $response = $response->withHeader('Content-Description', 'File Transfer');
         $response = $response->withHeader('Content-Disposition', sprintf('attachment; filename="%s"', $file->getFilename()));
+
+        $response = $response->withHeader('Content-Type', finfo_file(
+            finfo_open(), (string) $file->getRealPath(), FILEINFO_MIME_TYPE
+        ));
 
         if ($file->getSize() !== false) {
             $response = $response->withHeader('Content-Length', (string) $file->getSize());
-        }
-
-        if ($file->getType() !== false) {
-            $response = $response->withHeader('Content-Type', (string) $file->getType());
         }
 
         return $response->withBody(

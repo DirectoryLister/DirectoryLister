@@ -29,7 +29,7 @@ class FileControllerTest extends TestCase
         $this->assertSame(200, $response->getStatusCode());
 
         $this->assertSame([
-            'Content-Disposition' => ['attachment; filename="README.md"'],
+            'Content-Disposition' => ['inline; filename="README.md"'],
             'Content-Type' => ['text/plain'],
             'Content-Length' => ['30'],
         ], $response->getHeaders());

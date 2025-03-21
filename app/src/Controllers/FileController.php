@@ -29,7 +29,7 @@ class FileController
             return $response->withStatus(404, $this->translator->trans('error.file_not_found'));
         }
 
-        $response = $response->withHeader('Content-Disposition', sprintf('attachment; filename="%s"', $file->getFilename()));
+        $response = $response->withHeader('Content-Disposition', sprintf('inline; filename="%s"', $file->getFilename()));
         $response = $response->withHeader('Content-Type', $this->contentType($file));
 
         if ($file->getSize() !== false) {

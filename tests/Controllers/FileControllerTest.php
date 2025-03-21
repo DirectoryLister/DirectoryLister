@@ -29,10 +29,9 @@ class FileControllerTest extends TestCase
         $this->assertSame(200, $response->getStatusCode());
 
         $this->assertSame([
-            'Content-Description' => ['File Transfer'],
             'Content-Disposition' => ['attachment; filename="README.md"'],
+            'Content-Type' => ['text/plain'],
             'Content-Length' => ['30'],
-            'Content-Type' => ['file'],
         ], $response->getHeaders());
 
         $this->assertSame("Test README.md; please ignore\n", (string) $response->getBody());

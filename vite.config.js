@@ -1,8 +1,9 @@
 import { defineConfig } from 'vite';
 import tailwindcss from '@tailwindcss/vite'
 
-export default defineConfig(({ command }) => {
+export default defineConfig(() => {
     return {
+        base: './',
         build: {
             outDir: '.',
             emptyOutDir: false,

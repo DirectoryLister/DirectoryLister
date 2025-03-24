@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\ViewFunctions;
 
 use App\Config;
+use DateInvalidTimeZoneException;
 use DateTimeImmutable;
 use DateTimeZone;
 use RuntimeException;
@@ -28,9 +29,13 @@ class ModifiedTime extends ViewFunction
             $modifiedTime = lstat($file->getPathname())['mtime'];
         }
 
-        $date = DateTimeImmutable::createFromTimestamp($modifiedTime)->setTimezone(
-            new DateTimeZone($this->config->get('timezone'))
-        );
+        try {
+            $timezone = new DateTimeZone($this->config->get('timezone'));
+        } catch (DateInvalidTimeZoneException) {
+            return '—';
+        }
+
+        $date = DateTimeImmutable::createFromTimestamp($modifiedTime)->setTimezone($timezone);
 
         return $date->format($this->config->get('date_format'));
     }

@@ -16,7 +16,7 @@
         "@fortawesome/fontawesome-free": "^6.1.1",
         "@tailwindcss/vite": "^4.0.14",
         "eslint": "^9.22.0",
-        "tailwindcss": "^4.0.14",
+        "tailwindcss": "^4.0.15",
         "vite": "^6.2.2"
     },
     "type": "module"

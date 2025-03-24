@@ -7,6 +7,7 @@ namespace App\ViewFunctions;
 use App\Config;
 use DateInvalidTimeZoneException;
 use DateTimeImmutable;
+use DateTimeInterface;
 use DateTimeZone;
 use RuntimeException;
 use Symfony\Component\Finder\SplFileInfo;
@@ -30,13 +31,17 @@ class ModifiedTime extends ViewFunction
         }
 
         try {
-            $timezone = new DateTimeZone($this->config->get('timezone'));
+            $appTimezone = new DateTimeZone($this->config->get('timezone'));
         } catch (DateInvalidTimeZoneException) {
             return '—';
         }
 
-        $date = DateTimeImmutable::createFromTimestamp($modifiedTime)->setTimezone($timezone);
+        $date = DateTimeImmutable::createFromFormat('U', (string) $modifiedTime);
 
-        return $date->format($this->config->get('date_format'));
+        if (! $date instanceof DateTimeInterface) {
+            return '—';
+        }
+
+        return $date->setTimezone($appTimezone)->format($this->config->get('date_format'));
     }
 }

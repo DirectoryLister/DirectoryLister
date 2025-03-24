@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace App\ViewFunctions;
 
 use App\Config;
+use DateTimeImmutable;
+use DateTimeZone;
 use RuntimeException;
 use Symfony\Component\Finder\SplFileInfo;
 
@@ -26,6 +28,10 @@ class ModifiedTime extends ViewFunction
             $modifiedTime = lstat($file->getPathname())['mtime'];
         }
 
-        return date($this->config->get('date_format'), $modifiedTime);
+        $date = DateTimeImmutable::createFromTimestamp($modifiedTime)->setTimezone(
+            new DateTimeZone($this->config->get('timezone'))
+        );
+
+        return $date->format($this->config->get('date_format'));
     }
 }

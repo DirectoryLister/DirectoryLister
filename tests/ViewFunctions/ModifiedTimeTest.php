@@ -16,6 +16,8 @@ class ModifiedTimeTest extends TestCase
     #[Test]
     public function it_can_return_the_modified_time_for_a_file(): void
     {
+        $this->container->set('timezone', 'UTC');
+
         $file = $this->createMock(SplFileInfo::class);
         $file->method('getMTime')->willReturn(516976496);
 

@@ -16,6 +16,7 @@ class ViteTest extends TestCase
     public function it_can_get_tags_for_a_list_of_assets_when_in_dev_mode(): void
     {
         $this->container->set('asset_path', $this->filePath('.'));
+        $this->container->set('manifest_path', $this->filePath('./manifest.json'));
 
         $vite = $this->container->get(Vite::class);
 
@@ -32,6 +33,7 @@ class ViteTest extends TestCase
     public function it_can_get_tags_for_a_list_of_assets_when_in_build_mode(): void
     {
         $this->container->set('assets_path', $this->filePath('app/assets'));
+        $this->container->set('manifest_path', $this->filePath('app/assets/manifest.json'));
 
         $vite = $this->container->get(Vite::class);
 

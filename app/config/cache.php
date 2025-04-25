@@ -10,7 +10,7 @@ return [
      * the cache across requests. Additional driver-specific options may require
      * configuration below.
      *
-     * Possible values: apcu, array, file, memcached, redis, php-file
+     * Possible values: apcu, array, file, memcached, redis, php-file, valkey
      *
      * Default value: 'file'
      */

@@ -25,6 +25,7 @@ class CacheFactoryTest extends TestCase
             'Memcached adapter' => ['memcached', Adapter\MemcachedAdapter::class, class_exists('Memcached')],
             'PHP files adapter' => ['php-file', Adapter\PhpFilesAdapter::class, true],
             'Redis adapter' => ['redis', Adapter\RedisAdapter::class, class_exists('Redis')],
+            'Valkey adapter' => ['valkey', Adapter\RedisAdapter::class, class_exists('Redis')],
         ];
     }
 

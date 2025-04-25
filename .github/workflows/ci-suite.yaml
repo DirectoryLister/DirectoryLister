@@ -132,7 +132,7 @@ jobs:
         id: extract-metadata
         uses: docker/metadata-action@v5
         with:
-          images: ${{ env.DOCKER_HUB_USER }}/directory-lister
+          images: directorylister/directorylister
           tags: |
             type=semver,pattern={{major}}.{{minor}}.{{patch}}
             type=semver,pattern={{major}}.{{minor}}

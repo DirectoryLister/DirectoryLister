@@ -36,6 +36,7 @@ class CacheFactory
             'memcached' => $this->getMemcachedAdapter(),
             'php-file' => $this->getPhpFilesAdapter(),
             'redis' => $this->getRedisAdapter(),
+            'valkey' => $this->getRedisAdapter(),
             default => throw InvalidConfiguration::fromConfig('cache_driver', $this->config->get('cache_driver'))
         };
     }

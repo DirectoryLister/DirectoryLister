@@ -6,7 +6,6 @@ env:
   NODE_VERSION: 22
 
 jobs:
-
   bundle-assets:
     name: Bundle Assets
     runs-on: ubuntu-latest
@@ -132,7 +131,7 @@ jobs:
     name: Build & Push Image
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/master' || startsWith(github.ref, 'refs/tags/')
-    needs: [asset-compilation, coding-standards, static-analysis, tests]
+    needs: [bundle-assets, js-coding-standards, php-coding-standards, static-analysis, tests]
 
     env:
       DOCKER_HUB_USER: phlak
@@ -171,7 +170,7 @@ jobs:
     name: Create Release
     runs-on: ubuntu-latest
     if: startsWith(github.ref, 'refs/tags/')
-    needs: [asset-compilation, coding-standards, static-analysis, tests]
+    needs: [bundle-assets, js-coding-standards, php-coding-standards, static-analysis, tests]
 
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

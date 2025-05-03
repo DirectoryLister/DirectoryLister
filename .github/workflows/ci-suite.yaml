@@ -1,33 +1,52 @@
 name: Directory Lister CI
 on: [push, pull_request, workflow_dispatch]
 
+env:
+  PHP_VERSION: 8.4
+  NODE_VERSION: 22
+
 jobs:
-  asset-compilation:
-    name: Asset Compilation
+
+  bundle-assets:
+    name: Bundle Assets
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Cache JavaScript Dependencies
-        uses: actions/cache@v4
+      - uses: actions/setup-node@v4
         with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: ${{ runner.os }}-node-
+          node-version: ${NODE_VERSION}
+          cache: 'npm'
 
       - name: Install JavaScript Dependencies
-        run: npm ci
+        run: npm ci --no-audit --no-fund
 
-      - name: Compile Assets
+      - name: Bundle Assets
         run: npm run build --verbose
 
-      - name: Lint JavaScript Files
-        run: npx eslint app/resources/js/
+  js-coding-standards:
+    name: JavaScript Coding Standards
+    runs-on: ubuntu-latest
 
-  coding-standards:
-    name: Coding Standards
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${NODE_VERSION}
+          cache: 'npm'
+
+      - name: Install JavaScript Dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Lint JavaScript Files
+        run: npm run cs
+
+  php-coding-standards:
+    name: PHP Coding Standards
     runs-on: ubuntu-latest
 
     steps:
@@ -37,7 +56,7 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: 8.3
+          php-version: ${PHP_VERSION}
           extensions: apcu, mbstring, memcached, redis, intl
 
       - name: Install PHP Dependencies
@@ -57,7 +76,7 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: 8.3
+          php-version: ${PHP_VERSION}
           extensions: apcu, mbstring, memcached, redis, intl
 
       - name: Install PHP Dependencies
@@ -94,12 +113,12 @@ jobs:
 
       - name: Get Composer Cache Directory
         id: composer-cache
-        run: echo "COMPOSER_CACHE_DIR=$(composer config cache-files-dir)" >> $GITHUB_ENV
+        run: echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
 
       - name: Cache PHP Dependencies
         uses: actions/cache@v4
         with:
-          path: ${{ env.COMPOSER_CACHE_DIR }}
+          path: ${{ steps.composer-cache.outputs.dir }}
           key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
           restore-keys: ${{ runner.os }}-composer-
 

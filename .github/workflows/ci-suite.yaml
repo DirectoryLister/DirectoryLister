@@ -62,6 +62,8 @@ jobs:
         run: composer install --no-interaction --no-progress --no-scripts --prefer-dist
 
       - name: Verify Coding Standards
+        env:
+          PHP_CS_FIXER_IGNORE_ENV: true
         run: app/vendor/bin/php-cs-fixer fix --diff --dry-run
 
   static-analysis:

@@ -16,7 +16,7 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: ${NODE_VERSION}
+          node-version: ${{ env.NODE_VERSION }}
           cache: 'npm'
 
       - name: Install JavaScript Dependencies
@@ -35,7 +35,7 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: ${NODE_VERSION}
+          node-version: ${{ env.NODE_VERSION }}
           cache: 'npm'
 
       - name: Install JavaScript Dependencies
@@ -55,7 +55,7 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: ${PHP_VERSION}
+          php-version: ${{ env.PHP_VERSION }}
           extensions: apcu, mbstring, memcached, redis, intl
 
       - name: Install PHP Dependencies
@@ -75,7 +75,7 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: ${PHP_VERSION}
+          php-version: ${{ env.PHP_VERSION }}
           extensions: apcu, mbstring, memcached, redis, intl
 
       - name: Install PHP Dependencies

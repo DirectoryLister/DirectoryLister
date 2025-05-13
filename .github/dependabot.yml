@@ -5,19 +5,16 @@ updates:
     directory: "/"
     schedule:
       interval: monthly
-    assignees:
-      - PHLAK
+    assignees: [PHLAK]
 
   - package-ecosystem: npm
     directory: "/"
     schedule:
       interval: monthly
-    assignees:
-      - PHLAK
+    assignees: [PHLAK]
 
   - package-ecosystem: github-actions
     directory: "/"
     schedule:
       interval: monthly
-    assignees:
-      - PHLAK
+    assignees: [PHLAK]

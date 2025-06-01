@@ -9,7 +9,7 @@
     },
     "dependencies": {
         "alpinejs": "^3.0.1",
-        "axios": "^1.2.0",
+        "axios": "^1.9.0",
         "highlight.js": "^11.0.1"
     },
     "devDependencies": {

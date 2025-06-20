@@ -15,10 +15,15 @@ class FileUrlTest extends TestCase
     #[Test]
     public function it_can_return_a_url(): void
     {
+        $this->container->set('direct_links', '**/index.{htm,html},**/*.php');
+
         $url = $this->container->get(FileUrl::class);
 
+        // Root
         $this->assertEquals('', $url('/'));
         $this->assertEquals('', $url('./'));
+
+        // Subdirectories
         $this->assertEquals('?dir=some/path', $url('some/path'));
         $this->assertEquals('?dir=some/path', $url('./some/path'));
         $this->assertEquals('?dir=some/path', $url('./some/path'));
@@ -27,6 +32,16 @@ class FileUrlTest extends TestCase
         $this->assertEquals('?dir=0/path', $url('0/path'));
         $this->assertEquals('?dir=1/path', $url('1/path'));
         $this->assertEquals('?dir=0', $url('0'));
+
+        // Files
+        $this->assertEquals('?file=subdir/alpha.scss', $url('subdir/alpha.scss'));
+        $this->assertEquals('?file=subdir/bravo.js', $url('subdir/bravo.js'));
+        $this->assertEquals('?file=subdir/charlie.bash', $url('subdir/charlie.bash'));
+
+        // Direct Links
+        $this->assertEquals('direct_links/index.htm', $url('direct_links/index.htm'));
+        $this->assertEquals('direct_links/index.html', $url('direct_links/index.html'));
+        $this->assertEquals('direct_links/test.php', $url('direct_links/test.php'));
     }
 
     #[Test]
@@ -44,7 +59,8 @@ class FileUrlTest extends TestCase
         $this->assertEquals('?dir=1\path', $url('1\path'));
     }
 
-    public function test_url_segments_are_url_encoded(): void
+    #[Test]
+    public function url_segments_are_url_encoded(): void
     {
         $url = $this->container->get(FileUrl::class);
 

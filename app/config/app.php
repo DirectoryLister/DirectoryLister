@@ -63,6 +63,15 @@ return [
     'readmes_first' => env('READMES_FIRST', false),
 
     /**
+     * Comma separated list of file patterns to be directly linked. Directly
+     * linked files will not be served by Directory Lister but handled by the
+     * web server directly. This setting has no effect when FILES_PATH is set.
+     *
+     * Default value: null
+     */
+    'direct_links' => env('DIRECT_LINKS', null),
+
+    /**
      * Enable downloading of directories as a zip archive.
      *
      * Default value: true

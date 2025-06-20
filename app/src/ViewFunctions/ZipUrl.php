@@ -8,7 +8,6 @@ class ZipUrl extends Url
 {
     protected string $name = 'zip_url';
 
-    /** Return the URL for a given path and action. */
     public function __invoke(string $path = '/'): string
     {
         $path = $this->normalizePath($path);

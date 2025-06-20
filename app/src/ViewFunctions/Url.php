@@ -6,6 +6,7 @@ namespace App\ViewFunctions;
 
 use App\Config;
 use App\Support\Str;
+use DI\Container;
 
 class Url extends ViewFunction
 {
@@ -13,7 +14,8 @@ class Url extends ViewFunction
 
     /** @param non-empty-string $directorySeparator */
     public function __construct(
-        private Config $config,
+        protected Container $container,
+        protected Config $config,
         private string $directorySeparator = DIRECTORY_SEPARATOR
     ) {}
 

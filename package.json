@@ -14,7 +14,7 @@
     },
     "devDependencies": {
         "@fortawesome/fontawesome-free": "^6.1.1",
-        "@tailwindcss/vite": "^4.1.5",
+        "@tailwindcss/vite": "^4.1.11",
         "eslint": "^9.26.0",
         "tailwindcss": "^4.1.5",
         "vite": "^6.3.4"

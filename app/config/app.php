@@ -87,32 +87,6 @@ return [
     'zip_compress' => env('ZIP_COMPRESS', false),
 
     /**
-     * DEPRECATED: Will be removed in a future release.
-     *
-     * Your Google analytics tracking ID.
-     *
-     * Expected format: 'UA-123456789-0'
-     * Default value: false
-     */
-    'google_analytics_id' => env('GOOGLE_ANALYTICS_ID', false),
-
-    /**
-     * DEPRECATED: Will be removed in a future release.
-     *
-     * Your Matomo analytics URL.
-     *
-     *  Default value: false
-     */
-    'matomo_analytics_url' => env('MATOMO_ANALYTICS_URL', false),
-
-    /**
-     * Your Matomo analytics site ID.
-     *
-     * Default value: false
-     */
-    'matomo_analytics_site_id' => env('MATOMO_ANALYTICS_SITE_ID', false),
-
-    /**
      * Sorting order of files and folders.
      *
      * Possible values: type, natural, name, accessed, changed, modified

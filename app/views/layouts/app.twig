@@ -12,16 +12,6 @@
 
 {{ analytics() | raw }}
 
-{# NOTE: To be removed in a future release #}
-{% if config('google_analytics_id', false) %}
-    {% include 'components/analytics/google.twig' %}
-{% endif %}
-
-{# NOTE: To be removed in a future release #}
-{% if config('matomo_analytics_url', false) and config('matomo_analytics_site_id', false) %}
-    {% include 'components/analytics/matomo.twig' %}
-{% endif %}
-
 <title>{{ title }} &bull; {{ config('site_title') }}</title>
 
 <div class="{{ theme }}" x-data="application" x-effect="storeThemeCookie($store.theme)" :class="{ 'dark': $store.theme === 'dark' }">

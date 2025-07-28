@@ -63,6 +63,6 @@ class FinderFactory
             ), $this->hiddenFiles->implode(',')));
         }
 
-        return Glob::matchStart($this->pattern, (string) $file->getRealPath());
+        return Glob::match($this->pattern, (string) $file->getRealPath());
     }
 }

@@ -32,7 +32,7 @@ return [
     'full_path' => value(static fn (string $path, Config $config): string => $config->get('files_path') . '/' . $path),
 
     /** Array of application files (to be hidden) */
-    'app_files' => ['app', 'index.php', '.analytics', '.env', '.env.example', '.hidden'],
+    'app_files' => ['app', 'app/**', 'index.php', '.analytics', '.env', '.env.example', '.hidden'],
 
     /** Array of application middlewares */
     'middlewares' => [

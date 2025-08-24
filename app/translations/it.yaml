@@ -3,12 +3,12 @@ download: Scarica questa cartella
 search: Cerca
 file:
   name: Nome
-  size: Peso
+  size: Size
   date: Data
   info: Info
 powered_by: Powered by
 scroll_to_top: Torna su
-toggle_theme: Attiva/disattiva la modalità luce/buio
+toggle_theme: Attiva/disattiva la modalità chiara/scura
 
 error:
   directory_not_found: La cartella non esiste

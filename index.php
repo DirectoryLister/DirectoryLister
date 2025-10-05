@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Bootstrap\AppManager;
 use App\Bootstrap\BootManager;
 use Dotenv\Dotenv;

@@ -31,7 +31,7 @@ test: # Run tests
 suite: analyze test # Run coding standards and static analysis checks and tests
 
 coverage: # Generate an HTML coverage report
-	@docker-compose run --rm -e XDEBUG_MODE=coverage app app/vendor/bin/phpunit --coverage-html .coverage
+	@phpunit --coverage-html .coverage
 
 clear-assets: # Clear the compiled assets
 	@rm --recursive --force --verbose app/assets/*

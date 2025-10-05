@@ -71,6 +71,7 @@ return [
 
     /** Container definitions */
     App\HiddenFiles::class => factory([App\HiddenFiles::class, 'fromConfig']),
+    League\CommonMark\ConverterInterface::class => create(League\CommonMark\GithubFlavoredMarkdownConverter::class),
     Symfony\Component\Finder\Finder::class => factory(Factories\FinderFactory::class),
     Symfony\Contracts\Cache\CacheInterface::class => factory(Factories\CacheFactory::class),
     Symfony\Contracts\Translation\TranslatorInterface::class => factory(Factories\TranslationFactory::class),

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\ViewFunctions;
 
-use League\CommonMark\GithubFlavoredMarkdownConverter;
+use League\CommonMark\ConverterInterface;
 use Symfony\Contracts\Cache\CacheInterface;
 
 class Markdown extends ViewFunction
@@ -12,7 +12,7 @@ class Markdown extends ViewFunction
     protected string $name = 'markdown';
 
     public function __construct(
-        private GithubFlavoredMarkdownConverter $converter,
+        private ConverterInterface $converter,
         private CacheInterface $cache
     ) {}
 

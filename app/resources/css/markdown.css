@@ -18,6 +18,10 @@
     @apply my-4;
 }
 
+.markdown strong {
+    @apply font-medium;
+}
+
 .markdown ul, .markdown ol {
     @apply pl-8;
 }
@@ -55,7 +59,7 @@
 }
 
 .markdown h1, .markdown h2, .markdown h3, .markdown h4, .markdown h5, .markdown h6 {
-    @apply font-bold leading-relaxed mt-8 mb-4;
+    @apply font-medium leading-relaxed mt-8 mb-4;
 }
 
 .markdown h1 + p, .markdown h2 + p, .markdown h3 + p {

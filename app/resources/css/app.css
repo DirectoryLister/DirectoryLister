@@ -1,14 +1,25 @@
-@import url("https://fonts.googleapis.com/css2?family=Source+Code+Pro&family=Work+Sans&display=swap");
-
 @import "tailwindcss";
 
 @custom-variant dark (&:where(.dark, .dark *));
+
+@font-face {
+    font-family: "Source Code Pro";
+    src: url("../fonts/SourceCodePro.woff2") format("woff2");
+    font-display: swap;
+    font-weight: 200 900;
+}
+
+@font-face {
+    font-family: "Work Sans";
+    src: url("../fonts/WorkSans.woff2") format("woff2");
+    font-display: swap;
+    font-weight: 100 900;
+}
 
 @theme {
     --color-bluesky: #0886FE;
     --color-github: #171515;
 
-    --font-merriweather: Merriweather;
     --font-mono: Source Code Pro;
     --font-sans: Work Sans;
 }

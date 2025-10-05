@@ -11,8 +11,8 @@ services:
     ports:
       - ${APP_PORT:-80}:80
     extra_hosts:
-      - host.docker.internal:${DOCKER_HOST_IP:-172.17.0.1}
-    user: ${HOST_USER_ID:-0}:${HOST_GROUP_ID:-0}
+      - host.docker.internal:host-gateway
+    user: ${HOST_USER_ID:-1000}:${HOST_GROUP_ID:-1000}
     volumes:
       - ./:/var/www/html
       - ./.docker/php/config/php.dev.ini:/usr/local/etc/php/php.ini
@@ -37,5 +37,5 @@ services:
       - ./:/var/www/html
     ports:
       - ${APP_PORT:-5173}:5173
-    user: ${HOST_USER_ID:-0}:${HOST_GROUP_ID:-0}
+    user: ${HOST_USER_ID:-1000}:${HOST_GROUP_ID:-1000}
     command: npm run dev

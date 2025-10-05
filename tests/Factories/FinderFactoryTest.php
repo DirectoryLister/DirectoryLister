@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Tests\Factories;
 
+use App\Actions\IsHidden;
 use App\Exceptions\InvalidConfiguration;
 use App\Factories\FinderFactory;
 use App\HiddenFiles;
@@ -22,7 +23,8 @@ class FinderFactoryTest extends TestCase
         $finder = (new FinderFactory(
             $this->container,
             $this->config,
-            HiddenFiles::fromConfig($this->config)
+            HiddenFiles::fromConfig($this->config),
+            $this->container->get(IsHidden::class)
         ))();
 
         $this->assertInstanceOf(Finder::class, $finder);
@@ -45,11 +47,8 @@ class FinderFactoryTest extends TestCase
             static fn (SplFileInfo $file1, SplFileInfo $file2) => $file1->getSize() <=> $file2->getSize()
         ));
 
-        $finder = (new FinderFactory(
-            $this->container,
-            $this->config,
-            HiddenFiles::fromConfig($this->config)
-        ))();
+        $finder = $this->container->call(FinderFactory::class);
+
         $finder->in($this->filePath('subdir'))->depth(0);
 
         $this->assertEquals([
@@ -66,11 +65,8 @@ class FinderFactoryTest extends TestCase
     {
         $this->container->set('reverse_sort', true);
 
-        $finder = (new FinderFactory(
-            $this->container,
-            $this->config,
-            HiddenFiles::fromConfig($this->config)
-        ))();
+        $finder = $this->container->call(FinderFactory::class);
+
         $finder->in($this->filePath('subdir'))->depth(0);
 
         $this->assertEquals([
@@ -89,11 +85,8 @@ class FinderFactoryTest extends TestCase
             'subdir/alpha.scss', 'subdir/charlie.bash', '**/*.yaml',
         ]);
 
-        $finder = (new FinderFactory(
-            $this->container,
-            $this->config,
-            HiddenFiles::fromConfig($this->config)
-        ))();
+        $finder = $this->container->call(FinderFactory::class);
+
         $finder->in($this->filePath('subdir'))->depth(0);
 
         $this->assertInstanceOf(Finder::class, $finder);
@@ -108,11 +101,8 @@ class FinderFactoryTest extends TestCase
         $this->container->set('hidden_files', []);
         $this->container->set('hide_dot_files', false);
 
-        $finder = (new FinderFactory(
-            $this->container,
-            $this->config,
-            HiddenFiles::fromConfig($this->config)
-        ))();
+        $finder = $this->container->call(FinderFactory::class);
+
         $finder->in($this->filePath('subdir'))->depth(0);
 
         $this->assertInstanceOf(Finder::class, $finder);
@@ -131,11 +121,8 @@ class FinderFactoryTest extends TestCase
         $this->container->set('hidden_files', []);
         $this->container->set('hide_dot_files', false);
 
-        $finder = (new FinderFactory(
-            $this->container,
-            $this->config,
-            HiddenFiles::fromConfig($this->config)
-        ))();
+        $finder = $this->container->call(FinderFactory::class);
+
         $finder->in($this->filePath('subdir/.dot_dir'))->depth(0);
 
         $this->assertInstanceOf(Finder::class, $finder);
@@ -149,11 +136,7 @@ class FinderFactoryTest extends TestCase
 
         $this->expectException(InvalidConfiguration::class);
 
-        (new FinderFactory(
-            $this->container,
-            $this->config,
-            HiddenFiles::fromConfig($this->config)
-        ))();
+        $finder = $this->container->call(FinderFactory::class);
     }
 
     private function getFilesArray(Finder $finder): array

@@ -49,7 +49,7 @@ class CacheFactoryTest extends TestCase
     }
 
     #[Test]
-    public function it_throws_a_runtime_exception_with_an_invalid_sort_order(): void
+    public function it_throws_a_runtime_exception_with_an_invalid_cache_driver(): void
     {
         $this->container->set('cache_driver', 'invalid');
 

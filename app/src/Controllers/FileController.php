@@ -4,11 +4,13 @@ declare(strict_types=1);
 
 namespace App\Controllers;
 
+use App\Actions\IsHidden;
 use DI\Container;
 use Psr\Http\Message\ResponseInterface;
 use Slim\Psr7\Factory\StreamFactory;
 use Slim\Psr7\Request;
 use Slim\Psr7\Response;
+use Slim\Views\Twig;
 use SplFileInfo;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
@@ -16,7 +18,9 @@ class FileController
 {
     public function __construct(
         private Container $container,
-        private TranslatorInterface $translator
+        private IsHidden $isHidden,
+        private Twig $view,
+        private TranslatorInterface $translator,
     ) {}
 
     public function __invoke(Request $request, Response $response): ResponseInterface
@@ -25,8 +29,10 @@ class FileController
 
         $file = new SplFileInfo((string) realpath($path));
 
-        if (! $file->isFile()) {
-            return $response->withStatus(404, $this->translator->trans('error.file_not_found'));
+        if (! $file->isFile() || $this->isHidden->file($file)) {
+            return $this->view->render($response->withStatus(404), 'error.twig', [
+                'message' => $this->translator->trans('error.file_not_found'),
+            ]);
         }
 
         $response = $response->withHeader('Content-Disposition', sprintf('inline; filename="%s"', $file->getFilename()));

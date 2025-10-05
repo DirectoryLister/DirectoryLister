@@ -50,4 +50,20 @@ class FileControllerTest extends TestCase
         $this->assertInstanceOf(ResponseInterface::class, $response);
         $this->assertSame(404, $response->getStatusCode());
     }
+
+    #[Test]
+    public function it_returns_a_404_error_when_the_file_is_hidden(): void
+    {
+        $controller = $this->container->set('hidden_files', ['**.md']);
+
+        $controller = $this->container->get(FileController::class);
+
+        $request = $this->createMock(Request::class);
+        $request->method('getQueryParams')->willReturn(['file' => 'README.md']);
+
+        $response = $controller($request, new Response);
+
+        $this->assertInstanceOf(ResponseInterface::class, $response);
+        $this->assertSame(404, $response->getStatusCode());
+    }
 }

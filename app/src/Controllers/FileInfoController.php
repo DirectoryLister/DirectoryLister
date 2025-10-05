@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controllers;
 
+use App\Actions\IsHidden;
 use App\Config;
 use DI\Container;
 use Psr\Http\Message\ResponseInterface;
@@ -19,6 +20,7 @@ class FileInfoController
         private Container $container,
         private Config $config,
         private CacheInterface $cache,
+        private IsHidden $isHidden,
         private TranslatorInterface $translator
     ) {}
 
@@ -28,7 +30,7 @@ class FileInfoController
 
         $file = new SplFileInfo((string) realpath($path));
 
-        if (! $file->isFile()) {
+        if (! $file->isFile() || $this->isHidden->file($file)) {
             return $response->withStatus(404, $this->translator->trans('error.file_not_found'));
         }
 

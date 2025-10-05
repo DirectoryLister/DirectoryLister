@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controllers;
 
+use App\Actions\IsHidden;
 use App\Config;
 use DI\Container;
 use Exception;
@@ -22,13 +23,20 @@ class DirectoryController
         private Config $config,
         private Finder $finder,
         private Twig $view,
-        private TranslatorInterface $translator
+        private TranslatorInterface $translator,
+        private IsHidden $isHidden,
     ) {}
 
     public function __invoke(Request $request, Response $response): ResponseInterface
     {
         $relativePath = $request->getQueryParams()['dir'] ?? '.';
         $fullPath = $this->container->call('full_path', ['path' => $relativePath]);
+
+        if ($this->isHidden->path($fullPath)) {
+            return $this->view->render($response->withStatus(404), 'error.twig', [
+                'message' => $this->translator->trans('error.directory_not_found'),
+            ]);
+        }
 
         try {
             $files = $this->finder->in($fullPath)->depth(0);

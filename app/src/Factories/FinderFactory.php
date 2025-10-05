@@ -4,25 +4,22 @@ declare(strict_types=1);
 
 namespace App\Factories;
 
+use App\Actions\IsHidden;
 use App\Config;
 use App\Exceptions\InvalidConfiguration;
 use App\HiddenFiles;
 use Closure;
 use DI\Container;
-use PHLAK\Splat\Glob;
-use PHLAK\Splat\Pattern;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Finder\SplFileInfo;
 
 class FinderFactory
 {
-    /** Hidden files pattern cache */
-    private ?Pattern $pattern = null;
-
     public function __construct(
         private Container $container,
         private Config $config,
-        private HiddenFiles $hiddenFiles
+        private HiddenFiles $hiddenFiles,
+        private IsHidden $isHidden,
     ) {}
 
     public function __invoke(): Finder
@@ -32,7 +29,7 @@ class FinderFactory
         $finder->ignoreDotFiles($this->config->get('hide_dot_files'));
 
         if ($this->hiddenFiles->isNotEmpty()) {
-            $finder->filter(fn (SplFileInfo $file): bool => ! $this->isHidden($file));
+            $finder->filter(fn (SplFileInfo $file): bool => ! $this->isHidden->file($file));
         }
 
         $sortOrder = $this->config->get('sort_order');
@@ -52,17 +49,5 @@ class FinderFactory
         }
 
         return $finder;
-    }
-
-    /** Determine if a file should be hidden. */
-    private function isHidden(SplFileInfo $file): bool
-    {
-        if (! $this->pattern instanceof Pattern) {
-            $this->pattern = Pattern::make(sprintf('%s{%s}', Pattern::escape(
-                $this->config->get('files_path') . DIRECTORY_SEPARATOR
-            ), $this->hiddenFiles->implode(',')));
-        }
-
-        return Glob::match($this->pattern, (string) $file->getRealPath());
     }
 }

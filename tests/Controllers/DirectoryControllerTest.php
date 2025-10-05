@@ -11,9 +11,6 @@ use PHPUnit\Framework\Attributes\Test;
 use Psr\Http\Message\ResponseInterface;
 use Slim\Psr7\Request;
 use Slim\Psr7\Response;
-use Slim\Views\Twig;
-use Symfony\Component\Finder\Finder;
-use Symfony\Contracts\Translation\TranslatorInterface;
 use Tests\TestCase;
 
 #[CoversClass(DirectoryController::class)]
@@ -81,16 +78,26 @@ class DirectoryControllerTest extends TestCase
     #[Test]
     public function it_returns_a_404_error_when_not_found(): void
     {
-        $controller = new DirectoryController(
-            $this->container,
-            $this->config,
-            new Finder,
-            $this->container->get(Twig::class),
-            $this->container->get(TranslatorInterface::class)
-        );
+        $controller = $this->container->get(DirectoryController::class);
 
         $request = $this->createMock(Request::class);
         $request->method('getQueryParams')->willReturn(['dir' => '404']);
+
+        $response = $controller($request, new Response);
+
+        $this->assertInstanceOf(ResponseInterface::class, $response);
+        $this->assertEquals(404, $response->getStatusCode());
+    }
+
+    #[Test]
+    public function it_returns_a_404_error_when_the_folder_is_hidden(): void
+    {
+        $this->container->set('hidden_files', ['subdir']);
+
+        $controller = $this->container->get(DirectoryController::class);
+
+        $request = $this->createMock(Request::class);
+        $request->method('getQueryParams')->willReturn(['dir' => 'subdir']);
 
         $response = $controller($request, new Response);
 

@@ -37,12 +37,28 @@ class FileInfoControllerTest extends TestCase
     }
 
     #[Test]
-    public function it_can_return_a_not_found_response(): void
+    public function it_return_a_not_found_response_when_the_file_does_not_exist(): void
     {
         $handler = $this->container->get(FileInfoController::class);
 
         $request = $this->createMock(Request::class);
         $request->method('getQueryParams')->willReturn(['info' => 'not_a_file.test']);
+
+        $response = $handler($request, new Response);
+
+        $this->assertInstanceOf(ResponseInterface::class, $response);
+        $this->assertEquals(404, $response->getStatusCode());
+    }
+
+    #[Test]
+    public function it_return_a_not_found_response_when_the_file_is_hidden(): void
+    {
+        $this->container->set('hidden_files', ['README.md']);
+
+        $handler = $this->container->get(FileInfoController::class);
+
+        $request = $this->createMock(Request::class);
+        $request->method('getQueryParams')->willReturn(['info' => 'README.md']);
 
         $response = $handler($request, new Response);
 

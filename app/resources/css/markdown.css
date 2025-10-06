@@ -83,11 +83,11 @@
 }
 
 .markdown table th {
-    @apply font-bold;
+    @apply font-medium;
 }
 
 .markdown dl dt {
-    @apply font-bold;
+    @apply font-medium;
 }
 
 .markdown dl dd {

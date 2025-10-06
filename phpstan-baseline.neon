@@ -25,6 +25,12 @@ parameters:
 			path: app/src/ViewFunctions/ModifiedTime.php
 
 		-
+			message: '#^Method App\\ViewFunctions\\ModifiedTime\:\:__invoke\(\) throws checked exception ValueError but it''s missing from the PHPDoc @throws tag\.$#'
+			identifier: missingType.checkedException
+			count: 1
+			path: app/src/ViewFunctions/ModifiedTime.php
+
+		-
 			message: '#^Method App\\ViewFunctions\\SizeForHumans\:\:__invoke\(\) throws checked exception DivisionByZeroError but it''s missing from the PHPDoc @throws tag\.$#'
 			identifier: missingType.checkedException
 			count: 1

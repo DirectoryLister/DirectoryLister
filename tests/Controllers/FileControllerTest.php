@@ -54,7 +54,7 @@ class FileControllerTest extends TestCase
     #[Test]
     public function it_returns_a_404_error_when_the_file_is_hidden(): void
     {
-        $controller = $this->container->set('hidden_files', ['**.md']);
+        $this->container->set('hidden_files', ['**.md']);
 
         $controller = $this->container->get(FileController::class);
 

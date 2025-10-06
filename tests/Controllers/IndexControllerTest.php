@@ -36,6 +36,23 @@ class IndexControllerTest extends TestCase
     }
 
     #[Test]
+    public function it_handles_a_file_request(): void
+    {
+        $this->request->method('getQueryParams')->willReturn(['file' => 'file.test']);
+
+        $this->container->expects($this->once())->method('call')->with(
+            Controllers\FileController::class,
+            [$this->request, $this->response]
+        )->willReturn($this->response);
+
+        $controller = new Controllers\IndexController($this->container);
+
+        $response = $controller($this->request, $this->response);
+
+        $this->assertInstanceOf(ResponseInterface::class, $response);
+    }
+
+    #[Test]
     public function it_handles_a_file_info_request(): void
     {
         $this->request->method('getQueryParams')->willReturn(['info' => 'file.test']);

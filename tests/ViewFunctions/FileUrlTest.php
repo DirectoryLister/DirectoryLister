@@ -68,4 +68,16 @@ class FileUrlTest extends TestCase
         $this->assertEquals('?dir=foo/bar%23baz', $url('foo/bar#baz'));
         $this->assertEquals('?dir=foo/bar%26baz', $url('foo/bar&baz'));
     }
+
+    #[Test]
+    public function it_returns_a_query_string_url_when_direct_links_are_disabled(): void
+    {
+        $this->container->set('direct_links', null);
+
+        $url = $this->container->get(FileUrl::class);
+
+        $this->assertEquals('?file=direct_links/index.htm', $url('direct_links/index.htm'));
+        $this->assertEquals('?file=direct_links/index.html', $url('direct_links/index.html'));
+        $this->assertEquals('?file=direct_links/test.php', $url('direct_links/test.php'));
+    }
 }

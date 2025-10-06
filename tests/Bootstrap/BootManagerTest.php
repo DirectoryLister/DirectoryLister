@@ -38,7 +38,7 @@ class BootManagerTest extends TestCase
     #[Test]
     public function it_caches_the_container_by_default(): void
     {
-        putenv('COMPILE_CONTAINER=');
+        putenv('COMPILE_CONTAINER');
 
         $container = BootManager::createContainer(
             $this->filePath('app/config'),

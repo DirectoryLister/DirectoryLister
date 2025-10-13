@@ -7,6 +7,7 @@ namespace App\Controllers;
 use App\Actions\IsHidden;
 use App\Config;
 use DI\Container;
+use Exception;
 use Psr\Http\Message\ResponseInterface;
 use Slim\Psr7\Request;
 use Slim\Psr7\Response;
@@ -28,7 +29,11 @@ class FileInfoController
     {
         $path = $this->container->call('full_path', ['path' => $request->getQueryParams()['info']]);
 
-        $file = new SplFileInfo((string) realpath($path));
+        try {
+            $file = new SplFileInfo((string) realpath($path));
+        } catch (Exception) {
+            return $response->withStatus(404, $this->translator->trans('error.file_not_found'));
+        }
 
         if (! $file->isFile() || $this->isHidden->file($file)) {
             return $response->withStatus(404, $this->translator->trans('error.file_not_found'));

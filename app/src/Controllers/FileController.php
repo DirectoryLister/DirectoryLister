@@ -6,6 +6,7 @@ namespace App\Controllers;
 
 use App\Actions\IsHidden;
 use DI\Container;
+use Exception;
 use Psr\Http\Message\ResponseInterface;
 use Slim\Psr7\Factory\StreamFactory;
 use Slim\Psr7\Request;
@@ -27,7 +28,13 @@ class FileController
     {
         $path = $this->container->call('full_path', ['path' => $request->getQueryParams()['file']]);
 
-        $file = new SplFileInfo((string) realpath($path));
+        try {
+            $file = new SplFileInfo((string) realpath($path));
+        } catch (Exception) {
+            return $this->view->render($response->withStatus(404), 'error.twig', [
+                'message' => $this->translator->trans('error.file_not_found'),
+            ]);
+        }
 
         if (! $file->isFile() || $this->isHidden->file($file)) {
             return $this->view->render($response->withStatus(404), 'error.twig', [

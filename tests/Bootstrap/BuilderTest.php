@@ -4,17 +4,18 @@ declare(strict_types=1);
 
 namespace Tests\Bootstrap;
 
-use App\Bootstrap\BootManager;
+use App\Bootstrap\Builder;
 use DI\Container;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Test;
+use Slim\App;
 use Tests\TestCase;
 
-#[CoversClass(BootManager::class)]
-class BootManagerTest extends TestCase
+#[CoversClass(Builder::class)]
+class BuilderTest extends TestCase
 {
     /** Path to the compiled container. */
-    private const COMPILED_CONTAINER_PATH = 'app/cache/CompiledContainer.php';
+    private const COMPILED_CONTAINER_PATH = 'cache/CompiledContainer.php';
 
     /** @var string The compiled container path */
     private $compiledContainerPath;
@@ -36,13 +37,24 @@ class BootManagerTest extends TestCase
     }
 
     #[Test]
-    public function it_caches_the_container_by_default(): void
+    public function it_can_create_the_container(): void
     {
-        putenv('COMPILE_CONTAINER');
+        $container = Builder::createContainer(
+            $this->filePath('config'),
+            $this->filePath('cache'),
+        );
 
-        $container = BootManager::createContainer(
-            $this->filePath('app/config'),
-            $this->filePath('app/cache')
+        $this->assertInstanceOf(Container::class, $container);
+    }
+
+    #[Test]
+    public function it_creates_the_container_and_caches_it_by_default(): void
+    {
+        putenv('COMPILE_CONTAINER=');
+
+        $container = Builder::createContainer(
+            $this->filePath('config'),
+            $this->filePath('cache')
         );
 
         $this->assertInstanceOf(Container::class, $container);
@@ -54,9 +66,9 @@ class BootManagerTest extends TestCase
     {
         putenv('COMPILE_CONTAINER=false');
 
-        $container = BootManager::createContainer(
-            $this->filePath('app/config'),
-            $this->filePath('app/cache')
+        $container = Builder::createContainer(
+            $this->filePath('config'),
+            $this->filePath('cache')
         );
 
         $this->assertInstanceOf(Container::class, $container);
@@ -68,12 +80,21 @@ class BootManagerTest extends TestCase
     {
         putenv('APP_DEBUG=true');
 
-        $container = BootManager::createContainer(
-            $this->filePath('app/config'),
-            $this->filePath('app/cache')
+        $container = Builder::createContainer(
+            $this->filePath('config'),
+            $this->filePath('cache')
         );
 
         $this->assertInstanceOf(Container::class, $container);
         $this->assertFileDoesNotExist($this->compiledContainerPath);
+    }
+
+    #[Test]
+    public function it_can_create_the_application_from_the_container(): void
+    {
+        $app = Builder::createApp($this->container);
+
+        $this->assertInstanceOf(App::class, $app);
+        $this->assertSame($this->container, $app->getContainer());
     }
 }

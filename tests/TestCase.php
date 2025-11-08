@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Tests;
 
-use App\Bootstrap\BootManager;
+use App\Bootstrap\Builder;
 use App\Config;
 use DI\Container;
 use Dotenv\Dotenv;
@@ -31,18 +31,20 @@ class TestCase extends BaseTestCase
     {
         parent::setUp();
 
+        putenv('COMPILE_CONTAINER=false');
+
         Dotenv::createUnsafeImmutable(__DIR__)->safeLoad();
 
-        $this->container = BootManager::createContainer(
+        $this->container = Builder::createContainer(
             dirname(__DIR__) . '/app/config',
             dirname(__DIR__) . '/app/cache'
         );
 
-        $this->config = new Config($this->container);
-        $this->cache = new ArrayAdapter((int) $this->config->get('cache_lifetime'));
-
         $this->container->set('base_path', $this->testFilesPath);
         $this->container->set('cache_path', $this->filePath('app/cache'));
+
+        $this->config = new Config($this->container);
+        $this->cache = new ArrayAdapter((int) $this->config->get('cache_lifetime'));
     }
 
     /** Get the file path to a test file. */

@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Tests\Bootstrap;
+namespace Tests\Managers;
 
-use App\Bootstrap\RouteManager;
 use App\Controllers;
+use App\Managers\RouteManager;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Test;
 use Slim\App;

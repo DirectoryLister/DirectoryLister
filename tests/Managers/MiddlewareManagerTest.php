@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Tests\Bootstrap;
+namespace Tests\Managers;
 
-use App\Bootstrap\MiddlewareManager;
+use App\Managers\MiddlewareManager;
 use App\Middlewares;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Test;

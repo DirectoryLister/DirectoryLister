@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Tests\Bootstrap;
+namespace Tests\Managers;
 
-use App\Bootstrap\ExceptionManager;
 use App\Exceptions\ErrorHandler;
+use App\Managers\ExceptionManager;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Test;
 use Slim\App;

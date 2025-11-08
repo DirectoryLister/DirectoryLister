@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use App\Config;
 use App\Factories;
+use App\Managers;
 use App\Middlewares;
 use App\SortMethods;
 use App\ViewFunctions;
@@ -33,6 +34,13 @@ return [
 
     /** Array of application files (to be hidden) */
     'app_files' => ['app', 'app/**', 'index.php', '.analytics', '.env', '.env.example', '.hidden'],
+
+    /** Array of application managers */
+    'managers' => [
+        Managers\MiddlewareManager::class,
+        Managers\ExceptionManager::class,
+        Managers\RouteManager::class,
+    ],
 
     /** Array of application middlewares */
     'middlewares' => [

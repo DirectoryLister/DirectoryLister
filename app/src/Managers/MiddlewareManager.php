@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Bootstrap;
+namespace App\Managers;
 
 use App\Config;
 use DI\Container;

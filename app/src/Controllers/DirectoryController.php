@@ -29,7 +29,7 @@ class DirectoryController
 
     public function __invoke(Request $request, Response $response): ResponseInterface
     {
-        $relativePath = $request->getQueryParams()['dir'] ?? '.';
+        $relativePath = mb_rtrim($request->getQueryParams()['dir'] ?? '.', '/');
         $fullPath = $this->container->call('full_path', ['path' => $relativePath]);
 
         if ($this->isHidden->path($fullPath)) {

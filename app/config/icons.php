@@ -68,6 +68,7 @@ return [
         'mov' => 'fas fa-video',
         'mp3' => 'fas fa-music',
         'mp4' => 'fas fa-video',
+        'm4a' => 'fas fa-music',
         'mpa' => 'fas fa-music',
         'mpg' => 'fas fa-video',
         'msg' => 'fas fa-envelope',

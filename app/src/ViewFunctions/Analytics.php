@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\ViewFunctions;
 
 use App\Config;
+use Twig\Markup;
 
 class Analytics extends ViewFunction
 {
@@ -15,7 +16,7 @@ class Analytics extends ViewFunction
     ) {}
 
     /** Get the contents of the .analytics file. */
-    public function __invoke(): string
+    public function __invoke(): Markup
     {
         $analyticsFile = $this->config->get('base_path') . '/' . $this->config->get('analytics_file');
 
@@ -23,6 +24,8 @@ class Analytics extends ViewFunction
             return '';
         }
 
-        return trim((string) file_get_contents($analyticsFile));
+        $analytics = trim((string) file_get_contents($analyticsFile));
+
+        return new Markup($analytics, 'UTF-8');
     }
 }

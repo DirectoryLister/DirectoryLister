@@ -7,9 +7,9 @@
 
 <link rel="icon" href="app/images/favicon.light.png">
 
-{{ vite(['app/resources/css/app.css', 'app/resources/js/app.js']) | raw }}
+{{ vite(['app/resources/css/app.css', 'app/resources/js/app.js']) }}
 
-{{ analytics() | raw }}
+{{ analytics() }}
 
 <title>{{ title }} &bull; {{ config('site_title') }}</title>
 

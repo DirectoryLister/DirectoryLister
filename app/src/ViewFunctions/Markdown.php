@@ -6,6 +6,7 @@ namespace App\ViewFunctions;
 
 use League\CommonMark\ConverterInterface;
 use Symfony\Contracts\Cache\CacheInterface;
+use Twig\Markup;
 
 class Markdown extends ViewFunction
 {
@@ -17,11 +18,13 @@ class Markdown extends ViewFunction
     ) {}
 
     /** Parses a string of markdown into HTML. */
-    public function __invoke(string $string): string
+    public function __invoke(string $string): Markup
     {
-        return $this->cache->get(
+        $markdown = $this->cache->get(
             sprintf('markdown-%s', sha1($string)),
             fn (): string => (string) $this->converter->convert($string)
         );
+
+        return new Markup($markdown, 'UTF-8');
     }
 }

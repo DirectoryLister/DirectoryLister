@@ -6,6 +6,7 @@ namespace App\ViewFunctions;
 
 use App\Config;
 use Illuminate\Support\Collection;
+use Twig\Markup;
 use UnexpectedValueException;
 
 class Vite extends ViewFunction
@@ -17,11 +18,11 @@ class Vite extends ViewFunction
     ) {}
 
     /** @param array<string> $assets */
-    public function __invoke(array $assets): string
+    public function __invoke(array $assets): Markup
     {
         $tags = is_file($this->config->get('manifest_path')) ? $this->getBuildTags($assets) : $this->getDevTags($assets);
 
-        return $tags->implode("\n");
+        return new Markup($tags->implode("\n"), 'UTF-8');
     }
 
     /**

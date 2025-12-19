@@ -6,6 +6,7 @@ namespace App\ViewFunctions;
 
 use App\Config;
 use Symfony\Component\Finder\SplFileInfo;
+use Twig\Markup;
 
 class Icon extends ViewFunction
 {
@@ -16,12 +17,12 @@ class Icon extends ViewFunction
     ) {}
 
     /** Retrieve the icon markup for a file. */
-    public function __invoke(SplFileInfo $file): string
+    public function __invoke(SplFileInfo $file): Markup
     {
         $icons = $this->config->get('icons');
 
         $icon = $file->isDir() ? 'fas fa-folder' : $icons[strtolower($file->getExtension())] ?? 'fas fa-file';
 
-        return "<i class=\"{$icon} fa-fw fa-lg\"></i>";
+        return new Markup(sprintf('<i class="%s fa-fw fa-lg"></i>', $icon), 'UTF-8');
     }
 }

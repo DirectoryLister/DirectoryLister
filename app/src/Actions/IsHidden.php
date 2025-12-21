@@ -17,7 +17,7 @@ class IsHidden
     private Pattern $pattern;
 
     public function __construct(
-        private Container $container,
+        Container $container,
         #[Inject('files_path')] string $filesPath,
     ) {
         $this->pattern = Pattern::make(sprintf('%s{%s}', Pattern::escape(

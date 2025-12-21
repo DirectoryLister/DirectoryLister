@@ -24,18 +24,22 @@ parameters:
       tooWideThrowType: true
 
     uncheckedExceptionClasses:
-      - 'DI\DependencyException'
-      - 'InvalidArgumentException'
-      - 'Invoker\Exception\NotCallableException'
-      - 'JsonException'
-      - 'LogicException'
-      - 'PHPUnit\Framework\Exception'
-      - 'Psr\Cache\InvalidArgumentException'
-      - 'Random\RandomException'
-      - 'RuntimeException'
-      - 'SebastianBergmann\RecursionContext\InvalidArgumentException'
-      - 'Symfony\Component\Cache\Exception\CacheException'
-      - 'Twig\Error\Error'
+      - DI\DependencyException
+      - DI\NotFoundException
+      - InvalidArgumentException
+      - Invoker\Exception\NotCallableException
+      - JsonException
+      - LogicException
+      - PHPUnit\Framework\Exception
+      - Psr\Cache\InvalidArgumentException
+      - Random\RandomException
+      - RuntimeException
+      - SebastianBergmann\RecursionContext\InvalidArgumentException
+      - Symfony\Component\Cache\Exception\CacheException
+      - Twig\Error\Error
+
+  ignoreErrors:
+    - identifier: property.onlyRead
 
 includes:
   - phpstan-baseline.neon

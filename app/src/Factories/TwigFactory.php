@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Factories;
 
+use App\Filters\ViewFilter;
 use App\Functions\ViewFunction;
 use DI\Attribute\Inject;
 use DI\Container;

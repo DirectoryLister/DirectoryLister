@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Tests\Functions;
 
-use App\Config;
 use App\Functions\Icon;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Test;
@@ -14,9 +13,6 @@ use Tests\TestCase;
 #[CoversClass(Icon::class)]
 class IconTest extends TestCase
 {
-    /** @var Config Application config */
-    protected $config;
-
     public function setUp(): void
     {
         parent::setUp();

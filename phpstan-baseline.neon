@@ -37,24 +37,6 @@ parameters:
 			path: app/src/Factories/TwigFactory.php
 
 		-
-			message: '#^Cannot access offset ''mtime'' on array\{0\: int, 1\: int, 2\: int, 3\: int, 4\: int, 5\: int, 6\: int, 7\: int, \.\.\.\}\|false\.$#'
-			identifier: offsetAccess.nonOffsetAccessible
-			count: 1
-			path: app/src/ViewFunctions/ModifiedTime.php
-
-		-
-			message: '#^Method App\\ViewFunctions\\ModifiedTime\:\:__invoke\(\) throws checked exception ValueError but it''s missing from the PHPDoc @throws tag\.$#'
-			identifier: missingType.checkedException
-			count: 1
-			path: app/src/ViewFunctions/ModifiedTime.php
-
-		-
-			message: '#^Method App\\ViewFunctions\\SizeForHumans\:\:__invoke\(\) throws checked exception DivisionByZeroError but it''s missing from the PHPDoc @throws tag\.$#'
-			identifier: missingType.checkedException
-			count: 1
-			path: app/src/ViewFunctions/SizeForHumans.php
-
-		-
 			message: '#^Parameter \#1 \$finfo of function finfo_buffer expects finfo, finfo\|false given\.$#'
 			identifier: argument.type
 			count: 1

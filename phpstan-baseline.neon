@@ -1,12 +1,6 @@
 parameters:
 	ignoreErrors:
 		-
-			message: '#^Method App\\Bootstrap\\Builder\:\:createApp\(\) throws checked exception DI\\NotFoundException but it''s missing from the PHPDoc @throws tag\.$#'
-			identifier: missingType.checkedException
-			count: 1
-			path: app/src/Bootstrap/Builder.php
-
-		-
 			message: '#^Dead catch \- Exception is never thrown in the try block\.$#'
 			identifier: catch.neverThrown
 			count: 1
@@ -25,16 +19,88 @@ parameters:
 			path: app/src/Controllers/ZipController.php
 
 		-
-			message: '#^Method App\\Controllers\\ZipController\:\:createZip\(\) throws checked exception DateMalformedStringException but it''s missing from the PHPDoc @throws tag\.$#'
+			message: '#^Method App\\Controllers\\ZipController\:\:createZip\(\) throws checked exception Exception but it''s missing from the PHPDoc @throws tag\.$#'
 			identifier: missingType.checkedException
 			count: 1
 			path: app/src/Controllers/ZipController.php
 
 		-
-			message: '#^Method App\\Factories\\TwigFactory\:\:__invoke\(\) throws checked exception ReflectionException but it''s missing from the PHPDoc @throws tag\.$#'
-			identifier: missingType.checkedException
+			message: '#^Property App\\Factories\\FinderFactory\:\:\$sortMethods type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/src/Factories/FinderFactory.php
+
+		-
+			message: '#^Parameter \#2 \$callable of class Twig\\TwigFilter constructor expects array\{class\-string, string\}\|\(callable\(\)\: mixed\)\|null, App\\Filters\\ViewFilter given\.$#'
+			identifier: argument.type
 			count: 1
 			path: app/src/Factories/TwigFactory.php
+
+		-
+			message: '#^Parameter \#2 \$callable of class Twig\\TwigFunction constructor expects array\{class\-string, string\}\|\(callable\(\)\: mixed\)\|null, App\\Functions\\ViewFunction given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/src/Factories/TwigFactory.php
+
+		-
+			message: '#^Property App\\Factories\\TwigFactory\:\:\$viewFilters type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/src/Factories/TwigFactory.php
+
+		-
+			message: '#^Property App\\Factories\\TwigFactory\:\:\$viewFunctions type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/src/Factories/TwigFactory.php
+
+		-
+			message: '#^Property App\\Functions\\Icon\:\:\$icons type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/src/Functions/Icon.php
+
+		-
+			message: '#^Cannot access offset ''mtime'' on array\{0\: int, 1\: int, 2\: int, 3\: int, 4\: int, 5\: int, 6\: int, 7\: int, \.\.\.\}\|false\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: app/src/Functions/ModifiedTime.php
+
+		-
+			message: '#^Caught class DateInvalidTimeZoneException not found\.$#'
+			identifier: class.notFound
+			count: 1
+			path: app/src/Functions/ModifiedTime.php
+
+		-
+			message: '#^Method App\\Functions\\ModifiedTime\:\:__invoke\(\) throws checked exception Exception but it''s missing from the PHPDoc @throws tag\.$#'
+			identifier: missingType.checkedException
+			count: 1
+			path: app/src/Functions/ModifiedTime.php
+
+		-
+			message: '#^Method App\\Functions\\ModifiedTime\:\:__invoke\(\) throws checked exception ValueError but it''s missing from the PHPDoc @throws tag\.$#'
+			identifier: missingType.checkedException
+			count: 1
+			path: app/src/Functions/ModifiedTime.php
+
+		-
+			message: '#^Method App\\Functions\\SizeForHumans\:\:__invoke\(\) throws checked exception DivisionByZeroError but it''s missing from the PHPDoc @throws tag\.$#'
+			identifier: missingType.checkedException
+			count: 1
+			path: app/src/Functions/SizeForHumans.php
+
+		-
+			message: '#^Property App\\Managers\\MiddlewareManager\:\:\$middlewares type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/src/Managers/MiddlewareManager.php
+
+		-
+			message: '#^Property App\\Middlewares\\CacheControlMiddleware\:\:\$httpCache type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/src/Middlewares/CacheControlMiddleware.php
 
 		-
 			message: '#^Parameter \#1 \$finfo of function finfo_buffer expects finfo, finfo\|false given\.$#'

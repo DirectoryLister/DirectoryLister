@@ -4,8 +4,9 @@ declare(strict_types=1);
 
 namespace App\Actions;
 
-use App\Config;
 use App\HiddenFiles;
+use DI\Attribute\Inject;
+use DI\Container;
 use PHLAK\Splat\Glob;
 use PHLAK\Splat\Pattern;
 use SplFileInfo;
@@ -16,12 +17,12 @@ class IsHidden
     private Pattern $pattern;
 
     public function __construct(
-        private Config $config,
-        private HiddenFiles $hiddenFiles,
+        private Container $container,
+        #[Inject('files_path')] string $filesPath,
     ) {
         $this->pattern = Pattern::make(sprintf('%s{%s}', Pattern::escape(
-            $this->config->get('files_path') . DIRECTORY_SEPARATOR
-        ), $this->hiddenFiles->implode(',')));
+            $filesPath . DIRECTORY_SEPARATOR
+        ), HiddenFiles::fromContainer($container)->implode(',')));
     }
 
     /** Determine if a file is hidden. */

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App;
 
 use BadMethodCallException;
+use DI\Container;
 use Illuminate\Support\Collection;
 
 /** @extends Collection<int, string> */
@@ -21,17 +22,17 @@ class HiddenFiles extends Collection
     }
 
     /** Create a new HiddenFiles collection object. */
-    public static function fromConfig(Config $config): self
+    public static function fromContainer(Container $container): self
     {
-        $items = $config->get('hidden_files');
+        $items = $container->get('hidden_files');
 
-        if (is_readable($config->get('hidden_files_list'))) {
-            $hiddenFiles = file($config->get('hidden_files_list'), FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+        if (is_readable($container->get('hidden_files_list'))) {
+            $hiddenFiles = file($container->get('hidden_files_list'), FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
             $items = array_merge($items, $hiddenFiles ?: []);
         }
 
-        if ($config->get('hide_app_files')) {
-            $items = array_merge($items, $config->get('app_files'));
+        if ($container->get('hide_app_files')) {
+            $items = array_merge($items, $container->get('app_files'));
         }
 
         return new self(array_unique($items));

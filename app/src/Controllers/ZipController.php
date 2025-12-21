@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace App\Controllers;
 
 use App\CallbackStream;
-use App\Config;
 use App\Support\Str;
 use DateTime;
+use DI\Attribute\Inject;
 use DI\Container;
 use Psr\Http\Message\ResponseInterface;
 use RuntimeException;
@@ -23,9 +23,14 @@ use ZipStream\ZipStream;
 
 class ZipController
 {
+    #[Inject('zip_downloads')]
+    private bool $zipDownloads;
+
+    #[Inject('zip_compress')]
+    private bool $zipCompress;
+
     public function __construct(
         private Container $container,
-        private Config $config,
         private Finder $finder,
         private TranslatorInterface $translator
     ) {}
@@ -34,7 +39,7 @@ class ZipController
     {
         $path = $this->container->call('full_path', ['path' => $request->getQueryParams()['zip']]);
 
-        if (! $this->config->get('zip_downloads') || ! is_dir($path)) {
+        if (! $this->zipDownloads || ! is_dir($path)) {
             return $response->withStatus(404, $this->translator->trans('error.file_not_found'));
         }
 
@@ -70,7 +75,7 @@ class ZipController
      */
     private function createZip(string $path, Finder $files): ZipStream
     {
-        $compressionMethod = $this->config->get('zip_compress') ? CompressionMethod::DEFLATE : CompressionMethod::STORE;
+        $compressionMethod = $this->zipCompress ? CompressionMethod::DEFLATE : CompressionMethod::STORE;
 
         $zip = new ZipStream(
             sendHttpHeaders: false,

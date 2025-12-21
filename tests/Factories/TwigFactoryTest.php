@@ -5,8 +5,7 @@ declare(strict_types=1);
 namespace Tests\Factories;
 
 use App\Factories\TwigFactory;
-use App\ViewFunctions;
-use Invoker\CallableResolver;
+use App\Functions;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Test;
 use Slim\Views\Twig;
@@ -19,9 +18,8 @@ class TwigFactoryTest extends TestCase
     public function it_can_compose_the_view_component(): void
     {
         $this->container->set('view_cache', 'app/cache/views');
-        $callableResolver = $this->container->get(CallableResolver::class);
 
-        $twig = (new TwigFactory($this->config, $callableResolver))();
+        $twig = $this->container->call(TwigFactory::class);
 
         $this->assertInstanceOf(Twig::class, $twig);
         $this->assertEquals('app/cache/views', $twig->getEnvironment()->getCache());
@@ -30,72 +28,70 @@ class TwigFactoryTest extends TestCase
     #[Test]
     public function it_registers_the_view_functions(): void
     {
-        $callableResolver = $this->container->get(CallableResolver::class);
-
-        $twig = (new TwigFactory($this->config, $callableResolver))();
+        $twig = $this->container->call(TwigFactory::class);
 
         $this->assertInstanceOf(
-            ViewFunctions\Analytics::class,
+            Functions\Analytics::class,
             $twig->getEnvironment()->getFunction('analytics')?->getCallable()
         );
 
         $this->assertInstanceOf(
-            ViewFunctions\Breadcrumbs::class,
+            Functions\Breadcrumbs::class,
             $twig->getEnvironment()->getFunction('breadcrumbs')?->getCallable()
         );
 
         $this->assertInstanceOf(
-            ViewFunctions\Config::class,
+            Functions\Config::class,
             $twig->getEnvironment()->getFunction('config')?->getCallable()
         );
 
         $this->assertInstanceOf(
-            ViewFunctions\FileUrl::class,
+            Functions\FileUrl::class,
             $twig->getEnvironment()->getFunction('file_url')?->getCallable()
         );
 
         $this->assertInstanceOf(
-            ViewFunctions\Icon::class,
+            Functions\Icon::class,
             $twig->getEnvironment()->getFunction('icon')?->getCallable()
         );
 
         $this->assertInstanceOf(
-            ViewFunctions\Markdown::class,
+            Functions\Markdown::class,
             $twig->getEnvironment()->getFunction('markdown')?->getCallable()
         );
 
         $this->assertInstanceOf(
-            ViewFunctions\ModifiedTime::class,
+            Functions\ModifiedTime::class,
             $twig->getEnvironment()->getFunction('modified_time')?->getCallable()
         );
 
         $this->assertInstanceOf(
-            ViewFunctions\ParentUrl::class,
+            Functions\ParentUrl::class,
             $twig->getEnvironment()->getFunction('parent_url')?->getCallable()
         );
 
         $this->assertInstanceOf(
-            ViewFunctions\SizeForHumans::class,
+            Functions\SizeForHumans::class,
             $twig->getEnvironment()->getFunction('size_for_humans')?->getCallable()
         );
 
         $this->assertInstanceOf(
-            ViewFunctions\Translate::class,
+            Functions\Translate::class,
             $twig->getEnvironment()->getFunction('translate')?->getCallable()
         );
 
         $this->assertInstanceOf(
-            ViewFunctions\Url::class,
+            Functions\Url::class,
             $twig->getEnvironment()->getFunction('url')?->getCallable()
         );
 
         $this->assertInstanceOf(
-            ViewFunctions\Vite::class,
+            Functions\Vite::class,
             $twig->getEnvironment()->getFunction('vite')?->getCallable()
         );
 
         $this->assertInstanceOf(
-            ViewFunctions\ZipUrl::class,
+            Functions\ZipUrl::class,
             $twig->getEnvironment()->getFunction('zip_url')?->getCallable()
         );
     }

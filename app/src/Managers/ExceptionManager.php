@@ -4,23 +4,25 @@ declare(strict_types=1);
 
 namespace App\Managers;
 
-use App\Config;
 use App\Exceptions\ErrorHandler;
+use DI\Attribute\Inject;
 use DI\Container;
 use Slim\App;
 
 class ExceptionManager
 {
+    #[Inject('debug')]
+    private string $debug;
+
     /** @param App<Container> $app */
     public function __construct(
         private App $app,
-        private Config $config
     ) {}
 
     /** Set up and configure exception handling. */
     public function __invoke(): void
     {
-        if ($this->config->get('debug')) {
+        if ((bool) filter_var($this->debug, FILTER_VALIDATE_BOOL)) {
             return;
         }
 

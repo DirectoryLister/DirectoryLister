@@ -34,6 +34,8 @@ class MiddlewareManagerTest extends TestCase
             }
         );
 
-        (new MiddlewareManager($app, $this->config))();
+        $middlewareMananger = $this->container->make(MiddlewareManager::class, ['app' => $app]);
+
+        $middlewareMananger();
     }
 }

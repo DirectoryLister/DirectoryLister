@@ -15,11 +15,11 @@ class InvalidConfigurationTest extends TestCase
     #[Test]
     public function it_can_be_instantiated_from_a_config_value(): void
     {
-        $exception = InvalidConfiguration::fromConfig('bar', 'foo');
+        $exception = InvalidConfiguration::forOption('bar', 'foo');
 
         $this->assertInstanceOf(InvalidConfiguration::class, $exception);
         $this->assertEquals(
-            "Unknown value 'foo' for configuration option 'bar'",
+            "Invalid value ['foo'] for configuration option [bar]",
             $exception->getMessage()
         );
     }

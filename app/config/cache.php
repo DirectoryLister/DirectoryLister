@@ -1,6 +1,9 @@
 <?php
 
-use App\Config;
+declare(strict_types=1);
+
+use DI\Container;
+
 use function DI\env;
 use function DI\value;
 
@@ -68,10 +71,10 @@ return [
      *
      * Default value: Connects to a server at localhost:11211
      */
-    'memcached_config' => value(function (Memcached $memcached, Config $config): void {
+    'memcached_config' => value(function (Memcached $memcached, Container $container): void {
         $memcached->addServer(
-            $config->get('memcached_host'),
-            $config->get('memcached_port')
+            (string) $container->get('memcached_host'),
+            (int) $container->get('memcached_port')
         );
     }),
 
@@ -101,10 +104,10 @@ return [
      *
      * Default value: Connects to a server at localhost:6379
      */
-    'redis_config' => DI\value(function (Redis $redis, Config $config): void {
+    'redis_config' => DI\value(function (Redis $redis, Container $container): void {
         $redis->pconnect(
-            $config->get('redis_host'),
-            $config->get('redis_port')
+            (string) $container->get('redis_host'),
+            (int) $container->get('redis_port')
         );
     }),
 

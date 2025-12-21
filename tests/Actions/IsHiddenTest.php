@@ -2,10 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Test\Actions;
+namespace Tests\Actions;
 
 use App\Actions\IsHidden;
-use App\HiddenFiles;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Test;
 use SplFileInfo;
@@ -22,7 +21,7 @@ class IsHiddenTest extends TestCase
 
         $this->container->set('hidden_files', ['**.txt']);
 
-        $this->isHidden = new IsHidden($this->config, HiddenFiles::fromConfig($this->config));
+        $this->isHidden = $this->container->get(IsHidden::class);
     }
 
     #[Test]

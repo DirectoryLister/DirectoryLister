@@ -31,16 +31,18 @@ class CacheFactoryTest extends TestCase
 
     /** @param class-string $adapter */
     #[Test, DataProvider('cacheAdapters')]
-    public function it_can_compose_an_adapter(string $config, string $adapter, bool $available = true): void
+    public function it_can_compose_an_adapter(string $driver, string $adapter, bool $available = true): void
     {
         if (! $available) {
             $this->markTestSkipped('Cache driver unavailable');
         }
 
-        $this->container->set('cache_driver', $config);
+        $this->container->set('cache_driver', $driver);
+
+        $cacheFactory = $this->container->make(CacheFactory::class);
 
         try {
-            $cache = (new CacheFactory($this->container, $this->config))();
+            $cache = $cacheFactory();
         } catch (RedisException $exception) {
             $this->markTestSkipped(sprintf('Redis: %s', $exception->getMessage()));
         }
@@ -52,9 +54,10 @@ class CacheFactoryTest extends TestCase
     public function it_throws_a_runtime_exception_with_an_invalid_cache_driver(): void
     {
         $this->container->set('cache_driver', 'invalid');
+        $cacheFactory = $this->container->make(CacheFactory::class);
 
         $this->expectException(InvalidConfiguration::class);
 
-        (new CacheFactory($this->container, $this->config))();
+        $cacheFactory();
     }
 }

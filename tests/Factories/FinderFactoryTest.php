@@ -4,10 +4,8 @@ declare(strict_types=1);
 
 namespace Tests\Factories;
 
-use App\Actions\IsHidden;
 use App\Exceptions\InvalidConfiguration;
 use App\Factories\FinderFactory;
-use App\HiddenFiles;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Test;
 use Symfony\Component\Finder\Finder;
@@ -20,12 +18,7 @@ class FinderFactoryTest extends TestCase
     #[Test]
     public function it_can_compose_the_finder_component(): void
     {
-        $finder = (new FinderFactory(
-            $this->container,
-            $this->config,
-            HiddenFiles::fromConfig($this->config),
-            $this->container->get(IsHidden::class)
-        ))();
+        $finder = $this->container->call(FinderFactory::class);
 
         $this->assertInstanceOf(Finder::class, $finder);
 
@@ -136,7 +129,7 @@ class FinderFactoryTest extends TestCase
 
         $this->expectException(InvalidConfiguration::class);
 
-        $finder = $this->container->call(FinderFactory::class);
+        $this->container->call(FinderFactory::class);
     }
 
     private function getFilesArray(Finder $finder): array

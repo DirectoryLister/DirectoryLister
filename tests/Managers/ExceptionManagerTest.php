@@ -28,7 +28,9 @@ class ExceptionManagerTest extends TestCase
             ->method('addErrorMiddleware')
             ->willReturn($errorMiddleware);
 
-        (new ExceptionManager($app, $this->config))();
+        $exceptionManager = $this->container->make(ExceptionManager::class, ['app' => $app]);
+
+        $exceptionManager();
     }
 
     #[Test]
@@ -39,6 +41,8 @@ class ExceptionManagerTest extends TestCase
         $app = $this->createMock(App::class);
         $app->expects($this->never())->method('addErrorMiddleware');
 
-        (new ExceptionManager($app, $this->config))();
+        $exceptionManager = $this->container->make(ExceptionManager::class, ['app' => $app]);
+
+        $exceptionManager();
     }
 }

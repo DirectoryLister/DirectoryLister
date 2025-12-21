@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Controllers;
 
 use App\Actions\IsHidden;
-use App\Config;
+use DI\Attribute\Inject;
 use DI\Container;
 use Exception;
 use Psr\Http\Message\ResponseInterface;
@@ -17,9 +17,11 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 
 class FileInfoController
 {
+    #[Inject('max_hash_size')]
+    private int $maxHashSize;
+
     public function __construct(
         private Container $container,
-        private Config $config,
         private CacheInterface $cache,
         private IsHidden $isHidden,
         private TranslatorInterface $translator
@@ -39,7 +41,7 @@ class FileInfoController
             return $response->withStatus(404, $this->translator->trans('error.file_not_found'));
         }
 
-        if ($file->getSize() >= (int) $this->config->get('max_hash_size')) {
+        if ($file->getSize() >= $this->maxHashSize) {
             return $response->withStatus(500, $this->translator->trans('error.file_size_exceeded'));
         }
 

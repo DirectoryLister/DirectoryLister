@@ -16,7 +16,7 @@ class Builder
         /** @var list<string> $configFiles */
         $configFiles = glob($configPath . '/*.php') ?: [];
 
-        $containerBuilder = (new ContainerBuilder)->addDefinitions(...$configFiles);
+        $containerBuilder = (new ContainerBuilder)->useAttributes(true)->addDefinitions(...$configFiles);
 
         if (self::containerCompilationEnabled()) {
             $containerBuilder->enableCompilation($cachePath);
@@ -30,7 +30,8 @@ class Builder
     {
         $app = Bridge::create($container);
 
-        foreach ($container->get('managers') as $manager) {
+        foreach ((array) $container->get('managers') as $manager) {
+            /** @var callable $manager */
             $container->call($manager);
         }
 

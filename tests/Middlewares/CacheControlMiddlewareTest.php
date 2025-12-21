@@ -41,7 +41,7 @@ class CacheControlMiddlewareTest extends TestCase
             ]))
         );
 
-        $response = (new CacheControlMiddleware($this->config))($this->request, $this->handler);
+        $response = $this->container->call(CacheControlMiddleware::class, [$this->request, $this->handler]);
 
         $this->assertEquals(['max-age=0, private, must-revalidate'], $response->getHeader('Cache-Control'));
     }
@@ -55,7 +55,7 @@ class CacheControlMiddlewareTest extends TestCase
             ]))
         );
 
-        $response = (new CacheControlMiddleware($this->config))($this->request, $this->handler);
+        $response = $this->container->call(CacheControlMiddleware::class, [$this->request, $this->handler]);
 
         $this->assertEquals(['max-age=300, private, must-revalidate'], $response->getHeader('Cache-Control'));
     }

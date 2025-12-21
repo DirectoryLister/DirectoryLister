@@ -19,7 +19,7 @@ class TranslationFactoryTest extends TestCase
     public function it_registers_the_translation_component(): void
     {
         /** @var Translator $translator */
-        $translator = (new TranslationFactory($this->config, $this->cache))();
+        $translator = $this->container->call(TranslationFactory::class);
 
         $this->assertEquals('en', $translator->getLocale());
         $this->assertInstanceOf(MessageCatalogue::class, $translator->getCatalogue('ar'));
@@ -51,6 +51,7 @@ class TranslationFactoryTest extends TestCase
         $this->expectException(InvalidConfiguration::class);
 
         $this->container->set('language', 'xx');
-        (new TranslationFactory($this->config, $this->cache))();
+
+        $this->container->call(TranslationFactory::class);
     }
 }

@@ -49,28 +49,26 @@ class PruneCacheMiddlewareTest extends TestCase
     {
         /** @var CacheInterface&MockObject */
         $cache = $this->createMock($cacheAdapter);
+        $this->container->set(CacheInterface::class, $cache);
         $cache->expects($this->once())->method('prune');
 
-        (new PruneCacheMiddleware($this->config, $cache))(
-            $this->createMock(ServerRequestInterface::class),
-            $this->createMock(RequestHandlerInterface::class)
-        );
+        $this->container->call(PruneCacheMiddleware::class, [
+            'request' => $this->createMock(ServerRequestInterface::class),
+            'handler' => $this->createMock(RequestHandlerInterface::class),
+        ]);
     }
 
     /** @param class-string $cacheAdapter */
     #[Test, DataProvider('nonPruneableCacheAdapters')]
     public function it_does_not_prune_the_cache_when_using_a_non_prunable_adapter(string $cacheAdapter): void
     {
-        /** @var CacheInterface&MockObject */
-        $cache = $this->getMockBuilder($cacheAdapter)
-            ->disableOriginalConstructor()
-            ->getMock();
-
+        $cache = $this->createMock($cacheAdapter);
+        $this->container->set(CacheInterface::class, $cache);
         $cache->expects($this->never())->method($this->anything());
 
-        (new PruneCacheMiddleware($this->config, $cache))(
-            $this->createMock(ServerRequestInterface::class),
-            $this->createMock(RequestHandlerInterface::class)
-        );
+        $this->container->call(PruneCacheMiddleware::class, [
+            'request' => $this->createMock(ServerRequestInterface::class),
+            'handler' => $this->createMock(RequestHandlerInterface::class),
+        ]);
     }
 }

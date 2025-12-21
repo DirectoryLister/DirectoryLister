@@ -19,9 +19,9 @@ use Tests\TestCase;
 class IndexControllerTest extends TestCase
 {
     /** @var Container&MockObject */
-    protected $container;
-    /** @var Request&MockObject */
-    private $request;
+    protected Container $container;
+
+    private Request&MockObject $request;
 
     /** @var Response&MockObject */
     private $response;

@@ -6,7 +6,7 @@
 
         <article class="bg-slate-100 rounded-b-lg px-4 py-8 sm:px-6 md:px-8 lg:px-12 dark:bg-slate-900 dark:border-0 {{ readme.getExtension == 'md' ? 'markdown' : 'font-mono' }}" v-pre>
             {% if readme.getExtension == 'md' %}
-                {{ markdown(readme.getContents) | raw }}
+                {{ readme.getContents | markdown }}
             {% else %}
                 {{ readme.getContents | nl2br }}
             {% endif %}

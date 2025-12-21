@@ -5,26 +5,17 @@ declare(strict_types=1);
 namespace Tests;
 
 use App\Bootstrap\Builder;
-use App\Config;
 use DI\Container;
 use Dotenv\Dotenv;
-use Symfony\Component\Cache\Adapter\ArrayAdapter;
+use PHPUnit\Framework\MockObject\MockObject;
 use Symfony\Contracts\Cache\CacheInterface;
 use Yoast\PHPUnitPolyfills\TestCases\TestCase as BaseTestCase;
 
 class TestCase extends BaseTestCase
 {
-    /** @var Container The test container */
-    protected $container;
-
-    /** @var Config Application configuration */
-    protected $config;
-
-    /** @var CacheInterface The test cache */
-    protected $cache;
-
-    /** @var string Path to test files directory */
-    protected $testFilesPath = __DIR__ . '/_files';
+    protected Container $container;
+    protected CacheInterface $cache;
+    protected string $testFilesPath = __DIR__ . '/_files';
 
     /** This method is called before each test. */
     protected function setUp(): void
@@ -42,14 +33,30 @@ class TestCase extends BaseTestCase
 
         $this->container->set('base_path', $this->testFilesPath);
         $this->container->set('cache_path', $this->filePath('app/cache'));
+        $this->container->set('cache_driver', 'array');
 
-        $this->config = new Config($this->container);
-        $this->cache = new ArrayAdapter((int) $this->config->get('cache_lifetime'));
+        $this->cache = $this->container->get(CacheInterface::class);
     }
 
     /** Get the file path to a test file. */
     protected function filePath(string $filePath): string
     {
         return sprintf('%s/%s', $this->testFilesPath, $filePath);
+    }
+
+    /**
+     * @template TClass of object
+     *
+     * @param class-string<TClass> $className
+     *
+     * @return TClass&MockObject
+     */
+    protected function mock(string $className): mixed
+    {
+        $mock = $this->createMock($className);
+
+        $this->container->set($className, $mock);
+
+        return $mock;
     }
 }

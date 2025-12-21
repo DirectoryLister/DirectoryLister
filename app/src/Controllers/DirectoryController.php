@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Controllers;
 
 use App\Actions\IsHidden;
-use App\Config;
+use DI\Attribute\Inject;
 use DI\Container;
 use Exception;
 use Psr\Http\Message\ResponseInterface;
@@ -18,9 +18,11 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 
 class DirectoryController
 {
+    #[Inject('display_readmes')]
+    private string $displayReadmes;
+
     public function __construct(
         private Container $container,
-        private Config $config,
         private Finder $finder,
         private Twig $view,
         private TranslatorInterface $translator,
@@ -57,7 +59,7 @@ class DirectoryController
     /** Return the README file within a finder object. */
     private function readme(Finder $files): ?SplFileInfo
     {
-        if (! $this->config->get('display_readmes')) {
+        if (! filter_var($this->displayReadmes, FILTER_VALIDATE_BOOL)) {
             return null;
         }
 

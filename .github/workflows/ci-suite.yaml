@@ -2,7 +2,7 @@ name: Directory Lister CI
 on: [push, pull_request, workflow_dispatch]
 
 env:
-  PHP_VERSION: 8.4
+  PHP_VERSION: 8.5
   NODE_VERSION: 24
 
 jobs:

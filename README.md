@@ -47,6 +47,13 @@ Requirements
 Installation
 ------------
 
+### Docker Compose
+
+For quick and easy management via [Docker Compose](https://docs.docker.com/compose/)
+check out [Directory Lister Compose](https://github.com/DirectoryLister/directory-lister-compose).
+
+### Manual Installation
+
   1. [Download Directory Lister](https://www.directorylister.com)
   2. Extract the zip/tar archive
   3. Copy extracted files/folders to your web server

@@ -1,6 +1,6 @@
 # --------- BUILD ----------
 
-FROM php:8.5-apache as build
+FROM php:8.5-apache AS build
 LABEL maintainer="Chris Kankiewicz <Chris@ChrisKankiewicz.com>"
 
 ENV HOME="/tmp"

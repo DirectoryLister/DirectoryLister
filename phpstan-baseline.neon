@@ -13,12 +13,6 @@ parameters:
 			path: app/src/Controllers/DirectoryController.php
 
 		-
-			message: '#^PHPDoc tag @var for variable \$overrides has no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: app/src/Controllers/DirectoryController.php
-
-		-
 			message: '#^Dead catch \- Exception is never thrown in the try block\.$#'
 			identifier: catch.neverThrown
 			count: 1

@@ -13,7 +13,7 @@ services:
     volumes:
       - ./:/var/www/html
       - ./.docker/php/config/php.dev.ini:/usr/local/etc/php/php.ini
-      - ./.docker/apache2/config/000-default.conf:/etc/apache2/sites-available/000-default.conf
+      - ./.docker/apache2/config/000-default.dev.conf:/etc/apache2/sites-available/000-default.conf
 
   memcached:
     image: memcached:1.6

@@ -67,7 +67,6 @@ return [
     ],
 
     'view_functions' => [
-        Functions\Analytics::class,
         Functions\Breadcrumbs::class,
         Functions\Config::class,
         Functions\Customizations::class,

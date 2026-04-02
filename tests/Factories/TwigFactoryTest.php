@@ -31,11 +31,6 @@ class TwigFactoryTest extends TestCase
         $twig = $this->container->call(TwigFactory::class);
 
         $this->assertInstanceOf(
-            Functions\Analytics::class,
-            $twig->getEnvironment()->getFunction('analytics')?->getCallable()
-        );
-
-        $this->assertInstanceOf(
             Functions\Breadcrumbs::class,
             $twig->getEnvironment()->getFunction('breadcrumbs')?->getCallable()
         );
@@ -43,6 +38,11 @@ class TwigFactoryTest extends TestCase
         $this->assertInstanceOf(
             Functions\Config::class,
             $twig->getEnvironment()->getFunction('config')?->getCallable()
+        );
+
+        $this->assertInstanceOf(
+            Functions\Customizations::class,
+            $twig->getEnvironment()->getFunction('customizations')?->getCallable()
         );
 
         $this->assertInstanceOf(

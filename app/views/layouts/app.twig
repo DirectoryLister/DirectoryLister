@@ -9,6 +9,8 @@
 
 {{ vite(['app/resources/css/app.css', 'app/resources/js/app.js']) }}
 
+{{ customizations() }}
+
 {{ analytics() }}
 
 <title>{{ title }} &bull; {{ config('site_title') }}</title>

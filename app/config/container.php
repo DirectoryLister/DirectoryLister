@@ -34,6 +34,9 @@ return [
     'translations_path' => string('{app_path}/translations'),
     'views_path' => string('{app_path}/views'),
 
+    // User generated files paths
+    'customizations_file' => string('{files_path}/{customizations_file}'),
+
     // -------------------------------------------------------------------------
     // Application managers
     // -------------------------------------------------------------------------
@@ -67,6 +70,7 @@ return [
         Functions\Analytics::class,
         Functions\Breadcrumbs::class,
         Functions\Config::class,
+        Functions\Customizations::class,
         Functions\FileUrl::class,
         Functions\Icon::class,
         Functions\Markdown::class,
@@ -105,7 +109,7 @@ return [
     Whoops\RunInterface::class => create(Whoops\Run::class),
 
     /** Array of application files (to be hidden) */
-    'app_files' => ['app', 'app/**', 'index.php', '.analytics', '.env', '.env.example', '.hidden'],
+    'app_files' => ['app', 'app/**', 'index.php', '.analytics', '.customizations.html', '.env', '.env.example', '.hidden'],
 
     /** Files path helper */
     'full_path' => value(static fn (string $path, Container $container): string => $container->get('files_path') . '/' . $path),

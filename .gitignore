@@ -3,5 +3,6 @@
 /.cache/
 /.coverage-cache/
 /.analytics
+/.customizations.html
 /.env
 /.hidden

@@ -2,7 +2,7 @@ services:
   app:
     build:
       context: .
-      dockerfile: Dockerfile.dev
+      target: dev
     image: phlak/directory-lister:dev
     depends_on: [memcached, redis]
     ports:
@@ -28,7 +28,7 @@ services:
   npm:
     build:
       context: .
-      dockerfile: Dockerfile.dev
+      target: dev
     image: phlak/directory-lister:dev
     volumes:
       - ./:/var/www/html

@@ -102,14 +102,6 @@ return [
     'reverse_sort' => env('REVERSE_SORT', false),
 
     /**
-     * Customizations file that will be included in the HTML output of your
-     * directory listing. Useful for adding analytics scripts and similar.
-     *
-     * Default value: '.customizations.html'
-     */
-    'customizations_file' => env('CUSTOMIZATIONS_FILE', '.customizations.html'),
-
-    /**
      * File containing hidden file definitions. Will be merged with definitions
      * from the 'hidden_files' configuration option.
      *

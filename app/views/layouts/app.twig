@@ -11,8 +11,6 @@
 
 {{ customizations() }}
 
-{{ analytics() }}
-
 <title>{{ title }} &bull; {{ config('site_title') }}</title>
 
 <div class="{{ theme }}" x-data="application" x-effect="storeThemeCookie($store.theme)" :class="{ 'dark': $store.theme === 'dark' }">

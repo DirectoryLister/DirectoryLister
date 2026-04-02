@@ -35,7 +35,7 @@ return [
     'views_path' => string('{app_path}/views'),
 
     // User generated files paths
-    'customizations_file' => string('{files_path}/{customizations_file}'),
+    'customizations_file' => string('{files_path}/.customizations.html'),
 
     // -------------------------------------------------------------------------
     // Application managers

@@ -27,6 +27,7 @@ parameters:
       - DI\DependencyException
       - DI\NotFoundException
       - InvalidArgumentException
+      - Invoker\Exception\InvocationException
       - Invoker\Exception\NotCallableException
       - JsonException
       - LogicException

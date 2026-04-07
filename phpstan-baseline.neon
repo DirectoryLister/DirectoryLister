@@ -1,26 +1,8 @@
 parameters:
 	ignoreErrors:
 		-
-			message: '#^Method App\\Bootstrap\\Builder\:\:createApp\(\) throws checked exception Invoker\\Exception\\InvocationException but it''s missing from the PHPDoc @throws tag\.$#'
-			identifier: missingType.checkedException
-			count: 1
-			path: app/src/Bootstrap/Builder.php
-
-		-
-			message: '#^Method App\\Controllers\\DirectoryController\:\:__invoke\(\) throws checked exception Invoker\\Exception\\InvocationException but it''s missing from the PHPDoc @throws tag\.$#'
-			identifier: missingType.checkedException
-			count: 1
-			path: app/src/Controllers/DirectoryController.php
-
-		-
 			message: '#^Dead catch \- Exception is never thrown in the try block\.$#'
 			identifier: catch.neverThrown
-			count: 1
-			path: app/src/Controllers/FileController.php
-
-		-
-			message: '#^Method App\\Controllers\\FileController\:\:__invoke\(\) throws checked exception Invoker\\Exception\\InvocationException but it''s missing from the PHPDoc @throws tag\.$#'
-			identifier: missingType.checkedException
 			count: 1
 			path: app/src/Controllers/FileController.php
 
@@ -29,24 +11,6 @@ parameters:
 			identifier: catch.neverThrown
 			count: 1
 			path: app/src/Controllers/FileInfoController.php
-
-		-
-			message: '#^Method App\\Controllers\\FileInfoController\:\:__invoke\(\) throws checked exception Invoker\\Exception\\InvocationException but it''s missing from the PHPDoc @throws tag\.$#'
-			identifier: missingType.checkedException
-			count: 1
-			path: app/src/Controllers/FileInfoController.php
-
-		-
-			message: '#^Method App\\Controllers\\IndexController\:\:__invoke\(\) throws checked exception Invoker\\Exception\\InvocationException but it''s missing from the PHPDoc @throws tag\.$#'
-			identifier: missingType.checkedException
-			count: 1
-			path: app/src/Controllers/IndexController.php
-
-		-
-			message: '#^Method App\\Controllers\\SearchController\:\:__invoke\(\) throws checked exception Invoker\\Exception\\InvocationException but it''s missing from the PHPDoc @throws tag\.$#'
-			identifier: missingType.checkedException
-			count: 1
-			path: app/src/Controllers/SearchController.php
 
 		-
 			message: '#^Cannot access offset ''mtime'' on array\{0\: int, 1\: int, 2\: int, 3\: int, 4\: int, 5\: int, 6\: int, 7\: int, \.\.\.\}\|false\.$#'
@@ -55,34 +19,10 @@ parameters:
 			path: app/src/Controllers/ZipController.php
 
 		-
-			message: '#^Method App\\Controllers\\ZipController\:\:__invoke\(\) throws checked exception Invoker\\Exception\\InvocationException but it''s missing from the PHPDoc @throws tag\.$#'
-			identifier: missingType.checkedException
-			count: 1
-			path: app/src/Controllers/ZipController.php
-
-		-
 			message: '#^Method App\\Controllers\\ZipController\:\:createZip\(\) throws checked exception Exception but it''s missing from the PHPDoc @throws tag\.$#'
 			identifier: missingType.checkedException
 			count: 1
 			path: app/src/Controllers/ZipController.php
-
-		-
-			message: '#^Method App\\Factories\\CacheFactory\:\:getMemcachedAdapter\(\) throws checked exception Invoker\\Exception\\InvocationException but it''s missing from the PHPDoc @throws tag\.$#'
-			identifier: missingType.checkedException
-			count: 1
-			path: app/src/Factories/CacheFactory.php
-
-		-
-			message: '#^Method App\\Factories\\CacheFactory\:\:getRedisAdapter\(\) throws checked exception Invoker\\Exception\\InvocationException but it''s missing from the PHPDoc @throws tag\.$#'
-			identifier: missingType.checkedException
-			count: 1
-			path: app/src/Factories/CacheFactory.php
-
-		-
-			message: '#^Method App\\Factories\\FinderFactory\:\:__invoke\(\) throws checked exception Invoker\\Exception\\InvocationException but it''s missing from the PHPDoc @throws tag\.$#'
-			identifier: missingType.checkedException
-			count: 1
-			path: app/src/Factories/FinderFactory.php
 
 		-
 			message: '#^Property App\\Factories\\FinderFactory\:\:\$sortMethods type has no value type specified in iterable type array\.$#'
@@ -113,12 +53,6 @@ parameters:
 			identifier: missingType.iterableValue
 			count: 1
 			path: app/src/Factories/TwigFactory.php
-
-		-
-			message: '#^Method App\\Functions\\FileUrl\:\:__invoke\(\) throws checked exception Invoker\\Exception\\InvocationException but it''s missing from the PHPDoc @throws tag\.$#'
-			identifier: missingType.checkedException
-			count: 1
-			path: app/src/Functions/FileUrl.php
 
 		-
 			message: '#^Property App\\Functions\\Icon\:\:\$icons type has no value type specified in iterable type array\.$#'

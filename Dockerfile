@@ -48,7 +48,7 @@ RUN make production
 
 FROM base AS prod
 
-ENV FILES_PATH="/data"
+ENV FILES_PATH=/data
 
 COPY .docker/apache2/config/000-default.prod.conf /etc/apache2/sites-available/000-default.conf
 COPY .docker/php/config/php.prod.ini /usr/local/etc/php/php.ini
@@ -59,11 +59,11 @@ COPY --from=base /usr/local/lib/node_modules /usr/local/lib/node_modules
 COPY --from=build /var/www/html /var/www/html
 RUN chown --recursive www-data:www-data /var/www/html
 
-VOLUME /var/www/html/app/cache
-
 # --------- DEV ----------
 
 FROM prod AS dev
+
+ENV FILES_PATH=/var/www/html
 
 COPY .docker/apache2/config/000-default.dev.conf /etc/apache2/sites-available/000-default.conf
 COPY .docker/php/config/php.dev.ini /usr/local/etc/php/php.ini

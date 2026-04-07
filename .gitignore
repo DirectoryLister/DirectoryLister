@@ -1,8 +1,29 @@
+# ----------------------------------------
+# Application dependencies
+# ----------------------------------------
+
 /app/vendor/
 /node_modules/
+
+# ----------------------------------------
+# Application files and folders
+# ----------------------------------------
+
 /.cache/
-/.coverage-cache/
+/app/cache/
+/app/assets/
+
+# ----------------------------------------
+# User generated files
+# ----------------------------------------
+
 /.analytics
 /.customizations.html
 /.env
 /.hidden
+
+# ----------------------------------------
+# Test files and folders
+# ----------------------------------------
+
+/tests/_files/cache/

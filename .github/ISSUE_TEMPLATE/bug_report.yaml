@@ -12,6 +12,18 @@ body:
     validations:
       required: true
 
+  - type: dropdown
+    id: installation-method
+    attributes:
+      label: Installation Method
+      description: How did you install Directory Lister?
+      options:
+        - Docker
+        - Manual
+        - Other
+      validations:
+        required: true
+
   - type: input
     id: php-version
     attributes:
@@ -20,7 +32,7 @@ body:
         What version of PHP do you have installed?
         Run `php --version` from a command line to find your version.
     validations:
-      required: true
+      required: false
 
   - type: textarea
     id: php-extensions
@@ -40,7 +52,7 @@ body:
         What HTTP web server are you using to serve Directory Lister?
         **Examples:** Apache, NGINX, Lighttpd, etc.
     validations:
-      required: true
+      required: false
 
   - type: textarea
     id: description

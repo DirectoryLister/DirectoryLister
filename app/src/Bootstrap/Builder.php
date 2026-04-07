@@ -4,10 +4,8 @@ declare(strict_types=1);
 
 namespace App\Bootstrap;
 
-use DI\Bridge\Slim\Bridge;
 use DI\Container;
 use DI\ContainerBuilder;
-use Slim\App;
 
 class Builder
 {
@@ -23,19 +21,6 @@ class Builder
         }
 
         return $containerBuilder->build();
-    }
-
-    /** @return App<Container> */
-    public static function createApp(Container $container): App
-    {
-        $app = Bridge::create($container);
-
-        foreach ((array) $container->get('managers') as $manager) {
-            /** @var callable $manager */
-            $container->call($manager);
-        }
-
-        return $app;
     }
 
     private static function containerCompilationEnabled(): bool

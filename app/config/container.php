@@ -99,6 +99,7 @@ return [
     // Container bindings
     // -------------------------------------------------------------------------
 
+    Slim\App::class => factory(Factories\AppFactory::class),
     App\HiddenFiles::class => factory([App\HiddenFiles::class, 'fromConfig']),
     League\CommonMark\ConverterInterface::class => factory(Factories\ConverterFactory::class),
     Symfony\Component\Finder\Finder::class => factory(Factories\FinderFactory::class),

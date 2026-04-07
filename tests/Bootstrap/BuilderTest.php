@@ -8,7 +8,6 @@ use App\Bootstrap\Builder;
 use DI\Container;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Test;
-use Slim\App;
 use Tests\TestCase;
 
 #[CoversClass(Builder::class)]
@@ -87,14 +86,5 @@ class BuilderTest extends TestCase
 
         $this->assertInstanceOf(Container::class, $container);
         $this->assertFileDoesNotExist($this->compiledContainerPath);
-    }
-
-    #[Test]
-    public function it_can_create_the_application_from_the_container(): void
-    {
-        $app = Builder::createApp($this->container);
-
-        $this->assertInstanceOf(App::class, $app);
-        $this->assertSame($this->container, $app->getContainer());
     }
 }

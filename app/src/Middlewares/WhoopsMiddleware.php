@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Middlewares;
 
+use DI\Attribute\Inject;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Server\RequestHandlerInterface as RequestHandler;
@@ -13,6 +14,9 @@ use Whoops\RunInterface;
 
 class WhoopsMiddleware
 {
+    #[Inject('debug')]
+    private string $debug;
+
     public function __construct(
         private RunInterface $whoops,
         private PrettyPageHandler $pageHandler,
@@ -21,6 +25,10 @@ class WhoopsMiddleware
 
     public function __invoke(Request $request, RequestHandler $handler): ResponseInterface
     {
+        if (! (bool) filter_var($this->debug, FILTER_VALIDATE_BOOL)) {
+            return $handler->handle($request);
+        }
+
         $this->pageHandler->setPageTitle(
             sprintf('%s • Directory Lister', $this->pageHandler->getPageTitle())
         );

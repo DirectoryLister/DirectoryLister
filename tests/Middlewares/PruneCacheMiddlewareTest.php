@@ -48,8 +48,7 @@ class PruneCacheMiddlewareTest extends TestCase
     public function it_prunes_the_cache_whe_using_a_pruneable_adapter_and_winning_the_lottery(string $cacheAdapter): void
     {
         /** @var CacheInterface&MockObject */
-        $cache = $this->createMock($cacheAdapter);
-        $this->container->set(CacheInterface::class, $cache);
+        $cache = $this->mock($cacheAdapter, CacheInterface::class);
         $cache->expects($this->once())->method('prune');
 
         $this->container->call(PruneCacheMiddleware::class, [
@@ -62,8 +61,7 @@ class PruneCacheMiddlewareTest extends TestCase
     #[Test, DataProvider('nonPruneableCacheAdapters')]
     public function it_does_not_prune_the_cache_when_using_a_non_prunable_adapter(string $cacheAdapter): void
     {
-        $cache = $this->createMock($cacheAdapter);
-        $this->container->set(CacheInterface::class, $cache);
+        $cache = $this->mock($cacheAdapter, CacheInterface::class);
         $cache->expects($this->never())->method($this->anything());
 
         $this->container->call(PruneCacheMiddleware::class, [

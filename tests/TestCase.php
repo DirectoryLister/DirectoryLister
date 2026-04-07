@@ -48,14 +48,15 @@ class TestCase extends BaseTestCase
      * @template TClass of object
      *
      * @param class-string<TClass> $className
+     * @param class-string $as
      *
      * @return TClass&MockObject
      */
-    protected function mock(string $className): mixed
+    protected function mock(string $className, ?string $as = null): mixed
     {
         $mock = $this->createMock($className);
 
-        $this->container->set($className, $mock);
+        $this->container->set($as ?? $className, $mock);
 
         return $mock;
     }

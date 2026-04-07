@@ -33,6 +33,11 @@ suite: analyze test # Run coding standards and static analysis checks and tests
 coverage: # Generate an HTML coverage report
 	@phpunit --coverage-html .coverage
 
+rebuild: # Rebuild and pull new images and recreate Docker containers
+	@docker compose build --pull
+	@docker compose pull --ignore-buildable
+	@docker compose up -d --force-recreate
+
 clear-assets: # Clear the compiled assets
 	@rm --recursive --force --verbose app/assets/*
 

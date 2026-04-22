@@ -166,6 +166,7 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           file: Dockerfile
+          target: prod
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.extract-metadata.outputs.tags }}
           labels: ${{ steps.extract-metadata.outputs.labels }}

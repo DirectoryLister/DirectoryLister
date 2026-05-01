@@ -152,7 +152,7 @@ jobs:
 
       - name: Extract Metadata
         id: extract-metadata
-        uses: docker/metadata-action@v5
+        uses: docker/metadata-action@v6
         with:
           images: directorylister/directorylister
           tags: |

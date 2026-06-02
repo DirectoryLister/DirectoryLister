@@ -2,19 +2,34 @@ version: 2
 
 updates:
   - package-ecosystem: composer
-    directory: "/"
+    directory: /
+    groups:
+      php-minor-and-patch:
+        patterns: ['*']
+        update-types: [minor, patch]
+    labels: [Dependencies, PHP]
     schedule:
       interval: monthly
     assignees: [PHLAK]
 
   - package-ecosystem: npm
-    directory: "/"
+    directory: /
+    groups:
+      javascript-minor-and-patch:
+        patterns: ['*']
+        update-types: [minor, patch]
+    labels: [Dependencies, JavaScript]
     schedule:
       interval: monthly
     assignees: [PHLAK]
 
   - package-ecosystem: github-actions
-    directory: "/"
+    directory: /
+    groups:
+      github-actions-minor-and-patch:
+        patterns: ['*']
+        update-types: [minor, patch]
+    labels: [Dependencies, GitHub Actions]
     schedule:
       interval: monthly
     assignees: [PHLAK]

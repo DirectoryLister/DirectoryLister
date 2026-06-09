@@ -10,6 +10,8 @@ updates:
     labels: [Dependencies, PHP]
     schedule:
       interval: monthly
+    cooldown:
+      default-days: 2
     assignees: [PHLAK]
 
   - package-ecosystem: npm
@@ -21,6 +23,8 @@ updates:
     labels: [Dependencies, JavaScript]
     schedule:
       interval: monthly
+    cooldown:
+      default-days: 2
     assignees: [PHLAK]
 
   - package-ecosystem: github-actions
@@ -32,4 +36,6 @@ updates:
     labels: [Dependencies, GitHub Actions]
     schedule:
       interval: monthly
+    cooldown:
+      default-days: 2
     assignees: [PHLAK]

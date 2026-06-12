@@ -1,12 +1,12 @@
 home: Accueil
-download: Télécharger ce Répertoire
-search: Chercher
+download: Télécharger ce répertoire
+search: Rechercher
 file:
-  name: Nom de Fichier
+  name: Nom du fichier
   size: Taille
   date: Date
-  info: Informations sur le Fichier
-powered_by: Alimenté par
+  info: Informations sur le fichier
+powered_by: Propulsé par
 scroll_to_top: Retour en Haut
 toggle_theme: Basculer entre le thème clair/sombre
 

@@ -63,18 +63,25 @@ class DirectoryController
             return null;
         }
 
-        $readmes = (clone $files)->name('/^README(?:\..+)?$/i');
+        $readmes = [];
+        foreach ($files as $file) {
+            if (! preg_match('/^README(?:\..+)?$/i', $file->getFilename())) {
+                continue;
+            }
 
-        $readmes->filter(
-            static fn (SplFileInfo $file): bool => (bool) preg_match('/text\/.+/', (string) mime_content_type($file->getPathname()))
-        )->sort(
-            static fn (SplFileInfo $file1, SplFileInfo $file2): int => $file1->getExtension() <=> $file2->getExtension()
-        );
+            if (! preg_match('/text\/.+/', (string) mime_content_type($file->getPathname()))) {
+                continue;
+            }
 
-        if (! $readmes->hasResults()) {
+            $readmes[] = $file;
+        }
+
+        if (empty($readmes)) {
             return null;
         }
 
-        return $readmes->getIterator()->current();
+        usort($readmes, static fn (SplFileInfo $file1, SplFileInfo $file2): int => $file1->getExtension() <=> $file2->getExtension());
+
+        return $readmes[0];
     }
 }

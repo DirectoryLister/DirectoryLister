@@ -32,7 +32,6 @@ updates:
     groups:
       GitHub Actions:
         patterns: ['*']
-        update-types: [minor, patch]
     labels: [Dependencies, GitHub Actions]
     schedule:
       interval: monthly

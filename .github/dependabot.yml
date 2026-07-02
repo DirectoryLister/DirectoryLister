@@ -4,7 +4,7 @@ updates:
   - package-ecosystem: composer
     directory: /
     groups:
-      php-minor-and-patch:
+      PHP Dependencies:
         patterns: ['*']
         update-types: [minor, patch]
     labels: [Dependencies, PHP]
@@ -17,7 +17,7 @@ updates:
   - package-ecosystem: npm
     directory: /
     groups:
-      javascript-minor-and-patch:
+      JavaScript Dependencies:
         patterns: ['*']
         update-types: [minor, patch]
     labels: [Dependencies, JavaScript]
@@ -30,7 +30,7 @@ updates:
   - package-ecosystem: github-actions
     directory: /
     groups:
-      github-actions-minor-and-patch:
+      GitHub Actions:
         patterns: ['*']
         update-types: [minor, patch]
     labels: [Dependencies, GitHub Actions]

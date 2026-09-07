@@ -1,0 +1,20 @@
+home: Əsas səhifə
+download: Bu qovluğu endir
+search: Axtarış
+file:
+  name: Fayl adı
+  size: Ölçü
+  date: Tarix
+  info: Fayl məlumatı
+powered_by: Hazırlayan
+scroll_to_top: Yuxarı sürüşdür
+toggle_theme: Açıq/tünd rejimi dəyiş
+
+error:
+  directory_not_found: Qovluq mövcud deyil
+  file_not_found: Fayl tapılmadı
+  file_size_exceeded: Fayl ölçüsü çox böyükdür
+  no_results_found: Nəticə tapılmadı
+  unexpected: Gözlənilməz xəta baş verdi
+
+enable_debugging: Əlavə məlumat üçün sazlamanı aktivləşdirin

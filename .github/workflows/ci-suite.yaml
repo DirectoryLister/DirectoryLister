@@ -164,7 +164,7 @@ jobs:
             type=ref,event=tag
 
       - name: Build & Push Image
-        uses: docker/build-push-action@v7.3.0
+        uses: docker/build-push-action@v7.4.0
         with:
           file: Dockerfile
           target: prod

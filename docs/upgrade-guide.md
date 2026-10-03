@@ -1,5 +1,14 @@
 # Upgrade Guide
 
+## Docker
+
+```bash
+docker compose pull
+docker compose up -d
+```
+
+## Manual Installation
+
 Upgrading an existing Directory Lister installation is quick and painless.
 
 1. Download the latest version of Directory Lister from [https://www.directorylister.com](https://www.directorylister.com)

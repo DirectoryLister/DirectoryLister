@@ -2,7 +2,7 @@
 
 ## Requirements
 
-* [PHP](https://php.net) >= 8.2 with the `zip`, `dom` and `fileinfo` (and optionally `apcu`, `memcached`, `redis`) extensions
+* [PHP](https://php.net) with the `zip`, `dom` and `fileinfo` (and optionally `apcu`, `memcached`, `redis`) extensions
   * [Composer](https://getcomposer.org) for PHP dependency management
 * [NPM](https://www.npmjs.com) for front end asset serving and bundling
 * [Docker](https://www.docker.com) and [Docker Compose](https://docs.docker.com/compose/) for running the local development container
@@ -10,7 +10,7 @@
 
 ## Instructions
 
-::: info
+::: warning
 These instructions are for setting up a local DEVELOPMENT environment. If you are looking for basic installation instruction see the [Installation](../installation.md) page instead.
 :::
 
@@ -32,7 +32,6 @@ These instructions are for setting up a local DEVELOPMENT environment. If you ar
     ```bash
     composer install
     npm install
-    npm run dev
     ```
 
 5. Run the local Docker container
@@ -41,13 +40,7 @@ These instructions are for setting up a local DEVELOPMENT environment. If you ar
     docker-compose up -d
     ```
 
-6. Add a host name entry to `/etc/hosts` (optional)
-
-    ```bash
-    127.0.0.1  directory-lister.local
-    ```
-
-You should now be able to access your local Directory Lister installation at `http://localhost` (or [http://directory-lister.local](http://directory-lister.local) if you added a host name entry)
+You should now be able to access your local Directory Lister installation at <http://localhost>.
 
 ## Common Development Commands
 
@@ -63,23 +56,6 @@ make clear-cache
 
 ```sh [Manual]
 rm --recursive --force app/cache/*
-```
-
-:::
-
-### Build dependencies and assets (for production)
-
-::: code-group
-
-```sh [Make]
-make production
-```
-
-```sh [Manual]
-composer install --no-dev --no-interaction --prefer-dist --optimize-autoloader
-npm install --no-save
-npm run build
-npm prune --production
 ```
 
 :::
@@ -127,7 +103,7 @@ make coding-standards
 ::: info
 This will apply coding standard fixes will be automatically.
 
-See the Compor or Manual tab to report coding standard problems _without_ modifying files.
+See the Composer or Manual tab to report coding standard problems _without_ modifying files.
 :::
 
 **Composer**
@@ -136,7 +112,7 @@ See the Compor or Manual tab to report coding standard problems _without_ modify
 composer exec php-cs-fixer fix [--diff] [--dry-run]
 ```
 
-::: info
+::: tip
 If no flags are present, coding standard fixes will be automatically applied.
 
 To report coding standard problems _without_ modifying files use the `--dry-run` flag.
@@ -150,7 +126,7 @@ Additionally, to display a diff of the fixes that would be applied, use the `--d
 app/vendor/bin/php-cs-fixer fix [--diff] [--dry-run]
 ```
 
-::: info
+::: tip
 If no flags are present, coding standard fixes will be automatically applied.
 
 To report coding standard problems _without_ modifying files use the `--dry-run` flag.
@@ -194,6 +170,6 @@ XDEBUG_MODE=coverage app/vendor/bin/phpunit --coverage-html .coverage
 
 :::
 
-::: info
+::: important
 Code coverage requires a code coverage engine (e.g. xdebug pr pcov) to run.
 :::

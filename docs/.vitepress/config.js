@@ -26,13 +26,13 @@ export default defineConfig({
             { text: 'Introduction', link: '/' },
             { text: 'Installation', link: '/installation' },
             { text: 'Upgrade Guide', link: '/upgrade-guide' },
-            { text: 'Docker', link: '/docker' },
             {
                 text: 'Configuration',
                 items: [
                     { text: 'Configuration Overview', link: '/configuration/' },
-                    { text: 'File Matching Patterns', link: '/configuration/file-matching-patterns' },
                     { text: 'Configuration Reference', link: '/configuration/configuration-reference' },
+                    { text: 'Advanced Configuration', link: '/configuration/advanced-configuration' },
+                    { text: 'File Matching Patterns', link: '/configuration/file-matching-patterns' },
                     { text: 'Authentication', link: '/configuration/authentication' }
                 ]
             },
@@ -50,6 +50,10 @@ export default defineConfig({
                 ]
             }
         ],
+
+        outline: { level: [2, 4] },
+
+        search: { provider: 'local' },
 
         socialLinks: [
             { icon: 'bluesky', link: 'https://bsky.app/profile/directorylister.com' },

@@ -6,9 +6,9 @@
     "cs": "npx eslint \"app/resources/js/**/*.js\"",
     "dev": "vite",
     "build": "vite build",
-    "docs:dev": "vitepress dev",
-    "docs:build": "vitepress build",
-    "docs:preview": "vitepress preview"
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:preview": "vitepress preview docs"
   },
   "dependencies": {
     "alpinejs": "^3.15.12",

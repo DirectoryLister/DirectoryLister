@@ -140,7 +140,7 @@ return [
      *
      * Default value: true
      */
-    'hide_vcs_files' => env('HIDE_VSC_FILES', true),
+    'hide_vcs_files' => env('HIDE_VCS_FILES', true),
 
     /**
      * Default date format. For additional info on date formatting see:

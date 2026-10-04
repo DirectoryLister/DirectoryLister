@@ -1,4 +1,5 @@
 import { defineConfig } from 'vitepress';
+import { tabsMarkdownPlugin } from 'vitepress-plugin-tabs';
 
 const head = [
     ['link', { rel: 'icon', href: '/images/directory-lister.svg' }],
@@ -13,6 +14,12 @@ export default defineConfig({
     description: 'The official Directory Lister documentation.',
 
     head: head,
+
+    markdown: {
+        config(md) {
+            md.use(tabsMarkdownPlugin);
+        },
+    },
 
     themeConfig: {
         logo: '/images/directory-lister.svg',

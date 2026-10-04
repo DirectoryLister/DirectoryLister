@@ -23,7 +23,8 @@
     "globals": "^17.7.0",
     "tailwindcss": "^4.1.5",
     "vite": "^8.0.16",
-    "vitepress": "^2.0.0-alpha.20"
+    "vitepress": "^2.0.0-alpha.20",
+    "vitepress-plugin-tabs": "^0.9.1"
   },
   "type": "module"
 }

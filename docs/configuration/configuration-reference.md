@@ -35,7 +35,7 @@ Whether or not the application container will be compiled. When set to `false` t
 General application runtime configuration can be controlled through environment variables. This can be accomplished via an `.env` file located in the root of your application. An example file is provided as `.env.example`.
 
 ::: info
-Advanced configuration can be accomplished via the app config located at `app/config/app.php`. However, changes to this fill will need to be manually re-applied between upgrades. It is highly recommended to stick to environment variables for controlling app configuration unless absolutely necessary.
+Advanced configuration can be accomplished via the app config located at `app/config/app.php`. However, changes to this file will need to be manually re-applied between upgrades. It is highly recommended to stick to environment variables for controlling app configuration unless absolutely necessary.
 :::
 
 ### `APP_DEBUG`
@@ -276,7 +276,7 @@ Compress Zip using Deflate. Enabling this option prevents file size estimation a
 Application cache configuration is also controlled through environment variables. This can be accomplished via an `.env` file located in the root of your application. An example file is provided as `.env.example`.
 
 ::: info
-Advanced configuration can be accomplished via the cache config located at `app/config/cache.php`. However, changes to this fill will need to be manually re-applied between upgrades. It is highly recommended to stick to environment variables for controlling cache configuration unless absolutely necessary.
+Advanced configuration can be accomplished via the cache config located at `app/config/cache.php`. However, changes to this file will need to be manually re-applied between upgrades. It is highly recommended to stick to environment variables for controlling cache configuration unless absolutely necessary.
 :::
 
 ### `CACHE_DRIVER`
@@ -298,7 +298,7 @@ The app cache lifetime (in seconds). Setting this value to `0` will cache indefi
 == Possible Values
 Any positive integer
 == Default Value
-`60` (one hour)
+`3600` (one hour)
 :::
 
 ### `CACHE_LOTTERY`
@@ -333,7 +333,7 @@ The Memcached server port.
 
 :::tabs
 == Possible Values
-Any valid port as an integer (`0` to `65353`)
+Any valid port as an integer (`0` to `65535`)
 == Default Value
 `11211`
 :::
@@ -354,7 +354,7 @@ Any string
 :::
 
 ::: info
-Advanced Reds configuration is possible via the [`redis_config` option](./advanced-configuration.md#redis_config) in `app/config/cache.php`
+Advanced Redis configuration is possible via the [`redis_config` option](./advanced-configuration.md#redis_config) in `app/config/cache.php`
 :::
 
 ### `REDIS_PORT`
@@ -363,13 +363,13 @@ The Redis server port.
 
 :::tabs
 == Possible Values
-Any valid port as an integer (`0` to `65353`)
+Any valid port as an integer (`0` to `65535`)
 == Default Value
 `6379`
 :::
 
 ::: info
-Advanced Reds configuration is possible via the [`redis_config` option](./advanced-configuration.md#redis_config) in `app/config/cache.php`
+Advanced Redis configuration is possible via the [`redis_config` option](./advanced-configuration.md#redis_config) in `app/config/cache.php`
 :::
 
 ### `VIEW_CACHE`
@@ -385,7 +385,7 @@ A directory path as a string or `false` to disable the view cache entirely
 
 ## Icon Configuration
 
-The icon config is located at `app/config/icons.php`. Here is were file types are mapped to their respective icons. The mapping is a PHP array where the array key is the file extension (without a preceding dot) and the array value is the desired [Font Awesome](https://fontawesome.com/icons) class names.
+The icon config is located at `app/config/icons.php`. Here is where file types are mapped to their respective icons. The mapping is a PHP array where the array key is the file extension (without a preceding dot) and the array value is the desired [Font Awesome](https://fontawesome.com/icons) class names.
 
 ::: code-group
 

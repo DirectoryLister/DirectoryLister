@@ -61,8 +61,8 @@ Analytics](https://matomo.org/), [Umami Analytics](https://umami.is/), etc.)
 into the HTML output of your directory listing.
 
 To inject your code into your page create a file named `.customizations.html` in
-the base project directory (the same folder as `index.php`) and place your
-analytics tracking script code into this file.
+the directory being listed (by default the same folder as `index.php`) and place
+your analytics tracking script code into this file.
 
 ## Icon Configuration
 

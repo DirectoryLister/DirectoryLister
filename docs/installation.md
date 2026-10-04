@@ -59,7 +59,7 @@ services:
       - <host_port>:80
     volumes:
       - <host_path>:/data
-      - app-cache:/var/www/html/cache/app
+      - app-cache:/var/www/html/app/cache
     restart: unless-stopped
     
 volumes:

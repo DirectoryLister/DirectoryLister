@@ -18,7 +18,7 @@ These instructions are for setting up a local DEVELOPMENT environment. If you ar
 2. [Clone Directory Lister to a local repository](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository)
 
     ```bash
-    git clone {{ REPOSITORY_URL }}
+    git clone https://github.com/DirectoryLister/DirectoryLister.git
     ```
 
 3. Switch to the Directory Lister directory
@@ -79,7 +79,7 @@ rm --recursive --force app/assets/*
 ::: code-group
 
 ```sh [Make]
-make tests
+make test
 ```
 
 ```sh [Composer]
@@ -101,9 +101,9 @@ make coding-standards
 ```
 
 ::: info
-This will apply coding standard fixes will be automatically.
+This checks coding standards and reports problems _without_ modifying files.
 
-See the Composer or Manual tab to report coding standard problems _without_ modifying files.
+See the Composer or Manual tab to automatically apply coding standard fixes.
 :::
 
 **Composer**
@@ -171,5 +171,5 @@ XDEBUG_MODE=coverage app/vendor/bin/phpunit --coverage-html .coverage
 :::
 
 ::: important
-Code coverage requires a code coverage engine (e.g. xdebug pr pcov) to run.
+Code coverage requires a code coverage engine (e.g. xdebug or pcov) to run.
 :::

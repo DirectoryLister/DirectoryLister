@@ -79,18 +79,6 @@ parameters:
 			path: app/src/Functions/ModifiedTime.php
 
 		-
-			message: '#^Method App\\Functions\\ModifiedTime\:\:__invoke\(\) throws checked exception ValueError but it''s missing from the PHPDoc @throws tag\.$#'
-			identifier: missingType.checkedException
-			count: 1
-			path: app/src/Functions/ModifiedTime.php
-
-		-
-			message: '#^Method App\\Functions\\SizeForHumans\:\:__invoke\(\) throws checked exception DivisionByZeroError but it''s missing from the PHPDoc @throws tag\.$#'
-			identifier: missingType.checkedException
-			count: 1
-			path: app/src/Functions/SizeForHumans.php
-
-		-
 			message: '#^Property App\\Managers\\MiddlewareManager\:\:\$middlewares type has no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1

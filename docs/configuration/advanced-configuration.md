@@ -21,7 +21,7 @@ See the [Hiding Files](./#hiding-files) page for additional info on hiding files
     'somefile.txt', // Matches 'somefile.txt' exactly
     'README.*', // Matches files named 'README' with any file extension
     'foo/*', // Matches all files in the 'foo' directory
-    'schema.{ya?ml}', // Matches 'schema.yml' or 'schema.yaml'
+    'schema.{yml,yaml}', // Matches 'schema.yml' or 'schema.yaml'
 ]
 ```
 
@@ -46,7 +46,7 @@ function (Memcached $memcached): void {
 **Default Value:**
 
 ```php
-DI\value(function (Memcached $memcached, Config $config): void {
+DI\value(function (Memcached $memcached, \DI\Container $config): void {
     $memcached->addServer(
         $config->get('memcached_host'),
         $config->get('memcached_port')
@@ -79,7 +79,7 @@ function (Redis $redis): void {
 **Default Value:**
 
 ```php
-DI\value(function (Redis $redis, Config $config): void {
+DI\value(function (Redis $redis, \DI\Container $config): void {
     $redis->pconnect(
         $config->get('redis_host'),
         $config->get('redis_port')
@@ -116,8 +116,8 @@ An [anonymous function](https://www.php.net/manual/en/functions.anonymous.php) c
 'sort_order' => \DI\value(
     function (SplFileInfo $file1, SplFileInfo $file2): int {
         return strcmp($file1->getRealPath(), $file2->getRealPath());
-    })
-);
+    }
+),
 ```
 
 ::: warning

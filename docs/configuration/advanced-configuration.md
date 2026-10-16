@@ -46,10 +46,10 @@ function (Memcached $memcached): void {
 **Default Value:**
 
 ```php
-DI\value(function (Memcached $memcached, \DI\Container $config): void {
+DI\value(function (Memcached $memcached, \DI\Container $container): void {
     $memcached->addServer(
-        $config->get('memcached_host'),
-        $config->get('memcached_port')
+        (string) $container->get('memcached_host'),
+        (int) $container->get('memcached_port')
     );
 })
 ```
@@ -79,10 +79,10 @@ function (Redis $redis): void {
 **Default Value:**
 
 ```php
-DI\value(function (Redis $redis, \DI\Container $config): void {
+DI\value(function (Redis $redis, \DI\Container $container): void {
     $redis->pconnect(
-        $config->get('redis_host'),
-        $config->get('redis_port')
+        (string) $container->get('redis_host'),
+        (int) $container->get('redis_port')
     );
 })
 ```

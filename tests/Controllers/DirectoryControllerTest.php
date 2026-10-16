@@ -90,6 +90,30 @@ class DirectoryControllerTest extends TestCase
     }
 
     #[Test]
+    public function it_renders_a_hidden_readme_but_does_not_list_it(): void
+    {
+        $this->container->set('display_readmes', true);
+        $this->container->set('hidden_files', ['README.md']);
+
+        $controller = $this->container->get(DirectoryController::class);
+
+        $request = $this->createMock(Request::class);
+        $request->method('getQueryParams')->willReturn(['dir' => '.']);
+
+        chdir($this->filePath('.'));
+        $response = $controller($request, new Response);
+
+        $this->assertInstanceOf(ResponseInterface::class, $response);
+        $this->assertEquals(200, $response->getStatusCode());
+
+        $body = (string) $response->getBody();
+
+        $this->assertStringContainsString(trim(file_get_contents($this->filePath('README.md'))), $body);
+        $this->assertStringNotContainsString('href="?file=README.md"', $body);
+        $this->assertStringContainsString('href="?file=README.txt"', $body);
+    }
+
+    #[Test]
     public function it_returns_a_404_error_when_the_folder_is_hidden(): void
     {
         $this->container->set('hidden_files', ['subdir']);

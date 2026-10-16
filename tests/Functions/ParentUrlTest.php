@@ -15,7 +15,7 @@ class ParentUrlTest extends TestCase
     #[Test]
     public function it_can_get_the_parent_directory(): void
     {
-        $parentDir = new ParentUrl;
+        $parentDir = $this->container->make(ParentUrl::class);
 
         $this->assertEquals('.', $parentDir('foo'));
         $this->assertEquals('?dir=foo', $parentDir('foo/bar'));
@@ -27,7 +27,7 @@ class ParentUrlTest extends TestCase
     #[Test]
     public function it_can_get_the_parent_directory_with_back_slashes(): void
     {
-        $parentDir = new ParentUrl('\\');
+        $parentDir = $this->container->make(ParentUrl::class, ['directorySeparator' => '\\']);
 
         $this->assertEquals('?dir=foo', $parentDir('foo\bar'));
         $this->assertEquals('?dir=foo\bar', $parentDir('foo\bar\baz'));
@@ -37,10 +37,22 @@ class ParentUrlTest extends TestCase
 
     public function test_parent_url_segments_are_url_encoded(): void
     {
-        $parentDir = new ParentUrl;
+        $parentDir = $this->container->make(ParentUrl::class);
 
         $this->assertEquals('?dir=foo/bar%2Bbaz', $parentDir('foo/bar+baz/qux'));
         $this->assertEquals('?dir=foo/bar%23baz', $parentDir('foo/bar#baz/qux'));
         $this->assertEquals('?dir=foo/bar%26baz', $parentDir('foo/bar&baz/qux'));
+    }
+
+    #[Test]
+    public function it_can_get_the_parent_directory_with_a_direct_link(): void
+    {
+        $this->container->set('direct_links', 'direct_links/**');
+
+        $parentDir = $this->container->make(ParentUrl::class);
+
+        $this->assertEquals('direct_links/subdir', $parentDir('direct_links/subdir/foo'));
+        $this->assertEquals('direct_links', $parentDir('direct_links/foo'));
+        $this->assertEquals('.', $parentDir('direct_links'));
     }
 }

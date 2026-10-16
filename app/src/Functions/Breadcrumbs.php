@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Functions;
 
+use App\Actions\DirectoryUrl;
 use App\Support\Str;
 use DI\Attribute\Inject;
 use Illuminate\Support\Collection;
@@ -17,7 +18,8 @@ class Breadcrumbs extends ViewFunction
 
     /** @param non-empty-string $directorySeparator */
     public function __construct(
-        private string $directorySeparator = DIRECTORY_SEPARATOR
+        private DirectoryUrl $directoryUrl,
+        private string $directorySeparator = DIRECTORY_SEPARATOR,
     ) {}
 
     /**
@@ -32,9 +34,9 @@ class Breadcrumbs extends ViewFunction
         )->filter(
             static fn (string $crumb): bool => ! in_array($crumb, [null, '.'])
         )->reduce(fn (Collection $carry, string $crumb): Collection => $carry->put($crumb, ltrim(
-            $carry->last() . $this->directorySeparator . rawurlencode($crumb), $this->directorySeparator
+            $carry->last() . $this->directorySeparator . $crumb, $this->directorySeparator
         )), new Collection)->map(
-            static fn (string $path): string => sprintf('?dir=%s', $path)
+            fn (string $path): string => ($this->directoryUrl)($path, $this->directorySeparator)
         );
     }
 }

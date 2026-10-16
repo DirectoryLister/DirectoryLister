@@ -82,4 +82,21 @@ class BreadcrumbsTest extends TestCase
             'bar' => '?dir=foo\0\bar',
         ]), $breadcrumbs('foo\0\bar'));
     }
+
+    #[Test]
+    public function it_returns_path_urls_for_direct_linked_directories(): void
+    {
+        $this->container->set('direct_links', 'direct_links/**');
+
+        $breadcrumbs = $this->container->make(Breadcrumbs::class);
+
+        $this->assertEquals(Collection::make([
+            'direct_links' => 'direct_links',
+            'subdir' => 'direct_links/subdir',
+        ]), $breadcrumbs('direct_links/subdir'));
+
+        $this->assertEquals(Collection::make([
+            'subdir' => '?dir=subdir',
+        ]), $breadcrumbs('subdir'));
+    }
 }

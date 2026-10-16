@@ -80,4 +80,16 @@ class FileUrlTest extends TestCase
         $this->assertEquals('?file=direct_links/index.html', $url('direct_links/index.html'));
         $this->assertEquals('?file=direct_links/test.php', $url('direct_links/test.php'));
     }
+
+    #[Test]
+    public function it_returns_a_path_url_for_a_direct_linked_directory(): void
+    {
+        $this->container->set('direct_links', 'direct_links/**');
+
+        $url = $this->container->make(FileUrl::class);
+
+        $this->assertEquals('direct_links', $url('direct_links'));
+        $this->assertEquals('direct_links/index.htm', $url('direct_links/index.htm'));
+        $this->assertEquals('?dir=subdir', $url('subdir'));
+    }
 }

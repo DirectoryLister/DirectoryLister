@@ -18,7 +18,7 @@ class Url extends ViewFunction
     /** @param non-empty-string $directorySeparator */
     public function __construct(
         protected Container $container,
-        private string $directorySeparator = DIRECTORY_SEPARATOR
+        protected string $directorySeparator = DIRECTORY_SEPARATOR
     ) {}
 
     /** Return the URL for a given path. */
@@ -56,8 +56,6 @@ class Url extends ViewFunction
     /** Escape URL characters in path segments. */
     protected function escape(string $path): string
     {
-        return Str::explode($path, $this->directorySeparator)->map(
-            static fn (string $segment): string => rawurlencode($segment)
-        )->implode($this->directorySeparator);
+        return Str::escape($path, $this->directorySeparator);
     }
 }

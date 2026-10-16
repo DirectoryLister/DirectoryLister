@@ -76,6 +76,20 @@ class DirectoryControllerTest extends TestCase
     }
 
     #[Test]
+    public function it_returns_a_successful_response_when_listing_a_path_based_directory(): void
+    {
+        $controller = $this->container->get(DirectoryController::class);
+
+        $request = $this->createMock(Request::class);
+
+        chdir($this->filePath('.'));
+        $response = $controller($request, new Response, 'subdir');
+
+        $this->assertInstanceOf(ResponseInterface::class, $response);
+        $this->assertEquals(200, $response->getStatusCode());
+    }
+
+    #[Test]
     public function it_returns_a_404_error_when_not_found(): void
     {
         $controller = $this->container->get(DirectoryController::class);

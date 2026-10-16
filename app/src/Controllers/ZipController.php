@@ -95,7 +95,8 @@ class ZipController
                 (string) $file->getRealPath(),
                 compressionMethod: $compressionMethod,
                 lastModificationDateTime: $modifiedTime,
-                exactSize: $file->getSize()
+                // Compressed streams must reach EOF to finalize deflate output.
+                exactSize: $compressionMethod === CompressionMethod::STORE ? (int) $file->getSize() : null
             );
         }
 

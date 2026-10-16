@@ -17,10 +17,11 @@ PHP Fatal error:  Uncaught RuntimeException: SplFileInfo::isFile(): open_basedir
 Directory Lister has security restrictions in place to mitigate [directory traversal
 attacks](https://owasp.org/www-community/attacks/Path_Traversal). Specifically,
 the [`open_basedir`](https://www.php.net/manual/en/ini.core.php#ini.open-basedir)
-directive is set to the application root directory. Thus, any attempt to access
-files outside of the application root will be denied and cause an error similar
-to the one above. This applies to symbolic links pointing to files outside of
-the application root as well.
+directive allows the application root directory and the configured
+[`FILES_PATH`](../configuration/configuration-reference.md#files_path), when set.
+Attempts to access files outside these allowed directories will be denied and
+cause an error similar to the one above. This applies to symbolic links pointing
+to files outside these directories as well.
 
 ## Configuration changes don't take effect when changed
 

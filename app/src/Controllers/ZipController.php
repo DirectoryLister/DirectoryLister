@@ -24,10 +24,10 @@ use ZipStream\ZipStream;
 class ZipController
 {
     #[Inject('zip_downloads')]
-    private bool $zipDownloads;
+    private string $zipDownloads;
 
     #[Inject('zip_compress')]
-    private bool $zipCompress;
+    private string $zipCompress;
 
     public function __construct(
         private Container $container,
@@ -39,7 +39,7 @@ class ZipController
     {
         $path = $this->container->call('full_path', ['path' => $request->getQueryParams()['zip']]);
 
-        if (! $this->zipDownloads || ! is_dir($path)) {
+        if (! filter_var($this->zipDownloads, FILTER_VALIDATE_BOOL) || ! is_dir($path)) {
             return $response->withStatus(404, $this->translator->trans('error.file_not_found'));
         }
 
@@ -75,7 +75,7 @@ class ZipController
      */
     private function createZip(string $path, Finder $files): ZipStream
     {
-        $compressionMethod = $this->zipCompress ? CompressionMethod::DEFLATE : CompressionMethod::STORE;
+        $compressionMethod = filter_var($this->zipCompress, FILTER_VALIDATE_BOOL) ? CompressionMethod::DEFLATE : CompressionMethod::STORE;
 
         $zip = new ZipStream(
             sendHttpHeaders: false,

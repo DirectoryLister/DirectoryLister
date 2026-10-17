@@ -142,4 +142,20 @@ class DirectoryControllerTest extends TestCase
         $this->assertInstanceOf(ResponseInterface::class, $response);
         $this->assertEquals(404, $response->getStatusCode());
     }
+
+    #[Test]
+    public function it_returns_a_404_error_when_a_hidden_folder_is_requested_via_a_dot_segment(): void
+    {
+        $this->container->set('hidden_files', ['subdir']);
+
+        $controller = $this->container->get(DirectoryController::class);
+
+        $request = $this->createMock(Request::class);
+        $request->method('getQueryParams')->willReturn(['dir' => './subdir']);
+
+        $response = $controller($request, new Response);
+
+        $this->assertInstanceOf(ResponseInterface::class, $response);
+        $this->assertEquals(404, $response->getStatusCode());
+    }
 }

@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Controllers;
 
+use App\Actions\CanonicalPath;
 use App\Actions\IsHidden;
 use DI\Attribute\Inject;
-use DI\Container;
 use Exception;
 use Psr\Http\Message\ResponseInterface;
 use Slim\Psr7\Request;
@@ -22,19 +22,19 @@ class DirectoryController
     private string $displayReadmes;
 
     public function __construct(
-        private Container $container,
         private Finder $finder,
         private Twig $view,
         private TranslatorInterface $translator,
         private IsHidden $isHidden,
+        private CanonicalPath $canonicalPath,
     ) {}
 
     public function __invoke(Request $request, Response $response, ?string $path = null): ResponseInterface
     {
         $relativePath = mb_rtrim($path ?? ($request->getQueryParams()['dir'] ?? '.'), '/');
-        $fullPath = $this->container->call('full_path', ['path' => $relativePath]);
+        $fullPath = ($this->canonicalPath)($relativePath);
 
-        if ($this->isHidden->path($fullPath)) {
+        if ($fullPath === null || $this->isHidden->path($fullPath)) {
             return $this->view->render($response->withStatus(404), 'error.twig', [
                 'message' => $this->translator->trans('error.directory_not_found'),
             ]);

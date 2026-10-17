@@ -133,6 +133,32 @@ class IndexControllerTest extends TestCase
     }
 
     #[Test]
+    public function it_blocks_query_string_access_to_a_direct_link_via_a_dot_segment(): void
+    {
+        $this->container->set('direct_links', 'direct_links/**');
+        $this->request->method('getQueryParams')->willReturn(['dir' => './direct_links']);
+
+        $controller = $this->makeController();
+
+        $response = $controller($this->request, $this->response);
+
+        $this->assertEquals(404, $response->getStatusCode());
+    }
+
+    #[Test]
+    public function it_blocks_query_string_access_to_a_direct_link_via_a_parent_segment(): void
+    {
+        $this->container->set('direct_links', 'direct_links/**');
+        $this->request->method('getQueryParams')->willReturn(['file' => 'subdir/../direct_links/index.htm']);
+
+        $controller = $this->makeController();
+
+        $response = $controller($this->request, $this->response);
+
+        $this->assertEquals(404, $response->getStatusCode());
+    }
+
+    #[Test]
     public function it_allows_query_string_access_to_a_direct_link_from_within(): void
     {
         $this->container->set('direct_links', 'direct_links/**');
@@ -181,6 +207,7 @@ class IndexControllerTest extends TestCase
             $this->container->get(\Slim\Views\Twig::class),
             $this->container->get(\Symfony\Contracts\Translation\TranslatorInterface::class),
             $this->container->get(\App\Actions\IsDirectLink::class),
+            $this->container->get(\App\Actions\CanonicalPath::class),
         );
     }
 }

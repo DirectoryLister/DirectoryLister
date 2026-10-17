@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controllers;
 
+use App\Actions\CanonicalPath;
 use App\Actions\IsDirectLink;
 use DI\Container;
 use Psr\Http\Message\ResponseInterface;
@@ -21,6 +22,7 @@ class IndexController
         private Twig $view,
         private TranslatorInterface $translator,
         private IsDirectLink $isDirectLink,
+        private CanonicalPath $canonicalPath,
     ) {}
 
     public function __invoke(Request $request, Response $response, ?string $path = null): ResponseInterface
@@ -28,13 +30,11 @@ class IndexController
         $queryParams = $request->getQueryParams();
         $firstQueryParam = array_key_first($queryParams);
 
-        if (in_array($firstQueryParam, self::PROTECTED_PARAMS)) {
-            $target = $queryParams[$firstQueryParam];
-            $fullPath = $this->container->call('full_path', ['path' => $target]);
+        if (in_array($firstQueryParam, self::PROTECTED_PARAMS, true)) {
+            $targetPath = ($this->canonicalPath)($queryParams[$firstQueryParam]);
 
-            if (($this->isDirectLink)($fullPath)) {
-                $requestPath = $path === null ? '' : mb_rtrim($path, '/');
-                $targetPath = mb_rtrim($target, '/');
+            if ($targetPath !== null && ($this->isDirectLink)($targetPath)) {
+                $requestPath = $path === null ? '' : (($this->canonicalPath)($path) ?? '');
 
                 if (! $this->isWithin($requestPath, $targetPath) && ! $this->isWithin($targetPath, $requestPath)) {
                     return $this->view->render($response->withStatus(404), 'error.twig', [
@@ -58,6 +58,10 @@ class IndexController
     /** Determine if a path is within a protected path. */
     private function isWithin(string $path, string $protected): bool
     {
+        if ($path === '' || $protected === '') {
+            return false;
+        }
+
         return $path === $protected || str_starts_with($path, $protected . '/');
     }
 }

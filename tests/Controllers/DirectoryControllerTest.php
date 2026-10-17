@@ -108,7 +108,7 @@ class DirectoryControllerTest extends TestCase
 
         $body = (string) $response->getBody();
 
-        $this->assertStringContainsString(trim(file_get_contents($this->filePath('README.md'))), $body);
+        $this->assertStringContainsString(trim((string) file_get_contents($this->filePath('README.md'))), $body);
         $this->assertStringNotContainsString('href="?file=README.md"', $body);
         $this->assertStringContainsString('href="?file=README.txt"', $body);
     }

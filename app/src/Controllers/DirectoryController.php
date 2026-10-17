@@ -51,17 +51,19 @@ class DirectoryController
         return $this->view->render($response, 'index.twig', [
             'files' => $files,
             'path' => $relativePath,
-            'readme' => $this->readme($files),
+            'readme' => $this->readme($fullPath),
             'title' => $relativePath == '.' ? 'Home' : $relativePath,
         ]);
     }
 
-    /** Return the README file within a finder object. */
-    private function readme(Finder $files): ?SplFileInfo
+    /** Return the README file within a directory. */
+    private function readme(string $fullPath): ?SplFileInfo
     {
         if (! filter_var($this->displayReadmes, FILTER_VALIDATE_BOOL)) {
             return null;
         }
+
+        $files = Finder::create()->in($fullPath)->depth(0)->followLinks();
 
         $readmes = [];
         foreach ($files as $file) {

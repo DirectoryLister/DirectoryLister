@@ -16,6 +16,7 @@
         "php": ">= 8.2",
         "ext-dom": "*",
         "ext-fileinfo": "*",
+        "ext-mbstring": "*",
         "ext-zip": "*",
         "filp/whoops": "^2.7",
         "illuminate/collections": "^12.2",

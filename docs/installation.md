@@ -108,8 +108,9 @@ You may pass one or more environment variables with multiple `--env` flags.
 > [!IMPORTANT] Requirements
 > - [PHP](https://www.php.net) with the
 >   [Zip](https://www.php.net/manual/en/book.zip.php),
->   [DOM](https://www.php.net/en/dom) and
->   [Fileinfo](https://www.php.net/manual/en/book.fileinfo.php) extensions
+>   [DOM](https://www.php.net/en/dom),
+>   [Fileinfo](https://www.php.net/manual/en/book.fileinfo.php) and
+>   [Multibyte String](https://www.php.net/manual/en/book.mbstring.php) extensions
 
 1. [Download Directory Lister](https://www.directorylister.com)
 2. Extract the zip/tar archive
@@ -120,8 +121,9 @@ You may pass one or more environment variables with multiple `--env` flags.
 > [!IMPORTANT] Requirements
 > - [PHP](https://www.php.net) with the
 >   [Zip](https://www.php.net/manual/en/book.zip.php),
->   [DOM](https://www.php.net/en/dom) and
->   [Fileinfo](https://www.php.net/manual/en/book.fileinfo.php) extensions
+>   [DOM](https://www.php.net/en/dom),
+>   [Fileinfo](https://www.php.net/manual/en/book.fileinfo.php) and
+>   [Multibyte String](https://www.php.net/manual/en/book.mbstring.php) extensions
 > - [Composer](https://getcomposer.org)
 
 ```bash

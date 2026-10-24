@@ -2,7 +2,7 @@
 
 ## Requirements
 
-* [PHP](https://php.net) with the `zip`, `dom` and `fileinfo` (and optionally `apcu`, `memcached`, `redis`) extensions
+* [PHP](https://php.net) with the `zip`, `dom`, `fileinfo` and `mbstring` (and optionally `apcu`, `memcached`, `redis`) extensions
   * [Composer](https://getcomposer.org) for PHP dependency management
 * [NPM](https://www.npmjs.com) for front end asset serving and bundling
 * [Docker](https://www.docker.com) and [Docker Compose](https://docs.docker.com/compose/) for running the local development container

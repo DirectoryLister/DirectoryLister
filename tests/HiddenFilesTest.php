@@ -39,6 +39,31 @@ class HiddenFilesTest extends TestCase
         HiddenFiles::make([]);
     }
 
+    #[Test]
+    public function it_does_not_hide_app_files_when_hide_app_files_is_a_false_string(): void
+    {
+        $this->container->set('hidden_files', []);
+        $this->container->set('hidden_files_list', 'NOT_A_REAL_FILE');
+        $this->container->set('hide_app_files', 'false');
+
+        $hiddenFiles = HiddenFiles::fromContainer($this->container);
+
+        $this->assertEquals([], $hiddenFiles->values()->toArray());
+    }
+
+    #[Test]
+    public function it_hides_app_files_when_hide_app_files_is_a_true_string(): void
+    {
+        $this->container->set('hidden_files', []);
+        $this->container->set('hidden_files_list', 'NOT_A_REAL_FILE');
+        $this->container->set('hide_app_files', 'true');
+
+        $hiddenFiles = HiddenFiles::fromContainer($this->container);
+
+        $this->assertContains('app', $hiddenFiles->values()->toArray());
+        $this->assertContains('index.php', $hiddenFiles->values()->toArray());
+    }
+
     public function hiddenFilesProvider(): array
     {
         return [

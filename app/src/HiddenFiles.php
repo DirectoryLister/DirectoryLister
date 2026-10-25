@@ -31,7 +31,7 @@ class HiddenFiles extends Collection
             $items = array_merge($items, $hiddenFiles ?: []);
         }
 
-        if ($container->get('hide_app_files')) {
+        if (filter_var($container->get('hide_app_files'), FILTER_VALIDATE_BOOL)) {
             $items = array_merge($items, $container->get('app_files'));
         }
 

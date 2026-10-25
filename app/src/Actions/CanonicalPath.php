@@ -15,7 +15,7 @@ class CanonicalPath
     /** Resolve a relative path to its canonical absolute path. */
     public function __invoke(string $path): ?string
     {
-        $canonical = realpath($this->container->call('full_path', ['path' => $path]));
+        $canonical = @realpath($this->container->call('full_path', ['path' => $path]));
 
         return $canonical === false ? null : $canonical;
     }

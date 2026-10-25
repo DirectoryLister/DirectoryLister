@@ -27,6 +27,8 @@ class IndexController
 
     public function __invoke(Request $request, Response $response, ?string $path = null): ResponseInterface
     {
+        $path = $this->stripEntryScript($request, $path);
+
         $queryParams = $request->getQueryParams();
         $firstQueryParam = array_key_first($queryParams);
 
@@ -53,6 +55,25 @@ class IndexController
         };
 
         return $this->container->call($controller, [$request, $response, $path]);
+    }
+
+    /**
+     * Strip the entry script from the request path so it may be resolved from
+     * the query string (e.g. /index.php?dir=foo).
+     */
+    private function stripEntryScript(Request $request, ?string $path): ?string
+    {
+        if ($path === null) {
+            return null;
+        }
+
+        $scriptName = basename($request->getServerParams()['SCRIPT_NAME'] ?? '');
+
+        if ($scriptName !== '' && ($path === $scriptName || str_starts_with($path, $scriptName . '/'))) {
+            return null;
+        }
+
+        return $path;
     }
 
     /** Determine if a path is within a protected path. */

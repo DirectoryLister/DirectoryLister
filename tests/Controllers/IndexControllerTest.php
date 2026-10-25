@@ -120,6 +120,40 @@ class IndexControllerTest extends TestCase
     }
 
     #[Test]
+    public function it_ignores_the_entry_script_path_and_resolves_the_directory_from_the_query_string(): void
+    {
+        $this->request->method('getQueryParams')->willReturn(['dir' => 'some/directory']);
+        $this->request->method('getServerParams')->willReturn(['SCRIPT_NAME' => '/index.php']);
+        $this->mock(Controllers\DirectoryController::class)
+            ->expects($this->once())->method('__invoke')
+            ->with($this->request, $this->response, null)
+            ->willReturn($this->response);
+
+        $controller = $this->makeController();
+
+        $response = $controller($this->request, $this->response, 'index.php');
+
+        $this->assertSame($this->response, $response);
+    }
+
+    #[Test]
+    public function it_ignores_a_path_prefixed_with_the_entry_script(): void
+    {
+        $this->request->method('getQueryParams')->willReturn([]);
+        $this->request->method('getServerParams')->willReturn(['SCRIPT_NAME' => '/index.php']);
+        $this->mock(Controllers\DirectoryController::class)
+            ->expects($this->once())->method('__invoke')
+            ->with($this->request, $this->response, null)
+            ->willReturn($this->response);
+
+        $controller = $this->makeController();
+
+        $response = $controller($this->request, $this->response, 'index.php/some/directory');
+
+        $this->assertSame($this->response, $response);
+    }
+
+    #[Test]
     public function it_blocks_query_string_access_to_a_direct_link_from_outside(): void
     {
         $this->container->set('direct_links', 'direct_links/**');

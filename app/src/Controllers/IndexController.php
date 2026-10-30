@@ -27,7 +27,9 @@ class IndexController
 
     public function __invoke(Request $request, Response $response, ?string $path = null): ResponseInterface
     {
-        $path = $this->stripEntryScript($request, $path);
+        if ($path !== null) {
+            $path = $this->normalizeRequestPath($request, $path);
+        }
 
         $queryParams = $request->getQueryParams();
         $firstQueryParam = array_key_first($queryParams);
@@ -58,22 +60,19 @@ class IndexController
     }
 
     /**
-     * Strip the entry script from the request path so it may be resolved from
-     * the query string (e.g. /index.php?dir=foo).
+     * Strip the base path (the sub-directory the application is installed in)
+     * and the entry script from the request path so it may be resolved relative
+     * to the files path or from the query string.
      */
-    private function stripEntryScript(Request $request, ?string $path): ?string
+    private function normalizeRequestPath(Request $request, string $path): ?string
     {
-        if ($path === null) {
-            return null;
+        $basePath = trim(dirname('/' . ($request->getServerParams()['SCRIPT_NAME'] ?? '')), '/');
+
+        if ($basePath !== '' && ($path === $basePath || str_starts_with($path, $basePath . '/'))) {
+            $path = ltrim(substr($path, strlen($basePath)), '/');
         }
 
-        $scriptName = basename($request->getServerParams()['SCRIPT_NAME'] ?? '');
-
-        if ($scriptName !== '' && ($path === $scriptName || str_starts_with($path, $scriptName . '/'))) {
-            return null;
-        }
-
-        return $path;
+        return $path !== '' && $path !== 'index.php' ? $path : null;
     }
 
     /** Determine if a path is within a protected path. */

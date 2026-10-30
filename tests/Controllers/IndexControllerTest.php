@@ -137,10 +137,27 @@ class IndexControllerTest extends TestCase
     }
 
     #[Test]
-    public function it_ignores_a_path_prefixed_with_the_entry_script(): void
+    public function it_strips_the_base_path_from_the_request_path(): void
     {
         $this->request->method('getQueryParams')->willReturn([]);
-        $this->request->method('getServerParams')->willReturn(['SCRIPT_NAME' => '/index.php']);
+        $this->request->method('getServerParams')->willReturn(['SCRIPT_NAME' => '/sub-dir/index.php']);
+        $this->mock(Controllers\DirectoryController::class)
+            ->expects($this->once())->method('__invoke')
+            ->with($this->request, $this->response, 'some/directory')
+            ->willReturn($this->response);
+
+        $controller = $this->makeController();
+
+        $response = $controller($this->request, $this->response, 'sub-dir/some/directory');
+
+        $this->assertSame($this->response, $response);
+    }
+
+    #[Test]
+    public function it_ignores_the_entry_script_path_on_a_subdirectory_install(): void
+    {
+        $this->request->method('getQueryParams')->willReturn(['dir' => 'some/directory']);
+        $this->request->method('getServerParams')->willReturn(['SCRIPT_NAME' => '/sub-dir/index.php']);
         $this->mock(Controllers\DirectoryController::class)
             ->expects($this->once())->method('__invoke')
             ->with($this->request, $this->response, null)
@@ -148,7 +165,41 @@ class IndexControllerTest extends TestCase
 
         $controller = $this->makeController();
 
-        $response = $controller($this->request, $this->response, 'index.php/some/directory');
+        $response = $controller($this->request, $this->response, 'sub-dir/index.php');
+
+        $this->assertSame($this->response, $response);
+    }
+
+    #[Test]
+    public function it_treats_the_base_path_only_request_as_home_on_a_subdirectory_install(): void
+    {
+        $this->request->method('getQueryParams')->willReturn([]);
+        $this->request->method('getServerParams')->willReturn(['SCRIPT_NAME' => '/sub-dir/index.php']);
+        $this->mock(Controllers\DirectoryController::class)
+            ->expects($this->once())->method('__invoke')
+            ->with($this->request, $this->response, null)
+            ->willReturn($this->response);
+
+        $controller = $this->makeController();
+
+        $response = $controller($this->request, $this->response, 'sub-dir/');
+
+        $this->assertSame($this->response, $response);
+    }
+
+    #[Test]
+    public function it_treats_a_bare_base_path_request_as_home_on_a_subdirectory_install(): void
+    {
+        $this->request->method('getQueryParams')->willReturn([]);
+        $this->request->method('getServerParams')->willReturn(['SCRIPT_NAME' => '/sub-dir/index.php']);
+        $this->mock(Controllers\DirectoryController::class)
+            ->expects($this->once())->method('__invoke')
+            ->with($this->request, $this->response, null)
+            ->willReturn($this->response);
+
+        $controller = $this->makeController();
+
+        $response = $controller($this->request, $this->response, 'sub-dir');
 
         $this->assertSame($this->response, $response);
     }
